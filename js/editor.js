@@ -189,14 +189,14 @@ document.addEventListener('DOMContentLoaded', () => {
             this.state.filteredItems.forEach(item => {
                 const row = this.ui.tableBody.insertRow();
                 row.dataset.id = item.id;
-                row.innerHTML = "
-                    <td contenteditable=\"true\" data-field=\"es\">${item.es}</td>
-                    <td contenteditable=\"true\" data-field=\"de\">${item.de}</td>
+                row.innerHTML = `
+                    <td contenteditable="true" data-field="es">${item.es}</td>
+                    <td contenteditable="true" data-field="de">${item.de}</td>
                     <td>${item.type}</td>
-                    <td contenteditable=\"true\" data-field=\"tags\">${item.tags.join(', ')}</td>
-                    <td contenteditable=\"true\" data-field=\"difficulty\">${item.difficulty}</td>
-                    <td contenteditable=\"true\" data-field=\"examples\">${item.examples.join('; ')}</td>
-                ";
+                    <td contenteditable="true" data-field="tags">${item.tags.join(', ')}</td>
+                    <td contenteditable="true" data-field="difficulty">${item.difficulty}</td>
+                    <td contenteditable="true" data-field="examples">${item.examples.join('; ')}</td>
+                `;
             });
         },
 
