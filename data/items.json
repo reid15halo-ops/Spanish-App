@@ -1,0 +1,1828 @@
+[
+  {
+    "id": "35153bc10ad2e79aea90179068a1b003244350e5",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "a",
+    "de": "a",
+    "examples": [
+      "La letra a."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "deb1b89db5c6071adb0b3524ee73bc9dfbef9783",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "alemán",
+    "de": "deutsch",
+    "examples": [
+      "Soy alemán.",
+      "Soy de Alemania."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "38a55409e66a07a456eb94d1b4414df923f400c2",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "amarillo",
+    "de": "gelb",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es amarillo."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "354e84d557651e61a9ee584c55f22af419528278",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "argentino",
+    "de": "argentinisch",
+    "examples": [
+      "Soy argentino.",
+      "Soy de Argentina."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "fa9d6c323f70d12efc9dbe3664d060028b6903bb",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "azul",
+    "de": "blau",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es azul."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "acdda7d2c282c3a76ef5c17e16c48389e469388c",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "b",
+    "de": "be",
+    "examples": [
+      "La letra b."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "f6062df0ffd841259530797e8bb8639325c86bcd",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "bebe",
+    "de": "él/ella/usted (beber)",
+    "type": "word",
+    "examples": [
+      "Él/ella/usted bebe"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-er"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "03f6643ab3c1231b5b631fdf0e90cdb71998271b",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "bebemos",
+    "de": "nosotros/as (beber)",
+    "type": "word",
+    "examples": [
+      "Nosotros/as bebemos"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-er"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "c9b775dd0e7c08dfd9a48aed8b5e8c024a205147",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "beben",
+    "de": "ellos/as/ustedes (beber)",
+    "type": "word",
+    "examples": [
+      "Ellos/as/ustedes beben"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-er"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "8e593c221b1d02815778aa3ff2c1c6de95af41e9",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "bebes",
+    "de": "tú (beber)",
+    "type": "word",
+    "examples": [
+      "Tú bebes"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-er"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "fbc615b1b97c069a452243482a1543f73843b3d2",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "bebo",
+    "de": "yo (beber)",
+    "type": "word",
+    "examples": [
+      "Yo bebo"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-er"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "1e6b90cd8a2e57c2d98cc7672bf5f255b7e89ab2",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "bebéis",
+    "de": "vosotros/as (beber)",
+    "type": "word",
+    "examples": [
+      "Vosotros/as bebéis"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-er"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "9aacd6a3523bb15e723c988fd23a0f08dd6657d7",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "blanco",
+    "de": "weiß",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es blanco."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "4d3ceddc887cadcc28f803e8c28b844f1cd51033",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "brasileño",
+    "de": "brasilianisch",
+    "examples": [
+      "Soy brasileño.",
+      "Soy de Brasil."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "05d42200a282d479fd674977e53c152ca1503a38",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Buenas noches",
+    "de": "Guten Abend;Gute Nacht",
+    "type": "sentence",
+    "examples": [
+      "Buenas noches"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "817af767af208669dd07a638376efdc1d5327f4c",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Buenas tardes",
+    "de": "Guten Tag",
+    "type": "sentence",
+    "examples": [
+      "Buenas tardes"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "ef65467d56a89332764a689a62e1794355d397f6",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Buenos días",
+    "de": "Guten Morgen",
+    "type": "sentence",
+    "examples": [
+      "Buenos días"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "56115caab5eda75de23c78cb538f996d2cd054d2",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "c",
+    "de": "ce",
+    "examples": [
+      "La letra c."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "55f5a17a4048dbbb0a79b15e0743998361851ea0",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "canta",
+    "de": "él/ella/usted (cantar)",
+    "type": "word",
+    "examples": [
+      "Él/ella/usted canta"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ar"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "02a3c360d10ff51a025bca3f68e238983c07e0bd",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "cantamos",
+    "de": "nosotros/as (cantar)",
+    "type": "word",
+    "examples": [
+      "Nosotros/as cantamos"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ar"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "8d9435d70947349515c1688fda4853bfc9a7f697",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "cantan",
+    "de": "ellos/as/ustedes (cantar)",
+    "type": "word",
+    "examples": [
+      "Ellos/as/ustedes cantan"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ar"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "a090dddc99ed7fc98896020aae8717722bc67e11",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "cantas",
+    "de": "tú (cantar)",
+    "type": "word",
+    "examples": [
+      "Tú cantas"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ar"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "93326b2e95c111e536cb20e48e79a036956a57f3",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "canto",
+    "de": "yo (cantar)",
+    "type": "word",
+    "examples": [
+      "Yo canto"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ar"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "9a296d4e69fb37493eaf397b2fafde69b6cd800b",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "cantáis",
+    "de": "vosotros/as (cantar)",
+    "type": "word",
+    "examples": [
+      "Vosotros/as cantáis"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ar"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "3f394b733798fa01f921b8af1c91d3ba0a228b1b",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "catorce",
+    "de": "vierzehn",
+    "type": "word",
+    "examples": [
+      "Tengo catorce años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "0a2fd7ec3189de833407f3f06f6905a85e3d684c",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "cero",
+    "de": "null",
+    "type": "word",
+    "examples": [
+      "Tengo cero años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "9fab8aebbc4e70a9efb0e3f0f4e98fd21a5e494f",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "ch",
+    "de": "che",
+    "examples": [
+      "La letra ch."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "b2cd2609782de7964cbebad41738e4884b235416",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "chino",
+    "de": "chinesisch",
+    "examples": [
+      "Soy chino.",
+      "Soy de China."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "0672db6793b16944ff04d6a46380b2f1ba7510e8",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "cien",
+    "de": "hundert",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "05c5b587868c7f80b88cfdcde62ad08d30baa906",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "cinco",
+    "de": "fünf",
+    "type": "word",
+    "examples": [
+      "Tengo cinco años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "e468d643031fc0563bf97dfad47d1207ee9f26e0",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "cincuenta",
+    "de": "fünfzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "785362c2bd33e3388b601cf32bebcd4c4246cb13",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "colombiano",
+    "de": "kolumbianisch",
+    "examples": [
+      "Soy colombiano.",
+      "Soy de Colombia."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "56dc222e7926758c430a2c7055528e0bed2a4873",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "cuarenta",
+    "de": "vierzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "8a768780a5385c4f174ba5d6731c3fcdac25bcd1",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "cuatro",
+    "de": "vier",
+    "type": "word",
+    "examples": [
+      "Tengo cuatro años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "47baca110d88f14e76a1e0ffcfdfaa8989669be5",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "diecinueve",
+    "de": "neunzehn",
+    "type": "word",
+    "examples": [
+      "Tengo diecinueve años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "b673caf9efe9db1936c4f132ec2f71c15c7a5f45",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "dieciocho",
+    "de": "achtzehn",
+    "type": "word",
+    "examples": [
+      "Tengo dieciocho años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "4f1b14bcd7b057703824579a215db2e567136a59",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "diecisiete",
+    "de": "siebzehn",
+    "type": "word",
+    "examples": [
+      "Tengo diecisiete años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "44313616041d08bc6c24f59e6c3966105a37c33a",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "dieciséis",
+    "de": "sechzehn",
+    "type": "word",
+    "examples": [
+      "Tengo dieciséis años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "482d14dff6f14393dafdd17388d5c71e4f578461",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "diez",
+    "de": "zehn",
+    "type": "word",
+    "examples": [
+      "Tengo diez años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "4afe42cd9e8695e18216ab27daa32675d2c449cc",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "doce",
+    "de": "zwölf",
+    "type": "word",
+    "examples": [
+      "Tengo doce años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "04c4a83f9fca703f8c7d6231034b69ff61d7cae2",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "dos",
+    "de": "zwei",
+    "type": "word",
+    "examples": [
+      "Tengo 2 años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "91775857fc4c1a6445a913a62e215e32f869abe7",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "el",
+    "de": "der (Singular,m.)",
+    "examples": [
+      "el gato / el casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "74f1c932f6928ab0df6d845d1bee1200d7413c98",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "Eso es todo, gracias.",
+    "de": "Das ist alles, danke.",
+    "type": "sentence",
+    "examples": [
+      "Eso es todo, gracias."
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "59c969f7bacc3734edf69dc65f5fba11ab66febe",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "español",
+    "de": "spanisch",
+    "examples": [
+      "Soy español.",
+      "Soy de España."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "279570f8f5ca6090513b97dd82ae279539ef5928",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "francés",
+    "de": "französisch",
+    "examples": [
+      "Soy francés.",
+      "Soy de Francia."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "42b9e1a6e965993099e62bef56156fc43175d539",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "gris",
+    "de": "grau",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es gris."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "4df430faee8837c5a62eaa1244250a29846933c2",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Hola",
+    "de": "Hallo",
+    "type": "sentence",
+    "examples": [
+      "Hola"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "3b85af5cbbed7bc558a9cf9cbc8f5247f4c465c1",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "inglés",
+    "de": "englisch",
+    "examples": [
+      "Soy inglés.",
+      "Soy de Inglaterra."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "2e37be316c5a8ea9e22462dd909b2af4b19ef8b7",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "italiano",
+    "de": "italienisch",
+    "examples": [
+      "Soy italiano.",
+      "Soy de Italia."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "c045780ee7d302bd3935414ad21439aa04a0fe00",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "j",
+    "de": "jota",
+    "examples": [
+      "La letra j."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "9f195fd99399393635733b79d118dffd3c3e0ea3",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "japonés",
+    "de": "japanisch",
+    "examples": [
+      "Soy japonés.",
+      "Soy de Japón."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "47043ac5fcb63900dcec4b3a14739e6e7c7ed83c",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "la",
+    "de": "die (Singular,w.)",
+    "examples": [
+      "la gato / la casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "f631f826d0e4d2e2000ec5eeb4ee55798d357988",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "La cuenta, por favor.",
+    "de": "Die Rechnung, bitte.",
+    "type": "sentence",
+    "examples": [
+      "La cuenta, por favor."
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "593854a74d0b9b811e4555017a5abf0c0296a8a2",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "las",
+    "de": "die (Plural,w.)",
+    "examples": [
+      "las gato / las casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "9154ff30ca2b91ff46ace620555e07e7c4e9b0e7",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "ll",
+    "de": "elle",
+    "examples": [
+      "La letra ll."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "ffdeb038b15855b139fb3da80ddc45bca7310f68",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "Lo mismo para mí.",
+    "de": "Für mich das Gleiche.",
+    "type": "sentence",
+    "examples": [
+      "Lo mismo para mí."
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "e90cd2c71d3f871ad999ba2ea6b1ee6cc59186e8",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "los",
+    "de": "die (Plural,m.)",
+    "examples": [
+      "los gato / los casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "c8cebb156c5dde53c42ad678044657b61480ec90",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Mal",
+    "de": "Schlecht",
+    "type": "sentence",
+    "examples": [
+      "Mal"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "09145446fd2e5a78abf0d6f043873f5bb5daa26d",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "marrón",
+    "de": "braun",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es marrón."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "58debd063555f2b982a0ed7c1cadfa7aa7a21b2f",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Me llamo ...",
+    "de": "Ich heiße ...",
+    "type": "sentence",
+    "examples": [
+      "Me llamo ..."
+    ],
+    "tags": [
+      "saludos_presentacion"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "9e0f7e42df079204b5c7d614046cbc0c0e25abab",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Me llamo Jonas.",
+    "de": "Ich heiße Jonas.",
+    "examples": [
+      "Me llamo Jonas."
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "b0665e9b42ee2635934410038a57a8149c062a41",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "mexicano",
+    "de": "mexikanisch",
+    "examples": [
+      "Soy mexicano.",
+      "Soy de México."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "5b4f48e626a7bee0bf65fbcd02d8346609a66b36",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "morado",
+    "de": "lila",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es morado."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "8b907a5cc39207d3e9703215016c9483ede32336",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Mucho gusto",
+    "de": "Freut mich",
+    "type": "sentence",
+    "examples": [
+      "Mucho gusto"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "c5888294f967ed820b4505d3b91420b233c9c3da",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Muy bien",
+    "de": "Sehr gut",
+    "type": "sentence",
+    "examples": [
+      "Muy bien"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "ca04c50464a6f14fe5c37838488f8ae7badefdc0",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "naranja",
+    "de": "orange",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es naranja."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "5b50bbdca5eaef2f98693fc438f07a16ff5a8d3a",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "negro",
+    "de": "schwarz",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es negro."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "2a3174108c81fa1f1eb33b000e9827360d68749b",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "No estamos listos.",
+    "de": "Wir sind noch nicht bereit.",
+    "type": "sentence",
+    "examples": [
+      "No estamos listos."
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "b3c834f3c59788e49cd67f55d3c40f26b54d1874",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "noventa",
+    "de": "neunzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "539951012a602c13b8381d7072a2b170528f224e",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "nueve",
+    "de": "neun",
+    "type": "word",
+    "examples": [
+      "Tengo nueve años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "370b42d2cea25f64f564bfa7429ee6b09b8f9021",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "ochenta",
+    "de": "achtzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "dceb716dee09bd0722ced6b40889eb65400d40b3",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "ocho",
+    "de": "acht",
+    "type": "word",
+    "examples": [
+      "Tengo ocho años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "19d3599bc226d40cd50d26ebae5bfd2c5efdea2e",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "once",
+    "de": "elf",
+    "type": "word",
+    "examples": [
+      "Tengo once años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "bc821ff0fd5d261a9610298e409cddc9f1b61487",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "Otra (cerveza), por favor.",
+    "de": "Noch ein (Bier), bitte.",
+    "type": "sentence",
+    "examples": [
+      "Otra (cerveza), por favor."
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "b8d40d046217025f5b7c8389395e44b891e7457b",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "quince",
+    "de": "fünfzehn",
+    "type": "word",
+    "examples": [
+      "Tengo quince años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "a5b72d2856ce49b7d383c4e8ce99a7be0f6e1be1",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Regular",
+    "de": "Geht so",
+    "type": "sentence",
+    "examples": [
+      "Regular"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "4f70420edbee2c6f24a81a733d2ee11a0295a68d",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "rojo",
+    "de": "rot",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es rojo."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "d572cdae81efb993476b8a457e9800205f10d442",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "rosado",
+    "de": "rosa",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es rosado."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "277a56757687c10964c8dd63b04b56b699a2ac2a",
+    "src": "IMG_20251009_153647.jpg",
+    "es": "ruso",
+    "de": "russisch",
+    "examples": [
+      "Soy ruso.",
+      "Soy de Rusia."
+    ],
+    "tags": [
+      "nacionalidades",
+      "pais"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "b812946cbfbab438598b8a59f1b5b33b650ad751",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "seis",
+    "de": "sechs",
+    "type": "word",
+    "examples": [
+      "Tengo seis años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "7222d3abcd0302f50707cd4d44075212ad1cbe05",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "sesenta",
+    "de": "sechzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "d4a92419fe7497a2af9f4460ade59fa2ed447b25",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "setenta",
+    "de": "siebzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "fec13f6946129823c33b604352b7331a7a80f841",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "siete",
+    "de": "sieben",
+    "type": "word",
+    "examples": [
+      "Tengo siete años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "ccf22f275fe3a1a891c64da3200efe1198d51eda",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Soy de ...",
+    "de": "Ich komme aus ...",
+    "type": "sentence",
+    "examples": [
+      "Soy de ..."
+    ],
+    "tags": [
+      "saludos_presentacion"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "76e870c450359255da62432194254ab9fd5eb78d",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Soy de Alemania.",
+    "de": "Ich komme aus Deutschland.",
+    "examples": [
+      "Soy de Alemania."
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "8862df74f9f5915fe52892619290d05eaa5865bd",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Tengo ... años.",
+    "de": "Ich bin ... Jahre alt.",
+    "type": "sentence",
+    "examples": [
+      "Tengo ... años."
+    ],
+    "tags": [
+      "saludos_presentacion"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "728ac74d2e18edcd8c3837e9c231027d44c386eb",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "Tengo 34 años.",
+    "de": "Ich bin 34 Jahre alt.",
+    "examples": [
+      "Tengo 34 años."
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "2865b8736b2c4e7c5dc5033d98a96b9f64a38700",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "trece",
+    "de": "dreizehn",
+    "type": "word",
+    "examples": [
+      "Tengo trece años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "5a643a5686a5f4698405f310a187a08945fe55fa",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "treinta",
+    "de": "dreißig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "dezenas"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "f89d0edecf4d1162cf82709d2816f5ec0be80fa4",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "tres",
+    "de": "drei",
+    "type": "word",
+    "examples": [
+      "Tengo tres años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "cd5d1b9580c2f04452976fed70d4b230bf5cb6e8",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "un",
+    "de": "ein (m.)",
+    "examples": [
+      "un gato / un casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "c0ed5b99b641696f49114ea0542f3b790d9340eb",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "una",
+    "de": "eine (w.)",
+    "examples": [
+      "una gato / una casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "98f68008b6b00968cdc61e21f16de6efdfac28c5",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "Una mesa para (dos), por favor.",
+    "de": "Einen Tisch für (zwei), bitte.",
+    "type": "sentence",
+    "examples": [
+      "Una mesa para (dos), por favor."
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "5a6bbad4477cb54a594d711b7dbafed63f7234fd",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "unas",
+    "de": "einige (w.)",
+    "examples": [
+      "unas gato / unas casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "843e612eeb9b9d345671ffe22f9393a666b5dfd4",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "uno",
+    "de": "eins",
+    "type": "word",
+    "examples": [
+      "Tengo 1 años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "36a21c7799d25a171abea7fb06ef27f839f6b6ed",
+    "src": "IMG_20251009_153719.jpg",
+    "es": "unos",
+    "de": "einige (m.)",
+    "examples": [
+      "unos gato / unos casa"
+    ],
+    "tags": [
+      "articulos",
+      "genero"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "2625c51f0408c89dfec8235c5eba05689c192ee9",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "v",
+    "de": "uve",
+    "examples": [
+      "La letra v."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "2411a7905aeb9a5c59aa123faa0cc58f0c25472c",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veinte",
+    "de": "zwanzig",
+    "type": "word",
+    "examples": [
+      "Tengo veinte años."
+    ],
+    "tags": [
+      "numeros"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "46f6013697cd807eecf2fc6c09c567ecd530514e",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veinticinco",
+    "de": "fünfundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "a2c514df83213ff82543b70522faa45c6a7c1aa1",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veinticuatro",
+    "de": "vierundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "a07db230555beeda4b99c69486fcd43cfc7e2eff",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veintidós",
+    "de": "zweiundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "abed1b4996b548252e13d2abad330de2d988bead",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veintinueve",
+    "de": "neunundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "82575471615fe8a474dda700914567a0127e41bd",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veintiocho",
+    "de": "achtundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "a579c80f99738344cc03be756131ed6563c5dc31",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veintisiete",
+    "de": "siebenundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "bdf3765cd628daaefca65788e42f380497c27807",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veintiséis",
+    "de": "sechsundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "763b4d9eacd686b2a51afb45b3fb907e8cb72e82",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veintitrés",
+    "de": "dreiundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "ac33a4d7478286686a7537cf740ece98772889dd",
+    "src": "IMG_20251009_153657.jpg",
+    "es": "veintiuno",
+    "de": "einundzwanzig",
+    "type": "word",
+    "examples": [],
+    "tags": [
+      "numeros",
+      "21-29_compuestos"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "2e0397884de56971cdcdaf759309ab13214fcfff",
+    "src": "IMG_20251009_153653.jpg",
+    "es": "verde",
+    "de": "grün",
+    "type": "word",
+    "examples": [
+      "Mi color favorito es verde."
+    ],
+    "tags": [
+      "colores"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "b834e70c078269c6596d02c100bdc5c69ad89b8e",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "vive",
+    "de": "él/ella/usted (vivir)",
+    "type": "word",
+    "examples": [
+      "Él/ella/usted vive"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ir"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "6c6ff7129da0b5f86e79eb90ecdff5bb46ca7007",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "viven",
+    "de": "ellos/as/ustedes (vivir)",
+    "type": "word",
+    "examples": [
+      "Ellos/as/ustedes viven"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ir"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "c980596d64225692bd024cc07fe7985d0dbc7c09",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "vives",
+    "de": "tú (vivir)",
+    "type": "word",
+    "examples": [
+      "Tú vives"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ir"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "17cf6e296642d18cea3f9866f1ff21da82a9ab12",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "vivimos",
+    "de": "nosotros/as (vivir)",
+    "type": "word",
+    "examples": [
+      "Nosotros/as vivimos"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ir"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "8fe128a4d5d627bfb1b1275a50548198f537dde5",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "vivo",
+    "de": "yo (vivir)",
+    "type": "word",
+    "examples": [
+      "Yo vivo"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ir"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "4548969c6bff5ac32a7a7b68cba52e8362937d8d",
+    "src": "IMG_20251009_153728.jpg",
+    "es": "vivís",
+    "de": "vosotros/as (vivir)",
+    "type": "word",
+    "examples": [
+      "Vosotros/as vivís"
+    ],
+    "tags": [
+      "presente_indicativo_regulares",
+      "conjugacion",
+      "-ir"
+    ],
+    "difficulty": 3
+  },
+  {
+    "id": "53bedfef2fa481d8cf973eca5cc2fe5b57298f40",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "Yo invito.",
+    "de": "Ich lade ein.",
+    "type": "sentence",
+    "examples": [
+      "Yo invito."
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "e6aae81f21f067fad3c2a97200e570bd5225c330",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "z",
+    "de": "zeta",
+    "examples": [
+      "La letra z."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "d41a5405c2efd45f9487f39ebda4db0d516c3159",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "¿Cuántos años tienes?",
+    "de": "Wie alt bist du?",
+    "type": "sentence",
+    "examples": [
+      "¿Cuántos años tienes?"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "6149824e7287034b9d557546d38a45ecc66ea904",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "¿Cómo te llamas?",
+    "de": "Wie heißt du?",
+    "type": "sentence",
+    "examples": [
+      "¿Cómo te llamas?"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "8df1da30c2ebeace860160c82bc8d8e7ced79346",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "¿De dónde eres?",
+    "de": "Woher bist du?",
+    "type": "sentence",
+    "examples": [
+      "¿De dónde eres?"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "da9b5896cb12dd88d5c7c300a034faa7a191ff4c",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "¿Está bien para compartir?",
+    "de": "Ist es zum Teilen geeignet?",
+    "type": "sentence",
+    "examples": [
+      "¿Está bien para compartir?"
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "e707e098cd8449ece839e0479369055cce56ea29",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "¿Podemos sentarnos en esta mesa?",
+    "de": "Können wir an diesem Tisch sitzen?",
+    "type": "sentence",
+    "examples": [
+      "¿Podemos sentarnos en esta mesa?"
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "79f55958d2efee1208fc4cdb86baafb4861019bf",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "¿Puedes ponerme (patatas) en vez de (ensalada)?",
+    "de": "Kann ich (Pommes) statt (Salat) bekommen?",
+    "type": "sentence",
+    "examples": [
+      "¿Puedes ponerme (patatas) en vez de (ensalada)?"
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "ab50799525152bf1638209c88493d947cc1e8304",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "¿Puedes traerme (el ketchup), por favor?",
+    "de": "Kannst du mir bitte (Ketchup) bringen?",
+    "type": "sentence",
+    "examples": [
+      "¿Puedes traerme (el ketchup), por favor?"
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "50f02774d4bc4a033c1320ea1e1e429e513701ba",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "¿Puedo ver la carta / carta de postres / carta de vinos?",
+    "de": "Kann ich die Speisekarte / Dessertkarte / Weinkarte sehen?",
+    "type": "sentence",
+    "examples": [
+      "¿Puedo ver la carta / carta de postres / carta de vinos?"
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "8ac0472c71b980945f1fa75374e9fcbc3bcc9b3d",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "¿Qué hay en el menú?",
+    "de": "Was steht auf der Speisekarte?",
+    "type": "sentence",
+    "examples": [
+      "¿Qué hay en el menú?"
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "43c9e682dc8da0ad215c1c49f7dcc004fb15ab78",
+    "src": "IMG_20251009_153803.jpg",
+    "es": "¿Qué me recomiendas?",
+    "de": "Was empfiehlst du mir?",
+    "type": "sentence",
+    "examples": [
+      "¿Qué me recomiendas?"
+    ],
+    "tags": [
+      "restaurante_frases"
+    ],
+    "difficulty": 2
+  },
+  {
+    "id": "f296015305cc4f3dff4a39cd890c66c1954f2a5b",
+    "src": "IMG_20251009_153706.jpg",
+    "es": "¿Qué tal?",
+    "de": "Wie geht's?",
+    "type": "sentence",
+    "examples": [
+      "¿Qué tal?"
+    ],
+    "tags": [
+      "saludos",
+      "presentacion"
+    ],
+    "difficulty": 1
+  },
+  {
+    "id": "d08d4f77fd650a96d70b5be8aa78b8d5af1e7cfb",
+    "src": "IMG_20251009_153723.jpg",
+    "es": "ñ",
+    "de": "eñe",
+    "examples": [
+      "La letra ñ."
+    ],
+    "tags": [
+      "alfabeto"
+    ],
+    "difficulty": 2
+  }
+]

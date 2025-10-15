@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lerninhalte-Editor</title>
+    <link rel="stylesheet" href="css/style.css"> 
+    <style>
+        /* Editor-specific styles */
+        body { height: auto; }
+        .editor-container { padding: 20px; max-width: 1200px; margin: auto; }
+        .toolbar { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
+        .toolbar input, .toolbar select, .toolbar button { padding: 8px; border-radius: 5px; border: 1px solid var(--border-color); background-color: var(--secondary-bg); color: var(--primary-text); }
+        #item-table { width: 100%; border-collapse: collapse; }
+        #item-table th, #item-table td { border: 1px solid var(--border-color); padding: 8px; text-align: left; }
+        #item-table th { background-color: var(--secondary-bg); }
+        #item-table td[contenteditable="true"]:focus { background-color: #e7f3ff; outline: 2px solid var(--accent-color); }
+        [data-theme="dark"] #item-table td[contenteditable="true"]:focus { background-color: rgba(77, 171, 247, 0.2); }
+        .controls button { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="editor-container">
+        <h1>Lerninhalte-Editor</h1>
+        
+        <div class="toolbar">
+            <input type="text" id="search-input" placeholder="Textsuche...">
+            <select id="tag-filter"></select>
+            <select id="type-filter"></select>
+            <button id="import-json-btn">JSON Import</button>
+            <button id="export-json-btn">JSON Export</button>
+            <button id="export-csv-btn">CSV Export</button>
+            <span id="item-count"></span>
+        </div>
+
+        <div class="controls">
+            <button id="undo-btn" disabled>Undo</button>
+            <button id="redo-btn" disabled>Redo</button>
+        </div>
+
+        <table id="item-table">
+            <thead>
+                <tr>
+                    <th>ES</th>
+                    <th>DE</th>
+                    <th>Type</th>
+                    <th>Tags</th>
+                    <th>Difficulty</th>
+                    <th>Examples</th>
+                </tr>
+            </thead>
+            <tbody id="item-table-body">
+                <!-- Items will be rendered here by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/editor.js"></script>
+</body>
+</html>

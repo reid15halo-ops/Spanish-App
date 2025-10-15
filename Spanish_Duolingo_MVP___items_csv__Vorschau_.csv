@@ -1,0 +1,77 @@
+src,es,de,type,examples,tags,difficulty
+IMG_20251009_153657.jpg,cero,null,word,Tengo cero años.,numeros,1
+IMG_20251009_153657.jpg,uno,eins,word,Tengo 1 años.,numeros,1
+IMG_20251009_153657.jpg,dos,zwei,word,Tengo 2 años.,numeros,1
+IMG_20251009_153657.jpg,tres,drei,word,Tengo tres años.,numeros,1
+IMG_20251009_153657.jpg,cuatro,vier,word,Tengo cuatro años.,numeros,1
+IMG_20251009_153657.jpg,cinco,fünf,word,Tengo cinco años.,numeros,1
+IMG_20251009_153657.jpg,seis,sechs,word,Tengo seis años.,numeros,1
+IMG_20251009_153657.jpg,siete,sieben,word,Tengo siete años.,numeros,1
+IMG_20251009_153657.jpg,ocho,acht,word,Tengo ocho años.,numeros,1
+IMG_20251009_153657.jpg,nueve,neun,word,Tengo nueve años.,numeros,1
+IMG_20251009_153657.jpg,diez,zehn,word,Tengo diez años.,numeros,1
+IMG_20251009_153657.jpg,once,elf,word,Tengo once años.,numeros,1
+IMG_20251009_153657.jpg,doce,zwölf,word,Tengo doce años.,numeros,1
+IMG_20251009_153657.jpg,trece,dreizehn,word,Tengo trece años.,numeros,1
+IMG_20251009_153657.jpg,catorce,vierzehn,word,Tengo catorce años.,numeros,1
+IMG_20251009_153657.jpg,quince,fünfzehn,word,Tengo quince años.,numeros,1
+IMG_20251009_153657.jpg,dieciséis,sechzehn,word,Tengo dieciséis años.,numeros,1
+IMG_20251009_153657.jpg,diecisiete,siebzehn,word,Tengo diecisiete años.,numeros,1
+IMG_20251009_153657.jpg,dieciocho,achtzehn,word,Tengo dieciocho años.,numeros,1
+IMG_20251009_153657.jpg,diecinueve,neunzehn,word,Tengo diecinueve años.,numeros,1
+IMG_20251009_153657.jpg,veinte,zwanzig,word,Tengo veinte años.,numeros,1
+IMG_20251009_153653.jpg,blanco,weiß,word,Mi color favorito es blanco.,colores,1
+IMG_20251009_153653.jpg,negro,schwarz,word,Mi color favorito es negro.,colores,1
+IMG_20251009_153653.jpg,gris,grau,word,Mi color favorito es gris.,colores,1
+IMG_20251009_153653.jpg,marrón,braun,word,Mi color favorito es marrón.,colores,1
+IMG_20251009_153653.jpg,morado,lila,word,Mi color favorito es morado.,colores,1
+IMG_20251009_153653.jpg,rosado,rosa,word,Mi color favorito es rosado.,colores,1
+IMG_20251009_153653.jpg,rojo,rot,word,Mi color favorito es rojo.,colores,1
+IMG_20251009_153653.jpg,naranja,orange,word,Mi color favorito es naranja.,colores,1
+IMG_20251009_153653.jpg,amarillo,gelb,word,Mi color favorito es amarillo.,colores,1
+IMG_20251009_153653.jpg,verde,grün,word,Mi color favorito es verde.,colores,1
+IMG_20251009_153653.jpg,azul,blau,word,Mi color favorito es azul.,colores,1
+IMG_20251009_153647.jpg,alemán,deutsch,word,Soy alemán.;Soy de Alemania.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,español,spanisch,word,Soy español.;Soy de España.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,francés,französisch,word,Soy francés.;Soy de Francia.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,inglés,englisch,word,Soy inglés.;Soy de Inglaterra.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,italiano,italienisch,word,Soy italiano.;Soy de Italia.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,argentino,argentinisch,word,Soy argentino.;Soy de Argentina.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,mexicano,mexikanisch,word,Soy mexicano.;Soy de México.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,colombiano,kolumbianisch,word,Soy colombiano.;Soy de Colombia.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,brasileño,brasilianisch,word,Soy brasileño.;Soy de Brasil.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,japonés,japanisch,word,Soy japonés.;Soy de Japón.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,chino,chinesisch,word,Soy chino.;Soy de China.,nacionalidades|pais,2
+IMG_20251009_153647.jpg,ruso,russisch,word,Soy ruso.;Soy de Rusia.,nacionalidades|pais,2
+IMG_20251009_153706.jpg,Hola,Hallo,phrase,Hola,saludos|presentacion,1
+IMG_20251009_153706.jpg,Buenos días,Guten Morgen,phrase,Buenos días,saludos|presentacion,1
+IMG_20251009_153706.jpg,Buenas tardes,Guten Tag,phrase,Buenas tardes,saludos|presentacion,1
+IMG_20251009_153706.jpg,Buenas noches,Guten Abend;Gute Nacht,phrase,Buenas noches,saludos|presentacion,1
+IMG_20251009_153706.jpg,¿Qué tal?,Wie geht's?,phrase,¿Qué tal?,saludos|presentacion,1
+IMG_20251009_153706.jpg,Muy bien,Sehr gut,phrase,Muy bien,saludos|presentacion,1
+IMG_20251009_153706.jpg,Regular,Geht so,phrase,Regular,saludos|presentacion,1
+IMG_20251009_153706.jpg,Mal,Schlecht,phrase,Mal,saludos|presentacion,1
+IMG_20251009_153706.jpg,¿Cómo te llamas?,Wie heißt du?,phrase,¿Cómo te llamas?,saludos|presentacion,1
+IMG_20251009_153706.jpg,Me llamo Jonas.,Ich heiße Jonas.,phrase,Me llamo Jonas.,saludos|presentacion,1
+IMG_20251009_153706.jpg,¿De dónde eres?,Woher bist du?,phrase,¿De dónde eres?,saludos|presentacion,1
+IMG_20251009_153706.jpg,Soy de Alemania.,Ich komme aus Deutschland.,phrase,Soy de Alemania.,saludos|presentacion,1
+IMG_20251009_153706.jpg,¿Cuántos años tienes?,Wie alt bist du?,phrase,¿Cuántos años tienes?,saludos|presentacion,1
+IMG_20251009_153706.jpg,Tengo 34 años.,Ich bin 34 Jahre alt.,phrase,Tengo 34 años.,saludos|presentacion,1
+IMG_20251009_153706.jpg,Mucho gusto,Freut mich,phrase,Mucho gusto,saludos|presentacion,1
+IMG_20251009_153719.jpg,el,"der (Singular,m.)",word,el gato / el casa,articulos|genero,2
+IMG_20251009_153719.jpg,la,"die (Singular,w.)",word,la gato / la casa,articulos|genero,2
+IMG_20251009_153719.jpg,los,"die (Plural,m.)",word,los gato / los casa,articulos|genero,2
+IMG_20251009_153719.jpg,las,"die (Plural,w.)",word,las gato / las casa,articulos|genero,2
+IMG_20251009_153719.jpg,un,ein (m.),word,un gato / un casa,articulos|genero,2
+IMG_20251009_153719.jpg,una,eine (w.),word,una gato / una casa,articulos|genero,2
+IMG_20251009_153719.jpg,unos,einige (m.),word,unos gato / unos casa,articulos|genero,2
+IMG_20251009_153719.jpg,unas,einige (w.),word,unas gato / unas casa,articulos|genero,2
+IMG_20251009_153723.jpg,a,a,word,La letra a.,alfabeto,2
+IMG_20251009_153723.jpg,b,be,word,La letra b.,alfabeto,2
+IMG_20251009_153723.jpg,c,ce,word,La letra c.,alfabeto,2
+IMG_20251009_153723.jpg,ch,che,word,La letra ch.,alfabeto,2
+IMG_20251009_153723.jpg,ll,elle,word,La letra ll.,alfabeto,2
+IMG_20251009_153723.jpg,ñ,eñe,word,La letra ñ.,alfabeto,2
+IMG_20251009_153723.jpg,j,jota,word,La letra j.,alfabeto,2
+IMG_20251009_153723.jpg,v,uve,word,La letra v.,alfabeto,2
+IMG_20251009_153723.jpg,z,zeta,word,La letra z.,alfabeto,2

@@ -1,0 +1,21 @@
+{
+  "name": "Spanisch-Lern-App",
+  "short_name": "Lern-App",
+  "description": "Eine App zum Lernen von Spanischvokabeln im Duolingo-Stil.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f0f2f5",
+  "theme_color": "#22273a",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

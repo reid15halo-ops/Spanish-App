@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Spanisch-Lern-App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#22273a">
+</head>
+<body>
+    <header class="app-header">
+        <div class="stats-container">
+            <div id="streak-badge" class="badge" title="Tage-Streak">🔥 0</div>
+            <div id="xp-badge" class="badge" title="Erfahrungspunkte">⭐ 0</div>
+            <div id="hearts-badge" class="badge" title="Leben">❤️ 5</div>
+        </div>
+        <div class="app-title">Lern-App</div>
+        <div class="settings-container">
+            <button id="dark-mode-toggle" aria-label="Dark Mode umschalten">🌙</button>
+        </div>
+    </header>
+
+    <main id="app-main" class="app-main">
+        <div id="exercise-container" class="exercise-container">
+            <!-- Übungs-UI wird hier dynamisch eingefügt -->
+        </div>
+        <div id="feedback-container" class="feedback-container">
+            <!-- Feedback (Richtig/Falsch) wird hier angezeigt -->
+        </div>
+    </main>
+
+    <footer id="app-footer" class="app-footer">
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <button id="check-btn" class="footer-btn">Überprüfen</button>
+        <button id="srs-btn" class="footer-btn-secondary">Üben (SRS)</button>
+        <button id="reset-dev-btn" class="footer-btn-dev">Reset Lives (Dev)</button>
+    </footer>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
