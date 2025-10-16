@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="app-version" content="0.0">
+    <title>Spanisch Lernen - Guided</title>
+    
+    <link rel="stylesheet" href="css/style-simplified.css">
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#667eea">
+</head>
+<body>
+    <a href="#screen-menu" class="skip-link">Skip to main content</a>
+    
+    <header class="app-header" role="banner">
+        <h1>???? Spanisch Lernen</h1>
+        <button id="toggle-theme" aria-label="Dark Mode umschalten">??</button>
+    </header>
+
+    <main id="screen" data-screen="menu">
+        <!-- MENU -->
+        <section id="screen-menu" class="screen active" role="region" aria-labelledby="menu-title">
+            <h2 id="menu-title">Hauptmenue</h2>
+            <div class="menu-grid">
+                <button class="menu-card" data-nav="setup" data-mode="quick">
+                    ?? Schnellstart<br><small>10 zufaellige Fragen</small>
+                </button>
+                <button class="menu-card" data-nav="setup" data-mode="byTag">
+                    ??? Nach Thema<br><small>Waehle ein Thema</small>
+                </button>
+                <button class="menu-card" data-nav="setup" data-mode="custom">
+                    ?? Benutzerdefiniert<br><small>Alle Optionen</small>
+                </button>
+            </div>
+        </section>
+
+        <!-- SETUP -->
+        <section id="screen-setup" class="screen" role="region" aria-labelledby="setup-title">
+            <h2 id="setup-title">Einstellungen</h2>
+            <form id="setup-form">
+                <div class="progress" id="setup-mode-info"></div>
+                
+                <label id="label-tag" style="display: none;">
+                    Thema auswaehlen:
+                    <select id="filter-tag">
+                        <option value="">Alle Themen</option>
+                    </select>
+                </label>
+                
+                <label id="label-type" style="display: none;">
+                    Uebungstyp:
+                    <select id="filter-type">
+                        <option value="">Gemischt</option>
+                        <option value="choice">Multiple Choice</option>
+                        <option value="typing">Lueckentext</option>
+                        <option value="sentence">Satz</option>
+                    </select>
+                </label>
+                
+                <label id="label-count" style="display: none;">
+                    Anzahl Fragen:
+                    <select id="question-count">
+                        <option value="5">5 Fragen</option>
+                        <option value="10" selected>10 Fragen</option>
+                        <option value="20">20 Fragen</option>
+                    </select>
+                </label>
+                
+                <div class="actions">
+                    <button type="submit" class="primary show">Los geht's!</button>
+                    <button type="button" data-back="menu" class="show">Zurueck</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- RUN -->
+        <section id="screen-run" class="screen" role="region" aria-labelledby="run-title">
+            <h2 id="run-title" class="visually-hidden">Uebung</h2>
+            <div class="progress" id="progress-info"></div>
+            <div id="prompt-area"></div>
+            <div id="answer-area"></div>
+            <div id="feedback" role="alert" aria-live="polite"></div>
+            <div class="actions">
+                <button id="btn-check" class="primary show">Pruefen</button>
+                <button id="btn-next">Weiter</button>
+                <button id="btn-again">Nochmal</button>
+                <button id="btn-exit" data-back="menu">Beenden</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Guided Learning App
+        class GuidedApp {
+            constructor() {
+                this.vocabulary = [];
+                this.currentScreen = 'menu';
+                this.setupMode = 'quick';
+                this.exercises = [];
+                this.currentIndex = 0;
+                this.score = 0;
+                this.currentExercise = null;
+                
+                this.init();
+            }
+            
+            async init() {
+                try {
+                    await this.loadVocabulary();
+                    this.setupNavigation();
+                    this.setupThemeToggle();
+                    this.checkDarkMode();
+                } catch (error) {
+                    console.error('Init failed:', error);
+                    alert('Fehler beim Laden: ' + error.message);
+                }
+            }
+            
+            async loadVocabulary() {
+                const response = await fetch('data/items.json');
+                const data = await response.json();
+                this.vocabulary = data.filter(item => 
+                    item.es && item.de && item.type !== 'conjugation'
+                );
+                
+                // Populate tag dropdown
+                const tags = [...new Set(this.vocabulary.flatMap(item => item.tags || []))];
+                const tagSelect = document.getElementById('filter-tag');
+                tags.forEach(tag => {
+                    const option = document.createElement('option');
+                    option.value = tag;
+                    option.textContent = tag;
+                    tagSelect.appendChild(option);
+                });
+            }
+            
+            setupNavigation() {
+                // Menu cards
+                document.querySelectorAll('[data-nav]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const target = e.currentTarget.dataset.nav;
+                        const mode = e.currentTarget.dataset.mode;
+                        
+                        if (mode) {
+                            this.setupMode = mode;
+                        }
+                        
+                        this.navigateTo(target);
+                    });
+                });
+                
+                // Back buttons
+                document.querySelectorAll('[data-back]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const target = e.currentTarget.dataset.back;
+                        this.navigateTo(target);
+                    });
+                });
+                
+                // Setup form
+                document.getElementById('setup-form').addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    this.startRun();
+                });
+                
+                // Run buttons
+                document.getElementById('btn-check').addEventListener('click', () => this.checkAnswer());
+                document.getElementById('btn-next').addEventListener('click', () => this.nextExercise());
+                document.getElementById('btn-again').addEventListener('click', () => this.startRun());
+            }
+            
+            setupThemeToggle() {
+                document.getElementById('toggle-theme').addEventListener('click', () => {
+                    document.body.classList.toggle('dark-mode');
+                    const isDark = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDark);
+                });
+            }
+            
+            checkDarkMode() {
+                if (localStorage.getItem('darkMode') === 'true') {
+                    document.body.classList.add('dark-mode');
+                }
+            }
+            
+            navigateTo(screenName) {
+                // Hide all screens
+                document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+                
+                // Show target screen
+                const targetScreen = document.getElementById(`screen-${screenName}`);
+                if (targetScreen) {
+                    targetScreen.classList.add('active');
+                    this.currentScreen = screenName;
+                }
+                
+                // Setup screen specific logic
+                if (screenName === 'setup') {
+                    this.setupSetupScreen();
+                }
+            }
+            
+            setupSetupScreen() {
+                const modeInfo = document.getElementById('setup-mode-info');
+                const labelTag = document.getElementById('label-tag');
+                const labelType = document.getElementById('label-type');
+                const labelCount = document.getElementById('label-count');
+                
+                // Hide all options first
+                labelTag.style.display = 'none';
+                labelType.style.display = 'none';
+                labelCount.style.display = 'none';
+                
+                switch(this.setupMode) {
+                    case 'quick':
+                        modeInfo.textContent = 'Schnellstart: 10 zufaellige Fragen';
+                        break;
+                    case 'byTag':
+                        modeInfo.textContent = 'Waehle ein Thema:';
+                        labelTag.style.display = 'flex';
+                        break;
+                    case 'custom':
+                        modeInfo.textContent = 'Benutzerdefinierte Einstellungen:';
+                        labelTag.style.display = 'flex';
+                        labelType.style.display = 'flex';
+                        labelCount.style.display = 'flex';
+                        break;
+                }
+            }
+            
+            startRun() {
+                // Get settings
+                const tag = document.getElementById('filter-tag').value;
+                const type = document.getElementById('filter-type').value;
+                const count = parseInt(document.getElementById('question-count').value) || 10;
+                
+                // Filter vocabulary
+                let pool = this.vocabulary;
+                if (tag) {
+                    pool = pool.filter(item => item.tags?.includes(tag));
+                }
+                
+                // Generate exercises
+                this.exercises = [];
+                this.score = 0;
+                this.currentIndex = 0;
+                
+                for (let i = 0; i < count && pool.length > 0; i++) {
+                    const item = pool[Math.floor(Math.random() * pool.length)];
+                    const exerciseType = type || (Math.random() < 0.6 ? 'choice' : 'typing');
+                    
+                    this.exercises.push({
+                        item,
+                        type: exerciseType,
+                        correctAnswer: item.es
+                    });
+                }
+                
+                if (this.exercises.length === 0) {
+                    alert('Keine Uebungen gefunden!');
+                    return;
+                }
+                
+                this.navigateTo('run');
+                this.nextExercise();
+            }
+            
+            nextExercise() {
+                if (this.currentIndex >= this.exercises.length) {
+                    this.showResults();
+                    return;
+                }
+                
+                this.currentExercise = this.exercises[this.currentIndex];
+                this.currentIndex++;
+                
+                this.renderExercise();
+                this.updateProgress();
+                this.showButton('btn-check');
+                this.hideButton('btn-next');
+                this.hideFeedback();
+            }
+            
+            renderExercise() {
+                const { item, type } = this.currentExercise;
+                const promptArea = document.getElementById('prompt-area');
+                const answerArea = document.getElementById('answer-area');
+                
+                if (type === 'choice') {
+                    promptArea.textContent = `Wie heisst "${item.de}" auf Spanisch?`;
+                    answerArea.innerHTML = this.renderChoices(item);
+                } else {
+                    promptArea.textContent = `Uebersetze: ${item.de}`;
+                    answerArea.innerHTML = `
+                        <input type="text" 
+                               class="answer-input" 
+                               id="user-input" 
+                               placeholder="Deine Antwort..."
+                               autocomplete="off">
+                    `;
+                    
+                    document.getElementById('user-input').addEventListener('keypress', (e) => {
+                        if (e.key === 'Enter') {
+                            this.checkAnswer();
+                        }
+                    });
+                    document.getElementById('user-input').focus();
+                }
+            }
+            
+            renderChoices(item) {
+                const choices = [item.es];
+                
+                while (choices.length < 4 && this.vocabulary.length >= 4) {
+                    const random = this.vocabulary[Math.floor(Math.random() * this.vocabulary.length)];
+                    if (random.es !== item.es && !choices.includes(random.es)) {
+                        choices.push(random.es);
+                    }
+                }
+                
+                choices.sort(() => Math.random() - 0.5);
+                
+                const html = '<div class="choices">' + 
+                    choices.map(choice => `
+                        <button class="choice-btn" data-choice="${choice}">
+                            ${choice}
+                        </button>
+                    `).join('') +
+                    '</div>';
+                
+                setTimeout(() => {
+                    document.querySelectorAll('.choice-btn').forEach(btn => {
+                        btn.addEventListener('click', (e) => {
+                            document.querySelectorAll('.choice-btn').forEach(b => {
+                                b.classList.remove('selected');
+                            });
+                            e.target.classList.add('selected');
+                            this.currentExercise.userAnswer = e.target.dataset.choice;
+                        });
+                    });
+                }, 0);
+                
+                return html;
+            }
+            
+            checkAnswer() {
+                let userAnswer;
+                
+                if (this.currentExercise.type === 'choice') {
+                    userAnswer = this.currentExercise.userAnswer;
+                    if (!userAnswer) {
+                        alert('Bitte waehle eine Antwort!');
+                        return;
+                    }
+                } else {
+                    const input = document.getElementById('user-input');
+                    userAnswer = input.value.trim();
+                    if (!userAnswer) {
+                        alert('Bitte gib eine Antwort ein!');
+                        return;
+                    }
+                    input.disabled = true;
+                }
+                
+                const isCorrect = userAnswer.toLowerCase() === 
+                    this.currentExercise.correctAnswer.toLowerCase();
+                
+                if (isCorrect) {
+                    this.score++;
+                    this.showFeedback('Richtig! ??', 'correct');
+                } else {
+                    this.showFeedback(
+                        `Falsch. Richtig: ${this.currentExercise.correctAnswer}`, 
+                        'incorrect'
+                    );
+                }
+                
+                // Disable choices
+                if (this.currentExercise.type === 'choice') {
+                    document.querySelectorAll('.choice-btn').forEach(btn => {
+                        btn.disabled = true;
+                    });
+                }
+                
+                this.hideButton('btn-check');
+                this.showButton('btn-next');
+            }
+            
+            showResults() {
+                const percentage = Math.round((this.score / this.exercises.length) * 100);
+                
+                document.getElementById('prompt-area').innerHTML = `
+                    <h2>Fertig! ??</h2>
+                `;
+                
+                document.getElementById('answer-area').innerHTML = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+                            ${this.score} / ${this.exercises.length}
+                        </h2>
+                        <p style="font-size: 1.3rem; margin-bottom: 2rem;">
+                            ${percentage}% richtig
+                        </p>
+                        <p style="font-size: 1.1rem;">
+                            ${this.getEncouragementMessage(percentage)}
+                        </p>
+                    </div>
+                `;
+                
+                this.hideFeedback();
+                this.hideButton('btn-check');
+                this.hideButton('btn-next');
+                this.showButton('btn-again');
+                this.showButton('btn-exit');
+                
+                document.getElementById('progress-info').textContent = '';
+            }
+            
+            getEncouragementMessage(percentage) {
+                if (percentage === 100) return 'Perfekt! ??';
+                if (percentage >= 80) return 'Sehr gut! ??';
+                if (percentage >= 60) return 'Gut gemacht! ??';
+                if (percentage >= 40) return 'Nicht schlecht! Weiter so! ??';
+                return 'Weiter ueben! Du schaffst das! ??';
+            }
+            
+            updateProgress() {
+                document.getElementById('progress-info').textContent = 
+                    `Frage ${this.currentIndex} von ${this.exercises.length} | Score: ${this.score}`;
+            }
+            
+            showFeedback(message, type) {
+                const feedback = document.getElementById('feedback');
+                feedback.textContent = message;
+                feedback.className = `show ${type}`;
+            }
+            
+            hideFeedback() {
+                const feedback = document.getElementById('feedback');
+                feedback.classList.remove('show');
+            }
+            
+            showButton(id) {
+                document.getElementById(id).classList.add('show');
+            }
+            
+            hideButton(id) {
+                document.getElementById(id).classList.remove('show');
+            }
+        }
+        
+        // Start app
+        document.addEventListener('DOMContentLoaded', () => {
+            window.app = new GuidedApp();
+        });
+    </script>
+</body>
+</html>

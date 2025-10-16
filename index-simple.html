@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="app-version" content="0.0">
+    <title>Spanisch Lernen</title>
+    
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#22273a">
+    
+    <style>
+        /* Simplified Layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .app-header h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .settings {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+        
+        .settings button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+        
+        .settings button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        main {
+            flex: 1;
+            max-width: 800px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .exercise-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .exercise-question {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #333;
+        }
+        
+        .exercise-input {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.2rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .exercise-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .choices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        @media (max-width: 600px) {
+            .choices {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .choice-btn {
+            padding: 1.5rem;
+            font-size: 1.1rem;
+            border: 2px solid #ddd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .choice-btn:hover {
+            border-color: #667eea;
+            background: #f0f0ff;
+        }
+        
+        .choice-btn.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+        
+        .choice-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .feedback {
+            margin-top: 2rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .stats {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        /* Dark mode */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .exercise-card {
+            background: #2a2a2a;
+        }
+        
+        body.dark-mode .exercise-question {
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .choice-btn {
+            background: #2a2a2a;
+            border-color: #444;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .choice-btn:hover {
+            background: #3a3a5a;
+            border-color: #667eea;
+        }
+        
+        body.dark-mode .exercise-input {
+            background: #2a2a2a;
+            border-color: #444;
+            color: #e0e0e0;
+        }
+        
+        body.dark-mode .stats {
+            color: #aaa;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 2rem;
+            color: #dc3545;
+            background: #f8d7da;
+            border-radius: 8px;
+            margin: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <h1>???? Spanisch Lernen</h1>
+        <div class="settings">
+            <button id="dark-mode-toggle" title="Dark Mode">??</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="stats" id="stats">
+            Frage 1 von 10
+        </div>
+
+        <div class="exercise-card">
+            <div class="exercise-question" id="question">
+                <div class="loading">Lade Vokabeln...</div>
+            </div>
+
+            <!-- For multiple choice -->
+            <div class="choices" id="choices" style="display: none;">
+                <!-- Choices will be added here -->
+            </div>
+
+            <!-- For typing -->
+            <div id="typing-input" style="display: none;">
+                <input type="text" 
+                       class="exercise-input" 
+                       id="answer-input" 
+                       placeholder="Deine Antwort..."
+                       autocomplete="off">
+            </div>
+
+            <div class="actions">
+                <button class="btn-primary" id="check-btn" style="display: none;">Pruefen</button>
+            </div>
+
+            <div class="feedback" id="feedback" style="display: none;"></div>
+        </div>
+    </main>
+
+    <script>
+        // Simple App - Clean and Easy
+        class SimpleApp {
+            constructor() {
+                this.vocabulary = [];
+                this.currentIndex = 0;
+                this.currentExercise = null;
+                this.score = 0;
+                this.totalQuestions = 10;
+                
+                this.elements = {
+                    question: document.getElementById('question'),
+                    choices: document.getElementById('choices'),
+                    typingInput: document.getElementById('typing-input'),
+                    answerInput: document.getElementById('answer-input'),
+                    feedback: document.getElementById('feedback'),
+                    checkBtn: document.getElementById('check-btn'),
+                    stats: document.getElementById('stats'),
+                    darkModeToggle: document.getElementById('dark-mode-toggle')
+                };
+                
+                this.init();
+            }
+            
+            async init() {
+                try {
+                    // Load vocabulary
+                    await this.loadVocabulary();
+                    
+                    // Setup event listeners
+                    this.setupEventListeners();
+                    
+                    // Check for dark mode preference
+                    if (localStorage.getItem('darkMode') === 'true') {
+                        document.body.classList.add('dark-mode');
+                    }
+                    
+                    // Start first exercise
+                    this.nextExercise();
+                } catch (error) {
+                    console.error('App initialization failed:', error);
+                    this.showError('Fehler beim Laden der App: ' + error.message);
+                }
+            }
+            
+            async loadVocabulary() {
+                try {
+                    const response = await fetch('data/items.json');
+                    if (!response.ok) {
+                        throw new Error('Konnte Vokabeln nicht laden');
+                    }
+                    const data = await response.json();
+                    this.vocabulary = data.filter(item => 
+                        item.es && item.de && item.type !== 'conjugation'
+                    );
+                    
+                    if (this.vocabulary.length === 0) {
+                        throw new Error('Keine Vokabeln gefunden');
+                    }
+                    
+                    console.log(`Loaded ${this.vocabulary.length} vocabulary items`);
+                } catch (error) {
+                    console.error('Failed to load vocabulary:', error);
+                    throw error;
+                }
+            }
+            
+            setupEventListeners() {
+                this.elements.checkBtn.addEventListener('click', () => this.checkAnswer());
+                
+                this.elements.answerInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.checkAnswer();
+                    }
+                });
+                
+                this.elements.darkModeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('dark-mode');
+                    const isDark = document.body.classList.contains('dark-mode');
+                    localStorage.setItem('darkMode', isDark);
+                });
+            }
+            
+            nextExercise() {
+                if (this.currentIndex >= this.totalQuestions) {
+                    this.showResults();
+                    return;
+                }
+                
+                // Pick random item
+                const item = this.vocabulary[Math.floor(Math.random() * this.vocabulary.length)];
+                
+                // Random exercise type (60% multiple choice, 40% typing)
+                const exerciseType = Math.random() < 0.6 ? 'choice' : 'typing';
+                
+                this.currentExercise = {
+                    item,
+                    type: exerciseType,
+                    correctAnswer: item.es
+                };
+                
+                this.currentIndex++;
+                this.updateStats();
+                this.renderExercise();
+            }
+            
+            renderExercise() {
+                const { item, type } = this.currentExercise;
+                
+                // Hide feedback
+                this.elements.feedback.style.display = 'none';
+                
+                // Show check button
+                this.elements.checkBtn.style.display = 'block';
+                
+                // Reset check button
+                this.elements.checkBtn.textContent = 'Pruefen';
+                this.elements.checkBtn.onclick = () => this.checkAnswer();
+                
+                if (type === 'choice') {
+                    this.renderMultipleChoice(item);
+                } else {
+                    this.renderTyping(item);
+                }
+            }
+            
+            renderMultipleChoice(item) {
+                this.elements.question.textContent = `Wie heisst "${item.de}" auf Spanisch?`;
+                
+                // Generate choices
+                const choices = this.generateChoices(item);
+                
+                // Show choices, hide typing
+                this.elements.choices.style.display = 'grid';
+                this.elements.typingInput.style.display = 'none';
+                
+                // Render choice buttons
+                this.elements.choices.innerHTML = '';
+                choices.forEach(choice => {
+                    const btn = document.createElement('button');
+                    btn.className = 'choice-btn';
+                    btn.textContent = choice;
+                    btn.onclick = () => this.selectChoice(btn, choice);
+                    this.elements.choices.appendChild(btn);
+                });
+            }
+            
+            renderTyping(item) {
+                this.elements.question.textContent = `Uebersetze: ${item.de}`;
+                
+                // Show typing, hide choices
+                this.elements.choices.style.display = 'none';
+                this.elements.typingInput.style.display = 'block';
+                
+                // Clear and focus input
+                this.elements.answerInput.value = '';
+                this.elements.answerInput.disabled = false;
+                this.elements.answerInput.focus();
+            }
+            
+            generateChoices(correctItem) {
+                const choices = [correctItem.es];
+                
+                // Add 3 random wrong answers
+                while (choices.length < 4 && this.vocabulary.length >= 4) {
+                    const randomItem = this.vocabulary[
+                        Math.floor(Math.random() * this.vocabulary.length)
+                    ];
+                    if (randomItem.es !== correctItem.es && !choices.includes(randomItem.es)) {
+                        choices.push(randomItem.es);
+                    }
+                }
+                
+                // Shuffle
+                return choices.sort(() => Math.random() - 0.5);
+            }
+            
+            selectChoice(btn, choice) {
+                // Deselect all
+                document.querySelectorAll('.choice-btn').forEach(b => {
+                    b.classList.remove('selected');
+                });
+                
+                // Select this one
+                btn.classList.add('selected');
+                this.currentExercise.userAnswer = choice;
+            }
+            
+            checkAnswer() {
+                let userAnswer;
+                
+                if (this.currentExercise.type === 'choice') {
+                    userAnswer = this.currentExercise.userAnswer;
+                    if (!userAnswer) {
+                        alert('Bitte waehle eine Antwort!');
+                        return;
+                    }
+                } else {
+                    userAnswer = this.elements.answerInput.value.trim();
+                    if (!userAnswer) {
+                        alert('Bitte gib eine Antwort ein!');
+                        return;
+                    }
+                }
+                
+                const correctAnswer = this.currentExercise.correctAnswer.toLowerCase();
+                const isCorrect = userAnswer.toLowerCase() === correctAnswer;
+                
+                if (isCorrect) {
+                    this.score++;
+                    this.showFeedback(true, 'Richtig! ??');
+                } else {
+                    this.showFeedback(false, `Falsch. Richtig: ${this.currentExercise.correctAnswer}`);
+                }
+                
+                // Change button to "Weiter"
+                this.elements.checkBtn.textContent = 'Weiter';
+                this.elements.checkBtn.onclick = () => this.nextExercise();
+            }
+            
+            showFeedback(isCorrect, message) {
+                this.elements.feedback.textContent = message;
+                this.elements.feedback.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+                this.elements.feedback.style.display = 'block';
+                
+                // Disable choices/input
+                if (this.currentExercise.type === 'choice') {
+                    document.querySelectorAll('.choice-btn').forEach(btn => {
+                        btn.disabled = true;
+                    });
+                } else {
+                    this.elements.answerInput.disabled = true;
+                }
+            }
+            
+            updateStats() {
+                this.elements.stats.textContent = 
+                    `Frage ${this.currentIndex} von ${this.totalQuestions} | Score: ${this.score}`;
+            }
+            
+            showResults() {
+                const percentage = Math.round((this.score / this.totalQuestions) * 100);
+                
+                this.elements.question.textContent = 'Fertig! ??';
+                this.elements.choices.style.display = 'none';
+                this.elements.typingInput.style.display = 'none';
+                
+                const resultsHtml = `
+                    <div style="text-align: center; padding: 2rem;">
+                        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">
+                            ${this.score} / ${this.totalQuestions}
+                        </h2>
+                        <p style="font-size: 1.3rem; margin-bottom: 2rem;">
+                            ${percentage}% richtig
+                        </p>
+                        <p style="font-size: 1.1rem;">
+                            ${this.getEncouragementMessage(percentage)}
+                        </p>
+                    </div>
+                `;
+                
+                this.elements.feedback.innerHTML = resultsHtml;
+                this.elements.feedback.className = 'feedback';
+                this.elements.feedback.style.display = 'block';
+                
+                // Change button to restart
+                this.elements.checkBtn.textContent = 'Nochmal';
+                this.elements.checkBtn.onclick = () => {
+                    this.currentIndex = 0;
+                    this.score = 0;
+                    this.nextExercise();
+                };
+            }
+            
+            getEncouragementMessage(percentage) {
+                if (percentage === 100) return 'Perfekt! ??';
+                if (percentage >= 80) return 'Sehr gut! ??';
+                if (percentage >= 60) return 'Gut gemacht! ??';
+                if (percentage >= 40) return 'Nicht schlecht! Weiter so! ??';
+                return 'Weiter ueben! Du schaffst das! ??';
+            }
+            
+            showError(message) {
+                this.elements.question.innerHTML = `<div class="error">?? ${message}</div>`;
+                this.elements.choices.style.display = 'none';
+                this.elements.typingInput.style.display = 'none';
+                this.elements.checkBtn.style.display = 'none';
+            }
+        }
+        
+        // Start app when ready
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                window.app = new SimpleApp();
+            } catch (error) {
+                console.error('Failed to initialize app:', error);
+                document.getElementById('question').innerHTML = 
+                    `<div class="error">?? App-Initialisierung fehlgeschlagen: ${error.message}</div>`;
+            }
+        });
+    </script>
+</body>
+</html>

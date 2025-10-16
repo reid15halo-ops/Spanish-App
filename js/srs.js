@@ -1,22 +1,15 @@
 class LeitnerSystem {
-    constructor(enabled = true) {
-        this.enabled = enabled;
+    constructor() {
         // Box 0: New items. Box 5: Mastered items.
         this.boxes = [0, 1, 2, 3, 4, 5];
         // Time intervals for review, in days. Box 0 is immediate, Box 5 is ~6 months.
         this.intervals = {
-            1: 1,      // 1 day
-            2: 3,      // 3 days
-            3: 7,      // 1 week
-            4: 14,     // 2 weeks
-            5: 30,     // 1 month
+            1: 1,
+            2: 3,
+            3: 7,
+            4: 14,
+            5: 30, 
         };
-        console.log(`? LeitnerSystem initialized (SRS: ${enabled ? 'enabled' : 'disabled'})`);
-    }
-
-    setEnabled(enabled) {
-        this.enabled = enabled;
-        console.log(`SRS ${enabled ? 'enabled' : 'disabled'}`);
     }
 
     /**
@@ -24,27 +17,19 @@ class LeitnerSystem {
      * @param {object} item The learning item from IndexedDB.
      */
     promote(item) {
-        if (!this.enabled) {
-            console.log(`SRS disabled - promote() is no-op for item: ${item.id}`);
-            return;
-        }
-
-        const oldBox = item.srsBox;
         if (item.srsBox < this.boxes.length - 1) {
             item.srsBox++;
             const interval = this.intervals[item.srsBox];
             if (interval) {
                 const now = new Date();
-                item.nextReview = new Date(now.getTime() + interval * 24 * 60 * 60 * 1000).getTime();
+                item.nextReview = now.setDate(now.getDate() + interval);
             }
         } else {
-            // Mastered - review in 1 year
+            // Item is considered "mastered", no more reviews needed for a while
             const now = new Date();
-            item.nextReview = new Date(now.getTime() + 365 * 24 * 60 * 60 * 1000).getTime();
+            item.nextReview = now.setFullYear(now.getFullYear() + 1);
         }
         item.lastCorrect = Date.now();
-
-        console.log(`? Promoted: ${item.id.slice(0, 8)} | Box ${oldBox} ? ${item.srsBox} | Next: ${new Date(item.nextReview).toLocaleString()}`);
     }
 
     /**
@@ -52,18 +37,10 @@ class LeitnerSystem {
      * @param {object} item The learning item from IndexedDB.
      */
     demote(item) {
-        if (!this.enabled) {
-            console.log(`SRS disabled - demote() is no-op for item: ${item.id}`);
-            return;
-        }
-
-        const oldBox = item.srsBox;
-        item.srsBox = 1; // Always back to box 1
+        item.srsBox = 1; // Always back to box 1 for review in 1 day
         const now = new Date();
-        item.nextReview = new Date(now.getTime() + this.intervals[1] * 24 * 60 * 60 * 1000).getTime();
+        item.nextReview = now.setDate(now.getDate() + this.intervals[1]);
         item.lastIncorrect = Date.now();
-
-        console.log(`? Demoted: ${item.id.slice(0, 8)} | Box ${oldBox} ? ${item.srsBox} | Next: ${new Date(item.nextReview).toLocaleString()}`);
     }
 
     /**
@@ -73,20 +50,15 @@ class LeitnerSystem {
      * @returns {Array<object>} A list of items to practice.
      */
     getPracticeQueue(allItems, maxCount = 20) {
-        console.group('?? SRS: Building practice queue');
         const now = Date.now();
         
         const dueItems = allItems.filter(item => item.srsBox > 0 && item.nextReview <= now);
         const newItems = allItems.filter(item => item.srsBox === 0);
         const weakItems = allItems
-            .filter(item => item.srsBox > 0 && item.srsBox <= 3)
-            .sort((a, b) => (b.lastIncorrect || 0) - (a.lastIncorrect || 0));
+            .filter(item => item.srsBox > 0 && item.srsBox <= 3) // Re-practice items from lower boxes
+            .sort((a, b) => (a.lastIncorrect || 0) - (b.lastIncorrect || 0)); // Prioritize recently failed
 
-        console.log(`Due items: ${dueItems.length}`);
-        console.log(`New items: ${newItems.length}`);
-        console.log(`Weak items: ${weakItems.length}`);
-
-        // Strategy: 70% due, 20% new, 10% weak
+        // Strategy: 70% due, 20% new, 10% weak items
         const dueCount = Math.ceil(maxCount * 0.7);
         const newCount = Math.floor(maxCount * 0.2);
         const weakCount = Math.floor(maxCount * 0.1);
@@ -96,22 +68,19 @@ class LeitnerSystem {
         queue = queue.concat(this.shuffle(newItems).slice(0, newCount));
         queue = queue.concat(this.shuffle(weakItems).slice(0, weakCount));
 
-        // Fill remaining slots with due items
+        // Fill up with more due items if queue is not full
         if (queue.length < maxCount) {
             const remaining = maxCount - queue.length;
-            const extraDue = this.shuffle(dueItems.filter(item => !queue.includes(item)));
+            const extraDue = this.shuffle(dueItems.filter(item => !queue.find(q => q.id === item.id)));
             queue = queue.concat(extraDue.slice(0, remaining));
         }
 
-        // If still empty, grab new items
+        // If still empty, just grab some new items
         if (queue.length === 0) {
             queue = this.shuffle(newItems).slice(0, maxCount);
         }
 
-        console.log(`Final queue: ${queue.length} items`);
-        console.groupEnd();
-
-        return this.shuffle(queue);
+        return this.shuffle(queue); // Shuffle the final queue
     }
 
     /**
@@ -120,11 +89,18 @@ class LeitnerSystem {
      * @returns {Array} The shuffled array.
      */
     shuffle(array) {
-        const shuffled = [...array];
-        for (let i = shuffled.length - 1; i > 0; i--) {
+        for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            [array[i], array[j]] = [array[j], array[i]];
         }
-        return shuffled;
+        return array;
     }
+}
+
+// Export for both Node.js and browser environments
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = LeitnerSystem;
+} else {
+    // Browser environment
+    window.LeitnerSystem = LeitnerSystem;
 }

@@ -1,21 +1,22 @@
 {
-  "name": "Spanish Learning App - DEBUG",
-  "short_name": "Spanish DEBUG",
-  "start_url": "/index.html",
+  "name": "Spanisch-Lern-App (ASCII)",
+  "short_name": "Spanish-App",
+  "description": "Eine App zum Lernen von Spanischvokabeln im Duolingo-Stil (ASCII-Only).",
+  "version": "0.0",
+  "start_url": ".",
   "display": "standalone",
   "background_color": "#f0f2f5",
-  "theme_color": "#ffc107",
-  "description": "Spanish Learning App - Debug Build (no gamification)",
+  "theme_color": "#22273a",
   "icons": [
     {
-      "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "icons/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
     },
     {
-      "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "icons/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ]
 }

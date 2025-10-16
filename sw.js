@@ -1,101 +1,76 @@
-const CACHE_NAME = 'spanish-app-debug-' + Date.now();
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/css/style.css',
-  '/js/app.js',
-  '/js/srs.js',
-  '/data/items.json',
-  '/manifest.webmanifest'
+const CACHE_NAME = `v0.0-${new Date().getTime()}`;
+const PRECACHE_ASSETS = [
+    '/',
+    'index.html',
+    'css/style.css',
+    'js/app.js',
+    'js/srs.js',
+    'js/utils/ascii.js',
+    'js/utils/migrator.js',
+    'js/utils/performance.js',
+    'js/utils/a11y-perf-hardening.js',
+    'js/normalize-es.js',
+    'js/conjugator.js',
+    'data/items.json',
+    'data/verbs.json'
 ];
 
-console.log('?? Service Worker: DEBUG BUILD');
-console.log('Cache key:', CACHE_NAME);
-
-// Install
 self.addEventListener('install', event => {
-  console.log('SW: Installing...');
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('SW: Caching files');
-        return cache.addAll(urlsToCache);
-      })
-      .then(() => {
-        console.log('SW: Installed successfully');
-        return self.skipWaiting();
-      })
-  );
-});
-
-// Activate
-self.addEventListener('activate', event => {
-  console.log('SW: Activating...');
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName.startsWith('spanish-app-debug-') && cacheName !== CACHE_NAME) {
-            console.log('SW: Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => {
-      console.log('SW: Activated successfully');
-      return self.clients.claim();
-    })
-  );
-});
-
-// Fetch
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          console.log('SW: Cache hit for', event.request.url);
-          return response;
-        }
-        console.log('SW: Fetching', event.request.url);
-        return fetch(event.request).then(fetchResponse => {
-          // Don't cache if not ok
-          if (!fetchResponse || fetchResponse.status !== 200 || fetchResponse.type !== 'basic') {
-            return fetchResponse;
-          }
-          
-          // Clone and cache
-          const responseToCache = fetchResponse.clone();
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, responseToCache);
-          });
-          
-          return fetchResponse;
-        });
-      })
-      .catch(error => {
-        console.error('SW: Fetch failed', error);
-        throw error;
-      })
-  );
-});
-
-// Message handler (for hard reload)
-self.addEventListener('message', event => {
-  if (event.data && event.data.type === 'CLEAR_CACHE') {
-    console.log('SW: Clearing all caches...');
+    console.log('?? Installing Service Worker v0.0');
+    
     event.waitUntil(
-      caches.keys().then(cacheNames => {
-        return Promise.all(
-          cacheNames.map(cacheName => {
-            console.log('SW: Deleting cache:', cacheName);
-            return caches.delete(cacheName);
-          })
-        );
-      }).then(() => {
-        console.log('SW: All caches cleared');
-        event.ports[0].postMessage({ success: true });
-      })
+        caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(PRECACHE_ASSETS))
+            .then(() => self.skipWaiting())
+            .catch(error => console.error('Cache installation failed:', error))
     );
-  }
+});
+
+self.addEventListener('activate', event => {
+    console.log('? Activating Service Worker v0.0');
+    
+    event.waitUntil(
+        caches.keys().then(cacheNames => {
+            return Promise.all(
+                cacheNames.map(cacheName => {
+                    if (cacheName.startsWith('v') && cacheName !== CACHE_NAME) {
+                        console.log('??? Removing old cache:', cacheName);
+                        return caches.delete(cacheName);
+                    }
+                })
+            );
+        }).then(() => self.clients.claim())
+    );
+});
+
+self.addEventListener('fetch', event => {
+    event.respondWith(
+        caches.match(event.request)
+            .then(cachedResponse => {
+                if (cachedResponse) {
+                    return cachedResponse;
+                }
+                return fetch(event.request);
+            })
+            .catch(error => {
+                console.error('Fetch failed:', error);
+                return new Response('Network error', { status: 503 });
+            })
+    );
+});
+
+// ASCII compliance check for service worker
+self.addEventListener('message', event => {
+    if (event.data && event.data.type === 'ASCII_CHECK') {
+        // Validate that service worker code contains no German umlauts
+        const swCode = self.toString();
+        const violations = (swCode.match(/[‰ˆ¸ƒ÷‹ﬂ]/g) || []);
+        
+        event.ports[0].postMessage({
+            type: 'ASCII_CHECK_RESULT',
+            violations,
+            clean: violations.length === 0,
+            timestamp: new Date().toISOString()
+        });
+    }
 });

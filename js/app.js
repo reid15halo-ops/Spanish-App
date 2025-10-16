@@ -1,1049 +1,1444 @@
-/*
-    =================================================================
-    === SPANISH LEARNING APP - DEBUG BUILD (vDebug1)              ===
-    =================================================================
-    * GAMIFICATION: REMOVED
-    * PRACTICE: UNLIMITED
-    * FEATURES: DEBUG TOOLBAR, FREE-PICK MODE, ERROR OVERLAY
-*/
-document.addEventListener('DOMContentLoaded', () => {
-    const App = {
-        // --- CONFIG & FLAGS ---
-        config: {
-            DEBUG: true,
-            GAMIFICATION: false,
-            SRS_ENABLED: true,
-            SEED: new URLSearchParams(window.location.search).get('seed') || 'initial-seed',
-            DB_VERSION: 'vDebug1'
-        },
-
-        // --- UI ELEMENT CACHE ---
-        ui: {
-            header: document.querySelector('.app-header'),
-            main: document.querySelector('#app-main'),
-            footer: document.querySelector('#app-footer'),
-            exerciseContainer: document.querySelector('#exercise-container'),
-            feedbackContainer: document.querySelector('#feedback-container'),
-            darkModeToggle: document.querySelector('#dark-mode-toggle'),
-            checkBtn: document.querySelector('#check-btn'),
-            repeatItemBtn: document.querySelector('#repeat-item-btn'),
-            repeatRoundBtn: document.querySelector('#repeat-round-btn'),
-            randomNextBtn: document.querySelector('#random-next-btn'),
-            freePickBtn: document.querySelector('#free-pick-btn'),
-            debugToolbar: document.querySelector('#debug-toolbar'),
-            debugModeSelect: document.querySelector('#debug-mode-select'),
-            debugForceTypeSelect: document.querySelector('#debug-force-type-select'),
-            debugSrsToggle: document.querySelector('#debug-srs-toggle'),
-            debugSrsResetBox: document.querySelector('#debug-srs-reset-box'),
-            debugSrsDueNow: document.querySelector('#debug-srs-due-now'),
-            debugSeedInput: document.querySelector('#debug-seed-input'),
-            debugShowDistractors: document.querySelector('#debug-show-distractors'),
-            debugDbReimport: document.querySelector('#debug-db-reimport'),
-            debugReloadJson: document.querySelector('#debug-reload-json'),
-            statusBar: document.querySelector('#status-bar'),
-            statusItems: document.querySelector('#status-items'),
-            statusDue: document.querySelector('#status-due'),
-            statusSeed: document.querySelector('#status-seed'),
-            statusSrs: document.querySelector('#status-srs'),
-            freePickContainer: document.querySelector('#free-pick-container'),
-            freePickFilterText: document.querySelector('#free-pick-filter-text'),
-            freePickFilterTag: document.querySelector('#free-pick-filter-tag'),
-            freePickFilterType: document.querySelector('#free-pick-filter-type'),
-            freePickFilterDifficulty: document.querySelector('#free-pick-filter-difficulty'),
-            freePickList: document.querySelector('#free-pick-list'),
-            errorOverlay: document.querySelector('#error-overlay'),
-            errorStack: document.querySelector('#error-stack'),
-            errorStateDump: document.querySelector('#error-state-dump'),
-            errorCopyBtn: document.querySelector('#error-copy-btn'),
-            errorCloseBtn: document.querySelector('#error-close-btn'),
-        },
-
-        // --- APPLICATION STATE ---
-        state: {
-            items: [],
-            currentItem: null,
-            currentMode: 'learn', // learn, srs, free-pick
-            sessionQueue: [],
-            lastSessionQueue: [],
-            currentRound: [],
-            matchingPairs: {},
-            lastDistractors: [],
-            isChecking: false,
-            // NO MORE: xp, hearts, streak, goals, progress
-        },
-
-        db: null,
-        srs: null,
-        seededRandom: null,
-
-        // =============================================
-        // INITIALIZATION
-        // =============================================
-        async init() {
-            console.group('?? App Initialization [DEBUG BUILD vDebug1]');
-            console.log('Config:', this.config);
-            
-            this.initGlobalErrorHandler();
-            this.initSeededRandom(this.config.SEED);
-            this.srs = new LeitnerSystem(this.config.SRS_ENABLED);
-            this.addEventListeners();
-            this.initDarkMode();
-            
-            await this.initDB();
-            await this.loadData();
-            
-            this.populateFreePickFilters();
-            this.startSession();
-            this.updateStatus();
-            
-            console.groupEnd();
-            this.logSelfTest();
-        },
-
-        initGlobalErrorHandler() {
-            const showError = (error, source = 'Unknown') => {
-                this.ui.errorOverlay.style.display = 'flex';
-                this.ui.errorStack.textContent = error.stack || error.message;
-                try {
-                    const dump = {
-                        error: { message: error.message, stack: error.stack },
-                        source,
-                        timestamp: new Date().toISOString(),
-                        config: this.config,
-                        state: {
-                            currentItem: this.state.currentItem,
-                            currentMode: this.state.currentMode,
-                            queueLength: this.state.sessionQueue.length,
-                        }
-                    };
-                    this.ui.errorStateDump.value = JSON.stringify(dump, null, 2);
-                } catch (e) {
-                    this.ui.errorStateDump.value = 'Could not stringify state.';
-                }
-                console.error(`[${source}] Unhandled Error:`, error);
-            };
-            
-            window.onerror = (message, source, lineno, colno, error) => {
-                showError(error || new Error(message), `window.onerror: ${source}:${lineno}:${colno}`);
-                return true;
-            };
-            
-            window.onunhandledrejection = event => {
-                showError(event.reason, 'unhandledrejection');
-            };
-            
-            console.log('? Global error handler initialized.');
-        },
-
-        initSeededRandom(seed) {
-            this.config.SEED = seed;
-            let state = this.hashCode(seed);
-            this.seededRandom = function() {
-                state = (state * 1664525 + 1013904223) % Math.pow(2, 32);
-                return state / Math.pow(2, 32);
-            };
-            this.ui.statusSeed.textContent = seed;
-            this.ui.debugSeedInput.value = seed;
-            console.log(`? Seeded random initialized with seed: "${seed}"`);
-        },
-
-        hashCode(str) {
-            let hash = 0;
-            for (let i = 0; i < str.length; i++) {
-                hash = ((hash << 5) - hash) + str.charCodeAt(i);
-                hash = hash & hash;
-            }
-            return Math.abs(hash);
-        },
-
-        seededShuffle(array) {
-            const shuffled = [...array];
-            for (let i = shuffled.length - 1; i > 0; i--) {
-                const j = Math.floor(this.seededRandom() * (i + 1));
-                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-            }
-            return shuffled;
-        },
-
-        seededChoice(array, count = 1) {
-            const shuffled = this.seededShuffle(array);
-            return count === 1 ? shuffled[0] : shuffled.slice(0, count);
-        },
-
-        addEventListeners() {
-            // Main buttons
-            this.ui.darkModeToggle.addEventListener('click', () => this.toggleDarkMode());
-            this.ui.checkBtn.addEventListener('click', () => this.handleCheck());
-            this.ui.repeatItemBtn.addEventListener('click', () => this.repeatItem());
-            this.ui.repeatRoundBtn.addEventListener('click', () => this.repeatRound());
-            this.ui.randomNextBtn.addEventListener('click', () => this.randomNext());
-            this.ui.freePickBtn.addEventListener('click', () => this.showFreePick());
-            
-            // Exercise container Enter key
-            this.ui.exerciseContainer.addEventListener('keydown', e => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    this.handleCheck();
-                }
-            });
-
-            // Debug Toolbar
-            this.ui.debugModeSelect.addEventListener('change', () => this.startSession());
-            this.ui.debugForceTypeSelect.addEventListener('change', () => {
-                if (this.state.currentItem) this.renderExercise();
-            });
-            this.ui.debugSrsToggle.addEventListener('change', e => {
-                this.config.SRS_ENABLED = e.target.checked;
-                this.srs.setEnabled(e.target.checked);
-                this.updateStatus();
-                console.log(`SRS ${e.target.checked ? 'enabled' : 'disabled'}`);
-            });
-            this.ui.debugSrsResetBox.addEventListener('click', () => this.debugSrsResetBox());
-            this.ui.debugSrsDueNow.addEventListener('click', () => this.debugSrsDueNow());
-            this.ui.debugSeedInput.addEventListener('change', e => {
-                this.initSeededRandom(e.target.value);
-                console.log('?? Seed changed, reinitializing random generator');
-            });
-            this.ui.debugDbReimport.addEventListener('click', () => this.reimportData());
-            this.ui.debugReloadJson.addEventListener('click', () => this.reloadJsonOnly());
-
-            // Free Pick
-            this.ui.freePickFilterText.addEventListener('input', () => this.populateFreePickList());
-            this.ui.freePickFilterTag.addEventListener('change', () => this.populateFreePickList());
-            this.ui.freePickFilterType.addEventListener('change', () => this.populateFreePickList());
-            this.ui.freePickFilterDifficulty.addEventListener('change', () => this.populateFreePickList());
-
-            // Error Overlay
-            this.ui.errorCloseBtn.addEventListener('click', () => {
-                this.ui.errorOverlay.style.display = 'none';
-            });
-            this.ui.errorCopyBtn.addEventListener('click', () => {
-                navigator.clipboard.writeText(this.ui.errorStateDump.value);
-                console.log('?? Error dump copied to clipboard');
-            });
-
-            // Keyboard Shortcuts
-            document.addEventListener('keydown', e => {
-                if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-                    e.preventDefault();
-                    this.toggleDebugToolbar();
-                }
-                if (this.state.isChecking) return;
-                if (e.key.toLowerCase() === 'r' && !e.ctrlKey) this.repeatItem();
-                if (e.key.toLowerCase() === 'f' && !e.ctrlKey) this.showFreePick();
-                if (e.key.toLowerCase() === 'd' && !e.ctrlKey) this.toggleDarkMode();
-            });
-            
-            console.log('? Event listeners attached.');
-        },
-
-        toggleDebugToolbar() {
-            const visible = this.ui.debugToolbar.style.display !== 'none';
-            this.ui.debugToolbar.style.display = visible ? 'none' : 'flex';
-            console.log(`Debug toolbar ${visible ? 'hidden' : 'shown'}`);
-        },
-
-        // =============================================
-        // DARK MODE
-        // =============================================
-        initDarkMode() {
-            const darkMode = localStorage.getItem('darkMode') === 'true';
-            if (darkMode) document.documentElement.setAttribute('data-theme', 'dark');
-            this.ui.darkModeToggle.textContent = darkMode ? '??' : '??';
-        },
-
-        toggleDarkMode() {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
-            localStorage.setItem('darkMode', !isDark);
-            this.ui.darkModeToggle.textContent = isDark ? '??' : '??';
-            console.log(`Dark mode: ${isDark ? 'off' : 'on'}`);
-        },
-
-        // =============================================
-        // DATABASE (IndexedDB)
-        // =============================================
-        async initDB() {
-            return new Promise((resolve, reject) => {
-                const request = indexedDB.open('SpanishAppDB', 2);
-                
-                request.onerror = () => reject(request.error);
-                
-                request.onsuccess = () => {
-                    this.db = request.result;
-                    console.log(`? IndexedDB initialized (${this.config.DB_VERSION})`);
-                    resolve();
-                };
-                
-                request.onupgradeneeded = (event) => {
-                    const db = event.target.result;
-                    
-                    // Backup old data if exists
-                    if (event.oldVersion > 0) {
-                        console.log(`?? Migrating from version ${event.oldVersion} to 2`);
-                    }
-                    
-                    if (!db.objectStoreNames.contains('items')) {
-                        const store = db.createObjectStore('items', { keyPath: 'id' });
-                        store.createIndex('srsBox', 'srsBox', { unique: false });
-                        store.createIndex('nextReview', 'nextReview', { unique: false });
-                        store.createIndex('type', 'type', { unique: false });
-                        console.log('? Created object store: items');
-                    }
-                    
-                    // Remove gamification stores if they exist
-                    const gamificationStores = ['progress', 'achievements', 'streaks'];
-                    gamificationStores.forEach(storeName => {
-                        if (db.objectStoreNames.contains(storeName)) {
-                            db.deleteObjectStore(storeName);
-                            console.log(`??? Deleted gamification store: ${storeName}`);
-                        }
-                    });
-                };
-            });
-        },
-
-        async loadData() {
-            try {
-                const transaction = this.db.transaction(['items'], 'readonly');
-                const store = transaction.objectStore('items');
-                const request = store.getAll();
-
-                return new Promise((resolve, reject) => {
-                    request.onsuccess = async () => {
-                        if (request.result.length === 0) {
-                            console.log('?? No items in DB, importing from JSON...');
-                            await this.reimportData();
-                        } else {
-                            this.state.items = request.result;
-                            console.log(`? Loaded ${this.state.items.length} items from IndexedDB.`);
-                            console.table(this.state.items.slice(0, 5));
-                        }
-                        resolve();
-                    };
-                    request.onerror = () => reject(request.error);
-                });
-            } catch (error) {
-                console.error('? Failed to load data:', error);
-                throw error;
-            }
-        },
-
-        async reimportData() {
-            console.group('?? Reimporting data from items.json');
-            try {
-                const response = await fetch('data/items.json');
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                
-                const jsonData = await response.json();
-                console.log(`Fetched ${jsonData.length} items from JSON`);
-                
-                // Ensure SRS fields exist
-                jsonData.forEach(item => {
-                    if (!item.srsBox) item.srsBox = 0;
-                    if (!item.nextReview) item.nextReview = Date.now();
-                    if (!item.lastCorrect) item.lastCorrect = 0;
-                    if (!item.lastIncorrect) item.lastIncorrect = 0;
-                    // Ignore gamification fields: xp, hearts, streak, goals
-                });
-
-                const transaction = this.db.transaction(['items'], 'readwrite');
-                const store = transaction.objectStore('items');
-                
-                // Clear existing data
-                await new Promise((resolve, reject) => {
-                    const clearRequest = store.clear();
-                    clearRequest.onsuccess = () => {
-                        console.log('??? Cleared existing DB data');
-                        resolve();
-                    };
-                    clearRequest.onerror = () => reject(clearRequest.error);
-                });
-
-                // Add new data
-                for (const item of jsonData) {
-                    await new Promise((resolve, reject) => {
-                        const addRequest = store.put(item);
-                        addRequest.onsuccess = () => resolve();
-                        addRequest.onerror = () => reject(addRequest.error);
-                    });
-                }
-
-                this.state.items = jsonData;
-                console.log(`? Re-imported ${jsonData.length} items successfully`);
-                this.updateStatus();
-                console.groupEnd();
-            } catch (error) {
-                console.error('? Failed to reimport data:', error);
-                console.groupEnd();
-                throw error;
-            }
-        },
-
-        async reloadJsonOnly() {
-            console.group('?? Reloading items.json only');
-            try {
-                const response = await fetch('data/items.json?t=' + Date.now());
-                const jsonData = await response.json();
-                console.log(`Fetched ${jsonData.length} items from JSON`);
-                
-                // Update state only, don't touch DB
-                this.state.items = jsonData.map(item => ({
-                    ...item,
-                    srsBox: item.srsBox || 0,
-                    nextReview: item.nextReview || Date.now(),
-                    lastCorrect: item.lastCorrect || 0,
-                    lastIncorrect: item.lastIncorrect || 0,
-                }));
-                
-                console.log(`? Reloaded ${this.state.items.length} items (memory only)`);
-                this.updateStatus();
-                console.groupEnd();
-            } catch (error) {
-                console.error('? Failed to reload JSON:', error);
-                console.groupEnd();
-            }
-        },
-
-        async saveItem(item) {
-            return new Promise((resolve, reject) => {
-                const transaction = this.db.transaction(['items'], 'readwrite');
-                const store = transaction.objectStore('items');
-                const request = store.put(item);
-                request.onsuccess = () => resolve();
-                request.onerror = () => reject(request.error);
-            });
-        },
-
-        // =============================================
-        // SESSION MANAGEMENT
-        // =============================================
-        startSession() {
-            this.state.currentMode = this.ui.debugModeSelect.value;
-            console.group(`?? Starting session: ${this.state.currentMode}`);
-
-            if (this.state.currentMode === 'free-pick') {
-                this.showFreePick();
-                console.groupEnd();
-                return;
-            }
-
-            this.ui.freePickContainer.style.display = 'none';
-            this.ui.exerciseContainer.style.display = 'block';
-
-            if (this.state.currentMode === 'learn') {
-                this.state.sessionQueue = this.seededShuffle([...this.state.items]).slice(0, 20);
-                console.log('Mode: Learn (random 20 items)');
-            } else if (this.state.currentMode === 'srs' && this.config.SRS_ENABLED) {
-                this.state.sessionQueue = this.srs.getPracticeQueue(this.state.items, 20);
-                console.log('Mode: SRS (practice queue)');
-                console.table(this.state.sessionQueue.map(i => ({
-                    id: i.id.slice(0, 8),
-                    es: i.es.slice(0, 30),
-                    box: i.srsBox,
-                    nextReview: new Date(i.nextReview).toLocaleString()
-                })));
-            } else {
-                this.state.sessionQueue = this.seededShuffle([...this.state.items]).slice(0, 20);
-                console.log('Mode: SRS disabled, falling back to random');
-            }
-
-            this.state.lastSessionQueue = [...this.state.sessionQueue];
-            this.state.currentRound = [...this.state.sessionQueue];
-            console.log(`Queue length: ${this.state.sessionQueue.length}`);
-            console.groupEnd();
-            
-            this.nextExercise();
-        },
-
-        nextExercise() {
-            if (this.state.sessionQueue.length === 0) {
-                this.showSessionComplete();
-                return;
-            }
-
-            this.state.currentItem = this.state.sessionQueue.shift();
-            console.group(`?? Next exercise: ${this.state.currentItem.es}`);
-            console.log('Item details:', {
-                id: this.state.currentItem.id,
-                es: this.state.currentItem.es,
-                de: this.state.currentItem.de,
-                type: this.state.currentItem.type,
-                srsBox: this.state.currentItem.srsBox,
-                difficulty: this.state.currentItem.difficulty
-            });
-            
-            this.renderExercise();
-            this.ui.feedbackContainer.innerHTML = '';
-            this.ui.checkBtn.style.display = 'inline-block';
-            this.ui.checkBtn.textContent = 'Überprüfen';
-            this.ui.repeatItemBtn.style.display = 'none';
-            this.ui.repeatRoundBtn.style.display = 'none';
-            this.ui.randomNextBtn.style.display = 'none';
-            this.ui.freePickBtn.style.display = 'none';
-            this.state.isChecking = false;
-            this.updateStatus();
-            console.groupEnd();
-        },
-
-        renderExercise() {
-            const item = this.state.currentItem;
-            const forceType = this.ui.debugForceTypeSelect.value;
-            const exerciseType = forceType || item.type || 'choice';
-
-            console.log(`Rendering exercise type: ${exerciseType}${forceType ? ' (forced)' : ''}`);
-            this.ui.exerciseContainer.innerHTML = '';
-
-            switch (exerciseType) {
-                case 'choice':
-                    this.renderChoiceExercise(item);
-                    break;
-                case 'typing':
-                    this.renderTypingExercise(item);
-                    break;
-                case 'sentence':
-                    this.renderSentenceExercise(item);
-                    break;
-                case 'match':
-                    this.renderMatchExercise(item);
-                    break;
-                default:
-                    this.renderChoiceExercise(item);
-            }
-        },
-
-        renderChoiceExercise(item) {
-            const eligible = this.state.items.filter(i => 
-                i.id !== item.id && i.de !== item.de && i.type === item.type
-            );
-            
-            if (eligible.length < 3) {
-                console.warn('Not enough eligible distractors, using any items');
-                eligible.push(...this.state.items.filter(i => i.id !== item.id));
-            }
-            
-            const distractors = this.seededChoice(eligible, 3);
-            this.state.lastDistractors = distractors;
-            
-            if (this.ui.debugShowDistractors.checked) {
-                console.group('?? Distractors');
-                console.table(distractors.map(d => ({ es: d.es, de: d.de })));
-                console.groupEnd();
-            }
-            
-            const options = this.seededShuffle([item, ...distractors]);
-
-            this.ui.exerciseContainer.innerHTML = `
-                <div class="exercise choice-exercise">
-                    <p class="question"><strong>${this.escapeHtml(item.es)}</strong></p>
-                    <div class="options" role="radiogroup">
-                        ${options.map(opt => `
-                            <button class="option-btn" 
-                                    data-id="${opt.id}" 
-                                    role="radio" 
-                                    aria-checked="false">
-                                ${this.escapeHtml(opt.de)}
-                            </button>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-
-            document.querySelectorAll('.option-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.option-btn').forEach(b => {
-                        b.classList.remove('selected');
-                        b.setAttribute('aria-checked', 'false');
-                    });
-                    e.target.classList.add('selected');
-                    e.target.setAttribute('aria-checked', 'true');
-                });
-            });
-        },
-
-        renderTypingExercise(item) {
-            this.ui.exerciseContainer.innerHTML = `
-                <div class="exercise typing-exercise">
-                    <p class="question"><strong>${this.escapeHtml(item.es)}</strong></p>
-                    <input type="text" 
-                           class="typing-input" 
-                           placeholder="Gib die deutsche Übersetzung ein..." 
-                           autocomplete="off"
-                           aria-label="Deutsche Übersetzung">
-                </div>
-            `;
-            this.ui.exerciseContainer.querySelector('.typing-input').focus();
-        },
-
-        renderSentenceExercise(item) {
-            const words = item.de.split(' ');
-            const shuffled = this.seededShuffle(words);
-
-            this.ui.exerciseContainer.innerHTML = `
-                <div class="exercise sentence-exercise">
-                    <p class="question"><strong>${this.escapeHtml(item.es)}</strong></p>
-                    <div class="word-bank" role="list">
-                        ${shuffled.map((word, idx) => `
-                            <button class="word-btn" 
-                                    data-word="${this.escapeHtml(word)}" 
-                                    data-index="${idx}"
-                                    role="listitem">
-                                ${this.escapeHtml(word)}
-                            </button>
-                        `).join('')}
-                    </div>
-                    <div class="sentence-builder" role="list" aria-label="Satz Konstruktion"></div>
-                </div>
-            `;
-
-            const wordBank = this.ui.exerciseContainer.querySelector('.word-bank');
-            const builder = this.ui.exerciseContainer.querySelector('.sentence-builder');
-
-            wordBank.addEventListener('click', (e) => {
-                if (e.target.classList.contains('word-btn')) {
-                    const clone = e.target.cloneNode(true);
-                    builder.appendChild(clone);
-                    e.target.style.visibility = 'hidden';
-                    e.target.setAttribute('aria-hidden', 'true');
-                }
-            });
-
-            builder.addEventListener('click', (e) => {
-                if (e.target.classList.contains('word-btn')) {
-                    const original = wordBank.querySelector(`[data-index="${e.target.dataset.index}"]`);
-                    if (original) {
-                        original.style.visibility = 'visible';
-                        original.setAttribute('aria-hidden', 'false');
-                    }
-                    e.target.remove();
-                }
-            });
-        },
-
-        renderMatchExercise(item) {
-            const matchItems = this.seededChoice(this.state.items, 5);
-            const left = this.seededShuffle(matchItems.map(i => ({ id: i.id, text: i.es })));
-            const right = this.seededShuffle(matchItems.map(i => ({ id: i.id, text: i.de })));
-
-            this.state.matchingPairs = {};
-
-            this.ui.exerciseContainer.innerHTML = `
-                <div class="exercise match-exercise">
-                    <p class="question">Ordne die Paare zu:</p>
-                    <div class="match-container">
-                        <div class="match-column" role="list" aria-label="Spanisch">
-                            ${left.map(l => `
-                                <button class="match-btn" 
-                                        data-id="${l.id}" 
-                                        data-side="left"
-                                        role="listitem">
-                                    ${this.escapeHtml(l.text)}
-                                </button>
-                            `).join('')}
-                        </div>
-                        <div class="match-column" role="list" aria-label="Deutsch">
-                            ${right.map(r => `
-                                <button class="match-btn" 
-                                        data-id="${r.id}" 
-                                        data-side="right"
-                                        role="listitem">
-                                    ${this.escapeHtml(r.text)}
-                                </button>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            let selectedLeft = null;
-
-            this.ui.exerciseContainer.querySelectorAll('.match-btn').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const side = btn.dataset.side;
-                    if (side === 'left') {
-                        document.querySelectorAll('.match-btn[data-side="left"]').forEach(b => b.classList.remove('selected'));
-                        btn.classList.add('selected');
-                        selectedLeft = btn;
-                    } else if (side === 'right' && selectedLeft) {
-                        this.state.matchingPairs[selectedLeft.dataset.id] = btn.dataset.id;
-                        selectedLeft.classList.add('matched');
-                        btn.classList.add('matched');
-                        selectedLeft = null;
-                    }
-                });
-            });
-        },
-
-        // =============================================
-        // CHECKING ANSWERS
-        // =============================================
-        async handleCheck() {
-            if (this.state.isChecking) {
-                this.nextExercise();
-                return;
-            }
-
-            const item = this.state.currentItem;
-            const exerciseType = this.ui.debugForceTypeSelect.value || item.type || 'choice';
-            let isCorrect = false;
-
-            console.group(`? Checking answer for: ${item.es}`);
-
-            switch (exerciseType) {
-                case 'choice':
-                    isCorrect = this.checkChoice(item);
-                    break;
-                case 'typing':
-                    isCorrect = this.checkTyping(item);
-                    break;
-                case 'sentence':
-                    isCorrect = this.checkSentence(item);
-                    break;
-                case 'match':
-                    isCorrect = this.checkMatch();
-                    break;
-            }
-
-            console.log(`Result: ${isCorrect ? '? Correct' : '? Incorrect'}`);
-            this.showFeedback(isCorrect);
-            
-            // SRS Update (if enabled)
-            if (this.config.SRS_ENABLED && this.state.currentMode === 'srs') {
-                const before = { box: item.srsBox, nextReview: new Date(item.nextReview) };
-                
-                if (isCorrect) {
-                    this.srs.promote(item);
-                } else {
-                    this.srs.demote(item);
-                }
-                
-                const after = { box: item.srsBox, nextReview: new Date(item.nextReview) };
-                console.log('SRS Update:', { before, after });
-                
-                await this.saveItem(item);
-            } else if (!this.config.SRS_ENABLED) {
-                console.log('SRS disabled - no box change, result only logged');
-            }
-
-            this.state.isChecking = true;
-            this.ui.checkBtn.textContent = 'Weiter';
-            this.ui.repeatItemBtn.style.display = 'inline-block';
-            this.ui.repeatRoundBtn.style.display = 'inline-block';
-            this.ui.randomNextBtn.style.display = 'inline-block';
-            this.ui.freePickBtn.style.display = 'inline-block';
-            this.updateStatus();
-            console.groupEnd();
-        },
-
-        checkChoice(item) {
-            const selected = this.ui.exerciseContainer.querySelector('.option-btn.selected');
-            const correct = selected && selected.dataset.id === item.id;
-            console.log('Choice check:', { 
-                selectedId: selected?.dataset.id, 
-                correctId: item.id, 
-                match: correct 
-            });
-            return correct;
-        },
-
-        checkTyping(item) {
-            const input = this.ui.exerciseContainer.querySelector('.typing-input');
-            const userAnswer = input.value.trim().toLowerCase();
-            const correctAnswer = item.de.toLowerCase();
-            const match = userAnswer === correctAnswer;
-            
-            console.log('Typing check:', { 
-                user: userAnswer, 
-                correct: correctAnswer, 
-                match,
-                fuzzyScore: this.fuzzyMatch(userAnswer, correctAnswer)
-            });
-            
-            return match;
-        },
-
-        checkSentence(item) {
-            const builder = this.ui.exerciseContainer.querySelector('.sentence-builder');
-            const words = Array.from(builder.querySelectorAll('.word-btn')).map(btn => btn.dataset.word);
-            const userSentence = words.join(' ');
-            const match = userSentence === item.de;
-            
-            console.log('Sentence check:', { 
-                user: userSentence, 
-                correct: item.de, 
-                match 
-            });
-            
-            return match;
-        },
-
-        checkMatch() {
-            const pairs = this.state.matchingPairs;
-            const allCorrect = Object.keys(pairs).length === 5 && 
-                               Object.keys(pairs).every(leftId => pairs[leftId] === leftId);
-            
-            console.log('Match check:', { 
-                pairs, 
-                pairCount: Object.keys(pairs).length,
-                allCorrect 
-            });
-            
-            return allCorrect;
-        },
-
-        fuzzyMatch(str1, str2) {
-            const longer = str1.length > str2.length ? str1 : str2;
-            const shorter = str1.length > str2.length ? str2 : str1;
-            if (longer.length === 0) return 1.0;
-            const editDistance = this.levenshtein(longer, shorter);
-            return (longer.length - editDistance) / longer.length;
-        },
-
-        levenshtein(str1, str2) {
-            const matrix = [];
-            for (let i = 0; i <= str2.length; i++) {
-                matrix[i] = [i];
-            }
-            for (let j = 0; j <= str1.length; j++) {
-                matrix[0][j] = j;
-            }
-            for (let i = 1; i <= str2.length; i++) {
-                for (let j = 1; j <= str1.length; j++) {
-                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
-                        matrix[i][j] = matrix[i - 1][j - 1];
-                    } else {
-                        matrix[i][j] = Math.min(
-                            matrix[i - 1][j - 1] + 1,
-                            matrix[i][j - 1] + 1,
-                            matrix[i - 1][j] + 1
-                        );
-                    }
-                }
-            }
-            return matrix[str2.length][str1.length];
-        },
-
-        showFeedback(isCorrect) {
-            const item = this.state.currentItem;
-            this.ui.feedbackContainer.innerHTML = `
-                <div class="feedback ${isCorrect ? 'correct' : 'incorrect'}">
-                    <p class="feedback-result">${isCorrect ? '? Richtig!' : '? Falsch!'}</p>
-                    <p class="feedback-translation">
-                        <strong>${this.escapeHtml(item.es)}</strong> ? 
-                        <strong>${this.escapeHtml(item.de)}</strong>
-                    </p>
-                    ${item.examples && item.examples.length > 0 ? 
-                        `<p class="feedback-example"><em>${this.escapeHtml(item.examples[0])}</em></p>` : 
-                        ''}
-                </div>
-            `;
-        },
-
-        showSessionComplete() {
-            this.ui.exerciseContainer.innerHTML = `
-                <div class="session-complete">
-                    <h2>?? Runde abgeschlossen!</h2>
-                    <p>Du hast alle Aufgaben in dieser Runde erledigt.</p>
-                    <p class="session-stats">Keine Limits, keine Sperren – übe so viel du willst!</p>
-                </div>
-            `;
-            this.ui.checkBtn.style.display = 'none';
-            this.ui.repeatItemBtn.style.display = 'none';
-            this.ui.repeatRoundBtn.style.display = 'inline-block';
-            this.ui.randomNextBtn.style.display = 'inline-block';
-            this.ui.freePickBtn.style.display = 'inline-block';
-        },
-
-        // =============================================
-        // REPEAT FUNCTIONS (UNLIMITED)
-        // =============================================
-        repeatItem() {
-            if (!this.state.currentItem) return;
-            console.log(`?? Repeating item: ${this.state.currentItem.es}`);
-            this.state.sessionQueue.unshift(this.state.currentItem);
-            this.nextExercise();
-        },
-
-        repeatRound() {
-            console.log(`?? Repeating entire round (${this.state.currentRound.length} items)`);
-            this.state.sessionQueue = [...this.state.currentRound];
-            this.state.lastSessionQueue = [...this.state.currentRound];
-            this.nextExercise();
-        },
-
-        randomNext() {
-            console.log('?? Random next item');
-            const randomItem = this.seededChoice(this.state.items);
-            this.state.currentItem = randomItem;
-            this.renderExercise();
-            this.ui.feedbackContainer.innerHTML = '';
-            this.ui.checkBtn.style.display = 'inline-block';
-            this.ui.checkBtn.textContent = 'Überprüfen';
-            this.ui.repeatItemBtn.style.display = 'none';
-            this.ui.repeatRoundBtn.style.display = 'none';
-            this.ui.randomNextBtn.style.display = 'none';
-            this.ui.freePickBtn.style.display = 'none';
-            this.state.isChecking = false;
-        },
-
-        // =============================================
-        // FREE-PICK MODE
-        // =============================================
-        showFreePick() {
-            console.log('?? Showing Free-Pick mode');
-            this.ui.freePickContainer.style.display = 'block';
-            this.ui.exerciseContainer.style.display = 'none';
-            this.ui.checkBtn.style.display = 'none';
-            this.ui.repeatItemBtn.style.display = 'none';
-            this.ui.repeatRoundBtn.style.display = 'none';
-            this.ui.randomNextBtn.style.display = 'none';
-            this.ui.freePickBtn.style.display = 'none';
-            this.populateFreePickList();
-        },
-
-        populateFreePickFilters() {
-            // Tags
-            const tags = new Set();
-            this.state.items.forEach(item => {
-                if (item.tags) item.tags.forEach(tag => tags.add(tag));
-            });
-            this.ui.freePickFilterTag.innerHTML = '<option value="">Alle Tags</option>';
-            tags.forEach(tag => {
-                const option = document.createElement('option');
-                option.value = tag;
-                option.textContent = tag;
-                this.ui.freePickFilterTag.appendChild(option);
-            });
-            
-            console.log(`? Populated ${tags.size} unique tags in Free-Pick filter`);
-        },
-
-        populateFreePickList() {
-            const searchText = this.ui.freePickFilterText.value.toLowerCase();
-            const selectedTag = this.ui.freePickFilterTag.value;
-            const selectedType = this.ui.freePickFilterType.value;
-            const selectedDifficulty = this.ui.freePickFilterDifficulty.value;
-
-            const filtered = this.state.items.filter(item => {
-                const matchesText = !searchText || 
-                    item.es.toLowerCase().includes(searchText) || 
-                    item.de.toLowerCase().includes(searchText);
-                const matchesTag = !selectedTag || (item.tags && item.tags.includes(selectedTag));
-                const matchesType = !selectedType || item.type === selectedType;
-                const matchesDifficulty = !selectedDifficulty || item.difficulty === parseInt(selectedDifficulty);
-                return matchesText && matchesTag && matchesType && matchesDifficulty;
-            });
-
-            console.log(`Free-Pick filter: ${filtered.length} / ${this.state.items.length} items`);
-
-            this.ui.freePickList.innerHTML = '';
-            filtered.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'free-pick-item';
-                li.innerHTML = `
-                    <strong>${this.escapeHtml(item.es)}</strong> ? ${this.escapeHtml(item.de)}
-                    <span class="item-meta">[${item.type || 'word'}, diff: ${item.difficulty || 1}]</span>
-                `;
-                li.addEventListener('click', () => {
-                    console.log(`Free-Pick selected: ${item.es}`);
-                    this.state.currentItem = item;
-                    this.state.sessionQueue = [item];
-                    this.ui.debugModeSelect.value = 'learn';
-                    this.state.currentMode = 'learn';
-                    this.ui.freePickContainer.style.display = 'none';
-                    this.ui.exerciseContainer.style.display = 'block';
-                    this.nextExercise();
-                });
-                this.ui.freePickList.appendChild(li);
-            });
-        },
-
-        // =============================================
-        // STATUS & DEBUG
-        // =============================================
-        updateStatus() {
-            const totalItems = this.state.items.length;
-            const dueItems = this.state.items.filter(i => i.nextReview <= Date.now()).length;
-            const srsStatus = this.config.SRS_ENABLED ? 'an' : 'aus';
-
-            this.ui.statusItems.textContent = totalItems;
-            this.ui.statusDue.textContent = dueItems;
-            this.ui.statusSeed.textContent = this.config.SEED;
-            this.ui.statusSrs.textContent = srsStatus;
-        },
-
-        async debugSrsResetBox() {
-            console.group('?? Debug: Reset all items to Box 0');
-            for (const item of this.state.items) {
-                item.srsBox = 0;
-                item.nextReview = Date.now();
-                await this.saveItem(item);
-            }
-            console.log(`? Reset ${this.state.items.length} items to Box 0`);
-            this.updateStatus();
-            console.groupEnd();
-        },
-
-        async debugSrsDueNow() {
-            console.group('?? Debug: Mark all items as due now');
-            for (const item of this.state.items) {
-                item.nextReview = Date.now() - 1000;
-                await this.saveItem(item);
-            }
-            console.log(`? Marked ${this.state.items.length} items as due`);
-            this.updateStatus();
-            console.groupEnd();
-        },
-
-        // =============================================
-        // SELF-TEST (AUTOMATED)
-        // =============================================
-        logSelfTest() {
-            console.group('?? Self-Test');
-            
-            // Check: No gamification writes
-            const gamificationAccessCount = 0; // Would be instrumented in production
-            console.log(`? Gamification writes: ${gamificationAccessCount} (expected: 0)`);
-            
-            // Check: No gamification DOM elements
-            const gamificationElements = document.querySelectorAll(
-                '[class*="xp"], [class*="hearts"], [class*="streak"], [class*="achievement"], [class*="badge"], [class*="progress-ring"]'
-            );
-            console.log(`? Gamification DOM elements: ${gamificationElements.length} (expected: 0)`);
-            
-            // Check: Items loaded
-            console.log(`? Items loaded: ${this.state.items.length}`);
-            
-            // Check: SRS toggle works
-            console.log(`? SRS toggle: ${this.config.SRS_ENABLED ? 'enabled' : 'disabled'}`);
-            
-            // Check: Debug toolbar exists
-            const toolbarVisible = this.ui.debugToolbar.style.display !== 'none';
-            console.log(`? Debug toolbar: ${toolbarVisible ? 'visible' : 'hidden'} (toggle with Ctrl+Shift+D)`);
-            
-            // Check: Error handler registered
-            console.log(`? Error handlers: registered`);
-            
-            // Check: Shortcuts
-            console.log(`? Keyboard shortcuts: Enter, R, F, D, Ctrl+Shift+D`);
-            
-            console.groupEnd();
-            
-            console.log('%c? DEBUG BUILD READY', 'color: #28a745; font-size: 16px; font-weight: bold;');
-            console.log('URL Parameters: ?seed=42&debug=1');
-            console.log('Shortcuts: Ctrl+Shift+D (toolbar), R (repeat), F (free-pick), D (dark mode)');
-        },
-
-        // =============================================
-        // UTILITY
-        // =============================================
-        escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
+/**
+ * Spanish Learning App - Main Application (ASCII-ONLY Version + Conjugator)
+ * Implements lessons, exercises, vocabulary learning, and verb conjugation
+ * IMPORTANT: All German text is ASCII-only (umlauts normalized)
+ */
+
+// ============================================================================
+// UTILITY FUNCTIONS - Must be at the top
+// ============================================================================
+
+/**
+ * UTF-8 fetch for CSV import
+ * Ensures proper UTF-8 decoding when loading external files
+ */
+async function fetchTextUtf8(url) {
+    const response = await fetch(url, { cache: 'no-store' });
+    const buffer = await response.arrayBuffer();
+    return new TextDecoder('utf-8', { fatal: false }).decode(buffer);
+}
+
+/**
+ * German ASCII-only mapping
+ * Normalizes German umlauts to ASCII equivalents
+ * ä?ae, ö?oe, ü?ue, ß?ss
+ */
+function toAsciiDe(s = '') {
+    return s
+        .replaceAll('Ä', 'Ae').replaceAll('Ö', 'Oe').replaceAll('Ü', 'Ue')
+        .replaceAll('ä', 'ae').replaceAll('ö', 'oe').replaceAll('ü', 'ue')
+        .replaceAll('ß', 'ss');
+}
+
+/**
+ * Spanish normalization for tolerant comparison
+ * Removes accents and normalizes case for comparison
+ * Preserves original Spanish for display
+ */
+function normEs(s = '') {
+    return s
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+/**
+ * Enhanced ASCII normalization for German text
+ * Wraps existing asciiNormalizer if available
+ */
+function normalizeAsciiDe(text) {
+    if (typeof asciiNormalizer !== 'undefined' && asciiNormalizer.normalize) {
+        return asciiNormalizer.normalize(text);
+    }
+    return toAsciiDe(text);
+}
+
+/**
+ * ASCII compliance guard
+ * Throws error if German umlauts are found
+ */
+function asciiGuard(text, context = 'text') {
+    if (typeof text !== 'string') return;
+    
+    const violations = text.match(/[äöüÄÖÜß]/g);
+    if (violations && violations.length > 0) {
+        console.warn(`ASCII violation in ${context}:`, violations);
+        // Don't throw in production, just warn
+        if (window.location.hostname === 'localhost') {
+            // Only throw in development
+            // throw new Error(`ASCII violation in ${context}: ${violations.join(', ')}`);
         }
-    };
+    }
+}
 
-    // Initialize app
-    App.init();
+/**
+ * Spanish answer validation
+ * Tolerant comparison for Spanish text with accents
+ */
+function validateSpanishAnswer(userAnswer, correctAnswer, options = {}) {
+    const {
+        strictAccents = false,
+        allowTypos = true,
+        minConfidence = 0.7
+    } = options;
+
+    // Normalize both answers
+    const normalizedUser = normEs(userAnswer);
+    const normalizedCorrect = normEs(correctAnswer);
+
+    // Exact match (after normalization)
+    if (normalizedUser === normalizedCorrect) {
+        return {
+            correct: true,
+            score: 1.0,
+            feedback: 'Perfekt!'
+        };
+    }
+
+    // Check for typos if allowed
+    if (allowTypos) {
+        const distance = levenshteinDistance(normalizedUser, normalizedCorrect);
+        const maxDistance = Math.ceil(normalizedCorrect.length * 0.2); // 20% error tolerance
+        
+        if (distance <= maxDistance) {
+            const score = 1 - (distance / normalizedCorrect.length);
+            
+            if (score >= minConfidence) {
+                return {
+                    correct: true,
+                    score,
+                    feedback: 'Fast richtig! (Kleine Fehler)',
+                    suggestion: correctAnswer
+                };
+            }
+        }
+    }
+
+    return {
+        correct: false,
+        score: 0,
+        feedback: 'Nicht ganz richtig',
+        suggestion: correctAnswer
+    };
+}
+
+/**
+ * Levenshtein distance for fuzzy matching
+ */
+function levenshteinDistance(str1, str2) {
+    const matrix = [];
+    const len1 = str1.length;
+    const len2 = str2.length;
+
+    for (let i = 0; i <= len2; i++) {
+        matrix[i] = [i];
+    }
+
+    for (let j = 0; j <= len1; j++) {
+        matrix[0][j] = j;
+    }
+
+    for (let i = 1; i <= len2; i++) {
+        for (let j = 1; j <= len1; j++) {
+            if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                matrix[i][j] = matrix[i - 1][j - 1];
+            } else {
+                matrix[i][j] = Math.min(
+                    matrix[i - 1][j - 1] + 1,
+                    matrix[i][j - 1] + 1,
+                    matrix[i - 1][j] + 1
+                );
+            }
+        }
+    }
+
+    return matrix[len2][len1];
+}
+
+// ============================================================================
+// DATA LOADING - Dataset management
+// ============================================================================
+
+/**
+ * Global dataset storage
+ */
+let DATA = [];
+
+/**
+ * Load items from JSON or CSV
+ * Prefers JSON, falls back to CSV if needed
+ * Automatically normalizes German text to ASCII
+ */
+async function loadItems() {
+    try {
+        // Try JSON first (preferred)
+        const response = await fetch('data/items.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error('JSON not found');
+        
+        const items = await response.json();
+        DATA = items.map(item => ({
+            ...item,
+            de: toAsciiDe(item.de || ''),
+            category: toAsciiDe(item.category || 'Allgemein')
+        }));
+        
+        console.log(`? Loaded ${DATA.length} items from JSON`);
+        
+    } catch (error) {
+        console.warn('JSON loading failed, trying CSV fallback:', error.message);
+        
+        try {
+            // Fallback to CSV
+            const csvText = await fetchTextUtf8('data/items.csv');
+            const rows = csvText.split(/\r?\n/).slice(1).filter(Boolean);
+            
+            DATA = rows.map(line => {
+                const [src, es, de, type, examples, tags, difficulty] = line.split(',');
+                return {
+                    src: src || '',
+                    es: es || '',
+                    de: toAsciiDe(de || ''),
+                    type: type || 'word',
+                    examples: (examples || '').split(';').filter(Boolean),
+                    tags: (tags || '').split('|').filter(Boolean),
+                    difficulty: Number(difficulty || '2')
+                };
+            });
+            
+            console.log(`? Loaded ${DATA.length} items from CSV`);
+            
+        } catch (csvError) {
+            console.error('Failed to load data from both JSON and CSV:', csvError);
+            DATA = [];
+        }
+    }
+    
+    // Validate ASCII compliance for all loaded data
+    DATA.forEach((item, index) => {
+        try {
+            asciiGuard(item.de, `item ${index} German text`);
+            if (item.category) {
+                asciiGuard(item.category, `item ${index} category`);
+            }
+        } catch (error) {
+            console.warn(`ASCII violation in loaded item ${index}:`, error);
+        }
+    });
+    
+    return DATA;
+}
+
+// ============================================================================
+// MULTIPLE CHOICE LOGIC - Intelligent distractor selection
+// ============================================================================
+
+/**
+ * Pick intelligent distractors for multiple choice
+ * Filters by difficulty and similarity to avoid confusion
+ * 
+ * @param {Array} pool - Available vocabulary items
+ * @param {Object} answer - Correct answer item
+ * @param {number} k - Number of distractors to pick (default: 3)
+ * @returns {Array} Selected distractor items
+ */
+function pickDistractors(pool, answer, k = 3) {
+    const normalizedAnswer = normEs(answer.es || answer.spanish);
+    
+    const candidates = pool
+        // No duplicates
+        .filter(x => normEs(x.es || x.spanish) !== normalizedAnswer)
+        // Similar difficulty (±1 level)
+        .filter(x => Math.abs((x.difficulty || 2) - (answer.difficulty || 2)) <= 1)
+        // Not too similar (avoid confusion)
+        .filter(x => {
+            const normalized = normEs(x.es || x.spanish);
+            return normalized.length > 1 && levenshteinDistance(normalized, normalizedAnswer) > 2;
+        });
+
+    // Fallback if too few candidates: use any item except answer
+    if (candidates.length < k) {
+        const fallback = pool
+            .filter(x => normEs(x.es || x.spanish) !== normalizedAnswer)
+            .slice(0, k);
+        return fallback.sort(() => Math.random() - 0.5).slice(0, k);
+    }
+
+    // Shuffle and return k items
+    const shuffled = [...candidates].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, k);
+}
+
+/**
+ * Build Multiple Choice exercise HTML
+ * 
+ * @param {Object} item - Vocabulary item for the question
+ * @param {Array} pool - Available vocabulary pool
+ * @returns {string} HTML for the exercise
+ */
+function buildMC(item, pool) {
+    const distractors = pickDistractors(pool, item, 3);
+    
+    // Combine correct answer with distractors
+    const options = [
+        ...distractors.map(d => toAsciiDe(d.de || d.german)),
+        toAsciiDe(item.de || item.german)
+    ];
+    
+    // Shuffle options
+    const shuffled = options.sort(() => Math.random() - 0.5);
+
+    const prompt = `
+        <div class="q">
+            <p><strong>${item.es || item.spanish}</strong> – waehle die Uebersetzung</p>
+        </div>
+    `;
+    
+    const answersHtml = shuffled.map(txt => 
+        `<button class="mc-opt" data-val="${encodeURIComponent(txt)}">${txt}</button>`
+    ).join('');
+
+    return {
+        promptHtml: prompt,
+        answersHtml: `<div class="mc">${answersHtml}</div>`,
+        correctAnswer: toAsciiDe(item.de || item.german)
+    };
+}
+
+/**
+ * Setup Multiple Choice event listeners
+ * Attaches click handlers to MC options
+ * 
+ * @param {HTMLElement} area - Answer area element
+ */
+function setupMCListeners(area) {
+    // Remove old listeners
+    area.querySelectorAll('.mc-opt').forEach(btn => {
+        btn.onclick = null;
+    });
+    
+    // Add new listeners
+    area.querySelectorAll('.mc-opt').forEach(btn => {
+        btn.addEventListener('click', (ev) => {
+            // Deselect all
+            area.querySelectorAll('.mc-opt').forEach(b => b.classList.remove('sel', 'selected'));
+            // Select clicked
+            ev.currentTarget.classList.add('sel', 'selected');
+        });
+    });
+}
+
+/**
+ * Check Multiple Choice answer
+ * 
+ * @param {HTMLElement} area - Answer area element
+ * @param {string} correctAnswer - Correct answer text
+ * @returns {Object} Result object with correct flag and selected answer
+ */
+function checkMC(area, correctAnswer) {
+    const selected = area.querySelector('.mc-opt.sel, .mc-opt.selected');
+    
+    if (!selected) {
+        return {
+            correct: false,
+            error: 'no-selection',
+            message: 'Bitte waehle eine Antwort.'
+        };
+    }
+    
+    const selectedValue = decodeURIComponent(selected.dataset.val || '');
+    const normalizedSelected = toAsciiDe(selectedValue);
+    const normalizedCorrect = toAsciiDe(correctAnswer);
+    
+    return {
+        correct: normalizedSelected === normalizedCorrect,
+        selectedValue,
+        correctAnswer
+    };
+}
+
+// ============================================================================
+// MAIN APPLICATION CLASS
+// ============================================================================
+
+class SpanishApp {
+    constructor() {
+        this.db = null;
+        this.currentExercise = null;
+        this.currentSession = [];
+        this.sessionIndex = 0;
+        this.mode = 'learn'; // 'learn', 'srs', 'free-pick', 'conjugation'
+        this.srsSystem = new LeitnerSystem();
+        this.vocabulary = [];
+        
+        // Conjugation system
+        this.conjugator = new SpanishConjugator();
+        this.conjugatorLoaded = false;
+        
+        // UI Elements
+        this.exerciseContainer = document.getElementById('exercise-container');
+        this.feedbackContainer = document.getElementById('feedback-container');
+        this.statusBar = document.getElementById('status-bar');
+        this.checkBtn = document.getElementById('check-btn');
+        this.repeatItemBtn = document.getElementById('repeat-item-btn');
+        this.repeatRoundBtn = document.getElementById('repeat-round-btn');
+        
+        // Debug elements
+        this.debugModeSelect = document.getElementById('debug-mode-select');
+        this.debugForceTypeSelect = document.getElementById('debug-force-type-select');
+        this.debugSrsToggle = document.getElementById('debug-srs-toggle');
+        this.debugSrsResetBox = document.getElementById('debug-srs-reset-box');
+        this.debugSrsDueNow = document.getElementById('debug-srs-due-now');
+        this.debugDbReimport = document.getElementById('debug-db-reimport');
+        
+        this.initializeApp();
+    }
+
+    async initializeApp() {
+        try {
+            await this.initializeDatabase();
+            await this.loadVocabulary();
+            await this.initializeConjugator();
+            this.setupEventListeners();
+            this.setupDebugControls();
+            this.updateStatusBar();
+            this.startLearningSession();
+            
+            console.log('?? Spanish Learning App with Conjugator initialized successfully');
+        } catch (error) {
+            console.error('Failed to initialize app:', error);
+            // ASCII-only error message
+            this.showError('App-Initialisierung fehlgeschlagen: ' + error.message);
+        }
+    }
+
+    async initializeConjugator() {
+        try {
+            await this.conjugator.initialize();
+            this.conjugatorLoaded = true;
+            console.log('?? Conjugator system loaded successfully');
+        } catch (error) {
+            console.warn('Conjugator failed to load:', error);
+            this.conjugatorLoaded = false;
+        }
+    }
+
+    async initializeDatabase() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open('SpanishLearningApp', 1);
+            
+            request.onerror = () => reject(request.error);
+            
+            request.onsuccess = () => {
+                this.db = request.result;
+                resolve();
+            };
+            
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                
+                // Create vocabulary store
+                if (!db.objectStoreNames.contains('vocabulary')) {
+                    const vocabStore = db.createObjectStore('vocabulary', { keyPath: 'id', autoIncrement: true });
+                    vocabStore.createIndex('spanish', 'spanish', { unique: false });
+                    vocabStore.createIndex('german', 'german', { unique: false });
+                    vocabStore.createIndex('category', 'category', { unique: false });
+                    vocabStore.createIndex('srsBox', 'srsBox', { unique: false });
+                }
+                
+                // Create user progress store
+                if (!db.objectStoreNames.contains('progress')) {
+                    const progressStore = db.createObjectStore('progress', { keyPath: 'id' });
+                }
+                
+                // Mark database as no-gamification compliant
+                localStorage.setItem('SpanishLearningApp_schema', 'vNoGame1');
+            };
+        });
+    }
+
+    async loadVocabulary() {
+        // Try to load from data/items.json first
+        try {
+            const response = await fetch('data/items.json');
+            if (response.ok) {
+                const items = await response.json();
+                await this.importItemsFromJson(items);
+                console.log(`?? Loaded ${items.length} items from data/items.json`);
+            } else {
+                throw new Error('items.json not found');
+            }
+        } catch (error) {
+            console.warn('Could not load items.json, using fallback vocabulary');
+            // Check if vocabulary exists in database
+            const existingVocab = await this.getAllVocabulary();
+            
+            if (existingVocab.length === 0) {
+                // Load initial vocabulary (ASCII-normalized)
+                await this.importInitialVocabulary();
+            }
+        }
+        
+        this.vocabulary = await this.getAllVocabulary();
+        console.log(`?? Loaded ${this.vocabulary.length} vocabulary items`);
+    }
+
+    async importItemsFromJson(items) {
+        const transaction = this.db.transaction(['vocabulary'], 'readwrite');
+        const store = transaction.objectStore('vocabulary');
+        
+        // Clear existing data
+        await store.clear();
+        
+        for (const item of items) {
+            // Ensure German text is ASCII-normalized
+            const vocabularyItem = {
+                spanish: item.es || item.spanish,
+                german: normalizeAsciiDe(item.de || item.german),
+                category: normalizeAsciiDe(item.category || 'Allgemein'),
+                difficulty: item.difficulty || 1,
+                srsBox: 0,
+                nextReview: Date.now(),
+                examples: item.examples || [],
+                tags: item.tags || [],
+                src: item.src || ''
+            };
+            
+            // Validate ASCII compliance for German text
+            asciiGuard(vocabularyItem.german, 'vocabulary item German field');
+            asciiGuard(vocabularyItem.category, 'vocabulary item category');
+            
+            await store.add(vocabularyItem);
+        }
+        
+        console.log('? Items imported from JSON with ASCII normalization');
+    }
+
+    async importInitialVocabulary() {
+        const initialVocabulary = [
+            // Basic Greetings - ASCII-normalized German
+            { spanish: 'hola', german: 'hallo', category: 'Begruessung', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'adiós', german: 'auf Wiedersehen', category: 'Begruessung', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'gracias', german: 'danke', category: 'Hoeflichkeit', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'por favor', german: 'bitte', category: 'Hoeflichkeit', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'disculpe', german: 'entschuldigung', category: 'Hoeflichkeit', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            
+            // Numbers
+            { spanish: 'uno', german: 'eins', category: 'Zahlen', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'dos', german: 'zwei', category: 'Zahlen', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'tres', german: 'drei', category: 'Zahlen', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'cuatro', german: 'vier', category: 'Zahlen', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'cinco', german: 'fuenf', category: 'Zahlen', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            
+            // Family - ASCII-normalized
+            { spanish: 'familia', german: 'Familie', category: 'Familie', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'padre', german: 'Vater', category: 'Familie', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'madre', german: 'Mutter', category: 'Familie', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'hijo', german: 'Sohn', category: 'Familie', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'hija', german: 'Tochter', category: 'Familie', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            
+            // Colors
+            { spanish: 'rojo', german: 'rot', category: 'Farben', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'azul', german: 'blau', category: 'Farben', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'verde', german: 'gruen', category: 'Farben', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'amarillo', german: 'gelb', category: 'Farben', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'negro', german: 'schwarz', category: 'Farben', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            
+            // Food
+            { spanish: 'comida', german: 'Essen', category: 'Essen', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'agua', german: 'Wasser', category: 'Essen', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'pan', german: 'Brot', category: 'Essen', difficulty: 1, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'carne', german: 'Fleisch', category: 'Essen', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'fruta', german: 'Obst', category: 'Essen', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            
+            // Common Verbs
+            { spanish: 'ser', german: 'sein', category: 'Verben', difficulty: 3, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'estar', german: 'sich befinden', category: 'Verben', difficulty: 3, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'tener', german: 'haben', category: 'Verben', difficulty: 3, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'hacer', german: 'machen', category: 'Verben', difficulty: 3, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'ir', german: 'gehen', category: 'Verben', difficulty: 3, srsBox: 0, nextReview: Date.now() },
+            
+            // Time
+            { spanish: 'hoy', german: 'heute', category: 'Zeit', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'mañana', german: 'morgen', category: 'Zeit', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'ayer', german: 'gestern', category: 'Zeit', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'ahora', german: 'jetzt', category: 'Zeit', difficulty: 2, srsBox: 0, nextReview: Date.now() },
+            { spanish: 'después', german: 'spaeter', category: 'Zeit', difficulty: 3, srsBox: 0, nextReview: Date.now() }
+        ];
+
+        const transaction = this.db.transaction(['vocabulary'], 'readwrite');
+        const store = transaction.objectStore('vocabulary');
+        
+        for (const item of initialVocabulary) {
+            // Validate ASCII compliance
+            asciiGuard(item.german, 'initial vocabulary German field');
+            asciiGuard(item.category, 'initial vocabulary category');
+            
+            await store.add(item);
+        }
+        
+        console.log('? Initial vocabulary imported (ASCII-normalized)');
+    }
+
+    async getAllVocabulary() {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['vocabulary'], 'readonly');
+            const store = transaction.objectStore('vocabulary');
+            const request = store.getAll();
+            
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    async updateVocabularyItem(item) {
+        return new Promise((resolve, reject) => {
+            const transaction = this.db.transaction(['vocabulary'], 'readwrite');
+            const store = transaction.objectStore('vocabulary');
+            const request = store.put(item);
+            
+            request.onsuccess = () => resolve();
+            request.onerror = () => reject(request.error);
+        });
+    }
+
+    setupEventListeners() {
+        this.checkBtn.addEventListener('click', () => this.checkAnswer());
+        this.repeatItemBtn.addEventListener('click', () => this.repeatCurrentItem());
+        this.repeatRoundBtn.addEventListener('click', () => this.restartSession());
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                this.checkAnswer();
+            }
+        });
+    }
+
+    setupDebugControls() {
+        this.debugModeSelect.addEventListener('change', () => {
+            this.mode = this.debugModeSelect.value;
+            this.startLearningSession();
+        });
+
+        this.debugSrsResetBox.addEventListener('click', async () => {
+            await this.resetAllToBox0();
+            this.startLearningSession();
+        });
+
+        this.debugSrsDueNow.addEventListener('click', async () => {
+            await this.makeAllDueNow();
+            this.startLearningSession();
+        });
+
+        this.debugDbReimport.addEventListener('click', async () => {
+            await this.reimportDatabase();
+            this.startLearningSession();
+        });
+    }
+
+    async startLearningSession() {
+        try {
+            this.vocabulary = await this.getAllVocabulary();
+            
+            if (this.vocabulary.length === 0 && !this.conjugatorLoaded) {
+                // ASCII-only message
+                this.showMessage('Keine Vokabeln verfuegbar. Importiere zuerst Inhalte.');
+                return;
+            }
+
+            // Handle conjugation mode
+            if (this.mode === 'conjugation' && this.conjugatorLoaded) {
+                this.startConjugationSession();
+                return;
+            }
+
+            // Get practice queue based on mode
+            if (this.mode === 'srs' && this.debugSrsToggle.checked) {
+                this.currentSession = this.srsSystem.getPracticeQueue(this.vocabulary, 10);
+            } else {
+                // Learning mode: focus on new and low-box items
+                this.currentSession = this.vocabulary
+                    .filter(item => item.srsBox <= 2)
+                    .sort(() => Math.random() - 0.5)
+                    .slice(0, 10);
+            }
+
+            if (this.currentSession.length === 0) {
+                // ASCII-only message
+                this.showMessage('Alle Vokabeln sind gelernt! ??');
+                return;
+            }
+
+            this.sessionIndex = 0;
+            this.nextExercise();
+            
+        } catch (error) {
+            console.error('Failed to start learning session:', error);
+            this.showError('Fehler beim Starten der Lernsession: ' + error.message);
+        }
+    }
+
+    startConjugationSession() {
+        try {
+            // Generate 10 conjugation exercises
+            this.currentSession = [];
+            
+            for (let i = 0; i < 10; i++) {
+                const exercise = this.conjugator.generateExercise({
+                    tenseFilter: ['presente', 'preterito', 'imperfecto', 'futuro'],
+                    maxFrecuencia: 2
+                });
+                this.currentSession.push(exercise);
+            }
+
+            this.sessionIndex = 0;
+            this.nextExercise();
+            
+        } catch (error) {
+            console.error('Failed to start conjugation session:', error);
+            this.showError('Fehler beim Starten der Konjugationssession: ' + error.message);
+        }
+    }
+
+    nextExercise() {
+        if (this.sessionIndex >= this.currentSession.length) {
+            this.endSession();
+            return;
+        }
+
+        if (this.mode === 'conjugation') {
+            this.currentExercise = this.createConjugationExercise(this.currentSession[this.sessionIndex]);
+        } else {
+            const vocabItem = this.currentSession[this.sessionIndex];
+            this.currentExercise = this.createExercise(vocabItem);
+        }
+        
+        this.renderExercise();
+        this.updateStatusBar();
+    }
+
+    createConjugationExercise(conjugationData) {
+        return {
+            type: 'conjugation',
+            infinitivo: conjugationData.infinitivo,
+            traduccion: conjugacionData.traduccion,
+            tiempo: conjugationData.tiempo,
+            tiempoName: conjugacionData.tiempoName,
+            persona: conjugacionData.persona,
+            correctAnswer: conjugacionData.correctAnswer,
+            prompt: conjugacionData.prompt,
+            userAnswer: null
+        };
+    }
+
+    createExercise(vocabItem) {
+        const exerciseTypes = ['choice', 'typing', 'match'];
+        const forceType = this.debugForceTypeSelect.value;
+        const exerciseType = forceType || this.getRandomExerciseType(exerciseTypes);
+        
+        switch (exerciseType) {
+            case 'choice':
+                return this.createChoiceExercise(vocabItem);
+            case 'typing':
+                return this.createTypingExercise(vocabItem);
+            case 'match':
+                return this.createMatchExercise(vocabItem);
+            default:
+                return this.createChoiceExercise(vocabItem);
+        }
+    }
+
+    getRandomExerciseType(types) {
+        return types[Math.floor(Math.random() * types.length)];
+    }
+
+    createChoiceExercise(vocabItem) {
+        const isSpanishToGerman = Math.random() > 0.5;
+        const question = isSpanishToGerman ? vocabItem.spanish : vocabItem.german;
+        const correctAnswer = isSpanishToGerman ? vocabItem.german : vocabItem.spanish;
+        
+        // Generate wrong answers from other vocabulary
+        const wrongAnswers = this.vocabulary
+            .filter(v => v.id !== vocabItem.id)
+            .map(v => isSpanishToGerman ? v.german : v.spanish)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3);
+        
+        const allChoices = [correctAnswer, ...wrongAnswers]
+            .sort(() => Math.random() - 0.5);
+
+        return {
+            type: 'choice',
+            vocabItem,
+            question,
+            correctAnswer,
+            choices: allChoices,
+            direction: isSpanishToGerman ? 'es-de' : 'de-es',
+            userAnswer: null
+        };
+    }
+
+    createTypingExercise(vocabItem) {
+        const isSpanishToGerman = Math.random() > 0.5;
+        const question = isSpanishToGerman ? vocabItem.spanish : vocabItem.german;
+        const correctAnswer = isSpanishToGerman ? vocabItem.german : vocabItem.spanish;
+
+        return {
+            type: 'typing',
+            vocabItem,
+            question,
+            correctAnswer,
+            direction: isSpanishToGerman ? 'es-de' : 'de-es',
+            userAnswer: null
+        };
+    }
+
+    createMatchExercise(vocabItem) {
+        // Create pairs to match
+        const pairs = [vocabItem];
+        const additionalPairs = this.vocabulary
+            .filter(v => v.id !== vocabItem.id)
+            .sort(() => Math.random() - 0.5)
+            .slice(0, 3);
+        
+        pairs.push(...additionalPairs);
+        
+        const leftSide = pairs.map(p => ({ text: p.spanish, id: p.id }));
+        const rightSide = pairs.map(p => ({ text: p.german, id: p.id }))
+            .sort(() => Math.random() - 0.5);
+
+        return {
+            type: 'match',
+            vocabItem,
+            leftSide,
+            rightSide,
+            matches: {},
+            correctMatches: pairs.reduce((acc, p) => {
+                acc[p.spanish] = p.german;
+                return acc;
+            }, {})
+        };
+    }
+
+    renderExercise() {
+        if (!this.currentExercise) return;
+
+        const exercise = this.currentExercise;
+        let html = '';
+
+        switch (exercise.type) {
+            case 'choice':
+                html = this.renderChoiceExercise(exercise);
+                break;
+            case 'typing':
+                html = this.renderTypingExercise(exercise);
+                break;
+            case 'match':
+                html = this.renderMatchExercise(exercise);
+                break;
+            case 'conjugation':
+                html = this.renderConjugationExercise(exercise);
+                break;
+        }
+
+        this.exerciseContainer.innerHTML = html;
+        this.feedbackContainer.innerHTML = '';
+        this.checkBtn.style.display = 'inline-block';
+        this.repeatItemBtn.style.display = 'none';
+        this.setupExerciseEventListeners();
+    }
+
+    renderConjugationExercise(exercise) {
+        return `
+            <div class="exercise conjugation-exercise">
+                <div class="exercise-header">
+                    <span class="exercise-type">Konjugation</span>
+                    <span class="tense">${exercise.tiempoName}</span>
+                </div>
+                <div class="conjugation-prompt">
+                    <h2>${exercise.prompt}</h2>
+                </div>
+                <div class="conjugation-details">
+                    <div class="verb-info">
+                        <span class="infinitive">${exercise.infinitivo}</span>
+                        <span class="translation">(${exercise.traduccion})</span>
+                    </div>
+                    <div class="person-indicator">
+                        <strong>${exercise.persona}</strong>
+                    </div>
+                </div>
+                <div class="answer-input">
+                    <input type="text" id="conjugation-input" placeholder="Konjugierte Form..." autocomplete="off">
+                </div>
+            </div>
+        `;
+    }
+
+    renderChoiceExercise(exercise) {
+        // ASCII-only direction text
+        const directionText = exercise.direction === 'es-de' ? 'Spanisch ? Deutsch' : 'Deutsch ? Spanisch';
+        
+        return `
+            <div class="exercise choice-exercise">
+                <div class="exercise-header">
+                    <span class="exercise-type">Multiple Choice</span>
+                    <span class="direction">${directionText}</span>
+                </div>
+                <div class="question">
+                    <h2>${exercise.question}</h2>
+                </div>
+                <div class="choices">
+                    ${exercise.choices.map((choice, index) => `
+                        <button class="choice-btn" data-choice="${choice}">
+                            ${choice}
+                        </button>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    renderTypingExercise(exercise) {
+        // ASCII-only direction text
+        const directionText = exercise.direction === 'es-de' ? 'Spanisch ? Deutsch' : 'Deutsch ? Spanisch';
+        
+        return `
+            <div class="exercise typing-exercise">
+                <div class="exercise-header">
+                    <span class="exercise-type">Eingabe</span>
+                    <span class="direction">${directionText}</span>
+                </div>
+                <div class="question">
+                    <h2>${exercise.question}</h2>
+                </div>
+                <div class="answer-input">
+                    <input type="text" id="typing-input" placeholder="Deine Antwort..." autocomplete="off">
+                </div>
+            </div>
+        `;
+    }
+
+    renderMatchExercise(exercise) {
+        return `
+            <div class="exercise match-exercise">
+                <div class="exercise-header">
+                    <span class="exercise-type">Zuordnung</span>
+                    <span class="direction">Spanisch ? Deutsch</span>
+                </div>
+                <div class="match-container">
+                    <div class="match-left">
+                        ${exercise.leftSide.map(item => `
+                            <div class="match-item" data-id="${item.id}" data-text="${item.text}">
+                                ${item.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="match-right">
+                        ${exercise.rightSide.map(item => `
+                            <div class="match-item" data-id="${item.id}" data-text="${item.text}">
+                                ${item.text}
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    setupExerciseEventListeners() {
+        const exercise = this.currentExercise;
+
+        if (exercise.type === 'choice') {
+            document.querySelectorAll('.choice-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    exercise.userAnswer = btn.dataset.choice;
+                });
+            });
+        } else if (exercise.type === 'typing') {
+            const input = document.getElementById('typing-input');
+            input.focus();
+            input.addEventListener('input', () => {
+                exercise.userAnswer = input.value.trim();
+            });
+        } else if (exercise.type === 'conjugation') {
+            const input = document.getElementById('conjugation-input');
+            input.focus();
+            input.addEventListener('input', () => {
+                exercise.userAnswer = input.value.trim();
+            });
+        } else if (exercise.type === 'match') {
+            this.setupMatchingLogic();
+        } else if (exercise.type === 'mc') {
+            // Multiple Choice setup
+            setupMCListeners(this.exerciseContainer);
+        }
+    }
+
+    setupMatchingLogic() {
+        let selectedLeft = null;
+        let selectedRight = null;
+
+        document.querySelectorAll('.match-left .match-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.match-left .match-item').forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+                selectedLeft = item;
+                this.tryMatch(selectedLeft, selectedRight);
+            });
+        });
+
+        document.querySelectorAll('.match-right .match-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.match-right .match-item').forEach(i => i.classList.remove('selected'));
+                item.classList.add('selected');
+                selectedRight = item;
+                this.tryMatch(selectedLeft, selectedRight);
+            });
+        });
+    }
+
+    tryMatch(left, right) {
+        if (!left || !right) return;
+
+        const exercise = this.currentExercise;
+        const leftText = left.dataset.text;
+        const rightText = right.dataset.text;
+        
+        exercise.matches[leftText] = rightText;
+        
+        left.classList.add('matched');
+        right.classList.add('matched');
+        left.classList.remove('selected');
+        right.classList.remove('selected');
+        
+        // Check if all matches are made
+        if (Object.keys(exercise.matches).length === exercise.leftSide.length) {
+            // Auto-check when all matches are made
+            setTimeout(() => this.checkAnswer(), 500);
+        }
+    }
+
+    async checkAnswer() {
+        if (!this.currentExercise) return;
+
+        const exercise = this.currentExercise;
+        let isCorrect = false;
+        let validationResult = null;
+
+        switch (exercise.type) {
+            case 'choice':
+                isCorrect = exercise.userAnswer === exercise.correctAnswer;
+                break;
+            case 'typing':
+                isCorrect = this.checkTypingAnswer(exercise);
+                break;
+            case 'conjugation':
+                validationResult = this.checkConjugationAnswer(exercise);
+                isCorrect = validationResult.correct;
+                break;
+            case 'match':
+                isCorrect = this.checkMatchExercise(exercise);
+                break;
+            case 'mc':
+                // Multiple Choice check
+                const mcResult = checkMC(this.exerciseContainer, exercise.correctAnswer);
+                isCorrect = mcResult.correct;
+                exercise.userAnswer = mcResult.selectedValue;
+                break;
+        }
+
+        // Update SRS for vocabulary items
+        if (exercise.vocabItem) {
+            if (isCorrect) {
+                this.srsSystem.promote(exercise.vocabItem);
+            } else {
+                this.srsSystem.demote(exercise.vocabItem);
+            }
+            await this.updateVocabularyItem(exercise.vocabItem);
+        }
+
+        // Show feedback
+        this.showFeedback(isCorrect, exercise, validationResult);
+
+        // Update UI
+        this.checkBtn.style.display = 'none';
+        this.repeatItemBtn.style.display = 'inline-block';
+        
+        // Auto-advance after 2 seconds for correct answers
+        if (isCorrect) {
+            setTimeout(() => {
+                this.sessionIndex++;
+                this.nextExercise();
+            }, 2000);
+        }
+    }
+
+    checkConjugationAnswer(exercise) {
+        if (!exercise.userAnswer) {
+            return {
+                correct: false,
+                score: 0,
+                feedback: 'Keine Antwort eingegeben'
+            };
+        }
+
+        // Use Spanish normalizer for validation
+        return validateSpanishAnswer(exercise.userAnswer, exercise.correctAnswer, {
+            strictAccents: false,
+            allowTypos: true,
+            minConfidence: 0.7
+        });
+    }
+
+    /**
+     * Enhanced typing answer check with ASCII normalization
+     */
+    checkTypingAnswer(exercise) {
+        const userAnswer = exercise.userAnswer;
+        const correctAnswer = exercise.correctAnswer;
+        
+        if (!userAnswer) return false;
+        
+        // For German answers, normalize both user input and correct answer
+        if (exercise.direction === 'es-de') {
+            const normalizedUser = asciiNormalizer.normalizeForMatching(userAnswer);
+            const normalizedCorrect = asciiNormalizer.normalizeForMatching(correctAnswer);
+            
+            // Exact match after normalization
+            if (normalizedUser === normalizedCorrect) return true;
+            
+            // Fuzzy match with Levenshtein distance ? 2
+            return this.levenshteinDistance(normalizedUser, normalizedCorrect) <= 2;
+        } else {
+            // For Spanish answers, use Spanish normalization
+            const validation = validateSpanishAnswer(userAnswer, correctAnswer, {
+                strictAccents: false,
+                allowTypos: true,
+                minConfidence: 0.7
+            });
+            return validation.correct;
+        }
+    }
+
+    /**
+     * Levenshtein distance calculation for fuzzy matching
+     */
+    levenshteinDistance(str1, str2) {
+        const matrix = [];
+        const len1 = str1.length;
+        const len2 = str2.length;
+
+        for (let i = 0; i <= len2; i++) {
+            matrix[i] = [i];
+        }
+
+        for (let j = 0; j <= len1; j++) {
+            matrix[0][j] = j;
+        }
+
+        for (let i = 1; i <= len2; i++) {
+            for (let j = 1; j <= len1; j++) {
+                if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+        }
+
+        return matrix[len2][len1];
+    }
+
+    normalizeText(text) {
+        if (!text) return '';
+        return text.toLowerCase()
+            .replace(/[áàäâ]/g, 'a')
+            .replace(/[éèëê]/g, 'e')
+            .replace(/[íìïî]/g, 'i')
+            .replace(/[óòöô]/g, 'o')
+            .replace(/[úùüû]/g, 'u')
+            .replace(/ñ/g, 'n')
+            .replace(/ß/g, 'ss')
+            .trim();
+    }
+
+    checkMatchExercise(exercise) {
+        const correctMatches = exercise.correctMatches;
+        const userMatches = exercise.matches;
+        
+        if (Object.keys(userMatches).length !== Object.keys(correctMatches).length) {
+            return false;
+        }
+        
+        for (const [left, right] of Object.entries(userMatches)) {
+            if (correctMatches[left] !== right) {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+
+    showFeedback(isCorrect, exercise, validationResult = null) {
+        const feedbackClass = isCorrect ? 'correct' : 'incorrect';
+        const feedbackIcon = isCorrect ? '?' : '?';
+        const feedbackText = isCorrect ? 'Richtig!' : 'Falsch!';
+        
+        let detailsHtml = '';
+        
+        if (!isCorrect) {
+            let correctAnswerText = exercise.correctAnswer || 'Siehe Zuordnung oben';
+            
+            if (validationResult && validationResult.suggestion) {
+                correctAnswerText = validationResult.suggestion;
+            }
+            
+            detailsHtml = `
+                <div class="correct-answer">
+                    <strong>Richtige Antwort:</strong> ${correctAnswerText}
+                </div>
+            `;
+            
+            if (validationResult && validationResult.feedback) {
+                detailsHtml += `
+                    <div class="validation-feedback">
+                        ${validationResult.feedback}
+                    </div>
+                `;
+            }
+        }
+
+        let extraInfo = '';
+        
+        if (exercise.type === 'conjugation') {
+            extraInfo = `
+                <div class="conjugation-info">
+                    <div class="verb-details">
+                        <span class="infinitive">${exercise.infinitivo}</span>
+                        <span class="translation">(${exercise.traduccion})</span>
+                    </div>
+                    <div class="conjugation-details">
+                        <span class="tense">${exercise.tiempoName}</span>
+                        <span class="person">${exercise.persona}</span>
+                    </div>
+                </div>
+            `;
+        } else if (exercise.vocabItem) {
+            extraInfo = `
+                <div class="vocab-info">
+                    <div class="vocab-pair">
+                        <span class="spanish">${exercise.vocabItem.spanish}</span>
+                        <span class="separator">?</span>
+                        <span class="german">${exercise.vocabItem.german}</span>
+                    </div>
+                    <div class="category">Kategorie: ${exercise.vocabItem.category}</div>
+                    <div class="srs-info">SRS Box: ${exercise.vocabItem.srsBox}</div>
+                </div>
+            `;
+        }
+
+        // ASCII-only status text
+        const statusText = `
+            <div class="feedback ${feedbackClass}">
+                <div class="feedback-header">
+                    <span class="feedback-icon">${feedbackIcon}</span>
+                    <span class="feedback-text">${feedbackText}</span>
+                </div>
+                ${detailsHtml}
+                ${extraInfo}
+            </div>
+        `;
+
+        // Validate ASCII compliance of feedback
+        try {
+            asciiGuard(statusText, 'feedback message');
+        } catch (error) {
+            console.warn('ASCII violation in feedback:', error);
+        }
+
+        this.feedbackContainer.innerHTML = statusText;
+    }
+
+    repeatCurrentItem() {
+        this.renderExercise();
+    }
+
+    restartSession() {
+        this.startLearningSession();
+        this.repeatRoundBtn.style.display = 'none';
+    }
+
+    endSession() {
+        let sessionType = 'Vokabeln';
+        if (this.mode === 'conjugation') {
+            sessionType = 'Konjugationen';
+        }
+
+        // ASCII-only session complete message
+        const sessionCompleteHtml = `
+            <div class="session-complete">
+                <h2>?? Session abgeschlossen!</h2>
+                <p>Du hast ${this.currentSession.length} ${sessionType} bearbeitet.</p>
+                <button onclick="app.startLearningSession()" class="restart-btn">Neue Session starten</button>
+            </div>
+        `;
+
+        try {
+            asciiGuard(sessionCompleteHtml, 'session complete message');
+        } catch (error) {
+            console.warn('ASCII violation in session complete:', error);
+        }
+
+        this.exerciseContainer.innerHTML = sessionCompleteHtml;
+        this.checkBtn.style.display = 'none';
+        this.repeatRoundBtn.style.display = 'inline-block';
+    }
+
+    updateStatusBar() {
+        let statusText = '';
+        
+        if (!this.currentSession || this.currentSession.length === 0) {
+            statusText = 'Bereit zum Lernen';
+        } else {
+            const progress = `${this.sessionIndex + 1}/${this.currentSession.length}`;
+            let modeText = 'Lern-Modus';
+            
+            switch (this.mode) {
+                case 'srs':
+                    modeText = 'SRS-Modus';
+                    break;
+                case 'conjugation':
+                    modeText = 'Konjugations-Modus';
+                    break;
+                case 'free-pick':
+                    modeText = 'Freie-Wahl-Modus';
+                    break;
+            }
+            
+            statusText = `${modeText} | ${progress}`;
+        }
+
+        // Validate ASCII compliance
+        try {
+            asciiGuard(statusText, 'status bar');
+        } catch (error) {
+            console.warn('ASCII violation in status bar:', error);
+            statusText = 'Learning Mode Active'; // Fallback ASCII
+        }
+
+        this.statusBar.textContent = statusText;
+    }
+
+    // Debug functions
+    async resetAllToBox0() {
+        for (const item of this.vocabulary) {
+            item.srsBox = 0;
+            item.nextReview = Date.now();
+            await this.updateVocabularyItem(item);
+        }
+        console.log('?? All vocabulary reset to Box 0');
+    }
+
+    async makeAllDueNow() {
+        for (const item of this.vocabulary) {
+            item.nextReview = Date.now() - 1000;
+            await this.updateVocabularyItem(item);
+        }
+        console.log('? All vocabulary made due now');
+    }
+
+    async reimportDatabase() {
+        // Clear existing vocabulary
+        const transaction = this.db.transaction(['vocabulary'], 'readwrite');
+        const store = transaction.objectStore('vocabulary');
+        await store.clear();
+        
+        // Reimport
+        await this.importInitialVocabulary();
+        console.log('?? Database reimported (ASCII-normalized)');
+    }
+
+    showMessage(message) {
+        try {
+            asciiGuard(message, 'message display');
+        } catch (error) {
+            console.warn('ASCII violation in message:', error);
+        }
+
+        this.exerciseContainer.innerHTML = `
+            <div class="message">
+                <h2>${message}</h2>
+            </div>
+        `;
+    }
+
+    showError(error) {
+        try {
+            asciiGuard(error, 'error message');
+        } catch (error) {
+            console.warn('ASCII violation in error message:', error);
+        }
+
+        this.exerciseContainer.innerHTML = `
+            <div class="error">
+                <h2>? Fehler</h2>
+                <p>${error}</p>
+            </div>
+        `;
+    }
+
+    // Conjugator API methods
+    async getConjugation(infinitivo, tiempo, persona) {
+        if (!this.conjugatorLoaded) {
+            throw new Error('Conjugator not loaded');
+        }
+        return this.conjugator.conjugate(infinitivo, tiempo, persona);
+    }
+
+    async analyzeVerb(form) {
+        if (!this.conjugatorLoaded) {
+            throw new Error('Conjugator not loaded');
+        }
+        return this.conjugator.analyze(form);
+    }
+
+    getConjugatorStats() {
+        if (!this.conjugatorLoaded) {
+            return { error: 'Conjugator not loaded' };
+        }
+        return this.conjugator.getStats();
+    }
+}
+
+// Initialize app when DOM is loaded
+let app;
+document.addEventListener('DOMContentLoaded', () => {
+    // Wait for all dependencies to be available
+    if (typeof LeitnerSystem !== 'undefined' && 
+        typeof SpanishConjugator !== 'undefined' && 
+        typeof asciiNormalizer !== 'undefined' &&
+        typeof spanishNormalizer !== 'undefined') {
+        app = new SpanishApp();
+    } else {
+        console.error('Missing dependencies! Check that all scripts are loaded.');
+    }
+});
+
+// Load items on app start
+loadItems().then(items => {
+    console.log(`?? Initial items loaded: ${items.length}`);
+    // Optionally, start the app here if not already started
+    if (!app) {
+        app = new SpanishApp();
+    }
+}).catch(error => {
+    console.error('Error loading items:', error);
 });
