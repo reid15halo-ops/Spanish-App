@@ -1,0 +1,165 @@
+name: 🎨 UX Enhancement
+description: Verbesserung der Nutzerfreundlichkeit (User Experience)
+title: "[UX] "
+labels: ["enhancement", "UX"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## UX Enhancement Issue
+
+        Vielen Dank für deinen Beitrag zur Verbesserung der User Experience!
+
+        Bitte fülle die folgenden Felder aus, um deine UX-Verbesserung zu beschreiben.
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorität
+      description: Wie wichtig ist diese Verbesserung?
+      options:
+        - P0 - KRITISCH (Must-Have)
+        - P1 - HOCH (Should-Have)
+        - P2 - MITTEL (Nice-to-Have)
+        - P3 - NIEDRIG (Future)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Kategorie
+      description: Welche UX-Kategorie betrifft diese Verbesserung?
+      options:
+        - Onboarding (Erstnutzer-Erfahrung)
+        - Navigation (Menüs, Routing)
+        - Feedback (Toasts, Animationen)
+        - Accessibility (Barrierefreiheit)
+        - Performance (Ladezeiten)
+        - Mobile UX
+        - Desktop UX
+        - Visual Design
+        - Error Handling
+        - Help System
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / Pain Point
+      description: Welches UX-Problem soll gelöst werden?
+      placeholder: |
+        Beispiel:
+        - Erstnutzer verstehen nicht, was die App tut
+        - Debug-Toolbar verwirrt normale Nutzer
+        - Keine Ladeindikatoren → App wirkt "frozen"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Lösungsvorschlag
+      description: Wie soll das Problem gelöst werden?
+      placeholder: |
+        Beispiel:
+        - Willkommens-Dialog beim ersten Besuch
+        - Debug-Toolbar nur im Development-Modus anzeigen
+        - Loading-Spinner bei async Operationen
+
+        Optional: Code-Beispiele, Mockups, Links zu ähnlichen Implementierungen
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Wann ist diese Verbesserung "done"?
+      placeholder: |
+        - [ ] Feature X implementiert
+        - [ ] Funktioniert in Chrome, Firefox, Edge
+        - [ ] Responsive auf Mobile
+        - [ ] Accessibility getestet (WCAG AA)
+        - [ ] Dark Mode kompatibel
+      value: |
+        - [ ] Implementiert und getestet
+        - [ ] Responsive auf allen Breakpoints
+        - [ ] Dark Mode kompatibel
+        - [ ] Accessibility (WCAG AA)
+        - [ ] Dokumentiert
+    validations:
+      required: true
+
+  - type: input
+    id: estimate
+    attributes:
+      label: Aufwandsschätzung
+      description: Wie lange dauert die Implementierung?
+      placeholder: "z.B. 2 Stunden, 1 Tag, 1 Woche"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-files
+    attributes:
+      label: Betroffene Dateien
+      description: Welche Dateien müssen geändert werden?
+      placeholder: |
+        - index.html
+        - js/app.js
+        - css/style.css
+        - (NEU) js/onboarding.js
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / Mockups
+      description: Drag & Drop Screenshots oder Links zu Mockups
+      placeholder: |
+        [Vorher] Screenshot aktueller Zustand
+        [Nachher] Mockup/Screenshot des gewünschten Zustands
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: testing
+    attributes:
+      label: Testing Checklist
+      description: Was muss getestet werden?
+      options:
+        - label: Funktionales Testing
+        - label: Mobile Testing
+        - label: Accessibility Testing (Keyboard, Screen Reader)
+        - label: Cross-Browser Testing (Chrome, Firefox, Edge)
+        - label: Dark Mode Testing
+        - label: Performance Testing (Lighthouse)
+
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: Milestone
+      description: Für welche Version ist diese Verbesserung geplant?
+      options:
+        - v0.1 - User-Friendly
+        - v0.2 - Windows 11 & Polish
+        - Future
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Zusätzlicher Kontext
+      description: Weitere Informationen, Links, Referenzen
+      placeholder: |
+        - Link zur UX-VERBESSERUNGEN-ROADMAP.md
+        - Ähnliche Implementierungen in anderen Apps
+        - User Feedback / Requests
+    validations:
+      required: false

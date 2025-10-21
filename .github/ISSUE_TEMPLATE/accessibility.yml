@@ -1,0 +1,311 @@
+name: ♿ Accessibility Issue
+description: Barrierefreiheits-Problem oder -Verbesserung (WCAG)
+title: "[A11y] "
+labels: ["accessibility"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Accessibility Issue / Verbesserung
+
+        Dieses Template ist für Barrierefreiheits-Probleme und -Verbesserungen.
+
+        **WCAG-Levels:**
+        - **A**: Mindest-Level (Basis)
+        - **AA**: Mittleres Level (Empfohlen)
+        - **AAA**: Höchstes Level (Best Practice)
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Art des Problems
+      description: Ist das ein Bug oder eine Verbesserung?
+      options:
+        - 🐛 Bug - WCAG-Verstoß (bestehend)
+        - ✨ Enhancement - Neue A11y-Verbesserung
+        - 📊 Audit - Vollständige A11y-Prüfung nötig
+    validations:
+      required: true
+
+  - type: dropdown
+    id: wcag-level
+    attributes:
+      label: WCAG-Level
+      description: Welches WCAG-Level betrifft das?
+      options:
+        - WCAG A (Mindest-Anforderung)
+        - WCAG AA (Empfohlen)
+        - WCAG AAA (Best Practice)
+        - Unklar / Nicht sicher
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: A11y-Kategorie
+      description: Welche Accessibility-Kategorie ist betroffen?
+      options:
+        - Keyboard Navigation (Tab-Order, Focus)
+        - Screen Reader (ARIA, Semantic HTML)
+        - Visual (Farbkontrast, Schriftgröße)
+        - Multimedia (Alt-Texte, Captions)
+        - Forms (Labels, Error Messages)
+        - Interactive Elements (Buttons, Links)
+        - Responsive / Mobile Accessibility
+        - Focus Management
+        - Live Regions (Dynamic Content)
+        - Andere
+      multiple: true
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problembeschreibung
+      description: Beschreibe das A11y-Problem oder die Verbesserung
+      placeholder: |
+        Beispiel:
+        - Buttons haben keine ARIA-Labels
+        - Farb-Kontrast zu niedrig (3.5:1 statt 4.5:1)
+        - Keyboard-Focus nicht sichtbar
+        - Screen Reader liest falsche Inhalte
+    validations:
+      required: true
+
+  - type: textarea
+    id: wcag-guideline
+    attributes:
+      label: WCAG-Richtlinie
+      description: Welche WCAG-Richtlinie ist betroffen?
+      placeholder: |
+        Beispiel:
+        - WCAG 2.1.1 Keyboard (Level A)
+        - WCAG 1.4.3 Contrast (Minimum) (Level AA)
+        - WCAG 2.4.7 Focus Visible (Level AA)
+        - WCAG 4.1.2 Name, Role, Value (Level A)
+
+        Link: https://www.w3.org/WAI/WCAG21/quickref/
+    validations:
+      required: false
+
+  - type: textarea
+    id: affected-users
+    attributes:
+      label: Betroffene Nutzergruppen
+      description: Welche Nutzergruppen sind betroffen?
+      placeholder: |
+        - Blinde Nutzer (Screen Reader)
+        - Sehbehinderte Nutzer (Zoom, Kontrast)
+        - Motorisch eingeschränkte Nutzer (Keyboard-only)
+        - Kognitiv eingeschränkte Nutzer (Einfache Sprache)
+        - Gehörlose Nutzer (Captions)
+      value: |
+        - [ ] Blinde Nutzer (Screen Reader)
+        - [ ] Sehbehinderte Nutzer (Low Vision)
+        - [ ] Motorisch eingeschränkt (Keyboard-only)
+        - [ ] Kognitiv eingeschränkt
+        - [ ] Gehörlose Nutzer
+        - [ ] Andere:
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Schritte zum Reproduzieren (bei Bug)
+      description: Wie kann das Problem nachvollzogen werden?
+      placeholder: |
+        1. Öffne die App
+        2. Verwende nur Tastatur (kein Mauszeiger)
+        3. Drücke Tab-Taste mehrmals
+        4. Beobachte: Focus-Outline nicht sichtbar
+    validations:
+      required: false
+
+  - type: textarea
+    id: current-behavior
+    attributes:
+      label: Aktuelles Verhalten
+      description: Was passiert aktuell?
+      placeholder: |
+        Beispiel:
+        - Button hat kein aria-label
+        - Screen Reader liest "Button" (nicht aussagekräftig)
+        - Keyboard-Focus springt wild herum
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Erwartetes Verhalten
+      description: Was sollte stattdessen passieren?
+      placeholder: |
+        Beispiel:
+        - Button sollte aria-label="Antwort prüfen" haben
+        - Screen Reader sollte "Antwort prüfen, Button" vorlesen
+        - Focus sollte logischer Reihenfolge folgen
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Lösungsvorschlag
+      description: Wie kann das Problem gelöst werden?
+      placeholder: |
+        Beispiel:
+
+        ```html
+        <!-- VORHER -->
+        <button onclick="check()">Prüfen</button>
+
+        <!-- NACHHER -->
+        <button
+          onclick="check()"
+          aria-label="Antwort prüfen">
+          Prüfen
+        </button>
+        ```
+    validations:
+      required: false
+
+  - type: textarea
+    id: testing-tools
+    attributes:
+      label: Testing-Tools verwendet
+      description: Welche Tools wurden zum Testen verwendet?
+      placeholder: |
+        - axe DevTools
+        - Lighthouse (Accessibility-Score)
+        - NVDA Screen Reader
+        - JAWS Screen Reader
+        - VoiceOver (macOS/iOS)
+        - Keyboard-only Navigation
+        - Color Contrast Analyzer
+      value: |
+        - [ ] axe DevTools
+        - [ ] Lighthouse
+        - [ ] NVDA
+        - [ ] JAWS
+        - [ ] VoiceOver
+        - [ ] Keyboard-only
+        - [ ] Contrast Checker
+    validations:
+      required: false
+
+  - type: textarea
+    id: test-results
+    attributes:
+      label: Test-Ergebnisse
+      description: Ergebnisse von Accessibility-Tools
+      placeholder: |
+        Beispiel:
+
+        **Lighthouse Accessibility Score**: 85/100
+
+        **axe DevTools Violations**:
+        - Buttons must have discernible text (3 instances)
+        - Elements must have sufficient color contrast (2 instances)
+
+        **NVDA Test**:
+        - Button wird als "Button" vorgelesen ohne Label
+        - Live Region wird nicht angekündigt
+      render: markdown
+    validations:
+      required: false
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: Screenshots des Problems (z.B. Contrast Checker)
+      placeholder: |
+        Drag & Drop Screenshots:
+        - axe DevTools Violations
+        - Contrast Checker Ergebnisse
+        - Focus-Outline (oder Fehlen davon)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: affected-areas
+    attributes:
+      label: Betroffene Bereiche
+      description: Wo in der App tritt das Problem auf?
+      options:
+        - label: Header / Navigation
+        - label: Exercise Container (Übungen)
+        - label: Feedback-Bereich
+        - label: Modals / Dialoge
+        - label: Forms / Input-Felder
+        - label: Buttons
+        - label: Progress-Anzeige
+        - label: Help-System
+        - label: Gesamte App
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Wann ist das Problem gelöst?
+      value: |
+        - [ ] WCAG-Verstoß behoben
+        - [ ] axe DevTools: Keine Violations
+        - [ ] Lighthouse A11y Score: 100/100
+        - [ ] Screen Reader testet (NVDA)
+        - [ ] Keyboard-Navigation funktioniert
+        - [ ] Farbkontrast ≥ 4.5:1 (AA) oder ≥ 7:1 (AAA)
+    validations:
+      required: false
+
+  - type: input
+    id: estimate
+    attributes:
+      label: Aufwandsschätzung
+      description: Wie lange dauert die Behebung?
+      placeholder: "z.B. 1 Stunde, 3 Stunden, 1 Tag"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-files
+    attributes:
+      label: Betroffene Dateien
+      description: Welche Dateien müssen geändert werden?
+      placeholder: |
+        - index.html
+        - js/app.js
+        - js/a11y-enhanced.js
+        - css/style.css (Focus-Styles)
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorität
+      description: Wie dringend ist die Behebung?
+      options:
+        - P0 - KRITISCH (WCAG-A-Verstoß, Blocker)
+        - P1 - HOCH (WCAG-AA-Verstoß)
+        - P2 - MITTEL (WCAG-AAA oder UX-Verbesserung)
+        - P3 - NIEDRIG (Nice-to-Have)
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Zusätzlicher Kontext
+      description: Weitere Informationen, Links, Referenzen
+      placeholder: |
+        - Link zu WCAG-Richtlinie
+        - Beispiele von anderen Apps
+        - User-Feedback von betroffenen Nutzern
+    validations:
+      required: false

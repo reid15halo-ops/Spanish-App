@@ -1,0 +1,220 @@
+name: 🐛 Bug Report
+description: Melde einen Fehler oder unerwartetes Verhalten
+title: "[BUG] "
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Bug Report
+
+        Vielen Dank für deinen Bug Report!
+
+        Bitte beschreibe das Problem so detailliert wie möglich.
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Schweregrad
+      description: Wie kritisch ist dieser Bug?
+      options:
+        - 🔴 KRITISCH - App funktioniert nicht / Datenverlust
+        - 🟠 HOCH - Wichtiges Feature funktioniert nicht
+        - 🟡 MITTEL - Feature funktioniert teilweise
+        - 🟢 NIEDRIG - Kosmetischer Fehler / Minor Issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Fehlerbeschreibung
+      description: Was ist das Problem?
+      placeholder: |
+        Eine klare und präzise Beschreibung des Bugs.
+
+        Beispiel:
+        - SRS-Toggle funktioniert nicht
+        - Dark Mode wird nicht gespeichert
+        - Loading-Spinner erscheint nicht
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Schritte zum Reproduzieren
+      description: Wie kann der Bug reproduziert werden?
+      placeholder: |
+        1. Öffne die App
+        2. Klicke auf '...'
+        3. Scrolle nach unten zu '...'
+        4. Beobachte den Fehler
+      value: |
+        1.
+        2.
+        3.
+        4.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Erwartetes Verhalten
+      description: Was sollte stattdessen passieren?
+      placeholder: "Die App sollte..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Tatsächliches Verhalten
+      description: Was passiert stattdessen?
+      placeholder: "Die App macht stattdessen..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots / Videos
+      description: Füge Screenshots oder Videos hinzu (Drag & Drop)
+      placeholder: |
+        Screenshot des Fehlers
+        Browser Console (F12) mit Fehlermeldungen
+    validations:
+      required: false
+
+  - type: textarea
+    id: console-errors
+    attributes:
+      label: Browser Console Fehler
+      description: Öffne DevTools (F12) → Console Tab → Kopiere Fehlermeldungen
+      placeholder: |
+        Uncaught TypeError: Cannot read property 'x' of undefined
+            at app.js:123
+      render: shell
+    validations:
+      required: false
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      description: In welchem Browser tritt der Fehler auf?
+      options:
+        - Chrome
+        - Firefox
+        - Edge
+        - Safari
+        - Opera
+        - Brave
+        - Andere
+      multiple: true
+    validations:
+      required: true
+
+  - type: input
+    id: browser-version
+    attributes:
+      label: Browser-Version
+      description: "Welche Browser-Version? (z.B. Chrome 120.0.6099.130)"
+      placeholder: "Chrome 120.0.6099.130"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Betriebssystem
+      description: Auf welchem OS tritt der Fehler auf?
+      options:
+        - Windows 11
+        - Windows 10
+        - macOS
+        - Linux
+        - iOS
+        - Android
+      multiple: true
+    validations:
+      required: true
+
+  - type: dropdown
+    id: device
+    attributes:
+      label: Gerät
+      description: Auf welchem Gerätetyp tritt der Fehler auf?
+      options:
+        - Desktop
+        - Laptop
+        - Tablet
+        - Smartphone
+    validations:
+      required: true
+
+  - type: input
+    id: screen-resolution
+    attributes:
+      label: Bildschirmauflösung
+      description: "Welche Auflösung? (z.B. 1920x1080)"
+      placeholder: "1920x1080"
+    validations:
+      required: false
+
+  - type: input
+    id: dpi-scaling
+    attributes:
+      label: DPI-Skalierung
+      description: "Welche DPI-Skalierung? (z.B. 100%, 125%, 150%)"
+      placeholder: "100%"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: reproducibility
+    attributes:
+      label: Reproduzierbarkeit
+      options:
+        - label: Fehler tritt immer auf (100%)
+        - label: Fehler tritt manchmal auf (~50%)
+        - label: Fehler tritt selten auf (<20%)
+        - label: Fehler trat nur einmal auf
+
+  - type: checkboxes
+    id: context
+    attributes:
+      label: Kontext
+      options:
+        - label: Dark Mode aktiv
+        - label: SRS-Modus aktiv
+        - label: Offline-Modus
+        - label: Nach Reload der Seite
+        - label: Nach langem Nutzen (>30 Min)
+        - label: Direkt nach App-Start
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Zusätzlicher Kontext
+      description: Weitere Informationen zum Problem
+      placeholder: |
+        - Wann trat der Fehler zum ersten Mal auf?
+        - Gibt es Workarounds?
+        - Weitere Beobachtungen?
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Hast du folgendes geprüft?
+      options:
+        - label: Ich habe die Dokumentation gelesen
+        - label: Ich habe die bestehenden Issues durchsucht
+        - label: Ich habe die Browser Console auf Fehler geprüft
+        - label: Ich habe versucht, den Bug zu reproduzieren
