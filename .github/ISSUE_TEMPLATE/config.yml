@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Diskussion starten
+    url: https://github.com/reid15halo-ops/Spanish-App/discussions
+    about: Stelle Fragen oder diskutiere Features in den Discussions
+  - name: 📚 Dokumentation
+    url: https://github.com/reid15halo-ops/Spanish-App/blob/master/README.md
+    about: Lies die vollständige Dokumentation
