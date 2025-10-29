@@ -103,8 +103,22 @@ class UIController {
     /**
      * Update status bar
      */
-    updateStatus(unitNumber, totalUnits, currentEx, totalEx) {
-        this.elements.unitStatus.textContent = `Unit ${unitNumber}/${totalUnits}`;
+    updateStatus(unitNumber, totalUnits, currentEx, totalEx, unitName = '') {
+        // Unit names mapping
+        const unitNames = {
+            1: 'Pronomen',
+            2: 'SER',
+            3: 'ESTAR',
+            4: 'SER/ESTAR',
+            5: 'TENER',
+            6: 'Vokabular',
+            7: 'Integration'
+        };
+
+        const name = unitName || unitNames[unitNumber] || '';
+        this.elements.unitStatus.textContent = name
+            ? `Lektion ${unitNumber}/${totalUnits}: ${name}`
+            : `Lektion ${unitNumber}/${totalUnits}`;
         this.elements.exerciseStatus.textContent = `${currentEx}/${totalEx}`;
     }
 
@@ -313,9 +327,31 @@ class UIController {
     /**
      * Show feedback (correct or incorrect)
      */
-    showFeedback(isCorrect, message, correctAnswer = null) {
+    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null) {
         this.elements.feedbackText.textContent = message;
-        this.elements.feedback.className = 'feedback show ' + (isCorrect ? 'success' : 'error');
+        this.elements.feedback.className = 'feedback show ' + (isCorrect ? 'feedback--success' : 'feedback--error');
+
+        // Show feedback hint if provided
+        const feedbackHint = document.getElementById('feedback-hint');
+        if (feedbackHint) {
+            if (hint) {
+                feedbackHint.textContent = hint;
+                feedbackHint.style.display = 'block';
+            } else {
+                feedbackHint.style.display = 'none';
+            }
+        }
+
+        // Show attempts remaining if provided
+        const attemptsEl = document.getElementById('attempts-remaining');
+        if (attemptsEl) {
+            if (attemptsRemaining !== null && attemptsRemaining > 0) {
+                attemptsEl.textContent = `Noch ${attemptsRemaining} Versuch${attemptsRemaining !== 1 ? 'e' : ''} übrig`;
+                attemptsEl.style.display = 'block';
+            } else {
+                attemptsEl.style.display = 'none';
+            }
+        }
 
         // Mark answer button/input
         if (this.state.exerciseType === 'multiple-choice' || this.state.exerciseType === 'conjugation') {
@@ -408,6 +444,16 @@ class UIController {
      * Handle keyboard shortcuts
      */
     handleKeyboardShortcut(e) {
+        // Ignore shortcuts when typing in input
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            // Allow Enter in text inputs for submission
+            if (e.key === 'Enter') {
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) submitBtn.click();
+            }
+            return;
+        }
+
         // Number keys 1-4 for multiple choice
         if (e.key >= '1' && e.key <= '4' && !this.state.isAnswered) {
             const index = parseInt(e.key) - 1;
@@ -417,17 +463,53 @@ class UIController {
             }
         }
 
-        // Enter key to advance (if answered)
-        if (e.key === 'Enter' && this.state.isAnswered) {
+        // Enter or Spacebar to advance (if answered)
+        if ((e.key === 'Enter' || e.key === ' ') && this.state.isAnswered) {
+            e.preventDefault();
             if (this.onNextExercise) {
                 this.onNextExercise();
             }
+        }
+
+        // H key to show hint
+        if ((e.key === 'h' || e.key === 'H') && this.state.isAnswered) {
+            e.preventDefault();
+            if (this.elements.hintContainer.classList.contains('show')) {
+                this.showNextHint();
+            }
+        }
+
+        // E key to toggle explanation
+        if ((e.key === 'e' || e.key === 'E') && this.state.isAnswered) {
+            e.preventDefault();
+            if (this.elements.explanation.classList.contains('show')) {
+                this.hideExplanation();
+            } else if (this.onShowExplanation) {
+                this.onShowExplanation();
+            }
+        }
+
+        // Arrow keys for navigation (if answered)
+        if ((e.key === 'ArrowRight' || e.key === 'ArrowDown') && this.state.isAnswered) {
+            e.preventDefault();
+            if (this.onNextExercise) {
+                this.onNextExercise();
+            }
+        }
+
+        if ((e.key === 'ArrowLeft' || e.key === 'ArrowUp') && this.state.isAnswered) {
+            e.preventDefault();
+            // TODO: Implement previous exercise navigation
+            console.log('Previous exercise navigation not yet implemented');
         }
 
         // Escape to close hints/explanations
         if (e.key === 'Escape') {
             if (this.elements.hintContent.classList.contains('hidden') === false) {
                 this.elements.hintContent.classList.add('hidden');
+            }
+            if (this.elements.explanation.classList.contains('show')) {
+                this.hideExplanation();
             }
         }
     }
