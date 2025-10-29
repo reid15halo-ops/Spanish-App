@@ -464,12 +464,27 @@ class AppController {
         const exercise = this.state.exercises[this.state.currentExerciseIndex];
         const startTime = Date.now();
 
-        // Normalize answers for comparison
-        const userAnswer = this.normalizeAnswer(answer);
-        const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+        // Special handling for different exercise types
+        let isCorrect = false;
 
-        // Check if correct
-        const isCorrect = userAnswer === correctAnswer;
+        if (exercise.type === 'fill-multiple') {
+            // JSON array comparison for multiple blanks
+            try {
+                const userAnswers = JSON.parse(answer);
+                const correctAnswers = JSON.parse(exercise.correctAnswer);
+                isCorrect = userAnswers.length === correctAnswers.length &&
+                    userAnswers.every((ans, idx) =>
+                        this.normalizeAnswer(ans) === this.normalizeAnswer(correctAnswers[idx])
+                    );
+            } catch (e) {
+                isCorrect = false;
+            }
+        } else {
+            // Standard comparison for other types
+            const userAnswer = this.normalizeAnswer(answer);
+            const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+            isCorrect = userAnswer === correctAnswer;
+        }
 
         // Track attempts (only increment on wrong answers)
         if (!isCorrect) {

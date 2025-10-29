@@ -890,7 +890,272 @@
             margin-bottom: var(--space-sm);
             color: var(--accent);
         }
-    
+
+        /* Sentence Building Styles */
+        .sentence-building {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-sm);
+            padding: var(--space-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            min-height: 80px;
+        }
+
+        .word-btn {
+            padding: var(--space-sm) var(--space-md);
+            background: var(--accent);
+            color: var(--text);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .word-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .word-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .sentence-area {
+            min-height: 100px;
+            padding: var(--space-md);
+            background: var(--bg);
+            border: 2px dashed var(--border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sentence-placeholder {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .sentence-display {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        .selected-word {
+            display: inline-block;
+            padding: 4px 8px;
+            background: var(--accent);
+            border-radius: var(--radius-sm);
+            margin: 0 4px;
+        }
+
+        .sentence-controls {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: flex-end;
+        }
+
+        .secondary-btn {
+            background: var(--bg-secondary) !important;
+            opacity: 0.8;
+        }
+
+        .secondary-btn:hover {
+            opacity: 1;
+        }
+
+        /* Error Correction Styles */
+        .error-correction {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .error-sentence {
+            font-size: 20px;
+            padding: var(--space-md);
+            background: rgba(255, 100, 100, 0.1);
+            border-left: 4px solid var(--error);
+            border-radius: var(--radius-sm);
+            font-family: monospace;
+        }
+
+        .error-hint {
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* True/False Styles */
+        .true-false {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .statement-box {
+            font-size: 22px;
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent);
+            border-radius: var(--radius-md);
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        .true-false-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-md);
+        }
+
+        .true-btn {
+            border-color: var(--success) !important;
+        }
+
+        .true-btn:hover {
+            background: rgba(76, 175, 80, 0.1) !important;
+        }
+
+        .false-btn {
+            border-color: var(--error) !important;
+        }
+
+        .false-btn:hover {
+            background: rgba(244, 67, 54, 0.1) !important;
+        }
+
+        /* Fill Multiple Styles */
+        .fill-multiple {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .sentence-template {
+            font-size: 20px;
+            padding: var(--space-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            line-height: 1.8;
+        }
+
+        .blanks-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+        }
+
+        .blank-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .blank-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .blank-input {
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 16px;
+            color: var(--text);
+            transition: border-color 0.2s ease;
+        }
+
+        .blank-input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        /* Dialogue Completion Styles */
+        .dialogue-completion {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-lg);
+        }
+
+        .dialogue-box {
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .dialogue-line {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+        }
+
+        .dialogue-line.A {
+            background: rgba(33, 150, 243, 0.1);
+        }
+
+        .dialogue-line.B {
+            background: rgba(156, 39, 176, 0.1);
+        }
+
+        .dialogue-line.response {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px dashed var(--border);
+        }
+
+        .speaker-icon {
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .dialogue-text {
+            flex: 1;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        .dialogue-text.missing {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .dialogue-hint {
+            padding: var(--space-sm) var(--space-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .dialogue-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .dialogue-option {
+            justify-content: space-between;
+        }
+
     </style>
 </head>
 <body>
@@ -1405,6 +1670,345 @@ class Phase1Controller {
                 `,
                 feedbackCorrect: 'Excelente! Orte verwendet man mit ESTAR.',
                 feedbackIncorrect: 'Ort = ESTAR (LECH Regel: Location), nicht SER!'
+            },
+
+            // NEW: Sentence Building - Wortstellung üben
+            {
+                id: 'mock_sentence_1',
+                type: 'sentence-building',
+                concept: 'word-order',
+                difficulty: 4,
+                question: 'Bringe die Wörter in die richtige Reihenfolge (Deutsch: "Ich bin glücklich")',
+                correctAnswer: 'Yo estoy feliz',
+                german: 'Ich bin glücklich',
+                germanBridge: '💡 Subjekt - Verb - Adjektiv',
+                words: ['Yo', 'estoy', 'feliz'],
+                hints: [
+                    'Spanische Wortstellung ist ähnlich wie im Deutschen',
+                    'Pronomen + ESTAR + Adjektiv',
+                    'Die richtige Reihenfolge ist: Yo estoy feliz'
+                ],
+                explanation: '<p>Spanische Grundwortstellung: <strong>Subjekt + Verb + Ergänzung</strong></p><p>✅ Yo estoy feliz (richtig)</p>',
+                feedbackCorrect: '¡Perfecto! Die Wortstellung ist korrekt.',
+                feedbackIncorrect: 'Achte auf die Grundwortstellung: Subjekt + Verb + Adjektiv'
+            },
+
+            // NEW: Error Correction - Fehler finden
+            {
+                id: 'mock_error_1',
+                type: 'error-correction',
+                concept: 'ser-estar-error',
+                difficulty: 5,
+                question: 'Korrigiere den Fehler in diesem Satz:',
+                incorrectSentence: 'Yo soy en Madrid',
+                correctAnswer: 'Yo estoy en Madrid',
+                errorCount: 1,
+                errorType: 'SER/ESTAR Verwechslung',
+                german: 'Ich bin in Madrid',
+                germanBridge: '⚠️ Dieser Satz ist fehlerhaft! Was muss geändert werden?',
+                hints: [
+                    'Ortsangaben verwenden immer ESTAR',
+                    'Das Verb muss gewechselt werden',
+                    'Die richtige Form ist: Yo estoy en Madrid'
+                ],
+                explanation: '<p>Bei Ortsangaben verwendet man <strong>ESTAR</strong>, nicht SER!</p><p>❌ Yo <strong>soy</strong> en Madrid (falsch)</p><p>✅ Yo <strong>estoy</strong> en Madrid (richtig)</p>',
+                feedbackCorrect: 'Genau! "soy" muss zu "estoy" geändert werden.',
+                feedbackIncorrect: 'Der Fehler liegt beim Verb. Bei Ortsangaben verwendet man ESTAR.'
+            },
+
+            // NEW: True/False - Satz bewerten
+            {
+                id: 'mock_truefalse_1',
+                type: 'true-false',
+                concept: 'ser-profession',
+                difficulty: 3,
+                question: 'Ist dieser Satz grammatikalisch korrekt?',
+                statement: 'Yo soy profesor',
+                correctAnswer: 'true',
+                german: 'Ich bin Lehrer',
+                germanBridge: '💡 Denk an die DOCTOR-Regel für SER',
+                hints: [
+                    'Beruf ist eine dauerhafte Eigenschaft',
+                    'DOCTOR Regel: O = Occupation → SER',
+                    'Dieser Satz ist korrekt!'
+                ],
+                explanation: '<p>Dieser Satz ist <strong>korrekt</strong>!</p><p>Berufe sind dauerhafte Eigenschaften und verwenden deshalb <strong>SER</strong>.</p><p>✅ Yo soy profesor (richtig)</p>',
+                feedbackCorrect: 'Richtig! Berufe verwenden SER.',
+                feedbackIncorrect: 'Dieser Satz ist tatsächlich korrekt. Berufe verwenden SER.'
+            },
+
+            // NEW: True/False - Fehlerhafter Satz
+            {
+                id: 'mock_truefalse_2',
+                type: 'true-false',
+                concept: 'estar-location-error',
+                difficulty: 4,
+                question: 'Ist dieser Satz grammatikalisch korrekt?',
+                statement: 'Yo soy en casa',
+                correctAnswer: 'false',
+                german: 'Ich bin zu Hause',
+                germanBridge: '⚠️ Prüfe genau: Passt das Verb zur Bedeutung?',
+                hints: [
+                    'Dies ist eine Ortsangabe',
+                    'Orte verwenden ESTAR, nicht SER',
+                    'Dieser Satz ist falsch! Es muss "estoy" heißen.'
+                ],
+                explanation: '<p>Dieser Satz ist <strong>falsch</strong>!</p><p>Bei Ortsangaben verwendet man <strong>ESTAR</strong>, nicht SER.</p><p>❌ Yo <strong>soy</strong> en casa (falsch)</p><p>✅ Yo <strong>estoy</strong> en casa (richtig)</p>',
+                feedbackCorrect: 'Genau! Bei Ortsangaben braucht man ESTAR.',
+                feedbackIncorrect: 'Dieser Satz enthält einen Fehler. Orte brauchen ESTAR, nicht SER.'
+            },
+
+            // NEW: Fill Multiple - Mehrere Lücken
+            {
+                id: 'mock_fill_multiple_1',
+                type: 'fill-multiple',
+                concept: 'ser-estar-mixed',
+                difficulty: 6,
+                question: 'Fülle beide Lücken korrekt aus:',
+                template: 'Yo ___ profesor y ___ en Madrid',
+                correctAnswer: '["soy","estoy"]',
+                german: 'Ich bin Lehrer und ich bin in Madrid',
+                germanBridge: '💡 Beruf vs. Ort - welches Verb passt wo?',
+                blanks: [
+                    { label: '1. Lücke (Beruf)', hint: 'ser oder estar?' },
+                    { label: '2. Lücke (Ort)', hint: 'ser oder estar?' }
+                ],
+                hints: [
+                    'Beruf = dauerhafte Eigenschaft → SER',
+                    'Ort = vorübergehende Position → ESTAR',
+                    'Die richtigen Antworten sind: soy, estoy'
+                ],
+                explanation: '<p><strong>Zwei verschiedene Situationen:</strong></p><p>1. "profesor" = Beruf → SER (dauerhafte Eigenschaft)</p><p>2. "en Madrid" = Ort → ESTAR (Position)</p><p>✅ Yo <strong>soy</strong> profesor y <strong>estoy</strong> en Madrid</p>',
+                feedbackCorrect: 'Perfekt! Du hast beide Verben richtig gewählt.',
+                feedbackIncorrect: 'Denk dran: Beruf = SER (dauerhaft), Ort = ESTAR (Position)'
+            },
+
+            // NEW: Dialogue Completion - Dialog vervollständigen
+            {
+                id: 'mock_dialogue_1',
+                type: 'dialogue-completion',
+                concept: 'greeting-response',
+                difficulty: 2,
+                question: 'Vervollständige den Dialog:',
+                dialogue: [
+                    { speaker: 'A', text: '¡Hola! ¿Cómo estás?' },
+                    { speaker: 'B', text: '___' }
+                ],
+                correctAnswer: 'Bien, gracias',
+                german: 'Gut, danke',
+                germanBridge: '💡 Wie antwortet man auf "Wie geht\'s"?',
+                contextHint: 'Person A fragt, wie es dir geht',
+                responseIcon: '👤',
+                options: [
+                    { spanish: 'Bien, gracias', german: '(Gut, danke)', value: 'Bien, gracias' },
+                    { spanish: 'Soy María', german: '(Ich bin María)', value: 'Soy María' },
+                    { spanish: 'En Madrid', german: '(In Madrid)', value: 'En Madrid' }
+                ],
+                hints: [
+                    'Die Frage war "Wie geht es dir?"',
+                    '"Bien" bedeutet "gut"',
+                    'Die richtige Antwort ist: Bien, gracias'
+                ],
+                explanation: '<p><strong>Standardantwort auf "¿Cómo estás?":</strong></p><p>✅ <strong>Bien, gracias</strong> (Gut, danke)</p><p>Alternative: "Muy bien" (sehr gut), "Regular" (so lala)</p>',
+                feedbackCorrect: '¡Perfecto! Eine höfliche Antwort.',
+                feedbackIncorrect: 'Auf "¿Cómo estás?" antwortet man mit "Bien, gracias"'
+            },
+
+            // NEW: Sentence Building - Komplexer Satz
+            {
+                id: 'mock_sentence_2',
+                type: 'sentence-building',
+                concept: 'complex-sentence',
+                difficulty: 6,
+                question: 'Bilde einen korrekten Satz (Deutsch: "Ich bin Lehrer in Barcelona")',
+                correctAnswer: 'Yo soy profesor en Barcelona',
+                german: 'Ich bin Lehrer in Barcelona',
+                germanBridge: '💡 Achtung: Nur EIN Verb verwenden!',
+                words: ['Yo', 'soy', 'profesor', 'en', 'Barcelona'],
+                hints: [
+                    'Die Hauptinformation ist der Beruf, nicht der Ort',
+                    'Das Verb richtet sich nach dem Beruf (SER)',
+                    'Struktur: Subjekt + Verb + Beruf + Ort'
+                ],
+                explanation: '<p><strong>Bei Beruf + Ort:</strong></p><p>Das Verb richtet sich nach der Hauptinformation (Beruf = dauerhafte Eigenschaft).</p><p>✅ Yo soy profesor en Barcelona</p><p>Nicht verwechseln mit: "Yo estoy en Barcelona" (nur Ortsangabe)</p>',
+                feedbackCorrect: '¡Excelente! Richtige Wortstellung und Verb.',
+                feedbackIncorrect: 'Das Verb richtet sich nach dem Beruf: SER'
+            },
+
+            // NEW: Error Correction - TENER Fehler
+            {
+                id: 'mock_error_2',
+                type: 'error-correction',
+                concept: 'tener-age-error',
+                difficulty: 5,
+                question: 'Korrigiere den Fehler in diesem Satz:',
+                incorrectSentence: 'Yo soy 25 años',
+                correctAnswer: 'Yo tengo 25 años',
+                errorCount: 1,
+                errorType: 'Verb-Wahl (Alter)',
+                german: 'Ich bin 25 Jahre alt',
+                germanBridge: '⚠️ Im Spanischen "hat" man sein Alter!',
+                hints: [
+                    'Für Alter verwendet man TENER, nicht SER',
+                    'Im Spanischen "besitzt" man Jahre',
+                    'Die richtige Form ist: Yo tengo 25 años'
+                ],
+                explanation: '<p><strong>Häufiger Fehler!</strong></p><p>🇩🇪 Deutsch: Ich <strong>bin</strong> 25 Jahre alt</p><p>🇪🇸 Spanisch: Yo <strong>tengo</strong> 25 años (Ich <em>habe</em> 25 Jahre)</p><p>✅ Yo <strong>tengo</strong> 25 años (richtig)</p><p>❌ Yo <strong>soy</strong> 25 años (falsch)</p>',
+                feedbackCorrect: 'Perfekt! Alter verwendet TENER, nicht SER.',
+                feedbackIncorrect: 'Im Spanischen "hat" man sein Alter: TENER'
+            },
+
+            // NEW: Dialogue Completion - Name vorstellen
+            {
+                id: 'mock_dialogue_2',
+                type: 'dialogue-completion',
+                concept: 'introduction-name',
+                difficulty: 3,
+                question: 'Was antwortet María?',
+                dialogue: [
+                    { speaker: 'A', text: '¿Cómo te llamas?' },
+                    { speaker: 'B', text: '___' }
+                ],
+                correctAnswer: 'Me llamo María',
+                german: 'Ich heiße María',
+                germanBridge: '💡 Nach deinem Namen wird gefragt',
+                contextHint: 'Person A fragt nach deinem Namen',
+                responseIcon: '👤',
+                options: [
+                    { spanish: 'Me llamo María', german: '(Ich heiße María)', value: 'Me llamo María' },
+                    { spanish: 'Tengo 25 años', german: '(Ich bin 25 Jahre alt)', value: 'Tengo 25 años' },
+                    { spanish: 'Estoy bien', german: '(Mir geht es gut)', value: 'Estoy bien' }
+                ],
+                hints: [
+                    'Die Frage war nach deinem Namen',
+                    '"Me llamo" bedeutet "Ich heiße"',
+                    'Die richtige Antwort ist: Me llamo María'
+                ],
+                explanation: '<p><strong>"¿Cómo te llamas?" = Wie heißt du?</strong></p><p>Antwort: <strong>Me llamo [Name]</strong></p><p>Wörtlich: "Ich rufe mich [Name]"</p>',
+                feedbackCorrect: '¡Muy bien! Korrekte Vorstellung.',
+                feedbackIncorrect: 'Auf "¿Cómo te llamas?" antwortet man mit "Me llamo..."'
+            },
+
+            // NEW: Fill Multiple - Vollständiger Vorstellungssatz
+            {
+                id: 'mock_fill_multiple_2',
+                type: 'fill-multiple',
+                concept: 'introduction-complete',
+                difficulty: 7,
+                question: 'Vervollständige die Vorstellung:',
+                template: 'Yo ___ María, ___ 28 años y ___ profesora',
+                correctAnswer: '["soy","tengo","soy"]',
+                german: 'Ich bin María, ich bin 28 Jahre alt und ich bin Lehrerin',
+                germanBridge: '💡 Name = SER, Alter = TENER, Beruf = SER',
+                blanks: [
+                    { label: 'Name', hint: 'Identität...' },
+                    { label: 'Alter', hint: 'Besitzen...' },
+                    { label: 'Beruf', hint: 'Dauerhafte Eigenschaft...' }
+                ],
+                hints: [
+                    'Name/Identität → SER',
+                    'Alter → TENER (man "besitzt" Jahre)',
+                    'Beruf → SER (dauerhafte Eigenschaft)'
+                ],
+                explanation: '<p><strong>Vollständige Vorstellung:</strong></p><ul><li>Name: <strong>soy</strong> (Identität)</li><li>Alter: <strong>tengo</strong> (besitzen)</li><li>Beruf: <strong>soy</strong> (dauerhafte Eigenschaft)</li></ul>',
+                feedbackCorrect: '¡Perfecto! Alle drei Verben richtig gewählt.',
+                feedbackIncorrect: 'Denk an die Regeln: Name/Beruf = SER, Alter = TENER'
+            },
+
+            // NEW: True/False - TENER Alter
+            {
+                id: 'mock_truefalse_3',
+                type: 'true-false',
+                concept: 'tener-age-correct',
+                difficulty: 3,
+                question: 'Ist dieser Satz grammatikalisch korrekt?',
+                statement: 'Yo tengo 30 años',
+                correctAnswer: 'true',
+                german: 'Ich bin 30 Jahre alt',
+                germanBridge: '💡 Denk an die Besonderheit beim Alter',
+                hints: [
+                    'Im Spanischen "hat" man Jahre',
+                    'TENER wird für Alter verwendet',
+                    'Dieser Satz ist korrekt!'
+                ],
+                explanation: '<p>Dieser Satz ist <strong>korrekt</strong>!</p><p>Im Spanischen verwendet man <strong>TENER</strong> (haben) für das Alter.</p><p>✅ Yo tengo 30 años (richtig)</p><p>❌ Yo soy 30 años (falsch)</p>',
+                feedbackCorrect: 'Richtig! TENER ist korrekt für Alter.',
+                feedbackIncorrect: 'Dieser Satz ist korrekt. Man "hat" Jahre im Spanischen.'
+            },
+
+            // NEW: Sentence Building - Mit Gefühl
+            {
+                id: 'mock_sentence_3',
+                type: 'sentence-building',
+                concept: 'estar-emotion',
+                difficulty: 5,
+                question: 'Bilde den Satz (Deutsch: "Heute bin ich traurig")',
+                correctAnswer: 'Hoy estoy triste',
+                german: 'Heute bin ich traurig',
+                germanBridge: '💡 Gefühle sind vorübergehende Zustände',
+                words: ['Hoy', 'estoy', 'triste'],
+                hints: [
+                    'Gefühle verwenden ESTAR (vorübergehend)',
+                    'LECH Regel: E = Emotion',
+                    'Zeitangabe + Verb + Adjektiv'
+                ],
+                explanation: '<p>Gefühle sind <strong>vorübergehende Zustände</strong> → ESTAR</p><p>✅ Hoy estoy triste (heute traurig)</p><p>vs. "Yo soy triste" würde bedeuten: Ich bin immer/generell eine traurige Person</p>',
+                feedbackCorrect: '¡Perfecto! Gefühle verwenden ESTAR.',
+                feedbackIncorrect: 'Gefühle sind vorübergehend → ESTAR'
+            },
+
+            // NEW: Error Correction - Adjektiv-Fehler
+            {
+                id: 'mock_error_3',
+                type: 'error-correction',
+                concept: 'ser-estar-adjective',
+                difficulty: 6,
+                question: 'Korrigiere den Fehler:',
+                incorrectSentence: 'María es cansada',
+                correctAnswer: 'María está cansada',
+                errorCount: 1,
+                errorType: 'SER/ESTAR bei Zuständen',
+                german: 'María ist müde',
+                germanBridge: '⚠️ Müdigkeit ist ein vorübergehender Zustand!',
+                hints: [
+                    'Müdigkeit ist ein aktueller Zustand, nicht dauerhaft',
+                    'Zustände und Gesundheit → ESTAR',
+                    'Die richtige Form ist: María está cansada'
+                ],
+                explanation: '<p><strong>"cansada" (müde) = aktueller Zustand</strong></p><p>Zustände verwenden <strong>ESTAR</strong>, nicht SER!</p><p>✅ María <strong>está</strong> cansada (sie ist gerade müde)</p><p>❌ María <strong>es</strong> cansada (würde bedeuten: sie ist charakterlich eine müde Person)</p>',
+                feedbackCorrect: 'Genau! Zustände verwenden ESTAR.',
+                feedbackIncorrect: 'Müdigkeit ist ein Zustand → ESTAR, nicht SER'
+            },
+
+            // NEW: Dialogue Completion - Befinden
+            {
+                id: 'mock_dialogue_3',
+                type: 'dialogue-completion',
+                concept: 'estar-health',
+                difficulty: 4,
+                question: 'Pedro ist krank. Was sagt er?',
+                dialogue: [
+                    { speaker: 'A', text: '¿Cómo estás, Pedro?' },
+                    { speaker: 'B', text: '___' }
+                ],
+                correctAnswer: 'Estoy enfermo',
+                german: 'Ich bin krank',
+                germanBridge: '💡 Gesundheitszustand = ESTAR',
+                contextHint: 'Pedro fühlt sich nicht gut',
+                responseIcon: '🤒',
+                options: [
+                    { spanish: 'Estoy enfermo', german: '(Ich bin krank)', value: 'Estoy enfermo' },
+                    { spanish: 'Soy enfermo', german: '(Falsch! SER passt nicht)', value: 'Soy enfermo' },
+                    { spanish: 'Tengo enfermo', german: '(Falsch! TENER passt nicht)', value: 'Tengo enfermo' }
+                ],
+                hints: [
+                    'Gesundheitszustand ist vorübergehend',
+                    'LECH Regel: H = Health → ESTAR',
+                    'Die richtige Antwort ist: Estoy enfermo'
+                ],
+                explanation: '<p><strong>Gesundheit = vorübergehender Zustand</strong></p><p>LECH Regel: <strong>H</strong>ealth → ESTAR</p><p>✅ Estoy enfermo (ich bin krank)</p><p>❌ Soy enfermo (grammatikalisch falsch)</p>',
+                feedbackCorrect: '¡Muy bien! Gesundheit verwendet ESTAR.',
+                feedbackIncorrect: 'Krankheit ist ein Zustand → ESTAR'
             }
         ];
     }
@@ -3626,6 +4230,16 @@ class UIController {
             this.renderMatching(exercise);
         } else if (exercise.type === 'emoji-guess' || exercise.type === 'emoji-fill') {
             this.renderEmojiExercise(exercise);
+        } else if (exercise.type === 'sentence-building') {
+            this.renderSentenceBuilding(exercise);
+        } else if (exercise.type === 'error-correction') {
+            this.renderErrorCorrection(exercise);
+        } else if (exercise.type === 'true-false') {
+            this.renderTrueFalse(exercise);
+        } else if (exercise.type === 'fill-multiple') {
+            this.renderFillMultiple(exercise);
+        } else if (exercise.type === 'dialogue-completion') {
+            this.renderDialogueCompletion(exercise);
         } else if (exercise.type === 'multiple-choice' || exercise.type === 'conjugation') {
             this.renderMultipleChoice(exercise);
         } else if (exercise.type === 'translation' || exercise.type === 'fill-blank') {
@@ -4093,6 +4707,295 @@ class UIController {
     renderEmojiExercise(exercise) {
         // Emoji exercises are just text input with emoji in the question
         this.renderTextInput(exercise);
+    }
+
+    renderSentenceBuilding(exercise) {
+        const words = exercise.words || [];
+        const shuffledWords = this.shuffleArray([...words]);
+
+        const html = `
+            <div class="sentence-building">
+                <div class="word-bank" id="word-bank">
+                    ${shuffledWords.map((word, index) => `
+                        <button class="word-btn" data-word="${word}" data-index="${index}">
+                            ${word}
+                        </button>
+                    `).join('')}
+                </div>
+                <div class="sentence-area" id="sentence-area">
+                    <div class="sentence-placeholder">Wähle Wörter in der richtigen Reihenfolge</div>
+                </div>
+                <div class="sentence-controls">
+                    <button class="submit-btn secondary-btn" id="clear-sentence-btn">Zurücksetzen</button>
+                    <button class="submit-btn" id="submit-sentence-btn">Prüfen</button>
+                </div>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const wordBank = document.getElementById('word-bank');
+        const sentenceArea = document.getElementById('sentence-area');
+        const clearBtn = document.getElementById('clear-sentence-btn');
+        const submitBtn = document.getElementById('submit-sentence-btn');
+
+        let selectedWords = [];
+
+        wordBank.addEventListener('click', (e) => {
+            if (e.target.classList.contains('word-btn') && !e.target.disabled) {
+                const word = e.target.dataset.word;
+                selectedWords.push(word);
+                e.target.disabled = true;
+                e.target.style.opacity = '0.3';
+                this.updateSentenceDisplay(selectedWords, sentenceArea);
+            }
+        });
+
+        clearBtn.addEventListener('click', () => {
+            selectedWords = [];
+            const buttons = wordBank.querySelectorAll('.word-btn');
+            buttons.forEach(btn => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            });
+            this.updateSentenceDisplay(selectedWords, sentenceArea);
+        });
+
+        submitBtn.addEventListener('click', () => {
+            if (selectedWords.length > 0) {
+                const answer = selectedWords.join(' ');
+                this.handleAnswerSelection(answer);
+            }
+        });
+    }
+
+    updateSentenceDisplay(words, container) {
+        if (words.length === 0) {
+            container.innerHTML = '<div class="sentence-placeholder">Wähle Wörter in der richtigen Reihenfolge</div>';
+        } else {
+            container.innerHTML = `
+                <div class="sentence-display">
+                    ${words.map(word => `<span class="selected-word">${word}</span>`).join(' ')}
+                </div>
+            `;
+        }
+    }
+
+    renderErrorCorrection(exercise) {
+        const html = `
+            <div class="error-correction">
+                <div class="error-sentence">${exercise.incorrectSentence}</div>
+                <div class="error-hint">
+                    💡 Dieser Satz enthält ${exercise.errorCount || 1} Fehler.
+                    ${exercise.errorType ? `Achte auf: ${exercise.errorType}` : ''}
+                </div>
+                <input
+                    type="text"
+                    class="text-input"
+                    id="answer-input"
+                    placeholder="Korrigierte Antwort eingeben..."
+                    aria-label="Korrigierte Antwort"
+                    autocomplete="off"
+                    autocorrect="off"
+                    spellcheck="false">
+                <button class="submit-btn" id="submit-btn">
+                    Prüfen
+                </button>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const input = document.getElementById('answer-input');
+        const submitBtn = document.getElementById('submit-btn');
+
+        setTimeout(() => input.focus(), 100);
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const answer = input.value.trim();
+            if (answer) {
+                this.handleAnswerSelection(answer);
+            }
+        });
+    }
+
+    renderTrueFalse(exercise) {
+        const html = `
+            <div class="true-false">
+                <div class="statement-box">
+                    "${exercise.statement}"
+                </div>
+                <div class="true-false-buttons">
+                    <button class="answer-btn true-btn" data-answer="true">
+                        <div class="answer-text">
+                            <div class="answer-es">✓ Richtig</div>
+                            <div class="answer-de">Dieser Satz ist korrekt</div>
+                        </div>
+                    </button>
+                    <button class="answer-btn false-btn" data-answer="false">
+                        <div class="answer-text">
+                            <div class="answer-es">✗ Falsch</div>
+                            <div class="answer-de">Dieser Satz enthält einen Fehler</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.handleAnswerSelection(btn.dataset.answer);
+            });
+        });
+    }
+
+    renderFillMultiple(exercise) {
+        const blanks = exercise.blanks || [];
+
+        const html = `
+            <div class="fill-multiple">
+                <div class="sentence-template">${exercise.template}</div>
+                <div class="blanks-container">
+                    ${blanks.map((blank, index) => `
+                        <div class="blank-item">
+                            <label class="blank-label">${blank.label || `Lücke ${index + 1}`}:</label>
+                            <input
+                                type="text"
+                                class="blank-input"
+                                data-blank-index="${index}"
+                                placeholder="${blank.hint || '...'}"
+                                autocomplete="off"
+                                autocorrect="off"
+                                spellcheck="false">
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="submit-btn" id="submit-multiple-btn">
+                    Prüfen
+                </button>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const inputs = this.elements.answerContainer.querySelectorAll('.blank-input');
+        const submitBtn = document.getElementById('submit-multiple-btn');
+
+        if (inputs.length > 0) {
+            setTimeout(() => inputs[0].focus(), 100);
+        }
+
+        inputs.forEach((input, index) => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else {
+                        submitBtn.click();
+                    }
+                }
+            });
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const answers = Array.from(inputs).map(input => input.value.trim());
+            if (answers.every(a => a)) {
+                this.handleAnswerSelection(JSON.stringify(answers));
+            }
+        });
+    }
+
+    renderDialogueCompletion(exercise) {
+        const dialogue = exercise.dialogue || [];
+
+        const html = `
+            <div class="dialogue-completion">
+                <div class="dialogue-box">
+                    ${dialogue.map((line, index) => `
+                        <div class="dialogue-line ${line.speaker}">
+                            <span class="speaker-icon">${line.speaker === 'A' ? '👤' : '👥'}</span>
+                            <span class="dialogue-text">${line.text}</span>
+                        </div>
+                    `).join('')}
+                    <div class="dialogue-line response">
+                        <span class="speaker-icon">${exercise.responseIcon || '💬'}</span>
+                        <span class="dialogue-text missing">???</span>
+                    </div>
+                </div>
+                <div class="dialogue-hint">${exercise.contextHint || 'Was passt als Antwort?'}</div>
+                ${exercise.options ? `
+                    <div class="dialogue-options">
+                        ${exercise.options.map((option, index) => `
+                            <button class="answer-btn dialogue-option" data-answer="${option.value || option}">
+                                <div class="answer-text">
+                                    <div class="answer-es">${option.spanish || option}</div>
+                                    ${option.german ? `<div class="answer-de">(${option.german})</div>` : ''}
+                                </div>
+                                <div class="answer-key">[${index + 1}]</div>
+                            </button>
+                        `).join('')}
+                    </div>
+                ` : `
+                    <input
+                        type="text"
+                        class="text-input"
+                        id="dialogue-input"
+                        placeholder="Deine Antwort..."
+                        autocomplete="off"
+                        autocorrect="off"
+                        spellcheck="false">
+                    <button class="submit-btn" id="submit-dialogue-btn">
+                        Prüfen
+                    </button>
+                `}
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        if (exercise.options) {
+            const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    this.handleAnswerSelection(btn.dataset.answer);
+                });
+            });
+        } else {
+            const input = document.getElementById('dialogue-input');
+            const submitBtn = document.getElementById('submit-dialogue-btn');
+
+            setTimeout(() => input.focus(), 100);
+
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitBtn.click();
+                }
+            });
+
+            submitBtn.addEventListener('click', () => {
+                const answer = input.value.trim();
+                if (answer) {
+                    this.handleAnswerSelection(answer);
+                }
+            });
+        }
+    }
+
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
 }
 
@@ -4571,12 +5474,27 @@ class AppController {
         const exercise = this.state.exercises[this.state.currentExerciseIndex];
         const startTime = Date.now();
 
-        // Normalize answers for comparison
-        const userAnswer = this.normalizeAnswer(answer);
-        const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+        // Special handling for different exercise types
+        let isCorrect = false;
 
-        // Check if correct
-        const isCorrect = userAnswer === correctAnswer;
+        if (exercise.type === 'fill-multiple') {
+            // JSON array comparison for multiple blanks
+            try {
+                const userAnswers = JSON.parse(answer);
+                const correctAnswers = JSON.parse(exercise.correctAnswer);
+                isCorrect = userAnswers.length === correctAnswers.length &&
+                    userAnswers.every((ans, idx) =>
+                        this.normalizeAnswer(ans) === this.normalizeAnswer(correctAnswers[idx])
+                    );
+            } catch (e) {
+                isCorrect = false;
+            }
+        } else {
+            // Standard comparison for other types
+            const userAnswer = this.normalizeAnswer(answer);
+            const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+            isCorrect = userAnswer === correctAnswer;
+        }
 
         // Update session stats
         this.state.sessionStats.total++;

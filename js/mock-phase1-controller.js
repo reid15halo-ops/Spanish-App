@@ -372,6 +372,345 @@ class Phase1Controller {
                 `,
                 feedbackCorrect: 'Excelente! Orte verwendet man mit ESTAR.',
                 feedbackIncorrect: 'Ort = ESTAR (LECH Regel: Location), nicht SER!'
+            },
+
+            // NEW: Sentence Building - Wortstellung üben
+            {
+                id: 'mock_sentence_1',
+                type: 'sentence-building',
+                concept: 'word-order',
+                difficulty: 4,
+                question: 'Bringe die Wörter in die richtige Reihenfolge (Deutsch: "Ich bin glücklich")',
+                correctAnswer: 'Yo estoy feliz',
+                german: 'Ich bin glücklich',
+                germanBridge: '💡 Subjekt - Verb - Adjektiv',
+                words: ['Yo', 'estoy', 'feliz'],
+                hints: [
+                    'Spanische Wortstellung ist ähnlich wie im Deutschen',
+                    'Pronomen + ESTAR + Adjektiv',
+                    'Die richtige Reihenfolge ist: Yo estoy feliz'
+                ],
+                explanation: '<p>Spanische Grundwortstellung: <strong>Subjekt + Verb + Ergänzung</strong></p><p>✅ Yo estoy feliz (richtig)</p>',
+                feedbackCorrect: '¡Perfecto! Die Wortstellung ist korrekt.',
+                feedbackIncorrect: 'Achte auf die Grundwortstellung: Subjekt + Verb + Adjektiv'
+            },
+
+            // NEW: Error Correction - Fehler finden
+            {
+                id: 'mock_error_1',
+                type: 'error-correction',
+                concept: 'ser-estar-error',
+                difficulty: 5,
+                question: 'Korrigiere den Fehler in diesem Satz:',
+                incorrectSentence: 'Yo soy en Madrid',
+                correctAnswer: 'Yo estoy en Madrid',
+                errorCount: 1,
+                errorType: 'SER/ESTAR Verwechslung',
+                german: 'Ich bin in Madrid',
+                germanBridge: '⚠️ Dieser Satz ist fehlerhaft! Was muss geändert werden?',
+                hints: [
+                    'Ortsangaben verwenden immer ESTAR',
+                    'Das Verb muss gewechselt werden',
+                    'Die richtige Form ist: Yo estoy en Madrid'
+                ],
+                explanation: '<p>Bei Ortsangaben verwendet man <strong>ESTAR</strong>, nicht SER!</p><p>❌ Yo <strong>soy</strong> en Madrid (falsch)</p><p>✅ Yo <strong>estoy</strong> en Madrid (richtig)</p>',
+                feedbackCorrect: 'Genau! "soy" muss zu "estoy" geändert werden.',
+                feedbackIncorrect: 'Der Fehler liegt beim Verb. Bei Ortsangaben verwendet man ESTAR.'
+            },
+
+            // NEW: True/False - Satz bewerten
+            {
+                id: 'mock_truefalse_1',
+                type: 'true-false',
+                concept: 'ser-profession',
+                difficulty: 3,
+                question: 'Ist dieser Satz grammatikalisch korrekt?',
+                statement: 'Yo soy profesor',
+                correctAnswer: 'true',
+                german: 'Ich bin Lehrer',
+                germanBridge: '💡 Denk an die DOCTOR-Regel für SER',
+                hints: [
+                    'Beruf ist eine dauerhafte Eigenschaft',
+                    'DOCTOR Regel: O = Occupation → SER',
+                    'Dieser Satz ist korrekt!'
+                ],
+                explanation: '<p>Dieser Satz ist <strong>korrekt</strong>!</p><p>Berufe sind dauerhafte Eigenschaften und verwenden deshalb <strong>SER</strong>.</p><p>✅ Yo soy profesor (richtig)</p>',
+                feedbackCorrect: 'Richtig! Berufe verwenden SER.',
+                feedbackIncorrect: 'Dieser Satz ist tatsächlich korrekt. Berufe verwenden SER.'
+            },
+
+            // NEW: True/False - Fehlerhafter Satz
+            {
+                id: 'mock_truefalse_2',
+                type: 'true-false',
+                concept: 'estar-location-error',
+                difficulty: 4,
+                question: 'Ist dieser Satz grammatikalisch korrekt?',
+                statement: 'Yo soy en casa',
+                correctAnswer: 'false',
+                german: 'Ich bin zu Hause',
+                germanBridge: '⚠️ Prüfe genau: Passt das Verb zur Bedeutung?',
+                hints: [
+                    'Dies ist eine Ortsangabe',
+                    'Orte verwenden ESTAR, nicht SER',
+                    'Dieser Satz ist falsch! Es muss "estoy" heißen.'
+                ],
+                explanation: '<p>Dieser Satz ist <strong>falsch</strong>!</p><p>Bei Ortsangaben verwendet man <strong>ESTAR</strong>, nicht SER.</p><p>❌ Yo <strong>soy</strong> en casa (falsch)</p><p>✅ Yo <strong>estoy</strong> en casa (richtig)</p>',
+                feedbackCorrect: 'Genau! Bei Ortsangaben braucht man ESTAR.',
+                feedbackIncorrect: 'Dieser Satz enthält einen Fehler. Orte brauchen ESTAR, nicht SER.'
+            },
+
+            // NEW: Fill Multiple - Mehrere Lücken
+            {
+                id: 'mock_fill_multiple_1',
+                type: 'fill-multiple',
+                concept: 'ser-estar-mixed',
+                difficulty: 6,
+                question: 'Fülle beide Lücken korrekt aus:',
+                template: 'Yo ___ profesor y ___ en Madrid',
+                correctAnswer: '["soy","estoy"]',
+                german: 'Ich bin Lehrer und ich bin in Madrid',
+                germanBridge: '💡 Beruf vs. Ort - welches Verb passt wo?',
+                blanks: [
+                    { label: '1. Lücke (Beruf)', hint: 'ser oder estar?' },
+                    { label: '2. Lücke (Ort)', hint: 'ser oder estar?' }
+                ],
+                hints: [
+                    'Beruf = dauerhafte Eigenschaft → SER',
+                    'Ort = vorübergehende Position → ESTAR',
+                    'Die richtigen Antworten sind: soy, estoy'
+                ],
+                explanation: '<p><strong>Zwei verschiedene Situationen:</strong></p><p>1. "profesor" = Beruf → SER (dauerhafte Eigenschaft)</p><p>2. "en Madrid" = Ort → ESTAR (Position)</p><p>✅ Yo <strong>soy</strong> profesor y <strong>estoy</strong> en Madrid</p>',
+                feedbackCorrect: 'Perfekt! Du hast beide Verben richtig gewählt.',
+                feedbackIncorrect: 'Denk dran: Beruf = SER (dauerhaft), Ort = ESTAR (Position)'
+            },
+
+            // NEW: Dialogue Completion - Dialog vervollständigen
+            {
+                id: 'mock_dialogue_1',
+                type: 'dialogue-completion',
+                concept: 'greeting-response',
+                difficulty: 2,
+                question: 'Vervollständige den Dialog:',
+                dialogue: [
+                    { speaker: 'A', text: '¡Hola! ¿Cómo estás?' },
+                    { speaker: 'B', text: '___' }
+                ],
+                correctAnswer: 'Bien, gracias',
+                german: 'Gut, danke',
+                germanBridge: '💡 Wie antwortet man auf "Wie geht\'s"?',
+                contextHint: 'Person A fragt, wie es dir geht',
+                responseIcon: '👤',
+                options: [
+                    { spanish: 'Bien, gracias', german: '(Gut, danke)', value: 'Bien, gracias' },
+                    { spanish: 'Soy María', german: '(Ich bin María)', value: 'Soy María' },
+                    { spanish: 'En Madrid', german: '(In Madrid)', value: 'En Madrid' }
+                ],
+                hints: [
+                    'Die Frage war "Wie geht es dir?"',
+                    '"Bien" bedeutet "gut"',
+                    'Die richtige Antwort ist: Bien, gracias'
+                ],
+                explanation: '<p><strong>Standardantwort auf "¿Cómo estás?":</strong></p><p>✅ <strong>Bien, gracias</strong> (Gut, danke)</p><p>Alternative: "Muy bien" (sehr gut), "Regular" (so lala)</p>',
+                feedbackCorrect: '¡Perfecto! Eine höfliche Antwort.',
+                feedbackIncorrect: 'Auf "¿Cómo estás?" antwortet man mit "Bien, gracias"'
+            },
+
+            // NEW: Sentence Building - Komplexer Satz
+            {
+                id: 'mock_sentence_2',
+                type: 'sentence-building',
+                concept: 'complex-sentence',
+                difficulty: 6,
+                question: 'Bilde einen korrekten Satz (Deutsch: "Ich bin Lehrer in Barcelona")',
+                correctAnswer: 'Yo soy profesor en Barcelona',
+                german: 'Ich bin Lehrer in Barcelona',
+                germanBridge: '💡 Achtung: Nur EIN Verb verwenden!',
+                words: ['Yo', 'soy', 'profesor', 'en', 'Barcelona'],
+                hints: [
+                    'Die Hauptinformation ist der Beruf, nicht der Ort',
+                    'Das Verb richtet sich nach dem Beruf (SER)',
+                    'Struktur: Subjekt + Verb + Beruf + Ort'
+                ],
+                explanation: '<p><strong>Bei Beruf + Ort:</strong></p><p>Das Verb richtet sich nach der Hauptinformation (Beruf = dauerhafte Eigenschaft).</p><p>✅ Yo soy profesor en Barcelona</p><p>Nicht verwechseln mit: "Yo estoy en Barcelona" (nur Ortsangabe)</p>',
+                feedbackCorrect: '¡Excelente! Richtige Wortstellung und Verb.',
+                feedbackIncorrect: 'Das Verb richtet sich nach dem Beruf: SER'
+            },
+
+            // NEW: Error Correction - TENER Fehler
+            {
+                id: 'mock_error_2',
+                type: 'error-correction',
+                concept: 'tener-age-error',
+                difficulty: 5,
+                question: 'Korrigiere den Fehler in diesem Satz:',
+                incorrectSentence: 'Yo soy 25 años',
+                correctAnswer: 'Yo tengo 25 años',
+                errorCount: 1,
+                errorType: 'Verb-Wahl (Alter)',
+                german: 'Ich bin 25 Jahre alt',
+                germanBridge: '⚠️ Im Spanischen "hat" man sein Alter!',
+                hints: [
+                    'Für Alter verwendet man TENER, nicht SER',
+                    'Im Spanischen "besitzt" man Jahre',
+                    'Die richtige Form ist: Yo tengo 25 años'
+                ],
+                explanation: '<p><strong>Häufiger Fehler!</strong></p><p>🇩🇪 Deutsch: Ich <strong>bin</strong> 25 Jahre alt</p><p>🇪🇸 Spanisch: Yo <strong>tengo</strong> 25 años (Ich <em>habe</em> 25 Jahre)</p><p>✅ Yo <strong>tengo</strong> 25 años (richtig)</p><p>❌ Yo <strong>soy</strong> 25 años (falsch)</p>',
+                feedbackCorrect: 'Perfekt! Alter verwendet TENER, nicht SER.',
+                feedbackIncorrect: 'Im Spanischen "hat" man sein Alter: TENER'
+            },
+
+            // NEW: Dialogue Completion - Name vorstellen
+            {
+                id: 'mock_dialogue_2',
+                type: 'dialogue-completion',
+                concept: 'introduction-name',
+                difficulty: 3,
+                question: 'Was antwortet María?',
+                dialogue: [
+                    { speaker: 'A', text: '¿Cómo te llamas?' },
+                    { speaker: 'B', text: '___' }
+                ],
+                correctAnswer: 'Me llamo María',
+                german: 'Ich heiße María',
+                germanBridge: '💡 Nach deinem Namen wird gefragt',
+                contextHint: 'Person A fragt nach deinem Namen',
+                responseIcon: '👤',
+                options: [
+                    { spanish: 'Me llamo María', german: '(Ich heiße María)', value: 'Me llamo María' },
+                    { spanish: 'Tengo 25 años', german: '(Ich bin 25 Jahre alt)', value: 'Tengo 25 años' },
+                    { spanish: 'Estoy bien', german: '(Mir geht es gut)', value: 'Estoy bien' }
+                ],
+                hints: [
+                    'Die Frage war nach deinem Namen',
+                    '"Me llamo" bedeutet "Ich heiße"',
+                    'Die richtige Antwort ist: Me llamo María'
+                ],
+                explanation: '<p><strong>"¿Cómo te llamas?" = Wie heißt du?</strong></p><p>Antwort: <strong>Me llamo [Name]</strong></p><p>Wörtlich: "Ich rufe mich [Name]"</p>',
+                feedbackCorrect: '¡Muy bien! Korrekte Vorstellung.',
+                feedbackIncorrect: 'Auf "¿Cómo te llamas?" antwortet man mit "Me llamo..."'
+            },
+
+            // NEW: Fill Multiple - Vollständiger Vorstellungssatz
+            {
+                id: 'mock_fill_multiple_2',
+                type: 'fill-multiple',
+                concept: 'introduction-complete',
+                difficulty: 7,
+                question: 'Vervollständige die Vorstellung:',
+                template: 'Yo ___ María, ___ 28 años y ___ profesora',
+                correctAnswer: '["soy","tengo","soy"]',
+                german: 'Ich bin María, ich bin 28 Jahre alt und ich bin Lehrerin',
+                germanBridge: '💡 Name = SER, Alter = TENER, Beruf = SER',
+                blanks: [
+                    { label: 'Name', hint: 'Identität...' },
+                    { label: 'Alter', hint: 'Besitzen...' },
+                    { label: 'Beruf', hint: 'Dauerhafte Eigenschaft...' }
+                ],
+                hints: [
+                    'Name/Identität → SER',
+                    'Alter → TENER (man "besitzt" Jahre)',
+                    'Beruf → SER (dauerhafte Eigenschaft)'
+                ],
+                explanation: '<p><strong>Vollständige Vorstellung:</strong></p><ul><li>Name: <strong>soy</strong> (Identität)</li><li>Alter: <strong>tengo</strong> (besitzen)</li><li>Beruf: <strong>soy</strong> (dauerhafte Eigenschaft)</li></ul>',
+                feedbackCorrect: '¡Perfecto! Alle drei Verben richtig gewählt.',
+                feedbackIncorrect: 'Denk an die Regeln: Name/Beruf = SER, Alter = TENER'
+            },
+
+            // NEW: True/False - TENER Alter
+            {
+                id: 'mock_truefalse_3',
+                type: 'true-false',
+                concept: 'tener-age-correct',
+                difficulty: 3,
+                question: 'Ist dieser Satz grammatikalisch korrekt?',
+                statement: 'Yo tengo 30 años',
+                correctAnswer: 'true',
+                german: 'Ich bin 30 Jahre alt',
+                germanBridge: '💡 Denk an die Besonderheit beim Alter',
+                hints: [
+                    'Im Spanischen "hat" man Jahre',
+                    'TENER wird für Alter verwendet',
+                    'Dieser Satz ist korrekt!'
+                ],
+                explanation: '<p>Dieser Satz ist <strong>korrekt</strong>!</p><p>Im Spanischen verwendet man <strong>TENER</strong> (haben) für das Alter.</p><p>✅ Yo tengo 30 años (richtig)</p><p>❌ Yo soy 30 años (falsch)</p>',
+                feedbackCorrect: 'Richtig! TENER ist korrekt für Alter.',
+                feedbackIncorrect: 'Dieser Satz ist korrekt. Man "hat" Jahre im Spanischen.'
+            },
+
+            // NEW: Sentence Building - Mit Gefühl
+            {
+                id: 'mock_sentence_3',
+                type: 'sentence-building',
+                concept: 'estar-emotion',
+                difficulty: 5,
+                question: 'Bilde den Satz (Deutsch: "Heute bin ich traurig")',
+                correctAnswer: 'Hoy estoy triste',
+                german: 'Heute bin ich traurig',
+                germanBridge: '💡 Gefühle sind vorübergehende Zustände',
+                words: ['Hoy', 'estoy', 'triste'],
+                hints: [
+                    'Gefühle verwenden ESTAR (vorübergehend)',
+                    'LECH Regel: E = Emotion',
+                    'Zeitangabe + Verb + Adjektiv'
+                ],
+                explanation: '<p>Gefühle sind <strong>vorübergehende Zustände</strong> → ESTAR</p><p>✅ Hoy estoy triste (heute traurig)</p><p>vs. "Yo soy triste" würde bedeuten: Ich bin immer/generell eine traurige Person</p>',
+                feedbackCorrect: '¡Perfecto! Gefühle verwenden ESTAR.',
+                feedbackIncorrect: 'Gefühle sind vorübergehend → ESTAR'
+            },
+
+            // NEW: Error Correction - Adjektiv-Fehler
+            {
+                id: 'mock_error_3',
+                type: 'error-correction',
+                concept: 'ser-estar-adjective',
+                difficulty: 6,
+                question: 'Korrigiere den Fehler:',
+                incorrectSentence: 'María es cansada',
+                correctAnswer: 'María está cansada',
+                errorCount: 1,
+                errorType: 'SER/ESTAR bei Zuständen',
+                german: 'María ist müde',
+                germanBridge: '⚠️ Müdigkeit ist ein vorübergehender Zustand!',
+                hints: [
+                    'Müdigkeit ist ein aktueller Zustand, nicht dauerhaft',
+                    'Zustände und Gesundheit → ESTAR',
+                    'Die richtige Form ist: María está cansada'
+                ],
+                explanation: '<p><strong>"cansada" (müde) = aktueller Zustand</strong></p><p>Zustände verwenden <strong>ESTAR</strong>, nicht SER!</p><p>✅ María <strong>está</strong> cansada (sie ist gerade müde)</p><p>❌ María <strong>es</strong> cansada (würde bedeuten: sie ist charakterlich eine müde Person)</p>',
+                feedbackCorrect: 'Genau! Zustände verwenden ESTAR.',
+                feedbackIncorrect: 'Müdigkeit ist ein Zustand → ESTAR, nicht SER'
+            },
+
+            // NEW: Dialogue Completion - Befinden
+            {
+                id: 'mock_dialogue_3',
+                type: 'dialogue-completion',
+                concept: 'estar-health',
+                difficulty: 4,
+                question: 'Pedro ist krank. Was sagt er?',
+                dialogue: [
+                    { speaker: 'A', text: '¿Cómo estás, Pedro?' },
+                    { speaker: 'B', text: '___' }
+                ],
+                correctAnswer: 'Estoy enfermo',
+                german: 'Ich bin krank',
+                germanBridge: '💡 Gesundheitszustand = ESTAR',
+                contextHint: 'Pedro fühlt sich nicht gut',
+                responseIcon: '🤒',
+                options: [
+                    { spanish: 'Estoy enfermo', german: '(Ich bin krank)', value: 'Estoy enfermo' },
+                    { spanish: 'Soy enfermo', german: '(Falsch! SER passt nicht)', value: 'Soy enfermo' },
+                    { spanish: 'Tengo enfermo', german: '(Falsch! TENER passt nicht)', value: 'Tengo enfermo' }
+                ],
+                hints: [
+                    'Gesundheitszustand ist vorübergehend',
+                    'LECH Regel: H = Health → ESTAR',
+                    'Die richtige Antwort ist: Estoy enfermo'
+                ],
+                explanation: '<p><strong>Gesundheit = vorübergehender Zustand</strong></p><p>LECH Regel: <strong>H</strong>ealth → ESTAR</p><p>✅ Estoy enfermo (ich bin krank)</p><p>❌ Soy enfermo (grammatikalisch falsch)</p>',
+                feedbackCorrect: '¡Muy bien! Gesundheit verwendet ESTAR.',
+                feedbackIncorrect: 'Krankheit ist ein Zustand → ESTAR'
             }
         ];
     }
