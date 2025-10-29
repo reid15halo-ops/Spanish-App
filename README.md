@@ -41,12 +41,28 @@ Dies ist das Kern-Logik-Modul der Spanish Learning App. Alle UI-Elemente, Dashbo
 #### Diagnose und Tests
 - **diagnostic-test.js** - Diagnose-System zur Schwächenanalyse
 
+#### 5-Phasen Lernsystem
+- **learning-progression.js** - Phasen-Management System (A1 → B1)
+- **adaptive-repetition.js** - Intelligente fehlerbasierte Wiederholung
+- **error-pattern-detector.js** - Automatische Fehlerklassifizierung (25+ Fehlertypen)
+- **explanation-generator.js** - Kontextuelle Fehlererkärungen
+- **conversation-builder.js** - Dialog-Generierungssystem
+
+#### Phase 1 (A1 Grundlagen) System
+- **phase1-controller.js** - Hauptsteuerung für Phase 1
+- **phase1-exercise-generator.js** - Übungsgenerierung für alle 7 Einheiten
+- **ser-estar-contrast-system.js** - Spezialsystem für SER vs ESTAR
+- **adaptive-knowledge-tracker.js** - Adaptives Wissensstand-Tracking
+- **practical-scenarios.js** - 5 praktische Konversationsszenarien
+- **vocabulary-loader.js** - Vokabular-Management System
+
 #### Utilities (`js/utils/`)
 - **a11y-perf-hardening.js** - Accessibility und Performance Tools
 - **performance.js** - Performance-Monitoring
 - **ascii.js** - ASCII-Normalisierung für deutsche Texte
 
 ### Daten (`data/`)
+- **phase1-vocabulary.json** - Phase 1 Vokabeldatenbank (120 Wörter, 8 Kategorien)
 - Vokabeldatenbank
 - Verbdatenbank
 - Übungsdefinitionen
@@ -56,6 +72,19 @@ Dies ist das Kern-Logik-Modul der Spanish Learning App. Alle UI-Elemente, Dashbo
 - `test-periphrastic.js` - Tests für periphrastisches System
 
 ## Lehrmethoden-Logik
+
+### 0. 5-Phasen Lernsystem (NEU)
+Umfassendes Curriculum von A1 bis B1:
+- **Phase 1**: Fundament - Gegenwart & Sein (A1-Einstieg) - **VOLLSTÄNDIG IMPLEMENTIERT**
+  - 7 Lerneinheiten: Pronomen, SER, ESTAR, SER/ESTAR-Kontrast, TENER, Vokabular, Integration
+  - 225 Übungen, 3-4 Wochen Dauer
+  - Adaptive Lernlogik mit 6 Wissensstufen
+  - 5 praktische Szenarien (Wegbeschreibung, Gefühle, Arbeit, Selbstbeschreibung, Fremdbeschreibung)
+  - Automatische Fehlererkennung und -klassifizierung
+  - Intelligente Wiederholung basierend auf Fehlermustern
+- **Phase 2-5**: Geplant (siehe LEHRMETHODE-5-PHASEN-PLAN.md)
+
+**Siehe**: [PHASE-1-USAGE-GUIDE.md](PHASE-1-USAGE-GUIDE.md) für vollständige Verwendungsanleitung
 
 ### 1. Spaced Repetition System (SRS)
 Implementiert das Leitner-System:
@@ -121,6 +150,37 @@ import { LeitnerSystem } from './js/srs.js';
 
 ## API-Beispiele
 
+### Phase 1 Lernsystem (Schnellstart)
+```javascript
+// Phase 1 Controller initialisieren
+const phase1 = new Phase1Controller();
+
+// Session starten
+phase1.startSession();
+
+// Nächste Übung holen
+const exercise = phase1.getNextExercise();
+console.log(exercise.question);
+// => "Yo _______ profesor." (SER/ESTAR Übung)
+
+// Antwort verarbeiten
+const result = phase1.processAnswer(exercise, 'soy');
+console.log(result.isCorrect);  // => true
+console.log(result.feedback);   // => "¡Muy bien! 🎉"
+
+// Fortschritt abrufen
+const progress = phase1.getProgressSummary();
+console.log(progress);
+// => { currentUnit: 2, overallAccuracy: 0.85, ... }
+
+// Session beenden
+const summary = phase1.endSession();
+console.log(summary.errorPatterns);
+// => Zeigt häufigste Fehler und Empfehlungen
+```
+
+**Vollständige Dokumentation**: [PHASE-1-USAGE-GUIDE.md](PHASE-1-USAGE-GUIDE.md)
+
 ### Konjugation
 ```javascript
 const conjugator = new SpanishConjugator();
@@ -182,7 +242,12 @@ const analysis = analyzer.analyze('Yo hablo español');
 
 ## Dokumentation
 
-Detaillierte Dokumentation für spezifische Systeme:
+### Lehrmethodik
+- **LEHRMETHODE-5-PHASEN-PLAN.md** - Gesamtes Curriculum (A1 → B1)
+- **PHASE-1-A1-DETAILLIERT.md** - Detaillierter Phase 1 Lernplan (50+ Seiten)
+- **PHASE-1-USAGE-GUIDE.md** - Verwendungsanleitung Phase 1 System
+
+### Technische Systeme
 - **FEHLERERKLAER-SYSTEM-README.md** - Fehlererklärungs-System
 - **SATZANALYSE-SYSTEM-README.md** - Satzanalyse
 - **VERB-PACK-SYSTEM-README.md** - Verb-Pack-System
