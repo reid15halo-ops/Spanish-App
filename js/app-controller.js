@@ -11,22 +11,31 @@ class AppController {
         this.phase1 = null;
         this.adaptiveLearning = null;
         this.germanSystem = null;
+        this.settingsController = null; // Will be set during initialization
 
         // Dynamic exercise system
         this.vocab = null;
         this.templateEngine = null;
         this.dynamicGenerator = null;
         this.progressTracker = null;
-        this.useDynamicExercises = false; // Set to true after initialization
-        this.maxStaticUnits = 7; // Units 1-7 are static, 8+ are dynamic
+        this.useDynamicExercises = true; // ACTIVATED: All units use dynamic generation
+        this.maxStaticUnits = 1; // Unit 1 uses static JSON file (unit1-pronouns.json), rest are dynamic
         this.totalUnits = 50; // Extended to 50 units with dynamic system
+
+        // Unit configuration for dynamic generation
+        this.unitConfigs = this.initializeUnitConfigs();
+
+        // Retry queue for wrong answers
+        this.retryQueue = [];
+        this.retryDelay = 3; // Show retry after N other exercises
 
         this.state = {
             currentUnit: 1,
             currentExerciseIndex: 0,
             exercises: [],
-            currentAttempts: 0,  // NEW: Track attempts per exercise
-            maxAttemptsBeforeHint: 3,  // NEW: Hints after 3 failed attempts
+            currentAttempts: 0,  // Track attempts per exercise
+            maxAttemptsBeforeHint: 3,  // Hints after N failed attempts (from settings)
+            isRetry: false,  // Track if current exercise is a retry
             sessionStats: {
                 correct: 0,
                 total: 0,
@@ -42,6 +51,109 @@ class AppController {
     }
 
     /**
+     * Initialize unit configurations for dynamic exercise generation
+     */
+    initializeUnitConfigs() {
+        return {
+            1: {
+                name: 'Pronomen',
+                concepts: ['pronoun-singular', 'pronoun-plural', 'pronoun-formal'],
+                exerciseTypes: {
+                    'translation': 0.60,
+                    'multiple-choice': 0.40
+                },
+                exerciseCount: 15,
+                difficulty: 1
+            },
+            2: {
+                name: 'SER (sein - Identität)',
+                concepts: ['ser-conjugation', 'ser-identity', 'ser-description', 'ser-origin'],
+                templateTypes: ['ser-identity', 'ser-description', 'ser-origin'],
+                exerciseTypes: {
+                    'fill-blank': 0.50,
+                    'multiple-choice': 0.30,
+                    'matching': 0.20
+                },
+                exerciseCount: 20,
+                difficulty: 2
+            },
+            3: {
+                name: 'ESTAR (sein - Zustand/Ort)',
+                concepts: ['estar-conjugation', 'estar-location', 'estar-emotion'],
+                templateTypes: ['estar-location', 'estar-emotion'], // Fixed: removed 'estar-condition' (doesn't exist)
+                exerciseTypes: {
+                    'fill-blank': 0.50,
+                    'multiple-choice': 0.30,
+                    'sentence-building': 0.20
+                },
+                exerciseCount: 20,
+                difficulty: 2
+            },
+            4: {
+                name: 'SER vs ESTAR (Kontrast)',
+                concepts: ['ser-estar-contrast', 'ser-estar-rules'],
+                templateTypes: ['ser-estar-contrast'],
+                exerciseTypes: {
+                    'fill-blank': 0.60,
+                    'error-correction': 0.40
+                },
+                exerciseCount: 25,
+                difficulty: 3
+            },
+            5: {
+                name: 'TENER (haben)',
+                concepts: ['tener-conjugation', 'tener-possession', 'tener-age'],
+                templateTypes: ['tener-possession', 'tener-age'], // Fixed: removed 'tener-obligation' (doesn't exist yet)
+                exerciseTypes: {
+                    'fill-blank': 0.50,
+                    'emoji-guess': 0.30,
+                    'matching': 0.20
+                },
+                exerciseCount: 20,
+                difficulty: 2
+            },
+            6: {
+                name: 'Vokabular',
+                concepts: ['vocabulary-nouns', 'vocabulary-adjectives', 'vocabulary-verbs'],
+                templateTypes: ['emoji-guess', 'emoji-sentence'], // Fixed: use actual emoji template names
+                exerciseTypes: {
+                    'emoji-guess': 0.40,
+                    'matching': 0.30,
+                    'translation': 0.30
+                },
+                exerciseCount: 20,
+                difficulty: 2
+            },
+            7: {
+                name: 'Integration (Alle Konzepte)',
+                concepts: ['ser-estar-contrast', 'tener-uses', 'vocabulary-context'],
+                templateTypes: ['ser-identity', 'estar-location', 'tener-possession', 'ser-estar-contrast'],
+                exerciseTypes: {
+                    'fill-blank': 0.35,
+                    'multiple-choice': 0.25,
+                    'sentence-building': 0.20,
+                    'matching': 0.20
+                },
+                exerciseCount: 25,
+                difficulty: 3
+            }
+        };
+    }
+
+    /**
+     * Get unit configuration
+     */
+    getUnitConfig(unitNumber) {
+        return this.unitConfigs[unitNumber] || {
+            name: `Unit ${unitNumber}`,
+            concepts: ['general'],
+            exerciseTypes: { 'multiple-choice': 1.0 },
+            exerciseCount: 20,
+            difficulty: 2
+        };
+    }
+
+    /**
      * Initialize the app
      */
     async initialize() {
@@ -50,6 +162,9 @@ class AppController {
         try {
             // Show loading
             this.ui.showLoading();
+
+            // Load settings
+            this.loadSettings();
 
             // Initialize Phase 1 Controller
             await this.initializePhase1Controller();
@@ -75,6 +190,39 @@ class AppController {
             console.error('❌ Initialization error:', error);
             this.ui.showError('Fehler beim Laden der Übungen. Bitte Seite neu laden.');
         }
+    }
+
+    /**
+     * Load settings from SettingsController
+     */
+    loadSettings() {
+        if (window.settingsController) {
+            this.settingsController = window.settingsController;
+
+            // Update maxAttemptsBeforeHint from settings
+            this.state.maxAttemptsBeforeHint = this.settingsController.getMaxAttemptsBeforeHint(false);
+
+            console.log(`⚙️ Settings loaded: Help level = ${this.settingsController.getHelpLevel()}, Hints after ${this.state.maxAttemptsBeforeHint} attempts`);
+
+            // Register callback for settings changes
+            this.settingsController.onSettingsChanged((newSettings) => {
+                this.onSettingsChanged(newSettings);
+            });
+        } else {
+            console.warn('⚠️ SettingsController not found, using defaults');
+        }
+    }
+
+    /**
+     * Handle settings changes
+     */
+    onSettingsChanged(newSettings) {
+        console.log('⚙️ Settings changed:', newSettings);
+
+        // Update maxAttemptsBeforeHint
+        this.state.maxAttemptsBeforeHint = this.settingsController.getMaxAttemptsBeforeHint(this.state.isRetry);
+
+        console.log(`✅ Updated hints threshold to ${this.state.maxAttemptsBeforeHint} attempts`);
     }
 
     /**
@@ -186,18 +334,19 @@ class AppController {
     }
 
     /**
-     * Load unit data from file or generate dynamically
-     * Units 1-7: Static exercises (Basics)
-     * Units 8+: Dynamically generated adaptive exercises
+     * Load unit data - NOW FULLY DYNAMIC
+     * All units use dynamic exercise generation with templates and adaptive learning
      */
     async loadUnitData(unitNumber) {
-        // Check if we should use dynamic exercises
-        if (unitNumber > this.maxStaticUnits && this.useDynamicExercises && this.dynamicGenerator) {
+        // ALL units now use dynamic exercises (maxStaticUnits = 0)
+        if (this.useDynamicExercises && this.dynamicGenerator) {
             console.log(`🎯 Generating dynamic exercises for Unit ${unitNumber}...`);
-            return this.generateDynamicUnit(unitNumber);
+            const unitConfig = this.getUnitConfig(unitNumber);
+            return this.generateDynamicUnit(unitNumber, unitConfig);
         }
 
-        // Load static units (1-7)
+        // Fallback: If dynamic system not initialized, use static files (backward compatibility)
+        console.warn(`⚠️ Dynamic system not ready, falling back to static exercises for Unit ${unitNumber}`);
         const unitFiles = {
             1: 'unit1-pronouns.json',
             2: 'unit2-ser.json',
@@ -249,33 +398,112 @@ class AppController {
     /**
      * Generate dynamic unit (Units 8+)
      */
-    generateDynamicUnit(unitNumber) {
-        const exerciseCount = 10; // 10 exercises per unit
-        const exercises = this.dynamicGenerator.generateNext(exerciseCount);
+    generateDynamicUnit(unitNumber, unitConfig) {
+        try {
+            const config = unitConfig || this.getUnitConfig(unitNumber);
+            const exerciseCount = config.exerciseCount || 20;
 
-        return {
-            unitNumber: unitNumber,
-            unitName: this.getUnitName(unitNumber),
-            exercises: exercises,
-            isDynamic: true
-        };
+            console.log(`🎲 Generating ${exerciseCount} exercises for Unit ${unitNumber}: ${config.name}`);
+            console.log(`   Concepts: ${config.concepts.join(', ')}`);
+            console.log(`   Exercise types:`, config.exerciseTypes);
+
+            // Generate exercises using dynamic generator with unit-specific config
+            const exercises = this.dynamicGenerator.generateNext(exerciseCount, {
+                concepts: config.concepts,
+                templateTypes: config.templateTypes,
+                exerciseTypes: config.exerciseTypes,
+                difficulty: config.difficulty
+            });
+
+            // Validate exercises
+            if (!exercises || (Array.isArray(exercises) && exercises.length === 0)) {
+                throw new Error(`No exercises generated for Unit ${unitNumber}`);
+            }
+
+            // Ensure exercises is always an array
+            const exercisesArray = Array.isArray(exercises) ? exercises : [exercises];
+
+            // Filter out null/undefined exercises
+            const validExercises = exercisesArray.filter(ex => ex !== null && ex !== undefined);
+
+            if (validExercises.length === 0) {
+                throw new Error(`All generated exercises were invalid for Unit ${unitNumber}`);
+            }
+
+            console.log(`✅ Generated ${validExercises.length} valid exercises`);
+
+            return {
+                unitNumber: unitNumber,
+                unitName: config.name,
+                exercises: validExercises,
+                isDynamic: true,
+                config: config
+            };
+        } catch (error) {
+            console.error(`❌ Error generating dynamic unit ${unitNumber}:`, error);
+            console.warn(`⚠️ Falling back to static exercises or fallback generation...`);
+
+            // Try to use fallback
+            return this.generateFallbackUnit(unitNumber);
+        }
     }
 
     /**
      * Generate fallback unit when dynamic system not available
      */
-    generateFallbackUnit(unitNumber) {
-        // Use Phase1 mock exercises as fallback
+    async generateFallbackUnit(unitNumber) {
+        console.log(`🔄 Attempting fallback for Unit ${unitNumber}...`);
+
+        // Try to load static JSON file first (Units 1-7)
+        if (unitNumber <= 7) {
+            try {
+                const unitFiles = {
+                    1: 'unit1-pronouns.json',
+                    2: 'unit2-ser.json',
+                    3: 'unit3-estar.json',
+                    4: 'unit4-ser-estar-contrast.json',
+                    5: 'unit5-tener.json',
+                    6: 'unit6-vocabulary.json',
+                    7: 'unit7-integration.json'
+                };
+
+                const filename = unitFiles[unitNumber];
+                if (filename) {
+                    console.log(`📂 Loading static file: ${filename}`);
+                    const response = await fetch(`data/phase1-exercises/${filename}`);
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        console.log(`✅ Loaded ${data.exercises?.length || 0} exercises from static file`);
+
+                        return {
+                            unitNumber: unitNumber,
+                            unitName: this.getUnitName(unitNumber),
+                            exercises: data.exercises || [],
+                            isFallback: true,
+                            isStatic: true
+                        };
+                    }
+                }
+            } catch (jsonError) {
+                console.warn(`⚠️ Could not load static JSON:`, jsonError);
+            }
+        }
+
+        // Second fallback: Use Phase1 mock exercises
         if (this.phase1 && this.phase1.exercises) {
+            console.log(`📝 Using Phase1 mock exercises as fallback`);
             return {
                 unitNumber: unitNumber,
                 unitName: this.getUnitName(unitNumber),
                 exercises: this.phase1.exercises,
-                isFallback: true
+                isFallback: true,
+                isMock: true
             };
         }
 
-        throw new Error(`Unit ${unitNumber} not available`);
+        // Final fallback: Throw error
+        throw new Error(`No fallback available for Unit ${unitNumber}`);
     }
 
     /**
@@ -335,6 +563,12 @@ class AppController {
         const exercise = this.state.exercises[index];
         this.state.currentExerciseIndex = index;
         this.state.currentAttempts = 0;  // Reset attempts for new exercise
+        this.state.isRetry = false;  // Mark as normal exercise
+
+        // Reset maxAttemptsBeforeHint for normal exercises
+        if (this.settingsController) {
+            this.state.maxAttemptsBeforeHint = this.settingsController.getMaxAttemptsBeforeHint(false);
+        }
 
         // Transform exercise to UI format
         const uiExercise = this.transformExerciseForUI(exercise);
@@ -527,13 +761,43 @@ class AppController {
             this.ui.showExplanation(feedback.explanation);
         }
 
-        // Show next button after delay
+        // Handle retry queue
         if (isCorrect) {
+            // Correct answer - mark retry as complete if this was a retry
+            if (this.state.isRetry) {
+                console.log('✅ Retry completed successfully');
+                this.state.isRetry = false;
+            }
+
+            // Auto-advance after delay
             setTimeout(() => {
                 this.loadNextExercise();
             }, 1500);
         } else {
+            // Wrong answer - add to retry queue if not already a retry
+            if (!this.state.isRetry) {
+                this.addToRetryQueue(exercise);
+            }
+
             this.ui.showNextButton();
+        }
+    }
+
+    /**
+     * Add exercise to retry queue
+     */
+    addToRetryQueue(exercise) {
+        // Check if already in queue
+        const alreadyQueued = this.retryQueue.some(item => item.exercise.id === exercise.id);
+
+        if (!alreadyQueued) {
+            this.retryQueue.push({
+                exercise: { ...exercise }, // Clone exercise
+                addedAtIndex: this.state.currentExerciseIndex,
+                retriesLeft: 1 // Can be retried once
+            });
+
+            console.log(`🔄 Added to retry queue: "${exercise.question}" (Queue size: ${this.retryQueue.length})`);
         }
     }
 
@@ -543,6 +807,7 @@ class AppController {
     generateFeedback(exercise, userAnswer, isCorrect) {
         let message = '';
         let explanation = '';
+        let hint = '';
 
         if (isCorrect) {
             // Use custom feedback if available
@@ -571,6 +836,12 @@ class AppController {
                 message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
             }
 
+            // Add hint from exercise (respects difficulty settings via maxAttemptsBeforeHint)
+            // The hint will be shown based on currentAttempts >= maxAttemptsBeforeHint in ui-controller.js
+            if (exercise.hint) {
+                hint = exercise.hint;
+            }
+
             // Generate explanation using German system
             if (this.germanSystem && typeof this.germanSystem.generateGermanOptimizedFeedback === 'function') {
                 const feedback = this.germanSystem.generateGermanOptimizedFeedback(
@@ -589,7 +860,7 @@ class AppController {
             }
         }
 
-        return { message, explanation };
+        return { message, explanation, hint };
     }
 
     /**
@@ -684,7 +955,68 @@ class AppController {
      */
     loadNextExercise() {
         this.ui.reset();
-        this.loadExercise(this.state.currentExerciseIndex + 1);
+
+        // Check if we should load a retry instead
+        const retryExercise = this.getNextRetry();
+
+        if (retryExercise) {
+            // Load retry exercise
+            console.log('🔄 Loading retry exercise');
+            this.loadRetryExercise(retryExercise);
+        } else {
+            // Load next regular exercise
+            this.loadExercise(this.state.currentExerciseIndex + 1);
+        }
+    }
+
+    /**
+     * Get next retry exercise if available
+     */
+    getNextRetry() {
+        if (this.retryQueue.length === 0) {
+            return null;
+        }
+
+        // Check if enough exercises have passed since adding to queue
+        const currentIndex = this.state.currentExerciseIndex;
+
+        for (let i = 0; i < this.retryQueue.length; i++) {
+            const retryItem = this.retryQueue[i];
+            const exercisesSince = currentIndex - retryItem.addedAtIndex;
+
+            if (exercisesSince >= this.retryDelay) {
+                // Remove from queue and return
+                this.retryQueue.splice(i, 1);
+                return retryItem.exercise;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Load a retry exercise
+     */
+    loadRetryExercise(exercise) {
+        // Mark as retry
+        this.state.isRetry = true;
+
+        // Reset attempts
+        this.state.currentAttempts = 0;
+
+        // Update maxAttemptsBeforeHint for retries (higher threshold)
+        if (this.settingsController) {
+            this.state.maxAttemptsBeforeHint = this.settingsController.getMaxAttemptsBeforeHint(true);
+        }
+
+        // Transform and render exercise
+        const uiExercise = this.transformExerciseForUI(exercise);
+        this.ui.renderExercise(uiExercise);
+
+        // Show retry badge
+        this.ui.showRetryBadge();
+
+        console.log(`🔄 Retry exercise loaded (Hints after ${this.state.maxAttemptsBeforeHint} attempts)`);
     }
 
     /**
