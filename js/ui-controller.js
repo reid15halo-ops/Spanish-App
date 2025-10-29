@@ -190,7 +190,13 @@ class UIController {
     renderAnswerOptions(exercise) {
         this.elements.answerContainer.innerHTML = '';
 
-        if (exercise.type === 'matching') {
+        if (exercise.type === 'vocabulary-card') {
+            this.renderVocabularyCard(exercise);
+        } else if (exercise.type === 'reading-comprehension') {
+            this.renderReadingComprehension(exercise);
+        } else if (exercise.type === 'vocabulary-in-context') {
+            this.renderVocabularyInContext(exercise);
+        } else if (exercise.type === 'matching') {
             this.renderMatching(exercise);
         } else if (exercise.type === 'emoji-guess' || exercise.type === 'emoji-fill') {
             this.renderEmojiExercise(exercise);
@@ -246,6 +252,206 @@ class UIController {
                 this.handleAnswerSelection(btn.dataset.answer, index);
             });
         });
+    }
+
+    /**
+     * Render vocabulary card (passive learning, no answer validation)
+     */
+    renderVocabularyCard(exercise) {
+        const html = `
+            <div class="vocabulary-card">
+                <div class="vocab-word-display">
+                    <div class="vocab-emoji">${exercise.emoji || '📝'}</div>
+                    <div class="vocab-word">${exercise.word}</div>
+                    <div class="vocab-translation">${exercise.translation}</div>
+                </div>
+
+                ${exercise.germanBridge ? `
+                    <div class="vocab-bridge">
+                        ${exercise.germanBridge}
+                    </div>
+                ` : ''}
+
+                ${exercise.explanation ? `
+                    <div class="vocab-explanation">
+                        ${exercise.explanation}
+                    </div>
+                ` : ''}
+
+                ${exercise.mnemonic ? `
+                    <div class="vocab-mnemonic">
+                        <strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}
+                    </div>
+                ` : ''}
+
+                ${exercise.audioHint ? `
+                    <div class="vocab-audio">
+                        <strong>🔊 Aussprache:</strong> ${exercise.audioHint}
+                    </div>
+                ` : ''}
+
+                ${exercise.exampleSentence ? `
+                    <div class="vocab-example">
+                        <div class="vocab-example-spanish">"${exercise.exampleSentence}"</div>
+                        ${exercise.exampleTranslation ? `
+                            <div class="vocab-example-german">${exercise.exampleTranslation}</div>
+                        ` : ''}
+                    </div>
+                ` : ''}
+
+                <button class="submit-btn vocab-continue-btn" id="vocab-continue-btn">
+                    Weiter →
+                </button>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        // Attach continue button handler
+        const continueBtn = document.getElementById('vocab-continue-btn');
+        continueBtn.addEventListener('click', () => {
+            // Mark as "answered" to allow navigation
+            this.state.isAnswered = true;
+
+            // Call next exercise callback
+            if (this.onNextExercise) {
+                this.onNextExercise();
+            }
+        });
+
+        // Focus button for keyboard navigation
+        continueBtn.focus();
+    }
+
+    /**
+     * Render reading comprehension (INPUT phase)
+     * Shows dialog with translation and comprehension check
+     */
+    renderReadingComprehension(exercise) {
+        const dialog = exercise.dialog || [];
+        const translation = exercise.translation || [];
+        const check = exercise.comprehensionCheck || {};
+
+        const html = `
+            <div class="reading-comprehension">
+                <!-- Spanish Dialog -->
+                <div class="dialog-box">
+                    <div class="dialog-title">📖 Dialog auf Spanisch:</div>
+                    ${dialog.map(line => `
+                        <div class="dialog-line">
+                            <span class="dialog-speaker">${line.speaker}:</span>
+                            <span class="dialog-text">"${line.text}"</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- German Translation -->
+                <div class="translation-box">
+                    <div class="translation-title">🇩🇪 Deutsche Übersetzung:</div>
+                    ${translation.map(line => `
+                        <div class="translation-line">
+                            <span class="translation-speaker">${line.speaker}:</span>
+                            <span class="translation-text">"${line.text}"</span>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- New Vocabulary Highlight -->
+                ${exercise.newVocabulary && exercise.newVocabulary.length > 0 ? `
+                    <div class="vocab-highlight">
+                        <strong>📝 Neue Wörter:</strong> ${exercise.newVocabulary.join(', ')}
+                    </div>
+                ` : ''}
+
+                <!-- Comprehension Check -->
+                <div class="comprehension-check">
+                    <div class="check-question">${check.question}</div>
+                    <div class="check-options">
+                        ${check.options.map((option, index) => `
+                            <button
+                                class="answer-btn comprehension-btn"
+                                data-answer="${option}"
+                                data-index="${index}">
+                                <div class="answer-text">
+                                    <div class="answer-es">${option}</div>
+                                </div>
+                                <div class="answer-key">[${index + 1}]</div>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        // Attach click handlers
+        const buttons = this.elements.answerContainer.querySelectorAll('.comprehension-btn');
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                this.handleAnswerSelection(btn.dataset.answer, index);
+            });
+        });
+    }
+
+    /**
+     * Render vocabulary in context (INPUT phase)
+     * Shows word with 3 example sentences
+     */
+    renderVocabularyInContext(exercise) {
+        const examples = exercise.exampleSentences || [];
+
+        const html = `
+            <div class="vocabulary-in-context">
+                <!-- Word Display -->
+                <div class="context-word-display">
+                    <div class="context-word">${exercise.word}</div>
+                    <div class="context-translation">= ${exercise.translation}</div>
+                </div>
+
+                <!-- Example Sentences -->
+                <div class="context-examples">
+                    <div class="examples-title">📚 Verwendung in Sätzen:</div>
+                    ${examples.map((example, index) => `
+                        <div class="example-sentence">
+                            <div class="example-number">${index + 1}.</div>
+                            <div class="example-content">
+                                <div class="example-spanish">${example.es}</div>
+                                <div class="example-german">→ ${example.de}</div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <!-- Usage Tip -->
+                ${exercise.usage ? `
+                    <div class="context-usage">
+                        <strong>💡 Tipp:</strong> ${exercise.usage}
+                    </div>
+                ` : ''}
+
+                <button class="submit-btn context-continue-btn" id="context-continue-btn">
+                    Verstanden, weiter →
+                </button>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        // Attach continue button handler
+        const continueBtn = document.getElementById('context-continue-btn');
+        continueBtn.addEventListener('click', () => {
+            // Mark as "answered" to allow navigation
+            this.state.isAnswered = true;
+
+            // Call next exercise callback
+            if (this.onNextExercise) {
+                this.onNextExercise();
+            }
+        });
+
+        // Focus button for keyboard navigation
+        continueBtn.focus();
     }
 
     /**
@@ -389,10 +595,16 @@ class UIController {
             }
         }
 
-        // Show hint button only after reaching attempt threshold
-        if (!isCorrect) {
+        // Show hint after reaching attempt threshold
+        // Skip hints completely if maxAttemptsBeforeHint >= 999 (disabled)
+        if (!isCorrect && maxAttemptsBeforeHint < 999) {
             if (currentAttempts >= maxAttemptsBeforeHint) {
-                // Unlock hints after threshold reached
+                // Show hint directly in feedback after threshold reached
+                if (feedbackHint && hint) {
+                    feedbackHint.innerHTML = `<strong>💡 Hinweis:</strong> ${hint}`;
+                    feedbackHint.style.display = 'block';
+                }
+                // Also unlock hint button for additional hints
                 this.elements.hintContainer.classList.add('show');
             } else {
                 // Show message about hint unlock
@@ -581,6 +793,7 @@ class UIController {
         this.hideFeedback();
         this.hideHints();
         this.hideExplanation();
+        this.hideRetryBadge();
 
         // Remove next button
         const nextBtn = document.getElementById('next-btn');
@@ -982,6 +1195,26 @@ class UIController {
     /**
      * Shuffle array helper
      */
+    /**
+     * Show retry badge when exercise is a retry
+     */
+    showRetryBadge() {
+        const retryBadge = document.getElementById('retry-badge');
+        if (retryBadge) {
+            retryBadge.classList.add('show');
+        }
+    }
+
+    /**
+     * Hide retry badge
+     */
+    hideRetryBadge() {
+        const retryBadge = document.getElementById('retry-badge');
+        if (retryBadge) {
+            retryBadge.classList.remove('show');
+        }
+    }
+
     shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));

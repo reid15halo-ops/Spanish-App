@@ -24,12 +24,44 @@ class SentenceTemplateEngine {
                     hint: 'Beruf = SER (DOCTOR Regel: Occupation)'
                 },
                 {
+                    es: 'Tú eres {profession}',
+                    de: 'Du bist {profession_de}',
+                    variables: ['profession'],
+                    concept: 'ser-identity',
+                    difficulty: 1,
+                    hint: 'Beruf = SER'
+                },
+                {
+                    es: 'Mi padre es {profession}',
+                    de: 'Mein Vater ist {profession_de}',
+                    variables: ['profession'],
+                    concept: 'ser-identity',
+                    difficulty: 1,
+                    hint: 'Beruf = SER'
+                },
+                {
+                    es: 'Mi madre es {profession}',
+                    de: 'Meine Mutter ist {profession_de}',
+                    variables: ['profession'],
+                    concept: 'ser-identity',
+                    difficulty: 1,
+                    hint: 'Beruf = SER'
+                },
+                {
                     es: '{subject} {verb_ser} {profession}',
                     de: '{subject_de} ist {profession_de}',
                     variables: ['subject', 'profession'],
                     concept: 'ser-identity',
                     difficulty: 2,
                     hint: 'Beruf ist eine dauerhafte Eigenschaft → SER'
+                },
+                {
+                    es: 'Nosotros somos {profession_plural}',
+                    de: 'Wir sind {profession_de}',
+                    variables: ['profession'],
+                    concept: 'ser-identity',
+                    difficulty: 2,
+                    hint: 'Beruf (Plural) = SER'
                 }
             ],
 
@@ -43,6 +75,30 @@ class SentenceTemplateEngine {
                     hint: 'Dauerhafte Eigenschaft = SER (DOCTOR Regel: Description)'
                 },
                 {
+                    es: 'Tú eres {adjective}',
+                    de: 'Du bist {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 1,
+                    hint: 'Dauerhafte Eigenschaft = SER'
+                },
+                {
+                    es: 'Él es {adjective}',
+                    de: 'Er ist {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 1,
+                    hint: 'Dauerhafte Eigenschaft = SER'
+                },
+                {
+                    es: 'Ella es {adjective}',
+                    de: 'Sie ist {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 1,
+                    hint: 'Dauerhafte Eigenschaft = SER'
+                },
+                {
                     es: 'El {noun} es {adjective}',
                     de: 'Der/Die {noun_de} ist {adjective_de}',
                     variables: ['noun', 'adjective'],
@@ -51,12 +107,68 @@ class SentenceTemplateEngine {
                     hint: 'Objektbeschreibung mit SER'
                 },
                 {
+                    es: 'La casa es {adjective}',
+                    de: 'Das Haus ist {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 2,
+                    hint: 'Objektbeschreibung: Haus ist immer so → SER'
+                },
+                {
+                    es: 'Mi coche es {adjective}',
+                    de: 'Mein Auto ist {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 2,
+                    hint: 'Dauerhafte Eigenschaft des Autos → SER'
+                },
+                {
+                    es: 'Este libro es {adjective}',
+                    de: 'Dieses Buch ist {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 2,
+                    hint: 'Dauerhafte Eigenschaft → SER'
+                },
+                {
+                    es: 'Mi familia es {adjective}',
+                    de: 'Meine Familie ist {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 2,
+                    hint: 'Charakteristik der Familie → SER'
+                },
+                {
                     es: 'Mi {noun} es {adjective} y {adjective2}',
                     de: 'Mein {noun_de} ist {adjective_de} und {adjective2_de}',
                     variables: ['noun', 'adjective', 'adjective2'],
                     concept: 'ser-description',
                     difficulty: 3,
                     hint: 'Mehrere Eigenschaften mit SER'
+                },
+                {
+                    es: 'Los perros son {adjective_plural}',
+                    de: 'Die Hunde sind {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 2,
+                    hint: 'Dauerhafte Eigenschaft (Plural) → SER'
+                },
+                {
+                    es: 'Mis amigos son {adjective_plural}',
+                    de: 'Meine Freunde sind {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 2,
+                    hint: 'Charaktereigenschaft → SER'
+                },
+                {
+                    es: 'Nosotros somos {adjective_plural}',
+                    de: 'Wir sind {adjective_de}',
+                    variables: ['adjective'],
+                    concept: 'ser-description',
+                    difficulty: 2,
+                    hint: 'Dauerhafte Eigenschaft → SER'
                 }
             ],
 
@@ -90,6 +202,46 @@ class SentenceTemplateEngine {
                     hint: 'Ort = ESTAR (LECH Regel: Location)'
                 },
                 {
+                    es: 'Yo estoy en casa',
+                    de: 'Ich bin zu Hause',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 1,
+                    hint: 'Konkrete Ortsangabe → ESTAR'
+                },
+                {
+                    es: 'Tú estás en {place}',
+                    de: 'Du bist in/im {place_de}',
+                    variables: ['place'],
+                    concept: 'estar-location',
+                    difficulty: 1,
+                    hint: 'Ortsangabe mit ESTAR (2. Person)'
+                },
+                {
+                    es: 'Él está en Madrid',
+                    de: 'Er ist in Madrid',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 1,
+                    hint: 'Stadt = Ort → ESTAR'
+                },
+                {
+                    es: 'Ella está en la escuela',
+                    de: 'Sie ist in der Schule',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 1,
+                    hint: 'Ort (Schule) → ESTAR'
+                },
+                {
+                    es: 'Nosotros estamos en el trabajo',
+                    de: 'Wir sind bei der Arbeit',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 2,
+                    hint: 'Position/Ort → ESTAR (1. Person Plural)'
+                },
+                {
                     es: '{subject} {verb_estar} en la {place}',
                     de: '{subject_de} ist in/im {place_de}',
                     variables: ['subject', 'place'],
@@ -104,6 +256,62 @@ class SentenceTemplateEngine {
                     concept: 'estar-location',
                     difficulty: 2,
                     hint: 'Position eines Objekts mit ESTAR'
+                },
+                {
+                    es: 'Mis padres están en el restaurante',
+                    de: 'Meine Eltern sind im Restaurant',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 2,
+                    hint: 'Plural: Ortsangabe → ESTAR'
+                },
+                {
+                    es: 'El libro está en la mesa',
+                    de: 'Das Buch ist auf dem Tisch',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 2,
+                    hint: 'Position eines Objekts → ESTAR'
+                },
+                {
+                    es: 'Los niños están en el parque',
+                    de: 'Die Kinder sind im Park',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 2,
+                    hint: 'Plural + Ortsangabe → ESTAR'
+                },
+                {
+                    es: '¿Dónde estás?',
+                    de: 'Wo bist du?',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 2,
+                    hint: 'Frage nach Ort → ESTAR mit dónde'
+                },
+                {
+                    es: '¿Dónde está tu {noun}?',
+                    de: 'Wo ist dein {noun_de}?',
+                    variables: ['noun'],
+                    concept: 'estar-location',
+                    difficulty: 2,
+                    hint: 'Frage nach Position → ESTAR'
+                },
+                {
+                    es: 'Mi familia está en la playa',
+                    de: 'Meine Familie ist am Strand',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 2,
+                    hint: 'Familie am Ort → ESTAR'
+                },
+                {
+                    es: 'Estamos en el centro de la ciudad',
+                    de: 'Wir sind im Stadtzentrum',
+                    variables: [],
+                    concept: 'estar-location',
+                    difficulty: 3,
+                    hint: 'Präzise Ortsangabe → ESTAR'
                 }
             ],
 
@@ -125,12 +333,92 @@ class SentenceTemplateEngine {
                     hint: 'Vorübergehende Gefühle mit ESTAR'
                 },
                 {
+                    es: 'Estoy feliz',
+                    de: 'Ich bin glücklich',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 1,
+                    hint: 'Aktuelles Gefühl → ESTAR'
+                },
+                {
+                    es: 'Tú estás triste',
+                    de: 'Du bist traurig',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 1,
+                    hint: 'Momentane Emotion → ESTAR'
+                },
+                {
+                    es: 'Él está cansado',
+                    de: 'Er ist müde',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 1,
+                    hint: 'Temporärer Zustand (müde) → ESTAR'
+                },
+                {
+                    es: 'Ella está enferma',
+                    de: 'Sie ist krank',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 1,
+                    hint: 'Vorübergehender Zustand (krank) → ESTAR'
+                },
+                {
+                    es: 'Estamos contentos',
+                    de: 'Wir sind zufrieden',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 2,
+                    hint: 'Plural + Emotion → ESTAR'
+                },
+                {
                     es: '{subject} {verb_estar} {emotion} hoy',
                     de: '{subject_de} ist heute {emotion_de}',
                     variables: ['subject', 'emotion'],
                     concept: 'estar-emotion',
                     difficulty: 2,
                     hint: 'Emotionale Zustände sind vorübergehend → ESTAR'
+                },
+                {
+                    es: 'Mi madre está preocupada',
+                    de: 'Meine Mutter ist besorgt',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 2,
+                    hint: 'Aktueller emotionaler Zustand → ESTAR'
+                },
+                {
+                    es: 'Los estudiantes están nerviosos',
+                    de: 'Die Studenten sind nervös',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 2,
+                    hint: 'Plural + vorübergehende Emotion → ESTAR'
+                },
+                {
+                    es: '¿Estás bien?',
+                    de: 'Geht es dir gut?',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 2,
+                    hint: 'Frage nach Befinden → ESTAR'
+                },
+                {
+                    es: 'Estoy aburrido',
+                    de: 'Mir ist langweilig',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 2,
+                    hint: 'Momentaner Zustand (gelangweilt) → ESTAR'
+                },
+                {
+                    es: 'Mi hermano está enfadado porque perdió el partido',
+                    de: 'Mein Bruder ist wütend, weil er das Spiel verloren hat',
+                    variables: [],
+                    concept: 'estar-emotion',
+                    difficulty: 3,
+                    hint: 'Emotion mit Begründung → ESTAR'
                 }
             ],
 
@@ -248,6 +536,171 @@ class SentenceTemplateEngine {
                     difficulty: 4,
                     hint: 'Gefühle sind vorübergehend → ESTAR',
                     explanation: 'Emotionale Zustände mit ESTAR, nicht SER.'
+                },
+                {
+                    es: 'Mi padre {verb_choice} médico',
+                    de: 'Mein Vater ist Arzt',
+                    variables: [],
+                    correctVerb: 'es',
+                    wrongVerb: 'está',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Beruf = permanente Identität → SER',
+                    explanation: 'Berufe immer mit SER ausdrücken.'
+                },
+                {
+                    es: 'El libro {verb_choice} en la mesa',
+                    de: 'Das Buch ist auf dem Tisch',
+                    variables: [],
+                    correctVerb: 'está',
+                    wrongVerb: 'es',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Position = vorübergehend → ESTAR',
+                    explanation: 'Positionen und Orte immer mit ESTAR.'
+                },
+                {
+                    es: 'La comida {verb_choice} rica',
+                    de: 'Das Essen ist lecker',
+                    variables: [],
+                    correctVerb: 'está',
+                    wrongVerb: 'es',
+                    concept: 'ser-estar-contrast',
+                    difficulty: 4,
+                    hint: '⚠️ "rico" mit ESTAR = lecker (Geschmack jetzt)',
+                    explanation: 'estar rico = schmeckt gut (momentan). ser rico = ist reich (Person).'
+                },
+                {
+                    es: 'Juan {verb_choice} listo',
+                    de: 'Juan ist bereit',
+                    variables: [],
+                    correctVerb: 'está',
+                    wrongVerb: 'es',
+                    concept: 'ser-estar-contrast',
+                    difficulty: 4,
+                    hint: 'estar listo = bereit sein (jetzt). ser listo = intelligent sein',
+                    explanation: 'estar listo = bereit. ser listo = klug/intelligent.'
+                },
+                {
+                    es: 'María {verb_choice} lista',
+                    de: 'María ist intelligent',
+                    variables: [],
+                    correctVerb: 'es',
+                    wrongVerb: 'está',
+                    concept: 'ser-estar-contrast',
+                    difficulty: 4,
+                    hint: 'ser lista = intelligent sein (Charaktereigenschaft)',
+                    explanation: 'ser lista = intelligent. estar lista = bereit sein.'
+                },
+                {
+                    es: 'La película {verb_choice} aburrida',
+                    de: 'Der Film ist langweilig',
+                    variables: [],
+                    correctVerb: 'es',
+                    wrongVerb: 'está',
+                    concept: 'ser-estar-contrast',
+                    difficulty: 4,
+                    hint: 'ser aburrido = langweilig sein (Eigenschaft des Films)',
+                    explanation: 'ser aburrido = langweilig (Eigenschaft). estar aburrido = sich langweilen (Gefühl).'
+                },
+                {
+                    es: 'Yo {verb_choice} aburrido',
+                    de: 'Mir ist langweilig',
+                    variables: [],
+                    correctVerb: 'estoy',
+                    wrongVerb: 'soy',
+                    concept: 'ser-estar-contrast',
+                    difficulty: 4,
+                    hint: 'estar aburrido = sich langweilen (momentanes Gefühl)',
+                    explanation: 'estar aburrido = gelangweilt sein. ser aburrido = eine langweilige Person sein.'
+                },
+                {
+                    es: 'Mi hermana {verb_choice} alta',
+                    de: 'Meine Schwester ist groß',
+                    variables: [],
+                    correctVerb: 'es',
+                    wrongVerb: 'está',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Körpergröße = dauerhafte Eigenschaft → SER',
+                    explanation: 'Physische Eigenschaften wie Größe sind permanent → SER.'
+                },
+                {
+                    es: 'La puerta {verb_choice} abierta',
+                    de: 'Die Tür ist offen',
+                    variables: [],
+                    correctVerb: 'está',
+                    wrongVerb: 'es',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Zustand (offen/geschlossen) = vorübergehend → ESTAR',
+                    explanation: 'Zustände wie offen/geschlossen sind veränderbar → ESTAR.'
+                },
+                {
+                    es: 'Nosotros {verb_choice} de España',
+                    de: 'Wir sind aus Spanien',
+                    variables: [],
+                    correctVerb: 'somos',
+                    wrongVerb: 'estamos',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Herkunft = permanent → SER',
+                    explanation: 'Herkunft und Nationalität mit SER ausdrücken.'
+                },
+                {
+                    es: 'Nosotros {verb_choice} en España',
+                    de: 'Wir sind in Spanien',
+                    variables: [],
+                    correctVerb: 'estamos',
+                    wrongVerb: 'somos',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Aktueller Ort → ESTAR',
+                    explanation: 'Wo man gerade ist (Ort) → ESTAR. Woher man kommt (Herkunft) → SER.'
+                },
+                {
+                    es: 'Hoy {verb_choice} lunes',
+                    de: 'Heute ist Montag',
+                    variables: [],
+                    correctVerb: 'es',
+                    wrongVerb: 'está',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Datum, Wochentag → SER',
+                    explanation: 'Zeitangaben (Datum, Wochentag, Uhrzeit) immer mit SER.'
+                },
+                {
+                    es: 'El café {verb_choice} caliente',
+                    de: 'Der Kaffee ist heiß',
+                    variables: [],
+                    correctVerb: 'está',
+                    wrongVerb: 'es',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 4,
+                    hint: 'Temperatur = vorübergehender Zustand → ESTAR',
+                    explanation: 'Temperaturen sind veränderlich → ESTAR.'
+                },
+                {
+                    es: 'Mi hermano {verb_choice} enfermo',
+                    de: 'Mein Bruder ist krank',
+                    variables: [],
+                    correctVerb: 'está',
+                    wrongVerb: 'es',
+                    concept: 'ser-estar-emotion',
+                    difficulty: 3,
+                    hint: 'Gesundheitszustand = vorübergehend → ESTAR',
+                    explanation: 'Krankheit ist ein temporärer Zustand → ESTAR.'
+                },
+                {
+                    es: 'Esta casa {verb_choice} grande',
+                    de: 'Dieses Haus ist groß',
+                    variables: [],
+                    correctVerb: 'es',
+                    wrongVerb: 'está',
+                    concept: 'ser-estar-fundamental',
+                    difficulty: 3,
+                    hint: 'Größe/Form = dauerhafte Eigenschaft → SER',
+                    explanation: 'Objekteigenschaften wie Größe, Form, Farbe → SER.'
                 }
             ],
 
@@ -377,19 +830,41 @@ class SentenceTemplateEngine {
     replaceVariables(text, variables) {
         let result = text;
         let correctAnswer = '';
+        const values = {};
 
+        // First pass: Get all values
         for (const varName of variables) {
             const value = this.getVariableValue(varName);
+            if (value) {
+                values[varName] = value;
+            }
+        }
+
+        // Second pass: Replace in text
+        for (const varName of variables) {
+            const value = values[varName];
             if (!value) continue;
 
             // Replace in Spanish text
             result = result.replace(`{${varName}}`, value.es || value);
             result = result.replace(`{${varName}_emoji}`, value.emoji || value.es);
+        }
 
-            // Store correct answer if this is the blank
-            if (text.includes(`{${varName}}`)) {
-                correctAnswer = value.es || value;
-            }
+        // Determine correct answer (last content variable, not 'subject' or verbs)
+        const contentVariables = variables.filter(v =>
+            !v.includes('subject') &&
+            !v.includes('verb_') &&
+            !v.includes('_de') &&
+            values[v]
+        );
+
+        if (contentVariables.length > 0) {
+            const answerVar = contentVariables[contentVariables.length - 1];
+            correctAnswer = values[answerVar].es || values[answerVar];
+        } else if (variables.length > 0) {
+            // Fallback: use last variable
+            const lastVar = variables[variables.length - 1];
+            correctAnswer = values[lastVar]?.es || values[lastVar] || '';
         }
 
         // Replace verb conjugations
@@ -403,21 +878,49 @@ class SentenceTemplateEngine {
      */
     getVariableValue(varName) {
         const mapping = {
-            'profession': () => this.vocab.getRandomFrom('nouns', 'people', 1)[0],
-            'adjective': () => this.vocab.getRandomFrom('adjectives', 'descriptions', 1)[0],
-            'adjective2': () => this.vocab.getRandomFrom('adjectives', 'descriptions', 1)[0],
-            'emotion': () => this.vocab.getRandomFrom('adjectives', 'emotions', 1)[0],
-            'place': () => this.vocab.getRandomFrom('nouns', 'places', 1)[0],
+            'profession': () => this.vocab.getRandomFrom('nouns', 'people', 1, 2)[0], // maxDifficulty: 2
+            'profession_plural': () => {
+                const item = this.vocab.getRandomFrom('nouns', 'people', 1, 2)[0]; // maxDifficulty: 2
+                return {
+                    es: this.makePlural(item.es),
+                    de: item.de,
+                    en: item.en,
+                    gender: item.gender
+                };
+            },
+            'adjective': () => this.vocab.getRandomFrom('adjectives', 'descriptions', 1, 2)[0], // maxDifficulty: 2
+            'adjective_plural': () => {
+                const item = this.vocab.getRandomFrom('adjectives', 'descriptions', 1, 2)[0]; // maxDifficulty: 2
+                return {
+                    es: this.makePluralAdjective(item.es, item.gender),
+                    de: item.de,
+                    en: item.en
+                };
+            },
+            'adjective2': () => this.vocab.getRandomFrom('adjectives', 'descriptions', 1, 2)[0], // maxDifficulty: 2
+            'emotion': () => this.vocab.getRandomFrom('adjectives', 'emotions', 1, 2)[0], // maxDifficulty: 2
+            'place': () => this.vocab.getRandomFrom('nouns', 'places', 1, 2)[0], // maxDifficulty: 2
             'noun': () => {
                 const categories = ['food', 'places', 'animals'];
                 const cat = categories[Math.floor(Math.random() * categories.length)];
-                return this.vocab.getRandomFrom('nouns', cat, 1)[0];
+                return this.vocab.getRandomFrom('nouns', cat, 1, 2)[0]; // maxDifficulty: 2
             },
-            'food': () => this.vocab.getRandomFrom('nouns', 'food', 1)[0],
-            'food_emoji': () => this.vocab.getRandomFrom('nouns', 'food', 1)[0],
-            'place_emoji': () => this.vocab.getRandomFrom('nouns', 'places', 1)[0],
-            'country': () => this.vocab.getRandomFrom('geography', 'countries', 1)[0],
-            'city': () => this.vocab.getRandomFrom('geography', 'cities', 1)[0],
+            'noun_plural': () => {
+                const categories = ['food', 'places', 'animals'];
+                const cat = categories[Math.floor(Math.random() * categories.length)];
+                const item = this.vocab.getRandomFrom('nouns', cat, 1, 2)[0]; // maxDifficulty: 2
+                return {
+                    es: this.makePlural(item.es),
+                    de: item.de,
+                    en: item.en,
+                    gender: item.gender
+                };
+            },
+            'food': () => this.vocab.getRandomFrom('nouns', 'food', 1, 2)[0], // maxDifficulty: 2
+            'food_emoji': () => this.vocab.getRandomFrom('nouns', 'food', 1, 2)[0], // maxDifficulty: 2
+            'place_emoji': () => this.vocab.getRandomFrom('nouns', 'places', 1, 2)[0], // maxDifficulty: 2
+            'country': () => this.vocab.getRandomFrom('geography', 'countries', 1, 2)[0], // maxDifficulty: 2
+            'city': () => this.vocab.getRandomFrom('geography', 'cities', 1, 2)[0], // maxDifficulty: 2
             'age': () => ({ es: String(18 + Math.floor(Math.random() * 40)), de: String(18 + Math.floor(Math.random() * 40)) }),
             'number': () => this.vocab.getByCategory('numbers')[Math.floor(Math.random() * 5)],
             'subject': () => {
@@ -428,6 +931,47 @@ class SentenceTemplateEngine {
 
         const getter = mapping[varName];
         return getter ? getter() : null;
+    }
+
+    /**
+     * Make Spanish noun plural (simplified rules)
+     */
+    makePlural(word) {
+        if (!word) return word;
+
+        // Ends with vowel → add s
+        if (/[aeiou]$/i.test(word)) {
+            return word + 's';
+        }
+        // Ends with consonant → add es
+        return word + 'es';
+    }
+
+    /**
+     * Make Spanish adjective plural
+     */
+    makePluralAdjective(word, gender) {
+        if (!word) return word;
+
+        // Adjectives ending in -o/-a
+        if (word.endsWith('o')) {
+            return word.slice(0, -1) + 'os';
+        }
+        if (word.endsWith('a')) {
+            return word.slice(0, -1) + 'as';
+        }
+
+        // Adjectives ending in vowel (e, í, ú) → add s
+        if (/[eíú]$/i.test(word)) {
+            return word + 's';
+        }
+
+        // Adjectives ending in consonant → add es
+        if (!/[aeiou]$/i.test(word)) {
+            return word + 'es';
+        }
+
+        return word + 's';
     }
 
     /**
