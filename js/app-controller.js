@@ -34,6 +34,7 @@ class AppController {
         this.ui.onAnswerSelected = this.handleAnswer.bind(this);
         this.ui.onHintRequested = this.getHint.bind(this);
         this.ui.onNextExercise = this.loadNextExercise.bind(this);
+        this.ui.onNextUnit = this.loadNextUnit.bind(this);
     }
 
     /**
@@ -434,16 +435,31 @@ class AppController {
         let explanation = '';
 
         if (isCorrect) {
-            const messages = [
-                '¡Muy bien! ✅',
-                '¡Perfecto! 🎉',
-                '¡Excelente! ⭐',
-                'Richtig! 👍',
-                'Korrekt! ✨'
-            ];
-            message = messages[Math.floor(Math.random() * messages.length)];
+            // Use custom feedback if available
+            if (exercise.feedbackCorrect) {
+                message = exercise.feedbackCorrect;
+            } else {
+                const messages = [
+                    '¡Muy bien! ✅',
+                    '¡Perfecto! 🎉',
+                    '¡Excelente! ⭐',
+                    'Richtig! 👍',
+                    'Korrekt! ✨'
+                ];
+                message = messages[Math.floor(Math.random() * messages.length)];
+            }
+
+            // Show explanation for correct answers too if available
+            if (exercise.explanation) {
+                explanation = exercise.explanation;
+            }
         } else {
-            message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            // Use custom feedback if available
+            if (exercise.feedbackIncorrect) {
+                message = `${exercise.feedbackIncorrect} Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+            } else {
+                message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            }
 
             // Generate explanation using German system
             if (this.germanSystem && typeof this.germanSystem.generateGermanOptimizedFeedback === 'function') {
@@ -562,12 +578,41 @@ class AppController {
     }
 
     /**
+     * Load next unit
+     */
+    async loadNextUnit() {
+        const nextUnit = this.state.currentUnit + 1;
+
+        if (nextUnit > 7) {
+            console.log('🎊 All units completed!');
+            return;
+        }
+
+        console.log(`📚 Loading next unit: ${nextUnit}`);
+
+        try {
+            // Reset stats for new unit
+            this.state.sessionStats = {
+                correct: 0,
+                total: 0,
+                startTime: Date.now()
+            };
+
+            // Load next unit
+            await this.loadUnit(nextUnit);
+        } catch (error) {
+            console.error(`❌ Error loading unit ${nextUnit}:`, error);
+            this.ui.showError(`Fehler beim Laden von Lektion ${nextUnit}. Bitte Seite neu laden.`);
+        }
+    }
+
+    /**
      * Show unit completion
      */
     showUnitCompletion() {
         console.log('🎉 Unit completed!');
 
-        this.ui.showCompletion(this.state.sessionStats);
+        this.ui.showCompletion(this.state.sessionStats, this.state.currentUnit, 7);
 
         // Save progress
         this.saveProgress();

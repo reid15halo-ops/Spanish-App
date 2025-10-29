@@ -3990,26 +3990,51 @@ class UIController {
     /**
      * Show completion message
      */
-    showCompletion(stats) {
+    showCompletion(stats, currentUnit = 1, totalUnits = 7) {
         const accuracy = Math.round((stats.correct / stats.total) * 100);
         const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
+        const hasNextUnit = currentUnit < totalUnits;
 
         const html = `
             <div class="text-center">
                 <h2 style="font-size: 32px; margin-bottom: 24px;">${emoji}</h2>
-                <h3 style="margin-bottom: 16px;">Unit abgeschlossen!</h3>
+                <h3 style="margin-bottom: 16px;">Lektion ${currentUnit} abgeschlossen!</h3>
                 <p style="font-size: 24px; margin-bottom: 24px;">
                     ${stats.correct}/${stats.total} richtig (${accuracy}%)
                 </p>
-                <button class="submit-btn" onclick="location.reload()">
-                    Weiter üben
-                </button>
+                ${hasNextUnit ? `
+                    <button class="submit-btn" id="next-unit-btn" style="margin-bottom: 16px;">
+                        Nächste Lektion (${currentUnit + 1}/${totalUnits}) →
+                    </button>
+                    <br>
+                    <button class="submit-btn" onclick="location.reload()" style="background: var(--bg-secondary); opacity: 0.7;">
+                        Diese Lektion wiederholen
+                    </button>
+                ` : `
+                    <p style="margin-bottom: 24px; color: var(--success); font-weight: bold;">
+                        🎊 Alle Lektionen abgeschlossen! 🎊
+                    </p>
+                    <button class="submit-btn" onclick="location.reload()">
+                        Von vorne beginnen
+                    </button>
+                `}
             </div>
         `;
 
         this.elements.answerContainer.innerHTML = html;
         this.hideFeedback();
         this.hideHints();
+
+        // Attach next unit button handler
+        if (hasNextUnit) {
+            const nextBtn = document.getElementById('next-unit-btn');
+            if (nextBtn && this.onNextUnit) {
+                nextBtn.addEventListener('click', () => {
+                    this.onNextUnit();
+                });
+                nextBtn.focus();
+            }
+        }
     }
 
     /**
@@ -4094,6 +4119,7 @@ class AppController {
         this.ui.onAnswerSelected = this.handleAnswer.bind(this);
         this.ui.onHintRequested = this.getHint.bind(this);
         this.ui.onNextExercise = this.loadNextExercise.bind(this);
+        this.ui.onNextUnit = this.loadNextUnit.bind(this);
     }
 
     /**
@@ -4494,16 +4520,31 @@ class AppController {
         let explanation = '';
 
         if (isCorrect) {
-            const messages = [
-                '¡Muy bien! ✅',
-                '¡Perfecto! 🎉',
-                '¡Excelente! ⭐',
-                'Richtig! 👍',
-                'Korrekt! ✨'
-            ];
-            message = messages[Math.floor(Math.random() * messages.length)];
+            // Use custom feedback if available
+            if (exercise.feedbackCorrect) {
+                message = exercise.feedbackCorrect;
+            } else {
+                const messages = [
+                    '¡Muy bien! ✅',
+                    '¡Perfecto! 🎉',
+                    '¡Excelente! ⭐',
+                    'Richtig! 👍',
+                    'Korrekt! ✨'
+                ];
+                message = messages[Math.floor(Math.random() * messages.length)];
+            }
+
+            // Show explanation for correct answers too if available
+            if (exercise.explanation) {
+                explanation = exercise.explanation;
+            }
         } else {
-            message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            // Use custom feedback if available
+            if (exercise.feedbackIncorrect) {
+                message = `${exercise.feedbackIncorrect} Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+            } else {
+                message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            }
 
             // Generate explanation using German system
             if (this.germanSystem && typeof this.germanSystem.generateGermanOptimizedFeedback === 'function') {
@@ -4622,12 +4663,41 @@ class AppController {
     }
 
     /**
+     * Load next unit
+     */
+    async loadNextUnit() {
+        const nextUnit = this.state.currentUnit + 1;
+
+        if (nextUnit > 7) {
+            console.log('🎊 All units completed!');
+            return;
+        }
+
+        console.log(`📚 Loading next unit: ${nextUnit}`);
+
+        try {
+            // Reset stats for new unit
+            this.state.sessionStats = {
+                correct: 0,
+                total: 0,
+                startTime: Date.now()
+            };
+
+            // Load next unit
+            await this.loadUnit(nextUnit);
+        } catch (error) {
+            console.error(`❌ Error loading unit ${nextUnit}:`, error);
+            this.ui.showError(`Fehler beim Laden von Lektion ${nextUnit}. Bitte Seite neu laden.`);
+        }
+    }
+
+    /**
      * Show unit completion
      */
     showUnitCompletion() {
         console.log('🎉 Unit completed!');
 
-        this.ui.showCompletion(this.state.sessionStats);
+        this.ui.showCompletion(this.state.sessionStats, this.state.currentUnit, 7);
 
         // Save progress
         this.saveProgress();
