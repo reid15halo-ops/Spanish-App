@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spanish Learning App - Zero Friction (Standalone)</title>
+    <title>Spanish Learning App - Demo (Improved)</title>
     <meta name="description" content="Spanisch lernen für deutsche Muttersprachler - Fokussiert, minimalistisch, effektiv">
 
     <style>
@@ -855,18 +855,24 @@
     </div>
 
     <!-- ====================================================================
-         ALL JAVASCRIPT INLINE - STANDALONE VERSION
-         No external files needed! Just open this file in your browser.
+         DEMO VERSION - IMPROVED EXERCISES & FEEDBACK
+         
+         ✨ NEW IN THIS VERSION:
+         - Text input exercises (harder than multiple choice!)
+         - Consistent multiple choice options
+         - Better German-optimized feedback
+         - Context-specific error messages
+         
          ==================================================================== -->
     
     <script>
     'use strict';
     
-    console.log('✅ Spanish Learning App - Zero Friction UI (Standalone Version)');
-    console.log('📦 All JavaScript embedded inline - no external files needed!');
+    console.log('✅ Spanish Learning App - Demo (IMPROVED VERSION)');
+    console.log('✨ NEW: Text input exercises + Better feedback!');
     
     // ====================================================================
-    // MOCK PHASE 1 CONTROLLER
+    // MOCK PHASE 1 CONTROLLER (IMPROVED)
     // ====================================================================
 /**
  * Mock Phase1Controller for UI Testing
@@ -979,28 +985,23 @@ class Phase1Controller {
      */
     generateMockExercises() {
         return [
-            // SER Exercises
+            // SER Exercises - TEXT INPUT (schwieriger!)
             {
                 id: 'mock_ser_1',
-                type: 'conjugation',
+                type: 'translation',
                 concept: 'ser-conjugation-yo',
                 difficulty: 1,
-                question: 'Konjugiere SER für "yo" (ich)',
+                question: 'Konjugiere SER für "yo" (ich). Schreibe nur das konjugierte Verb.',
                 correctAnswer: 'soy',
                 german: 'ich bin',
-                germanBridge: '💡 Im Deutschen: "ich bin" → auf Spanisch: "yo soy"',
-                options: [
-                    { spanish: 'soy', german: '(ich bin)', value: 'soy' },
-                    { spanish: 'estoy', german: '(ich stehe)', value: 'estoy' },
-                    { spanish: 'tengo', german: '(ich habe)', value: 'tengo' }
-                ],
+                germanBridge: '💡 Im Deutschen: "ich bin" → auf Spanisch: "yo ___"',
                 hints: [
-                    'Denk an die DOCTOR-Regel für SER!',
-                    'SER wird für dauerhafte Eigenschaften verwendet.',
-                    'Die richtige Form für "yo" ist "soy".'
+                    'Denk an die DOCTOR-Regel! SER für dauerhafte Eigenschaften.',
+                    'SER ist unregelmäßig. Die Form für "yo" endet auf -oy.',
+                    'Die richtige Form ist: <strong>soy</strong>'
                 ],
                 explanation: `
-                    <p><strong>SER</strong> wird verwendet für:</p>
+                    <p><strong>SER</strong> wird verwendet für dauerhafte Eigenschaften (DOCTOR-Regel):</p>
                     <ul>
                         <li><strong>D</strong>escription (Beschreibung)</li>
                         <li><strong>O</strong>ccupation (Beruf)</li>
@@ -1010,49 +1011,50 @@ class Phase1Controller {
                         <li><strong>R</strong>elationship (Beziehung)</li>
                     </ul>
                     <p>Die Konjugation für "yo" ist: <strong>soy</strong></p>
-                `
+                `,
+                feedbackCorrect: 'Perfekt! Die yo-Form von SER ist "soy".',
+                feedbackIncorrect: 'Nicht ganz. Die yo-Form von SER ist unregelmäßig und endet auf -oy.'
             },
             {
                 id: 'mock_ser_2',
-                type: 'conjugation',
+                type: 'translation',
                 concept: 'ser-conjugation-tu',
                 difficulty: 2,
-                question: 'Konjugiere SER für "tú" (du)',
+                question: 'Konjugiere SER für "tú" (du). Schreibe nur das konjugierte Verb.',
                 correctAnswer: 'eres',
                 german: 'du bist',
-                germanBridge: '💡 Im Deutschen: "du bist" → auf Spanisch: "tú eres"',
-                options: [
-                    { spanish: 'eres', german: '(du bist)', value: 'eres' },
-                    { spanish: 'estás', german: '(du stehst)', value: 'estas' },
-                    { spanish: 'tienes', german: '(du hast)', value: 'tienes' }
-                ],
+                germanBridge: '💡 Im Deutschen: "du bist" → auf Spanisch: "tú ___"',
                 hints: [
-                    'Die zweite Person Singular von SER!',
-                    'SER für dauerhafte Eigenschaften.',
-                    'Die richtige Form für "tú" ist "eres".'
+                    'Die zweite Person Singular von SER ist unregelmäßig.',
+                    'SER für dauerhafte Eigenschaften. Die Form beginnt mit "e".',
+                    'Die richtige Form ist: <strong>eres</strong>'
                 ],
-                explanation: '<p>Die Konjugation für "tú" ist: <strong>eres</strong></p>'
+                explanation: '<p>Die Konjugation für "tú" ist: <strong>eres</strong></p><p>SER ist unregelmäßig: yo soy, tú eres, él/ella es...</p>',
+                feedbackCorrect: 'Excelente! Die tú-Form von SER ist "eres".',
+                feedbackIncorrect: 'Nicht ganz. Die tú-Form von SER ist unregelmäßig: "eres".'
             },
             {
                 id: 'mock_ser_3',
                 type: 'multiple-choice',
                 concept: 'ser-identity',
                 difficulty: 3,
-                question: 'Wie sagt man "Ich bin Student" auf Spanisch?',
-                correctAnswer: 'Yo soy estudiante',
+                question: 'Vervollständige: "Yo ___ estudiante" (Ich bin Student)',
+                correctAnswer: 'soy',
                 german: 'Ich bin Student',
-                germanBridge: '💡 Beruf/Identität = SER (dauerhafte Eigenschaft)',
+                germanBridge: '⚠️ Häufiger Fehler! Beruf/Identität = SER (nicht ESTAR)',
                 options: [
-                    { spanish: 'Yo soy estudiante', german: '(ich bin Student)', value: 'Yo soy estudiante' },
-                    { spanish: 'Yo estoy estudiante', german: '(falsch)', value: 'Yo estoy estudiante' },
-                    { spanish: 'Yo tengo estudiante', german: '(falsch)', value: 'Yo tengo estudiante' }
+                    { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
+                    { spanish: 'estoy', german: '(bin - vorübergehend)', value: 'estoy' },
+                    { spanish: 'tengo', german: '(habe)', value: 'tengo' }
                 ],
                 hints: [
-                    'Beruf/Identität verwendet SER!',
-                    'DOCTOR Regel: O = Occupation',
-                    'Die richtige Antwort ist "Yo soy estudiante".'
+                    'Beruf und Identität sind dauerhafte Eigenschaften.',
+                    'DOCTOR Regel: O = Occupation → Verwende SER!',
+                    'Die richtige Antwort ist: <strong>soy</strong> (Yo soy estudiante)'
                 ],
-                explanation: '<p>Bei <strong>Berufen und Identität</strong> verwendet man immer <strong>SER</strong>.</p>'
+                explanation: '<p><strong>Häufiger Fehler für Deutsche:</strong></p><p>Bei <strong>Berufen und Identität</strong> verwendet man immer <strong>SER</strong>, weil das eine dauerhafte Eigenschaft ist.</p><p>✅ Yo <strong>soy</strong> estudiante (richtig)</p><p>❌ Yo estoy estudiante (falsch)</p>',
+                feedbackCorrect: '¡Perfecto! Berufe verwendet man mit SER.',
+                feedbackIncorrect: 'Beruf ist eine dauerhafte Eigenschaft. Im Deutschen sagen wir "ich bin Student", im Spanischen mit SER: "soy estudiante".'
             },
 
             // ESTAR Exercises
@@ -1296,7 +1298,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 
     // ====================================================================
-    // MOCK GERMAN-SPANISH LEARNING SYSTEM
+    // MOCK GERMAN-SPANISH LEARNING SYSTEM (IMPROVED FEEDBACK)
     // ====================================================================
 /**
  * Mock GermanSpanishLearningSystem
@@ -1318,31 +1320,65 @@ class GermanSpanishLearningSystem {
 
     generateGermanOptimizedFeedback(exercise, userAnswer, isCorrect) {
         if (isCorrect) {
+            // Use custom feedback if available
+            if (exercise.feedbackCorrect) {
+                return {
+                    message: exercise.feedbackCorrect,
+                    explanation: ''
+                };
+            }
+
             return {
                 message: '¡Muy bien! 🎉',
                 explanation: ''
             };
         }
 
-        // Generate German-specific feedback
-        let explanation = '<p>Das war leider nicht richtig.</p>';
+        // Use custom feedback if available
+        if (exercise.feedbackIncorrect) {
+            return {
+                message: `${exercise.feedbackIncorrect} Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`,
+                explanation: exercise.explanation || ''
+            };
+        }
+
+        // Generate context-specific German-optimized feedback
+        let message = `Nicht ganz richtig. Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+        let explanation = '';
 
         if (exercise.concept && exercise.concept.includes('ser-estar')) {
-            explanation += `
-                <p><strong>Häufiger Fehler für Deutsche:</strong></p>
-                <p>Im Deutschen gibt es nur "sein", im Spanischen aber SER und ESTAR.</p>
+            message = '⚠️ Häufiger Fehler bei SER/ESTAR!';
+            explanation = `
+                <p><strong>Für Deutsche besonders schwierig:</strong></p>
+                <p>Im Deutschen gibt es nur ein Wort: <strong>"sein"</strong></p>
+                <p>Im Spanischen gibt es zwei: <strong>SER</strong> (dauerhaft) und <strong>ESTAR</strong> (vorübergehend)</p>
+                <p>Die richtige Antwort hier ist: <strong>${exercise.correctAnswer}</strong></p>
             `;
-        } else if (exercise.concept && exercise.concept.includes('tener-age')) {
-            explanation += `
+        } else if (exercise.concept && exercise.concept.includes('ser') && exercise.concept.includes('conjugation')) {
+            message = 'Die SER-Konjugation ist unregelmäßig.';
+            explanation = `
+                <p><strong>SER</strong> ist eines der wichtigsten, aber auch unregelmäßigsten Verben!</p>
+                <p>Die richtige Form ist: <strong>${exercise.correctAnswer}</strong></p>
+            `;
+        } else if (exercise.concept && exercise.concept.includes('estar') && exercise.concept.includes('conjugation')) {
+            message = 'Die ESTAR-Konjugation ist unregelmäßig.';
+            explanation = `
+                <p><strong>ESTAR</strong> ist unregelmäßig - achte auf die Akzente!</p>
+                <p>Die richtige Form ist: <strong>${exercise.correctAnswer}</strong></p>
+            `;
+        } else if (exercise.concept && exercise.concept.includes('tener')) {
+            message = '⚠️ Achtung: TENER, nicht SER!';
+            explanation = `
                 <p><strong>Häufiger Fehler für Deutsche:</strong></p>
                 <p>🇩🇪 Deutsch: "Ich <strong>bin</strong> 25 Jahre alt"</p>
-                <p>🇪🇸 Spanisch: "Yo <strong>tengo</strong> 25 años"</p>
+                <p>🇪🇸 Spanisch: "Yo <strong>tengo</strong> 25 años" (wörtlich: Ich <em>habe</em> 25 Jahre)</p>
+                <p>Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong></p>
             `;
         }
 
         return {
-            message: `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`,
-            explanation: explanation
+            message: message,
+            explanation: explanation || exercise.explanation || ''
         };
     }
 
@@ -1960,7 +1996,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 
     // ====================================================================
-    // APP CONTROLLER (MODIFIED FOR STANDALONE)
+    // APP CONTROLLER (MODIFIED FOR DEMO)
     // ====================================================================
 /**
  * App Controller - Integration Layer
@@ -2102,16 +2138,34 @@ class AppController {
 
     /**
      * Load unit data from file
+     * MODIFIED: Use mock exercises directly if JSON files not available
      */
     async loadUnitData(unitNumber) {
-        // MODIFIED: Use mock exercises directly instead of loading JSON
+        // MODIFIED FOR DEMO: Use mock exercises directly
         console.log('📚 Using mock exercises from Phase1Controller');
         
         // Return mock exercises wrapped in unit structure
         return {
             unitNumber: unitNumber,
+            unitName: this.getUnitName(unitNumber),
             exercises: this.phase1.exercises || []
         };
+    }
+
+    /**
+     * Get unit name by number
+     */
+    getUnitName(unitNumber) {
+        const unitNames = {
+            1: 'Pronomen',
+            2: 'SER',
+            3: 'ESTAR',
+            4: 'SER/ESTAR Kontrast',
+            5: 'TENER',
+            6: 'Vokabular',
+            7: 'Integration'
+        };
+        return unitNames[unitNumber] || `Unit ${unitNumber}`;
     }
 
     /**
@@ -2572,7 +2626,7 @@ if (typeof module !== 'undefined' && module.exports) {
     // APP INITIALIZATION
     // ====================================================================
     document.addEventListener('DOMContentLoaded', () => {
-        console.log('🚀 Initializing Spanish Learning App...');
+        console.log('🚀 Initializing Spanish Learning App (Demo)...');
 
         // Initialize Sidebar
         initSidebar();
@@ -2596,7 +2650,13 @@ if (typeof module !== 'undefined' && module.exports) {
 
             // Start the app
             window.appController.initialize().then(() => {
-                console.log('🎉 App successfully initialized!');
+                console.log('🎉 Demo successfully initialized!');
+                console.log('');
+                console.log('✨ NEW in this version:');
+                console.log('   - Text input exercises (type your answer!)');
+                console.log('   - Better feedback messages');
+                console.log('   - Consistent multiple choice options');
+                console.log('');
                 console.log('💡 Tip: Open Browser Console (F12) to see debug messages');
             }).catch(error => {
                 console.error('❌ Initialization error:', error);
@@ -2614,8 +2674,14 @@ if (typeof module !== 'undefined' && module.exports) {
 
     <!--
     ╔═══════════════════════════════════════════════════════════════════════╗
-    ║  SPANISH LEARNING APP - STANDALONE VERSION                             ║
-    ║  Zero-Friction UI with Mock Controllers                                ║
+    ║  SPANISH LEARNING APP - DEMO (IMPROVED)                                ║
+    ║  Zero-Friction UI with Enhanced Mock Exercises                         ║
+    ║                                                                         ║
+    ║  ✨ NEW:                                                                ║
+    ║  - Text input exercises (more challenging!)                            ║
+    ║  - Better German-optimized feedback                                    ║
+    ║  - Consistent multiple choice format                                   ║
+    ║  - Context-specific error messages                                     ║
     ║                                                                         ║
     ║  ✅ No server required - just open this HTML file                      ║
     ║  ✅ All JavaScript inline - no external dependencies                   ║

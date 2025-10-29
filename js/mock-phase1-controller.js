@@ -109,28 +109,23 @@ class Phase1Controller {
      */
     generateMockExercises() {
         return [
-            // SER Exercises
+            // SER Exercises - TEXT INPUT (schwieriger!)
             {
                 id: 'mock_ser_1',
-                type: 'conjugation',
+                type: 'translation',
                 concept: 'ser-conjugation-yo',
                 difficulty: 1,
-                question: 'Konjugiere SER für "yo" (ich)',
+                question: 'Konjugiere SER für "yo" (ich). Schreibe nur das konjugierte Verb.',
                 correctAnswer: 'soy',
                 german: 'ich bin',
-                germanBridge: '💡 Im Deutschen: "ich bin" → auf Spanisch: "yo soy"',
-                options: [
-                    { spanish: 'soy', german: '(ich bin)', value: 'soy' },
-                    { spanish: 'estoy', german: '(ich stehe)', value: 'estoy' },
-                    { spanish: 'tengo', german: '(ich habe)', value: 'tengo' }
-                ],
+                germanBridge: '💡 Im Deutschen: "ich bin" → auf Spanisch: "yo ___"',
                 hints: [
-                    'Denk an die DOCTOR-Regel für SER!',
-                    'SER wird für dauerhafte Eigenschaften verwendet.',
-                    'Die richtige Form für "yo" ist "soy".'
+                    'Denk an die DOCTOR-Regel! SER für dauerhafte Eigenschaften.',
+                    'SER ist unregelmäßig. Die Form für "yo" endet auf -oy.',
+                    'Die richtige Form ist: <strong>soy</strong>'
                 ],
                 explanation: `
-                    <p><strong>SER</strong> wird verwendet für:</p>
+                    <p><strong>SER</strong> wird verwendet für dauerhafte Eigenschaften (DOCTOR-Regel):</p>
                     <ul>
                         <li><strong>D</strong>escription (Beschreibung)</li>
                         <li><strong>O</strong>ccupation (Beruf)</li>
@@ -140,49 +135,50 @@ class Phase1Controller {
                         <li><strong>R</strong>elationship (Beziehung)</li>
                     </ul>
                     <p>Die Konjugation für "yo" ist: <strong>soy</strong></p>
-                `
+                `,
+                feedbackCorrect: 'Perfekt! Die yo-Form von SER ist "soy".',
+                feedbackIncorrect: 'Nicht ganz. Die yo-Form von SER ist unregelmäßig und endet auf -oy.'
             },
             {
                 id: 'mock_ser_2',
-                type: 'conjugation',
+                type: 'translation',
                 concept: 'ser-conjugation-tu',
                 difficulty: 2,
-                question: 'Konjugiere SER für "tú" (du)',
+                question: 'Konjugiere SER für "tú" (du). Schreibe nur das konjugierte Verb.',
                 correctAnswer: 'eres',
                 german: 'du bist',
-                germanBridge: '💡 Im Deutschen: "du bist" → auf Spanisch: "tú eres"',
-                options: [
-                    { spanish: 'eres', german: '(du bist)', value: 'eres' },
-                    { spanish: 'estás', german: '(du stehst)', value: 'estas' },
-                    { spanish: 'tienes', german: '(du hast)', value: 'tienes' }
-                ],
+                germanBridge: '💡 Im Deutschen: "du bist" → auf Spanisch: "tú ___"',
                 hints: [
-                    'Die zweite Person Singular von SER!',
-                    'SER für dauerhafte Eigenschaften.',
-                    'Die richtige Form für "tú" ist "eres".'
+                    'Die zweite Person Singular von SER ist unregelmäßig.',
+                    'SER für dauerhafte Eigenschaften. Die Form beginnt mit "e".',
+                    'Die richtige Form ist: <strong>eres</strong>'
                 ],
-                explanation: '<p>Die Konjugation für "tú" ist: <strong>eres</strong></p>'
+                explanation: '<p>Die Konjugation für "tú" ist: <strong>eres</strong></p><p>SER ist unregelmäßig: yo soy, tú eres, él/ella es...</p>',
+                feedbackCorrect: 'Excelente! Die tú-Form von SER ist "eres".',
+                feedbackIncorrect: 'Nicht ganz. Die tú-Form von SER ist unregelmäßig: "eres".'
             },
             {
                 id: 'mock_ser_3',
                 type: 'multiple-choice',
                 concept: 'ser-identity',
                 difficulty: 3,
-                question: 'Wie sagt man "Ich bin Student" auf Spanisch?',
-                correctAnswer: 'Yo soy estudiante',
+                question: 'Vervollständige: "Yo ___ estudiante" (Ich bin Student)',
+                correctAnswer: 'soy',
                 german: 'Ich bin Student',
-                germanBridge: '💡 Beruf/Identität = SER (dauerhafte Eigenschaft)',
+                germanBridge: '⚠️ Häufiger Fehler! Beruf/Identität = SER (nicht ESTAR)',
                 options: [
-                    { spanish: 'Yo soy estudiante', german: '(ich bin Student)', value: 'Yo soy estudiante' },
-                    { spanish: 'Yo estoy estudiante', german: '(falsch)', value: 'Yo estoy estudiante' },
-                    { spanish: 'Yo tengo estudiante', german: '(falsch)', value: 'Yo tengo estudiante' }
+                    { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
+                    { spanish: 'estoy', german: '(bin - vorübergehend)', value: 'estoy' },
+                    { spanish: 'tengo', german: '(habe)', value: 'tengo' }
                 ],
                 hints: [
-                    'Beruf/Identität verwendet SER!',
-                    'DOCTOR Regel: O = Occupation',
-                    'Die richtige Antwort ist "Yo soy estudiante".'
+                    'Beruf und Identität sind dauerhafte Eigenschaften.',
+                    'DOCTOR Regel: O = Occupation → Verwende SER!',
+                    'Die richtige Antwort ist: <strong>soy</strong> (Yo soy estudiante)'
                 ],
-                explanation: '<p>Bei <strong>Berufen und Identität</strong> verwendet man immer <strong>SER</strong>.</p>'
+                explanation: '<p><strong>Häufiger Fehler für Deutsche:</strong></p><p>Bei <strong>Berufen und Identität</strong> verwendet man immer <strong>SER</strong>, weil das eine dauerhafte Eigenschaft ist.</p><p>✅ Yo <strong>soy</strong> estudiante (richtig)</p><p>❌ Yo estoy estudiante (falsch)</p>',
+                feedbackCorrect: '¡Perfecto! Berufe verwendet man mit SER.',
+                feedbackIncorrect: 'Beruf ist eine dauerhafte Eigenschaft. Im Deutschen sagen wir "ich bin Student", im Spanischen mit SER: "soy estudiante".'
             },
 
             // ESTAR Exercises
