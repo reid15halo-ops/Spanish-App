@@ -1,325 +1,216 @@
-# ?? Spanish Learning App - Version 0.0
+# Spanish Learning App - Core Logic Module
 
-## ?? Production-Ready Package
+## √úbersicht
 
-**Status**: ? Optimiert f¸r Deployment  
-**Version**: 0.0 (Foundation Release)  
-**Grˆﬂe**: ~48.9 MB (optimiert)  
-**Build**: 16. Oktober 2025
+Dies ist das Kern-Logik-Modul der Spanish Learning App. Alle UI-Elemente, Dashboards und Webapplikations-Komponenten wurden entfernt. Das Modul enth√§lt nur die reine Lehr- und Lernlogik.
 
----
+## Status
 
-## ? QUICK START
+**Version**: Logic-Only (Post-UI-Removal)
+**Fokus**: Lehrmethoden-Logik
+**UI**: Keine - wird sp√§ter hinzugef√ºgt
 
-### Windows-User (Einfachste Methode) ?
+## Struktur
+
+### Core JavaScript Modules (`js/`)
+
+#### Konjugationssystem
+- **conjugator.js** - Spanische Verb-Konjugations-Engine
+- **verb-pack-system.js** - Thematische Verb-Gruppierung
+- **periphrastic-system.js** - Zusammengesetzte Zeiten (ir a + infinitiv, etc.)
+- **periphrastic-final-validation.js** - Validierung periphrastischer Konstruktionen
+
+#### √úbungssystem
+- **zeiten-exercises.js** - Zeitformen-√úbungsgenerierung
+- **zeiten-exercise-validator.js** - Validierung von Zeitformen-√úbungen
+- **zeiten-validation.js** - Generische Validierungslogik f√ºr Zeiten
+- **zeiten-data.js** - Zeitformen-Datendefinitionen und Strukturen
+
+#### Spaced Repetition System (SRS)
+- **srs.js** - Leitner-System Implementierung
+- **worker-srs.js** - Web Worker f√ºr SRS-Berechnungen
+
+#### Analyse- und Erkl√§rsystem
+- **sentence-analyzer.js** - Satzstruktur-Analyse (Wortarten, Syntax)
+- **explain.js** - Fehlererkl√§rungs-Logik mit Grammatikhinweisen
+
+#### Datenverarbeitung
+- **csv-importer.js** - CSV-Import f√ºr Vokabeln und Verben
+- **normalize-es.js** - Spanische Text-Normalisierung (Akzente, Diakritika)
+
+#### Diagnose und Tests
+- **diagnostic-test.js** - Diagnose-System zur Schw√§chenanalyse
+
+#### Utilities (`js/utils/`)
+- **a11y-perf-hardening.js** - Accessibility und Performance Tools
+- **performance.js** - Performance-Monitoring
+- **ascii.js** - ASCII-Normalisierung f√ºr deutsche Texte
+
+### Daten (`data/`)
+- Vokabeldatenbank
+- Verbdatenbank
+- √úbungsdefinitionen
+
+### Tests (`test/`)
+- Unit-Tests f√ºr Kern-Module
+- `test-periphrastic.js` - Tests f√ºr periphrastisches System
+
+## Lehrmethoden-Logik
+
+### 1. Spaced Repetition System (SRS)
+Implementiert das Leitner-System:
+- 5 Boxen f√ºr Wiederholungsintervalle
+- Automatische Bef√∂rderung/Degradierung basierend auf Antworten
+- Optimierte Wiederholungs-Zeitpunkte
+
+### 2. Konjugationssystem
+Vollst√§ndige spanische Verb-Konjugation:
+- Alle Zeiten (Pr√§sens, Pr√§teritum, Imperfekt, Futur, etc.)
+- Regelm√§√üige und unregelm√§√üige Verben
+- Periphrastische Konstruktionen
+- Kontextuelle Validierung
+
+### 3. √úbungsgenerierung
+Intelligente √úbungserstellung:
+- Multiple-Choice mit intelligenten Distraktoren
+- Typing-√úbungen mit Fuzzy-Matching
+- Matching-√úbungen
+- Satzanalyse-√úbungen
+
+### 4. Fehleranalyse und Erkl√§rungen
+- Levenshtein-Distanz f√ºr Tippfehler-Toleranz
+- Grammatikalische Fehleranalyse
+- Kontextuelle Hinweise
+- Schw√§chendiagnose
+
+### 5. Satzanalyse
+- Wortarten-Erkennung
+- Syntaxanalyse
+- Zeitformen-Identifikation
+- Dependency-Parsing
+
+### 6. Validierungssystem
+- Akzent-tolerante Validierung f√ºr Spanisch
+- ASCII-Normalisierung f√ºr Deutsch
+- Fuzzy-Matching mit konfigurierbarer Toleranz
+- Multi-Level-Feedback
+
+## Verwendung
+
+Diese Module sind als JavaScript-Bibliotheken konzipiert und k√∂nnen in verschiedene Kontexte integriert werden:
+
+### Node.js
+```javascript
+const { SpanishConjugator } = require('./js/conjugator.js');
+const { LeitnerSystem } = require('./js/srs.js');
+const { SentenceAnalyzer } = require('./js/sentence-analyzer.js');
 ```
-1. Doppelklick auf: launch.bat
-2. Browser w‰hlen (Chrome empfohlen)
-3. App startet automatisch!
-```
-
-### Alle Plattformen
-```
-1. Browser ˆffnen
-2. index.html laden
-3. F¸r Offline-Modus: Lokalen Server starten
-```
-
----
-
-## ?? FEATURES
-
-### Lernsystem
-- ? 4 ‹bungstypen (Multiple Choice, Typing, Sentence, Match)
-- ? 150+ Vokabeln
-- ? 80+ Verben
-- ? SRS-System (Spaced Repetition)
-- ? Konjugations-Engine (alle spanischen Zeiten)
-
-### Erweiterte Features
-- ? Fehler-Erkl‰rungen mit Grammatik-Hinweisen
-- ? Satzanalyse (Wortarten erkennen)
-- ? Verb-Packs (thematische Gruppierung)
-- ? Periphrasen-System (zusammengesetzte Zeiten)
-- ? Zeiten-System (Temporalstrukturen)
-- ? Timeline-View (zeitliche ‹bersicht)
-- ? Diagnose-System (Schw‰chen-Analyse)
-- ? CSV-Import/Export
-
-### UI/UX
-- ? Dark Mode
-- ? Responsive Design
-- ? Accessibility (WCAG 2.1 AA)
-- ? Offline-f‰hig (PWA)
-- ? Windows-Launcher
-
----
-
-## ?? DOKUMENTATION
-
-### F¸r End-User
-- **QUICK-START.md** - Schnellstart-Anleitung
-- **RELEASE_NOTES_v0.0.md** - Vollst‰ndige Release-Notes
-- **LAUNCHER-WINDOWS-README.md** - Windows-Launcher Anleitung
-
-### F¸r Features
-- **FEHLERERKLAER-SYSTEM-README.md** - Fehler-Erkl‰rungen
-- **SATZANALYSE-SYSTEM-README.md** - Satzanalyse
-- **VERB-PACK-SYSTEM-README.md** - Verb-Packs
-- **PERIPHRASTIC-SYSTEM-README.md** - Periphrasen
-- **ZEITEN-WORKBENCH-README.md** - Zeiten-System
-- **TIMELINE-VIEW-README.md** - Timeline
-- **DIAGNOSTIC-TEST-README.md** - Diagnose
-- **CSV-IMPORT-EXPORT-README.md** - CSV-Funktionen
-
----
-
-## ??? QUALITƒTSSICHERUNG
-
-### No-Gamification ?
-- Keine XP, Level, Streaks
-- Fokus auf intrinsische Motivation
-- Automatische Pr¸fung implementiert
-
-### ASCII-Only (Deutsche Texte) ?
-- Umlaute normalisiert (‰?ae, ˆ?oe, ¸?ue, ﬂ?ss)
-- Spanische Diakritika erhalten (·, È, Ì, Û, ˙, Ò)
-- Automatische Validierung
-
-### Accessibility ?
-- WCAG 2.1 AA konform
-- Score: 95/100
-- Screenreader-kompatibel
-- Keyboard-Navigation
-
-### Performance ?
-- TTI: ~1.85s (Ziel: < 2.5s)
-- Bundle: ~48.9 MB
-- Cache Hit Rate: 90%+
-- Offline-ready: 100%
-
----
-
-## ?? INSTALLATION
-
-### Option 1: Windows Launcher (Empfohlen)
-```
-1. launch.bat doppelklicken
-2. Browser w‰hlen
-3. Fertig!
-```
-
-### Option 2: Manuell
-```
-1. Browser ˆffnen
-2. Datei ? ÷ffnen
-3. index.html ausw‰hlen
-```
-
-### Option 3: Lokaler Server
-```
-# Python
-python -m http.server 8000
-
-# Dann Browser: http://localhost:8000
-```
-
-### Option 4: PWA Installation
-```
-1. App im Browser ˆffnen
-2. Men¸ ? "App installieren"
-3. Icon auf Desktop erscheint
-```
-
----
-
-## ?? WARTUNG
-
-### Vokabeln hinzuf¸gen
-**Datei**: `data/items.json`
-```json
-{
-  "id": "new-item",
-  "es": "palabra",
-  "de": "wort",
-  "type": "noun",
-  "difficulty": 1,
-  "tags": ["basic"]
-}
-```
-
-### Verben hinzuf¸gen
-**Datei**: `data/verbs.json`
-```json
-{
-  "infinitivo": "hablar",
-  "traduccion": "sprechen",
-  "gerundio": "hablando",
-  "participio": "hablado"
-}
-```
-
----
-
-## ?? DEPLOYMENT
-
-### F¸r Web-Server
-```bash
-1. Alle Dateien auf Server hochladen
-2. HTTPS konfigurieren (f¸r Service Worker)
-3. URL teilen
-```
-
-### F¸r GitHub Pages
-```bash
-git push origin master
-# Automatisch deployed
-```
-
-### F¸r Netlify/Vercel
-```
-1. Repository verbinden
-2. Automatisches Deployment
-```
-
----
-
-## ?? SYSTEM-ANFORDERUNGEN
 
 ### Browser
-- Chrome 60+
-- Firefox 55+
-- Safari 12+
-- Edge 79+
-
-### Betriebssysteme
-- Windows 10/11
-- macOS 10.14+
-- Linux (alle g‰ngigen Distributionen)
-- iOS 12+
-- Android 8+
-
-### Optional
-- Python 3.8+ (f¸r lokalen Server)
-- Node.js 14+ (f¸r Development)
-
----
-
-## ?? TECHNISCHE DETAILS
-
-### Architektur
-- Frontend: Vanilla JavaScript (ES6+)
-- Storage: IndexedDB + localStorage
-- Caching: Service Worker
-- Build: Optimiert f¸r Production
-
-### Keine externen Dependencies
-- ? Keine npm-Pakete zur Runtime
-- ? Keine CDN-Abh‰ngigkeiten
-- ? Funktioniert komplett offline
-- ? Privacy-first Design
-
----
-
-## ?? PROBLEMBEHEBUNG
-
-### Service Worker funktioniert nicht
-**Problem**: Offline-Modus nicht verf¸gbar
-**Lˆsung**: Lokalen Server verwenden (HTTPS/localhost erforderlich)
-
-### Cache-Reset
-```javascript
-// Browser Console
-navigator.serviceWorker.getRegistrations().then(regs => {
-  regs.forEach(reg => reg.unregister());
-});
+```html
+<script src="js/conjugator.js"></script>
+<script src="js/srs.js"></script>
+<script src="js/sentence-analyzer.js"></script>
 ```
 
-### Browser-Kompatibilit‰t
-**Problem**: App funktioniert nicht
-**Lˆsung**: Browser aktualisieren (ES6+ erforderlich)
+### Als Modul
+```javascript
+import { SpanishConjugator } from './js/conjugator.js';
+import { LeitnerSystem } from './js/srs.js';
+```
+
+## API-Beispiele
+
+### Konjugation
+```javascript
+const conjugator = new SpanishConjugator();
+await conjugator.initialize();
+
+// Konjugiere ein Verb
+const result = conjugator.conjugate('hablar', 'presente', 'yo');
+// => 'hablo'
+
+// Analysiere eine Form
+const analysis = conjugator.analyze('habl√©');
+// => { infinitivo: 'hablar', tiempo: 'preterito', persona: 'yo' }
+```
+
+### SRS System
+```javascript
+const srs = new LeitnerSystem();
+
+// Item hinzuf√ºgen
+const item = {
+  spanish: 'hola',
+  german: 'hallo',
+  srsBox: 0,
+  nextReview: Date.now()
+};
+
+// Bef√∂rdern bei richtiger Antwort
+srs.promote(item);
+
+// Degradieren bei falscher Antwort
+srs.demote(item);
+
+// F√§llige Items abrufen
+const dueItems = srs.getPracticeQueue(allItems, 10);
+```
+
+### Satzanalyse
+```javascript
+const analyzer = new SentenceAnalyzer();
+
+const analysis = analyzer.analyze('Yo hablo espa√±ol');
+// => {
+//   words: [
+//     { text: 'Yo', type: 'pronoun', ... },
+//     { text: 'hablo', type: 'verb', tiempo: 'presente', ... },
+//     { text: 'espa√±ol', type: 'noun', ... }
+//   ],
+//   structure: { ... }
+// }
+```
+
+## N√§chste Schritte
+
+1. **UI-Layer hinzuf√ºgen**: Die Logik ist bereit, ein neues UI dar√ºber zu legen
+2. **API-Wrapper erstellen**: RESTful oder GraphQL API f√ºr externe Integration
+3. **Mobile Integration**: React Native oder Flutter Frontend
+4. **Desktop-App**: Electron-Wrapper
+5. **CLI-Tool**: Kommandozeilen-Interface f√ºr √úbungen
+
+## Dokumentation
+
+Detaillierte Dokumentation f√ºr spezifische Systeme:
+- **FEHLERERKLAER-SYSTEM-README.md** - Fehlererkl√§rungs-System
+- **SATZANALYSE-SYSTEM-README.md** - Satzanalyse
+- **VERB-PACK-SYSTEM-README.md** - Verb-Pack-System
+- **PERIPHRASTIC-SYSTEM-README.md** - Periphrastisches System
+- **DIAGNOSTIC-TEST-README.md** - Diagnose-System
+- **CSV-IMPORT-EXPORT-README.md** - Datenimport/-export
+- **ZEITEN-UEBUNGEN-README.md** - Zeitformen-√úbungen
+
+## Technische Details
+
+### Keine externen Dependencies
+- Vanilla JavaScript (ES6+)
+- Keine npm-Pakete erforderlich
+- Standalone-Module
+
+### Browser-Kompatibilit√§t
+- ES6+ erforderlich
+- IndexedDB f√ºr lokale Datenspeicherung (optional)
+- Web Workers f√ºr Performance (optional)
+
+### Node.js-Kompatibilit√§t
+- Node.js 14+ empfohlen
+- CommonJS und ES Modules unterst√ºtzt
+
+## Lizenz
+
+MIT License - Siehe Repository f√ºr Details
 
 ---
 
-## ?? CONTRIBUTING
-
-### Bug Reports
-- GitHub Issues: https://github.com/reid15halo-ops/Spanish-App/issues
-- Console-Output beif¸gen
-- Browser/OS/Version angeben
-
-### Feature Requests
-- GitHub Discussions verwenden
-- Use-Case beschreiben
-
----
-
-## ?? LIZENZ
-
-MIT License - Siehe Repository f¸r Details
-
----
-
-## ?? VERSION 0.0 HIGHLIGHTS
-
-### Kernfunktionalit‰t ?
-- Vollst‰ndiges Lernsystem
-- SRS-Integration
-- 4 ‹bungstypen
-- 230+ Lernelemente
-
-### Erweiterte Features ?
-- 8 Feature-Systeme implementiert
-- Konjugations-Engine komplett
-- Fehler-Erkl‰rungen mit KI
-- Timeline-View
-
-### Qualit‰t ?
-- No-Gamification enforced
-- ASCII-compliant
-- A11y Score: 95/100
-- Performance: TTI < 2s
-
-### User-Experience ?
-- Windows-Launcher
-- Dark Mode
-- Offline-PWA
-- Responsive
-
----
-
-## ?? ROADMAP
-
-### v0.1 (Geplant)
-- Audio-Support (TTS)
-- Erweiterte Statistiken
-- Export-Funktionen
-- Theme-Customization
-
-### v0.2 (Future)
-- Cloud-Sync (optional)
-- Mobile-Apps (native)
-- Community-Features
-- Content-Packs
-
----
-
-## ?? SUPPORT
-
-### Dokumentation
-- Alle README-Dateien im Repository
-- Inline-Code-Kommentare
-- RELEASE_NOTES_v0.0.md
-
-### Community
-- GitHub Discussions
-- Issue-Tracker
-
----
-
-**VERSION**: 0.0 (Foundation Release)  
-**STATUS**: ? Production-Ready  
-**OPTIMIERT**: Ja (74 Development-Files entfernt)  
-**DEPLOYMENT**: Bereit
-
-Viel Spaﬂ beim Spanisch lernen! ????????
+**Hinweis**: Dies ist ein reines Logik-Modul ohne UI. F√ºr eine vollst√§ndige Anwendung muss ein UI-Layer hinzugef√ºgt werden.
