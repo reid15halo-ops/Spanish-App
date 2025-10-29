@@ -1,0 +1,796 @@
+[
+  {
+    "infinitivo": "ser",
+    "clase": "irregular",
+    "frecuencia": 1,
+    "tipo": "estar/ser",
+    "verbPack": "essential-irregular",
+    "packPriority": 1,
+    "irregularidades": {
+      "presente": {
+        "yo": "soy",
+        "tu": "eres", 
+        "el": "es",
+        "nosotros": "somos",
+        "vosotros": "sois",
+        "ellos": "son"
+      },
+      "preterito": {
+        "yo": "fui",
+        "tu": "fuiste",
+        "el": "fue", 
+        "nosotros": "fuimos",
+        "vosotros": "fuisteis",
+        "ellos": "fueron"
+      },
+      "imperfecto": {
+        "yo": "era",
+        "tu": "eras",
+        "el": "era",
+        "nosotros": "eramos",
+        "vosotros": "erais", 
+        "ellos": "eran"
+      },
+      "futuro": {
+        "yo": "sere",
+        "tu": "seras",
+        "el": "sera",
+        "nosotros": "seremos",
+        "vosotros": "sereis",
+        "ellos": "seran"
+      },
+      "condicional": {
+        "yo": "seria",
+        "tu": "serias",
+        "el": "seria",
+        "nosotros": "seriamos",
+        "vosotros": "seriais",
+        "ellos": "serian"
+      },
+      "imperativo": {
+        "tu": "se",
+        "el": "sea",
+        "nosotros": "seamos",
+        "vosotros": "sed",
+        "ellos": "sean"
+      }
+    },
+    "participio": "sido",
+    "gerundio": "siendo",
+    "raiz": "s-",
+    "traduccion": "sein"
+  },
+  {
+    "infinitivo": "estar",
+    "clase": "irregular",
+    "frecuencia": 1,
+    "tipo": "estar/ser",
+    "verbPack": "essential-irregular",
+    "packPriority": 2,
+    "irregularidades": {
+      "presente": {
+        "yo": "estoy",
+        "tu": "estas",
+        "el": "esta",
+        "nosotros": "estamos",
+        "vosotros": "estais", 
+        "ellos": "estan"
+      },
+      "preterito": {
+        "yo": "estuve",
+        "tu": "estuviste",
+        "el": "estuvo",
+        "nosotros": "estuvimos",
+        "vosotros": "estuvisteis",
+        "ellos": "estuvieron"
+      },
+      "imperativo": {
+        "tu": "esta",
+        "el": "este",
+        "nosotros": "estemos",
+        "vosotros": "estad",
+        "ellos": "esten"
+      }
+    },
+    "participio": "estado",
+    "gerundio": "estando",
+    "raiz": "est-",
+    "traduccion": "sich befinden"
+  },
+  {
+    "infinitivo": "haber",
+    "clase": "irregular",
+    "frecuencia": 1,
+    "tipo": "auxiliar",
+    "verbPack": "essential-irregular",
+    "packPriority": 3,
+    "irregularidades": {
+      "presente": {
+        "yo": "he",
+        "tu": "has",
+        "el": "ha",
+        "nosotros": "hemos",
+        "vosotros": "habeis",
+        "ellos": "han"
+      },
+      "preterito": {
+        "yo": "hube",
+        "tu": "hubiste",
+        "el": "hubo",
+        "nosotros": "hubimos",
+        "vosotros": "hubisteis",
+        "ellos": "hubieron"
+      },
+      "imperfecto": {
+        "yo": "habia",
+        "tu": "habias",
+        "el": "habia",
+        "nosotros": "habiamos",
+        "vosotros": "habiais",
+        "ellos": "habian"
+      },
+      "futuro": {
+        "yo": "habre",
+        "tu": "habras",
+        "el": "habra",
+        "nosotros": "habremos",
+        "vosotros": "habreis",
+        "ellos": "habran"
+      },
+      "condicional": {
+        "yo": "habria",
+        "tu": "habrias",
+        "el": "habria",
+        "nosotros": "habriamos",
+        "vosotros": "habriais",
+        "ellos": "habrian"
+      }
+    },
+    "participio": "habido",
+    "gerundio": "habiendo",
+    "raiz": "hab-",
+    "traduccion": "haben (Hilfsverb)"
+  },
+  {
+    "infinitivo": "ir",
+    "clase": "irregular",
+    "frecuencia": 1,
+    "tipo": "movimiento",
+    "verbPack": "essential-irregular",
+    "packPriority": 4,
+    "irregularidades": {
+      "presente": {
+        "yo": "voy",
+        "tu": "vas",
+        "el": "va",
+        "nosotros": "vamos",
+        "vosotros": "vais",
+        "ellos": "van"
+      },
+      "preterito": {
+        "yo": "fui",
+        "tu": "fuiste", 
+        "el": "fue",
+        "nosotros": "fuimos",
+        "vosotros": "fuisteis",
+        "ellos": "fueron"
+      },
+      "imperfecto": {
+        "yo": "iba",
+        "tu": "ibas",
+        "el": "iba",
+        "nosotros": "ibamos",
+        "vosotros": "ibais",
+        "ellos": "iban"
+      },
+      "imperativo": {
+        "tu": "ve",
+        "el": "vaya",
+        "nosotros": "vayamos",
+        "vosotros": "id",
+        "ellos": "vayan"
+      }
+    },
+    "participio": "ido",
+    "gerundio": "yendo",
+    "raiz": "i-",
+    "traduccion": "gehen"
+  },
+  {
+    "infinitivo": "tener",
+    "clase": "irregular",
+    "frecuencia": 1,
+    "tipo": "posesion",
+    "verbPack": "essential-irregular",
+    "packPriority": 5,
+    "irregularidades": {
+      "presente": {
+        "yo": "tengo",
+        "tu": "tienes",
+        "el": "tiene",
+        "nosotros": "tenemos",
+        "vosotros": "teneis",
+        "ellos": "tienen"
+      },
+      "preterito": {
+        "yo": "tuve",
+        "tu": "tuviste",
+        "el": "tuvo", 
+        "nosotros": "tuvimos",
+        "vosotros": "tuvisteis",
+        "ellos": "tuvieron"
+      },
+      "futuro": {
+        "yo": "tendre",
+        "tu": "tendras",
+        "el": "tendra",
+        "nosotros": "tendremos",
+        "vosotros": "tendreis",
+        "ellos": "tendran"
+      },
+      "condicional": {
+        "yo": "tendria",
+        "tu": "tendrias", 
+        "el": "tendria",
+        "nosotros": "tendriamos",
+        "vosotros": "tendriais",
+        "ellos": "tendrian"
+      },
+      "imperativo": {
+        "tu": "ten",
+        "el": "tenga",
+        "nosotros": "tengamos",
+        "vosotros": "tened",
+        "ellos": "tengan"
+      }
+    },
+    "participio": "tenido",
+    "gerundio": "teniendo",
+    "raiz": "ten-",
+    "traduccion": "haben"
+  },
+  {
+    "infinitivo": "hacer",
+    "clase": "irregular",
+    "frecuencia": 1,
+    "tipo": "accion",
+    "verbPack": "essential-irregular",
+    "packPriority": 6,
+    "irregularidades": {
+      "presente": {
+        "yo": "hago",
+        "tu": "haces",
+        "el": "hace",
+        "nosotros": "hacemos", 
+        "vosotros": "haceis",
+        "ellos": "hacen"
+      },
+      "preterito": {
+        "yo": "hice",
+        "tu": "hiciste",
+        "el": "hizo",
+        "nosotros": "hicimos",
+        "vosotros": "hicisteis",
+        "ellos": "hicieron"
+      },
+      "futuro": {
+        "yo": "hare",
+        "tu": "haras",
+        "el": "hara",
+        "nosotros": "haremos",
+        "vosotros": "hareis",
+        "ellos": "haran"
+      },
+      "condicional": {
+        "yo": "haria",
+        "tu": "harias",
+        "el": "haria",
+        "nosotros": "hariamos",
+        "vosotros": "hariais",
+        "ellos": "harian"
+      },
+      "imperativo": {
+        "tu": "haz",
+        "el": "haga",
+        "nosotros": "hagamos",
+        "vosotros": "haced",
+        "ellos": "hagan"
+      }
+    },
+    "participio": "hecho",
+    "gerundio": "haciendo",
+    "raiz": "hac-",
+    "traduccion": "machen"
+  },
+  {
+    "infinitivo": "poder",
+    "clase": "o>ue",
+    "frecuencia": 1,
+    "tipo": "modal",
+    "verbPack": "essential-irregular",
+    "packPriority": 7,
+    "irregularidades": {
+      "presente": {
+        "yo": "puedo",
+        "tu": "puedes",
+        "el": "puede",
+        "nosotros": "podemos",
+        "vosotros": "podeis",
+        "ellos": "pueden"
+      },
+      "preterito": {
+        "yo": "pude",
+        "tu": "pudiste",
+        "el": "pudo",
+        "nosotros": "pudimos",
+        "vosotros": "pudisteis",
+        "ellos": "pudieron"
+      },
+      "futuro": {
+        "yo": "podre",
+        "tu": "podras",
+        "el": "podra",
+        "nosotros": "podremos",
+        "vosotros": "podreis",
+        "ellos": "podran"
+      },
+      "condicional": {
+        "yo": "podria",
+        "tu": "podrias",
+        "el": "podria",
+        "nosotros": "podriamos",
+        "vosotros": "podriais",
+        "ellos": "podrian"
+      }
+    },
+    "participio": "podido",
+    "gerundio": "pudiendo",
+    "raiz": "pod-",
+    "traduccion": "koennen"
+  },
+  {
+    "infinitivo": "poner",
+    "clase": "irregular",
+    "frecuencia": 2,
+    "tipo": "accion",
+    "verbPack": "essential-irregular",
+    "packPriority": 8,
+    "irregularidades": {
+      "presente": {
+        "yo": "pongo",
+        "tu": "pones",
+        "el": "pone",
+        "nosotros": "ponemos",
+        "vosotros": "poneis",
+        "ellos": "ponen"
+      },
+      "preterito": {
+        "yo": "puse",
+        "tu": "pusiste",
+        "el": "puso",
+        "nosotros": "pusimos",
+        "vosotros": "pusisteis",
+        "ellos": "pusieron"
+      },
+      "futuro": {
+        "yo": "pondre",
+        "tu": "pondras",
+        "el": "pondra",
+        "nosotros": "pondremos",
+        "vosotros": "pondreis",
+        "ellos": "pondran"
+      },
+      "condicional": {
+        "yo": "pondria",
+        "tu": "pondrias",
+        "el": "pondria",
+        "nosotros": "pondriamos",
+        "vosotros": "pondriais",
+        "ellos": "pondrian"
+      },
+      "imperativo": {
+        "tu": "pon",
+        "el": "ponga",
+        "nosotros": "pongamos",
+        "vosotros": "poned",
+        "ellos": "pongan"
+      }
+    },
+    "participio": "puesto",
+    "gerundio": "poniendo",
+    "raiz": "pon-",
+    "traduccion": "setzen"
+  },
+  {
+    "infinitivo": "decir",
+    "clase": "irregular",
+    "frecuencia": 1,
+    "tipo": "comunicacion",
+    "verbPack": "essential-irregular",
+    "packPriority": 9,
+    "irregularidades": {
+      "presente": {
+        "yo": "digo",
+        "tu": "dices",
+        "el": "dice",
+        "nosotros": "decimos",
+        "vosotros": "decis",
+        "ellos": "dicen"
+      },
+      "preterito": {
+        "yo": "dije",
+        "tu": "dijiste",
+        "el": "dijo",
+        "nosotros": "dijimos",
+        "vosotros": "dijisteis",
+        "ellos": "dijeron"
+      },
+      "futuro": {
+        "yo": "dire",
+        "tu": "diras",
+        "el": "dira", 
+        "nosotros": "diremos",
+        "vosotros": "direis",
+        "ellos": "diran"
+      },
+      "condicional": {
+        "yo": "diria",
+        "tu": "dirias",
+        "el": "diria",
+        "nosotros": "diriamos",
+        "vosotros": "diriais",
+        "ellos": "dirian"
+      },
+      "imperativo": {
+        "tu": "di",
+        "el": "diga",
+        "nosotros": "digamos",
+        "vosotros": "decid",
+        "ellos": "digan"
+      }
+    },
+    "participio": "dicho",
+    "gerundio": "diciendo",
+    "raiz": "dec-",
+    "traduccion": "sagen"
+  },
+  {
+    "infinitivo": "ver",
+    "clase": "irregular",
+    "frecuencia": 2,
+    "tipo": "percepcion",
+    "verbPack": "essential-irregular",
+    "packPriority": 10,
+    "irregularidades": {
+      "presente": {
+        "yo": "veo",
+        "tu": "ves",
+        "el": "ve",
+        "nosotros": "vemos",
+        "vosotros": "veis",
+        "ellos": "ven"
+      },
+      "imperfecto": {
+        "yo": "veia",
+        "tu": "veias",
+        "el": "veia",
+        "nosotros": "veiamos",
+        "vosotros": "veiais",
+        "ellos": "veian"
+      },
+      "imperativo": {
+        "tu": "ve",
+        "el": "vea",
+        "nosotros": "veamos",
+        "vosotros": "ved",
+        "ellos": "vean"
+      }
+    },
+    "participio": "visto",
+    "gerundio": "viendo",
+    "raiz": "v-",
+    "traduccion": "sehen"
+  },
+  {
+    "infinitivo": "dar",
+    "clase": "irregular",
+    "frecuencia": 2,
+    "tipo": "accion",
+    "verbPack": "essential-irregular",
+    "packPriority": 11,
+    "irregularidades": {
+      "presente": {
+        "yo": "doy",
+        "tu": "das",
+        "el": "da",
+        "nosotros": "damos",
+        "vosotros": "dais",
+        "ellos": "dan"
+      },
+      "preterito": {
+        "yo": "di",
+        "tu": "diste",
+        "el": "dio",
+        "nosotros": "dimos",
+        "vosotros": "disteis", 
+        "ellos": "dieron"
+      },
+      "imperativo": {
+        "tu": "da",
+        "el": "de",
+        "nosotros": "demos",
+        "vosotros": "dad",
+        "ellos": "den"
+      }
+    },
+    "participio": "dado",
+    "gerundio": "dando",
+    "raiz": "d-",
+    "traduccion": "geben"
+  },
+  {
+    "infinitivo": "querer",
+    "clase": "e>ie",
+    "frecuencia": 2,
+    "tipo": "modal",
+    "verbPack": "essential-irregular",
+    "packPriority": 12,
+    "irregularidades": {
+      "presente": {
+        "yo": "quiero",
+        "tu": "quieres",
+        "el": "quiere",
+        "nosotros": "queremos",
+        "vosotros": "quereis",
+        "ellos": "quieren"
+      },
+      "preterito": {
+        "yo": "quise",
+        "tu": "quisiste",
+        "el": "quiso",
+        "nosotros": "quisimos",
+        "vosotros": "quisisteis",
+        "ellos": "quisieron"
+      },
+      "futuro": {
+        "yo": "querre",
+        "tu": "querras",
+        "el": "querra",
+        "nosotros": "querremos",
+        "vosotros": "querreis",
+        "ellos": "querran"
+      },
+      "condicional": {
+        "yo": "querria",
+        "tu": "querrias",
+        "el": "querria",
+        "nosotros": "querriamos",
+        "vosotros": "querriais",
+        "ellos": "querrian"
+      },
+      "imperativo": {
+        "tu": "quiere",
+        "el": "quiera",
+        "nosotros": "queramos",
+        "vosotros": "quered",
+        "ellos": "quieran"
+      }
+    },
+    "participio": "querido",
+    "gerundio": "queriendo",
+    "raiz": "quer-",
+    "traduccion": "wollen"
+  },
+  {
+    "infinitivo": "venir",
+    "clase": "e>ie",
+    "frecuencia": 2,
+    "tipo": "movimiento",
+    "verbPack": "essential-irregular",
+    "packPriority": 13,
+    "irregularidades": {
+      "presente": {
+        "yo": "vengo",
+        "tu": "vienes",
+        "el": "viene",
+        "nosotros": "venimos",
+        "vosotros": "venis",
+        "ellos": "vienen"
+      },
+      "preterito": {
+        "yo": "vine",
+        "tu": "viniste",
+        "el": "vino",
+        "nosotros": "vinimos",
+        "vosotros": "vinisteis",
+        "ellos": "vinieron"
+      },
+      "futuro": {
+        "yo": "vendre",
+        "tu": "vendras",
+        "el": "vendra",
+        "nosotros": "vendremos",
+        "vosotros": "vendreis",
+        "ellos": "vendran"
+      },
+      "condicional": {
+        "yo": "vendria",
+        "tu": "vendrias",
+        "el": "vendria",
+        "nosotros": "vendriamos",
+        "vosotros": "vendriais",
+        "ellos": "vendrian"
+      },
+      "imperativo": {
+        "tu": "ven",
+        "el": "venga",
+        "nosotros": "vengamos",
+        "vosotros": "venid",
+        "ellos": "vengan"
+      }
+    },
+    "participio": "venido",
+    "gerundio": "viniendo",
+    "raiz": "ven-",
+    "traduccion": "kommen"
+  },
+  {
+    "infinitivo": "saber",
+    "clase": "irregular",
+    "frecuencia": 2,
+    "tipo": "conocimiento",
+    "verbPack": "essential-irregular",
+    "packPriority": 14,
+    "irregularidades": {
+      "presente": {
+        "yo": "se",
+        "tu": "sabes",
+        "el": "sabe",
+        "nosotros": "sabemos",
+        "vosotros": "sabeis",
+        "ellos": "saben"
+      },
+      "preterito": {
+        "yo": "supe",
+        "tu": "supiste",
+        "el": "supo",
+        "nosotros": "supimos",
+        "vosotros": "supisteis",
+        "ellos": "supieron"
+      },
+      "futuro": {
+        "yo": "sabre",
+        "tu": "sabras",
+        "el": "sabra",
+        "nosotros": "sabremos",
+        "vosotros": "sabreis",
+        "ellos": "sabran"
+      },
+      "condicional": {
+        "yo": "sabria",
+        "tu": "sabrias",
+        "el": "sabria",
+        "nosotros": "sabriamos",
+        "vosotros": "sabriais",
+        "ellos": "sabrian"
+      },
+      "imperativo": {
+        "tu": "sabe",
+        "el": "sepa",
+        "nosotros": "sepamos",
+        "vosotros": "sabed",
+        "ellos": "sepan"
+      }
+    },
+    "participio": "sabido",
+    "gerundio": "sabiendo",
+    "raiz": "sab-",
+    "traduccion": "wissen"
+  },
+  {
+    "infinitivo": "traer",
+    "clase": "irregular",
+    "frecuencia": 2,
+    "tipo": "accion",
+    "verbPack": "essential-irregular",
+    "packPriority": 15,
+    "irregularidades": {
+      "presente": {
+        "yo": "traigo",
+        "tu": "traes",
+        "el": "trae",
+        "nosotros": "traemos",
+        "vosotros": "traeis",
+        "ellos": "traen"
+      },
+      "preterito": {
+        "yo": "traje",
+        "tu": "trajiste",
+        "el": "trajo",
+        "nosotros": "trajimos",
+        "vosotros": "trajisteis",
+        "ellos": "trajeron"
+      },
+      "imperativo": {
+        "tu": "trae",
+        "el": "traiga",
+        "nosotros": "traigamos",
+        "vosotros": "traed",
+        "ellos": "traigan"
+      }
+    },
+    "participio": "traido",
+    "gerundio": "trayendo",
+    "raiz": "tra-",
+    "traduccion": "bringen"
+  },
+  {
+    "infinitivo": "salir",
+    "clase": "-ir",
+    "frecuencia": 2,
+    "tipo": "movimiento",
+    "irregularidades": {
+      "presente": {
+        "yo": "salgo",
+        "tu": "sales",
+        "el": "sale",
+        "nosotros": "salimos",
+        "vosotros": "salis",
+        "ellos": "salen"
+      },
+      "futuro": {
+        "yo": "saldre",
+        "tu": "saldras",
+        "el": "saldra",
+        "nosotros": "saldremos",
+        "vosotros": "saldreis",
+        "ellos": "saldran"
+      },
+      "condicional": {
+        "yo": "saldria",
+        "tu": "saldrias",
+        "el": "saldria",
+        "nosotros": "saldriamos",
+        "vosotros": "saldriais",
+        "ellos": "saldrian"
+      }
+    },
+    "participio": "salido",
+    "gerundio": "saliendo",
+    "raiz": "sal-",
+    "traduccion": "hinausgehen"
+  },
+  {
+    "infinitivo": "hablar",
+    "clase": "-ar",
+    "frecuencia": 2,
+    "tipo": "comunicacion",
+    "irregularidades": {},
+    "participio": "hablado",
+    "gerundio": "hablando",
+    "raiz": "habl-",
+    "traduccion": "sprechen"
+  },
+  {
+    "infinitivo": "comer",
+    "clase": "-er",
+    "frecuencia": 2,
+    "tipo": "accion",
+    "irregularidades": {},
+    "participio": "comido",
+    "gerundio": "comiendo",
+    "raiz": "com-",
+    "traduccion": "essen"
+  },
+  {
+    "infinitivo": "vivir",
+    "clase": "-ir", 
+    "frecuencia": 2,
+    "tipo": "accion",
+    "irregularidades": {},
+    "participio": "vivido",
+    "gerundio": "viviendo",
+    "raiz": "viv-",
+    "traduccion": "leben"
+  }
+]

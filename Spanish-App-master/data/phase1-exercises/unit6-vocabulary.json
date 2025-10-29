@@ -1,0 +1,1840 @@
+{
+  "metadata": {
+    "unit": 6,
+    "phase": 1,
+    "level": "A1",
+    "concept": "basic-vocabulary",
+    "title": "Grundwortschatz A1 - Essentielle Vokabeln",
+    "title_es": "Vocabulario básico A1",
+    "description": "Lerne 120 grundlegende Vokabeln für den Alltag",
+    "totalExercises": 35,
+    "estimatedTime": "25-30 Minuten",
+    "germanAdvantage": true,
+    "germanAdvantageNote": "Viele Wörter sind Kognate oder ähnlich wie im Deutschen!",
+    "version": "1.0"
+  },
+  "learningObjectives": [
+    "Begrüßungen und Höflichkeitsformen",
+    "Zahlen 0-100",
+    "Farben",
+    "Wochentage und Monate",
+    "Häufige Nomen (Haus, Buch, Wasser, etc.)",
+    "Häufige Adjektive (groß, klein, neu, alt, etc.)"
+  ],
+  "vocabularyCategories": [
+    "greetings_politeness",
+    "numbers",
+    "colors",
+    "time_calendar",
+    "common_nouns",
+    "common_adjectives"
+  ],
+  "exercises": [
+    {
+      "id": "u6_ex001",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "greeting-hello",
+      "category": "greetings",
+      "question": "Wie sagt man 'Hallo' auf Spanisch?",
+      "correctAnswer": "hola",
+      "alternativeAnswers": [
+        "Hola"
+      ],
+      "explanation": "'Hola' ist die universelle Begrüßung auf Spanisch - funktioniert immer!",
+      "germanBridge": "🇩🇪 Hallo → 🇪🇸 hola (sehr ähnlich!)",
+      "examples": [
+        "Hola, ¿cómo estás?",
+        "¡Hola! Buenos días"
+      ],
+      "pronunciation": "OH-lah",
+      "note": "Kleingeschrieben, außer am Satzanfang",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "greeting",
+        "hello",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Hallo → 🇪🇸 hola (sehr ähnlich!)"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex002",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "greeting-goodbye",
+      "category": "greetings",
+      "question": "Wie sagt man 'Auf Wiedersehen' auf Spanisch?",
+      "correctAnswer": "adiós",
+      "alternativeAnswers": [
+        "Adiós",
+        "adios"
+      ],
+      "explanation": "'Adiós' ist die formelle Verabschiedung - bedeutet wörtlich 'zu Gott'.",
+      "germanBridge": "🇩🇪 Auf Wiedersehen → 🇪🇸 adiós",
+      "examples": [
+        "Adiós, hasta luego",
+        "¡Adiós! Nos vemos"
+      ],
+      "pronunciation": "ah-dee-OHS",
+      "etymology": "a + Dios (zu Gott)",
+      "alternatives": "Chao (informell), Hasta luego (bis später)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "greeting",
+        "goodbye",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Auf Wiedersehen → 🇪🇸 adiós"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex003",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "politeness-please",
+      "category": "greetings",
+      "question": "Wie sagt man 'bitte' auf Spanisch?",
+      "correctAnswer": "por favor",
+      "alternativeAnswers": [
+        "Por favor"
+      ],
+      "explanation": "'Por favor' bedeutet wörtlich 'für Gefälligkeit' - sehr wichtig für Höflichkeit!",
+      "germanBridge": "🇩🇪 bitte → 🇪🇸 por favor (2 Wörter!)",
+      "examples": [
+        "Un café, por favor",
+        "¿Puedes ayudarme, por favor?"
+      ],
+      "pronunciation": "por fah-VOR",
+      "usage": "Immer am Ende des Satzes",
+      "note": "Zwei separate Wörter",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "politeness",
+        "please",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 bitte → 🇪🇸 por favor (2 Wörter!)"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex004",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "politeness-thanks",
+      "category": "greetings",
+      "question": "Wie sagt man 'danke' auf Spanisch?",
+      "correctAnswer": "gracias",
+      "alternativeAnswers": [
+        "Gracias"
+      ],
+      "explanation": "'Gracias' kommt von 'gratia' (Latein) - Dank/Gnade.",
+      "germanBridge": "🇩🇪 danke → 🇪🇸 gracias",
+      "examples": [
+        "Gracias por tu ayuda",
+        "Muchas gracias (vielen Dank)"
+      ],
+      "pronunciation": "GRAH-see-ahs",
+      "note": "Muchas gracias = vielen Dank",
+      "response": "De nada (bitte/gern geschehen)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "politeness",
+        "thanks",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 danke → 🇪🇸 gracias"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex005",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "greeting-good-morning",
+      "category": "greetings",
+      "question": "Wie sagt man 'Guten Morgen' auf Spanisch?",
+      "correctAnswer": "buenos días",
+      "alternativeAnswers": [
+        "Buenos días",
+        "buenos dias"
+      ],
+      "explanation": "'Buenos días' (gute Tage, Plural!) wird bis etwa 12 Uhr verwendet.",
+      "germanBridge": "🇩🇪 Guten Morgen → 🇪🇸 buenos días (Plural!)",
+      "examples": [
+        "Buenos días, señor",
+        "¡Buenos días a todos!"
+      ],
+      "pronunciation": "BWEH-nos DEE-ahs",
+      "timeRange": "Morgens bis ca. 12 Uhr",
+      "note": "Immer Plural: días (nicht día)",
+      "alternatives": "Buenas tardes (Nachmittag), Buenas noches (Abend/Nacht)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "greeting",
+        "good",
+        "morning",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Guten Morgen → 🇪🇸 buenos días (Plural!)"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex006",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "number-zero",
+      "category": "numbers",
+      "question": "Wie sagt man '0' (null) auf Spanisch?",
+      "correctAnswer": "cero",
+      "explanation": "'Cero' = 0/null",
+      "germanBridge": "🇩🇪 null → 🇪🇸 cero",
+      "examples": [
+        "Cero grados (0 Grad)",
+        "Cero euros"
+      ],
+      "pronunciation": "SEH-roh",
+      "cognate": "Ähnlich: zero (Englisch)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "number",
+        "zero",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 null → 🇪🇸 cero"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
+    },
+    {
+      "id": "u6_ex007",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "number-one",
+      "category": "numbers",
+      "question": "Wie sagt man '1' (eins) auf Spanisch?",
+      "correctAnswer": "uno",
+      "alternativeAnswers": [
+        "un",
+        "una"
+      ],
+      "explanation": "'Uno' = eins/ein. Ändert sich: un (maskulin), una (feminin)",
+      "germanBridge": "🇩🇪 eins → 🇪🇸 uno/un/una",
+      "examples": [
+        "Uno, dos, tres",
+        "Un libro (ein Buch)",
+        "Una casa (ein Haus)"
+      ],
+      "pronunciation": "OO-noh",
+      "note": "uno (allein) | un (vor mask. Nomen) | una (vor fem. Nomen)",
+      "prerequisites": [
+        "greeting-hello"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "number",
+        "one",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 eins → 🇪🇸 uno/un/una"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
+    },
+    {
+      "id": "u6_ex008",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "number-two-three",
+      "category": "numbers",
+      "question": "Übersetze: '2 und 3' (dos y tres)",
+      "correctAnswer": "dos y tres",
+      "alternativeAnswers": [
+        "Dos y tres",
+        "2 y 3"
+      ],
+      "explanation": "dos = 2 | tres = 3 | y = und",
+      "germanBridge": "🇩🇪 zwei und drei → 🇪🇸 dos y tres",
+      "examples": [
+        "dos libros",
+        "tres casas",
+        "dos y tres son cinco"
+      ],
+      "pronunciation": "dohs ee trehs",
+      "note": "dos (2), tres (3)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "number",
+        "two",
+        "three",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 zwei und drei → 🇪🇸 dos y tres"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
+    },
+    {
+      "id": "u6_ex009",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "concept": "numbers-4-10",
+      "category": "numbers",
+      "question": "Zähle: uno, dos, tres, ___, cinco, seis, siete, ocho, nueve, diez",
+      "correctAnswer": "cuatro",
+      "explanation": "cuatro = 4",
+      "germanBridge": "🇩🇪 vier → 🇪🇸 cuatro",
+      "examples": [
+        "cuatro libros",
+        "cuatro personas"
+      ],
+      "pronunciation": "KWAH-troh",
+      "sequence": "1-uno, 2-dos, 3-tres, 4-cuatro, 5-cinco, 6-seis, 7-siete, 8-ocho, 9-nueve, 10-diez",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "numbers",
+        "4",
+        "10",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 vier → 🇪🇸 cuatro"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
+    },
+    {
+      "id": "u6_ex010",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "numbers-10-20",
+      "category": "numbers",
+      "question": "Wie sagt man '10, 11, 12' auf Spanisch?",
+      "correctAnswer": "diez, once, doce",
+      "alternativeAnswers": [
+        "Diez, once, doce",
+        "10, 11, 12"
+      ],
+      "explanation": "diez (10), once (11), doce (12)",
+      "germanBridge": "🇩🇪 zehn, elf, zwölf → 🇪🇸 diez, once, doce",
+      "examples": [
+        "Son las diez",
+        "Tengo once años",
+        "Doce meses"
+      ],
+      "pronunciation": "dee-EHS, OHN-seh, DOH-seh",
+      "note": "11-19 sind unregelmäßig!",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "numbers",
+        "10",
+        "20",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 zehn, elf, zwölf → 🇪🇸 diez, once, doce"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
+    },
+    {
+      "id": "u6_ex011",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "numbers-20-100",
+      "category": "numbers",
+      "question": "Wie sagt man '20, 30, 50, 100' auf Spanisch?",
+      "correctAnswer": "veinte, treinta, cincuenta, cien",
+      "alternativeAnswers": [
+        "Veinte, treinta, cincuenta, cien"
+      ],
+      "explanation": "veinte (20), treinta (30), cincuenta (50), cien/ciento (100)",
+      "germanBridge": "🇩🇪 zwanzig, dreißig, fünfzig, hundert → 🇪🇸 veinte, treinta, cincuenta, cien",
+      "examples": [
+        "Veinte euros",
+        "Treinta años",
+        "Cien personas"
+      ],
+      "pronunciation": "VAYN-teh, TRAYN-tah, seen-KWEN-tah, see-EHN",
+      "pattern": "20-veinte, 30-treinta, 40-cuarenta, 50-cincuenta, 60-sesenta, 70-setenta, 80-ochenta, 90-noventa, 100-cien",
+      "note": "cien (allein) | ciento (vor anderen Zahlen: ciento uno)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "numbers",
+        "20",
+        "100",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 zwanzig, dreißig, fünfzig, hundert → 🇪🇸 veinte, treinta, cincuenta, cien"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
+    },
+    {
+      "id": "u6_ex012",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "color-red",
+      "category": "colors",
+      "question": "Wie sagt man 'rot' auf Spanisch?",
+      "correctAnswer": "rojo",
+      "alternativeAnswers": [
+        "roja",
+        "rojos",
+        "rojas"
+      ],
+      "explanation": "'Rojo' = rot. Passt sich an: rojo (m), roja (f), rojos/rojas (Plural)",
+      "germanBridge": "🇩🇪 rot → 🇪🇸 rojo/roja",
+      "examples": [
+        "El coche rojo (rotes Auto)",
+        "La casa roja (rotes Haus)"
+      ],
+      "pronunciation": "ROH-hoh",
+      "agreement": "rojo (mask.), roja (fem.), rojos (mask. Pl.), rojas (fem. Pl.)",
+      "note": "Adjektive passen sich in Geschlecht und Zahl an!",
+      "prerequisites": [
+        "number-one"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "color",
+        "red",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 rot → 🇪🇸 rojo/roja"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
+    },
+    {
+      "id": "u6_ex013",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "color-blue-green",
+      "category": "colors",
+      "question": "Übersetze: 'blau und grün'",
+      "correctAnswer": "azul y verde",
+      "alternativeAnswers": [
+        "Azul y verde",
+        "azul y verde"
+      ],
+      "explanation": "azul = blau | verde = grün",
+      "germanBridge": "🇩🇪 blau und grün → 🇪🇸 azul y verde",
+      "examples": [
+        "El cielo azul",
+        "La hierba verde"
+      ],
+      "pronunciation": "ah-SOOL ee VEHR-deh",
+      "note": "azul endet auf -l, keine Geschlechtsänderung (el coche azul, la casa azul)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "color",
+        "blue",
+        "green",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 blau und grün → 🇪🇸 azul y verde"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
+    },
+    {
+      "id": "u6_ex014",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "concept": "color-yellow-white-black",
+      "category": "colors",
+      "question": "Die Farben: ___ (gelb), ___ (weiß), ___ (schwarz)",
+      "correctAnswer": "amarillo, blanco, negro",
+      "alternativeAnswers": [
+        "Amarillo, blanco, negro",
+        "amarillo,blanco,negro"
+      ],
+      "explanation": "amarillo = gelb | blanco = weiß | negro = schwarz",
+      "germanBridge": "🇩🇪 gelb, weiß, schwarz → 🇪🇸 amarillo, blanco, negro",
+      "examples": [
+        "El sol amarillo",
+        "La nieve blanca",
+        "El gato negro"
+      ],
+      "pronunciation": "ah-mah-REE-yoh, BLAHN-koh, NEH-groh",
+      "agreement": "amarillo/a, blanco/a, negro/a (passen sich an)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "color",
+        "yellow",
+        "white",
+        "black",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 gelb, weiß, schwarz → 🇪🇸 amarillo, blanco, negro"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
+    },
+    {
+      "id": "u6_ex015",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "color-orange-purple",
+      "category": "colors",
+      "question": "Übersetze: 'orange und lila'",
+      "correctAnswer": "naranja y morado",
+      "alternativeAnswers": [
+        "Naranja y morado",
+        "naranja y morada"
+      ],
+      "explanation": "naranja = orange (auch: Apfelsine!) | morado = lila/violett",
+      "germanBridge": "🇩🇪 orange und lila → 🇪🇸 naranja y morado",
+      "examples": [
+        "La naranja naranja (die orangefarbene Orange)",
+        "La flor morada"
+      ],
+      "pronunciation": "nah-RAHN-hah ee moh-RAH-doh",
+      "note": "naranja (Farbe UND Frucht!)",
+      "agreement": "naranja ändert sich NICHT | morado/a ändert sich",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "color",
+        "orange",
+        "purple",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 orange und lila → 🇪🇸 naranja y morado"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
+    },
+    {
+      "id": "u6_ex016",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "color-comprehensive",
+      "category": "colors",
+      "question": "Übersetze: 'Das rote Auto und das weiße Haus'",
+      "correctAnswer": "El coche rojo y la casa blanca",
+      "alternativeAnswers": [
+        "el coche rojo y la casa blanca"
+      ],
+      "explanation": "Adjektive nach dem Nomen: coche rojo (rojes Auto), casa blanca (weißes Haus)",
+      "germanBridge": "🇩🇪 Das rote Auto → 🇪🇸 El coche rojo (Adjektiv NACH dem Nomen!)",
+      "examples": [
+        "El libro azul",
+        "La puerta verde"
+      ],
+      "rule": "Adjektive meistens NACH dem Nomen!",
+      "agreement": "rojo (mask. zu coche), blanca (fem. zu casa)",
+      "important": "Position UND Kongruenz beachten!",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "color",
+        "comprehensive",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das rote Auto → 🇪🇸 El coche rojo (Adjektiv NACH dem Nomen!)",
+        "Rule: Adjektive meistens NACH dem Nomen!"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
+    },
+    {
+      "id": "u6_ex017",
+      "type": "translation",
+      "difficulty": 1,
+      "concept": "day-monday",
+      "category": "time",
+      "question": "Wie sagt man 'Montag' auf Spanisch?",
+      "correctAnswer": "lunes",
+      "explanation": "'Lunes' kommt von 'Luna' (Mond) - Mondtag",
+      "germanBridge": "🇩🇪 Montag → 🇪🇸 lunes (von Luna = Mond)",
+      "examples": [
+        "Hoy es lunes",
+        "El lunes voy al trabajo"
+      ],
+      "pronunciation": "LOO-nehs",
+      "etymology": "Luna (Mond) → lunes",
+      "note": "Kleingeschrieben! (anders als im Deutschen)",
+      "prerequisites": [
+        "number-one"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "day",
+        "monday",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Montag → 🇪🇸 lunes (von Luna = Mond)"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex018",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "days-week",
+      "category": "time",
+      "question": "Übersetze: 'Dienstag, Mittwoch, Donnerstag'",
+      "correctAnswer": "martes, miércoles, jueves",
+      "alternativeAnswers": [
+        "Martes, miércoles, jueves",
+        "martes,miércoles,jueves"
+      ],
+      "explanation": "martes (Mars), miércoles (Merkur), jueves (Jupiter) - von römischen Göttern",
+      "germanBridge": "🇩🇪 Dienstag, Mittwoch, Donnerstag → 🇪🇸 martes, miércoles, jueves",
+      "examples": [
+        "El martes",
+        "Los miércoles",
+        "Este jueves"
+      ],
+      "pronunciation": "MAR-tehs, mee-EHR-koh-lehs, HWEH-vehs",
+      "etymology": "Mars, Mercurius, Jupiter",
+      "note": "Alle kleingeschrieben!",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "days",
+        "week",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Dienstag, Mittwoch, Donnerstag → 🇪🇸 martes, miércoles, jueves"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex019",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "days-weekend",
+      "category": "time",
+      "question": "Übersetze: 'Freitag, Samstag, Sonntag'",
+      "correctAnswer": "viernes, sábado, domingo",
+      "alternativeAnswers": [
+        "Viernes, sábado, domingo",
+        "viernes,sábado,domingo"
+      ],
+      "explanation": "viernes (Venus), sábado (Sabbat), domingo (Dominus = Herr)",
+      "germanBridge": "🇩🇪 Freitag, Samstag, Sonntag → 🇪🇸 viernes, sábado, domingo",
+      "examples": [
+        "El viernes por la noche",
+        "El sábado y domingo"
+      ],
+      "pronunciation": "vee-EHR-nehs, SAH-bah-doh, doh-MEEN-goh",
+      "etymology": "Venus, Sabbat, Dominus (Herr)",
+      "note": "Wochenende = el fin de semana",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "days",
+        "weekend",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Freitag, Samstag, Sonntag → 🇪🇸 viernes, sábado, domingo"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex020",
+      "type": "fill-blank",
+      "difficulty": 3,
+      "concept": "days-sequence",
+      "category": "time",
+      "question": "Vervollständige: lunes, martes, ___, jueves, ___, sábado, ___",
+      "correctAnswer": "miércoles, viernes, domingo",
+      "alternativeAnswers": [
+        "miércoles,viernes,domingo",
+        "Miércoles, viernes, domingo"
+      ],
+      "explanation": "Die 7 Wochentage in Reihenfolge",
+      "germanBridge": "🇩🇪 Mittwoch, Freitag, Sonntag",
+      "sequence": "lunes, martes, miércoles, jueves, viernes, sábado, domingo",
+      "mnemonic": "Lu-Ma-Mi-Ju-Vi-Sá-Do",
+      "note": "Woche = semana | Wochenende = fin de semana",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "days",
+        "sequence",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Mittwoch, Freitag, Sonntag"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex021",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "months-first-quarter",
+      "category": "time",
+      "question": "Übersetze: 'Januar, Februar, März'",
+      "correctAnswer": "enero, febrero, marzo",
+      "alternativeAnswers": [
+        "Enero, febrero, marzo",
+        "enero,febrero,marzo"
+      ],
+      "explanation": "Die ersten drei Monate des Jahres",
+      "germanBridge": "🇩🇪 Januar, Februar, März → 🇪🇸 enero, febrero, marzo",
+      "examples": [
+        "En enero hace frío",
+        "El 14 de febrero",
+        "El mes de marzo"
+      ],
+      "pronunciation": "eh-NEH-roh, feh-BREH-roh, MAR-soh",
+      "note": "Alle Monate kleingeschrieben!",
+      "cognates": "febrero ≈ February, marzo ≈ March",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "months",
+        "first",
+        "quarter",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Januar, Februar, März → 🇪🇸 enero, febrero, marzo"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex022",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "months-summer",
+      "category": "time",
+      "question": "Übersetze: 'Juni, Juli, August'",
+      "correctAnswer": "junio, julio, agosto",
+      "alternativeAnswers": [
+        "Junio, julio, agosto",
+        "junio,julio,agosto"
+      ],
+      "explanation": "Die Sommermonate (auf der Nordhalbkugel)",
+      "germanBridge": "🇩🇪 Juni, Juli, August → 🇪🇸 junio, julio, agosto",
+      "examples": [
+        "En junio empieza el verano",
+        "Julio es caluroso",
+        "En agosto hay vacaciones"
+      ],
+      "pronunciation": "HOO-nee-oh, HOO-lee-oh, ah-GOHS-toh",
+      "note": "julio kommt von Julius Caesar",
+      "cognates": "Sehr ähnlich zum Deutschen!",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "months",
+        "summer",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Juni, Juli, August → 🇪🇸 junio, julio, agosto"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex023",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "months-year-end",
+      "category": "time",
+      "question": "Übersetze: 'Oktober, November, Dezember'",
+      "correctAnswer": "octubre, noviembre, diciembre",
+      "alternativeAnswers": [
+        "Octubre, noviembre, diciembre",
+        "octubre,noviembre,diciembre"
+      ],
+      "explanation": "Die letzten drei Monate des Jahres",
+      "germanBridge": "🇩🇪 Oktober, November, Dezember → 🇪🇸 octubre, noviembre, diciembre",
+      "examples": [
+        "En octubre hay otoño",
+        "Noviembre es frío",
+        "Diciembre es Navidad"
+      ],
+      "pronunciation": "ok-TOO-breh, noh-vee-EHM-breh, dee-see-EHM-breh",
+      "note": "diciembre = Dezember (vom Lateinischen 'decem' = 10, war ursprünglich der 10. Monat)",
+      "cognates": "Alle ähnlich zum Deutschen!",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "months",
+        "year",
+        "end",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Oktober, November, Dezember → 🇪🇸 octubre, noviembre, diciembre"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex024",
+      "type": "fill-blank",
+      "difficulty": 3,
+      "concept": "months-sequence",
+      "category": "time",
+      "question": "Vervollständige: enero, febrero, marzo, abril, ___, junio, julio, ___, septiembre, ___, noviembre, diciembre",
+      "correctAnswer": "mayo, agosto, octubre",
+      "alternativeAnswers": [
+        "mayo,agosto,octubre",
+        "Mayo, agosto, octubre"
+      ],
+      "explanation": "Die 12 Monate: mayo (Mai), agosto (August), octubre (Oktober)",
+      "germanBridge": "🇩🇪 Mai, August, Oktober → 🇪🇸 mayo, agosto, octubre",
+      "sequence": "enero, febrero, marzo, abril, mayo, junio, julio, agosto, septiembre, octubre, noviembre, diciembre",
+      "mnemonic": "E-F-M-A-M-J-J-A-S-O-N-D",
+      "pronunciation": "MAH-yoh, ah-GOHS-toh, ok-TOO-breh",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "months",
+        "sequence",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Mai, August, Oktober → 🇪🇸 mayo, agosto, octubre"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex025",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "noun-house-book",
+      "category": "nouns",
+      "question": "Übersetze: 'das Haus' und 'das Buch'",
+      "correctAnswer": "la casa, el libro",
+      "alternativeAnswers": [
+        "la casa y el libro",
+        "La casa, el libro"
+      ],
+      "explanation": "casa (f) = Haus | libro (m) = Buch",
+      "germanBridge": "🇩🇪 das Haus, das Buch → 🇪🇸 la casa (f!), el libro (m!)",
+      "examples": [
+        "Mi casa es grande",
+        "Leo un libro"
+      ],
+      "pronunciation": "lah KAH-sah, el LEE-broh",
+      "gender": "casa = feminin | libro = maskulin",
+      "note": "Geschlechter sind oft anders als im Deutschen!",
+      "cognate": "libro ≈ library (Bibliothek)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "noun",
+        "house",
+        "book",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 das Haus, das Buch → 🇪🇸 la casa (f!), el libro (m!)"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex026",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "noun-water-bread",
+      "category": "nouns",
+      "question": "Übersetze: 'das Wasser' und 'das Brot'",
+      "correctAnswer": "el agua, el pan",
+      "alternativeAnswers": [
+        "el agua y el pan",
+        "El agua, el pan"
+      ],
+      "explanation": "agua (f, aber el!) = Wasser | pan (m) = Brot",
+      "germanBridge": "🇩🇪 das Wasser, das Brot → 🇪🇸 el agua (f!), el pan (m)",
+      "examples": [
+        "Bebo agua",
+        "Como pan"
+      ],
+      "pronunciation": "el AH-gwah, el pahn",
+      "gender": "agua ist feminin, aber nutzt 'el' wegen Betonung!",
+      "exception": "⚠️ agua ist feminin, aber: EL agua (statt la agua) wegen Aussprache",
+      "note": "agua → aguas (Plural: las aguas)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "noun",
+        "water",
+        "bread",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 das Wasser, das Brot → 🇪🇸 el agua (f!), el pan (m)"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex027",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "noun-table-chair",
+      "category": "nouns",
+      "question": "Übersetze: 'der Tisch' und 'der Stuhl'",
+      "correctAnswer": "la mesa, la silla",
+      "alternativeAnswers": [
+        "la mesa y la silla",
+        "La mesa, la silla"
+      ],
+      "explanation": "mesa (f) = Tisch | silla (f) = Stuhl",
+      "germanBridge": "🇩🇪 der Tisch, der Stuhl → 🇪🇸 la mesa (f!), la silla (f!)",
+      "examples": [
+        "La mesa es grande",
+        "Me siento en la silla"
+      ],
+      "pronunciation": "lah MEH-sah, lah SEE-yah",
+      "gender": "Beide feminin!",
+      "note": "Geschlechter anders als im Deutschen",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "noun",
+        "table",
+        "chair",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 der Tisch, der Stuhl → 🇪🇸 la mesa (f!), la silla (f!)"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex028",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "noun-family",
+      "category": "nouns",
+      "question": "Übersetze: 'der Vater, die Mutter, der Bruder, die Schwester'",
+      "correctAnswer": "el padre, la madre, el hermano, la hermana",
+      "alternativeAnswers": [
+        "El padre, la madre, el hermano, la hermana"
+      ],
+      "explanation": "padre = Vater | madre = Mutter | hermano = Bruder | hermana = Schwester",
+      "germanBridge": "🇩🇪 Vater, Mutter, Bruder, Schwester → 🇪🇸 padre, madre, hermano, hermana",
+      "examples": [
+        "Mi padre",
+        "Mi madre",
+        "Mi hermano",
+        "Mi hermana"
+      ],
+      "pronunciation": "PAH-dreh, MAH-dreh, er-MAH-noh, er-MAH-nah",
+      "pattern": "hermano (m) / hermana (f) - Endung zeigt Geschlecht",
+      "note": "padres = Eltern (Plural maskulin für gemischte Gruppe)",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "noun",
+        "family",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Vater, Mutter, Bruder, Schwester → 🇪🇸 padre, madre, hermano, hermana"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex029",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "noun-time",
+      "category": "nouns",
+      "question": "Übersetze: 'die Zeit, der Tag, die Woche, das Jahr'",
+      "correctAnswer": "el tiempo, el día, la semana, el año",
+      "alternativeAnswers": [
+        "El tiempo, el día, la semana, el año"
+      ],
+      "explanation": "tiempo = Zeit/Wetter | día = Tag | semana = Woche | año = Jahr",
+      "germanBridge": "🇩🇪 Zeit, Tag, Woche, Jahr → 🇪🇸 tiempo, día, semana, año",
+      "examples": [
+        "No tengo tiempo",
+        "Buenos días",
+        "Esta semana",
+        "Este año"
+      ],
+      "pronunciation": "tee-EHM-poh, DEE-ah, seh-MAH-nah, AH-nyoh",
+      "note": "tiempo = Zeit UND Wetter!",
+      "gender": "día ist maskulin (nicht feminin!): el día",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "noun",
+        "time",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Zeit, Tag, Woche, Jahr → 🇪🇸 tiempo, día, semana, año"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex030",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "noun-place",
+      "category": "nouns",
+      "question": "Übersetze: 'die Schule, die Arbeit, das Restaurant'",
+      "correctAnswer": "la escuela, el trabajo, el restaurante",
+      "alternativeAnswers": [
+        "La escuela, el trabajo, el restaurante"
+      ],
+      "explanation": "escuela = Schule | trabajo = Arbeit | restaurante = Restaurant",
+      "germanBridge": "🇩🇪 Schule, Arbeit, Restaurant → 🇪🇸 escuela, trabajo, restaurante",
+      "examples": [
+        "Voy a la escuela",
+        "Estoy en el trabajo",
+        "Comemos en el restaurante"
+      ],
+      "pronunciation": "ehs-KWEH-lah, trah-BAH-hoh, rehs-tau-RAHN-teh",
+      "cognates": "restaurante ≈ Restaurant (sehr ähnlich!)",
+      "note": "restaurante endet auf -e, ist aber maskulin!",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "noun",
+        "place",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Schule, Arbeit, Restaurant → 🇪🇸 escuela, trabajo, restaurante"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex031",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "adjective-big-small",
+      "category": "adjectives",
+      "question": "Übersetze: 'groß' und 'klein'",
+      "correctAnswer": "grande, pequeño",
+      "alternativeAnswers": [
+        "grande y pequeño",
+        "grande, pequeña",
+        "grande y pequeña"
+      ],
+      "explanation": "grande = groß (keine Geschlechtsänderung!) | pequeño/pequeña = klein",
+      "germanBridge": "🇩🇪 groß, klein → 🇪🇸 grande, pequeño/pequeña",
+      "examples": [
+        "Una casa grande",
+        "Un libro pequeño",
+        "Una silla pequeña"
+      ],
+      "pronunciation": "GRAHN-deh, peh-KEH-nyoh",
+      "agreement": "grande ändert sich NICHT | pequeño → pequeña (f)",
+      "note": "grande vor Nomen kann zu 'gran' verkürzt werden: un gran libro",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "adjective",
+        "big",
+        "small",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 groß, klein → 🇪🇸 grande, pequeño/pequeña"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex032",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "adjective-new-old",
+      "category": "adjectives",
+      "question": "Übersetze: 'neu' und 'alt'",
+      "correctAnswer": "nuevo, viejo",
+      "alternativeAnswers": [
+        "nuevo y viejo",
+        "nueva, vieja",
+        "nueva y vieja"
+      ],
+      "explanation": "nuevo/nueva = neu | viejo/vieja = alt",
+      "germanBridge": "🇩🇪 neu, alt → 🇪🇸 nuevo/nueva, viejo/vieja",
+      "examples": [
+        "Un coche nuevo",
+        "Una casa vieja",
+        "Libros viejos"
+      ],
+      "pronunciation": "NWEH-voh, vee-EH-hoh",
+      "agreement": "nuevo → nueva (f), nuevos (pl) | viejo → vieja (f), viejos (pl)",
+      "note": "Beide passen sich in Geschlecht und Zahl an",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "adjective",
+        "new",
+        "old",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 neu, alt → 🇪🇸 nuevo/nueva, viejo/vieja"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex033",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "adjective-good-bad",
+      "category": "adjectives",
+      "question": "Übersetze: 'gut' und 'schlecht'",
+      "correctAnswer": "bueno, malo",
+      "alternativeAnswers": [
+        "bueno y malo",
+        "buena, mala",
+        "buena y mala"
+      ],
+      "explanation": "bueno/buena = gut | malo/mala = schlecht",
+      "germanBridge": "🇩🇪 gut, schlecht → 🇪🇸 bueno/buena, malo/mala",
+      "examples": [
+        "Un buen libro",
+        "Una buena idea",
+        "Un mal día",
+        "Una mala película"
+      ],
+      "pronunciation": "BWEH-noh, MAH-loh",
+      "shortening": "bueno → buen (vor mask. Nomen) | malo → mal (vor mask. Nomen)",
+      "agreement": "bueno → buena (f) | malo → mala (f)",
+      "note": "Verkürzte Formen VOR mask. Nomen: buen, mal",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "adjective",
+        "good",
+        "bad",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 gut, schlecht → 🇪🇸 bueno/buena, malo/mala"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": true,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex034",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "adjective-beautiful-ugly",
+      "category": "adjectives",
+      "question": "Übersetze: 'schön' und 'hässlich'",
+      "correctAnswer": "bonito, feo",
+      "alternativeAnswers": [
+        "bonito y feo",
+        "bonita, fea",
+        "bonita y fea",
+        "hermoso, feo"
+      ],
+      "explanation": "bonito/bonita = schön (für Dinge/Personen) | feo/fea = hässlich",
+      "germanBridge": "🇩🇪 schön, hässlich → 🇪🇸 bonito/bonita, feo/fea",
+      "examples": [
+        "Una casa bonita",
+        "Un día bonito",
+        "Un perro feo"
+      ],
+      "pronunciation": "boh-NEE-toh, FEH-oh",
+      "alternatives": "hermoso/hermosa = schön (eleganter)",
+      "agreement": "bonito → bonita (f) | feo → fea (f)",
+      "note": "bonito auch: hübsch, nett",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "translation",
+        "adjective",
+        "beautiful",
+        "ugly",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 schön, hässlich → 🇪🇸 bonito/bonita, feo/fea"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": true,
+      "relatedConcepts": []
+    },
+    {
+      "id": "u6_ex035",
+      "type": "comprehensive",
+      "difficulty": 4,
+      "concept": "vocabulary-mastery",
+      "category": "comprehensive",
+      "question": "Übersetze den Satz: 'Guten Morgen! Ich habe ein großes, neues, rotes Haus.'",
+      "correctAnswer": "¡Buenos días! Tengo una casa grande, nueva y roja",
+      "alternativeAnswers": [
+        "Buenos días! Tengo una casa grande, nueva y roja",
+        "¡Buenos días! Yo tengo una casa grande, nueva y roja"
+      ],
+      "explanation": "Kombiniert: Begrüßung (Buenos días) + TENER (tengo) + Nomen (casa-f) + Adjektive (grande, nueva-f, roja-f)",
+      "germanBridge": "🇩🇪 Guten Morgen (Buenos días) + Ich habe (Tengo) + Haus (casa-f) + groß, neu, rot (alle feminin!)",
+      "examples": [
+        "Buenos días, tengo un libro nuevo",
+        "Hola, tengo una casa bonita"
+      ],
+      "rule": "Adjektive NACH dem Nomen | Adjektive stimmen in Geschlecht überein",
+      "breakdown": [
+        "Buenos días = Guten Morgen",
+        "Tengo = ich habe",
+        "una casa = ein Haus (f)",
+        "grande = groß (keine Änderung)",
+        "nueva = neu (f zu casa)",
+        "roja = rot (f zu casa)"
+      ],
+      "mastery": "Zeigt Beherrschung von Vokabular, Grammatik und Kongruenz!",
+      "note": "Perfekte Integration aller gelernten Konzepte!",
+      "prerequisites": [],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-6",
+        "phase-1",
+        "A1",
+        "comprehensive",
+        "vocabulary",
+        "mastery",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 27,
+      "memoryComplexity": 5,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Guten Morgen (Buenos días) + Ich habe (Tengo) + Haus (casa-f) + groß, neu, rot (alle feminin!)",
+        "Rule: Adjektive NACH dem Nomen | Adjektive stimmen in Geschlecht überein"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": true,
+      "certificationRequired": true,
+      "relatedConcepts": [
+        "communication",
+        "expression",
+        "basic-conversation",
+        "ser-identity",
+        "estar-location",
+        "tener-possession",
+        "vocabulary",
+        "integration"
+      ]
+    }
+  ],
+  "progressionNotes": {
+    "easyExercises": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      7,
+      8,
+      12,
+      13,
+      17
+    ],
+    "mediumExercises": [
+      5,
+      9,
+      10,
+      11,
+      14,
+      15,
+      16,
+      18,
+      19,
+      21,
+      22,
+      25,
+      26,
+      27,
+      31,
+      32
+    ],
+    "hardExercises": [
+      20,
+      23,
+      24,
+      28,
+      29,
+      30,
+      33,
+      34,
+      35
+    ],
+    "germanAdvantages": [
+      "Viele Kognate: Restaurant, Familie, etc.",
+      "Ähnliche Monats-/Wochentags-Namen",
+      "Adjektiv-Kongruenz-System existiert auch im Deutschen",
+      "Zahlensystem ist ähnlich"
+    ],
+    "germanChallenges": [
+      "Geschlechter oft anders: das Haus (n) → la casa (f)",
+      "Adjektive meist NACH dem Nomen (nicht wie im Deutschen)",
+      "Wochentage & Monate kleingeschrieben!",
+      "Einige False Friends",
+      "agua ist feminin, aber 'el agua' (Ausnahme!)"
+    ],
+    "keyTakeaways": [
+      "Grundbegrüßungen: hola, adiós, buenos días, gracias, por favor",
+      "Zahlen 0-100: cero bis cien",
+      "Farben: rojo, azul, verde, amarillo, blanco, negro",
+      "Wochentage: lunes - domingo (kleingeschrieben!)",
+      "Monate: enero - diciembre (kleingeschrieben!)",
+      "Häufige Nomen: casa, libro, agua, mesa, padre, madre",
+      "Häufige Adjektive: grande, pequeño, nuevo, viejo, bueno, malo",
+      "Adjektive NACH dem Nomen + Geschlechtskongruenz"
+    ],
+    "falseFriends": [
+      "embarazada ≠ embarrassed (= schwanger!)",
+      "constipado ≠ constipated (= erkältet!)",
+      "actual ≠ actual (= aktuell/gegenwärtig)",
+      "sensible ≠ sensible (= empfindlich/sensibel)"
+    ],
+    "cognates": [
+      "restaurante = Restaurant",
+      "familia = Familie",
+      "universidad = Universität",
+      "hospital = Hospital",
+      "teléfono = Telefon",
+      "música = Musik"
+    ]
+  }
+}

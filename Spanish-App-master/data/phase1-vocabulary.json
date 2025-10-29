@@ -1,0 +1,502 @@
+{
+  "metadata": {
+    "phase": 1,
+    "level": "A1",
+    "totalWords": 120,
+    "categories": 8,
+    "version": "1.0"
+  },
+  "categories": {
+    "greetings_politeness": {
+      "id": "greetings_politeness",
+      "name_de": "Begrüßung & Höflichkeit",
+      "name_es": "Saludos y cortesía",
+      "priority": 1,
+      "words": [
+        {
+          "id": "v1_001",
+          "es": "hola",
+          "de": "hallo",
+          "type": "interjection",
+          "difficulty": 1,
+          "examples": [
+            "Hola, ¿cómo estás?",
+            "¡Hola! Buenos días"
+          ]
+        },
+        {
+          "id": "v1_002",
+          "es": "adiós",
+          "de": "auf Wiedersehen",
+          "type": "interjection",
+          "difficulty": 1,
+          "examples": [
+            "Adiós, hasta luego",
+            "¡Adiós! Nos vemos"
+          ]
+        },
+        {
+          "id": "v1_003",
+          "es": "buenos días",
+          "de": "guten Morgen",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Buenos días, señor",
+            "¡Buenos días a todos!"
+          ]
+        },
+        {
+          "id": "v1_004",
+          "es": "buenas tardes",
+          "de": "guten Tag / guten Nachmittag",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Buenas tardes, ¿cómo está?",
+            "Buenas tardes, doctor"
+          ]
+        },
+        {
+          "id": "v1_005",
+          "es": "buenas noches",
+          "de": "guten Abend / gute Nacht",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Buenas noches, hasta mañana",
+            "¡Buenas noches!"
+          ]
+        },
+        {
+          "id": "v1_006",
+          "es": "por favor",
+          "de": "bitte",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Por favor, ayúdame",
+            "Un café, por favor"
+          ]
+        },
+        {
+          "id": "v1_007",
+          "es": "gracias",
+          "de": "danke",
+          "type": "interjection",
+          "difficulty": 1,
+          "examples": [
+            "Gracias por tu ayuda",
+            "¡Muchas gracias!"
+          ]
+        },
+        {
+          "id": "v1_008",
+          "es": "de nada",
+          "de": "gern geschehen / bitte",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "- Gracias. - De nada",
+            "De nada, es un placer"
+          ]
+        },
+        {
+          "id": "v1_009",
+          "es": "perdón",
+          "de": "Entschuldigung / Verzeihung",
+          "type": "noun",
+          "difficulty": 1,
+          "examples": [
+            "Perdón, no te escuché",
+            "¡Perdón!"
+          ]
+        },
+        {
+          "id": "v1_010",
+          "es": "disculpe",
+          "de": "entschuldigen Sie",
+          "type": "verb_form",
+          "difficulty": 2,
+          "examples": [
+            "Disculpe, ¿dónde está el baño?",
+            "Disculpe la molestia"
+          ]
+        },
+        {
+          "id": "v1_011",
+          "es": "lo siento",
+          "de": "es tut mir leid",
+          "type": "phrase",
+          "difficulty": 2,
+          "examples": [
+            "Lo siento, no puedo",
+            "Lo siento mucho"
+          ]
+        },
+        {
+          "id": "v1_012",
+          "es": "hasta luego",
+          "de": "bis später",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Hasta luego, nos vemos",
+            "¡Hasta luego!"
+          ]
+        },
+        {
+          "id": "v1_013",
+          "es": "hasta mañana",
+          "de": "bis morgen",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Hasta mañana, que descanses",
+            "¡Hasta mañana!"
+          ]
+        },
+        {
+          "id": "v1_014",
+          "es": "mucho gusto",
+          "de": "sehr erfreut",
+          "type": "phrase",
+          "difficulty": 2,
+          "examples": [
+            "Mucho gusto en conocerte",
+            "- Soy María. - Mucho gusto"
+          ]
+        },
+        {
+          "id": "v1_015",
+          "es": "encantado/a",
+          "de": "erfreut",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Encantado de conocerte",
+            "- Soy Pedro. - Encantada"
+          ]
+        }
+      ]
+    },
+    "personal_description": {
+      "id": "personal_description",
+      "name_de": "Personenbeschreibung",
+      "name_es": "Descripción personal",
+      "priority": 2,
+      "words": [
+        {
+          "id": "v1_016",
+          "es": "hombre",
+          "de": "Mann",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "examples": [
+            "El hombre es alto",
+            "Es un hombre simpático"
+          ]
+        },
+        {
+          "id": "v1_017",
+          "es": "mujer",
+          "de": "Frau",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "La mujer es inteligente",
+            "Es una mujer joven"
+          ]
+        },
+        {
+          "id": "v1_018",
+          "es": "niño",
+          "de": "Junge / Kind",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "examples": [
+            "El niño está jugando",
+            "Es un niño feliz"
+          ]
+        },
+        {
+          "id": "v1_019",
+          "es": "niña",
+          "de": "Mädchen",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "La niña es simpática",
+            "Es una niña inteligente"
+          ]
+        },
+        {
+          "id": "v1_020",
+          "es": "amigo",
+          "de": "Freund",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "examples": [
+            "Mi amigo es de España",
+            "Tengo un amigo alemán"
+          ]
+        },
+        {
+          "id": "v1_021",
+          "es": "amiga",
+          "de": "Freundin",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "Mi amiga está en casa",
+            "Tengo una amiga española"
+          ]
+        },
+        {
+          "id": "v1_022",
+          "es": "familia",
+          "de": "Familie",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "Mi familia es grande",
+            "La familia está en casa"
+          ]
+        },
+        {
+          "id": "v1_023",
+          "es": "alto",
+          "de": "groß (Person)",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Él es alto",
+            "Una mujer alta"
+          ]
+        },
+        {
+          "id": "v1_024",
+          "es": "bajo",
+          "de": "klein (Person)",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Yo soy bajo",
+            "Un hombre bajo"
+          ]
+        },
+        {
+          "id": "v1_025",
+          "es": "joven",
+          "de": "jung",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Soy joven",
+            "Una mujer joven"
+          ]
+        },
+        {
+          "id": "v1_026",
+          "es": "viejo",
+          "de": "alt",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Mi abuelo es viejo",
+            "Un hombre viejo"
+          ]
+        },
+        {
+          "id": "v1_027",
+          "es": "simpático",
+          "de": "nett / sympathisch",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Ella es muy simpática",
+            "Un profesor simpático"
+          ]
+        },
+        {
+          "id": "v1_028",
+          "es": "inteligente",
+          "de": "intelligent",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Tú eres inteligente",
+            "Una niña inteligente"
+          ]
+        },
+        {
+          "id": "v1_029",
+          "es": "guapo",
+          "de": "hübsch / gutaussehend",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Él es guapo",
+            "Un hombre guapo"
+          ]
+        },
+        {
+          "id": "v1_030",
+          "es": "feo",
+          "de": "hässlich",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "El edificio es feo",
+            "Una casa fea"
+          ]
+        }
+      ]
+    },
+    "numbers_0_20": {
+      "id": "numbers_0_20",
+      "name_de": "Zahlen 0-20",
+      "name_es": "Números 0-20",
+      "priority": 3,
+      "words": [
+        {"id": "v1_031", "es": "cero", "de": "null", "type": "number", "value": 0, "difficulty": 1},
+        {"id": "v1_032", "es": "uno", "de": "eins", "type": "number", "value": 1, "difficulty": 1},
+        {"id": "v1_033", "es": "dos", "de": "zwei", "type": "number", "value": 2, "difficulty": 1},
+        {"id": "v1_034", "es": "tres", "de": "drei", "type": "number", "value": 3, "difficulty": 1},
+        {"id": "v1_035", "es": "cuatro", "de": "vier", "type": "number", "value": 4, "difficulty": 1},
+        {"id": "v1_036", "es": "cinco", "de": "fünf", "type": "number", "value": 5, "difficulty": 1},
+        {"id": "v1_037", "es": "seis", "de": "sechs", "type": "number", "value": 6, "difficulty": 1},
+        {"id": "v1_038", "es": "siete", "de": "sieben", "type": "number", "value": 7, "difficulty": 1},
+        {"id": "v1_039", "es": "ocho", "de": "acht", "type": "number", "value": 8, "difficulty": 1},
+        {"id": "v1_040", "es": "nueve", "de": "neun", "type": "number", "value": 9, "difficulty": 1},
+        {"id": "v1_041", "es": "diez", "de": "zehn", "type": "number", "value": 10, "difficulty": 1},
+        {"id": "v1_042", "es": "once", "de": "elf", "type": "number", "value": 11, "difficulty": 2},
+        {"id": "v1_043", "es": "doce", "de": "zwölf", "type": "number", "value": 12, "difficulty": 2},
+        {"id": "v1_044", "es": "trece", "de": "dreizehn", "type": "number", "value": 13, "difficulty": 2},
+        {"id": "v1_045", "es": "catorce", "de": "vierzehn", "type": "number", "value": 14, "difficulty": 2},
+        {"id": "v1_046", "es": "quince", "de": "fünfzehn", "type": "number", "value": 15, "difficulty": 2},
+        {"id": "v1_047", "es": "dieciséis", "de": "sechzehn", "type": "number", "value": 16, "difficulty": 2},
+        {"id": "v1_048", "es": "diecisiete", "de": "siebzehn", "type": "number", "value": 17, "difficulty": 2},
+        {"id": "v1_049", "es": "dieciocho", "de": "achtzehn", "type": "number", "value": 18, "difficulty": 2},
+        {"id": "v1_050", "es": "diecinueve", "de": "neunzehn", "type": "number", "value": 19, "difficulty": 2},
+        {"id": "v1_051", "es": "veinte", "de": "zwanzig", "type": "number", "value": 20, "difficulty": 2}
+      ]
+    },
+    "colors": {
+      "id": "colors",
+      "name_de": "Farben",
+      "name_es": "Colores",
+      "priority": 4,
+      "words": [
+        {"id": "v1_052", "es": "rojo", "de": "rot", "type": "adjective", "difficulty": 1},
+        {"id": "v1_053", "es": "azul", "de": "blau", "type": "adjective", "difficulty": 1},
+        {"id": "v1_054", "es": "verde", "de": "grün", "type": "adjective", "difficulty": 1},
+        {"id": "v1_055", "es": "amarillo", "de": "gelb", "type": "adjective", "difficulty": 1},
+        {"id": "v1_056", "es": "negro", "de": "schwarz", "type": "adjective", "difficulty": 1},
+        {"id": "v1_057", "es": "blanco", "de": "weiß", "type": "adjective", "difficulty": 1},
+        {"id": "v1_058", "es": "gris", "de": "grau", "type": "adjective", "difficulty": 2},
+        {"id": "v1_059", "es": "marrón", "de": "braun", "type": "adjective", "difficulty": 2},
+        {"id": "v1_060", "es": "naranja", "de": "orange", "type": "adjective", "difficulty": 2},
+        {"id": "v1_061", "es": "rosa", "de": "rosa / pink", "type": "adjective", "difficulty": 2},
+        {"id": "v1_062", "es": "morado", "de": "lila / violett", "type": "adjective", "difficulty": 2}
+      ]
+    },
+    "family": {
+      "id": "family",
+      "name_de": "Familie",
+      "name_es": "Familia",
+      "priority": 5,
+      "words": [
+        {"id": "v1_063", "es": "padre", "de": "Vater", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_064", "es": "madre", "de": "Mutter", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_065", "es": "hijo", "de": "Sohn", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_066", "es": "hija", "de": "Tochter", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_067", "es": "hermano", "de": "Bruder", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_068", "es": "hermana", "de": "Schwester", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_069", "es": "abuelo", "de": "Großvater", "type": "noun", "gender": "m", "difficulty": 2},
+        {"id": "v1_070", "es": "abuela", "de": "Großmutter", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_071", "es": "tío", "de": "Onkel", "type": "noun", "gender": "m", "difficulty": 2},
+        {"id": "v1_072", "es": "tía", "de": "Tante", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_073", "es": "primo", "de": "Cousin", "type": "noun", "gender": "m", "difficulty": 2},
+        {"id": "v1_074", "es": "prima", "de": "Cousine", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_075", "es": "esposo", "de": "Ehemann", "type": "noun", "gender": "m", "difficulty": 2},
+        {"id": "v1_076", "es": "esposa", "de": "Ehefrau", "type": "noun", "gender": "f", "difficulty": 2}
+      ]
+    },
+    "basic_nouns": {
+      "id": "basic_nouns",
+      "name_de": "Grundlegende Nomen",
+      "name_es": "Sustantivos básicos",
+      "priority": 6,
+      "words": [
+        {"id": "v1_077", "es": "casa", "de": "Haus", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_078", "es": "perro", "de": "Hund", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_079", "es": "gato", "de": "Katze", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_080", "es": "mesa", "de": "Tisch", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_081", "es": "silla", "de": "Stuhl", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_082", "es": "libro", "de": "Buch", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_083", "es": "teléfono", "de": "Telefon", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_084", "es": "agua", "de": "Wasser", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_085", "es": "comida", "de": "Essen", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_086", "es": "pan", "de": "Brot", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_087", "es": "leche", "de": "Milch", "type": "noun", "gender": "f", "difficulty": 1},
+        {"id": "v1_088", "es": "café", "de": "Kaffee", "type": "noun", "gender": "m", "difficulty": 1},
+        {"id": "v1_089", "es": "coche", "de": "Auto", "type": "noun", "gender": "m", "difficulty": 2},
+        {"id": "v1_090", "es": "puerta", "de": "Tür", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_091", "es": "ventana", "de": "Fenster", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_092", "es": "ciudad", "de": "Stadt", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_093", "es": "calle", "de": "Straße", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_094", "es": "escuela", "de": "Schule", "type": "noun", "gender": "f", "difficulty": 2},
+        {"id": "v1_095", "es": "trabajo", "de": "Arbeit", "type": "noun", "gender": "m", "difficulty": 2},
+        {"id": "v1_096", "es": "dinero", "de": "Geld", "type": "noun", "gender": "m", "difficulty": 2}
+      ]
+    },
+    "states_emotions": {
+      "id": "states_emotions",
+      "name_de": "Zustände & Gefühle",
+      "name_es": "Estados y emociones",
+      "priority": 7,
+      "words": [
+        {"id": "v1_097", "es": "feliz", "de": "glücklich", "type": "adjective", "difficulty": 1},
+        {"id": "v1_098", "es": "triste", "de": "traurig", "type": "adjective", "difficulty": 1},
+        {"id": "v1_099", "es": "cansado", "de": "müde", "type": "adjective", "difficulty": 1},
+        {"id": "v1_100", "es": "enfermo", "de": "krank", "type": "adjective", "difficulty": 2},
+        {"id": "v1_101", "es": "ocupado", "de": "beschäftigt", "type": "adjective", "difficulty": 2},
+        {"id": "v1_102", "es": "contento", "de": "zufrieden", "type": "adjective", "difficulty": 2},
+        {"id": "v1_103", "es": "nervioso", "de": "nervös", "type": "adjective", "difficulty": 2},
+        {"id": "v1_104", "es": "tranquilo", "de": "ruhig", "type": "adjective", "difficulty": 2}
+      ]
+    },
+    "basic_places_adverbs": {
+      "id": "basic_places_adverbs",
+      "name_de": "Orte & Adverbien",
+      "name_es": "Lugares y adverbios",
+      "priority": 8,
+      "words": [
+        {"id": "v1_105", "es": "aquí", "de": "hier", "type": "adverb", "difficulty": 1},
+        {"id": "v1_106", "es": "allí", "de": "dort", "type": "adverb", "difficulty": 1},
+        {"id": "v1_107", "es": "en", "de": "in / auf / an", "type": "preposition", "difficulty": 1},
+        {"id": "v1_108", "es": "con", "de": "mit", "type": "preposition", "difficulty": 1},
+        {"id": "v1_109", "es": "sin", "de": "ohne", "type": "preposition", "difficulty": 2},
+        {"id": "v1_110", "es": "ahora", "de": "jetzt", "type": "adverb", "difficulty": 1},
+        {"id": "v1_111", "es": "hoy", "de": "heute", "type": "adverb", "difficulty": 1},
+        {"id": "v1_112", "es": "mañana", "de": "morgen", "type": "adverb", "difficulty": 1},
+        {"id": "v1_113", "es": "sí", "de": "ja", "type": "adverb", "difficulty": 1},
+        {"id": "v1_114", "es": "no", "de": "nein / nicht", "type": "adverb", "difficulty": 1},
+        {"id": "v1_115", "es": "muy", "de": "sehr", "type": "adverb", "difficulty": 1},
+        {"id": "v1_116", "es": "bien", "de": "gut", "type": "adverb", "difficulty": 1},
+        {"id": "v1_117", "es": "mal", "de": "schlecht", "type": "adverb", "difficulty": 1},
+        {"id": "v1_118", "es": "mucho", "de": "viel", "type": "adverb", "difficulty": 2},
+        {"id": "v1_119", "es": "poco", "de": "wenig", "type": "adverb", "difficulty": 2},
+        {"id": "v1_120", "es": "también", "de": "auch", "type": "adverb", "difficulty": 2}
+      ]
+    }
+  }
+}

@@ -1,0 +1,1677 @@
+{
+  "metadata": {
+    "unit": 5,
+    "phase": 1,
+    "level": "A1",
+    "concept": "verb-tener",
+    "title": "Verb TENER (haben) - Besitz, Alter & Idiome",
+    "title_es": "Verbo TENER",
+    "description": "Lerne TENER für Besitz, Alter und wichtige spanische Ausdrücke",
+    "totalExercises": 30,
+    "estimatedTime": "20-25 Minuten",
+    "germanAdvantage": true,
+    "germanAdvantageNote": "Deutsch hat auch 'haben' - viele Konzepte sind ähnlich!",
+    "version": "1.0"
+  },
+  "learningObjectives": [
+    "Konjugation von TENER (unregelmäßig)",
+    "TENER für Besitz",
+    "TENER für Alter (nicht ser/estar!)",
+    "TENER + Nomen für physische Zustände",
+    "TENER + que für Verpflichtungen",
+    "TENER + ganas de für Wünsche"
+  ],
+  "conjugation": {
+    "yo": "tengo",
+    "tú": "tienes",
+    "él/ella/usted": "tiene",
+    "nosotros/as": "tenemos",
+    "vosotros/as": "tenéis",
+    "ellos/ellas/ustedes": "tienen"
+  },
+  "commonExpressions": {
+    "possession": "Tengo un libro (Ich habe ein Buch)",
+    "age": "Tengo 25 años (Ich bin 25 Jahre alt)",
+    "hunger": "Tengo hambre (Ich habe Hunger)",
+    "thirst": "Tengo sed (Ich habe Durst)",
+    "hot": "Tengo calor (Mir ist heiß)",
+    "cold": "Tengo frío (Mir ist kalt)",
+    "fear": "Tengo miedo (Ich habe Angst)",
+    "sleepy": "Tengo sueño (Ich bin müde/schläfrig)",
+    "right": "Tengo razón (Ich habe Recht)",
+    "hurry": "Tengo prisa (Ich habe es eilig)",
+    "obligation": "Tengo que estudiar (Ich muss lernen)",
+    "desire": "Tengo ganas de comer (Ich habe Lust zu essen)"
+  },
+  "exercises": [
+    {
+      "id": "u5_ex001",
+      "type": "conjugation",
+      "difficulty": 1,
+      "concept": "tener-conjugation-yo",
+      "question": "Konjugiere TENER für 'yo' (ich)",
+      "correctAnswer": "tengo",
+      "explanation": "Yo tengo - 1. Person Singular. Unregelmäßig (nicht 'teno')!",
+      "germanBridge": "🇩🇪 ich habe → 🇪🇸 yo tengo",
+      "examples": [
+        "Yo tengo un libro",
+        "Yo tengo 25 años"
+      ],
+      "note": "TENER ist unregelmäßig: tenGO (mit G!)",
+      "mnemonic": "tenGO = ich habe das G!",
+      "prerequisites": [
+        "pronoun-singular-first"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "tener",
+        "yo",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ich habe → 🇪🇸 yo tengo"
+      ],
+      "expectedAccuracy": 0.95,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex002",
+      "type": "conjugation",
+      "difficulty": 2,
+      "concept": "tener-conjugation-tu",
+      "question": "Konjugiere TENER für 'tú' (du)",
+      "correctAnswer": "tienes",
+      "explanation": "Tú tienes - 2. Person Singular. Stammwechsel: e→ie",
+      "germanBridge": "🇩🇪 du hast → 🇪🇸 tú tienes",
+      "examples": [
+        "Tú tienes un gato",
+        "Tú tienes razón"
+      ],
+      "note": "Stammwechsel: tener → tienes (e→ie)",
+      "mnemonic": "TIEnes = du hast eine KrawaTIE (Stammwechsel!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "tener",
+        "tu",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 du hast → 🇪🇸 tú tienes"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex003",
+      "type": "conjugation",
+      "difficulty": 2,
+      "concept": "tener-conjugation-el",
+      "question": "Konjugiere TENER für 'él/ella/usted'",
+      "correctAnswer": "tiene",
+      "explanation": "Él/ella/usted tiene - 3. Person Singular. Stammwechsel: e→ie",
+      "germanBridge": "🇩🇪 er/sie hat → 🇪🇸 él/ella tiene | Sie haben → usted tiene",
+      "examples": [
+        "Él tiene un coche",
+        "Ella tiene 30 años"
+      ],
+      "note": "Stammwechsel wie bei tienes",
+      "mnemonic": "TIENE = er/sie hat (e→ie Wechsel)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "tener",
+        "el",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 er/sie hat → 🇪🇸 él/ella tiene | Sie haben → usted tiene"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex004",
+      "type": "conjugation",
+      "difficulty": 2,
+      "concept": "tener-conjugation-nosotros",
+      "question": "Konjugiere TENER für 'nosotros' (wir)",
+      "correctAnswer": "tenemos",
+      "explanation": "Nosotros tenemos - 1. Person Plural. KEIN Stammwechsel bei nosotros!",
+      "germanBridge": "🇩🇪 wir haben → 🇪🇸 nosotros tenemos",
+      "examples": [
+        "Nosotros tenemos tiempo",
+        "Tenemos hambre"
+      ],
+      "note": "Bei nosotros/vosotros: KEIN Stammwechsel → tenemos (nicht 'tienemos')",
+      "important": "Ausnahme: nosotros/vosotros haben KEINEN Stammwechsel!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "tener",
+        "nosotros",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 wir haben → 🇪🇸 nosotros tenemos"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex005",
+      "type": "conjugation",
+      "difficulty": 2,
+      "concept": "tener-conjugation-ellos",
+      "question": "Konjugiere TENER für 'ellos/ellas/ustedes'",
+      "correctAnswer": "tienen",
+      "explanation": "Ellos/ellas/ustedes tienen - 3. Person Plural. Stammwechsel: e→ie",
+      "germanBridge": "🇩🇪 sie haben → 🇪🇸 ellos/ellas tienen | Sie haben → ustedes tienen",
+      "examples": [
+        "Ellos tienen un perro",
+        "Ustedes tienen razón"
+      ],
+      "note": "Stammwechsel e→ie wie bei tú/él",
+      "pattern": "tienen (e→ie im Stamm)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "tener",
+        "ellos",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 sie haben → 🇪🇸 ellos/ellas tienen | Sie haben → ustedes tienen"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex006",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "concept": "tener-possession-simple",
+      "question": "Yo ___ un libro. (Ich habe ein Buch.)",
+      "correctAnswer": "tengo",
+      "explanation": "TENER für Besitz: tengo un libro",
+      "germanBridge": "🇩🇪 Ich habe ein Buch → 🇪🇸 Tengo un libro",
+      "examples": [
+        "Tengo un coche",
+        "Tengo una casa",
+        "Tengo dinero"
+      ],
+      "useCase": "possession",
+      "rule": "TENER + Objekt = Besitz",
+      "prerequisites": [
+        "tener-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "possession",
+        "simple",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich habe ein Buch → 🇪🇸 Tengo un libro",
+        "Rule: TENER + Objekt = Besitz"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex007",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "concept": "tener-possession-plural",
+      "question": "Nosotros ___ dos gatos. (Wir haben zwei Katzen.)",
+      "correctAnswer": "tenemos",
+      "explanation": "TENER für Besitz (Plural): tenemos dos gatos",
+      "germanBridge": "🇩🇪 Wir haben zwei Katzen → 🇪🇸 Tenemos dos gatos",
+      "examples": [
+        "Tenemos un perro",
+        "Tenemos una casa",
+        "Tenemos tiempo"
+      ],
+      "useCase": "possession",
+      "rule": "TENER + Zahl + Objekt",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "possession",
+        "plural",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.7,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wir haben zwei Katzen → 🇪🇸 Tenemos dos gatos",
+        "Rule: TENER + Zahl + Objekt"
+      ],
+      "expectedAccuracy": 0.9,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex008",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "tener-possession-negative",
+      "question": "Übersetze: 'Ich habe kein Auto.'",
+      "correctAnswer": "No tengo coche",
+      "alternativeAnswers": [
+        "no tengo coche",
+        "No tengo un coche",
+        "no tengo un coche"
+      ],
+      "explanation": "Negation: no + tengo + Nomen (ohne Artikel bei Verneinung oft weggelassen)",
+      "germanBridge": "🇩🇪 Ich habe kein Auto → 🇪🇸 No tengo coche",
+      "examples": [
+        "No tengo tiempo",
+        "No tengo dinero",
+        "No tengo hermanos"
+      ],
+      "useCase": "possession",
+      "pattern": "No tengo + Nomen",
+      "note": "Artikel oft weggelassen bei Verneinung",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "possession",
+        "negative",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich habe kein Auto → 🇪🇸 No tengo coche"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex009",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "tener-family",
+      "question": "Übersetze: 'Sie (ella) hat zwei Brüder.'",
+      "correctAnswer": "Ella tiene dos hermanos",
+      "alternativeAnswers": [
+        "ella tiene dos hermanos",
+        "Tiene dos hermanos"
+      ],
+      "explanation": "TENER für Familienmitglieder: tiene dos hermanos",
+      "germanBridge": "🇩🇪 Sie hat zwei Brüder → 🇪🇸 Tiene dos hermanos",
+      "examples": [
+        "Tengo una hermana",
+        "Tiene tres hijos",
+        "Tenemos abuelos"
+      ],
+      "useCase": "possession",
+      "rule": "TENER für Familienmitglieder",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "family",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 0.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie hat zwei Brüder → 🇪🇸 Tiene dos hermanos",
+        "Rule: TENER für Familienmitglieder"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex010",
+      "type": "fill-blank",
+      "difficulty": 3,
+      "concept": "tener-age",
+      "question": "Yo ___ 25 años. (Ich bin 25 Jahre alt.)",
+      "correctAnswer": "tengo",
+      "explanation": "TENER für Alter: tengo 25 años (nicht 'soy' oder 'estoy'!)",
+      "germanBridge": "🇩🇪 Ich BIN 25 → 🇪🇸 Tengo 25 años (HABEN, nicht sein!)",
+      "examples": [
+        "Tengo 30 años",
+        "Tiene 40 años",
+        "Tenemos 20 años"
+      ],
+      "useCase": "age",
+      "rule": "TENER + Zahl + años (für Alter)",
+      "warning": "⚠️ NICHT 'soy 25 años' oder 'estoy 25 años'!",
+      "note": "Spanisch denkt: 'Ich habe 25 Jahre'",
+      "prerequisites": [
+        "tener-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "age",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich BIN 25 → 🇪🇸 Tengo 25 años (HABEN, nicht sein!)",
+        "Rule: TENER + Zahl + años (für Alter)"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex011",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "tener-age-question",
+      "question": "Übersetze: 'Wie alt bist du?' (¿Cuántos años...?)",
+      "correctAnswer": "¿Cuántos años tienes?",
+      "alternativeAnswers": [
+        "¿cuántos años tienes?",
+        "Cuántos años tienes"
+      ],
+      "explanation": "TENER für Alter-Fragen: ¿Cuántos años tienes?",
+      "germanBridge": "🇩🇪 Wie alt bist du? → 🇪🇸 ¿Cuántos años tienes? (wörtlich: Wie viele Jahre hast du?)",
+      "examples": [
+        "¿Cuántos años tiene?",
+        "¿Cuántos años tienen ustedes?"
+      ],
+      "useCase": "age",
+      "pattern": "¿Cuántos años + TENER?",
+      "note": "Wörtlich: 'Wie viele Jahre hast du?'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "age",
+        "question",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wie alt bist du? → 🇪🇸 ¿Cuántos años tienes? (wörtlich: Wie viele Jahre hast du?)"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex012",
+      "type": "fill-blank",
+      "difficulty": 3,
+      "concept": "tener-age-third-person",
+      "question": "Mi hermano ___ 18 años. (Mein Bruder ist 18 Jahre alt.)",
+      "correctAnswer": "tiene",
+      "explanation": "TENER für Alter (3. Person): tiene 18 años",
+      "germanBridge": "🇩🇪 Er ist 18 → 🇪🇸 Tiene 18 años (HABEN!)",
+      "examples": [
+        "Ella tiene 25 años",
+        "Mi padre tiene 50 años"
+      ],
+      "useCase": "age",
+      "rule": "TENER + años für alle Personen",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "age",
+        "third",
+        "person",
+        "verb-tener",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist 18 → 🇪🇸 Tiene 18 años (HABEN!)",
+        "Rule: TENER + años für alle Personen"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex013",
+      "type": "fill-blank",
+      "difficulty": 4,
+      "concept": "tener-hunger",
+      "question": "Yo ___ hambre. (Ich habe Hunger.)",
+      "correctAnswer": "tengo",
+      "explanation": "TENER hambre = Hunger haben (nicht 'soy hambre' oder 'estoy hambre'!)",
+      "germanBridge": "🇩🇪 Ich habe Hunger → 🇪🇸 Tengo hambre (TENER + hambre!)",
+      "examples": [
+        "Tengo hambre",
+        "Tienes hambre",
+        "Tienen hambre"
+      ],
+      "useCase": "physical_sensation",
+      "rule": "TENER hambre (nicht SER oder ESTAR!)",
+      "warning": "⚠️ NICHT 'estoy hambre' - das ist falsch!",
+      "note": "Idiom: immer TENER + hambre",
+      "prerequisites": [
+        "tener-possession-simple"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "hunger",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich habe Hunger → 🇪🇸 Tengo hambre (TENER + hambre!)",
+        "Rule: TENER hambre (nicht SER oder ESTAR!)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex014",
+      "type": "fill-blank",
+      "difficulty": 4,
+      "concept": "tener-thirst",
+      "question": "¿___ sed? (Hast du Durst?)",
+      "correctAnswer": "Tienes",
+      "alternativeAnswers": [
+        "tienes"
+      ],
+      "explanation": "TENER sed = Durst haben: ¿Tienes sed?",
+      "germanBridge": "🇩🇪 Hast du Durst? → 🇪🇸 ¿Tienes sed? (TENER!)",
+      "examples": [
+        "Tengo sed",
+        "Tiene sed",
+        "Tenemos sed"
+      ],
+      "useCase": "physical_sensation",
+      "rule": "TENER sed",
+      "pattern": "¿Tienes + Nomen?",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "thirst",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Hast du Durst? → 🇪🇸 ¿Tienes sed? (TENER!)",
+        "Rule: TENER sed"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex015",
+      "type": "translation",
+      "difficulty": 4,
+      "concept": "tener-hot",
+      "question": "Übersetze: 'Mir ist heiß.' (calor)",
+      "correctAnswer": "Tengo calor",
+      "alternativeAnswers": [
+        "tengo calor",
+        "Yo tengo calor"
+      ],
+      "explanation": "TENER calor = heiß sein (Personengefühl, nicht Wetter!)",
+      "germanBridge": "🇩🇪 Mir ist heiß → 🇪🇸 Tengo calor (TENER + calor!)",
+      "examples": [
+        "Tengo calor",
+        "Tienes calor",
+        "Tienen calor"
+      ],
+      "useCase": "physical_sensation",
+      "rule": "TENER calor (Personengefühl)",
+      "contrast": "Hace calor = es ist heiß (Wetter!)",
+      "note": "TENER calor (ich) vs Hace calor (Wetter)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "hot",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Mir ist heiß → 🇪🇸 Tengo calor (TENER + calor!)",
+        "Hace calor = es ist heiß (Wetter!)",
+        "Rule: TENER calor (Personengefühl)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex016",
+      "type": "translation",
+      "difficulty": 4,
+      "concept": "tener-cold",
+      "question": "Übersetze: 'Mir ist kalt.'",
+      "correctAnswer": "Tengo frío",
+      "alternativeAnswers": [
+        "tengo frío",
+        "Yo tengo frío"
+      ],
+      "explanation": "TENER frío = kalt sein (Personengefühl)",
+      "germanBridge": "🇩🇪 Mir ist kalt → 🇪🇸 Tengo frío (TENER!)",
+      "examples": [
+        "Tengo frío",
+        "Tienes frío",
+        "Tenemos frío"
+      ],
+      "useCase": "physical_sensation",
+      "rule": "TENER frío",
+      "contrast": "Hace frío = es ist kalt (Wetter)",
+      "note": "TENER frío (ich) vs Hace frío (Wetter)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "cold",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Mir ist kalt → 🇪🇸 Tengo frío (TENER!)",
+        "Hace frío = es ist kalt (Wetter)",
+        "Rule: TENER frío"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex017",
+      "type": "fill-blank",
+      "difficulty": 4,
+      "concept": "tener-sleepy",
+      "question": "Estoy cansado porque ___ mucho sueño. (Ich bin müde, weil ich sehr schläfrig bin.)",
+      "correctAnswer": "tengo",
+      "explanation": "TENER sueño = schläfrig sein (wörtlich: Schlaf haben)",
+      "germanBridge": "🇩🇪 Ich bin schläfrig → 🇪🇸 Tengo sueño (TENER!)",
+      "examples": [
+        "Tengo sueño",
+        "Tienes sueño",
+        "Tiene sueño"
+      ],
+      "useCase": "physical_sensation",
+      "rule": "TENER sueño = schläfrig",
+      "note": "sueño = Schlaf/Traum",
+      "contrast": "Estoy cansado = ich bin müde (erschöpft)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "sleepy",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin schläfrig → 🇪🇸 Tengo sueño (TENER!)",
+        "Estoy cansado = ich bin müde (erschöpft)",
+        "Rule: TENER sueño = schläfrig"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex018",
+      "type": "multiple-choice",
+      "difficulty": 4,
+      "concept": "tener-vs-estar-tired",
+      "question": "Was ist der Unterschied: 'Tengo sueño' vs 'Estoy cansado'?",
+      "correctAnswer": "Tengo sueño = schläfrig | Estoy cansado = müde/erschöpft",
+      "options": [
+        "Tengo sueño = schläfrig | Estoy cansado = müde/erschöpft",
+        "Kein Unterschied",
+        "Tengo sueño = müde | Estoy cansado = schläfrig",
+        "Tengo sueño = formell | Estoy cansado = informell"
+      ],
+      "explanation": "TENER sueño = Schläfrigkeit (möchte schlafen) | ESTAR cansado = Müdigkeit/Erschöpfung (nach Arbeit)",
+      "germanBridge": "🇩🇪 Ich bin schläfrig (TENER sueño) | Ich bin müde/erschöpft (ESTAR cansado)",
+      "examples": [
+        "Tengo sueño, voy a dormir (schläfrig)",
+        "Estoy cansado después del trabajo (erschöpft)"
+      ],
+      "rule": "sueño = Schläfrigkeit | cansado = Müdigkeit",
+      "note": "Feiner Unterschied, beide für 'müde' möglich",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [
+        "u2_ex012",
+        "u2_ex013",
+        "u2_ex014",
+        "u2_ex015",
+        "u2_ex016"
+      ],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "tener",
+        "vs",
+        "estar",
+        "tired",
+        "verb-estar",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 5,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin schläfrig (TENER sueño) | Ich bin müde/erschöpft (ESTAR cansado)",
+        "Rule: sueño = Schläfrigkeit | cansado = Müdigkeit"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex019",
+      "type": "translation",
+      "difficulty": 5,
+      "concept": "tener-fear",
+      "question": "Übersetze: 'Ich habe Angst vor Spinnen.' (arañas)",
+      "correctAnswer": "Tengo miedo de las arañas",
+      "alternativeAnswers": [
+        "tengo miedo de las arañas",
+        "Tengo miedo a las arañas"
+      ],
+      "explanation": "TENER miedo de/a = Angst haben vor: tengo miedo de...",
+      "germanBridge": "🇩🇪 Ich habe Angst vor... → 🇪🇸 Tengo miedo de...",
+      "examples": [
+        "Tengo miedo",
+        "Tiene miedo de volar",
+        "Tenemos miedo"
+      ],
+      "useCase": "emotion",
+      "pattern": "TENER miedo DE/A + Sache",
+      "rule": "TENER miedo (Angst haben)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "fear",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 6,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich habe Angst vor... → 🇪🇸 Tengo miedo de...",
+        "Rule: TENER miedo (Angst haben)"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex020",
+      "type": "fill-blank",
+      "difficulty": 5,
+      "concept": "tener-right",
+      "question": "Tú ___ razón. (Du hast Recht.)",
+      "correctAnswer": "tienes",
+      "explanation": "TENER razón = Recht haben: tienes razón",
+      "germanBridge": "🇩🇪 Du hast Recht → 🇪🇸 Tienes razón",
+      "examples": [
+        "Tengo razón",
+        "Tiene razón",
+        "No tienes razón"
+      ],
+      "useCase": "expression",
+      "rule": "TENER razón = Recht haben",
+      "contrast": "No tener razón = Unrecht haben",
+      "note": "razón = Vernunft/Grund/Recht",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "right",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Du hast Recht → 🇪🇸 Tienes razón",
+        "No tener razón = Unrecht haben",
+        "Rule: TENER razón = Recht haben"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex021",
+      "type": "translation",
+      "difficulty": 5,
+      "concept": "tener-hurry",
+      "question": "Übersetze: 'Ich habe es eilig.'",
+      "correctAnswer": "Tengo prisa",
+      "alternativeAnswers": [
+        "tengo prisa",
+        "Yo tengo prisa"
+      ],
+      "explanation": "TENER prisa = es eilig haben: tengo prisa",
+      "germanBridge": "🇩🇪 Ich habe es eilig → 🇪🇸 Tengo prisa",
+      "examples": [
+        "Tengo prisa",
+        "Tiene prisa",
+        "No tenemos prisa"
+      ],
+      "useCase": "expression",
+      "rule": "TENER prisa = in Eile sein",
+      "note": "prisa = Eile",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "hurry",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 6,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich habe es eilig → 🇪🇸 Tengo prisa",
+        "Rule: TENER prisa = in Eile sein"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex022",
+      "type": "fill-blank",
+      "difficulty": 5,
+      "concept": "tener-luck",
+      "question": "¡Qué ___ tienes! (Was für ein Glück du hast!)",
+      "correctAnswer": "suerte",
+      "explanation": "TENER suerte = Glück haben: ¡Qué suerte tienes!",
+      "germanBridge": "🇩🇪 Du hast Glück → 🇪🇸 Tienes suerte",
+      "examples": [
+        "Tengo suerte",
+        "Tiene mucha suerte",
+        "No tenemos suerte"
+      ],
+      "useCase": "expression",
+      "rule": "TENER suerte = Glück haben",
+      "pattern": "¡Qué suerte! (Was für ein Glück!)",
+      "note": "suerte = Glück/Zufall",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "luck",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Du hast Glück → 🇪🇸 Tienes suerte",
+        "Rule: TENER suerte = Glück haben"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex023",
+      "type": "translation",
+      "difficulty": 5,
+      "concept": "tener-shame",
+      "question": "Übersetze: 'Sie (ella) schämt sich.' (vergüenza)",
+      "correctAnswer": "Ella tiene vergüenza",
+      "alternativeAnswers": [
+        "ella tiene vergüenza",
+        "Tiene vergüenza"
+      ],
+      "explanation": "TENER vergüenza = sich schämen: tiene vergüenza",
+      "germanBridge": "🇩🇪 Sie schämt sich → 🇪🇸 Tiene vergüenza (wörtlich: hat Scham)",
+      "examples": [
+        "Tengo vergüenza",
+        "Tiene vergüenza",
+        "Tenemos vergüenza"
+      ],
+      "useCase": "emotion",
+      "rule": "TENER vergüenza = sich schämen",
+      "note": "vergüenza = Scham",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "shame",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 6,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie schämt sich → 🇪🇸 Tiene vergüenza (wörtlich: hat Scham)",
+        "Rule: TENER vergüenza = sich schämen"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex024",
+      "type": "fill-blank",
+      "difficulty": 6,
+      "concept": "tener-care",
+      "question": "¡Ten cuidado! (___ Vorsicht! - Imperativ)",
+      "correctAnswer": "Hab",
+      "explanation": "TENER cuidado = vorsichtig sein/aufpassen: ¡Ten cuidado! (Imperativ)",
+      "germanBridge": "🇩🇪 Hab Achtung! → 🇪🇸 ¡Ten cuidado!",
+      "examples": [
+        "Tengo cuidado",
+        "Tiene cuidado",
+        "¡Ten cuidado!"
+      ],
+      "useCase": "expression",
+      "rule": "TENER cuidado = vorsichtig sein",
+      "note": "cuidado = Vorsicht/Pflege",
+      "imperativ": "ten = hab (Imperativ von tener)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "care",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Hab Achtung! → 🇪🇸 ¡Ten cuidado!",
+        "Rule: TENER cuidado = vorsichtig sein"
+      ],
+      "expectedAccuracy": 0.7,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex025",
+      "type": "fill-blank",
+      "difficulty": 6,
+      "concept": "tener-que-obligation",
+      "question": "Yo ___ que estudiar. (Ich muss lernen.)",
+      "correctAnswer": "tengo",
+      "explanation": "TENER que + Infinitiv = müssen: tengo que estudiar",
+      "germanBridge": "🇩🇪 Ich muss lernen → 🇪🇸 Tengo que estudiar",
+      "examples": [
+        "Tengo que trabajar",
+        "Tienes que comer",
+        "Tiene que dormir"
+      ],
+      "useCase": "obligation",
+      "pattern": "TENER + que + Infinitiv",
+      "rule": "TENER que = müssen/sollen",
+      "note": "que = dass/was, hier für Verpflichtung",
+      "prerequisites": [
+        "tener-possession-simple"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "que",
+        "obligation",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich muss lernen → 🇪🇸 Tengo que estudiar",
+        "Rule: TENER que = müssen/sollen"
+      ],
+      "expectedAccuracy": 0.7,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex026",
+      "type": "translation",
+      "difficulty": 6,
+      "concept": "tener-que-plural",
+      "question": "Übersetze: 'Wir müssen gehen.' (ir)",
+      "correctAnswer": "Tenemos que ir",
+      "alternativeAnswers": [
+        "tenemos que ir",
+        "Nosotros tenemos que ir"
+      ],
+      "explanation": "TENER que + Infinitiv: tenemos que ir",
+      "germanBridge": "🇩🇪 Wir müssen gehen → 🇪🇸 Tenemos que ir",
+      "examples": [
+        "Tenemos que estudiar",
+        "Tienen que trabajar"
+      ],
+      "useCase": "obligation",
+      "pattern": "TENER + que + Infinitiv",
+      "rule": "Für alle Personen gleiche Struktur",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "que",
+        "plural",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wir müssen gehen → 🇪🇸 Tenemos que ir",
+        "Rule: Für alle Personen gleiche Struktur"
+      ],
+      "expectedAccuracy": 0.7,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex027",
+      "type": "fill-blank",
+      "difficulty": 6,
+      "concept": "tener-ganas-desire",
+      "question": "Yo ___ ganas de comer pizza. (Ich habe Lust, Pizza zu essen.)",
+      "correctAnswer": "tengo",
+      "explanation": "TENER ganas de + Infinitiv = Lust haben auf: tengo ganas de comer",
+      "germanBridge": "🇩🇪 Ich habe Lust auf... → 🇪🇸 Tengo ganas de...",
+      "examples": [
+        "Tengo ganas de dormir",
+        "Tienes ganas de bailar"
+      ],
+      "useCase": "desire",
+      "pattern": "TENER + ganas de + Infinitiv",
+      "rule": "TENER ganas de = Lust haben zu/auf",
+      "note": "ganas = Lust/Wunsch",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "tener",
+        "ganas",
+        "desire",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich habe Lust auf... → 🇪🇸 Tengo ganas de...",
+        "Rule: TENER ganas de = Lust haben zu/auf"
+      ],
+      "expectedAccuracy": 0.7,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u5_ex028",
+      "type": "translation",
+      "difficulty": 6,
+      "concept": "tener-ganas-negative",
+      "question": "Übersetze: 'Ich habe keine Lust zu arbeiten.' (trabajar)",
+      "correctAnswer": "No tengo ganas de trabajar",
+      "alternativeAnswers": [
+        "no tengo ganas de trabajar",
+        "Yo no tengo ganas de trabajar"
+      ],
+      "explanation": "Negation: No tengo ganas de + Infinitiv",
+      "germanBridge": "🇩🇪 Ich habe keine Lust zu... → 🇪🇸 No tengo ganas de...",
+      "examples": [
+        "No tengo ganas de salir",
+        "No tiene ganas de estudiar"
+      ],
+      "useCase": "desire",
+      "pattern": "No tener ganas de + Infinitiv",
+      "rule": "Verneinung mit 'no' vor tener",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "translation",
+        "tener",
+        "ganas",
+        "negative",
+        "verb-tener",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich habe keine Lust zu... → 🇪🇸 No tengo ganas de...",
+        "Rule: Verneinung mit 'no' vor tener"
+      ],
+      "expectedAccuracy": 0.7,
+      "milestone": false,
+      "certificationRequired": true
+    },
+    {
+      "id": "u5_ex029",
+      "type": "comprehensive",
+      "difficulty": 7,
+      "concept": "tener-multiple-uses",
+      "question": "Ergänze: 'Yo ___ 25 años, ___ hambre y ___ que comer, pero no ___ ganas.'",
+      "correctAnswer": "tengo, tengo, tengo, tengo",
+      "alternativeAnswers": [
+        "tengo,tengo,tengo,tengo",
+        "tengo, tengo,tengo,tengo"
+      ],
+      "explanation": "Vier verschiedene TENER-Verwendungen: Alter (años) + Hunger (hambre) + Verpflichtung (que) + Wunsch (ganas)",
+      "germanBridge": "🇩🇪 Ich bin 25 (HABEN!), habe Hunger, muss essen, habe aber keine Lust",
+      "examples": [
+        "Tengo años, hambre, que comer, ganas"
+      ],
+      "useCase": "multiple",
+      "rule": "TENER für Alter, Zustände, Verpflichtungen, Wünsche",
+      "note": "Alle vier Verwendungen in einem Satz!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "comprehensive",
+        "tener",
+        "multiple",
+        "uses",
+        "verb-tener",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 36,
+      "memoryComplexity": 8,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin 25 (HABEN!), habe Hunger, muss essen, habe aber keine Lust",
+        "Rule: TENER für Alter, Zustände, Verpflichtungen, Wünsche"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": true
+    },
+    {
+      "id": "u5_ex030",
+      "type": "mastery-check",
+      "difficulty": 7,
+      "concept": "tener-complete-mastery",
+      "question": "Vervollständige: 'Mi hermana ___ 20 años, ___ mucha hambre y sed, ___ frío y ___ que estudiar, pero ___ ganas de dormir porque ___ mucho sueño. También ___ miedo del examen y ___ prisa.'",
+      "correctAnswer": "tiene, tiene, tiene, tiene, tiene, tiene, tiene, tiene, tiene",
+      "explanation": "Alle TENER-Verwendungen: Alter (años) + Hunger/Durst (hambre/sed) + kalt (frío) + Verpflichtung (que) + Wunsch (ganas de) + Schläfrigkeit (sueño) + Angst (miedo) + Eile (prisa)",
+      "germanBridge": "🇩🇪 Alle wichtigen TENER-Ausdrücke in einem Text!",
+      "examples": [
+        "Meister-Level: Alle TENER-Idiome kombiniert"
+      ],
+      "rule": "TENER für: Alter, physische Zustände, Verpflichtungen, Wünsche, Emotionen",
+      "note": "Finale Meisterprüfung - 9 korrekte TENER-Verwendungen!",
+      "mastery": "Zeigt vollständiges Verständnis aller TENER-Konstruktionen",
+      "allUses": [
+        "tiene 20 años (Alter)",
+        "tiene hambre y sed (Hunger/Durst)",
+        "tiene frío (Temperatur)",
+        "tiene que estudiar (Verpflichtung)",
+        "tiene ganas de dormir (Wunsch)",
+        "tiene sueño (Schläfrigkeit)",
+        "tiene miedo (Angst)",
+        "tiene prisa (Eile)"
+      ],
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "possession",
+        "age"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-5",
+        "phase-1",
+        "A1",
+        "mastery-check",
+        "tener",
+        "complete",
+        "mastery",
+        "verb-tener",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 48,
+      "memoryComplexity": 8,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Alle wichtigen TENER-Ausdrücke in einem Text!",
+        "Rule: TENER für: Alter, physische Zustände, Verpflichtungen, Wünsche, Emotionen"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": true,
+      "certificationRequired": true
+    }
+  ],
+  "progressionNotes": {
+    "easyExercises": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "mediumExercises": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "hardExercises": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "germanAdvantages": [
+      "Deutsch hat auch 'haben' - Konzept ist vertraut",
+      "Viele Ausdrücke sind ähnlich strukturiert",
+      "Konjugation ist im Deutschen auch unregelmäßig (habe, hast, hat)"
+    ],
+    "germanChallenges": [
+      "Alter mit TENER statt ser/estar: 'Ich habe 25 Jahre' (nicht 'ich bin 25')",
+      "Viele Idiome mit TENER statt estar: 'Tengo hambre' (nicht 'estoy hambre')",
+      "tener que = müssen (andere Struktur als Deutsch)",
+      "Stammwechsel e→ie bei tú/él/ellos (aber nicht bei nosotros!)"
+    ],
+    "keyTakeaways": [
+      "Konjugation: tengo, tienes, tiene, tenemos, tenéis, tienen",
+      "Stammwechsel e→ie (außer nosotros/vosotros)",
+      "Alter: tengo X años (nicht ser/estar!)",
+      "Physische Zustände: tengo hambre/sed/calor/frío/sueño",
+      "Emotionen: tengo miedo/vergüenza",
+      "Ausdrücke: tengo razón/prisa/suerte/cuidado",
+      "Verpflichtung: tener que + Infinitiv = müssen",
+      "Wunsch: tener ganas de + Infinitiv = Lust haben auf"
+    ],
+    "idiomaticExpressions": [
+      "tener hambre = Hunger haben",
+      "tener sed = Durst haben",
+      "tener calor = heiß sein (Person)",
+      "tener frío = kalt sein (Person)",
+      "tener sueño = schläfrig sein",
+      "tener miedo = Angst haben",
+      "tener razón = Recht haben",
+      "tener prisa = es eilig haben",
+      "tener suerte = Glück haben",
+      "tener vergüenza = sich schämen",
+      "tener cuidado = vorsichtig sein",
+      "tener que = müssen",
+      "tener ganas de = Lust haben auf"
+    ],
+    "temperatureNote": {
+      "person": "Tengo calor/frío (mir ist heiß/kalt)",
+      "weather": "Hace calor/frío (es ist heiß/kalt - Wetter)",
+      "difference": "TENER für Personen | HACER für Wetter!"
+    }
+  }
+}

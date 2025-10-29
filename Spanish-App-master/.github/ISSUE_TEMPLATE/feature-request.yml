@@ -1,0 +1,176 @@
+name: ✨ Feature Request
+description: Schlage ein neues Feature oder eine Verbesserung vor
+title: "[FEATURE] "
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Feature Request
+
+        Vielen Dank für deinen Feature-Vorschlag!
+
+        Bitte beschreibe das gewünschte Feature so detailliert wie möglich.
+
+  - type: dropdown
+    id: feature-category
+    attributes:
+      label: Feature-Kategorie
+      description: Welche Kategorie betrifft das Feature?
+      options:
+        - Neue Übungstypen
+        - Content (Vokabeln, Verben)
+        - SRS-System
+        - Konjugations-Engine
+        - UI/UX Verbesserung
+        - Performance
+        - Export/Import
+        - Statistiken / Tracking
+        - Gamification (Achtung - Policy prüfen!)
+        - Integration (API, Services)
+        - Andere
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-statement
+    attributes:
+      label: Problem / Use Case
+      description: Welches Problem soll das Feature lösen?
+      placeholder: |
+        Beschreibe den Use Case:
+        - Als Nutzer möchte ich...
+        - Weil...
+        - Damit ich...
+
+        Beispiel:
+        Als Nutzer möchte ich meine Lernstatistiken als CSV exportieren,
+        weil ich meinen Fortschritt in Excel analysieren möchte.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Lösungsvorschlag
+      description: Wie soll das Feature funktionieren?
+      placeholder: |
+        Beschreibe das gewünschte Feature:
+        - UI-Mockups
+        - Workflow
+        - Interaktionen
+
+        Beispiel:
+        - Neuer Button "Exportieren" im Header
+        - Modal mit Export-Optionen (CSV, JSON, PDF)
+        - Download startet automatisch
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Lösungen
+      description: Hast du alternative Ansätze in Betracht gezogen?
+      placeholder: |
+        - Alternative 1: ...
+        - Alternative 2: ...
+        - Warum ist deine Lösung besser?
+    validations:
+      required: false
+
+  - type: textarea
+    id: mockups
+    attributes:
+      label: Mockups / Screenshots
+      description: Drag & Drop UI-Mockups oder Beispiele
+      placeholder: |
+        - Drag & Drop Bilder hier
+        - Links zu Figma/Sketch
+        - Screenshots von ähnlichen Apps
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Wann ist das Feature "done"?
+      options:
+        - label: Feature implementiert und funktional
+        - label: Unit Tests geschrieben
+        - label: Dokumentiert (README/Inline-Docs)
+        - label: UI responsive (Mobile + Desktop)
+        - label: Dark Mode kompatibel
+        - label: Accessibility geprüft (WCAG AA)
+        - label: Performance-optimiert
+        - label: Cross-Browser getestet
+
+  - type: input
+    id: estimate
+    attributes:
+      label: Aufwandsschätzung
+      description: Wie groß ist das Feature? (klein/mittel/groß)
+      placeholder: "z.B. klein (1-2h), mittel (1 Tag), groß (1 Woche)"
+    validations:
+      required: false
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorität
+      description: Wie wichtig ist dieses Feature?
+      options:
+        - P0 - KRITISCH (Blocker)
+        - P1 - HOCH (Wichtig für viele Nutzer)
+        - P2 - MITTEL (Nice-to-Have)
+        - P3 - NIEDRIG (Future)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: breaking-changes
+    attributes:
+      label: Breaking Changes
+      options:
+        - label: Dieses Feature benötigt Breaking Changes
+        - label: Bestehende Features müssen angepasst werden
+        - label: Daten-Migration erforderlich
+
+  - type: checkboxes
+    id: policies
+    attributes:
+      label: Policy-Check
+      description: Bitte prüfe unsere Policies
+      options:
+        - label: "❌ No-Gamification: Feature fügt KEIN XP/Level/Streak hinzu"
+        - label: "✅ ASCII-Compliant: Deutsche Texte ohne Umlaute"
+        - label: "✅ Privacy-First: Keine externen Server-Aufrufe"
+        - label: "✅ Offline-fähig: Feature funktioniert offline"
+
+  - type: textarea
+    id: technical-notes
+    attributes:
+      label: Technische Notizen
+      description: Technische Details zur Implementierung
+      placeholder: |
+        - Neue Dependencies benötigt?
+        - API-Änderungen?
+        - Datenbank-Schema-Änderungen?
+        - Performance-Implikationen?
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Zusätzlicher Kontext
+      description: Weitere Informationen
+      placeholder: |
+        - Links zu ähnlichen Features in anderen Apps
+        - User-Feedback / Requests
+        - Statistiken (z.B. "50% der Nutzer haben danach gefragt")
+    validations:
+      required: false

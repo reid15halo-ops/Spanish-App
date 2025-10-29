@@ -1,0 +1,2696 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Learning App - Demo (Improved)</title>
+    <meta name="description" content="Spanisch lernen für deutsche Muttersprachler - Fokussiert, minimalistisch, effektiv">
+
+    <style>
+
+        /* ============================================
+           ZERO-FRICTION UI - DESIGN SYSTEM
+           ============================================ */
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --text-primary: #1A1A1A;
+            --text-secondary: #333333;
+            --text-muted: #555555;
+            --accent: #20B2AA;
+            --accent-hover: #1A9993;
+            --success: #2E7D32;
+            --error: #C62828;
+            --warning: #F57C00;
+            --info: #1976D2;
+            --border: #E0E0E0;
+            --border-focus: #20B2AA;
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-size-base: 16px;
+            --font-size-large: 18px;
+            --font-size-xl: 20px;
+            --font-size-small: 14px;
+            --font-size-xs: 12px;
+            --line-height: 1.5;
+
+            /* Spacing (8px grid) */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height);
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - Minimal */
+        .minimal-header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: var(--space-xs);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-sm);
+            transition: background var(--transition-fast);
+        }
+
+        .menu-toggle:hover {
+            background: var(--bg-secondary);
+        }
+
+        .logo {
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .status-bar {
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .unit-info {
+            font-weight: 500;
+        }
+
+        .progress-inline {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Sidebar/Menu */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 280px;
+            height: 100vh;
+            background: var(--bg-primary);
+            border-right: 1px solid var(--border);
+            transition: left var(--transition-normal);
+            z-index: 200;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .sidebar-header {
+            padding: var(--space-lg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-title {
+            font-size: var(--font-size-large);
+            font-weight: 600;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: var(--space-xs);
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-items {
+            list-style: none;
+            padding: var(--space-md) 0;
+        }
+
+        .menu-items li {
+            margin: 0;
+        }
+
+        .menu-items a {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+            padding: var(--space-md) var(--space-lg);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background var(--transition-fast);
+            font-size: var(--font-size-base);
+        }
+
+        .menu-items a:hover {
+            background: var(--bg-secondary);
+        }
+
+        .menu-items a.active {
+            background: rgba(32, 178, 170, 0.1);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Overlay for sidebar */
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 150;
+            display: none;
+            transition: opacity var(--transition-normal);
+        }
+
+        .sidebar-overlay.show {
+            display: block;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                left: 0;
+                box-shadow: none;
+            }
+
+            .sidebar-overlay {
+                display: none !important;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .app-container {
+                padding-left: 280px;
+            }
+
+            .minimal-header {
+                left: 280px;
+                width: calc(100% - 280px);
+            }
+        }
+
+        /* Main Exercise Area */
+        .exercise-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+        }
+
+        /* ============================================
+           EXERCISE CARD
+           ============================================ */
+
+        .exercise-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-xl);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .exercise-card {
+                padding: var(--space-xxl);
+                max-width: 700px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .exercise-card {
+                max-width: 800px;
+            }
+        }
+
+        /* German Bridge */
+        .german-bridge {
+            background: var(--info);
+            color: white;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            font-size: var(--font-size-small);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .german-bridge.hidden {
+            display: none;
+        }
+
+        /* Question */
+        .question {
+            font-size: var(--font-size-xl);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xl);
+            line-height: 1.6;
+        }
+
+        .question .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Answer Options */
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .answer-btn {
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .answer-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .answer-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .answer-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .answer-btn.correct {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+            animation: correctPulse 0.3s ease;
+        }
+
+        .answer-btn.incorrect {
+            background: var(--error);
+            border-color: var(--error);
+            color: white;
+            animation: shake 0.3s ease;
+        }
+
+        .answer-text {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .answer-es {
+            font-weight: 500;
+            font-size: var(--font-size-large);
+        }
+
+        .answer-de {
+            font-size: var(--font-size-small);
+            opacity: 0.8;
+        }
+
+        /* Text Input */
+        .text-input {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-large);
+            font-family: var(--font-family);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: border-color var(--transition-normal);
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.1);
+        }
+
+        .text-input.correct {
+            border-color: var(--success);
+            background: rgba(46, 125, 50, 0.05);
+        }
+
+        .text-input.incorrect {
+            border-color: var(--error);
+            background: rgba(198, 40, 40, 0.05);
+            animation: shake 0.3s ease;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            font-family: var(--font-family);
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            margin-top: var(--space-lg);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .submit-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Feedback */
+        .feedback {
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+            font-size: var(--font-size-base);
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.feedback--success {
+            background: rgba(46, 125, 50, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .feedback.feedback--error {
+            background: rgba(198, 40, 40, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+        }
+
+        .feedback-hint {
+            margin-top: var(--space-sm);
+            font-size: var(--font-size-small);
+            opacity: 0.9;
+            padding-top: var(--space-sm);
+            border-top: 1px solid currentColor;
+        }
+
+        .attempts-remaining {
+            font-size: var(--font-size-xs);
+            margin-top: var(--space-xs);
+            opacity: 0.7;
+        }
+
+        /* Hint Container */
+        .hint-container {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .hint-container.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-btn {
+            background: var(--warning);
+            color: white;
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-small);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .hint-btn:hover {
+            background: #E67600;
+        }
+
+        .hint-content {
+            margin-top: var(--space-md);
+            padding: var(--space-md);
+            background: white;
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--warning);
+        }
+
+        .hint-level {
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-xs);
+        }
+
+        /* Explanation */
+        .explanation {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--info);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation h4 {
+            margin-bottom: var(--space-md);
+            color: var(--info);
+        }
+
+        .explanation p {
+            margin-bottom: var(--space-sm);
+            line-height: 1.6;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 4px;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: var(--space-xl);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width var(--transition-slow);
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: var(--space-sm);
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* ============================================
+           ACCESSIBILITY
+           ============================================ */
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Focus visible for keyboard users */
+        *:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ============================================
+           LOADING & ERROR STATES
+           ============================================ */
+
+        .loading {
+            text-align: center;
+            padding: var(--space-xxl);
+            color: var(--text-muted);
+        }
+
+        .error-message {
+            background: rgba(198, 40, 40, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        /* ============================================
+           MOBILE OPTIMIZATIONS
+           ============================================ */
+
+        @media (max-width: 768px) {
+            .minimal-header {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .logo {
+                font-size: var(--font-size-base);
+            }
+
+            .status-bar {
+                font-size: var(--font-size-xs);
+                gap: var(--space-sm);
+            }
+
+            .exercise-area {
+                padding: var(--space-md);
+            }
+
+            .exercise-card {
+                padding: var(--space-lg);
+            }
+
+            .question {
+                font-size: var(--font-size-large);
+            }
+
+            .answer-btn {
+                padding: var(--space-md);
+            }
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-lg {
+            margin-top: var(--space-lg);
+        }
+
+        .mb-lg {
+            margin-bottom: var(--space-lg);
+        }
+    
+    </style>
+</head>
+<body>
+    <!-- Sidebar/Menu -->
+    <nav class="sidebar" id="sidebar" aria-label="Navigation">
+        <div class="sidebar-header">
+            <div class="sidebar-title">Menü</div>
+            <button class="close-menu" id="close-menu" aria-label="Menü schließen">
+                ×
+            </button>
+        </div>
+        <ul class="menu-items">
+            <li>
+                <a href="#" class="active" data-page="lesson">
+                    <span class="menu-icon">📚</span>
+                    <span>Lektionen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="progress">
+                    <span class="menu-icon">📊</span>
+                    <span>Fortschritt</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="review">
+                    <span class="menu-icon">🔄</span>
+                    <span>Wiederholungen</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" data-page="settings">
+                    <span class="menu-icon">⚙️</span>
+                    <span>Einstellungen</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Sidebar Overlay (for mobile) -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <div id="app" class="app-container">
+        <!-- Minimal Header -->
+        <header class="minimal-header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen">
+                    ☰
+                </button>
+                <div class="logo">Spanish App</div>
+            </div>
+            <div class="status-bar">
+                <div class="unit-info">
+                    <span id="unit-status">Lektion 1/7</span>
+                </div>
+                <div class="progress-inline">
+                    <span id="exercise-status">0/0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Exercise Area -->
+        <main class="exercise-area">
+            <!-- Loading State -->
+            <div id="loading" class="loading">
+                <p>Übungen werden geladen...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error" class="error-message hidden">
+                <p>Fehler beim Laden der Übungen.</p>
+                <button onclick="location.reload()" class="submit-btn mt-lg">
+                    Neu laden
+                </button>
+            </div>
+
+            <!-- Exercise Card -->
+            <div id="exercise-card" class="exercise-card hidden">
+                <!-- German Bridge (optional) -->
+                <div id="german-bridge" class="german-bridge hidden">
+                    <span>💡</span>
+                    <span id="bridge-text"></span>
+                </div>
+
+                <!-- Question -->
+                <div class="question">
+                    <p id="question-text"></p>
+                </div>
+
+                <!-- Answer Options (Dynamic) -->
+                <div id="answer-container">
+                    <!-- Multiple Choice or Text Input inserted here -->
+                </div>
+
+                <!-- Feedback -->
+                <div id="feedback" class="feedback">
+                    <p id="feedback-text"></p>
+                    <p class="feedback-hint" id="feedback-hint"></p>
+                    <p class="attempts-remaining" id="attempts-remaining"></p>
+                </div>
+
+                <!-- Hint Container -->
+                <div id="hint-container" class="hint-container">
+                    <button id="hint-btn" class="hint-btn">
+                        💡 Hinweis anzeigen
+                    </button>
+                    <div id="hint-content" class="hint-content hidden">
+                        <div class="hint-level" id="hint-level"></div>
+                        <p id="hint-text"></p>
+                    </div>
+                </div>
+
+                <!-- Explanation -->
+                <div id="explanation" class="explanation">
+                    <h4>Erklärung:</h4>
+                    <div id="explanation-content"></div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progress-text">0% abgeschlossen</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- ====================================================================
+         DEMO VERSION - IMPROVED EXERCISES & FEEDBACK
+         
+         ✨ NEW IN THIS VERSION:
+         - Text input exercises (harder than multiple choice!)
+         - Consistent multiple choice options
+         - Better German-optimized feedback
+         - Context-specific error messages
+         
+         ==================================================================== -->
+    
+    <script>
+    'use strict';
+    
+    console.log('✅ Spanish Learning App - Demo (IMPROVED VERSION)');
+    console.log('✨ NEW: Text input exercises + Better feedback!');
+    
+    // ====================================================================
+    // MOCK PHASE 1 CONTROLLER (IMPROVED)
+    // ====================================================================
+/**
+ * Mock Phase1Controller for UI Testing
+ *
+ * This is a simplified version that generates mock exercises
+ * Replace with real Phase1Controller for production
+ */
+
+class Phase1Controller {
+    constructor() {
+        this.currentUnit = 1;
+        this.currentExerciseIndex = 0;
+        this.exercises = this.generateMockExercises();
+        this.sessionActive = false;
+    }
+
+    /**
+     * Initialize controller (optional for mock)
+     */
+    async initialize() {
+        console.log('📚 Mock Phase1Controller initialized');
+        return Promise.resolve();
+    }
+
+    /**
+     * Start a learning session
+     */
+    startSession() {
+        this.sessionActive = true;
+        this.currentExerciseIndex = 0;
+        console.log('🎯 Session started');
+    }
+
+    /**
+     * Get next exercise
+     */
+    getNextExercise() {
+        if (this.currentExerciseIndex >= this.exercises.length) {
+            return null;
+        }
+
+        const exercise = this.exercises[this.currentExerciseIndex];
+        this.currentExerciseIndex++;
+        return exercise;
+    }
+
+    /**
+     * Process an answer
+     */
+    processAnswer(exercise, userAnswer) {
+        const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+        const normalizedUserAnswer = this.normalizeAnswer(userAnswer);
+        const isCorrect = correctAnswer === normalizedUserAnswer;
+
+        return {
+            isCorrect,
+            correctAnswer: exercise.correctAnswer,
+            feedback: isCorrect
+                ? '¡Muy bien! 🎉'
+                : `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`,
+            explanation: exercise.explanation || ''
+        };
+    }
+
+    /**
+     * Get progress summary
+     */
+    getProgressSummary() {
+        return {
+            currentUnit: this.currentUnit,
+            currentExercise: this.currentExerciseIndex,
+            totalExercises: this.exercises.length,
+            overallAccuracy: 0.85
+        };
+    }
+
+    /**
+     * End session
+     */
+    endSession() {
+        this.sessionActive = false;
+        return {
+            exercisesCompleted: this.currentExerciseIndex,
+            totalExercises: this.exercises.length,
+            errorPatterns: []
+        };
+    }
+
+    /**
+     * Save progress (mock)
+     */
+    saveProgress() {
+        console.log('💾 Progress saved');
+    }
+
+    /**
+     * Normalize answer for comparison
+     */
+    normalizeAnswer(answer) {
+        if (!answer) return '';
+        return answer
+            .toLowerCase()
+            .trim()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+    }
+
+    /**
+     * Generate mock exercises for testing
+     */
+    generateMockExercises() {
+        return [
+            // SER Exercises - TEXT INPUT (schwieriger!)
+            {
+                id: 'mock_ser_1',
+                type: 'translation',
+                concept: 'ser-conjugation-yo',
+                difficulty: 1,
+                question: 'Konjugiere SER für "yo" (ich). Schreibe nur das konjugierte Verb.',
+                correctAnswer: 'soy',
+                german: 'ich bin',
+                germanBridge: '💡 Im Deutschen: "ich bin" → auf Spanisch: "yo ___"',
+                hints: [
+                    'Denk an die DOCTOR-Regel! SER für dauerhafte Eigenschaften.',
+                    'SER ist unregelmäßig. Die Form für "yo" endet auf -oy.',
+                    'Die richtige Form ist: <strong>soy</strong>'
+                ],
+                explanation: `
+                    <p><strong>SER</strong> wird verwendet für dauerhafte Eigenschaften (DOCTOR-Regel):</p>
+                    <ul>
+                        <li><strong>D</strong>escription (Beschreibung)</li>
+                        <li><strong>O</strong>ccupation (Beruf)</li>
+                        <li><strong>C</strong>haracteristic (Eigenschaft)</li>
+                        <li><strong>T</strong>ime (Zeit)</li>
+                        <li><strong>O</strong>rigin (Herkunft)</li>
+                        <li><strong>R</strong>elationship (Beziehung)</li>
+                    </ul>
+                    <p>Die Konjugation für "yo" ist: <strong>soy</strong></p>
+                `,
+                feedbackCorrect: 'Perfekt! Die yo-Form von SER ist "soy".',
+                feedbackIncorrect: 'Nicht ganz. Die yo-Form von SER ist unregelmäßig und endet auf -oy.'
+            },
+            {
+                id: 'mock_ser_2',
+                type: 'translation',
+                concept: 'ser-conjugation-tu',
+                difficulty: 2,
+                question: 'Konjugiere SER für "tú" (du). Schreibe nur das konjugierte Verb.',
+                correctAnswer: 'eres',
+                german: 'du bist',
+                germanBridge: '💡 Im Deutschen: "du bist" → auf Spanisch: "tú ___"',
+                hints: [
+                    'Die zweite Person Singular von SER ist unregelmäßig.',
+                    'SER für dauerhafte Eigenschaften. Die Form beginnt mit "e".',
+                    'Die richtige Form ist: <strong>eres</strong>'
+                ],
+                explanation: '<p>Die Konjugation für "tú" ist: <strong>eres</strong></p><p>SER ist unregelmäßig: yo soy, tú eres, él/ella es...</p>',
+                feedbackCorrect: 'Excelente! Die tú-Form von SER ist "eres".',
+                feedbackIncorrect: 'Nicht ganz. Die tú-Form von SER ist unregelmäßig: "eres".'
+            },
+            {
+                id: 'mock_ser_3',
+                type: 'multiple-choice',
+                concept: 'ser-identity',
+                difficulty: 3,
+                question: 'Vervollständige: "Yo ___ estudiante" (Ich bin Student)',
+                correctAnswer: 'soy',
+                german: 'Ich bin Student',
+                germanBridge: '⚠️ Häufiger Fehler! Beruf/Identität = SER (nicht ESTAR)',
+                options: [
+                    { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
+                    { spanish: 'estoy', german: '(bin - vorübergehend)', value: 'estoy' },
+                    { spanish: 'tengo', german: '(habe)', value: 'tengo' }
+                ],
+                hints: [
+                    'Beruf und Identität sind dauerhafte Eigenschaften.',
+                    'DOCTOR Regel: O = Occupation → Verwende SER!',
+                    'Die richtige Antwort ist: <strong>soy</strong> (Yo soy estudiante)'
+                ],
+                explanation: '<p><strong>Häufiger Fehler für Deutsche:</strong></p><p>Bei <strong>Berufen und Identität</strong> verwendet man immer <strong>SER</strong>, weil das eine dauerhafte Eigenschaft ist.</p><p>✅ Yo <strong>soy</strong> estudiante (richtig)</p><p>❌ Yo estoy estudiante (falsch)</p>',
+                feedbackCorrect: '¡Perfecto! Berufe verwendet man mit SER.',
+                feedbackIncorrect: 'Beruf ist eine dauerhafte Eigenschaft. Im Deutschen sagen wir "ich bin Student", im Spanischen mit SER: "soy estudiante".'
+            },
+
+            // ESTAR Exercises
+            {
+                id: 'mock_estar_1',
+                type: 'conjugation',
+                concept: 'estar-conjugation-yo',
+                difficulty: 2,
+                question: 'Konjugiere ESTAR für "yo" (ich)',
+                correctAnswer: 'estoy',
+                german: 'ich bin (vorübergehend)',
+                germanBridge: '💡 ESTAR für Ort und vorübergehende Zustände',
+                options: [
+                    { spanish: 'estoy', german: '(ich bin)', value: 'estoy' },
+                    { spanish: 'soy', german: '(ich bin - dauerhaft)', value: 'soy' },
+                    { spanish: 'tengo', german: '(ich habe)', value: 'tengo' }
+                ],
+                hints: [
+                    'Denk an LECH: Location, Emotion, Condition, Health',
+                    'ESTAR für vorübergehende Zustände',
+                    'Die richtige Form für "yo" ist "estoy".'
+                ],
+                explanation: `
+                    <p><strong>ESTAR</strong> wird verwendet für:</p>
+                    <ul>
+                        <li><strong>L</strong>ocation (Ort)</li>
+                        <li><strong>E</strong>motion (Gefühl)</li>
+                        <li><strong>C</strong>ondition (Zustand)</li>
+                        <li><strong>H</strong>ealth (Gesundheit)</li>
+                    </ul>
+                `
+            },
+            {
+                id: 'mock_estar_2',
+                type: 'multiple-choice',
+                concept: 'estar-location',
+                difficulty: 3,
+                question: 'Wie sagt man "Ich bin in Madrid" auf Spanisch?',
+                correctAnswer: 'Yo estoy en Madrid',
+                german: 'Ich bin in Madrid',
+                germanBridge: '💡 Ort/Location = ESTAR',
+                options: [
+                    { spanish: 'Yo estoy en Madrid', german: '(ich bin in Madrid)', value: 'Yo estoy en Madrid' },
+                    { spanish: 'Yo soy en Madrid', german: '(falsch)', value: 'Yo soy en Madrid' },
+                    { spanish: 'Yo tengo en Madrid', german: '(falsch)', value: 'Yo tengo en Madrid' }
+                ],
+                hints: [
+                    'Ortangaben verwenden immer ESTAR!',
+                    'LECH Regel: L = Location',
+                    'Die richtige Antwort ist "Yo estoy en Madrid".'
+                ],
+                explanation: '<p>Bei <strong>Ortsangaben</strong> verwendet man immer <strong>ESTAR</strong>.</p>'
+            },
+
+            // SER/ESTAR Contrast
+            {
+                id: 'mock_contrast_1',
+                type: 'multiple-choice',
+                concept: 'ser-estar-fundamental',
+                difficulty: 5,
+                question: 'Wähle die richtige Form: "Yo ___ profesor" (Ich bin Lehrer)',
+                correctAnswer: 'soy',
+                german: 'Ich bin Lehrer (Beruf)',
+                germanBridge: '⚠️ Achtung! Beruf = SER (dauerhaft), nicht ESTAR',
+                options: [
+                    { spanish: 'soy', german: '(SER - Beruf)', value: 'soy' },
+                    { spanish: 'estoy', german: '(ESTAR - falsch hier)', value: 'estoy' }
+                ],
+                hints: [
+                    'Beruf ist eine dauerhafte Eigenschaft!',
+                    'DOCTOR Regel: O = Occupation → SER',
+                    'Die richtige Antwort ist "soy".'
+                ],
+                explanation: `
+                    <p>Dies ist ein häufiger Fehler für deutsche Lernende!</p>
+                    <p><strong>Beruf</strong> ist eine relativ <strong>dauerhafte Eigenschaft</strong>, daher:</p>
+                    <p>✅ Yo <strong>soy</strong> profesor (richtig)</p>
+                    <p>❌ Yo <strong>estoy</strong> profesor (falsch)</p>
+                `
+            },
+            {
+                id: 'mock_contrast_2',
+                type: 'multiple-choice',
+                concept: 'ser-estar-emotion',
+                difficulty: 5,
+                question: 'Wähle die richtige Form: "Yo ___ feliz hoy" (Ich bin heute glücklich)',
+                correctAnswer: 'estoy',
+                german: 'Ich bin heute glücklich',
+                germanBridge: '💡 "heute" = vorübergehend → ESTAR',
+                options: [
+                    { spanish: 'estoy', german: '(ESTAR - vorübergehend)', value: 'estoy' },
+                    { spanish: 'soy', german: '(SER - dauerhaft)', value: 'soy' }
+                ],
+                hints: [
+                    'Gefühle sind vorübergehende Zustände!',
+                    'LECH Regel: E = Emotion → ESTAR',
+                    'Die richtige Antwort ist "estoy".'
+                ],
+                explanation: `
+                    <p>Gefühle und Emotionen sind <strong>vorübergehende Zustände</strong>:</p>
+                    <p>✅ Yo <strong>estoy</strong> feliz hoy (richtig - heute glücklich)</p>
+                    <p>❌ Yo <strong>soy</strong> feliz (würde bedeuten: Ich bin immer glücklich)</p>
+                `
+            },
+
+            // TENER Exercise
+            {
+                id: 'mock_tener_1',
+                type: 'multiple-choice',
+                concept: 'tener-age',
+                difficulty: 4,
+                question: 'Wie sagt man "Ich bin 25 Jahre alt" auf Spanisch?',
+                correctAnswer: 'Yo tengo 25 años',
+                german: 'Ich bin 25 Jahre alt',
+                germanBridge: '⚠️ Achtung! Im Spanischen: TENER (haben) für Alter, nicht SER!',
+                options: [
+                    { spanish: 'Yo tengo 25 años', german: '(ich habe 25 Jahre)', value: 'Yo tengo 25 años' },
+                    { spanish: 'Yo soy 25 años', german: '(falsch)', value: 'Yo soy 25 años' },
+                    { spanish: 'Yo estoy 25 años', german: '(falsch)', value: 'Yo estoy 25 años' }
+                ],
+                hints: [
+                    'Im Spanischen "hat" man sein Alter!',
+                    'TENER wird für Alter verwendet',
+                    'Die richtige Antwort ist "Yo tengo 25 años".'
+                ],
+                explanation: `
+                    <p>Dies ist ein <strong>häufiger Fehler</strong> für Deutsche:</p>
+                    <p>🇩🇪 Deutsch: "Ich <strong>bin</strong> 25 Jahre alt"</p>
+                    <p>🇪🇸 Spanisch: "Yo <strong>tengo</strong> 25 años" (wörtlich: Ich habe 25 Jahre)</p>
+                    <p>✅ Yo <strong>tengo</strong> 25 años (richtig)</p>
+                    <p>❌ Yo <strong>soy</strong> 25 años (falsch)</p>
+                `
+            },
+
+            // Integration Exercise
+            {
+                id: 'mock_integration_1',
+                type: 'multiple-choice',
+                concept: 'integration-comprehensive',
+                difficulty: 7,
+                question: 'Vervollständige: "Yo ___ María, ___ estudiante y ___ en Barcelona"',
+                correctAnswer: 'soy, soy, estoy',
+                german: 'Ich bin María, ich bin Studentin und ich bin in Barcelona',
+                germanBridge: '💡 Name = SER, Beruf = SER, Ort = ESTAR',
+                options: [
+                    { spanish: 'soy, soy, estoy', german: '(richtig)', value: 'soy, soy, estoy' },
+                    { spanish: 'estoy, estoy, estoy', german: '(falsch)', value: 'estoy, estoy, estoy' },
+                    { spanish: 'soy, estoy, soy', german: '(falsch)', value: 'soy, estoy, soy' }
+                ],
+                hints: [
+                    'Name und Beruf = SER (dauerhaft)',
+                    'Ort = ESTAR (Location)',
+                    'Die richtige Antwort ist "soy, soy, estoy".'
+                ],
+                explanation: `
+                    <p>Diese Übung kombiniert alle drei Verben:</p>
+                    <ol>
+                        <li><strong>Yo soy María</strong> - Name (SER)</li>
+                        <li><strong>soy estudiante</strong> - Beruf (SER)</li>
+                        <li><strong>estoy en Barcelona</strong> - Ort (ESTAR)</li>
+                    </ol>
+                `
+            }
+        ];
+    }
+}
+
+// Make available globally for browser
+if (typeof window !== 'undefined') {
+    window.Phase1Controller = Phase1Controller;
+}
+
+// Export for Node.js
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { Phase1Controller };
+}
+
+
+    // ====================================================================
+    // MOCK ADAPTIVE LEARNING ORCHESTRATOR
+    // ====================================================================
+/**
+ * Mock AdaptiveLearningOrchestrator
+ * Simplified version for UI testing
+ */
+
+class AdaptiveLearningOrchestrator {
+    constructor() {
+        this.sessionActive = false;
+        this.attempts = [];
+    }
+
+    startSession() {
+        this.sessionActive = true;
+        this.attempts = [];
+        console.log('📊 Mock Adaptive Learning started');
+    }
+
+    getNextOptimizedExercise(items, unit, progress) {
+        // Mock: just return items as-is
+        return items;
+    }
+
+    recordExerciseAttempt(exercise, answer, correct, responseTime) {
+        this.attempts.push({
+            exercise: exercise.id,
+            correct,
+            responseTime,
+            timestamp: Date.now()
+        });
+        console.log(`📝 Recorded attempt: ${exercise.id} - ${correct ? 'correct' : 'incorrect'}`);
+    }
+
+    getRecommendations() {
+        return {
+            reviewNeeded: [],
+            masteryLevel: 0.75,
+            suggestions: []
+        };
+    }
+
+    endSession() {
+        const summary = {
+            totalAttempts: this.attempts.length,
+            correctAttempts: this.attempts.filter(a => a.correct).length,
+            averageTime: this.attempts.reduce((sum, a) => sum + a.responseTime, 0) / this.attempts.length || 0
+        };
+        this.sessionActive = false;
+        return summary;
+    }
+}
+
+// Make available globally
+if (typeof window !== 'undefined') {
+    window.AdaptiveLearningOrchestrator = AdaptiveLearningOrchestrator;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { AdaptiveLearningOrchestrator };
+}
+
+
+    // ====================================================================
+    // MOCK GERMAN-SPANISH LEARNING SYSTEM (IMPROVED FEEDBACK)
+    // ====================================================================
+/**
+ * Mock GermanSpanishLearningSystem
+ * Simplified version for UI testing
+ */
+
+class GermanSpanishLearningSystem {
+    constructor() {
+        console.log('🇩🇪🇪🇸 Mock German-Spanish System initialized');
+    }
+
+    analyzeExerciseForGermans(exercise, userAnswer, correctAnswer) {
+        return {
+            transferType: 'neutral',
+            interferenceRisk: 'medium',
+            falseFriendDetected: false
+        };
+    }
+
+    generateGermanOptimizedFeedback(exercise, userAnswer, isCorrect) {
+        if (isCorrect) {
+            // Use custom feedback if available
+            if (exercise.feedbackCorrect) {
+                return {
+                    message: exercise.feedbackCorrect,
+                    explanation: ''
+                };
+            }
+
+            return {
+                message: '¡Muy bien! 🎉',
+                explanation: ''
+            };
+        }
+
+        // Use custom feedback if available
+        if (exercise.feedbackIncorrect) {
+            return {
+                message: `${exercise.feedbackIncorrect} Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`,
+                explanation: exercise.explanation || ''
+            };
+        }
+
+        // Generate context-specific German-optimized feedback
+        let message = `Nicht ganz richtig. Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+        let explanation = '';
+
+        if (exercise.concept && exercise.concept.includes('ser-estar')) {
+            message = '⚠️ Häufiger Fehler bei SER/ESTAR!';
+            explanation = `
+                <p><strong>Für Deutsche besonders schwierig:</strong></p>
+                <p>Im Deutschen gibt es nur ein Wort: <strong>"sein"</strong></p>
+                <p>Im Spanischen gibt es zwei: <strong>SER</strong> (dauerhaft) und <strong>ESTAR</strong> (vorübergehend)</p>
+                <p>Die richtige Antwort hier ist: <strong>${exercise.correctAnswer}</strong></p>
+            `;
+        } else if (exercise.concept && exercise.concept.includes('ser') && exercise.concept.includes('conjugation')) {
+            message = 'Die SER-Konjugation ist unregelmäßig.';
+            explanation = `
+                <p><strong>SER</strong> ist eines der wichtigsten, aber auch unregelmäßigsten Verben!</p>
+                <p>Die richtige Form ist: <strong>${exercise.correctAnswer}</strong></p>
+            `;
+        } else if (exercise.concept && exercise.concept.includes('estar') && exercise.concept.includes('conjugation')) {
+            message = 'Die ESTAR-Konjugation ist unregelmäßig.';
+            explanation = `
+                <p><strong>ESTAR</strong> ist unregelmäßig - achte auf die Akzente!</p>
+                <p>Die richtige Form ist: <strong>${exercise.correctAnswer}</strong></p>
+            `;
+        } else if (exercise.concept && exercise.concept.includes('tener')) {
+            message = '⚠️ Achtung: TENER, nicht SER!';
+            explanation = `
+                <p><strong>Häufiger Fehler für Deutsche:</strong></p>
+                <p>🇩🇪 Deutsch: "Ich <strong>bin</strong> 25 Jahre alt"</p>
+                <p>🇪🇸 Spanisch: "Yo <strong>tengo</strong> 25 años" (wörtlich: Ich <em>habe</em> 25 Jahre)</p>
+                <p>Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong></p>
+            `;
+        }
+
+        return {
+            message: message,
+            explanation: explanation || exercise.explanation || ''
+        };
+    }
+
+    getGermanBridge(exercise) {
+        return exercise.germanBridge || exercise.german || '';
+    }
+
+    optimizeExerciseSequenceForGermans(exercises, userProgress) {
+        // Mock: return exercises as-is
+        return exercises;
+    }
+}
+
+// Make available globally
+if (typeof window !== 'undefined') {
+    window.GermanSpanishLearningSystem = GermanSpanishLearningSystem;
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { GermanSpanishLearningSystem };
+}
+
+
+    // ====================================================================
+    // UI CONTROLLER
+    // ====================================================================
+/**
+ * UI Controller - Zero-Friction UI State Management
+ *
+ * Manages all UI state, rendering, and user interactions
+ * Pure presentation layer - no business logic
+ */
+
+class UIController {
+    constructor() {
+        this.elements = {};
+        this.state = {
+            currentExercise: null,
+            userAnswer: null,
+            isAnswered: false,
+            hintLevel: 0,
+            exerciseType: null
+        };
+
+        this.initElements();
+        this.attachEventListeners();
+    }
+
+    /**
+     * Initialize all DOM element references
+     */
+    initElements() {
+        // Main containers
+        this.elements.loading = document.getElementById('loading');
+        this.elements.error = document.getElementById('error');
+        this.elements.exerciseCard = document.getElementById('exercise-card');
+
+        // Header
+        this.elements.unitStatus = document.getElementById('unit-status');
+        this.elements.exerciseStatus = document.getElementById('exercise-status');
+
+        // Exercise components
+        this.elements.germanBridge = document.getElementById('german-bridge');
+        this.elements.bridgeText = document.getElementById('bridge-text');
+        this.elements.questionText = document.getElementById('question-text');
+        this.elements.answerContainer = document.getElementById('answer-container');
+
+        // Feedback
+        this.elements.feedback = document.getElementById('feedback');
+        this.elements.feedbackText = document.getElementById('feedback-text');
+
+        // Hints
+        this.elements.hintContainer = document.getElementById('hint-container');
+        this.elements.hintBtn = document.getElementById('hint-btn');
+        this.elements.hintContent = document.getElementById('hint-content');
+        this.elements.hintLevel = document.getElementById('hint-level');
+        this.elements.hintText = document.getElementById('hint-text');
+
+        // Explanation
+        this.elements.explanation = document.getElementById('explanation');
+        this.elements.explanationContent = document.getElementById('explanation-content');
+
+        // Progress
+        this.elements.progressFill = document.getElementById('progress-fill');
+        this.elements.progressText = document.getElementById('progress-text');
+    }
+
+    /**
+     * Attach global event listeners
+     */
+    attachEventListeners() {
+        // Hint button
+        this.elements.hintBtn.addEventListener('click', () => {
+            this.showNextHint();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyboardShortcut(e);
+        });
+    }
+
+    /**
+     * Show loading state
+     */
+    showLoading() {
+        this.elements.loading.classList.remove('hidden');
+        this.elements.error.classList.add('hidden');
+        this.elements.exerciseCard.classList.add('hidden');
+    }
+
+    /**
+     * Hide loading state
+     */
+    hideLoading() {
+        this.elements.loading.classList.add('hidden');
+    }
+
+    /**
+     * Show error message
+     */
+    showError(message) {
+        this.elements.error.querySelector('p').textContent = message;
+        this.elements.error.classList.remove('hidden');
+        this.elements.loading.classList.add('hidden');
+        this.elements.exerciseCard.classList.add('hidden');
+    }
+
+    /**
+     * Update status bar
+     */
+    updateStatus(unitNumber, totalUnits, currentEx, totalEx, unitName = '') {
+        // Unit names mapping
+        const unitNames = {
+            1: 'Pronomen',
+            2: 'SER',
+            3: 'ESTAR',
+            4: 'SER/ESTAR',
+            5: 'TENER',
+            6: 'Vokabular',
+            7: 'Integration'
+        };
+
+        const name = unitName || unitNames[unitNumber] || '';
+        this.elements.unitStatus.textContent = name
+            ? `Lektion ${unitNumber}/${totalUnits}: ${name}`
+            : `Lektion ${unitNumber}/${totalUnits}`;
+        this.elements.exerciseStatus.textContent = `${currentEx}/${totalEx}`;
+    }
+
+    /**
+     * Update progress bar
+     */
+    updateProgress(percentage) {
+        this.elements.progressFill.style.width = `${percentage}%`;
+        this.elements.progressText.textContent = `${Math.round(percentage)}% abgeschlossen`;
+    }
+
+    /**
+     * Render an exercise
+     * @param {Object} exercise - Exercise object
+     */
+    renderExercise(exercise) {
+        this.state.currentExercise = exercise;
+        this.state.userAnswer = null;
+        this.state.isAnswered = false;
+        this.state.hintLevel = 0;
+        this.state.exerciseType = exercise.type;
+
+        // Show exercise card
+        this.hideLoading();
+        this.elements.exerciseCard.classList.remove('hidden');
+
+        // Render German bridge if available
+        this.renderGermanBridge(exercise);
+
+        // Render question
+        this.renderQuestion(exercise);
+
+        // Render answer options based on type
+        this.renderAnswerOptions(exercise);
+
+        // Reset feedback and hints
+        this.hideFeedback();
+        this.hideHints();
+        this.hideExplanation();
+    }
+
+    /**
+     * Render German bridge
+     */
+    renderGermanBridge(exercise) {
+        if (exercise.germanBridge && exercise.germanBridge.trim()) {
+            this.elements.bridgeText.textContent = exercise.germanBridge;
+            this.elements.germanBridge.classList.remove('hidden');
+        } else {
+            this.elements.germanBridge.classList.add('hidden');
+        }
+    }
+
+    /**
+     * Render question text
+     */
+    renderQuestion(exercise) {
+        // Handle HTML formatting in question
+        const questionHTML = exercise.question
+            .replace(/\*\*(.*?)\*\*/g, '<span class="highlight">$1</span>')
+            .replace(/___(.*?)___/g, '<span class="highlight">$1</span>');
+
+        this.elements.questionText.innerHTML = questionHTML;
+    }
+
+    /**
+     * Render answer options based on exercise type
+     */
+    renderAnswerOptions(exercise) {
+        this.elements.answerContainer.innerHTML = '';
+
+        if (exercise.type === 'multiple-choice' || exercise.type === 'conjugation') {
+            this.renderMultipleChoice(exercise);
+        } else if (exercise.type === 'translation' || exercise.type === 'fill-blank') {
+            this.renderTextInput(exercise);
+        } else {
+            // Default: multiple choice
+            this.renderMultipleChoice(exercise);
+        }
+    }
+
+    /**
+     * Render multiple choice options
+     */
+    renderMultipleChoice(exercise) {
+        const optionsHTML = exercise.options.map((option, index) => {
+            const key = index + 1;
+            return `
+                <button
+                    class="answer-btn"
+                    data-answer="${option.value || option.spanish || option}"
+                    data-index="${index}"
+                    role="button"
+                    aria-label="Antwort ${key}: ${option.spanish || option}"
+                    tabindex="0">
+                    <div class="answer-text">
+                        <div class="answer-es">${option.spanish || option}</div>
+                        ${option.german ? `<div class="answer-de">(${option.german})</div>` : ''}
+                    </div>
+                    <div class="answer-key">[${key}]</div>
+                </button>
+            `;
+        }).join('');
+
+        this.elements.answerContainer.innerHTML = optionsHTML;
+
+        // Attach click handlers
+        const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+        buttons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                this.handleAnswerSelection(btn.dataset.answer, index);
+            });
+        });
+    }
+
+    /**
+     * Render text input
+     */
+    renderTextInput(exercise) {
+        const inputHTML = `
+            <input
+                type="text"
+                class="text-input"
+                id="answer-input"
+                placeholder="Deine Antwort..."
+                aria-label="Antwort eingeben"
+                autocomplete="off"
+                autocorrect="off"
+                spellcheck="false">
+            <button class="submit-btn" id="submit-btn">
+                Prüfen
+            </button>
+        `;
+
+        this.elements.answerContainer.innerHTML = inputHTML;
+
+        // Get references
+        const input = document.getElementById('answer-input');
+        const submitBtn = document.getElementById('submit-btn');
+
+        // Focus input
+        setTimeout(() => input.focus(), 100);
+
+        // Submit on Enter key
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+
+        // Submit button handler
+        submitBtn.addEventListener('click', () => {
+            const answer = input.value.trim();
+            if (answer) {
+                this.handleAnswerSelection(answer);
+            }
+        });
+    }
+
+    /**
+     * Handle answer selection (callback will be set by AppController)
+     */
+    handleAnswerSelection(answer, index = null) {
+        if (this.state.isAnswered) return;
+
+        this.state.userAnswer = answer;
+        this.state.isAnswered = true;
+
+        // Disable all buttons/input
+        this.disableAnswerOptions();
+
+        // Call callback if set
+        if (this.onAnswerSelected) {
+            this.onAnswerSelected(answer, index);
+        }
+    }
+
+    /**
+     * Disable answer options after selection
+     */
+    disableAnswerOptions() {
+        const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+        buttons.forEach(btn => btn.disabled = true);
+
+        const input = this.elements.answerContainer.querySelector('.text-input');
+        if (input) input.disabled = true;
+
+        const submitBtn = this.elements.answerContainer.querySelector('.submit-btn');
+        if (submitBtn) submitBtn.disabled = true;
+    }
+
+    /**
+     * Enable answer options
+     */
+    enableAnswerOptions() {
+        const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+        buttons.forEach(btn => btn.disabled = false);
+
+        const input = this.elements.answerContainer.querySelector('.text-input');
+        if (input) input.disabled = false;
+
+        const submitBtn = this.elements.answerContainer.querySelector('.submit-btn');
+        if (submitBtn) submitBtn.disabled = false;
+    }
+
+    /**
+     * Show feedback (correct or incorrect)
+     */
+    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null) {
+        this.elements.feedbackText.textContent = message;
+        this.elements.feedback.className = 'feedback show ' + (isCorrect ? 'feedback--success' : 'feedback--error');
+
+        // Show feedback hint if provided
+        const feedbackHint = document.getElementById('feedback-hint');
+        if (feedbackHint) {
+            if (hint) {
+                feedbackHint.textContent = hint;
+                feedbackHint.style.display = 'block';
+            } else {
+                feedbackHint.style.display = 'none';
+            }
+        }
+
+        // Show attempts remaining if provided
+        const attemptsEl = document.getElementById('attempts-remaining');
+        if (attemptsEl) {
+            if (attemptsRemaining !== null && attemptsRemaining > 0) {
+                attemptsEl.textContent = `Noch ${attemptsRemaining} Versuch${attemptsRemaining !== 1 ? 'e' : ''} übrig`;
+                attemptsEl.style.display = 'block';
+            } else {
+                attemptsEl.style.display = 'none';
+            }
+        }
+
+        // Mark answer button/input
+        if (this.state.exerciseType === 'multiple-choice' || this.state.exerciseType === 'conjugation') {
+            const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+            buttons.forEach(btn => {
+                if (btn.dataset.answer === this.state.userAnswer) {
+                    btn.classList.add(isCorrect ? 'correct' : 'incorrect');
+                }
+                // Highlight correct answer if wrong
+                if (!isCorrect && correctAnswer && btn.dataset.answer === correctAnswer) {
+                    btn.classList.add('correct');
+                }
+            });
+        } else {
+            const input = this.elements.answerContainer.querySelector('.text-input');
+            if (input) {
+                input.classList.add(isCorrect ? 'correct' : 'incorrect');
+                if (!isCorrect && correctAnswer) {
+                    input.value = `${input.value} → ${correctAnswer}`;
+                }
+            }
+        }
+
+        // Show hint button if incorrect
+        if (!isCorrect) {
+            this.elements.hintContainer.classList.add('show');
+        }
+    }
+
+    /**
+     * Hide feedback
+     */
+    hideFeedback() {
+        this.elements.feedback.classList.remove('show');
+    }
+
+    /**
+     * Show next hint level
+     */
+    showNextHint() {
+        this.state.hintLevel++;
+
+        if (this.onHintRequested) {
+            const hint = this.onHintRequested(this.state.hintLevel);
+            if (hint) {
+                this.displayHint(hint, this.state.hintLevel);
+            }
+        }
+    }
+
+    /**
+     * Display hint
+     */
+    displayHint(hintText, level) {
+        this.elements.hintLevel.textContent = `Hinweis Level ${level}`;
+        this.elements.hintText.textContent = hintText;
+        this.elements.hintContent.classList.remove('hidden');
+
+        // Hide hint button if max level reached
+        if (level >= 3) {
+            this.elements.hintBtn.classList.add('hidden');
+        }
+    }
+
+    /**
+     * Hide hints
+     */
+    hideHints() {
+        this.elements.hintContainer.classList.remove('show');
+        this.elements.hintContent.classList.add('hidden');
+        this.elements.hintBtn.classList.remove('hidden');
+    }
+
+    /**
+     * Show explanation
+     */
+    showExplanation(explanationHTML) {
+        this.elements.explanationContent.innerHTML = explanationHTML;
+        this.elements.explanation.classList.add('show');
+    }
+
+    /**
+     * Hide explanation
+     */
+    hideExplanation() {
+        this.elements.explanation.classList.remove('show');
+    }
+
+    /**
+     * Handle keyboard shortcuts
+     */
+    handleKeyboardShortcut(e) {
+        // Ignore shortcuts when typing in input
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+            // Allow Enter in text inputs for submission
+            if (e.key === 'Enter') {
+                const submitBtn = document.getElementById('submit-btn');
+                if (submitBtn) submitBtn.click();
+            }
+            return;
+        }
+
+        // Number keys 1-4 for multiple choice
+        if (e.key >= '1' && e.key <= '4' && !this.state.isAnswered) {
+            const index = parseInt(e.key) - 1;
+            const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+            if (buttons[index]) {
+                buttons[index].click();
+            }
+        }
+
+        // Enter or Spacebar to advance (if answered)
+        if ((e.key === 'Enter' || e.key === ' ') && this.state.isAnswered) {
+            e.preventDefault();
+            if (this.onNextExercise) {
+                this.onNextExercise();
+            }
+        }
+
+        // H key to show hint
+        if ((e.key === 'h' || e.key === 'H') && this.state.isAnswered) {
+            e.preventDefault();
+            if (this.elements.hintContainer.classList.contains('show')) {
+                this.showNextHint();
+            }
+        }
+
+        // E key to toggle explanation
+        if ((e.key === 'e' || e.key === 'E') && this.state.isAnswered) {
+            e.preventDefault();
+            if (this.elements.explanation.classList.contains('show')) {
+                this.hideExplanation();
+            } else if (this.onShowExplanation) {
+                this.onShowExplanation();
+            }
+        }
+
+        // Arrow keys for navigation (if answered)
+        if ((e.key === 'ArrowRight' || e.key === 'ArrowDown') && this.state.isAnswered) {
+            e.preventDefault();
+            if (this.onNextExercise) {
+                this.onNextExercise();
+            }
+        }
+
+        if ((e.key === 'ArrowLeft' || e.key === 'ArrowUp') && this.state.isAnswered) {
+            e.preventDefault();
+            // TODO: Implement previous exercise navigation
+            console.log('Previous exercise navigation not yet implemented');
+        }
+
+        // Escape to close hints/explanations
+        if (e.key === 'Escape') {
+            if (this.elements.hintContent.classList.contains('hidden') === false) {
+                this.elements.hintContent.classList.add('hidden');
+            }
+            if (this.elements.explanation.classList.contains('show')) {
+                this.hideExplanation();
+            }
+        }
+    }
+
+    /**
+     * Show "Next" button after feedback
+     */
+    showNextButton() {
+        const existingBtn = document.getElementById('next-btn');
+        if (existingBtn) return;
+
+        const nextBtn = document.createElement('button');
+        nextBtn.id = 'next-btn';
+        nextBtn.className = 'submit-btn mt-lg';
+        nextBtn.textContent = 'Weiter →';
+        nextBtn.onclick = () => {
+            if (this.onNextExercise) {
+                this.onNextExercise();
+            }
+        };
+
+        this.elements.answerContainer.appendChild(nextBtn);
+        nextBtn.focus();
+    }
+
+    /**
+     * Reset for next exercise
+     */
+    reset() {
+        this.state = {
+            currentExercise: null,
+            userAnswer: null,
+            isAnswered: false,
+            hintLevel: 0,
+            exerciseType: null
+        };
+
+        this.hideFeedback();
+        this.hideHints();
+        this.hideExplanation();
+
+        // Remove next button
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn) nextBtn.remove();
+    }
+
+    /**
+     * Show completion message
+     */
+    showCompletion(stats) {
+        const accuracy = Math.round((stats.correct / stats.total) * 100);
+        const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
+
+        const html = `
+            <div class="text-center">
+                <h2 style="font-size: 32px; margin-bottom: 24px;">${emoji}</h2>
+                <h3 style="margin-bottom: 16px;">Unit abgeschlossen!</h3>
+                <p style="font-size: 24px; margin-bottom: 24px;">
+                    ${stats.correct}/${stats.total} richtig (${accuracy}%)
+                </p>
+                <button class="submit-btn" onclick="location.reload()">
+                    Weiter üben
+                </button>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+        this.hideFeedback();
+        this.hideHints();
+    }
+}
+
+// Export for use in browser
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = UIController;
+}
+
+
+    // ====================================================================
+    // APP CONTROLLER (MODIFIED FOR DEMO)
+    // ====================================================================
+/**
+ * App Controller - Integration Layer
+ *
+ * Coordinates between UI (UIController) and Business Logic (Phase1Controller, etc.)
+ * This is the brain of the application
+ */
+
+class AppController {
+    constructor(uiController) {
+        this.ui = uiController;
+        this.phase1 = null;
+        this.adaptiveLearning = null;
+        this.germanSystem = null;
+
+        this.state = {
+            currentUnit: 1,
+            currentExerciseIndex: 0,
+            exercises: [],
+            sessionStats: {
+                correct: 0,
+                total: 0,
+                startTime: null
+            }
+        };
+
+        // Bind UI callbacks
+        this.ui.onAnswerSelected = this.handleAnswer.bind(this);
+        this.ui.onHintRequested = this.getHint.bind(this);
+        this.ui.onNextExercise = this.loadNextExercise.bind(this);
+    }
+
+    /**
+     * Initialize the app
+     */
+    async initialize() {
+        console.log('🚀 Initializing App Controller...');
+
+        try {
+            // Show loading
+            this.ui.showLoading();
+
+            // Initialize Phase 1 Controller
+            await this.initializePhase1Controller();
+
+            // Initialize Adaptive Learning (if available)
+            this.initializeAdaptiveLearning();
+
+            // Initialize German-Spanish System (if available)
+            this.initializeGermanSystem();
+
+            // Load first unit
+            await this.loadUnit(1);
+
+            // Start session
+            this.startSession();
+
+            console.log('✅ App initialized successfully');
+
+        } catch (error) {
+            console.error('❌ Initialization error:', error);
+            this.ui.showError('Fehler beim Laden der Übungen. Bitte Seite neu laden.');
+        }
+    }
+
+    /**
+     * Initialize Phase 1 Controller
+     */
+    async initializePhase1Controller() {
+        if (typeof Phase1Controller === 'undefined') {
+            throw new Error('Phase1Controller not found');
+        }
+
+        this.phase1 = new Phase1Controller();
+
+        // Check if controller needs initialization
+        if (typeof this.phase1.initialize === 'function') {
+            await this.phase1.initialize();
+        }
+
+        console.log('✅ Phase 1 Controller initialized');
+    }
+
+    /**
+     * Initialize Adaptive Learning System
+     */
+    initializeAdaptiveLearning() {
+        if (typeof AdaptiveLearningOrchestrator !== 'undefined') {
+            this.adaptiveLearning = new AdaptiveLearningOrchestrator();
+            console.log('✅ Adaptive Learning initialized');
+        } else {
+            console.warn('⚠️ Adaptive Learning not available');
+        }
+    }
+
+    /**
+     * Initialize German-Spanish System
+     */
+    initializeGermanSystem() {
+        if (typeof GermanSpanishLearningSystem !== 'undefined') {
+            this.germanSystem = new GermanSpanishLearningSystem();
+            console.log('✅ German-Spanish System initialized');
+        } else {
+            console.warn('⚠️ German-Spanish System not available');
+        }
+    }
+
+    /**
+     * Load a unit
+     */
+    async loadUnit(unitNumber) {
+        console.log(`📚 Loading Unit ${unitNumber}...`);
+
+        try {
+            // Load unit data
+            const unitData = await this.loadUnitData(unitNumber);
+
+            if (!unitData || !unitData.exercises || unitData.exercises.length === 0) {
+                throw new Error(`No exercises found for unit ${unitNumber}`);
+            }
+
+            this.state.currentUnit = unitNumber;
+            this.state.exercises = unitData.exercises;
+            this.state.currentExerciseIndex = 0;
+
+            // Update UI status
+            this.ui.updateStatus(unitNumber, 7, 1, this.state.exercises.length);
+
+            // Load first exercise
+            this.loadExercise(0);
+
+            console.log(`✅ Unit ${unitNumber} loaded (${this.state.exercises.length} exercises)`);
+
+        } catch (error) {
+            console.error(`❌ Error loading unit ${unitNumber}:`, error);
+            throw error;
+        }
+    }
+
+    /**
+     * Load unit data from file
+     * MODIFIED: Use mock exercises directly if JSON files not available
+     */
+    async loadUnitData(unitNumber) {
+        // MODIFIED FOR DEMO: Use mock exercises directly
+        console.log('📚 Using mock exercises from Phase1Controller');
+        
+        // Return mock exercises wrapped in unit structure
+        return {
+            unitNumber: unitNumber,
+            unitName: this.getUnitName(unitNumber),
+            exercises: this.phase1.exercises || []
+        };
+    }
+
+    /**
+     * Get unit name by number
+     */
+    getUnitName(unitNumber) {
+        const unitNames = {
+            1: 'Pronomen',
+            2: 'SER',
+            3: 'ESTAR',
+            4: 'SER/ESTAR Kontrast',
+            5: 'TENER',
+            6: 'Vokabular',
+            7: 'Integration'
+        };
+        return unitNames[unitNumber] || `Unit ${unitNumber}`;
+    }
+
+    /**
+     * Load an exercise by index
+     */
+    loadExercise(index) {
+        if (index >= this.state.exercises.length) {
+            this.showUnitCompletion();
+            return;
+        }
+
+        const exercise = this.state.exercises[index];
+        this.state.currentExerciseIndex = index;
+
+        // Transform exercise to UI format
+        const uiExercise = this.transformExerciseForUI(exercise);
+
+        // Render in UI
+        this.ui.renderExercise(uiExercise);
+
+        // Update status and progress
+        this.ui.updateStatus(
+            this.state.currentUnit,
+            7,
+            index + 1,
+            this.state.exercises.length
+        );
+
+        const progress = ((index + 1) / this.state.exercises.length) * 100;
+        this.ui.updateProgress(progress);
+    }
+
+    /**
+     * Transform exercise data to UI-friendly format
+     */
+    transformExerciseForUI(exercise) {
+        const uiExercise = {
+            id: exercise.id,
+            type: exercise.type || 'multiple-choice',
+            question: exercise.question || exercise.spanish || '',
+            correctAnswer: exercise.correctAnswer || exercise.answer,
+            germanBridge: this.generateGermanBridge(exercise),
+            options: []
+        };
+
+        // Generate options based on type
+        if (exercise.type === 'conjugation' || exercise.type === 'multiple-choice') {
+            uiExercise.options = this.generateOptions(exercise);
+        } else if (exercise.type === 'translation') {
+            uiExercise.type = 'translation';
+            uiExercise.options = [];
+        } else if (exercise.options && Array.isArray(exercise.options)) {
+            uiExercise.options = exercise.options;
+        } else {
+            // Default: create options from answer
+            uiExercise.options = [
+                { spanish: exercise.correctAnswer, german: exercise.german }
+            ];
+        }
+
+        return uiExercise;
+    }
+
+    /**
+     * Generate German bridge explanation
+     */
+    generateGermanBridge(exercise) {
+        // Try to get from German system
+        if (this.germanSystem && typeof this.germanSystem.getGermanBridge === 'function') {
+            return this.germanSystem.getGermanBridge(exercise);
+        }
+
+        // Fallback: use exercise's German field
+        if (exercise.german) {
+            return `Im Deutschen: "${exercise.german}"`;
+        }
+
+        // Check for contrastive elements
+        if (exercise.contrastiveElements && exercise.contrastiveElements.length > 0) {
+            return exercise.contrastiveElements[0];
+        }
+
+        return '';
+    }
+
+    /**
+     * Generate answer options
+     */
+    generateOptions(exercise) {
+        const options = [];
+
+        // Add correct answer
+        options.push({
+            spanish: exercise.correctAnswer,
+            german: exercise.german || '',
+            value: exercise.correctAnswer,
+            isCorrect: true
+        });
+
+        // Add distractors if available
+        if (exercise.distractors && Array.isArray(exercise.distractors)) {
+            exercise.distractors.forEach(distractor => {
+                options.push({
+                    spanish: distractor.spanish || distractor,
+                    german: distractor.german || '',
+                    value: distractor.spanish || distractor,
+                    isCorrect: false
+                });
+            });
+        } else {
+            // Generate simple distractors based on concept
+            const concept = exercise.concept || '';
+            if (concept.includes('ser')) {
+                options.push(
+                    { spanish: 'estoy', german: '(ich stehe)', value: 'estoy' },
+                    { spanish: 'tengo', german: '(ich habe)', value: 'tengo' }
+                );
+            } else if (concept.includes('estar')) {
+                options.push(
+                    { spanish: 'soy', german: '(ich bin)', value: 'soy' },
+                    { spanish: 'tengo', german: '(ich habe)', value: 'tengo' }
+                );
+            }
+        }
+
+        // Shuffle options
+        return this.shuffleArray(options);
+    }
+
+    /**
+     * Handle answer submission
+     */
+    handleAnswer(answer, index = null) {
+        const exercise = this.state.exercises[this.state.currentExerciseIndex];
+        const startTime = Date.now();
+
+        // Normalize answers for comparison
+        const userAnswer = this.normalizeAnswer(answer);
+        const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+
+        // Check if correct
+        const isCorrect = userAnswer === correctAnswer;
+
+        // Update session stats
+        this.state.sessionStats.total++;
+        if (isCorrect) {
+            this.state.sessionStats.correct++;
+        }
+
+        // Record in adaptive learning
+        if (this.adaptiveLearning) {
+            const responseTime = Date.now() - startTime;
+            this.adaptiveLearning.recordExerciseAttempt(
+                exercise,
+                answer,
+                isCorrect,
+                responseTime
+            );
+        }
+
+        // Get feedback message
+        const feedback = this.generateFeedback(exercise, answer, isCorrect);
+
+        // Show feedback in UI
+        this.ui.showFeedback(
+            isCorrect,
+            feedback.message,
+            exercise.correctAnswer
+        );
+
+        // Show explanation if incorrect
+        if (!isCorrect && feedback.explanation) {
+            this.ui.showExplanation(feedback.explanation);
+        }
+
+        // Show next button after delay
+        if (isCorrect) {
+            setTimeout(() => {
+                this.loadNextExercise();
+            }, 1500);
+        } else {
+            this.ui.showNextButton();
+        }
+    }
+
+    /**
+     * Generate feedback
+     */
+    generateFeedback(exercise, userAnswer, isCorrect) {
+        let message = '';
+        let explanation = '';
+
+        if (isCorrect) {
+            const messages = [
+                '¡Muy bien! ✅',
+                '¡Perfecto! 🎉',
+                '¡Excelente! ⭐',
+                'Richtig! 👍',
+                'Korrekt! ✨'
+            ];
+            message = messages[Math.floor(Math.random() * messages.length)];
+        } else {
+            message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+
+            // Generate explanation using German system
+            if (this.germanSystem && typeof this.germanSystem.generateGermanOptimizedFeedback === 'function') {
+                const feedback = this.germanSystem.generateGermanOptimizedFeedback(
+                    exercise,
+                    userAnswer,
+                    false
+                );
+                if (feedback && feedback.explanation) {
+                    explanation = feedback.explanation;
+                }
+            } else if (exercise.explanation) {
+                explanation = exercise.explanation;
+            } else {
+                // Default explanation based on concept
+                explanation = this.generateDefaultExplanation(exercise);
+            }
+        }
+
+        return { message, explanation };
+    }
+
+    /**
+     * Generate default explanation
+     */
+    generateDefaultExplanation(exercise) {
+        const concept = exercise.concept || '';
+
+        if (concept.includes('ser')) {
+            return `
+                <p><strong>SER</strong> wird verwendet für:</p>
+                <ul>
+                    <li><strong>D</strong>escription (Beschreibung)</li>
+                    <li><strong>O</strong>ccupation (Beruf)</li>
+                    <li><strong>C</strong>haracteristic (Eigenschaft)</li>
+                    <li><strong>T</strong>ime (Zeit)</li>
+                    <li><strong>O</strong>rigin (Herkunft)</li>
+                    <li><strong>R</strong>elationship (Beziehung)</li>
+                </ul>
+            `;
+        } else if (concept.includes('estar')) {
+            return `
+                <p><strong>ESTAR</strong> wird verwendet für:</p>
+                <ul>
+                    <li><strong>L</strong>ocation (Ort)</li>
+                    <li><strong>E</strong>motion (Gefühl)</li>
+                    <li><strong>C</strong>ondition (Zustand)</li>
+                    <li><strong>H</strong>ealth (Gesundheit)</li>
+                </ul>
+            `;
+        } else if (concept.includes('tener')) {
+            return `
+                <p><strong>TENER</strong> wird verwendet für:</p>
+                <ul>
+                    <li>Besitz (Yo tengo un libro)</li>
+                    <li>Alter (Tengo 25 años)</li>
+                    <li>Ausdrücke (tener hambre, tener miedo)</li>
+                </ul>
+            `;
+        }
+
+        return '<p>Bitte achte auf die Regel für dieses Konzept.</p>';
+    }
+
+    /**
+     * Get hint for current exercise
+     */
+    getHint(level) {
+        const exercise = this.state.exercises[this.state.currentExerciseIndex];
+
+        if (!exercise) return null;
+
+        // Try to get hints from exercise data
+        if (exercise.hints && exercise.hints[level - 1]) {
+            return exercise.hints[level - 1];
+        }
+
+        // Generate default hints based on concept
+        const concept = exercise.concept || '';
+
+        if (level === 1) {
+            if (concept.includes('ser')) {
+                return 'Denk an die DOCTOR-Regel für SER!';
+            } else if (concept.includes('estar')) {
+                return 'Denk an LECH (Location, Emotion, Condition, Health) für ESTAR!';
+            } else if (concept.includes('tener')) {
+                return 'TENER bedeutet "haben" - wird für Besitz und Alter verwendet.';
+            }
+            return 'Überlege, welches Verb hier am besten passt.';
+        }
+
+        if (level === 2) {
+            if (concept.includes('ser')) {
+                return 'SER = dauerhafte Eigenschaften (Beruf, Herkunft, Charakter)';
+            } else if (concept.includes('estar')) {
+                return 'ESTAR = vorübergehende Zustände (Ort, Gefühle, Gesundheit)';
+            } else if (concept.includes('tener')) {
+                return `TENER wird für Alter verwendet: "Yo tengo X años"`;
+            }
+            return 'Beachte den Kontext der Frage genau.';
+        }
+
+        if (level === 3) {
+            return `Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong><br><br>${this.generateDefaultExplanation(exercise)}`;
+        }
+
+        return null;
+    }
+
+    /**
+     * Load next exercise
+     */
+    loadNextExercise() {
+        this.ui.reset();
+        this.loadExercise(this.state.currentExerciseIndex + 1);
+    }
+
+    /**
+     * Show unit completion
+     */
+    showUnitCompletion() {
+        console.log('🎉 Unit completed!');
+
+        this.ui.showCompletion(this.state.sessionStats);
+
+        // Save progress
+        this.saveProgress();
+    }
+
+    /**
+     * Start session
+     */
+    startSession() {
+        this.state.sessionStats = {
+            correct: 0,
+            total: 0,
+            startTime: Date.now()
+        };
+
+        if (this.adaptiveLearning && typeof this.adaptiveLearning.startSession === 'function') {
+            this.adaptiveLearning.startSession();
+        }
+
+        console.log('✅ Session started');
+    }
+
+    /**
+     * Save progress to localStorage
+     */
+    saveProgress() {
+        try {
+            const progress = {
+                currentUnit: this.state.currentUnit,
+                stats: this.state.sessionStats,
+                timestamp: Date.now()
+            };
+
+            localStorage.setItem('spanish-app-progress', JSON.stringify(progress));
+            console.log('✅ Progress saved');
+        } catch (error) {
+            console.warn('⚠️ Could not save progress:', error);
+        }
+    }
+
+    /**
+     * Normalize answer for comparison
+     */
+    normalizeAnswer(answer) {
+        if (!answer) return '';
+
+        return answer
+            .toLowerCase()
+            .trim()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, ''); // Remove accents
+    }
+
+    /**
+     * Shuffle array (Fisher-Yates algorithm)
+     */
+    shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+}
+
+// Export for use in browser
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = AppController;
+}
+
+
+    // ====================================================================
+    // SIDEBAR INITIALIZATION
+    // ====================================================================
+    function initSidebar() {
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+        }
+
+        if (menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.add('open');
+                overlay.classList.add('show');
+            });
+        }
+
+        if (closeMenu) {
+            closeMenu.addEventListener('click', closeSidebar);
+        }
+
+        if (overlay) {
+            overlay.addEventListener('click', closeSidebar);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                closeSidebar();
+            }
+        });
+
+        const menuItems = document.querySelectorAll('.menu-items a');
+        menuItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = item.dataset.page;
+
+                menuItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                console.log(`Navigate to: ${page}`);
+
+                if (window.innerWidth < 1024) {
+                    closeSidebar();
+                }
+
+                if (page !== 'lesson') {
+                    alert(`"${page}" Seite ist noch nicht implementiert.`);
+                }
+            });
+        });
+    }
+
+    // ====================================================================
+    // APP INITIALIZATION
+    // ====================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('🚀 Initializing Spanish Learning App (Demo)...');
+
+        // Initialize Sidebar
+        initSidebar();
+
+        // Check if Phase1Controller is available
+        if (typeof Phase1Controller === 'undefined') {
+            console.error('❌ Phase1Controller not loaded');
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.remove('hidden');
+            return;
+        }
+
+        try {
+            // Initialize UI Controller
+            window.uiController = new UIController();
+            console.log('✅ UI Controller initialized');
+
+            // Initialize App Controller
+            window.appController = new AppController(window.uiController);
+            console.log('✅ App Controller initialized');
+
+            // Start the app
+            window.appController.initialize().then(() => {
+                console.log('🎉 Demo successfully initialized!');
+                console.log('');
+                console.log('✨ NEW in this version:');
+                console.log('   - Text input exercises (type your answer!)');
+                console.log('   - Better feedback messages');
+                console.log('   - Consistent multiple choice options');
+                console.log('');
+                console.log('💡 Tip: Open Browser Console (F12) to see debug messages');
+            }).catch(error => {
+                console.error('❌ Initialization error:', error);
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+            });
+
+        } catch (error) {
+            console.error('❌ Fatal error:', error);
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('error').classList.remove('hidden');
+        }
+    });
+    </script>
+
+    <!--
+    ╔═══════════════════════════════════════════════════════════════════════╗
+    ║  SPANISH LEARNING APP - DEMO (IMPROVED)                                ║
+    ║  Zero-Friction UI with Enhanced Mock Exercises                         ║
+    ║                                                                         ║
+    ║  ✨ NEW:                                                                ║
+    ║  - Text input exercises (more challenging!)                            ║
+    ║  - Better German-optimized feedback                                    ║
+    ║  - Consistent multiple choice format                                   ║
+    ║  - Context-specific error messages                                     ║
+    ║                                                                         ║
+    ║  ✅ No server required - just open this HTML file                      ║
+    ║  ✅ All JavaScript inline - no external dependencies                   ║
+    ║  ✅ 10 demo exercises included                                          ║
+    ║  ✅ Full UI with sidebar, hints, explanations                           ║
+    ║  ✅ Keyboard shortcuts (1-4, Enter, Space, H, E)                        ║
+    ║                                                                         ║
+    ║  Made with ❤️ for German Spanish learners                              ║
+    ╚═══════════════════════════════════════════════════════════════════════╝
+    -->
+</body>
+</html>

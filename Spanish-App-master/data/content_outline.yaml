@@ -1,0 +1,702 @@
+dataset:
+  meta:
+    title: Spanish Starter – Nested Content Outline
+    source_note: Inhalte heuristisch aus hochgeladenen Bildern extrahiert/abgeleitet;
+      ohne OCR.
+    schema_version: '1.0'
+  images:
+  - src: IMG_20251009_153647.jpg
+    topic_hint: nacionalidades_paises
+  - src: IMG_20251009_153653.jpg
+    topic_hint: colores
+  - src: IMG_20251009_153657.jpg
+    topic_hint: numeros
+  - src: IMG_20251009_153706.jpg
+    topic_hint: saludos_presentacion
+  - src: IMG_20251009_153710.jpg
+    topic_hint: perfil_basico
+  - src: IMG_20251009_153719.jpg
+    topic_hint: articulos_genero
+  - src: IMG_20251009_153723.jpg
+    topic_hint: alfabeto
+  - src: IMG_20251009_153728.jpg
+    topic_hint: desconocido_misc
+  - src: IMG_20251009_153732.jpg
+    topic_hint: singular_plural_reglas
+  - src: IMG_20251009_153736.jpg
+    topic_hint: vocabulario_objetos_mixto
+  - src: IMG_20251009_153741.jpg
+    topic_hint: comida_vocabulario
+  - src: IMG_20251009_153748.jpg
+    topic_hint: articulos_def_indef
+  - src: IMG_20251009_153751.jpg
+    topic_hint: numeros_colorea_colores
+  - src: IMG_20251009_153756.jpg
+    topic_hint: preguntas_cuestionarios
+  - src: IMG_20251009_153800.jpg
+    topic_hint: informacion_personal_match
+  - src: IMG_20251009_153803.jpg
+    topic_hint: restaurante_frases
+  - src: IMG_20251009_153809.jpg
+    topic_hint: dias_meses_estaciones
+  - src: IMG_20251009_153813.jpg
+    topic_hint: preguntas_WH_relaciona
+  content:
+    numeros:
+      sources:
+      - IMG_20251009_153657.jpg
+      - IMG_20251009_153751.jpg
+      lexicon:
+        0-20:
+        - - cero
+          - 'null'
+        - - uno
+          - eins
+        - - dos
+          - zwei
+        - - tres
+          - drei
+        - - cuatro
+          - vier
+        - - cinco
+          - fünf
+        - - seis
+          - sechs
+        - - siete
+          - sieben
+        - - ocho
+          - acht
+        - - nueve
+          - neun
+        - - diez
+          - zehn
+        - - once
+          - elf
+        - - doce
+          - zwölf
+        - - trece
+          - dreizehn
+        - - catorce
+          - vierzehn
+        - - quince
+          - fünfzehn
+        - - dieciséis
+          - sechzehn
+        - - diecisiete
+          - siebzehn
+        - - dieciocho
+          - achtzehn
+        - - diecinueve
+          - neunzehn
+        - - veinte
+          - zwanzig
+        21-29_compuestos:
+        - - veintiuno
+          - einundzwanzig
+        - - veintidós
+          - zweiundzwanzig
+        - - veintitrés
+          - dreiundzwanzig
+        - - veinticuatro
+          - vierundzwanzig
+        - - veinticinco
+          - fünfundzwanzig
+        - - veintiséis
+          - sechsundzwanzig
+        - - veintisiete
+          - siebenundzwanzig
+        - - veintiocho
+          - achtundzwanzig
+        - - veintinueve
+          - neunundzwanzig
+        dezenas:
+        - - treinta
+          - dreißig
+        - - cuarenta
+          - vierzig
+        - - cincuenta
+          - fünfzig
+        - - sesenta
+          - sechzig
+        - - setenta
+          - siebzig
+        - - ochenta
+          - achtzig
+        - - noventa
+          - neunzig
+        - - cien
+          - hundert
+      activities:
+        color_match_hint: IMG_20251009_153751.jpg
+        patterns:
+        - type: mc
+          prompt: ¿Qué número es {n}?
+          answers:
+          - '{n}'
+          - '{n_plus}'
+          - '{n_minus}'
+          - '{rand}'
+        - type: gap
+          prompt: Tengo __ años.
+          solution: '{n_word}'
+        - type: match
+          pairs: es↔de (0–20)
+    colores:
+      sources:
+      - IMG_20251009_153653.jpg
+      - IMG_20251009_153751.jpg
+      lexicon:
+      - - blanco
+        - weiß
+      - - negro
+        - schwarz
+      - - gris
+        - grau
+      - - marrón
+        - braun
+      - - morado
+        - lila
+      - - rosado
+        - rosa
+      - - rojo
+        - rot
+      - - naranja
+        - orange
+      - - amarillo
+        - gelb
+      - - verde
+        - grün
+      - - azul
+        - blau
+      phrases:
+      - - Mi color favorito es {color}.
+        - Meine Lieblingsfarbe ist {de}.
+    nacionalidades_paises:
+      sources:
+      - IMG_20251009_153647.jpg
+      adjetivos:
+      - - alemán
+        - deutsch
+        - Alemania
+      - - español
+        - spanisch
+        - España
+      - - francés
+        - französisch
+        - Francia
+      - - inglés
+        - englisch
+        - Inglaterra
+      - - italiano
+        - italienisch
+        - Italia
+      - - argentino
+        - argentinisch
+        - Argentina
+      - - mexicano
+        - mexikanisch
+        - México
+      - - colombiano
+        - kolumbianisch
+        - Colombia
+      - - brasileño
+        - brasilianisch
+        - Brasil
+      - - japonés
+        - japanisch
+        - Japón
+      - - chino
+        - chinesisch
+        - China
+      - - ruso
+        - russisch
+        - Rusia
+      patterns:
+        soy_x: Soy {adj}. / Ich bin {de_adj}.
+        soy_de: Soy de {pais}. / Ich komme aus {pais_de}.
+        genero_variantes: -o/-a, -és/-esa etc.
+    saludos_presentacion:
+      sources:
+      - IMG_20251009_153706.jpg
+      frases:
+      - - Hola
+        - Hallo
+      - - Buenos días
+        - Guten Morgen
+      - - Buenas tardes
+        - Guten Tag
+      - - Buenas noches
+        - Guten Abend/Gute Nacht
+      - - ¿Qué tal?
+        - Wie geht's?
+      - - Muy bien
+        - Sehr gut
+      - - Regular
+        - Geht so
+      - - Mal
+        - Schlecht
+      - - ¿Cómo te llamas?
+        - Wie heißt du?
+      - - Me llamo ...
+        - Ich heiße ...
+      - - ¿De dónde eres?
+        - Woher bist du?
+      - - Soy de ...
+        - Ich komme aus ...
+      - - ¿Cuántos años tienes?
+        - Wie alt bist du?
+      - - Tengo ... años.
+        - Ich bin ... Jahre alt.
+      - - Mucho gusto
+        - Freut mich
+    perfil_basico:
+      sources:
+      - IMG_20251009_153710.jpg
+      slots:
+      - nombre
+      - edad
+      - nacionalidad
+      - ciudad
+      - profesion
+      - gustos
+      - no_gusta
+      templates:
+        me_llamo: Me llamo {nombre}.
+        tengo: Tengo {edad} años.
+        soy: Soy {nacionalidad}.
+        vivo: Vivo en {ciudad}.
+        trabajo: Trabajo de {profesion}.
+        me_gusta: Me gusta {x}.
+        no_me_gusta: No me gusta {y}.
+    articulos_genero:
+      sources:
+      - IMG_20251009_153719.jpg
+      - IMG_20251009_153748.jpg
+      - IMG_20251009_153732.jpg
+      definidos:
+      - el
+      - la
+      - los
+      - las
+      indefinidos:
+      - un
+      - una
+      - unos
+      - unas
+      reglas_genero:
+      - 'masculino: el/los'
+      - 'femenino: la/las'
+      - 'excepciones: mapa, día, mano...'
+      pluralizacion_reglas:
+      - termina_en_vocal:+s
+      - termina_en_consonante:+es
+      - -z→-ces
+      ejemplos:
+      - - el pez
+        - los peces
+      - - la luz
+        - las luces
+      - - la canción
+        - las canciones
+    alfabeto:
+      sources:
+      - IMG_20251009_153723.jpg
+      letras:
+      - - a
+        - a
+      - - b
+        - be
+      - - c
+        - ce
+      - - ch
+        - che
+      - - ll
+        - elle
+      - - ñ
+        - eñe
+      - - j
+        - jota
+      - - v
+        - uve
+      - - z
+        - zeta
+    preguntas_WH:
+      sources:
+      - IMG_20251009_153813.jpg
+      - IMG_20251009_153756.jpg
+      interrogativos:
+      - - qué
+        - was
+      - - quién
+        - wer
+      - - cuál
+        - welche/r/s
+      - - cómo
+        - wie
+      - - dónde
+        - wo
+      - - cuándo
+        - wann
+      - - cuántos
+        - wie viele
+      - - por qué
+        - warum
+      map_to_respuestas: plantillas para emparejar preguntas ↔ respuestas comunes
+    informacion_personal_match:
+      sources:
+      - IMG_20251009_153800.jpg
+      pairs:
+        ¿Cómo te llamas?:
+        - Me llamo ...
+        - Soy ...
+        ¿De dónde eres?:
+        - Soy de ...
+        ¿Dónde vives?:
+        - Vivo en ...
+        ¿Cuántos años tienes?:
+        - Tengo ... años.
+        ¿A qué te dedicas?:
+        - Soy ... / Trabajo en ...
+        ¿Cuál es tu número de teléfono?:
+        - Mi número es ...
+        ¿Por qué estudias español?:
+        - Porque ...
+    restaurante_frases:
+      sources:
+      - IMG_20251009_153803.jpg
+      frases_es_de:
+      - - Una mesa para (dos), por favor.
+        - Einen Tisch für (zwei), bitte.
+      - - ¿Podemos sentarnos en esta mesa?
+        - Können wir an diesem Tisch sitzen?
+      - - ¿Puedo ver la carta / carta de postres / carta de vinos?
+        - Kann ich die Speisekarte / Dessertkarte / Weinkarte sehen?
+      - - ¿Qué hay en el menú?
+        - Was steht auf der Speisekarte?
+      - - No estamos listos.
+        - Wir sind noch nicht bereit.
+      - - ¿Puedes traerme (el ketchup), por favor?
+        - Kannst du mir bitte (Ketchup) bringen?
+      - - Lo mismo para mí.
+        - Für mich das Gleiche.
+      - - Eso es todo, gracias.
+        - Das ist alles, danke.
+      - - La cuenta, por favor.
+        - Die Rechnung, bitte.
+      - - Yo invito.
+        - Ich lade ein.
+      - - Otra (cerveza), por favor.
+        - Noch ein (Bier), bitte.
+      - - ¿Puedes ponerme (patatas) en vez de (ensalada)?
+        - Kann ich (Pommes) statt (Salat) bekommen?
+      - - ¿Qué me recomiendas?
+        - Was empfiehlst du mir?
+      - - ¿Está bien para compartir?
+        - Ist es zum Teilen geeignet?
+    dias_meses_estaciones:
+      sources:
+      - IMG_20251009_153809.jpg
+      dias_semana:
+      - lunes
+      - martes
+      - miércoles
+      - jueves
+      - viernes
+      - sábado
+      - domingo
+      meses:
+      - enero
+      - febrero
+      - marzo
+      - abril
+      - mayo
+      - junio
+      - julio
+      - agosto
+      - septiembre
+      - octubre
+      - noviembre
+      - diciembre
+      estaciones:
+      - primavera
+      - verano
+      - otoño
+      - invierno
+      deicticos:
+      - hoy
+      - mañana
+      - ayer
+      - anteayer
+      - pasado mañana
+      patrones:
+      - Hoy es {dia}.
+      - Mi cumpleaños es en {mes}.
+      - En {estacion} hace {clima}.
+    singular_plural_reglas:
+      sources:
+      - IMG_20251009_153732.jpg
+      rules:
+      - vocal→+s
+      - consonante→+es
+      - z→ces
+      pairs:
+      - - el pez
+        - los peces
+      - - la luz
+        - las luces
+      - - la canción
+        - las canciones
+    vocabulario_objetos_mixto:
+      sources:
+      - IMG_20251009_153736.jpg
+      sustantivos:
+      - - la casa
+        - das Haus
+      - - la mesa
+        - der Tisch
+      - - la silla
+        - der Stuhl
+      - - el vaso
+        - das Glas
+      - - el coche
+        - das Auto
+      - - el hospital
+        - das Krankenhaus
+      - - el libro
+        - das Buch
+      - - el lápiz
+        - der Bleistift
+      - - la mano
+        - die Hand
+      - - el mapa
+        - die Karte
+      - - el señor
+        - der Herr
+      - - la señora
+        - die Dame
+    comida_vocabulario:
+      sources:
+      - IMG_20251009_153741.jpg
+      grupos:
+        basicos:
+        - - el pan
+          - das Brot
+        - - el agua
+          - das Wasser
+        - - la sal
+          - das Salz
+        - - el azúcar
+          - der Zucker
+        - - el aceite
+          - das Öl
+        bebidas:
+        - - el café
+          - der Kaffee
+        - - el té
+          - der Tee
+        - - la cerveza
+          - das Bier
+        - - el vino
+          - der Wein
+        - - el zumo
+          - der Saft
+        proteinas:
+        - - el pollo
+          - das Hähnchen
+        - - la carne
+          - das Fleisch
+        - - el pescado
+          - der Fisch
+        - - el huevo
+          - das Ei
+        - - el jamón
+          - der Schinken
+        frutas:
+        - - la manzana
+          - der Apfel
+        - - la naranja
+          - die Orange
+        - - el plátano
+          - die Banane
+        - - las uvas
+          - die Trauben
+        - - el mango
+          - die Mango
+        verduras:
+        - - la zanahoria
+          - die Karotte
+        - - la cebolla
+          - die Zwiebel
+        - - la lechuga
+          - der Salat
+        - - el tomate
+          - die Tomate
+        - - la patata
+          - die Kartoffel
+        otros:
+        - - el arroz
+          - der Reis
+        - - la sopa
+          - die Suppe
+        - - el queso
+          - der Käse
+        - - la pizza
+          - die Pizza
+    adverbios_frecuencia:
+      sources:
+      - IMG_20251009_153817.jpg
+      rangos:
+      - - siempre
+        - immer
+        - 1.0
+      - - casi siempre
+        - fast immer
+        - 0.9
+      - - a menudo
+        - oft
+        - 0.7
+      - - a veces
+        - manchmal
+        - 0.5
+      - - rara vez
+        - selten
+        - 0.2
+      - - casi nunca
+        - fast nie
+        - 0.1
+      - - nunca
+        - nie
+        - 0.0
+      expresiones_tiempo:
+      - todos los días
+      - una vez por semana
+      - dos veces por semana
+      - a menudo
+      - a veces
+      - nunca
+      patrones:
+      - Yo {adv} {verbo} ...
+      - '{Sujeto} {adv} {verbo} {objeto}.'
+      - ¿Con qué frecuencia {verbo} {sujeto}? – {adv}.
+    interrogativos_refuerzo:
+      sources:
+      - IMG_20251009_153820.jpg
+      - IMG_20251009_153825.jpg
+      interrogativos:
+      - - qué
+        - was
+      - - quién(es)
+        - wer
+      - - dónde
+        - wo
+      - - cuándo
+        - wann
+      - - por qué
+        - warum
+      - - cuál/cuáles
+        - welche/r/s
+      - - cómo
+        - wie
+      - - cuánto/a/os/as
+        - wie viel(e)
+      ejercicios:
+        completar_huecos: Rellenar con el interrogativo correcto según respuesta dada.
+        emparejar: Relacionar preguntas frecuentes con respuestas modelo.
+        transformar: Convertir en pregunta a partir de una afirmación.
+    presente_indicativo_regulares:
+      sources:
+      - IMG_20251009_153828.jpg
+      conjugaciones:
+        -ar:
+          ejemplo: cantar
+          paradigma:
+          - canto
+          - cantas
+          - canta
+          - cantamos
+          - cantáis
+          - cantan
+        -er:
+          ejemplo: beber
+          paradigma:
+          - bebo
+          - bebes
+          - bebe
+          - bebemos
+          - bebéis
+          - beben
+        -ir:
+          ejemplo: vivir
+          paradigma:
+          - vivo
+          - vives
+          - vive
+          - vivimos
+          - vivís
+          - viven
+      morfologia:
+        raiz: lexema
+        terminaciones:
+          -ar:
+          - o
+          - as
+          - a
+          - amos
+          - áis
+          - an
+          -er:
+          - o
+          - es
+          - e
+          - emos
+          - éis
+          - en
+          -ir:
+          - o
+          - es
+          - e
+          - imos
+          - ís
+          - en
+      usos:
+      - hábitos
+      - rutinas
+      - verdades generales
+      - instrucciones
+    presente_regular_actividades:
+      sources:
+      - IMG_20251009_153832.jpg
+      verbos_comunes:
+      - hablar
+      - comer
+      - vivir
+      - abrir
+      - necesitar
+      - buscar
+      - comprar
+      - leer
+      - escuchar
+      - tocar
+      - pagar
+      - trabajar
+      - andar
+      - escribir
+      - beber
+      - cantar
+      tareas:
+      - completar_tabla_conjugaciones
+      - encontrar_verbos_sopa_de_letras
+      - parear_sujeto_forma_verbal
+    acciones_presentes:
+      sources:
+      - IMG_20251009_153837.jpg
+      plantillas:
+      - '{sujeto} {verbo} {objeto} (frecuencia).'
+      - No {sujeto} {verbo} (frecuencia).
+      campos_sugeridos:
+      - sujeto
+      - verbo
+      - objeto
+      - frecuencia
+      - lugar
+      - tiempo

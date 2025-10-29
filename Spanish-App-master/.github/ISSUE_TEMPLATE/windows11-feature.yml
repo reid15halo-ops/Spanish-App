@@ -1,0 +1,183 @@
+name: 🪟 Windows 11 Feature
+description: Windows 11-spezifische Optimierung oder Feature
+title: "[Win11] "
+labels: ["enhancement", "Windows11"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Windows 11 Feature / Optimierung
+
+        Dieses Template ist für Windows 11-spezifische Features wie:
+        - Fluent Design System Integration
+        - DPI-Awareness / High-DPI Support
+        - Native Windows Notifications
+        - File System Integration
+        - Acrylic/Mica Effekte
+        - Multi-Monitor Support
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priorität
+      description: Wie wichtig ist diese Optimierung?
+      options:
+        - P0 - KRITISCH (Must-Have)
+        - P1 - HOCH (Should-Have)
+        - P2 - MITTEL (Nice-to-Have)
+        - P3 - NIEDRIG (Future)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature-Typ
+      description: Welche Art von Windows 11-Feature ist das?
+      options:
+        - Fluent Design System (Colors, Typography, Shadows)
+        - DPI-Awareness / High-DPI Support
+        - Multi-Monitor Support
+        - Native Notifications (Toast)
+        - File System Integration (Jump Lists, File Associations)
+        - Acrylic / Mica Effekte
+        - Responsive Layout (Desktop-optimiert)
+        - Keyboard Shortcuts (Windows-konform)
+        - Context Menus (Native Style)
+        - Andere
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature-Beschreibung
+      description: Was soll implementiert werden?
+      placeholder: |
+        Beispiel:
+        - Fluent Design Colors integrieren (Windows 11-Palette)
+        - Per-Monitor DPI-Awareness für 4K/8K-Displays
+        - Windows Toast Notifications bei Session-Ende
+    validations:
+      required: true
+
+  - type: textarea
+    id: windows11-guidelines
+    attributes:
+      label: Windows 11 Guidelines / Referenzen
+      description: Welche Windows 11-Guidelines gelten?
+      placeholder: |
+        Links zu:
+        - Fluent Design Docs: https://fluent2.microsoft.design/
+        - Windows 11 Design Principles
+        - DPI-Awareness Guidelines
+        - Notification Guidelines
+    validations:
+      required: false
+
+  - type: textarea
+    id: technical-approach
+    attributes:
+      label: Technischer Ansatz
+      description: Wie soll das Feature technisch umgesetzt werden?
+      placeholder: |
+        Beispiel:
+        - CSS Custom Properties für Fluent Colors
+        - JavaScript DPIManager-Klasse
+        - Web Notifications API mit Fallback
+        - backdrop-filter für Acrylic-Simulation
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance-criteria
+    attributes:
+      label: Acceptance Criteria
+      description: Wann ist das Feature "done"?
+      value: |
+        - [ ] Implementiert auf Windows 11
+        - [ ] Fallback für andere Plattformen (falls nötig)
+        - [ ] Getestet auf verschiedenen DPI-Stufen (100%, 125%, 150%, 200%)
+        - [ ] Multi-Monitor-kompatibel
+        - [ ] Performance-optimiert (GPU-beschleunigt)
+        - [ ] Dokumentiert
+    validations:
+      required: true
+
+  - type: input
+    id: estimate
+    attributes:
+      label: Aufwandsschätzung
+      description: Wie lange dauert die Implementierung?
+      placeholder: "z.B. 3 Stunden, 2 Tage"
+    validations:
+      required: false
+
+  - type: textarea
+    id: related-files
+    attributes:
+      label: Betroffene Dateien
+      description: Welche Dateien müssen erstellt/geändert werden?
+      placeholder: |
+        - (NEU) css/fluent-theme.css
+        - (NEU) js/dpi-manager.js
+        - css/style.css
+        - index.html
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: platform-testing
+    attributes:
+      label: Plattform-Testing
+      description: Auf welchen Plattformen muss getestet werden?
+      options:
+        - label: Windows 11 (Primär)
+        - label: Windows 10 (Fallback)
+        - label: macOS (Fallback/Kompatibilität)
+        - label: Linux (Fallback/Kompatibilität)
+        - label: "4K-Display (3840x2160, 150-200% DPI)"
+        - label: "Standard-Display (1920x1080, 100% DPI)"
+        - label: Multi-Monitor Setup
+
+  - type: checkboxes
+    id: windows11-features
+    attributes:
+      label: Windows 11-spezifische Features genutzt
+      description: Welche Windows 11-Features werden verwendet?
+      options:
+        - label: Fluent Design Colors
+        - label: Segoe UI Variable Font
+        - label: Rounded Corners (4-8px Radius)
+        - label: Acrylic / Mica Effekte
+        - label: Windows Toast Notifications
+        - label: Jump Lists / Recent Files
+        - label: File Associations
+        - label: DPI-Awareness (SetProcessDpiAwareness)
+        - label: Multi-Monitor Detection
+
+  - type: dropdown
+    id: milestone
+    attributes:
+      label: Milestone
+      description: Für welche Version ist dieses Feature geplant?
+      options:
+        - v0.1 - User-Friendly
+        - v0.2 - Windows 11 & Polish
+        - Future
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Zusätzlicher Kontext
+      description: Weitere Informationen, Screenshots, Links
+      placeholder: |
+        - Screenshots von Windows 11-Apps mit ähnlichen Features
+        - Link zur CLAUDE.md (Phase 3: Windows 11-Integration)
+        - Performance-Anforderungen
+    validations:
+      required: false
