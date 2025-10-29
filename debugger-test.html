@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish App Debugger - Test Report</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #4ec9b0;
+            border-bottom: 2px solid #4ec9b0;
+            padding-bottom: 10px;
+        }
+        .console-output {
+            background: #252526;
+            border: 1px solid #3e3e42;
+            border-radius: 5px;
+            padding: 20px;
+            white-space: pre-wrap;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+        .success {
+            color: #4ec9b0;
+        }
+        .error {
+            color: #f48771;
+        }
+        .warning {
+            color: #dcdcaa;
+        }
+        button {
+            background: #0e639c;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 10px 5px;
+            font-family: inherit;
+        }
+        button:hover {
+            background: #1177bb;
+        }
+        button:active {
+            background: #0d5a8f;
+        }
+        .btn-group {
+            margin: 20px 0;
+        }
+        .info-box {
+            background: #1e3a5f;
+            border-left: 4px solid #4ec9b0;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .info-box h3 {
+            margin-top: 0;
+            color: #4ec9b0;
+        }
+        .code {
+            background: #2d2d30;
+            padding: 2px 6px;
+            border-radius: 3px;
+            color: #ce9178;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Spanish App Debugger</h1>
+
+        <div class="info-box">
+            <h3>Was testet der Debugger?</h3>
+            <p><strong>PROMPT 1:</strong> Options-Überschreibungs-Bug (transformExerciseForUI)</p>
+            <p><strong>PROMPT 2:</strong> Zu wenige Options (< 3)</p>
+            <p><strong>PROMPT 3:</strong> Navigation & saveProgress()</p>
+        </div>
+
+        <div class="btn-group">
+            <button onclick="runDebugger()">🚀 Debugger starten</button>
+            <button onclick="runQuickCheck()">⚡ Quick Check</button>
+            <button onclick="exportJSON()">📥 Export JSON</button>
+            <button onclick="clearOutput()">🗑️ Clear</button>
+        </div>
+
+        <div id="output" class="console-output">
+Klicke auf "Debugger starten" um alle Tests auszuführen...
+        </div>
+    </div>
+
+    <!-- Load required scripts -->
+    <script src="js/mock-phase1-controller.js"></script>
+    <script src="js/ui-controller.js"></script>
+    <script src="js/app-controller.js"></script>
+    <script src="js/spanish-app-debugger.js"></script>
+
+    <script>
+        let debuggerInstance = null;
+        let lastReport = null;
+
+        function runDebugger() {
+            const output = document.getElementById('output');
+            output.innerHTML = '🔍 Initializing Debugger...\n\n';
+
+            try {
+                // Initialize controllers
+                const mockController = new Phase1Controller();
+                const uiController = new UIController();
+                const appController = new AppController(uiController);
+
+                // Create debugger instance
+                debuggerInstance = new SpanishAppDebugger(appController, mockController);
+
+                // Generate report
+                lastReport = debuggerInstance.generateReport();
+
+                // Display report
+                output.innerHTML = escapeHtml(lastReport);
+
+                // Apply color highlighting
+                highlightReport();
+
+            } catch (error) {
+                output.innerHTML = `❌ ERROR:\n${error.message}\n\nStack:\n${error.stack}`;
+            }
+        }
+
+        function runQuickCheck() {
+            const output = document.getElementById('output');
+            output.innerHTML = '⚡ Running Quick Check...\n\n';
+
+            try {
+                const mockController = new Phase1Controller();
+                const uiController = new UIController();
+                const appController = new AppController(uiController);
+
+                debuggerInstance = new SpanishAppDebugger(appController, mockController);
+
+                // Run only critical tests
+                debuggerInstance.testOptionsCount();
+                debuggerInstance.testOptionsConsistency();
+
+                const issueCount = debuggerInstance.issues.length;
+
+                if (issueCount === 0) {
+                    output.innerHTML = '✅✅✅ QUICK CHECK PASSED! ✅✅✅\n\n';
+                    output.innerHTML += 'All exercises have:\n';
+                    output.innerHTML += '  ✅ Minimum 3 options\n';
+                    output.innerHTML += '  ✅ Consistent formatting\n';
+                } else {
+                    output.innerHTML = `⚠️  ${issueCount} ISSUE(S) FOUND!\n\n`;
+                    debuggerInstance.issues.forEach((issue, idx) => {
+                        output.innerHTML += `${issue.severity === 'error' ? '❌' : '⚠️'} ${idx + 1}. ${issue.exerciseId}: ${issue.problem}\n`;
+                    });
+                }
+
+                highlightReport();
+
+            } catch (error) {
+                output.innerHTML = `❌ ERROR: ${error.message}`;
+            }
+        }
+
+        function exportJSON() {
+            if (!debuggerInstance) {
+                alert('⚠️ Bitte erst Debugger starten!');
+                return;
+            }
+
+            const json = debuggerInstance.getIssuesJSON();
+            const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `debugger-report-${Date.now()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+
+            const output = document.getElementById('output');
+            output.innerHTML += '\n\n✅ Report exported to JSON file!';
+        }
+
+        function clearOutput() {
+            document.getElementById('output').innerHTML = 'Output cleared. Klicke auf "Debugger starten" um Tests auszuführen...';
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+        }
+
+        function highlightReport() {
+            const output = document.getElementById('output');
+            let html = output.innerHTML;
+
+            // Highlight different elements
+            html = html.replace(/(✅[^<\n]*)/g, '<span class="success">$1</span>');
+            html = html.replace(/(❌[^<\n]*)/g, '<span class="error">$1</span>');
+            html = html.replace(/(⚠️[^<\n]*)/g, '<span class="warning">$1</span>');
+            html = html.replace(/(🎉[^<\n]*)/g, '<span class="success">$1</span>');
+
+            output.innerHTML = html;
+        }
+
+        // Auto-run on load (optional)
+        // window.addEventListener('load', runDebugger);
+    </script>
+</body>
+</html>

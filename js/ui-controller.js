@@ -190,7 +190,21 @@ class UIController {
     renderAnswerOptions(exercise) {
         this.elements.answerContainer.innerHTML = '';
 
-        if (exercise.type === 'multiple-choice' || exercise.type === 'conjugation') {
+        if (exercise.type === 'matching') {
+            this.renderMatching(exercise);
+        } else if (exercise.type === 'emoji-guess' || exercise.type === 'emoji-fill') {
+            this.renderEmojiExercise(exercise);
+        } else if (exercise.type === 'sentence-building') {
+            this.renderSentenceBuilding(exercise);
+        } else if (exercise.type === 'error-correction') {
+            this.renderErrorCorrection(exercise);
+        } else if (exercise.type === 'true-false') {
+            this.renderTrueFalse(exercise);
+        } else if (exercise.type === 'fill-multiple') {
+            this.renderFillMultiple(exercise);
+        } else if (exercise.type === 'dialogue-completion') {
+            this.renderDialogueCompletion(exercise);
+        } else if (exercise.type === 'multiple-choice' || exercise.type === 'conjugation') {
             this.renderMultipleChoice(exercise);
         } else if (exercise.type === 'translation' || exercise.type === 'fill-blank') {
             this.renderTextInput(exercise);
@@ -327,7 +341,7 @@ class UIController {
     /**
      * Show feedback (correct or incorrect)
      */
-    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null) {
+    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null, currentAttempts = 0, maxAttemptsBeforeHint = 3) {
         this.elements.feedbackText.textContent = message;
         this.elements.feedback.className = 'feedback show ' + (isCorrect ? 'feedback--success' : 'feedback--error');
 
@@ -375,9 +389,26 @@ class UIController {
             }
         }
 
-        // Show hint button if incorrect
+        // Show hint button only after reaching attempt threshold
         if (!isCorrect) {
-            this.elements.hintContainer.classList.add('show');
+            if (currentAttempts >= maxAttemptsBeforeHint) {
+                // Unlock hints after threshold reached
+                this.elements.hintContainer.classList.add('show');
+            } else {
+                // Show message about hint unlock
+                const remaining = maxAttemptsBeforeHint - currentAttempts;
+                const hintMessage = `💡 Hinweis verfügbar nach ${remaining} weiteren Fehlversuch${remaining !== 1 ? 'en' : ''} (${currentAttempts}/${maxAttemptsBeforeHint})`;
+
+                // Add hint unlock message to feedback if not already there
+                if (feedbackHint) {
+                    const existingHint = feedbackHint.textContent;
+                    feedbackHint.textContent = existingHint ? `${existingHint}\n\n${hintMessage}` : hintMessage;
+                    feedbackHint.style.display = 'block';
+                } else {
+                    // Append message to feedback text
+                    this.elements.feedbackText.textContent += `\n\n${hintMessage}`;
+                }
+            }
         }
     }
 
@@ -559,26 +590,404 @@ class UIController {
     /**
      * Show completion message
      */
-    showCompletion(stats) {
+    showCompletion(stats, currentUnit = 1, totalUnits = 7) {
         const accuracy = Math.round((stats.correct / stats.total) * 100);
         const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
+        const hasNextUnit = currentUnit < totalUnits;
 
         const html = `
             <div class="text-center">
                 <h2 style="font-size: 32px; margin-bottom: 24px;">${emoji}</h2>
-                <h3 style="margin-bottom: 16px;">Unit abgeschlossen!</h3>
+                <h3 style="margin-bottom: 16px;">Lektion ${currentUnit} abgeschlossen!</h3>
                 <p style="font-size: 24px; margin-bottom: 24px;">
                     ${stats.correct}/${stats.total} richtig (${accuracy}%)
                 </p>
-                <button class="submit-btn" onclick="location.reload()">
-                    Weiter üben
-                </button>
+                ${hasNextUnit ? `
+                    <button class="submit-btn" id="next-unit-btn" style="margin-bottom: 16px;">
+                        Nächste Lektion (${currentUnit + 1}/${totalUnits}) →
+                    </button>
+                    <br>
+                    <button class="submit-btn" onclick="location.reload()" style="background: var(--bg-secondary); opacity: 0.7;">
+                        Diese Lektion wiederholen
+                    </button>
+                ` : `
+                    <p style="margin-bottom: 24px; color: var(--success); font-weight: bold;">
+                        🎊 Alle Lektionen abgeschlossen! 🎊
+                    </p>
+                    <button class="submit-btn" onclick="location.reload()">
+                        Von vorne beginnen
+                    </button>
+                `}
             </div>
         `;
 
         this.elements.answerContainer.innerHTML = html;
         this.hideFeedback();
         this.hideHints();
+
+        // Attach next unit button handler
+        if (hasNextUnit) {
+            const nextBtn = document.getElementById('next-unit-btn');
+            if (nextBtn && this.onNextUnit) {
+                nextBtn.addEventListener('click', () => {
+                    this.onNextUnit();
+                });
+                nextBtn.focus();
+            }
+        }
+    }
+
+    /**
+     * Render matching exercise
+     */
+    renderMatching(exercise) {
+        if (typeof MatchingExercise === 'undefined' || typeof MatchingExerciseRenderer === 'undefined') {
+            console.error('Matching exercise module not loaded');
+            this.elements.answerContainer.innerHTML = '<p>Matching exercise not available</p>';
+            return;
+        }
+
+        // Create matching exercise from data
+        const matching = new MatchingExercise(exercise.pairs || []);
+        const renderer = new MatchingExerciseRenderer(this.elements.answerContainer, matching);
+
+        // Set completion callback
+        renderer.onComplete = () => {
+            // Auto-submit when complete
+            const results = matching.validate();
+            const accuracy = results.accuracy;
+
+            if (this.onAnswerSelected) {
+                this.onAnswerSelected(JSON.stringify(results), null);
+            }
+        };
+
+        renderer.render();
+    }
+
+    /**
+     * Render emoji exercise (guess or fill)
+     */
+    renderEmojiExercise(exercise) {
+        // Emoji exercises are just text input with emoji in the question
+        this.renderTextInput(exercise);
+    }
+
+    /**
+     * Render sentence building exercise (drag words into correct order)
+     */
+    renderSentenceBuilding(exercise) {
+        const words = exercise.words || [];
+        const shuffledWords = this.shuffleArray([...words]);
+
+        const html = `
+            <div class="sentence-building">
+                <div class="word-bank" id="word-bank">
+                    ${shuffledWords.map((word, index) => `
+                        <button class="word-btn" data-word="${word}" data-index="${index}">
+                            ${word}
+                        </button>
+                    `).join('')}
+                </div>
+                <div class="sentence-area" id="sentence-area">
+                    <div class="sentence-placeholder">Wähle Wörter in der richtigen Reihenfolge</div>
+                </div>
+                <div class="sentence-controls">
+                    <button class="submit-btn secondary-btn" id="clear-sentence-btn">Zurücksetzen</button>
+                    <button class="submit-btn" id="submit-sentence-btn">Prüfen</button>
+                </div>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const wordBank = document.getElementById('word-bank');
+        const sentenceArea = document.getElementById('sentence-area');
+        const clearBtn = document.getElementById('clear-sentence-btn');
+        const submitBtn = document.getElementById('submit-sentence-btn');
+
+        let selectedWords = [];
+
+        // Word click handler
+        wordBank.addEventListener('click', (e) => {
+            if (e.target.classList.contains('word-btn') && !e.target.disabled) {
+                const word = e.target.dataset.word;
+                selectedWords.push(word);
+                e.target.disabled = true;
+                e.target.style.opacity = '0.3';
+                this.updateSentenceDisplay(selectedWords, sentenceArea);
+            }
+        });
+
+        // Clear button
+        clearBtn.addEventListener('click', () => {
+            selectedWords = [];
+            const buttons = wordBank.querySelectorAll('.word-btn');
+            buttons.forEach(btn => {
+                btn.disabled = false;
+                btn.style.opacity = '1';
+            });
+            this.updateSentenceDisplay(selectedWords, sentenceArea);
+        });
+
+        // Submit button
+        submitBtn.addEventListener('click', () => {
+            if (selectedWords.length > 0) {
+                const answer = selectedWords.join(' ');
+                this.handleAnswerSelection(answer);
+            }
+        });
+    }
+
+    /**
+     * Update sentence display for sentence building
+     */
+    updateSentenceDisplay(words, container) {
+        if (words.length === 0) {
+            container.innerHTML = '<div class="sentence-placeholder">Wähle Wörter in der richtigen Reihenfolge</div>';
+        } else {
+            container.innerHTML = `
+                <div class="sentence-display">
+                    ${words.map(word => `<span class="selected-word">${word}</span>`).join(' ')}
+                </div>
+            `;
+        }
+    }
+
+    /**
+     * Render error correction exercise
+     */
+    renderErrorCorrection(exercise) {
+        const html = `
+            <div class="error-correction">
+                <div class="error-sentence">${exercise.incorrectSentence}</div>
+                <div class="error-hint">
+                    💡 Dieser Satz enthält ${exercise.errorCount || 1} Fehler.
+                    ${exercise.errorType ? `Achte auf: ${exercise.errorType}` : ''}
+                </div>
+                <input
+                    type="text"
+                    class="text-input"
+                    id="answer-input"
+                    placeholder="Korrigierte Antwort eingeben..."
+                    aria-label="Korrigierte Antwort"
+                    autocomplete="off"
+                    autocorrect="off"
+                    spellcheck="false">
+                <button class="submit-btn" id="submit-btn">
+                    Prüfen
+                </button>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const input = document.getElementById('answer-input');
+        const submitBtn = document.getElementById('submit-btn');
+
+        setTimeout(() => input.focus(), 100);
+
+        input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                submitBtn.click();
+            }
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const answer = input.value.trim();
+            if (answer) {
+                this.handleAnswerSelection(answer);
+            }
+        });
+    }
+
+    /**
+     * Render true/false exercise
+     */
+    renderTrueFalse(exercise) {
+        const html = `
+            <div class="true-false">
+                <div class="statement-box">
+                    "${exercise.statement}"
+                </div>
+                <div class="true-false-buttons">
+                    <button class="answer-btn true-btn" data-answer="true">
+                        <div class="answer-text">
+                            <div class="answer-es">✓ Richtig</div>
+                            <div class="answer-de">Dieser Satz ist korrekt</div>
+                        </div>
+                    </button>
+                    <button class="answer-btn false-btn" data-answer="false">
+                        <div class="answer-text">
+                            <div class="answer-es">✗ Falsch</div>
+                            <div class="answer-de">Dieser Satz enthält einen Fehler</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.handleAnswerSelection(btn.dataset.answer);
+            });
+        });
+    }
+
+    /**
+     * Render fill-multiple exercise (multiple blanks in sentence)
+     */
+    renderFillMultiple(exercise) {
+        const blanks = exercise.blanks || [];
+
+        const html = `
+            <div class="fill-multiple">
+                <div class="sentence-template">${exercise.template}</div>
+                <div class="blanks-container">
+                    ${blanks.map((blank, index) => `
+                        <div class="blank-item">
+                            <label class="blank-label">${blank.label || `Lücke ${index + 1}`}:</label>
+                            <input
+                                type="text"
+                                class="blank-input"
+                                data-blank-index="${index}"
+                                placeholder="${blank.hint || '...'}"
+                                autocomplete="off"
+                                autocorrect="off"
+                                spellcheck="false">
+                        </div>
+                    `).join('')}
+                </div>
+                <button class="submit-btn" id="submit-multiple-btn">
+                    Prüfen
+                </button>
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        const inputs = this.elements.answerContainer.querySelectorAll('.blank-input');
+        const submitBtn = document.getElementById('submit-multiple-btn');
+
+        // Focus first input
+        if (inputs.length > 0) {
+            setTimeout(() => inputs[0].focus(), 100);
+        }
+
+        // Enter key moves to next input or submits
+        inputs.forEach((input, index) => {
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    if (index < inputs.length - 1) {
+                        inputs[index + 1].focus();
+                    } else {
+                        submitBtn.click();
+                    }
+                }
+            });
+        });
+
+        submitBtn.addEventListener('click', () => {
+            const answers = Array.from(inputs).map(input => input.value.trim());
+            if (answers.every(a => a)) {
+                this.handleAnswerSelection(JSON.stringify(answers));
+            }
+        });
+    }
+
+    /**
+     * Render dialogue completion exercise
+     */
+    renderDialogueCompletion(exercise) {
+        const dialogue = exercise.dialogue || [];
+
+        const html = `
+            <div class="dialogue-completion">
+                <div class="dialogue-box">
+                    ${dialogue.map((line, index) => `
+                        <div class="dialogue-line ${line.speaker}">
+                            <span class="speaker-icon">${line.speaker === 'A' ? '👤' : '👥'}</span>
+                            <span class="dialogue-text">${line.text}</span>
+                        </div>
+                    `).join('')}
+                    <div class="dialogue-line response">
+                        <span class="speaker-icon">${exercise.responseIcon || '💬'}</span>
+                        <span class="dialogue-text missing">???</span>
+                    </div>
+                </div>
+                <div class="dialogue-hint">${exercise.contextHint || 'Was passt als Antwort?'}</div>
+                ${exercise.options ? `
+                    <div class="dialogue-options">
+                        ${exercise.options.map((option, index) => `
+                            <button class="answer-btn dialogue-option" data-answer="${option.value || option}">
+                                <div class="answer-text">
+                                    <div class="answer-es">${option.spanish || option}</div>
+                                    ${option.german ? `<div class="answer-de">(${option.german})</div>` : ''}
+                                </div>
+                                <div class="answer-key">[${index + 1}]</div>
+                            </button>
+                        `).join('')}
+                    </div>
+                ` : `
+                    <input
+                        type="text"
+                        class="text-input"
+                        id="dialogue-input"
+                        placeholder="Deine Antwort..."
+                        autocomplete="off"
+                        autocorrect="off"
+                        spellcheck="false">
+                    <button class="submit-btn" id="submit-dialogue-btn">
+                        Prüfen
+                    </button>
+                `}
+            </div>
+        `;
+
+        this.elements.answerContainer.innerHTML = html;
+
+        if (exercise.options) {
+            // Multiple choice dialogue
+            const buttons = this.elements.answerContainer.querySelectorAll('.answer-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    this.handleAnswerSelection(btn.dataset.answer);
+                });
+            });
+        } else {
+            // Text input dialogue
+            const input = document.getElementById('dialogue-input');
+            const submitBtn = document.getElementById('submit-dialogue-btn');
+
+            setTimeout(() => input.focus(), 100);
+
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    submitBtn.click();
+                }
+            });
+
+            submitBtn.addEventListener('click', () => {
+                const answer = input.value.trim();
+                if (answer) {
+                    this.handleAnswerSelection(answer);
+                }
+            });
+        }
+    }
+
+    /**
+     * Shuffle array helper
+     */
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
 }
 

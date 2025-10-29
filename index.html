@@ -723,6 +723,172 @@
         .mb-lg {
             margin-bottom: var(--space-lg);
         }
+
+        /* ============================================
+           MATCHING EXERCISE STYLES
+           ============================================ */
+
+        .matching-exercise {
+            width: 100%;
+        }
+
+        .matching-instructions {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .matching-hint {
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            margin-top: var(--space-sm);
+        }
+
+        .matching-container {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: var(--space-md);
+            margin-bottom: var(--space-xl);
+        }
+
+        @media (max-width: 768px) {
+            .matching-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+
+            .matching-connections {
+                display: none;
+            }
+        }
+
+        .matching-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .matching-item {
+            background: var(--bg-primary);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: var(--space-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            user-select: none;
+        }
+
+        .matching-item:hover {
+            border-color: var(--accent);
+            transform: translateX(4px);
+        }
+
+        .matching-item.selected {
+            border-color: var(--accent);
+            background: rgba(32, 178, 170, 0.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .matching-item.connected {
+            border-color: var(--info);
+            background: rgba(25, 118, 210, 0.05);
+            opacity: 0.7;
+        }
+
+        .matching-item.correct {
+            border-color: var(--success);
+            background: rgba(46, 125, 50, 0.1);
+        }
+
+        .matching-item.incorrect {
+            border-color: var(--error);
+            background: rgba(198, 40, 40, 0.1);
+            animation: shake 0.3s ease;
+        }
+
+        .matching-item-content {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            font-size: var(--font-size-large);
+        }
+
+        .matching-emoji {
+            font-size: 24px;
+        }
+
+        .matching-connections {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .connection-info {
+            text-align: center;
+            font-size: var(--font-size-xl);
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .matching-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: center;
+        }
+
+        .matching-clear,
+        .matching-submit {
+            padding: var(--space-md) var(--space-xl);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .matching-clear {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .matching-clear:hover {
+            background: var(--border);
+        }
+
+        .matching-submit {
+            background: var(--accent);
+            color: white;
+        }
+
+        .matching-submit:hover:not(:disabled) {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .matching-submit:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .matching-feedback {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            padding: var(--space-xl);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback-score {
+            font-size: 48px;
+            margin-bottom: var(--space-md);
+        }
+
+        .matching-feedback h3 {
+            margin-bottom: var(--space-sm);
+            color: var(--accent);
+        }
     </style>
 </head>
 <body>
@@ -858,6 +1024,14 @@
     <script src="js/mock-phase1-controller.js"></script>
     <script src="js/mock-adaptive-learning.js"></script>
     <script src="js/mock-german-system.js"></script>
+
+    <!-- Dynamic Exercise System -->
+    <script src="js/vocabulary-database.js"></script>
+    <script src="js/sentence-templates.js"></script>
+    <script src="js/dynamic-exercise-generator.js"></script>
+
+    <!-- Matching Exercises -->
+    <script src="js/matching-exercise.js"></script>
 
     <!-- App Controller (Integration Layer) -->
     <script src="js/app-controller.js"></script>

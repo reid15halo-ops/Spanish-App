@@ -12,10 +12,21 @@ class AppController {
         this.adaptiveLearning = null;
         this.germanSystem = null;
 
+        // Dynamic exercise system
+        this.vocab = null;
+        this.templateEngine = null;
+        this.dynamicGenerator = null;
+        this.progressTracker = null;
+        this.useDynamicExercises = false; // Set to true after initialization
+        this.maxStaticUnits = 7; // Units 1-7 are static, 8+ are dynamic
+        this.totalUnits = 50; // Extended to 50 units with dynamic system
+
         this.state = {
             currentUnit: 1,
             currentExerciseIndex: 0,
             exercises: [],
+            currentAttempts: 0,  // NEW: Track attempts per exercise
+            maxAttemptsBeforeHint: 3,  // NEW: Hints after 3 failed attempts
             sessionStats: {
                 correct: 0,
                 total: 0,
@@ -27,6 +38,7 @@ class AppController {
         this.ui.onAnswerSelected = this.handleAnswer.bind(this);
         this.ui.onHintRequested = this.getHint.bind(this);
         this.ui.onNextExercise = this.loadNextExercise.bind(this);
+        this.ui.onNextUnit = this.loadNextUnit.bind(this);
     }
 
     /**
@@ -47,6 +59,9 @@ class AppController {
 
             // Initialize German-Spanish System (if available)
             this.initializeGermanSystem();
+
+            // Initialize Dynamic Exercise System (if available)
+            this.useDynamicExercises = this.initializeDynamicSystem();
 
             // Load first unit
             await this.loadUnit(1);
@@ -105,6 +120,40 @@ class AppController {
     }
 
     /**
+     * Initialize Dynamic Exercise Generation System
+     */
+    initializeDynamicSystem() {
+        // Check if dynamic modules are loaded
+        if (typeof VocabularyDatabase === 'undefined' ||
+            typeof SentenceTemplateEngine === 'undefined' ||
+            typeof DynamicExerciseGenerator === 'undefined' ||
+            typeof UserProgressTracker === 'undefined') {
+            console.warn('⚠️ Dynamic exercise system not available');
+            return false;
+        }
+
+        try {
+            // Initialize components
+            this.vocab = new VocabularyDatabase();
+            this.templateEngine = new SentenceTemplateEngine(this.vocab);
+            this.progressTracker = new UserProgressTracker();
+            this.dynamicGenerator = new DynamicExerciseGenerator(
+                this.vocab,
+                this.templateEngine,
+                this.progressTracker
+            );
+
+            console.log('✅ Dynamic Exercise System initialized');
+            console.log('📊 User Progress:', this.progressTracker.getStats());
+
+            return true;
+        } catch (error) {
+            console.error('❌ Error initializing dynamic system:', error);
+            return false;
+        }
+    }
+
+    /**
      * Load a unit
      */
     async loadUnit(unitNumber) {
@@ -123,7 +172,7 @@ class AppController {
             this.state.currentExerciseIndex = 0;
 
             // Update UI status
-            this.ui.updateStatus(unitNumber, 7, 1, this.state.exercises.length);
+            this.ui.updateStatus(unitNumber, this.totalUnits, 1, this.state.exercises.length);
 
             // Load first exercise
             this.loadExercise(0);
@@ -137,9 +186,18 @@ class AppController {
     }
 
     /**
-     * Load unit data from file
+     * Load unit data from file or generate dynamically
+     * Units 1-7: Static exercises (Basics)
+     * Units 8+: Dynamically generated adaptive exercises
      */
     async loadUnitData(unitNumber) {
+        // Check if we should use dynamic exercises
+        if (unitNumber > this.maxStaticUnits && this.useDynamicExercises && this.dynamicGenerator) {
+            console.log(`🎯 Generating dynamic exercises for Unit ${unitNumber}...`);
+            return this.generateDynamicUnit(unitNumber);
+        }
+
+        // Load static units (1-7)
         const unitFiles = {
             1: 'unit1-pronouns.json',
             2: 'unit2-ser.json',
@@ -151,8 +209,14 @@ class AppController {
         };
 
         const filename = unitFiles[unitNumber];
-        if (!filename) {
+        if (!filename && unitNumber <= this.maxStaticUnits) {
             throw new Error(`Invalid unit number: ${unitNumber}`);
+        }
+
+        // If unit > 7 but dynamic system not available, generate fallback
+        if (!filename && !this.useDynamicExercises) {
+            console.warn(`⚠️ Unit ${unitNumber} not available, dynamic system disabled`);
+            return this.generateFallbackUnit(unitNumber);
         }
 
         const path = `data/phase1-exercises/${filename}`;
@@ -165,9 +229,98 @@ class AppController {
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error(`Error loading ${path}:`, error);
-            throw error;
+            console.warn(`⚠️ Could not load ${path}, using mock exercises instead`);
+            console.log('💡 This is expected when opening index.html directly (file://)');
+            console.log('💡 The mock exercises provide 10 demo exercises for testing');
+
+            // Fallback to mock exercises from Phase1Controller
+            if (this.phase1 && this.phase1.exercises) {
+                return {
+                    unitNumber: unitNumber,
+                    unitName: this.getUnitName(unitNumber),
+                    exercises: this.phase1.exercises
+                };
+            }
+
+            throw new Error('No exercises available (neither JSON files nor mock exercises)');
         }
+    }
+
+    /**
+     * Generate dynamic unit (Units 8+)
+     */
+    generateDynamicUnit(unitNumber) {
+        const exerciseCount = 10; // 10 exercises per unit
+        const exercises = this.dynamicGenerator.generateNext(exerciseCount);
+
+        return {
+            unitNumber: unitNumber,
+            unitName: this.getUnitName(unitNumber),
+            exercises: exercises,
+            isDynamic: true
+        };
+    }
+
+    /**
+     * Generate fallback unit when dynamic system not available
+     */
+    generateFallbackUnit(unitNumber) {
+        // Use Phase1 mock exercises as fallback
+        if (this.phase1 && this.phase1.exercises) {
+            return {
+                unitNumber: unitNumber,
+                unitName: this.getUnitName(unitNumber),
+                exercises: this.phase1.exercises,
+                isFallback: true
+            };
+        }
+
+        throw new Error(`Unit ${unitNumber} not available`);
+    }
+
+    /**
+     * Get unit name by number
+     */
+    getUnitName(unitNumber) {
+        // Static units (1-7) - Basics
+        const staticUnitNames = {
+            1: 'Pronomen',
+            2: 'SER',
+            3: 'ESTAR',
+            4: 'SER/ESTAR Kontrast',
+            5: 'TENER',
+            6: 'Vokabular',
+            7: 'Integration'
+        };
+
+        if (unitNumber <= this.maxStaticUnits) {
+            return staticUnitNames[unitNumber] || `Unit ${unitNumber}`;
+        }
+
+        // Dynamic units (8+) - Themed units
+        const dynamicThemes = {
+            8: 'Zahlen & Zeit',
+            9: 'Familie & Menschen',
+            10: 'Essen & Trinken',
+            11: 'Reisen & Orte',
+            12: 'Alltag & Aktivitäten',
+            13: 'Gefühle & Eigenschaften',
+            14: 'Wetter & Natur',
+            15: 'Hobbys & Freizeit',
+            16: 'Arbeit & Beruf',
+            17: 'Gesundheit & Körper',
+            18: 'Kleidung & Mode',
+            19: 'Technologie & Medien',
+            20: 'Kultur & Feste'
+        };
+
+        if (dynamicThemes[unitNumber]) {
+            return dynamicThemes[unitNumber];
+        }
+
+        // For units beyond 20, use generic adaptive names
+        const level = Math.floor((unitNumber - 8) / 5) + 1; // Level 1 = Units 8-12, Level 2 = 13-17, etc.
+        return `Adaptives Training (Level ${level})`;
     }
 
     /**
@@ -181,6 +334,7 @@ class AppController {
 
         const exercise = this.state.exercises[index];
         this.state.currentExerciseIndex = index;
+        this.state.currentAttempts = 0;  // Reset attempts for new exercise
 
         // Transform exercise to UI format
         const uiExercise = this.transformExerciseForUI(exercise);
@@ -191,7 +345,7 @@ class AppController {
         // Update status and progress
         this.ui.updateStatus(
             this.state.currentUnit,
-            7,
+            this.totalUnits,
             index + 1,
             this.state.exercises.length
         );
@@ -210,17 +364,23 @@ class AppController {
             question: exercise.question || exercise.spanish || '',
             correctAnswer: exercise.correctAnswer || exercise.answer,
             germanBridge: this.generateGermanBridge(exercise),
+            feedbackCorrect: exercise.feedbackCorrect,
+            feedbackIncorrect: exercise.feedbackIncorrect,
+            explanation: exercise.explanation,
             options: []
         };
 
-        // Generate options based on type
-        if (exercise.type === 'conjugation' || exercise.type === 'multiple-choice') {
-            uiExercise.options = this.generateOptions(exercise);
-        } else if (exercise.type === 'translation') {
-            uiExercise.type = 'translation';
+        // Handle options carefully - preserve existing options if they exist
+        if (exercise.type === 'translation' || exercise.type === 'fill-blank') {
+            // Text input exercises don't need options
+            uiExercise.type = exercise.type;
             uiExercise.options = [];
-        } else if (exercise.options && Array.isArray(exercise.options)) {
+        } else if (exercise.options && Array.isArray(exercise.options) && exercise.options.length > 0) {
+            // Use existing options if they exist and are properly formatted
             uiExercise.options = exercise.options;
+        } else if (exercise.type === 'conjugation' || exercise.type === 'multiple-choice') {
+            // Only generate options if they don't exist
+            uiExercise.options = this.generateOptions(exercise);
         } else {
             // Default: create options from answer
             uiExercise.options = [
@@ -304,12 +464,32 @@ class AppController {
         const exercise = this.state.exercises[this.state.currentExerciseIndex];
         const startTime = Date.now();
 
-        // Normalize answers for comparison
-        const userAnswer = this.normalizeAnswer(answer);
-        const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+        // Special handling for different exercise types
+        let isCorrect = false;
 
-        // Check if correct
-        const isCorrect = userAnswer === correctAnswer;
+        if (exercise.type === 'fill-multiple') {
+            // JSON array comparison for multiple blanks
+            try {
+                const userAnswers = JSON.parse(answer);
+                const correctAnswers = JSON.parse(exercise.correctAnswer);
+                isCorrect = userAnswers.length === correctAnswers.length &&
+                    userAnswers.every((ans, idx) =>
+                        this.normalizeAnswer(ans) === this.normalizeAnswer(correctAnswers[idx])
+                    );
+            } catch (e) {
+                isCorrect = false;
+            }
+        } else {
+            // Standard comparison for other types
+            const userAnswer = this.normalizeAnswer(answer);
+            const correctAnswer = this.normalizeAnswer(exercise.correctAnswer);
+            isCorrect = userAnswer === correctAnswer;
+        }
+
+        // Track attempts (only increment on wrong answers)
+        if (!isCorrect) {
+            this.state.currentAttempts++;
+        }
 
         // Update session stats
         this.state.sessionStats.total++;
@@ -331,11 +511,15 @@ class AppController {
         // Get feedback message
         const feedback = this.generateFeedback(exercise, answer, isCorrect);
 
-        // Show feedback in UI
+        // Show feedback in UI with attempt tracking for hint unlock
         this.ui.showFeedback(
             isCorrect,
             feedback.message,
-            exercise.correctAnswer
+            exercise.correctAnswer,
+            feedback.hint || '',
+            null, // attemptsRemaining (not used)
+            this.state.currentAttempts,
+            this.state.maxAttemptsBeforeHint
         );
 
         // Show explanation if incorrect
@@ -361,16 +545,31 @@ class AppController {
         let explanation = '';
 
         if (isCorrect) {
-            const messages = [
-                '¡Muy bien! ✅',
-                '¡Perfecto! 🎉',
-                '¡Excelente! ⭐',
-                'Richtig! 👍',
-                'Korrekt! ✨'
-            ];
-            message = messages[Math.floor(Math.random() * messages.length)];
+            // Use custom feedback if available
+            if (exercise.feedbackCorrect) {
+                message = exercise.feedbackCorrect;
+            } else {
+                const messages = [
+                    '¡Muy bien! ✅',
+                    '¡Perfecto! 🎉',
+                    '¡Excelente! ⭐',
+                    'Richtig! 👍',
+                    'Korrekt! ✨'
+                ];
+                message = messages[Math.floor(Math.random() * messages.length)];
+            }
+
+            // Show explanation for correct answers too if available
+            if (exercise.explanation) {
+                explanation = exercise.explanation;
+            }
         } else {
-            message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            // Use custom feedback if available
+            if (exercise.feedbackIncorrect) {
+                message = `${exercise.feedbackIncorrect} Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+            } else {
+                message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            }
 
             // Generate explanation using German system
             if (this.germanSystem && typeof this.germanSystem.generateGermanOptimizedFeedback === 'function') {
@@ -489,12 +688,46 @@ class AppController {
     }
 
     /**
+     * Load next unit
+     */
+    async loadNextUnit() {
+        const nextUnit = this.state.currentUnit + 1;
+
+        if (nextUnit > this.totalUnits) {
+            console.log('🎊 All units completed!');
+            return;
+        }
+
+        console.log(`📚 Loading next unit: ${nextUnit}`);
+
+        try {
+            // Reset stats for new unit
+            this.state.sessionStats = {
+                correct: 0,
+                total: 0,
+                startTime: Date.now()
+            };
+
+            // Load next unit
+            await this.loadUnit(nextUnit);
+
+            // Save progress after successfully loading new unit
+            this.saveProgress();
+
+            console.log(`✅ Progress saved: Now at Unit ${nextUnit}`);
+        } catch (error) {
+            console.error(`❌ Error loading unit ${nextUnit}:`, error);
+            this.ui.showError(`Fehler beim Laden von Lektion ${nextUnit}. Bitte Seite neu laden.`);
+        }
+    }
+
+    /**
      * Show unit completion
      */
     showUnitCompletion() {
         console.log('🎉 Unit completed!');
 
-        this.ui.showCompletion(this.state.sessionStats);
+        this.ui.showCompletion(this.state.sessionStats, this.state.currentUnit, this.totalUnits);
 
         // Save progress
         this.saveProgress();
