@@ -216,21 +216,23 @@ class Phase1Controller {
                 type: 'multiple-choice',
                 concept: 'estar-location',
                 difficulty: 3,
-                question: 'Wie sagt man "Ich bin in Madrid" auf Spanisch?',
-                correctAnswer: 'Yo estoy en Madrid',
+                question: 'Vervollständige: "Yo ___ en Madrid" (Ich bin in Madrid)',
+                correctAnswer: 'estoy',
                 german: 'Ich bin in Madrid',
                 germanBridge: '💡 Ort/Location = ESTAR',
                 options: [
-                    { spanish: 'Yo estoy en Madrid', german: '(ich bin in Madrid)', value: 'Yo estoy en Madrid' },
-                    { spanish: 'Yo soy en Madrid', german: '(falsch)', value: 'Yo soy en Madrid' },
-                    { spanish: 'Yo tengo en Madrid', german: '(falsch)', value: 'Yo tengo en Madrid' }
+                    { spanish: 'estoy', german: '(bin - am Ort)', value: 'estoy' },
+                    { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
+                    { spanish: 'tengo', german: '(habe)', value: 'tengo' }
                 ],
                 hints: [
                     'Ortangaben verwenden immer ESTAR!',
                     'LECH Regel: L = Location',
-                    'Die richtige Antwort ist "Yo estoy en Madrid".'
+                    'Die richtige Antwort ist: <strong>estoy</strong>'
                 ],
-                explanation: '<p>Bei <strong>Ortsangaben</strong> verwendet man immer <strong>ESTAR</strong>.</p>'
+                explanation: '<p>Bei <strong>Ortsangaben</strong> verwendet man immer <strong>ESTAR</strong>.</p><p>✅ Yo <strong>estoy</strong> en Madrid (richtig)</p><p>❌ Yo <strong>soy</strong> en Madrid (falsch)</p>',
+                feedbackCorrect: 'Perfekt! Orte verwendet man mit ESTAR.',
+                feedbackIncorrect: 'Ortangaben verwenden ESTAR (nicht SER).'
             },
 
             // SER/ESTAR Contrast
@@ -352,7 +354,8 @@ class Phase1Controller {
                 germanBridge: '💡 Ort/Location → ESTAR (nicht SER!)',
                 options: [
                     { spanish: 'estoy', german: '(bin - am Ort)', value: 'estoy' },
-                    { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' }
+                    { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
+                    { spanish: 'tengo', german: '(habe)', value: 'tengo' }
                 ],
                 hints: [
                     'Ortsangaben verwenden ESTAR.',

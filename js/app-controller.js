@@ -361,17 +361,23 @@ class AppController {
             question: exercise.question || exercise.spanish || '',
             correctAnswer: exercise.correctAnswer || exercise.answer,
             germanBridge: this.generateGermanBridge(exercise),
+            feedbackCorrect: exercise.feedbackCorrect,
+            feedbackIncorrect: exercise.feedbackIncorrect,
+            explanation: exercise.explanation,
             options: []
         };
 
-        // Generate options based on type
-        if (exercise.type === 'conjugation' || exercise.type === 'multiple-choice') {
-            uiExercise.options = this.generateOptions(exercise);
-        } else if (exercise.type === 'translation') {
-            uiExercise.type = 'translation';
+        // Handle options carefully - preserve existing options if they exist
+        if (exercise.type === 'translation' || exercise.type === 'fill-blank') {
+            // Text input exercises don't need options
+            uiExercise.type = exercise.type;
             uiExercise.options = [];
-        } else if (exercise.options && Array.isArray(exercise.options)) {
+        } else if (exercise.options && Array.isArray(exercise.options) && exercise.options.length > 0) {
+            // Use existing options if they exist and are properly formatted
             uiExercise.options = exercise.options;
+        } else if (exercise.type === 'conjugation' || exercise.type === 'multiple-choice') {
+            // Only generate options if they don't exist
+            uiExercise.options = this.generateOptions(exercise);
         } else {
             // Default: create options from answer
             uiExercise.options = [
