@@ -380,6 +380,7 @@ class ExerciseEnhancer {
     determineRelatedConcepts(exercise, unitData) {
         const related = [];
         const concept = exercise.concept || '';
+        const type = exercise.type || '';
 
         // Pronoun-related
         if (concept.includes('pronoun')) {
@@ -402,7 +403,39 @@ class ExerciseEnhancer {
             related.push('ser-identity', 'estar-location', 'meaning-change');
         }
 
-        return related.length > 0 ? related : undefined;
+        // Vocabulary exercises (Unit 6)
+        if (concept.includes('number') || type === 'number-vocab') {
+            related.push('vocabulary', 'counting', 'age-expression');
+        }
+        if (concept.includes('color') || type === 'color-vocab') {
+            related.push('vocabulary', 'adjective-agreement', 'description');
+        }
+        if (concept.includes('country') || concept.includes('nationality')) {
+            related.push('vocabulary', 'ser-identity', 'geography');
+        }
+        if (concept.includes('profession') || concept.includes('occupation')) {
+            related.push('vocabulary', 'ser-identity', 'description');
+        }
+        if (concept.includes('vocabulary') || concept.includes('vocab')) {
+            related.push('communication', 'expression', 'basic-conversation');
+        }
+
+        // Integration exercises (Unit 7)
+        if (concept.includes('integration') || type.includes('integration')) {
+            related.push('ser-identity', 'estar-location', 'tener-possession', 'vocabulary');
+        }
+        if (concept.includes('description') || type === 'complete-description') {
+            related.push('ser-identity', 'estar-location', 'adjectives', 'vocabulary');
+        }
+        if (concept.includes('conversation') || type === 'dialogue') {
+            related.push('communication', 'vocabulary', 'ser-estar-fundamental');
+        }
+        if (type === 'comprehensive' || type === 'mastery-check' || type === 'final-mastery') {
+            related.push('ser-identity', 'estar-location', 'tener-possession', 'vocabulary', 'integration');
+        }
+
+        // Default: return empty array instead of undefined
+        return related.length > 0 ? related : [];
     }
 
     /**

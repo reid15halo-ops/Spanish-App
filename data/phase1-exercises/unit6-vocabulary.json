@@ -72,7 +72,8 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex002",
@@ -118,7 +119,8 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex003",
@@ -163,7 +165,8 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex004",
@@ -208,7 +211,8 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex005",
@@ -256,7 +260,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex006",
@@ -297,7 +302,12 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
     },
     {
       "id": "u6_ex007",
@@ -345,7 +355,12 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
     },
     {
       "id": "u6_ex008",
@@ -392,7 +407,12 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
     },
     {
       "id": "u6_ex009",
@@ -434,7 +454,12 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
     },
     {
       "id": "u6_ex010",
@@ -481,7 +506,12 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
     },
     {
       "id": "u6_ex011",
@@ -528,7 +558,12 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "counting",
+        "age-expression"
+      ]
     },
     {
       "id": "u6_ex012",
@@ -577,7 +612,12 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
     },
     {
       "id": "u6_ex013",
@@ -623,7 +663,12 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
     },
     {
       "id": "u6_ex014",
@@ -671,7 +716,12 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
     },
     {
       "id": "u6_ex015",
@@ -718,7 +768,12 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
     },
     {
       "id": "u6_ex016",
@@ -764,7 +819,12 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": [
+        "vocabulary",
+        "adjective-agreement",
+        "description"
+      ]
     },
     {
       "id": "u6_ex017",
@@ -808,7 +868,8 @@
       ],
       "expectedAccuracy": 0.95,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex018",
@@ -855,7 +916,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex019",
@@ -901,7 +963,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex020",
@@ -943,7 +1006,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex021",
@@ -991,7 +1055,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex022",
@@ -1038,7 +1103,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex023",
@@ -1086,7 +1152,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex024",
@@ -1128,7 +1195,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex025",
@@ -1176,7 +1244,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex026",
@@ -1224,7 +1293,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex027",
@@ -1271,7 +1341,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex028",
@@ -1318,7 +1389,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex029",
@@ -1365,7 +1437,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex030",
@@ -1411,7 +1484,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex031",
@@ -1460,7 +1534,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex032",
@@ -1509,7 +1584,8 @@
       ],
       "expectedAccuracy": 0.9,
       "milestone": false,
-      "certificationRequired": false
+      "certificationRequired": false,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex033",
@@ -1560,7 +1636,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": true
+      "certificationRequired": true,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex034",
@@ -1611,7 +1688,8 @@
       ],
       "expectedAccuracy": 0.85,
       "milestone": false,
-      "certificationRequired": true
+      "certificationRequired": true,
+      "relatedConcepts": []
     },
     {
       "id": "u6_ex035",
@@ -1666,7 +1744,17 @@
       ],
       "expectedAccuracy": 0.8,
       "milestone": true,
-      "certificationRequired": true
+      "certificationRequired": true,
+      "relatedConcepts": [
+        "communication",
+        "expression",
+        "basic-conversation",
+        "ser-identity",
+        "estar-location",
+        "tener-possession",
+        "vocabulary",
+        "integration"
+      ]
     }
   ],
   "progressionNotes": {
