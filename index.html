@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Learning App - Zero Friction</title>
+    <meta name="description" content="Spanisch lernen für deutsche Muttersprachler - Fokussiert, minimalistisch, effektiv">
+
+    <style>
+        /* ============================================
+           ZERO-FRICTION UI - DESIGN SYSTEM
+           ============================================ */
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --text-primary: #1A1A1A;
+            --text-secondary: #333333;
+            --text-muted: #555555;
+            --accent: #20B2AA;
+            --accent-hover: #1A9993;
+            --success: #2E7D32;
+            --error: #C62828;
+            --warning: #F57C00;
+            --info: #1976D2;
+            --border: #E0E0E0;
+            --border-focus: #20B2AA;
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-size-base: 16px;
+            --font-size-large: 18px;
+            --font-size-xl: 20px;
+            --font-size-small: 14px;
+            --font-size-xs: 12px;
+            --line-height: 1.5;
+
+            /* Spacing (8px grid) */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height);
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - Minimal */
+        .minimal-header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .status-bar {
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        /* Main Exercise Area */
+        .exercise-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+        }
+
+        /* ============================================
+           EXERCISE CARD
+           ============================================ */
+
+        .exercise-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-xl);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .exercise-card {
+                padding: var(--space-xxl);
+                max-width: 700px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .exercise-card {
+                max-width: 800px;
+            }
+        }
+
+        /* German Bridge */
+        .german-bridge {
+            background: var(--info);
+            color: white;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            font-size: var(--font-size-small);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .german-bridge.hidden {
+            display: none;
+        }
+
+        /* Question */
+        .question {
+            font-size: var(--font-size-xl);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xl);
+            line-height: 1.6;
+        }
+
+        .question .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Answer Options */
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .answer-btn {
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .answer-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .answer-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .answer-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .answer-btn.correct {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+            animation: correctPulse 0.3s ease;
+        }
+
+        .answer-btn.incorrect {
+            background: var(--error);
+            border-color: var(--error);
+            color: white;
+            animation: shake 0.3s ease;
+        }
+
+        .answer-text {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .answer-es {
+            font-weight: 500;
+            font-size: var(--font-size-large);
+        }
+
+        .answer-de {
+            font-size: var(--font-size-small);
+            opacity: 0.8;
+        }
+
+        /* Text Input */
+        .text-input {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-large);
+            font-family: var(--font-family);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: border-color var(--transition-normal);
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.1);
+        }
+
+        .text-input.correct {
+            border-color: var(--success);
+            background: rgba(46, 125, 50, 0.05);
+        }
+
+        .text-input.incorrect {
+            border-color: var(--error);
+            background: rgba(198, 40, 40, 0.05);
+            animation: shake 0.3s ease;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            font-family: var(--font-family);
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            margin-top: var(--space-lg);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .submit-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Feedback */
+        .feedback {
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+            font-size: var(--font-size-base);
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: rgba(46, 125, 50, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .feedback.error {
+            background: rgba(198, 40, 40, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+        }
+
+        /* Hint Container */
+        .hint-container {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .hint-container.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-btn {
+            background: var(--warning);
+            color: white;
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-small);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .hint-btn:hover {
+            background: #E67600;
+        }
+
+        .hint-content {
+            margin-top: var(--space-md);
+            padding: var(--space-md);
+            background: white;
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--warning);
+        }
+
+        .hint-level {
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-xs);
+        }
+
+        /* Explanation */
+        .explanation {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--info);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation h4 {
+            margin-bottom: var(--space-md);
+            color: var(--info);
+        }
+
+        .explanation p {
+            margin-bottom: var(--space-sm);
+            line-height: 1.6;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 4px;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: var(--space-xl);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width var(--transition-slow);
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: var(--space-sm);
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        /* ============================================
+           ACCESSIBILITY
+           ============================================ */
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        /* Focus visible for keyboard users */
+        *:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* ============================================
+           LOADING & ERROR STATES
+           ============================================ */
+
+        .loading {
+            text-align: center;
+            padding: var(--space-xxl);
+            color: var(--text-muted);
+        }
+
+        .error-message {
+            background: rgba(198, 40, 40, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        /* ============================================
+           MOBILE OPTIMIZATIONS
+           ============================================ */
+
+        @media (max-width: 768px) {
+            .minimal-header {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .logo {
+                font-size: var(--font-size-base);
+            }
+
+            .status-bar {
+                font-size: var(--font-size-xs);
+                gap: var(--space-sm);
+            }
+
+            .exercise-area {
+                padding: var(--space-md);
+            }
+
+            .exercise-card {
+                padding: var(--space-lg);
+            }
+
+            .question {
+                font-size: var(--font-size-large);
+            }
+
+            .answer-btn {
+                padding: var(--space-md);
+            }
+        }
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-lg {
+            margin-top: var(--space-lg);
+        }
+
+        .mb-lg {
+            margin-bottom: var(--space-lg);
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Minimal Header -->
+        <header class="minimal-header">
+            <div class="logo">Spanish Learning App</div>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span id="unit-status">Unit 1/7</span>
+                </div>
+                <div class="status-item">
+                    <span id="exercise-status">0/0</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Exercise Area -->
+        <main class="exercise-area">
+            <!-- Loading State -->
+            <div id="loading" class="loading">
+                <p>Übungen werden geladen...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error" class="error-message hidden">
+                <p>Fehler beim Laden der Übungen.</p>
+                <button onclick="location.reload()" class="submit-btn mt-lg">
+                    Neu laden
+                </button>
+            </div>
+
+            <!-- Exercise Card -->
+            <div id="exercise-card" class="exercise-card hidden">
+                <!-- German Bridge (optional) -->
+                <div id="german-bridge" class="german-bridge hidden">
+                    <span>💡</span>
+                    <span id="bridge-text"></span>
+                </div>
+
+                <!-- Question -->
+                <div class="question">
+                    <p id="question-text"></p>
+                </div>
+
+                <!-- Answer Options (Dynamic) -->
+                <div id="answer-container">
+                    <!-- Multiple Choice or Text Input inserted here -->
+                </div>
+
+                <!-- Feedback -->
+                <div id="feedback" class="feedback">
+                    <p id="feedback-text"></p>
+                </div>
+
+                <!-- Hint Container -->
+                <div id="hint-container" class="hint-container">
+                    <button id="hint-btn" class="hint-btn">
+                        💡 Hinweis anzeigen
+                    </button>
+                    <div id="hint-content" class="hint-content hidden">
+                        <div class="hint-level" id="hint-level"></div>
+                        <p id="hint-text"></p>
+                    </div>
+                </div>
+
+                <!-- Explanation -->
+                <div id="explanation" class="explanation">
+                    <h4>Erklärung:</h4>
+                    <div id="explanation-content"></div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progress-text">0% abgeschlossen</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Load Logic Modules -->
+    <script src="js/phase1-controller.js"></script>
+    <script src="js/adaptive-learning-orchestrator.js"></script>
+    <script src="js/german-spanish-learning-system.js"></script>
+    <script src="js/vocabulary-loader.js"></script>
+
+    <!-- App Controller (Integration Layer) -->
+    <script src="js/app-controller.js"></script>
+
+    <!-- UI Controller -->
+    <script src="js/ui-controller.js"></script>
+
+    <!-- Initialize App -->
+    <script>
+        // Start app when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('✅ Spanish Learning App - Zero Friction UI');
+            console.log('📚 Initializing...');
+
+            // Check if required modules are loaded
+            if (typeof Phase1Controller === 'undefined') {
+                console.error('❌ Phase1Controller not loaded');
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+                return;
+            }
+
+            // Initialize UI Controller
+            window.uiController = new UIController();
+
+            // Initialize App Controller
+            window.appController = new AppController(window.uiController);
+
+            // Start the app
+            window.appController.initialize();
+        });
+    </script>
+</body>
+</html>
