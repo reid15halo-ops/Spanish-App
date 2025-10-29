@@ -1,0 +1,181 @@
+{
+  "totalExercises": 0,
+  "byUnit": {
+    "unit1-pronouns": {
+      "exercises": 20,
+      "adaptiveReady": 0,
+      "needsEnhancement": 20,
+      "criticalIssues": [],
+      "coverage": {
+        "core": 100,
+        "adaptive": 33,
+        "tracker": 0,
+        "germanSpanish": 0,
+        "interleaving": 0,
+        "analytics": 0
+      }
+    },
+    "unit2-ser": {
+      "exercises": 35,
+      "adaptiveReady": 0,
+      "needsEnhancement": 35,
+      "criticalIssues": [],
+      "coverage": {
+        "core": 100,
+        "adaptive": 33,
+        "tracker": 0,
+        "germanSpanish": 0,
+        "interleaving": 0,
+        "analytics": 0
+      }
+    },
+    "unit3-estar": {
+      "exercises": 35,
+      "adaptiveReady": 0,
+      "needsEnhancement": 35,
+      "criticalIssues": [],
+      "coverage": {
+        "core": 100,
+        "adaptive": 33,
+        "tracker": 0,
+        "germanSpanish": 0,
+        "interleaving": 0,
+        "analytics": 0
+      }
+    },
+    "unit4-ser-estar-contrast": {
+      "exercises": 40,
+      "adaptiveReady": 0,
+      "needsEnhancement": 40,
+      "criticalIssues": [],
+      "coverage": {
+        "core": 100,
+        "adaptive": 33,
+        "tracker": 0,
+        "germanSpanish": 0,
+        "interleaving": 0,
+        "analytics": 0
+      }
+    },
+    "unit5-tener": {
+      "exercises": 30,
+      "adaptiveReady": 0,
+      "needsEnhancement": 30,
+      "criticalIssues": [],
+      "coverage": {
+        "core": 100,
+        "adaptive": 33,
+        "tracker": 0,
+        "germanSpanish": 0,
+        "interleaving": 0,
+        "analytics": 0
+      }
+    },
+    "unit6-vocabulary": {
+      "exercises": 35,
+      "adaptiveReady": 0,
+      "needsEnhancement": 35,
+      "criticalIssues": [],
+      "coverage": {
+        "core": 100,
+        "adaptive": 33,
+        "tracker": 0,
+        "germanSpanish": 0,
+        "interleaving": 0,
+        "analytics": 0
+      }
+    },
+    "unit7-integration": {
+      "exercises": 30,
+      "adaptiveReady": 0,
+      "needsEnhancement": 30,
+      "criticalIssues": [],
+      "coverage": {
+        "core": 100,
+        "adaptive": 33,
+        "tracker": 0,
+        "germanSpanish": 0,
+        "interleaving": 0,
+        "analytics": 0
+      }
+    }
+  },
+  "fieldCoverage": {
+    "id": "100%",
+    "type": "100%",
+    "difficulty": "100%",
+    "question": "100%",
+    "correctAnswer": "100%",
+    "concept": "100%",
+    "prerequisites": "0%",
+    "relatedConcepts": "0%",
+    "estimatedResponseTime": "0%",
+    "memoryComplexity": "0%",
+    "interferenceRisk": "0%",
+    "spacingMultiplier": "0%",
+    "transferType": "0%",
+    "falseFriendRisk": "0%",
+    "contrastiveElements": "0%",
+    "discriminationPairs": "0%",
+    "categoryTags": "0%",
+    "expectedAccuracy": "0%",
+    "milestone": "0%",
+    "certificationRequired": "0%"
+  },
+  "criticalIssues": [],
+  "recommendations": [
+    {
+      "priority": "CRITICAL",
+      "message": "Less than 20% adaptive compatibility. Run migration script immediately.",
+      "action": "Execute enhance-exercises-migration.js"
+    },
+    {
+      "priority": "MEDIUM",
+      "message": "Discrimination pairs needed for intelligent interleaving of SER/ESTAR exercises",
+      "action": "Link similar exercises across units for contrastive practice"
+    },
+    {
+      "priority": "LOW",
+      "message": "Milestone and certification tracking will improve motivation",
+      "action": "Mark key exercises as milestones and certification requirements"
+    }
+  ],
+  "summary": {
+    "totalExercises": 225,
+    "adaptiveCompatibility": "0%",
+    "missingFields": [
+      "prerequisites",
+      "relatedConcepts",
+      "estimatedResponseTime",
+      "memoryComplexity",
+      "interferenceRisk",
+      "spacingMultiplier",
+      "transferType",
+      "falseFriendRisk",
+      "contrastiveElements",
+      "discriminationPairs",
+      "categoryTags",
+      "expectedAccuracy",
+      "milestone",
+      "certificationRequired"
+    ],
+    "criticalIssues": [],
+    "recommendations": [
+      {
+        "priority": "CRITICAL",
+        "message": "Less than 20% adaptive compatibility. Run migration script immediately.",
+        "action": "Execute enhance-exercises-migration.js"
+      },
+      {
+        "priority": "MEDIUM",
+        "message": "Discrimination pairs needed for intelligent interleaving of SER/ESTAR exercises",
+        "action": "Link similar exercises across units for contrastive practice"
+      },
+      {
+        "priority": "LOW",
+        "message": "Milestone and certification tracking will improve motivation",
+        "action": "Mark key exercises as milestones and certification requirements"
+      }
+    ]
+  }
+}

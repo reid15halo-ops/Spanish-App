@@ -49,7 +49,53 @@
         "Es alemán (WAS er ist) vs Está en Alemania (WO er ist)"
       ],
       "mnemonic": "SER = Sein/Essenz | ESTAR = STandort/STatus",
-      "keyInsight": "Diese Unterscheidung existiert im Deutschen NICHT!"
+      "keyInsight": "Diese Unterscheidung existiert im Deutschen NICHT!",
+      "prerequisites": [
+        "ser-identity",
+        "estar-location-simple"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "contrast-intro",
+        "ser",
+        "estar",
+        "fundamental",
+        "verb-ser",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Deutsch 'sein' → 🇪🇸 SER (Was ist es?) + ESTAR (Wie/Wo ist es?)"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex002",
@@ -65,10 +111,61 @@
       ],
       "explanation": "ESTAR für physische Orte wo DU BIST. SER nur für Herkunft (de Berlín).",
       "germanBridge": "🇩🇪 Ich bin IN Berlin → ESTAR | Ich bin AUS Berlin → SER",
-      "examples": ["Estoy en Madrid (bin dort)", "Soy de Madrid (komme daher)"],
+      "examples": [
+        "Estoy en Madrid (bin dort)",
+        "Soy de Madrid (komme daher)"
+      ],
       "rule": "Wo bist du? → ESTAR | Woher kommst du? → SER",
       "commonMistake": "❌ 'Soy en Berlín' - FALSCH!",
-      "correctForm": "✅ Estoy en Berlín"
+      "correctForm": "✅ Estoy en Berlín",
+      "prerequisites": [
+        "ser-estar-fundamental"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "estar",
+        "location",
+        "person",
+        "verb-ser",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 4,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin IN Berlin → ESTAR | Ich bin AUS Berlin → SER",
+        "Rule: Wo bist du? → ESTAR | Woher kommst du? → SER",
+        "Common mistake: ❌ 'Soy en Berlín' - FALSCH!"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex003",
@@ -89,7 +186,53 @@
         "Es nervioso (Persönlichkeit - permanent)"
       ],
       "rule": "Gefühle/Emotionen → ESTAR | Charakter/Persönlichkeit → SER",
-      "meaningDifference": "Komplett unterschiedliche Bedeutung!"
+      "meaningDifference": "Komplett unterschiedliche Bedeutung!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "estar",
+        "emotion",
+        "vs",
+        "personality",
+        "verb-ser",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 4,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist nervös (jetzt) → ESTAR | Er ist ein nervöser Mensch → SER",
+        "Rule: Gefühle/Emotionen → ESTAR | Charakter/Persönlichkeit → SER"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex004",
@@ -100,9 +243,59 @@
       "correctAnswer": "es",
       "explanation": "SER für permanente körperliche Merkmale: es alta",
       "germanBridge": "🇩🇪 Sie ist groß (Eigenschaft) → 🇪🇸 Es alta (SER!)",
-      "examples": ["Es alta (groß)", "Es delgada (dünn)", "Es fuerte (stark)"],
+      "examples": [
+        "Es alta (groß)",
+        "Es delgada (dünn)",
+        "Es fuerte (stark)"
+      ],
       "rule": "Körperliche Merkmale (dauerhaft) → SER",
-      "contrast": "ESTAR alta = sie ist hochgewachsen (für ihr Alter - temporärer Vergleich)"
+      "contrast": "ESTAR alta = sie ist hochgewachsen (für ihr Alter - temporärer Vergleich)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "characteristic",
+        "permanent",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist groß (Eigenschaft) → 🇪🇸 Es alta (SER!)",
+        "ESTAR alta = sie ist hochgewachsen (für ihr Alter - temporärer Vergleich)",
+        "Rule: Körperliche Merkmale (dauerhaft) → SER"
+      ],
+      "expectedAccuracy": 0.55,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex005",
@@ -113,9 +306,58 @@
       "correctAnswer": "está",
       "explanation": "ESTAR für Krankheit (temporärer Zustand): está enfermo",
       "germanBridge": "🇩🇪 Er ist krank (Zustand) → 🇪🇸 Está enfermo (ESTAR!)",
-      "examples": ["Está enfermo (krank)", "Está cansado (müde)", "Está ocupado (beschäftigt)"],
+      "examples": [
+        "Está enfermo (krank)",
+        "Está cansado (müde)",
+        "Está ocupado (beschäftigt)"
+      ],
       "rule": "Krankheit/temporäre Zustände → ESTAR",
-      "note": "Auch wenn Krankheit länger dauert - gilt als temporär!"
+      "note": "Auch wenn Krankheit länger dauert - gilt als temporär!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "state",
+        "sick",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist krank (Zustand) → 🇪🇸 Está enfermo (ESTAR!)",
+        "Rule: Krankheit/temporäre Zustände → ESTAR"
+      ],
+      "expectedAccuracy": 0.55,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex006",
@@ -124,7 +366,9 @@
       "concept": "ser-estar-adjective-boring",
       "question": "'Die Klasse ist langweilig' (die Klasse an sich) - SER oder ESTAR?",
       "correctAnswer": "SER (La clase es aburrida - langweilige Klasse)",
-      "alternativeAnswers": ["es"],
+      "alternativeAnswers": [
+        "es"
+      ],
       "explanation": "SER aburrida = langweilige Klasse (Eigenschaft) | ESTAR aburrida = gelangweilt sein (Gefühl)",
       "germanBridge": "🇩🇪 Die Klasse ist langweilig (Eigenschaft) → SER | Ich bin gelangweilt (Gefühl) → ESTAR",
       "examples": [
@@ -132,7 +376,53 @@
         "Estoy aburrido (I'm bored)"
       ],
       "rule": "Eigenschaft des Objekts → SER | Gefühlszustand → ESTAR",
-      "contrast": "Está aburrida = sie ist gelangweilt (fühlt sich so)"
+      "contrast": "Está aburrida = sie ist gelangweilt (fühlt sich so)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "contrast-pair",
+        "ser",
+        "estar",
+        "adjective",
+        "boring",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 14,
+      "memoryComplexity": 5,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Die Klasse ist langweilig (Eigenschaft) → SER | Ich bin gelangweilt (Gefühl) → ESTAR",
+        "Está aburrida = sie ist gelangweilt (fühlt sich so)",
+        "Rule: Eigenschaft des Objekts → SER | Gefühlszustand → ESTAR"
+      ],
+      "expectedAccuracy": 0.55,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex007",
@@ -141,12 +431,63 @@
       "concept": "ser-estar-event-location",
       "question": "Übersetze: 'Die Party ist in meinem Haus.'",
       "correctAnswer": "La fiesta es en mi casa",
-      "alternativeAnswers": ["la fiesta es en mi casa"],
+      "alternativeAnswers": [
+        "la fiesta es en mi casa"
+      ],
       "explanation": "SER für Event-Orte (wo das Event stattfindet): La fiesta es en...",
       "germanBridge": "🇩🇪 Die Party ist in... (findet statt) → 🇪🇸 La fiesta es en... (SER!)",
-      "examples": ["El concierto es en el teatro", "La reunión es aquí"],
+      "examples": [
+        "El concierto es en el teatro",
+        "La reunión es aquí"
+      ],
       "rule": "Event-Orte (wo stattfinden) → SER",
-      "contrast": "ESTAR für Objekt-Orte: 'Mi casa está aquí'"
+      "contrast": "ESTAR für Objekt-Orte: 'Mi casa está aquí'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "estar",
+        "event",
+        "location",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Die Party ist in... (findet statt) → 🇪🇸 La fiesta es en... (SER!)",
+        "ESTAR für Objekt-Orte: 'Mi casa está aquí'",
+        "Rule: Event-Orte (wo stattfinden) → SER"
+      ],
+      "expectedAccuracy": 0.55,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex008",
@@ -155,12 +496,63 @@
       "concept": "ser-estar-object-location",
       "question": "Übersetze: 'Mein Haus ist hier.'",
       "correctAnswer": "Mi casa está aquí",
-      "alternativeAnswers": ["mi casa está aquí"],
+      "alternativeAnswers": [
+        "mi casa está aquí"
+      ],
       "explanation": "ESTAR für Objekt-Orte (wo sich das Objekt befindet): Mi casa está aquí",
       "germanBridge": "🇩🇪 Mein Haus ist hier (Standort) → 🇪🇸 Mi casa está aquí (ESTAR!)",
-      "examples": ["El libro está en la mesa", "El coche está en la calle"],
+      "examples": [
+        "El libro está en la mesa",
+        "El coche está en la calle"
+      ],
       "rule": "Objekt-Orte (wo sich befindet) → ESTAR",
-      "contrast": "SER für Event-Orte: 'La fiesta es aquí'"
+      "contrast": "SER für Event-Orte: 'La fiesta es aquí'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "estar",
+        "object",
+        "location",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Mein Haus ist hier (Standort) → 🇪🇸 Mi casa está aquí (ESTAR!)",
+        "SER für Event-Orte: 'La fiesta es aquí'",
+        "Rule: Objekt-Orte (wo sich befindet) → ESTAR"
+      ],
+      "expectedAccuracy": 0.55,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex009",
@@ -177,7 +569,53 @@
       ],
       "rule": "listo: SER = intelligent | ESTAR = bereit",
       "warning": "⚠️ Häufige Verwechslung!",
-      "mnemonic": "ESTAR listo = fertig zum STarten"
+      "mnemonic": "ESTAR listo = fertig zum STarten",
+      "prerequisites": [
+        "ser-estar-fundamental"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "listo",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 18,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist schlau (SER) | Er ist fertig (ESTAR) - KOMPLETT unterschiedlich!",
+        "Rule: listo: SER = intelligent | ESTAR = bereit"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex010",
@@ -188,9 +626,59 @@
       "correctAnswer": "es",
       "explanation": "SER listo = intelligent/schlau: es muy listo",
       "germanBridge": "🇩🇪 Er ist schlau (intelligent) → 🇪🇸 Es listo (SER!)",
-      "examples": ["Es listo", "Es inteligente", "Es brillante"],
+      "examples": [
+        "Es listo",
+        "Es inteligente",
+        "Es brillante"
+      ],
       "rule": "Intelligenz → SER listo",
-      "contrast": "Está listo = er ist fertig (nicht schlau!)"
+      "contrast": "Está listo = er ist fertig (nicht schlau!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "listo",
+        "application",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist schlau (intelligent) → 🇪🇸 Es listo (SER!)",
+        "Está listo = er ist fertig (nicht schlau!)",
+        "Rule: Intelligenz → SER listo"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex011",
@@ -199,12 +687,64 @@
       "concept": "ser-estar-listo-ready",
       "question": "¿___ listo para salir? (Bist du fertig zum Gehen?)",
       "correctAnswer": "Estás",
-      "alternativeAnswers": ["estás"],
+      "alternativeAnswers": [
+        "estás"
+      ],
       "explanation": "ESTAR listo = fertig/bereit: estás listo",
       "germanBridge": "🇩🇪 Bist du fertig? → 🇪🇸 ¿Estás listo? (ESTAR!)",
-      "examples": ["Estoy listo", "Estamos listos", "Ya está lista"],
+      "examples": [
+        "Estoy listo",
+        "Estamos listos",
+        "Ya está lista"
+      ],
       "rule": "Fertig/bereit → ESTAR listo",
-      "contrast": "¿Eres listo? = Bist du schlau? (komplett andere Bedeutung!)"
+      "contrast": "¿Eres listo? = Bist du schlau? (komplett andere Bedeutung!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "listo",
+        "ready",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Bist du fertig? → 🇪🇸 ¿Estás listo? (ESTAR!)",
+        "¿Eres listo? = Bist du schlau? (komplett andere Bedeutung!)",
+        "Rule: Fertig/bereit → ESTAR listo"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex012",
@@ -220,7 +760,51 @@
         "Está vivo (ist am Leben - nicht tot)"
       ],
       "rule": "vivo: SER = lebhaft/clever | ESTAR = am Leben",
-      "warning": "⚠️ Wichtiger Unterschied!"
+      "warning": "⚠️ Wichtiger Unterschied!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "vivo",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 18,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist lebhaft (SER) | Er ist am Leben (ESTAR) - unterschiedlich!",
+        "Rule: vivo: SER = lebhaft/clever | ESTAR = am Leben"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex013",
@@ -236,7 +820,51 @@
         "La manzana está verde (unripe apple)"
       ],
       "rule": "verde: SER = Farbe | ESTAR = Reifezustand",
-      "note": "Kontextabhängig - sehr wichtig!"
+      "note": "Kontextabhängig - sehr wichtig!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "verde",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 18,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Der Apfel ist grün (Farbe - SER) | Der Apfel ist unreif (Zustand - ESTAR)",
+        "Rule: verde: SER = Farbe | ESTAR = Reifezustand"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex014",
@@ -252,7 +880,51 @@
         "El pastel está rico (leckerer Kuchen)"
       ],
       "rule": "rico: SER = reich (Geld) | ESTAR = lecker (Essen)",
-      "warning": "⚠️ Sehr häufige Verwechslung!"
+      "warning": "⚠️ Sehr häufige Verwechslung!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "rico",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 18,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist reich (SER) | Es ist lecker (ESTAR) - komplett unterschiedlich!",
+        "Rule: rico: SER = reich (Geld) | ESTAR = lecker (Essen)"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex015",
@@ -263,9 +935,59 @@
       "correctAnswer": "es",
       "explanation": "SER rico = wohlhabend/reich (Eigenschaft): es rico",
       "germanBridge": "🇩🇪 Er ist reich (Geld) → 🇪🇸 Es rico (SER!)",
-      "examples": ["Es rico", "Son ricos", "Era rica"],
+      "examples": [
+        "Es rico",
+        "Son ricos",
+        "Era rica"
+      ],
       "rule": "Reich (Wohlstand) → SER rico",
-      "contrast": "Está rico = es ist lecker (für Essen!)"
+      "contrast": "Está rico = es ist lecker (für Essen!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "rico",
+        "wealthy",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist reich (Geld) → 🇪🇸 Es rico (SER!)",
+        "Está rico = es ist lecker (für Essen!)",
+        "Rule: Reich (Wohlstand) → SER rico"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex016",
@@ -276,9 +998,59 @@
       "correctAnswer": "está",
       "explanation": "ESTAR rico = lecker/schmackhaft (bei Essen): está rico",
       "germanBridge": "🇩🇪 Es ist lecker → 🇪🇸 Está rico (ESTAR!)",
-      "examples": ["Está rico", "Está delicioso", "Está bueno"],
+      "examples": [
+        "Está rico",
+        "Está delicioso",
+        "Está bueno"
+      ],
       "rule": "Lecker (Geschmack) → ESTAR rico",
-      "contrast": "Es rico = er ist reich (Person!)"
+      "contrast": "Es rico = er ist reich (Person!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "rico",
+        "delicious",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Es ist lecker → 🇪🇸 Está rico (ESTAR!)",
+        "Es rico = er ist reich (Person!)",
+        "Rule: Lecker (Geschmack) → ESTAR rico"
+      ],
+      "expectedAccuracy": 0.5,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u4_ex017",
@@ -295,7 +1067,51 @@
         "Está buena la comida (leckeres Essen)"
       ],
       "rule": "bueno: SER = Qualität/Charakter | ESTAR = Aussehen/Geschmack",
-      "note": "Kontextabhängig!"
+      "note": "Kontextabhängig!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "bueno",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 20,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist gut (Charakter - SER) | Er ist gutaussehend (ESTAR) - unterschiedlich!",
+        "Rule: bueno: SER = Qualität/Charakter | ESTAR = Aussehen/Geschmack"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex018",
@@ -311,7 +1127,51 @@
         "Está malo (krank oder verdorbenes Essen)"
       ],
       "rule": "malo: SER = böse/Qualität | ESTAR = krank/verdorben",
-      "warning": "⚠️ Wichtiger Unterschied!"
+      "warning": "⚠️ Wichtiger Unterschied!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "malo",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 20,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist böse (Charakter - SER) | Er ist krank (Zustand - ESTAR)",
+        "Rule: malo: SER = böse/Qualität | ESTAR = krank/verdorben"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex019",
@@ -331,7 +1191,51 @@
         "Estoy aburrido (I'm bored watching)"
       ],
       "rule": "Objekt ist langweilig → SER | Person fühlt sich gelangweilt → ESTAR",
-      "important": "Subjekt/Objekt-Unterscheidung!"
+      "important": "Subjekt/Objekt-Unterscheidung!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "contrast-sentence",
+        "ser",
+        "estar",
+        "aburrido",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Der Film ist langweilig (Eigenschaft) → SER | Ich bin gelangweilt (Gefühl) → ESTAR",
+        "Rule: Objekt ist langweilig → SER | Person fühlt sich gelangweilt → ESTAR"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex020",
@@ -342,9 +1246,58 @@
       "correctAnswer": "es",
       "explanation": "SER interesante = interessante Person (Eigenschaft): es interesante",
       "germanBridge": "🇩🇪 Er ist interessant (Person) → 🇪🇸 Es interesante (SER!)",
-      "examples": ["Es interesante", "Es fascinante", "Es aburrido"],
+      "examples": [
+        "Es interesante",
+        "Es fascinante",
+        "Es aburrido"
+      ],
       "rule": "Eigenschaft 'interessant' → SER",
-      "contrast": "Está interesado = er ist interessiert (an etwas)"
+      "contrast": "Está interesado = er ist interessiert (an etwas)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "interesado",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist interessant (Person) → 🇪🇸 Es interesante (SER!)",
+        "Está interesado = er ist interessiert (an etwas)",
+        "Rule: Eigenschaft 'interessant' → SER"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex021",
@@ -355,10 +1308,60 @@
       "correctAnswer": "estoy",
       "explanation": "ESTAR interesado (en) = interessiert sein (an etwas): estoy interesado",
       "germanBridge": "🇩🇪 Ich bin interessiert an... → 🇪🇸 Estoy interesado en... (ESTAR!)",
-      "examples": ["Estoy interesado en", "Está interesada en", "Están interesados en"],
+      "examples": [
+        "Estoy interesado en",
+        "Está interesada en",
+        "Están interesados en"
+      ],
       "rule": "Interessiert an etwas → ESTAR interesado",
       "pattern": "ESTAR interesado EN + Sache",
-      "contrast": "Es interesante = es ist interessant (Objekt-Eigenschaft)"
+      "contrast": "Es interesante = es ist interessant (Objekt-Eigenschaft)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "interesado",
+        "interested",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin interessiert an... → 🇪🇸 Estoy interesado en... (ESTAR!)",
+        "Es interesante = es ist interessant (Objekt-Eigenschaft)",
+        "Rule: Interessiert an etwas → ESTAR interesado"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex022",
@@ -375,10 +1378,58 @@
       ],
       "explanation": "Alter verwendet TENER (haben), nicht SER oder ESTAR: Tengo X años",
       "germanBridge": "🇩🇪 Ich bin 25 → 🇪🇸 Tengo 25 años (nicht 'soy' oder 'estoy'!)",
-      "examples": ["Tengo 25 años", "Tiene 30 años", "Tienen 40 años"],
+      "examples": [
+        "Tengo 25 años",
+        "Tiene 30 años",
+        "Tienen 40 años"
+      ],
       "rule": "Alter → TENER (haben), nicht sein!",
       "warning": "⚠️ Häufiger Fehler! Nicht 'soy' oder 'estoy' für Alter!",
-      "note": "Spanisch denkt: 'Ich habe 25 Jahre'"
+      "note": "Spanisch denkt: 'Ich habe 25 Jahre'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "estar",
+        "age",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 13,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin 25 → 🇪🇸 Tengo 25 años (nicht 'soy' oder 'estoy'!)",
+        "Rule: Alter → TENER (haben), nicht sein!"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex023",
@@ -387,13 +1438,67 @@
       "concept": "ser-estar-common-mistake-1",
       "question": "Korrigiere: ❌ 'Yo soy en casa.'",
       "correctAnswer": "Yo estoy en casa",
-      "alternativeAnswers": ["estoy en casa", "Estoy en casa"],
+      "alternativeAnswers": [
+        "estoy en casa",
+        "Estoy en casa"
+      ],
       "explanation": "❌ 'soy en casa' ist falsch! ✅ ESTAR für Orte: estoy en casa",
       "germanBridge": "🇩🇪 Ich bin zu Hause → 🇪🇸 Estoy en casa (ESTAR!)",
-      "examples": ["Estoy en casa", "Estoy en Madrid", "Estoy aquí"],
+      "examples": [
+        "Estoy en casa",
+        "Estoy en Madrid",
+        "Estoy aquí"
+      ],
       "rule": "Orte IMMER mit ESTAR, nie mit SER!",
       "commonMistake": "Deutsche denken 'ich bin' = 'soy', aber für Orte → ESTAR!",
-      "correction": "SER niemals für physische Orte!"
+      "correction": "SER niemals für physische Orte!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "correction",
+        "ser",
+        "estar",
+        "common",
+        "mistake",
+        "1",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin zu Hause → 🇪🇸 Estoy en casa (ESTAR!)",
+        "Rule: Orte IMMER mit ESTAR, nie mit SER!",
+        "Common mistake: Deutsche denken 'ich bin' = 'soy', aber für Orte → ESTAR!"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex024",
@@ -402,13 +1507,67 @@
       "concept": "ser-estar-common-mistake-2",
       "question": "Korrigiere: ❌ 'María es cansada.'",
       "correctAnswer": "María está cansada",
-      "alternativeAnswers": ["está cansada", "Está cansada"],
+      "alternativeAnswers": [
+        "está cansada",
+        "Está cansada"
+      ],
       "explanation": "❌ 'es cansada' bedeutet sie ist eine langweilige Person! ✅ ESTAR cansada = müde",
       "germanBridge": "🇩🇪 Maria ist müde → 🇪🇸 Está cansada (ESTAR!)",
-      "examples": ["Está cansada", "Estoy cansado", "Están cansados"],
+      "examples": [
+        "Está cansada",
+        "Estoy cansado",
+        "Están cansados"
+      ],
       "rule": "Müdigkeit = temporär → ESTAR!",
       "commonMistake": "'Es cansada' = langweilige Person (Charakter!)",
-      "meaningDifference": "Komplett falsche Bedeutung mit SER!"
+      "meaningDifference": "Komplett falsche Bedeutung mit SER!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "correction",
+        "ser",
+        "estar",
+        "common",
+        "mistake",
+        "2",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Maria ist müde → 🇪🇸 Está cansada (ESTAR!)",
+        "Rule: Müdigkeit = temporär → ESTAR!",
+        "Common mistake: 'Es cansada' = langweilige Person (Charakter!)"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex025",
@@ -417,13 +1576,68 @@
       "concept": "ser-estar-common-mistake-3",
       "question": "Korrigiere: ❌ 'Yo estoy de Alemania.'",
       "correctAnswer": "Yo soy de Alemania",
-      "alternativeAnswers": ["soy de Alemania", "Soy de Alemania"],
+      "alternativeAnswers": [
+        "soy de Alemania",
+        "Soy de Alemania"
+      ],
       "explanation": "❌ 'estoy de Alemania' ist falsch! ✅ SER für Herkunft: soy de...",
       "germanBridge": "🇩🇪 Ich bin AUS Deutschland → 🇪🇸 Soy de Alemania (SER!)",
-      "examples": ["Soy de Alemania", "Es de España", "Son de México"],
+      "examples": [
+        "Soy de Alemania",
+        "Es de España",
+        "Son de México"
+      ],
       "rule": "Herkunft → SER + de, nie ESTAR!",
       "commonMistake": "Herkunft ist permanent → SER!",
-      "contrast": "Estoy EN Alemania = ich bin in Deutschland (Ort)"
+      "contrast": "Estoy EN Alemania = ich bin in Deutschland (Ort)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "correction",
+        "ser",
+        "estar",
+        "common",
+        "mistake",
+        "3",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin AUS Deutschland → 🇪🇸 Soy de Alemania (SER!)",
+        "Estoy EN Alemania = ich bin in Deutschland (Ort)",
+        "Rule: Herkunft → SER + de, nie ESTAR!",
+        "Common mistake: Herkunft ist permanent → SER!"
+      ],
+      "expectedAccuracy": 0.44999999999999996,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex026",
@@ -432,13 +1646,68 @@
       "concept": "ser-estar-common-mistake-4",
       "question": "Korrigiere: ❌ 'El libro está de Pedro.'",
       "correctAnswer": "El libro es de Pedro",
-      "alternativeAnswers": ["es de Pedro", "Es de Pedro"],
+      "alternativeAnswers": [
+        "es de Pedro",
+        "Es de Pedro"
+      ],
       "explanation": "❌ 'está de' ist falsch! ✅ SER für Besitz: es de...",
       "germanBridge": "🇩🇪 Das Buch ist von Pedro (gehört ihm) → 🇪🇸 Es de Pedro (SER!)",
-      "examples": ["Es de María", "Son de Juan", "Es de mi hermano"],
+      "examples": [
+        "Es de María",
+        "Son de Juan",
+        "Es de mi hermano"
+      ],
       "rule": "Besitz/Zugehörigkeit → SER + de!",
       "commonMistake": "Besitz ist permanent → SER!",
-      "contrast": "Está EN la mesa = es ist auf dem Tisch (Position)"
+      "contrast": "Está EN la mesa = es ist auf dem Tisch (Position)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex028",
+        "u3_ex029",
+        "u3_ex030",
+        "u3_ex031",
+        "u3_ex032"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "correction",
+        "ser",
+        "estar",
+        "common",
+        "mistake",
+        "4",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 12,
+      "memoryComplexity": 8,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das Buch ist von Pedro (gehört ihm) → 🇪🇸 Es de Pedro (SER!)",
+        "Está EN la mesa = es ist auf dem Tisch (Position)",
+        "Rule: Besitz/Zugehörigkeit → SER + de!",
+        "Common mistake: Besitz ist permanent → SER!"
+      ],
+      "expectedAccuracy": 0.4,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex027",
@@ -447,12 +1716,64 @@
       "concept": "ser-estar-profession-vs-state",
       "question": "Übersetze: 'Ich bin Lehrer und ich bin müde.'",
       "correctAnswer": "Soy profesor y estoy cansado",
-      "alternativeAnswers": ["soy profesor y estoy cansado", "Yo soy profesor y estoy cansado"],
+      "alternativeAnswers": [
+        "soy profesor y estoy cansado",
+        "Yo soy profesor y estoy cansado"
+      ],
       "explanation": "Zwei verschiedene Verben: SER für Beruf (soy profesor) + ESTAR für Zustand (estoy cansado)",
       "germanBridge": "🇩🇪 Ich bin Lehrer (WAS) → SER | Ich bin müde (WIE) → ESTAR",
-      "examples": ["Soy doctor y estoy ocupado", "Es profesora y está feliz"],
+      "examples": [
+        "Soy doctor y estoy ocupado",
+        "Es profesora y está feliz"
+      ],
       "rule": "Beruf → SER | Zustand → ESTAR",
-      "note": "Ein Satz, zwei Verben!"
+      "note": "Ein Satz, zwei Verben!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex028",
+        "u3_ex029",
+        "u3_ex030",
+        "u3_ex031",
+        "u3_ex032"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "estar",
+        "profession",
+        "vs",
+        "state",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 8,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin Lehrer (WAS) → SER | Ich bin müde (WIE) → ESTAR",
+        "Rule: Beruf → SER | Zustand → ESTAR"
+      ],
+      "expectedAccuracy": 0.4,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex028",
@@ -461,13 +1782,64 @@
       "concept": "ser-estar-origin-location",
       "question": "Übersetze: 'Ich bin aus Berlin, aber ich bin in Madrid.'",
       "correctAnswer": "Soy de Berlín, pero estoy en Madrid",
-      "alternativeAnswers": ["soy de Berlín, pero estoy en Madrid", "Soy de Berlín pero estoy en Madrid"],
+      "alternativeAnswers": [
+        "soy de Berlín, pero estoy en Madrid",
+        "Soy de Berlín pero estoy en Madrid"
+      ],
       "explanation": "Zwei verschiedene Verben: SER für Herkunft (de Berlín) + ESTAR für Ort (en Madrid)",
       "germanBridge": "🇩🇪 Ich bin AUS Berlin → SER | Ich bin IN Madrid → ESTAR",
-      "examples": ["Soy de España pero estoy en Francia", "Es de México pero está en USA"],
+      "examples": [
+        "Soy de España pero estoy en Francia",
+        "Es de México pero está en USA"
+      ],
       "rule": "Herkunft (de) → SER | Ort (en) → ESTAR",
       "pattern": "SER + de + Herkunft, pero ESTAR + en + Ort",
-      "important": "Sehr wichtige Unterscheidung!"
+      "important": "Sehr wichtige Unterscheidung!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex028",
+        "u3_ex029",
+        "u3_ex030",
+        "u3_ex031",
+        "u3_ex032"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "estar",
+        "origin",
+        "location",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 8,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin AUS Berlin → SER | Ich bin IN Madrid → ESTAR",
+        "Rule: Herkunft (de) → SER | Ort (en) → ESTAR"
+      ],
+      "expectedAccuracy": 0.4,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex029",
@@ -476,12 +1848,62 @@
       "concept": "ser-estar-multiple-contrast",
       "question": "Ergänze: 'Juan ___ inteligente, ___ de España y ___ en Alemania ahora.'",
       "correctAnswer": "es, es, está",
-      "alternativeAnswers": ["es,es,está", "es, es,está"],
+      "alternativeAnswers": [
+        "es,es,está",
+        "es, es,está"
+      ],
       "explanation": "Drei Verben: SER inteligente (Eigenschaft) + SER de España (Herkunft) + ESTAR en Alemania (Ort)",
       "germanBridge": "🇩🇪 Er ist intelligent (SER), aus Spanien (SER), in Deutschland (ESTAR)",
-      "examples": ["Es alto, es de Madrid, está en Barcelona"],
+      "examples": [
+        "Es alto, es de Madrid, está en Barcelona"
+      ],
       "rule": "Eigenschaften & Herkunft → SER | Ort → ESTAR",
-      "note": "Alle drei Verwendungen in einem Satz!"
+      "note": "Alle drei Verwendungen in einem Satz!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex028",
+        "u3_ex029",
+        "u3_ex030",
+        "u3_ex031",
+        "u3_ex032"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "comprehensive",
+        "ser",
+        "estar",
+        "multiple",
+        "contrast",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 36,
+      "memoryComplexity": 8,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist intelligent (SER), aus Spanien (SER), in Deutschland (ESTAR)",
+        "Rule: Eigenschaften & Herkunft → SER | Ort → ESTAR"
+      ],
+      "expectedAccuracy": 0.4,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex030",
@@ -502,7 +1924,52 @@
         "El gazpacho es frío (kaltes Gericht per Definition)"
       ],
       "rule": "Temperatur (Zustand) → ESTAR | Art des Gerichts → SER",
-      "note": "Temperatur ist veränderbar → ESTAR"
+      "note": "Temperatur ist veränderbar → ESTAR",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex028",
+        "u3_ex029",
+        "u3_ex030",
+        "u3_ex031",
+        "u3_ex032"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "estar",
+        "food",
+        "description",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 14,
+      "memoryComplexity": 8,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Die Suppe ist kalt (Zustand) → ESTAR | Es ist ein kaltes Gericht (Typ) → SER",
+        "Rule: Temperatur (Zustand) → ESTAR | Art des Gerichts → SER"
+      ],
+      "expectedAccuracy": 0.4,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex031",
@@ -513,10 +1980,59 @@
       "correctAnswer": "están",
       "explanation": "ESTAR muerto/vivo = tot/lebendig (Zustand, auch wenn permanent)",
       "germanBridge": "🇩🇪 Sie sind tot → 🇪🇸 Están muertos (ESTAR!)",
-      "examples": ["Está vivo", "Están muertos", "Está muerta"],
+      "examples": [
+        "Está vivo",
+        "Están muertos",
+        "Está muerta"
+      ],
       "rule": "Tod/Leben als Zustand → ESTAR",
       "note": "Obwohl Tod permanent ist, verwendet man ESTAR!",
-      "specialCase": "Ausnahme: Zustand, nicht Eigenschaft"
+      "specialCase": "Ausnahme: Zustand, nicht Eigenschaft",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex028",
+        "u3_ex029",
+        "u3_ex030",
+        "u3_ex031",
+        "u3_ex032"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "estar",
+        "dead",
+        "alive",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 12,
+      "memoryComplexity": 8,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie sind tot → 🇪🇸 Están muertos (ESTAR!)",
+        "Rule: Tod/Leben als Zustand → ESTAR"
+      ],
+      "expectedAccuracy": 0.4,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex032",
@@ -525,12 +2041,62 @@
       "concept": "ser-estar-material-condition",
       "question": "Übersetze: 'Der Tisch ist aus Holz und ist kaputt.'",
       "correctAnswer": "La mesa es de madera y está rota",
-      "alternativeAnswers": ["la mesa es de madera y está rota"],
+      "alternativeAnswers": [
+        "la mesa es de madera y está rota"
+      ],
       "explanation": "Zwei Verben: SER für Material (es de madera) + ESTAR für Zustand (está rota)",
       "germanBridge": "🇩🇪 aus Holz (WAS) → SER | kaputt (ZUSTAND) → ESTAR",
-      "examples": ["Es de metal y está limpia", "Es de plástico y está roto"],
+      "examples": [
+        "Es de metal y está limpia",
+        "Es de plástico y está roto"
+      ],
       "rule": "Material → SER + de | Zustand → ESTAR",
-      "note": "Material = permanent, Zustand = veränderbar"
+      "note": "Material = permanent, Zustand = veränderbar",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u3_ex028",
+        "u3_ex029",
+        "u3_ex030",
+        "u3_ex031",
+        "u3_ex032"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "estar",
+        "material",
+        "condition",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 8,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 aus Holz (WAS) → SER | kaputt (ZUSTAND) → ESTAR",
+        "Rule: Material → SER + de | Zustand → ESTAR"
+      ],
+      "expectedAccuracy": 0.4,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex033",
@@ -546,7 +2112,51 @@
         "Estoy seguro de eso (Ich bin mir sicher)"
       ],
       "rule": "seguro: SER = Sicherheit (Ort) | ESTAR = Gewissheit (Person)",
-      "pattern": "ESTAR seguro DE + etwas (sicher über etwas)"
+      "pattern": "ESTAR seguro DE + etwas (sicher über etwas)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex026",
+        "u4_ex027",
+        "u4_ex028",
+        "u4_ex029",
+        "u4_ex030"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "seguro",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 23,
+      "memoryComplexity": 9,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Es ist ein sicherer Ort (SER) | Er ist sich sicher (ESTAR)",
+        "Rule: seguro: SER = Sicherheit (Ort) | ESTAR = Gewissheit (Person)"
+      ],
+      "expectedAccuracy": 0.35,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex034",
@@ -562,7 +2172,51 @@
         "Está atento en clase (passt im Unterricht auf)"
       ],
       "rule": "atento: SER = Charakterzug | ESTAR = momentane Aufmerksamkeit",
-      "note": "Feine Nuance, aber wichtig!"
+      "note": "Feine Nuance, aber wichtig!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex026",
+        "u4_ex027",
+        "u4_ex028",
+        "u4_ex029",
+        "u4_ex030"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "meaning-change",
+        "ser",
+        "estar",
+        "atento",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 23,
+      "memoryComplexity": 9,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist aufmerksam (Charakter - SER) | Er passt auf (jetzt - ESTAR)",
+        "Rule: atento: SER = Charakterzug | ESTAR = momentane Aufmerksamkeit"
+      ],
+      "expectedAccuracy": 0.35,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex035",
@@ -571,13 +2225,63 @@
       "concept": "ser-estar-full-description",
       "question": "Ergänze: 'María ___ española, ___ profesora, ___ muy inteligente, pero hoy ___ cansada y ___ en casa.'",
       "correctAnswer": "es, es, es, está, está",
-      "alternativeAnswers": ["es,es,es,está,está", "es, es, es,está,está"],
+      "alternativeAnswers": [
+        "es,es,es,está,está",
+        "es, es, es,está,está"
+      ],
       "explanation": "SER: Nationalität (española) + Beruf (profesora) + Eigenschaft (inteligente) | ESTAR: Zustand (cansada) + Ort (en casa)",
       "germanBridge": "🇩🇪 SER für WAS/WER sie ist | ESTAR für WIE/WO sie ist (heute)",
-      "examples": ["Es alemán, es doctor, es alto, está enfermo, está en casa"],
+      "examples": [
+        "Es alemán, es doctor, es alto, está enfermo, está en casa"
+      ],
       "rule": "SER für permanente Merkmale | ESTAR für temporäre Zustände & Orte",
       "note": "Komplexe Anwendung aller Regeln!",
-      "important": "Kernübung für Automatisierung!"
+      "important": "Kernübung für Automatisierung!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex026",
+        "u4_ex027",
+        "u4_ex028",
+        "u4_ex029",
+        "u4_ex030"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "comprehensive",
+        "ser",
+        "estar",
+        "full",
+        "description",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 39,
+      "memoryComplexity": 9,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 SER für WAS/WER sie ist | ESTAR für WIE/WO sie ist (heute)",
+        "Rule: SER für permanente Merkmale | ESTAR für temporäre Zustände & Orte"
+      ],
+      "expectedAccuracy": 0.35,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex036",
@@ -586,13 +2290,63 @@
       "concept": "ser-estar-contrasting-siblings",
       "question": "Übersetze: 'Pedro ist groß und intelligent, aber heute ist er müde und ist zu Hause.'",
       "correctAnswer": "Pedro es alto e inteligente, pero hoy está cansado y está en casa",
-      "alternativeAnswers": ["pedro es alto e inteligente, pero hoy está cansado y está en casa"],
+      "alternativeAnswers": [
+        "pedro es alto e inteligente, pero hoy está cansado y está en casa"
+      ],
       "explanation": "SER für permanente Merkmale (alto, inteligente) | ESTAR für temporären Zustand & Ort (cansado, en casa)",
       "germanBridge": "🇩🇪 SER für Eigenschaften | ESTAR für Zustände heute",
-      "examples": ["Es fuerte pero está enfermo", "Es alegre pero está triste hoy"],
+      "examples": [
+        "Es fuerte pero está enfermo",
+        "Es alegre pero está triste hoy"
+      ],
       "rule": "Permanent → SER | Temporär → ESTAR",
       "pattern": "SER + Adjektiv, pero (hoy) ESTAR + Adjektiv",
-      "note": "Kontrastierung zeigt Unterschied klar!"
+      "note": "Kontrastierung zeigt Unterschied klar!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex026",
+        "u4_ex027",
+        "u4_ex028",
+        "u4_ex029",
+        "u4_ex030"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "estar",
+        "contrasting",
+        "siblings",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 9,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 SER für Eigenschaften | ESTAR für Zustände heute",
+        "Rule: Permanent → SER | Temporär → ESTAR"
+      ],
+      "expectedAccuracy": 0.35,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex037",
@@ -603,10 +2357,61 @@
       "correctAnswer": "C) Soy en Berlín",
       "explanation": "❌ C ist falsch! 'Soy en Berlín' ist unmöglich. ✅ Muss sein: 'Estoy en Berlín' oder 'Soy de Berlín'",
       "germanBridge": "🇩🇪 Ich bin IN Berlin → ESTAR en | Ich bin AUS Berlin → SER de",
-      "examples": ["✅ Estoy en casa", "✅ Soy de Madrid", "❌ Soy en casa", "❌ Estoy de Madrid"],
+      "examples": [
+        "✅ Estoy en casa",
+        "✅ Soy de Madrid",
+        "❌ Soy en casa",
+        "❌ Estoy de Madrid"
+      ],
       "rule": "Orte → ESTAR + en | Herkunft → SER + de",
       "commonMistake": "Niemals 'soy en' oder 'estoy de' für Orte/Herkunft!",
-      "correction": "SER en = IMMER falsch!"
+      "correction": "SER en = IMMER falsch!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex026",
+        "u4_ex027",
+        "u4_ex028",
+        "u4_ex029",
+        "u4_ex030"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "error-identification",
+        "ser",
+        "estar",
+        "error",
+        "detection",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 13,
+      "memoryComplexity": 9,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin IN Berlin → ESTAR en | Ich bin AUS Berlin → SER de",
+        "Rule: Orte → ESTAR + en | Herkunft → SER + de",
+        "Common mistake: Niemals 'soy en' oder 'estoy de' für Orte/Herkunft!"
+      ],
+      "expectedAccuracy": 0.35,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex038",
@@ -623,7 +2428,52 @@
       ],
       "rule": "SER = WAS sie ist | ESTAR = WIE sie sich fühlt",
       "warning": "⚠️ Verwechslung kann beleidigend sein!",
-      "culturalNote": "Sei vorsichtig - falsche Wahl kann unhöflich sein!"
+      "culturalNote": "Sei vorsichtig - falsche Wahl kann unhöflich sein!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex033",
+        "u4_ex034",
+        "u4_ex035",
+        "u4_ex036",
+        "u4_ex037"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "comprehensive",
+        "ser",
+        "estar",
+        "context",
+        "dependent",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 42,
+      "memoryComplexity": 10,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist langweilig (Charakter - SER) | Sie ist gelangweilt (Gefühl - ESTAR)",
+        "Rule: SER = WAS sie ist | ESTAR = WIE sie sich fühlt"
+      ],
+      "expectedAccuracy": 0.30000000000000004,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex039",
@@ -640,7 +2490,52 @@
       ],
       "rule": "Events → SER + en | Personen/Objekte → ESTAR + en",
       "note": "Wichtige Ausnahme bei Ortsangaben!",
-      "advanced": "Konzeptioneller Unterschied: Event vs Präsenz"
+      "advanced": "Konzeptioneller Unterschied: Event vs Präsenz",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex033",
+        "u4_ex034",
+        "u4_ex035",
+        "u4_ex036",
+        "u4_ex037"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "advanced-application",
+        "ser",
+        "estar",
+        "all",
+        "rules",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 14,
+      "memoryComplexity": 10,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Die Veranstaltung findet statt (SER) | Ich befinde mich dort (ESTAR)",
+        "Rule: Events → SER + en | Personen/Objekte → ESTAR + en"
+      ],
+      "expectedAccuracy": 0.30000000000000004,
+      "milestone": true,
+      "certificationRequired": true
     },
     {
       "id": "u4_ex040",
@@ -651,16 +2546,105 @@
       "correctAnswer": "soy, soy, soy, soy, es, son, estoy, estoy, estoy, es, son, es, está, es, es",
       "explanation": "Identität: soy Juan | Herkunft: soy alemán | Beruf: soy profesor | Eigenschaften: soy alto e inteligente | Datum: es martes | Zeit: son las 3 | Ort (Person): estoy en oficina | Zustände: estoy cansado, estoy contento | Eigenschaft (Klasse): es interesante | Eigenschaft (Studenten): son listos (schlau) | Eigenschaft (Größe): es pequeña | Zustand: está limpia | Zeit (Event): es a las 5 | Event-Ort: es en aula 202",
       "germanBridge": "🇩🇪 Alle Regeln zusammen: SER für WAS/WER | ESTAR für WIE/WO",
-      "examples": ["Meister-Level: Alle Regeln in einem Text!"],
+      "examples": [
+        "Meister-Level: Alle Regeln in einem Text!"
+      ],
       "rule": "SER: Identität, Beruf, Herkunft, permanente Eigenschaften, Zeit, Event-Ort | ESTAR: Person-Ort, Zustände, Emotionen, Bedingungen",
       "note": "Finale Meisterprüfung - 15 Verben richtig wählen!",
-      "mastery": "Diese Übung zeigt vollständiges Verständnis von SER/ESTAR"
+      "mastery": "Diese Übung zeigt vollständiges Verständnis von SER/ESTAR",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion",
+        "ser-identity",
+        "estar-location",
+        "meaning-change"
+      ],
+      "discriminationPairs": [
+        "u4_ex038",
+        "u4_ex039",
+        "u4_ex040",
+        "u7_ex028"
+      ],
+      "categoryTags": [
+        "unit-4",
+        "phase-1",
+        "A1",
+        "mastery-check",
+        "ser",
+        "estar",
+        "complete",
+        "mastery",
+        "verb-ser",
+        "verb-estar",
+        "advanced",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 60,
+      "memoryComplexity": 10,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.8,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Alle Regeln zusammen: SER für WAS/WER | ESTAR für WIE/WO",
+        "Rule: SER: Identität, Beruf, Herkunft, permanente Eigenschaften, Zeit, Event-Ort | ESTAR: Person-Ort, Zustände, Emotionen, Bedingungen"
+      ],
+      "expectedAccuracy": 0.3,
+      "milestone": true,
+      "certificationRequired": true
     }
   ],
   "progressionNotes": {
-    "easyExercises": [1, 2, 3],
-    "mediumExercises": [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    "hardExercises": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40],
+    "easyExercises": [
+      1,
+      2,
+      3
+    ],
+    "mediumExercises": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "hardExercises": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40
+    ],
     "germanChallenges": [
       "⚠️⚠️⚠️ HÖCHSTE SCHWIERIGKEIT für Deutsche!",
       "Deutsch hat nur ein Verb 'sein'",

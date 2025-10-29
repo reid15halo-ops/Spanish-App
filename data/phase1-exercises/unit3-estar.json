@@ -47,9 +47,51 @@
       "correctAnswer": "estoy",
       "explanation": "Yo estoy - 1. Person Singular. Unregelmäßig!",
       "germanBridge": "🇩🇪 ich bin (Ort/Zustand) → 🇪🇸 yo estoy",
-      "examples": ["Yo estoy en casa", "Yo estoy cansado"],
+      "examples": [
+        "Yo estoy en casa",
+        "Yo estoy cansado"
+      ],
       "note": "ESTAR ist ebenfalls unregelmäßig wie SER",
-      "mnemonic": "estOY = estoy (mit OY wie soy, aber est-)"
+      "mnemonic": "estOY = estoy (mit OY wie soy, aber est-)",
+      "prerequisites": [
+        "pronoun-singular-first",
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "estar",
+        "yo",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ich bin (Ort/Zustand) → 🇪🇸 yo estoy"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex002",
@@ -60,9 +102,50 @@
       "correctAnswer": "estás",
       "explanation": "Tú estás - 2. Person Singular.",
       "germanBridge": "🇩🇪 du bist (Ort/Zustand) → 🇪🇸 tú estás",
-      "examples": ["Tú estás aquí", "Tú estás bien"],
+      "examples": [
+        "Tú estás aquí",
+        "Tú estás bien"
+      ],
       "note": "Akzent auf dem á!",
-      "mnemonic": "estÁs = du bist DORT (Akzent zeigt Richtung)"
+      "mnemonic": "estÁs = du bist DORT (Akzent zeigt Richtung)",
+      "prerequisites": [
+        "estar-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "estar",
+        "tu",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 du bist (Ort/Zustand) → 🇪🇸 tú estás"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex003",
@@ -73,9 +156,49 @@
       "correctAnswer": "está",
       "explanation": "Él/ella/usted está - 3. Person Singular.",
       "germanBridge": "🇩🇪 er/sie ist → 🇪🇸 él/ella está | Sie sind → usted está",
-      "examples": ["Él está en Madrid", "Ella está feliz", "Usted está invitado"],
+      "examples": [
+        "Él está en Madrid",
+        "Ella está feliz",
+        "Usted está invitado"
+      ],
       "note": "Akzent auf dem á!",
-      "mnemonic": "estÁ = ist DA (Akzent auf á)"
+      "mnemonic": "estÁ = ist DA (Akzent auf á)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "estar",
+        "el",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 er/sie ist → 🇪🇸 él/ella está | Sie sind → usted está"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex004",
@@ -86,8 +209,47 @@
       "correctAnswer": "estamos",
       "explanation": "Nosotros estamos - 1. Person Plural.",
       "germanBridge": "🇩🇪 wir sind (Ort/Zustand) → 🇪🇸 nosotros estamos",
-      "examples": ["Nosotros estamos aquí", "Estamos cansados"],
-      "mnemonic": "estaMOS = wir sind da (MOS = wir)"
+      "examples": [
+        "Nosotros estamos aquí",
+        "Estamos cansados"
+      ],
+      "mnemonic": "estaMOS = wir sind da (MOS = wir)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "estar",
+        "nosotros",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 wir sind (Ort/Zustand) → 🇪🇸 nosotros estamos"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex005",
@@ -98,9 +260,48 @@
       "correctAnswer": "estáis",
       "explanation": "Vosotros estáis - 2. Person Plural. Nur in Spanien!",
       "germanBridge": "🇩🇪 ihr seid (Ort/Zustand) → 🇪🇸 vosotros estáis",
-      "examples": ["Vosotros estáis aquí", "Estáis contentos"],
+      "examples": [
+        "Vosotros estáis aquí",
+        "Estáis contentos"
+      ],
       "regionalNote": "Lateinamerika: ustedes están (statt vosotros estáis)",
-      "mnemonic": "estÁIS = ihr seid (AIS-Endung typisch für vosotros)"
+      "mnemonic": "estÁIS = ihr seid (AIS-Endung typisch für vosotros)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "estar",
+        "vosotros",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ihr seid (Ort/Zustand) → 🇪🇸 vosotros estáis"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex006",
@@ -111,9 +312,48 @@
       "correctAnswer": "están",
       "explanation": "Ellos/ellas/ustedes están - 3. Person Plural.",
       "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellos/ellas están | Sie sind → ustedes están",
-      "examples": ["Ellos están en casa", "Ustedes están invitados"],
+      "examples": [
+        "Ellos están en casa",
+        "Ustedes están invitados"
+      ],
       "note": "Akzent auf dem á!",
-      "mnemonic": "estÁN = sie sind DA (Plural)"
+      "mnemonic": "estÁN = sie sind DA (Plural)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "estar",
+        "ellos",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 sie sind → 🇪🇸 ellos/ellas están | Sie sind → ustedes están"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex007",
@@ -124,10 +364,54 @@
       "correctAnswer": "estoy",
       "explanation": "ESTAR für physische Orte: estoy en casa",
       "germanBridge": "🇩🇪 Ich bin zu Hause → 🇪🇸 Estoy en casa - ESTAR für Orte!",
-      "examples": ["Estoy en Madrid", "Estoy aquí", "Estoy en el trabajo"],
+      "examples": [
+        "Estoy en Madrid",
+        "Estoy aquí",
+        "Estoy en el trabajo"
+      ],
       "useCase": "location",
       "rule": "ESTAR für 'wo bin ich?' (physischer Ort)",
-      "mnemonic": "ESTAR = STANDORT (beide haben ST)"
+      "mnemonic": "ESTAR = STANDORT (beide haben ST)",
+      "prerequisites": [
+        "estar-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "location",
+        "simple",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin zu Hause → 🇪🇸 Estoy en casa - ESTAR für Orte!",
+        "Rule: ESTAR für 'wo bin ich?' (physischer Ort)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex008",
@@ -138,10 +422,52 @@
       "correctAnswer": "está",
       "explanation": "ESTAR für Objekt-Orte: está en la mesa",
       "germanBridge": "🇩🇪 Das Buch ist auf... → 🇪🇸 El libro está en... - ESTAR für Positionen!",
-      "examples": ["El coche está en la calle", "Las llaves están aquí"],
+      "examples": [
+        "El coche está en la calle",
+        "Las llaves están aquí"
+      ],
       "useCase": "location",
       "rule": "ESTAR für Objekt-Positionen",
-      "contrast": "SER für Event-Orte: 'La fiesta ES en Madrid'"
+      "contrast": "SER für Event-Orte: 'La fiesta ES en Madrid'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "location",
+        "object",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das Buch ist auf... → 🇪🇸 El libro está en... - ESTAR für Positionen!",
+        "SER für Event-Orte: 'La fiesta ES en Madrid'",
+        "Rule: ESTAR für Objekt-Positionen"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex009",
@@ -150,12 +476,55 @@
       "concept": "estar-location-person",
       "question": "Übersetze: 'Wo bist du?' (¿Dónde...?)",
       "correctAnswer": "¿Dónde estás?",
-      "alternativeAnswers": ["¿dónde estás?", "Dónde estás"],
+      "alternativeAnswers": [
+        "¿dónde estás?",
+        "Dónde estás"
+      ],
       "explanation": "ESTAR für Ortsangaben: ¿Dónde estás? = Wo bist du?",
       "germanBridge": "🇩🇪 Wo bist du? → 🇪🇸 ¿Dónde estás? - ESTAR!",
-      "examples": ["¿Dónde está María?", "¿Dónde están ellos?"],
+      "examples": [
+        "¿Dónde está María?",
+        "¿Dónde están ellos?"
+      ],
       "useCase": "location",
-      "pattern": "¿Dónde + ESTAR...?"
+      "pattern": "¿Dónde + ESTAR...?",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex001",
+        "u2_ex002",
+        "u2_ex003",
+        "u2_ex004",
+        "u2_ex005"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "location",
+        "person",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wo bist du? → 🇪🇸 ¿Dónde estás? - ESTAR!"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex010",
@@ -171,9 +540,54 @@
       ],
       "explanation": "ESTAR für physische Orte wo du BIST. SER für Herkunft (de Berlín).",
       "germanBridge": "🇩🇪 Ich bin in Berlin → 🇪🇸 Estoy en Berlín (ESTAR!) | Ich bin AUS Berlin → Soy de Berlín (SER!)",
-      "examples": ["Estoy en Madrid (bin dort)", "Soy de Madrid (komme daher)"],
+      "examples": [
+        "Estoy en Madrid (bin dort)",
+        "Soy de Madrid (komme daher)"
+      ],
       "rule": "ESTAR = wo du bist | SER = woher du kommst",
-      "warning": "⚠️ NIEMALS 'soy en Berlín'!"
+      "warning": "⚠️ NIEMALS 'soy en Berlín'!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "estar",
+        "vs",
+        "ser",
+        "location",
+        "verb-ser",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 4,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin in Berlin → 🇪🇸 Estoy en Berlín (ESTAR!) | Ich bin AUS Berlin → Soy de Berlín (SER!)",
+        "Rule: ESTAR = wo du bist | SER = woher du kommst"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex011",
@@ -184,9 +598,50 @@
       "correctAnswer": "estamos",
       "explanation": "ESTAR für Orte: estamos en el parque",
       "germanBridge": "🇩🇪 Wir sind im Park → 🇪🇸 Estamos en el parque - ESTAR!",
-      "examples": ["Estamos en casa", "Estamos aquí", "Estamos en España"],
+      "examples": [
+        "Estamos en casa",
+        "Estamos aquí",
+        "Estamos en España"
+      ],
       "useCase": "location",
-      "pattern": "ESTAR + en + Ort"
+      "pattern": "ESTAR + en + Ort",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex004",
+        "u2_ex005",
+        "u2_ex006",
+        "u2_ex007",
+        "u2_ex008"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "location",
+        "plural",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wir sind im Park → 🇪🇸 Estamos en el parque - ESTAR!"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex012",
@@ -195,12 +650,56 @@
       "concept": "estar-location-preposition",
       "question": "Übersetze: 'Das Auto ist vor dem Haus.' (delante de)",
       "correctAnswer": "El coche está delante de la casa",
-      "alternativeAnswers": ["el coche está delante de la casa", "El coche está delante de la casa."],
+      "alternativeAnswers": [
+        "el coche está delante de la casa",
+        "El coche está delante de la casa."
+      ],
       "explanation": "ESTAR + Präposition für Position: está delante de...",
       "germanBridge": "🇩🇪 Das Auto ist vor... → 🇪🇸 El coche está delante de... - ESTAR!",
-      "examples": ["Está detrás de", "Está encima de", "Está al lado de"],
+      "examples": [
+        "Está detrás de",
+        "Está encima de",
+        "Está al lado de"
+      ],
       "useCase": "location",
-      "note": "Wichtige Präpositionen: delante de (vor), detrás de (hinter), encima de (auf)"
+      "note": "Wichtige Präpositionen: delante de (vor), detrás de (hinter), encima de (auf)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex004",
+        "u2_ex005",
+        "u2_ex006",
+        "u2_ex007",
+        "u2_ex008"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "location",
+        "preposition",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das Auto ist vor... → 🇪🇸 El coche está delante de... - ESTAR!"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex013",
@@ -211,10 +710,54 @@
       "correctAnswer": "estoy",
       "explanation": "ESTAR für temporäre Zustände: estoy cansado (jetzt müde, nicht immer)",
       "germanBridge": "🇩🇪 Ich bin müde → 🇪🇸 Estoy cansado - ESTAR für temporäre Zustände!",
-      "examples": ["Estoy enfermo (krank)", "Estoy ocupado (beschäftigt)"],
+      "examples": [
+        "Estoy enfermo (krank)",
+        "Estoy ocupado (beschäftigt)"
+      ],
       "useCase": "temporary_state",
       "rule": "ESTAR für Zustände die sich ändern können",
-      "contrast": "SER für permanente Eigenschaften"
+      "contrast": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "estar-emotion-happy"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex004",
+        "u2_ex005",
+        "u2_ex006",
+        "u2_ex007",
+        "u2_ex008"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "temporary",
+        "state",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin müde → 🇪🇸 Estoy cansado - ESTAR für temporäre Zustände!",
+        "SER für permanente Eigenschaften",
+        "Rule: ESTAR für Zustände die sich ändern können"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex014",
@@ -225,10 +768,54 @@
       "correctAnswer": "está",
       "explanation": "ESTAR für Emotionen: está feliz (fühlt sich jetzt glücklich)",
       "germanBridge": "🇩🇪 Sie ist glücklich → 🇪🇸 Está feliz - ESTAR für Gefühle!",
-      "examples": ["Estoy triste", "Estás contento", "Están alegres"],
+      "examples": [
+        "Estoy triste",
+        "Estás contento",
+        "Están alegres"
+      ],
       "useCase": "emotion",
       "rule": "ESTAR für alle Emotionen und Gefühle",
-      "note": "Emotionen sind temporär → immer ESTAR!"
+      "note": "Emotionen sind temporär → immer ESTAR!",
+      "prerequisites": [
+        "estar-location-simple"
+      ],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex004",
+        "u2_ex005",
+        "u2_ex006",
+        "u2_ex007",
+        "u2_ex008"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "emotion",
+        "happy",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist glücklich → 🇪🇸 Está feliz - ESTAR für Gefühle!",
+        "Rule: ESTAR für alle Emotionen und Gefühle"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex015",
@@ -237,12 +824,57 @@
       "concept": "estar-emotion-sad",
       "question": "Übersetze: 'Ich bin traurig.'",
       "correctAnswer": "Estoy triste",
-      "alternativeAnswers": ["estoy triste", "Yo estoy triste"],
+      "alternativeAnswers": [
+        "estoy triste",
+        "Yo estoy triste"
+      ],
       "explanation": "ESTAR für Emotionen: estoy triste",
       "germanBridge": "🇩🇪 Ich bin traurig → 🇪🇸 Estoy triste - ESTAR!",
-      "examples": ["Estoy feliz", "Estoy enojado (wütend)", "Estoy nervioso"],
+      "examples": [
+        "Estoy feliz",
+        "Estoy enojado (wütend)",
+        "Estoy nervioso"
+      ],
       "useCase": "emotion",
-      "rule": "Alle Emotionen → ESTAR"
+      "rule": "Alle Emotionen → ESTAR",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex004",
+        "u2_ex005",
+        "u2_ex006",
+        "u2_ex007",
+        "u2_ex008"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "emotion",
+        "sad",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin traurig → 🇪🇸 Estoy triste - ESTAR!",
+        "Rule: Alle Emotionen → ESTAR"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex016",
@@ -258,10 +890,52 @@
       ],
       "explanation": "ESTAR nervioso = jetzt nervös (temporär) | SER nervioso = nervöse Person (Charakter)",
       "germanBridge": "🇩🇪 Er ist nervös (jetzt) → ESTAR | Er ist ein nervöser Mensch → SER",
-      "examples": ["Está nervioso (jetzt)", "Es nervioso (Charakterzug)"],
+      "examples": [
+        "Está nervioso (jetzt)",
+        "Es nervioso (Charakterzug)"
+      ],
       "useCase": "emotion",
       "rule": "ESTAR = temporäres Gefühl | SER = Persönlichkeit",
-      "important": "Bedeutungsunterschied je nach Verb!"
+      "important": "Bedeutungsunterschied je nach Verb!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex012",
+        "u2_ex013",
+        "u2_ex014",
+        "u2_ex015",
+        "u2_ex016"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "estar",
+        "emotion",
+        "vs",
+        "characteristic",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist nervös (jetzt) → ESTAR | Er ist ein nervöser Mensch → SER",
+        "Rule: ESTAR = temporäres Gefühl | SER = Persönlichkeit"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex017",
@@ -270,13 +944,57 @@
       "concept": "estar-health",
       "question": "¿Cómo ___? - ___ bien, gracias. (Wie geht's? - Gut, danke.)",
       "correctAnswer": "estás, Estoy",
-      "alternativeAnswers": ["estás, estoy", "estás, Estoy", "estás,Estoy"],
+      "alternativeAnswers": [
+        "estás, estoy",
+        "estás, Estoy",
+        "estás,Estoy"
+      ],
       "explanation": "ESTAR für Befinden: ¿Cómo estás? - Estoy bien/mal",
       "germanBridge": "🇩🇪 Wie geht's? → 🇪🇸 ¿Cómo estás? - ESTAR für Befinden!",
-      "examples": ["Estoy bien", "Estoy mal", "Estoy regular"],
+      "examples": [
+        "Estoy bien",
+        "Estoy mal",
+        "Estoy regular"
+      ],
       "useCase": "temporary_state",
       "pattern": "¿Cómo + ESTAR? (Wie geht's?)",
-      "note": "Standard-Begrüßung mit ESTAR!"
+      "note": "Standard-Begrüßung mit ESTAR!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex012",
+        "u2_ex013",
+        "u2_ex014",
+        "u2_ex015",
+        "u2_ex016"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "health",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wie geht's? → 🇪🇸 ¿Cómo estás? - ESTAR für Befinden!"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex018",
@@ -285,13 +1003,59 @@
       "concept": "estar-sick",
       "question": "Übersetze: 'Ich bin krank.'",
       "correctAnswer": "Estoy enfermo",
-      "alternativeAnswers": ["estoy enfermo", "Yo estoy enfermo", "Estoy enferma", "estoy enferma"],
+      "alternativeAnswers": [
+        "estoy enfermo",
+        "Yo estoy enfermo",
+        "Estoy enferma",
+        "estoy enferma"
+      ],
       "explanation": "ESTAR für Krankheit (temporär): estoy enfermo/enferma",
       "germanBridge": "🇩🇪 Ich bin krank → 🇪🇸 Estoy enfermo - ESTAR!",
-      "examples": ["Estoy enfermo", "Está enferma", "Están enfermos"],
+      "examples": [
+        "Estoy enfermo",
+        "Está enferma",
+        "Están enfermos"
+      ],
       "useCase": "temporary_state",
       "note": "enfermo (m) / enferma (f) - Adjektiv passt sich an",
-      "rule": "Krankheit ist temporär → ESTAR"
+      "rule": "Krankheit ist temporär → ESTAR",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex012",
+        "u2_ex013",
+        "u2_ex014",
+        "u2_ex015",
+        "u2_ex016"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "sick",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin krank → 🇪🇸 Estoy enfermo - ESTAR!",
+        "Rule: Krankheit ist temporär → ESTAR"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex019",
@@ -302,9 +1066,50 @@
       "correctAnswer": "estoy",
       "explanation": "ESTAR für temporäre Zustände: estoy ocupado (jetzt beschäftigt)",
       "germanBridge": "🇩🇪 Ich bin beschäftigt → 🇪🇸 Estoy ocupado - ESTAR!",
-      "examples": ["Estoy ocupado", "Está libre (frei)", "Están disponibles"],
+      "examples": [
+        "Estoy ocupado",
+        "Está libre (frei)",
+        "Están disponibles"
+      ],
       "useCase": "temporary_state",
-      "rule": "Beschäftigt/frei = temporärer Zustand → ESTAR"
+      "rule": "Beschäftigt/frei = temporärer Zustand → ESTAR",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex012",
+        "u2_ex013",
+        "u2_ex014",
+        "u2_ex015",
+        "u2_ex016"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "busy",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin beschäftigt → 🇪🇸 Estoy ocupado - ESTAR!",
+        "Rule: Beschäftigt/frei = temporärer Zustand → ESTAR"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex020",
@@ -313,13 +1118,57 @@
       "concept": "estar-weather",
       "question": "Übersetze: 'Es ist bewölkt.' (nublado)",
       "correctAnswer": "Está nublado",
-      "alternativeAnswers": ["está nublado", "Está nublado."],
+      "alternativeAnswers": [
+        "está nublado",
+        "Está nublado."
+      ],
       "explanation": "ESTAR für Wetterzustände (meist): está nublado, está soleado",
       "germanBridge": "🇩🇪 Es ist bewölkt → 🇪🇸 Está nublado - ESTAR für Wetter!",
-      "examples": ["Está nublado", "Está soleado", "Está lluvioso"],
+      "examples": [
+        "Está nublado",
+        "Está soleado",
+        "Está lluvioso"
+      ],
       "useCase": "weather",
       "rule": "Wetterzustände oft mit ESTAR",
-      "note": "Aber: 'Hace calor/frío' (mit hacer, nicht estar!)"
+      "note": "Aber: 'Hace calor/frío' (mit hacer, nicht estar!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex012",
+        "u2_ex013",
+        "u2_ex014",
+        "u2_ex015",
+        "u2_ex016"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "weather",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Es ist bewölkt → 🇪🇸 Está nublado - ESTAR für Wetter!",
+        "Rule: Wetterzustände oft mit ESTAR"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex021",
@@ -330,10 +1179,51 @@
       "correctAnswer": "estoy",
       "explanation": "ESTAR + Gerundio für Verlaufsform: estoy trabajando = ich arbeite gerade",
       "germanBridge": "🇩🇪 Ich bin am Arbeiten → 🇪🇸 Estoy trabajando - ESTAR + -ando/-iendo!",
-      "examples": ["Estoy comiendo", "Está leyendo", "Están estudiando"],
+      "examples": [
+        "Estoy comiendo",
+        "Está leyendo",
+        "Están estudiando"
+      ],
       "useCase": "progressive",
       "pattern": "ESTAR + Gerundio (-ando/-iendo)",
-      "note": "Gerundio: trabajar → trabajando, comer → comiendo"
+      "note": "Gerundio: trabajar → trabajando, comer → comiendo",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex018",
+        "u2_ex019",
+        "u2_ex020",
+        "u2_ex021",
+        "u2_ex022"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "progressive",
+        "present",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin am Arbeiten → 🇪🇸 Estoy trabajando - ESTAR + -ando/-iendo!"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex022",
@@ -342,13 +1232,59 @@
       "concept": "estar-progressive-reading",
       "question": "Übersetze: 'Sie (ella) liest gerade.' (leer → leyendo)",
       "correctAnswer": "Ella está leyendo",
-      "alternativeAnswers": ["ella está leyendo", "Está leyendo", "está leyendo"],
+      "alternativeAnswers": [
+        "ella está leyendo",
+        "Está leyendo",
+        "está leyendo"
+      ],
       "explanation": "ESTAR + leyendo (Gerundio von leer): está leyendo",
       "germanBridge": "🇩🇪 Sie liest gerade → 🇪🇸 Está leyendo - Verlaufsform!",
-      "examples": ["Estoy leyendo", "Estás escribiendo", "Están hablando"],
+      "examples": [
+        "Estoy leyendo",
+        "Estás escribiendo",
+        "Están hablando"
+      ],
       "useCase": "progressive",
       "rule": "ESTAR + Gerundio = 'gerade am...'",
-      "note": "leer → leyendo (unregelmäßig: e→y)"
+      "note": "leer → leyendo (unregelmäßig: e→y)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex018",
+        "u2_ex019",
+        "u2_ex020",
+        "u2_ex021",
+        "u2_ex022"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "progressive",
+        "reading",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie liest gerade → 🇪🇸 Está leyendo - Verlaufsform!",
+        "Rule: ESTAR + Gerundio = 'gerade am...'"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex023",
@@ -359,9 +1295,50 @@
       "correctAnswer": "están",
       "explanation": "ESTAR + Gerundio (Plural): están estudiando",
       "germanBridge": "🇩🇪 Sie lernen gerade → 🇪🇸 Están estudiando",
-      "examples": ["Están comiendo", "Están trabajando", "Están durmiendo"],
+      "examples": [
+        "Están comiendo",
+        "Están trabajando",
+        "Están durmiendo"
+      ],
       "useCase": "progressive",
-      "pattern": "Están + Gerundio"
+      "pattern": "Están + Gerundio",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex018",
+        "u2_ex019",
+        "u2_ex020",
+        "u2_ex021",
+        "u2_ex022"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "progressive",
+        "plural",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie lernen gerade → 🇪🇸 Están estudiando"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex024",
@@ -378,9 +1355,51 @@
       ],
       "explanation": "Simple Form = Gewohnheit/Fakt | ESTAR + Gerundio = gerade jetzt im Moment",
       "germanBridge": "🇩🇪 Ich arbeite (generell) vs Ich arbeite gerade (jetzt)",
-      "examples": ["Trabajo en una oficina (Fakt)", "Estoy trabajando ahora (jetzt)"],
+      "examples": [
+        "Trabajo en una oficina (Fakt)",
+        "Estoy trabajando ahora (jetzt)"
+      ],
       "useCase": "progressive",
-      "rule": "Verlaufsform betont das 'gerade jetzt'"
+      "rule": "Verlaufsform betont das 'gerade jetzt'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex018",
+        "u2_ex019",
+        "u2_ex020",
+        "u2_ex021",
+        "u2_ex022"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "estar",
+        "progressive",
+        "vs",
+        "simple",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 12,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich arbeite (generell) vs Ich arbeite gerade (jetzt)",
+        "Rule: Verlaufsform betont das 'gerade jetzt'"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex025",
@@ -391,10 +1410,52 @@
       "correctAnswer": "está",
       "explanation": "ESTAR für Zustände/Bedingungen: está abierta (jetzt offen)",
       "germanBridge": "🇩🇪 Die Tür ist offen → 🇪🇸 La puerta está abierta - ESTAR!",
-      "examples": ["Está cerrada (geschlossen)", "Está rota (kaputt)", "Está limpia (sauber)"],
+      "examples": [
+        "Está cerrada (geschlossen)",
+        "Está rota (kaputt)",
+        "Está limpia (sauber)"
+      ],
       "useCase": "condition",
       "rule": "ESTAR für Zustände die sich ändern können",
-      "note": "abierta (f) stimmt mit puerta (f) überein"
+      "note": "abierta (f) stimmt mit puerta (f) überein",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex018",
+        "u2_ex019",
+        "u2_ex020",
+        "u2_ex021",
+        "u2_ex022"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "condition",
+        "open",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Die Tür ist offen → 🇪🇸 La puerta está abierta - ESTAR!",
+        "Rule: ESTAR für Zustände die sich ändern können"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex026",
@@ -403,12 +1464,57 @@
       "concept": "estar-condition-broken",
       "question": "Übersetze: 'Der Computer ist kaputt.' (roto)",
       "correctAnswer": "El ordenador está roto",
-      "alternativeAnswers": ["el ordenador está roto", "El ordenador está roto.", "El computador está roto"],
+      "alternativeAnswers": [
+        "el ordenador está roto",
+        "El ordenador está roto.",
+        "El computador está roto"
+      ],
       "explanation": "ESTAR für Zustand: está roto (ist kaputt)",
       "germanBridge": "🇩🇪 ist kaputt → 🇪🇸 está roto - ESTAR für Zustand!",
-      "examples": ["Está roto", "Está arreglado (repariert)", "Está funcionando"],
+      "examples": [
+        "Está roto",
+        "Está arreglado (repariert)",
+        "Está funcionando"
+      ],
       "useCase": "condition",
-      "note": "ordenador (Spanien) / computadora (Lateinamerika)"
+      "note": "ordenador (Spanien) / computadora (Lateinamerika)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex018",
+        "u2_ex019",
+        "u2_ex020",
+        "u2_ex021",
+        "u2_ex022"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "condition",
+        "broken",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ist kaputt → 🇪🇸 está roto - ESTAR für Zustand!"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex027",
@@ -419,10 +1525,52 @@
       "correctAnswer": "está",
       "explanation": "ESTAR für temporäre Bedingung: está sucia (jetzt schmutzig, kann sauber gemacht werden)",
       "germanBridge": "🇩🇪 Das Haus ist schmutzig → 🇪🇸 La casa está sucia - ESTAR!",
-      "examples": ["Está limpia (sauber)", "Está ordenada (aufgeräumt)", "Está desordenada"],
+      "examples": [
+        "Está limpia (sauber)",
+        "Está ordenada (aufgeräumt)",
+        "Está desordenada"
+      ],
       "useCase": "condition",
       "rule": "Sauber/schmutzig = veränderbar → ESTAR",
-      "note": "sucia (f) stimmt mit casa (f) überein"
+      "note": "sucia (f) stimmt mit casa (f) überein",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex018",
+        "u2_ex019",
+        "u2_ex020",
+        "u2_ex021",
+        "u2_ex022"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "condition",
+        "dirty",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das Haus ist schmutzig → 🇪🇸 La casa está sucia - ESTAR!",
+        "Rule: Sauber/schmutzig = veränderbar → ESTAR"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex028",
@@ -431,13 +1579,59 @@
       "concept": "estar-ready",
       "question": "Übersetze: 'Bist du fertig?' (listo/lista)",
       "correctAnswer": "¿Estás listo?",
-      "alternativeAnswers": ["¿estás listo?", "¿Estás lista?", "¿estás lista?", "Estás listo"],
+      "alternativeAnswers": [
+        "¿estás listo?",
+        "¿Estás lista?",
+        "¿estás lista?",
+        "Estás listo"
+      ],
       "explanation": "ESTAR listo/lista = fertig/bereit sein (temporärer Zustand)",
       "germanBridge": "🇩🇪 Bist du fertig? → 🇪🇸 ¿Estás listo? - ESTAR!",
-      "examples": ["Estoy listo", "Estamos listos", "Están listas"],
+      "examples": [
+        "Estoy listo",
+        "Estamos listos",
+        "Están listas"
+      ],
       "useCase": "temporary_state",
       "rule": "Fertig/bereit = temporär → ESTAR",
-      "note": "listo (m) / lista (f)"
+      "note": "listo (m) / lista (f)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "ready",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Bist du fertig? → 🇪🇸 ¿Estás listo? - ESTAR!",
+        "Rule: Fertig/bereit = temporär → ESTAR"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex029",
@@ -454,10 +1648,51 @@
       ],
       "explanation": "ESTAR listo = fertig/bereit | SER listo = intelligent/schlau (Bedeutungswechsel!)",
       "germanBridge": "🇩🇪 Unterschied durch Verb: ESTAR vs SER ändert die Bedeutung!",
-      "examples": ["Está listo para salir (fertig)", "Es un chico muy listo (schlau)"],
+      "examples": [
+        "Está listo para salir (fertig)",
+        "Es un chico muy listo (schlau)"
+      ],
       "useCase": "meaning_change",
       "rule": "Manche Adjektive ändern Bedeutung mit SER/ESTAR!",
-      "important": "⚠️ Sehr wichtig für Unit 4!"
+      "important": "⚠️ Sehr wichtig für Unit 4!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "estar",
+        "meaning",
+        "change",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 13,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "negative",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Unterschied durch Verb: ESTAR vs SER ändert die Bedeutung!",
+        "Rule: Manche Adjektive ändern Bedeutung mit SER/ESTAR!"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex030",
@@ -466,12 +1701,55 @@
       "concept": "estar-availability",
       "question": "¿El director ___? - No, ___ ocupado. (Ist der Direktor da? - Nein, er ist beschäftigt.)",
       "correctAnswer": "está, está",
-      "alternativeAnswers": ["está,está", "está, esta"],
+      "alternativeAnswers": [
+        "está,está",
+        "está, esta"
+      ],
       "explanation": "ESTAR für Verfügbarkeit/Anwesenheit: ¿Está? - Está ocupado",
       "germanBridge": "🇩🇪 Ist er da? / Er ist beschäftigt → ESTAR für beides!",
-      "examples": ["¿Está María?", "Está ocupado", "No está disponible"],
+      "examples": [
+        "¿Está María?",
+        "Está ocupado",
+        "No está disponible"
+      ],
       "useCase": "availability",
-      "pattern": "¿Está + Person? (Ist X da?)"
+      "pattern": "¿Está + Person? (Ist X da?)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "availability",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ist er da? / Er ist beschäftigt → ESTAR für beides!"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex031",
@@ -480,13 +1758,57 @@
       "concept": "estar-pregnant",
       "question": "Übersetze: 'Sie ist schwanger.' (embarazada)",
       "correctAnswer": "Está embarazada",
-      "alternativeAnswers": ["está embarazada", "Ella está embarazada", "ella está embarazada"],
+      "alternativeAnswers": [
+        "está embarazada",
+        "Ella está embarazada",
+        "ella está embarazada"
+      ],
       "explanation": "ESTAR embarazada = schwanger sein (temporärer Zustand)",
       "germanBridge": "🇩🇪 Sie ist schwanger → 🇪🇸 Está embarazada - ESTAR!",
-      "examples": ["Está embarazada", "Estoy embarazada"],
+      "examples": [
+        "Está embarazada",
+        "Estoy embarazada"
+      ],
       "useCase": "temporary_state",
       "rule": "Schwangerschaft = temporär → ESTAR",
-      "warning": "⚠️ FALSE FRIEND: embarazada ≠ embarrassed! (embarrassed = avergonzada)"
+      "warning": "⚠️ FALSE FRIEND: embarazada ≠ embarrassed! (embarrassed = avergonzada)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "pregnant",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": true,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist schwanger → 🇪🇸 Está embarazada - ESTAR!",
+        "Rule: Schwangerschaft = temporär → ESTAR"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex032",
@@ -497,10 +1819,52 @@
       "correctAnswer": "está",
       "explanation": "ESTAR vivo/muerto = lebendig/tot (Zustand)",
       "germanBridge": "🇩🇪 ist lebendig/tot → 🇪🇸 está vivo/muerto - ESTAR!",
-      "examples": ["Está vivo", "Está muerto", "Están vivos"],
+      "examples": [
+        "Está vivo",
+        "Está muerto",
+        "Están vivos"
+      ],
       "useCase": "condition",
       "rule": "Leben/Tod als Zustand → ESTAR",
-      "note": "Obwohl permanent, wird ESTAR verwendet!"
+      "note": "Obwohl permanent, wird ESTAR verwendet!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "estar",
+        "dead",
+        "alive",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ist lebendig/tot → 🇪🇸 está vivo/muerto - ESTAR!",
+        "Rule: Leben/Tod als Zustand → ESTAR"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u3_ex033",
@@ -509,12 +1873,57 @@
       "concept": "estar-full-empty",
       "question": "Übersetze: 'Das Glas ist voll.' (lleno)",
       "correctAnswer": "El vaso está lleno",
-      "alternativeAnswers": ["el vaso está lleno", "El vaso está lleno."],
+      "alternativeAnswers": [
+        "el vaso está lleno",
+        "El vaso está lleno."
+      ],
       "explanation": "ESTAR lleno/vacío = voll/leer (Zustand der Füllung)",
       "germanBridge": "🇩🇪 Das Glas ist voll → 🇪🇸 El vaso está lleno - ESTAR!",
-      "examples": ["Está lleno", "Está vacío", "Está medio lleno"],
+      "examples": [
+        "Está lleno",
+        "Está vacío",
+        "Está medio lleno"
+      ],
       "useCase": "condition",
-      "rule": "Voll/leer = veränderbar → ESTAR"
+      "rule": "Voll/leer = veränderbar → ESTAR",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "full",
+        "empty",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das Glas ist voll → 🇪🇸 El vaso está lleno - ESTAR!",
+        "Rule: Voll/leer = veränderbar → ESTAR"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": true
     },
     {
       "id": "u3_ex034",
@@ -523,13 +1932,56 @@
       "concept": "estar-multiple-uses",
       "question": "Ergänze: 'Yo ___ en casa, ___ cansado y ___ leyendo un libro.'",
       "correctAnswer": "estoy, estoy, estoy",
-      "alternativeAnswers": ["estoy,estoy,estoy", "estoy, estoy,estoy"],
+      "alternativeAnswers": [
+        "estoy,estoy,estoy",
+        "estoy, estoy,estoy"
+      ],
       "explanation": "Alle drei ESTAR: Ort (en casa) + Zustand (cansado) + Verlaufsform (leyendo)",
       "germanBridge": "🇩🇪 Ich bin zu Hause, bin müde und lese gerade → alles ESTAR!",
-      "examples": ["Estoy aquí, estoy feliz, estoy trabajando"],
+      "examples": [
+        "Estoy aquí, estoy feliz, estoy trabajando"
+      ],
       "useCase": "multiple",
       "rule": "ESTAR für Ort + Zustand + Progressive",
-      "note": "Drei verschiedene Verwendungen in einem Satz!"
+      "note": "Drei verschiedene Verwendungen in einem Satz!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "comprehensive",
+        "estar",
+        "multiple",
+        "uses",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 33,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin zu Hause, bin müde und lese gerade → alles ESTAR!",
+        "Rule: ESTAR für Ort + Zustand + Progressive"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": true
     },
     {
       "id": "u3_ex035",
@@ -538,19 +1990,98 @@
       "concept": "estar-comprehensive",
       "question": "Übersetze: 'Wir sind im Park, sind glücklich und spielen gerade.' (jugar → jugando)",
       "correctAnswer": "Estamos en el parque, estamos felices y estamos jugando",
-      "alternativeAnswers": ["estamos en el parque, estamos felices y estamos jugando"],
+      "alternativeAnswers": [
+        "estamos en el parque, estamos felices y estamos jugando"
+      ],
       "explanation": "Alle drei ESTAR: Ort (en el parque) + Emotion (felices) + Verlaufsform (jugando)",
       "germanBridge": "🇩🇪 Wir sind im Park, sind glücklich, spielen gerade → alles ESTAR!",
-      "examples": ["Estamos aquí, estamos cansados, estamos comiendo"],
+      "examples": [
+        "Estamos aquí, estamos cansados, estamos comiendo"
+      ],
       "useCase": "multiple",
       "rule": "ESTAR kombiniert: Ort + Gefühl + Handlung",
-      "note": "Komplexer Satz mit allen ESTAR-Verwendungen!"
+      "note": "Komplexer Satz mit allen ESTAR-Verwendungen!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex024",
+        "u2_ex025",
+        "u2_ex026",
+        "u2_ex027",
+        "u2_ex028"
+      ],
+      "categoryTags": [
+        "unit-3",
+        "phase-1",
+        "A1",
+        "translation",
+        "estar",
+        "comprehensive",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wir sind im Park, sind glücklich, spielen gerade → alles ESTAR!",
+        "Rule: ESTAR kombiniert: Ort + Gefühl + Handlung"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": true,
+      "certificationRequired": true
     }
   ],
   "progressionNotes": {
-    "easyExercises": [1, 2, 3, 4, 5, 6, 7, 8, 9],
-    "mediumExercises": [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
-    "hardExercises": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+    "easyExercises": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "mediumExercises": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "hardExercises": [
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
     "germanAdvantages": [
       "Konzept von temporären Zuständen ist vertraut",
       "Verlaufsform ähnlich wie im Deutschen ('bin am Arbeiten')"

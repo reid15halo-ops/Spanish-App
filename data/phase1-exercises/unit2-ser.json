@@ -47,9 +47,49 @@
       "correctAnswer": "soy",
       "explanation": "Yo soy - 1. Person Singular. Unregelmäßig!",
       "germanBridge": "🇩🇪 ich bin → 🇪🇸 yo soy",
-      "examples": ["Yo soy profesor", "Yo soy alemán"],
+      "examples": [
+        "Yo soy profesor",
+        "Yo soy alemán"
+      ],
       "note": "SER ist unregelmäßig - keine Standard-Endungen!",
-      "mnemonic": "SOY = So Y (So bin Ich)"
+      "mnemonic": "SOY = So Y (So bin Ich)",
+      "prerequisites": [
+        "pronoun-singular-first"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "ser",
+        "yo",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ich bin → 🇪🇸 yo soy"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex002",
@@ -60,8 +100,49 @@
       "correctAnswer": "eres",
       "explanation": "Tú eres - 2. Person Singular.",
       "germanBridge": "🇩🇪 du bist → 🇪🇸 tú eres",
-      "examples": ["Tú eres mi amigo", "Tú eres inteligente"],
-      "mnemonic": "ERES = E-R-E-S (sehr regelmäßig klingend für unregelmäßiges Verb)"
+      "examples": [
+        "Tú eres mi amigo",
+        "Tú eres inteligente"
+      ],
+      "mnemonic": "ERES = E-R-E-S (sehr regelmäßig klingend für unregelmäßiges Verb)",
+      "prerequisites": [
+        "pronoun-singular-second-informal",
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "ser",
+        "tu",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 du bist → 🇪🇸 tú eres"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex003",
@@ -72,9 +153,51 @@
       "correctAnswer": "es",
       "explanation": "Él/ella/usted es - 3. Person Singular.",
       "germanBridge": "🇩🇪 er/sie ist → 🇪🇸 él/ella es | Sie sind → usted es",
-      "examples": ["Él es profesor", "Ella es alemana", "Usted es muy amable"],
+      "examples": [
+        "Él es profesor",
+        "Ella es alemana",
+        "Usted es muy amable"
+      ],
       "note": "Usted benutzt die 3. Person: usted ES (wie él/ella)",
-      "mnemonic": "ES = kurz und einfach, wie 'ist'"
+      "mnemonic": "ES = kurz und einfach, wie 'ist'",
+      "prerequisites": [
+        "pronoun-singular-third-masculine",
+        "ser-conjugation-tu"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "ser",
+        "el",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 er/sie ist → 🇪🇸 él/ella es | Sie sind → usted es"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex004",
@@ -85,8 +208,49 @@
       "correctAnswer": "somos",
       "explanation": "Nosotros somos - 1. Person Plural.",
       "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
-      "examples": ["Nosotros somos estudiantes", "Somos de Alemania"],
-      "mnemonic": "SOMOS = SO sind wir! (SOMmOS)"
+      "examples": [
+        "Nosotros somos estudiantes",
+        "Somos de Alemania"
+      ],
+      "mnemonic": "SOMOS = SO sind wir! (SOMmOS)",
+      "prerequisites": [
+        "pronoun-plural-first",
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "ser",
+        "nosotros",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 wir sind → 🇪🇸 nosotros somos"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex005",
@@ -97,9 +261,47 @@
       "correctAnswer": "sois",
       "explanation": "Vosotros sois - 2. Person Plural. Nur in Spanien!",
       "germanBridge": "🇩🇪 ihr seid → 🇪🇸 vosotros sois (Spanien)",
-      "examples": ["Vosotros sois amigos", "Sois españoles"],
+      "examples": [
+        "Vosotros sois amigos",
+        "Sois españoles"
+      ],
       "regionalNote": "Lateinamerika: ustedes son (statt vosotros sois)",
-      "mnemonic": "SOIS = 'seid' auf Spanisch (ähnlicher Klang!)"
+      "mnemonic": "SOIS = 'seid' auf Spanisch (ähnlicher Klang!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "ser",
+        "vosotros",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ihr seid → 🇪🇸 vosotros sois (Spanien)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex006",
@@ -110,9 +312,50 @@
       "correctAnswer": "son",
       "explanation": "Ellos/ellas/ustedes son - 3. Person Plural.",
       "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellos/ellas son | Sie sind → ustedes son",
-      "examples": ["Ellos son profesores", "Ustedes son muy amables"],
+      "examples": [
+        "Ellos son profesores",
+        "Ustedes son muy amables"
+      ],
       "note": "Ustedes benutzt 3. Person Plural: ustedes SON",
-      "mnemonic": "SON = 'sind' (ähnlicher Klang!)"
+      "mnemonic": "SON = 'sind' (ähnlicher Klang!)",
+      "prerequisites": [
+        "pronoun-plural-third",
+        "ser-conjugation-nosotros"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "ser",
+        "ellos",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 sie sind → 🇪🇸 ellos/ellas son | Sie sind → ustedes son"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex007",
@@ -123,9 +366,50 @@
       "correctAnswer": "soy",
       "explanation": "SER für Identität/Namen: Yo soy + Name",
       "germanBridge": "🇩🇪 Ich bin (Name) → 🇪🇸 Yo soy (Name) - SER für Identität!",
-      "examples": ["Yo soy Pedro", "Yo soy Ana"],
+      "examples": [
+        "Yo soy Pedro",
+        "Yo soy Ana"
+      ],
       "useCase": "identity",
-      "rule": "SER für Namen und Identität (permanent)"
+      "rule": "SER für Namen und Identität (permanent)",
+      "prerequisites": [
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "identity",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin (Name) → 🇪🇸 Yo soy (Name) - SER für Identität!",
+        "Rule: SER für Namen und Identität (permanent)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex008",
@@ -136,10 +420,51 @@
       "correctAnswer": "es",
       "explanation": "SER für Berufe: Él es + Beruf (ohne Artikel!)",
       "germanBridge": "🇩🇪 Er ist Lehrer → 🇪🇸 Él es profesor - SER für Berufe!",
-      "examples": ["Ella es doctora", "Soy ingeniero"],
+      "examples": [
+        "Ella es doctora",
+        "Soy ingeniero"
+      ],
       "useCase": "profession",
       "rule": "SER für Berufe (gilt als permanente Eigenschaft)",
-      "note": "Kein Artikel! 'Él es profesor' (nicht 'un profesor')"
+      "note": "Kein Artikel! 'Él es profesor' (nicht 'un profesor')",
+      "prerequisites": [
+        "ser-identity"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "profession",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist Lehrer → 🇪🇸 Él es profesor - SER für Berufe!",
+        "Rule: SER für Berufe (gilt als permanente Eigenschaft)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex009",
@@ -150,9 +475,50 @@
       "correctAnswer": "somos",
       "explanation": "SER + de für Herkunft: somos de + Ort",
       "germanBridge": "🇩🇪 Wir sind aus → 🇪🇸 Somos de - SER für Herkunft!",
-      "examples": ["Soy de Berlín", "Ellos son de España"],
+      "examples": [
+        "Soy de Berlín",
+        "Ellos son de España"
+      ],
       "useCase": "origin",
-      "rule": "SER + de für Herkunft (woher du kommst)"
+      "rule": "SER + de für Herkunft (woher du kommst)",
+      "prerequisites": [
+        "ser-profession"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "origin",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wir sind aus → 🇪🇸 Somos de - SER für Herkunft!",
+        "Rule: SER + de für Herkunft (woher du kommst)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex010",
@@ -163,10 +529,52 @@
       "correctAnswer": "es",
       "explanation": "SER für permanente Eigenschaften: es + Adjektiv",
       "germanBridge": "🇩🇪 Sie ist intelligent → 🇪🇸 Es inteligente - SER für permanente Eigenschaften!",
-      "examples": ["Él es alto", "Somos amables"],
+      "examples": [
+        "Él es alto",
+        "Somos amables"
+      ],
       "useCase": "characteristics",
       "rule": "SER für permanente/inhärente Eigenschaften",
-      "contrast": "ESTAR für temporäre Zustände (kommt später!)"
+      "contrast": "ESTAR für temporäre Zustände (kommt später!)",
+      "prerequisites": [
+        "ser-profession"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "characteristics",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 2,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist intelligent → 🇪🇸 Es inteligente - SER für permanente Eigenschaften!",
+        "ESTAR für temporäre Zustände (kommt später!)",
+        "Rule: SER für permanente/inhärente Eigenschaften"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex011",
@@ -182,9 +590,55 @@
       ],
       "explanation": "SER für Nationalität (permanente Eigenschaft/Identität).",
       "germanBridge": "🇩🇪 Ich bin Deutscher → 🇪🇸 Soy alemán (SER!) - Nationalität ist permanent",
-      "examples": ["Soy alemán", "Eres español", "Son franceses"],
+      "examples": [
+        "Soy alemán",
+        "Eres español",
+        "Son franceses"
+      ],
       "rule": "Nationalität = SER (permanent)",
-      "warning": "⚠️ NICHT 'estoy alemán'!"
+      "warning": "⚠️ NICHT 'estoy alemán'!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u3_ex001",
+        "u3_ex002",
+        "u3_ex003",
+        "u3_ex004"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "vs",
+        "estar",
+        "preview",
+        "verb-ser",
+        "verb-estar",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 2,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.4,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin Deutscher → 🇪🇸 Soy alemán (SER!) - Nationalität ist permanent",
+        "Rule: Nationalität = SER (permanent)"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex012",
@@ -193,12 +647,55 @@
       "concept": "ser-profession-full",
       "question": "Übersetze: 'Sie (ella) ist Ärztin.'",
       "correctAnswer": "Ella es doctora",
-      "alternativeAnswers": ["ella es doctora", "Ella es doctora."],
+      "alternativeAnswers": [
+        "ella es doctora",
+        "Ella es doctora."
+      ],
       "explanation": "Ella es + Beruf (feminin: doctora). Kein Artikel!",
       "germanBridge": "🇩🇪 Sie ist Ärztin → 🇪🇸 Ella es doctora",
-      "examples": ["Es profesora", "Es ingeniera", "Es estudiante"],
+      "examples": [
+        "Es profesora",
+        "Es ingeniera",
+        "Es estudiante"
+      ],
       "useCase": "profession",
-      "note": "Weibliche Form: doctor → doctora, profesor → profesora"
+      "note": "Weibliche Form: doctor → doctora, profesor → profesora",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "profession",
+        "full",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist Ärztin → 🇪🇸 Ella es doctora"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex013",
@@ -207,12 +704,56 @@
       "concept": "ser-origin-full",
       "question": "Übersetze: 'Ich bin aus Berlin.'",
       "correctAnswer": "Soy de Berlín",
-      "alternativeAnswers": ["soy de Berlín", "Yo soy de Berlín", "yo soy de Berlín"],
+      "alternativeAnswers": [
+        "soy de Berlín",
+        "Yo soy de Berlín",
+        "yo soy de Berlín"
+      ],
       "explanation": "Ser + de + Ort für Herkunft. Yo ist optional.",
       "germanBridge": "🇩🇪 Ich bin aus → 🇪🇸 Soy de",
-      "examples": ["Soy de Madrid", "Eres de Barcelona", "Es de México"],
+      "examples": [
+        "Soy de Madrid",
+        "Eres de Barcelona",
+        "Es de México"
+      ],
       "useCase": "origin",
-      "pattern": "SER + de + Ort"
+      "pattern": "SER + de + Ort",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "origin",
+        "full",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin aus → 🇪🇸 Soy de"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex014",
@@ -223,9 +764,49 @@
       "correctAnswer": "son",
       "explanation": "Ellos son + Adjektiv (Plural: altos). SER für körperliche Eigenschaften.",
       "germanBridge": "🇩🇪 Sie sind groß → 🇪🇸 Son altos - SER für permanente Merkmale!",
-      "examples": ["Son inteligentes", "Son amables", "Son fuertes"],
+      "examples": [
+        "Son inteligentes",
+        "Son amables",
+        "Son fuertes"
+      ],
       "useCase": "characteristics",
-      "note": "Adjektiv passt sich an: alto → altos (Plural maskulin)"
+      "note": "Adjektiv passt sich an: alto → altos (Plural maskulin)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "characteristics",
+        "plural",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie sind groß → 🇪🇸 Son altos - SER für permanente Merkmale!"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex015",
@@ -234,13 +815,56 @@
       "concept": "ser-time",
       "question": "Es ist drei Uhr. (Uhrzeit)",
       "correctAnswer": "Son las tres",
-      "alternativeAnswers": ["son las tres", "Son las tres."],
+      "alternativeAnswers": [
+        "son las tres",
+        "Son las tres."
+      ],
       "explanation": "Für Uhrzeiten: Son las + Zahl (Plural!) ODER Es la una (Ausnahme: 1 Uhr).",
       "germanBridge": "🇩🇪 Es ist 3 Uhr → 🇪🇸 Son las tres (Plural! 'Es sind die 3')",
-      "examples": ["Son las cuatro", "Es la una", "Son las doce"],
+      "examples": [
+        "Son las cuatro",
+        "Es la una",
+        "Son las doce"
+      ],
       "useCase": "time",
       "rule": "Son las + Zahl (2-12) | Es la una (1 Uhr)",
-      "note": "Im Spanischen 'es sind die drei' (Plural denken!)"
+      "note": "Im Spanischen 'es sind die drei' (Plural denken!)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "time",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Es ist 3 Uhr → 🇪🇸 Son las tres (Plural! 'Es sind die 3')",
+        "Rule: Son las + Zahl (2-12) | Es la una (1 Uhr)"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex016",
@@ -257,10 +881,49 @@
       ],
       "explanation": "SER + de für Besitz/Zugehörigkeit: Es de + Person",
       "germanBridge": "🇩🇪 Das ist Pedros... → 🇪🇸 Es de Pedro",
-      "examples": ["Es de María", "Son de Juan", "Es de mi hermano"],
+      "examples": [
+        "Es de María",
+        "Son de Juan",
+        "Es de mi hermano"
+      ],
       "useCase": "possession",
       "pattern": "SER + de + Person (Besitz)",
-      "note": "Im Spanischen kein 's für Besitz - nutze 'de'"
+      "note": "Im Spanischen kein 's für Besitz - nutze 'de'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "possession",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das ist Pedros... → 🇪🇸 Es de Pedro"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex017",
@@ -271,9 +934,48 @@
       "correctAnswer": "es",
       "explanation": "SER + de für Material: es de + Material",
       "germanBridge": "🇩🇪 ist aus Holz → 🇪🇸 es de madera - SER für Material!",
-      "examples": ["Es de metal", "Son de plástico", "Es de papel"],
+      "examples": [
+        "Es de metal",
+        "Son de plástico",
+        "Es de papel"
+      ],
       "useCase": "material",
-      "pattern": "SER + de + Material"
+      "pattern": "SER + de + Material",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex011",
+        "u2_ex020",
+        "u3_ex004",
+        "u3_ex005",
+        "u3_ex006"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "material",
+        "verb-ser",
+        "beginner",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 ist aus Holz → 🇪🇸 es de madera - SER für Material!"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex018",
@@ -282,12 +984,55 @@
       "concept": "ser-personality",
       "question": "Übersetze: 'Du bist sehr nett.' (freundlich)",
       "correctAnswer": "Eres muy amable",
-      "alternativeAnswers": ["eres muy amable", "Tú eres muy amable", "tú eres muy amable"],
+      "alternativeAnswers": [
+        "eres muy amable",
+        "Tú eres muy amable",
+        "tú eres muy amable"
+      ],
       "explanation": "Eres + muy (sehr) + amable (nett). SER für Persönlichkeit.",
       "germanBridge": "🇩🇪 Du bist nett → 🇪🇸 Eres amable - SER für Charakter!",
-      "examples": ["Es simpático", "Somos honestos", "Son generosos"],
+      "examples": [
+        "Es simpático",
+        "Somos honestos",
+        "Son generosos"
+      ],
       "useCase": "characteristics",
-      "note": "amable = nett/freundlich (Adjektiv für Persönlichkeit)"
+      "note": "amable = nett/freundlich (Adjektiv für Persönlichkeit)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "personality",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Du bist nett → 🇪🇸 Eres amable - SER für Charakter!"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex019",
@@ -298,10 +1043,50 @@
       "correctAnswer": "es",
       "explanation": "SER für Datum/Wochentag: Es + Tag",
       "germanBridge": "🇩🇪 Heute ist Montag → 🇪🇸 Hoy es lunes - SER für Datum!",
-      "examples": ["Es martes", "Es viernes", "Es el 15 de marzo"],
+      "examples": [
+        "Es martes",
+        "Es viernes",
+        "Es el 15 de marzo"
+      ],
       "useCase": "time",
       "rule": "SER für Wochentage und Datum",
-      "note": "Wochentage kleingeschrieben: lunes, martes, etc."
+      "note": "Wochentage kleingeschrieben: lunes, martes, etc.",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "date",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Heute ist Montag → 🇪🇸 Hoy es lunes - SER für Datum!",
+        "Rule: SER für Wochentage und Datum"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex020",
@@ -317,9 +1102,55 @@
       ],
       "explanation": "SER für permanente/generelle Eigenschaften. ESTAR für temporär 'heute hübsch aussehen'.",
       "germanBridge": "🇩🇪 Maria ist hübsch (generell) → 🇪🇸 María es bonita (SER!)",
-      "examples": ["Es bonita", "Es inteligente", "Es alta"],
+      "examples": [
+        "Es bonita",
+        "Es inteligente",
+        "Es alta"
+      ],
       "rule": "SER = generell/permanent | ESTAR = temporär/Zustand",
-      "warning": "⚠️ 'Está bonita' = sie sieht heute gut aus (temporär)"
+      "warning": "⚠️ 'Está bonita' = sie sieht heute gut aus (temporär)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation",
+        "ser-conjugation",
+        "location",
+        "emotion"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "vs",
+        "estar",
+        "adjective",
+        "verb-ser",
+        "verb-estar",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 5,
+      "interferenceRisk": "very-high",
+      "spacingMultiplier": 1.5,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Maria ist hübsch (generell) → 🇪🇸 María es bonita (SER!)",
+        "Rule: SER = generell/permanent | ESTAR = temporär/Zustand"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex021",
@@ -328,12 +1159,56 @@
       "concept": "ser-plural-nationality",
       "question": "Übersetze: 'Wir sind Deutsche.'",
       "correctAnswer": "Somos alemanes",
-      "alternativeAnswers": ["somos alemanes", "Nosotros somos alemanes", "nosotros somos alemanes"],
+      "alternativeAnswers": [
+        "somos alemanes",
+        "Nosotros somos alemanes",
+        "nosotros somos alemanes"
+      ],
       "explanation": "Somos + alemanes (Plural maskulin). Nationalität mit SER.",
       "germanBridge": "🇩🇪 Wir sind Deutsche → 🇪🇸 Somos alemanes (SER für Nationalität!)",
-      "examples": ["Somos españoles", "Son franceses", "Sois italianos"],
+      "examples": [
+        "Somos españoles",
+        "Son franceses",
+        "Sois italianos"
+      ],
       "useCase": "origin",
-      "note": "alemán → alemanes (Plural), alemana → alemanas (feminin Plural)"
+      "note": "alemán → alemanes (Plural), alemana → alemanas (feminin Plural)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "plural",
+        "nationality",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wir sind Deutsche → 🇪🇸 Somos alemanes (SER für Nationalität!)"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex022",
@@ -344,10 +1219,51 @@
       "correctAnswer": "es",
       "explanation": "SER für Event-Ort (wo das Event stattfindet): La fiesta es en...",
       "germanBridge": "🇩🇪 Die Party ist in → 🇪🇸 La fiesta es en - SER für Veranstaltungsorte!",
-      "examples": ["El concierto es en Madrid", "La reunión es aquí"],
+      "examples": [
+        "El concierto es en Madrid",
+        "La reunión es aquí"
+      ],
       "useCase": "event-location",
       "rule": "SER für Veranstaltungsorte (Events)",
-      "contrast": "ESTAR für Objekt-Orte: 'El libro está en la mesa'"
+      "contrast": "ESTAR für Objekt-Orte: 'El libro está en la mesa'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "event",
+        "location",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Die Party ist in → 🇪🇸 La fiesta es en - SER für Veranstaltungsorte!",
+        "ESTAR für Objekt-Orte: 'El libro está en la mesa'",
+        "Rule: SER für Veranstaltungsorte (Events)"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex023",
@@ -356,12 +1272,56 @@
       "concept": "ser-religion",
       "question": "Übersetze: 'Er ist katholisch.'",
       "correctAnswer": "Él es católico",
-      "alternativeAnswers": ["él es católico", "Es católico", "es católico"],
+      "alternativeAnswers": [
+        "él es católico",
+        "Es católico",
+        "es católico"
+      ],
       "explanation": "SER für Religion: Es + católico. Religion = permanente Zugehörigkeit.",
       "germanBridge": "🇩🇪 Er ist katholisch → 🇪🇸 Es católico - SER für Religion!",
-      "examples": ["Es protestante", "Son musulmanes", "Soy cristiano"],
+      "examples": [
+        "Es protestante",
+        "Son musulmanes",
+        "Soy cristiano"
+      ],
       "useCase": "identity",
-      "rule": "SER für Religion/Weltanschauung"
+      "rule": "SER für Religion/Weltanschauung",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex010",
+        "u3_ex011",
+        "u3_ex012",
+        "u3_ex013"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "religion",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 5,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Er ist katholisch → 🇪🇸 Es católico - SER für Religion!",
+        "Rule: SER für Religion/Weltanschauung"
+      ],
+      "expectedAccuracy": 0.7000000000000001,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex024",
@@ -377,10 +1337,49 @@
       ],
       "explanation": "SER für Farbe als Eigenschaft des Objekts. ESTAR könnte für 'rot werden' (Prozess) verwendet werden.",
       "germanBridge": "🇩🇪 Das Auto ist rot → 🇪🇸 El coche es rojo (SER!)",
-      "examples": ["La casa es blanca", "El cielo es azul"],
+      "examples": [
+        "La casa es blanca",
+        "El cielo es azul"
+      ],
       "useCase": "characteristics",
       "rule": "SER für Farben (permanente Eigenschaft)",
-      "note": "Ausnahme: 'está rojo' = wird rot (wie bei Tomaten reifend)"
+      "note": "Ausnahme: 'está rojo' = wird rot (wie bei Tomaten reifend)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "color",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 12,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das Auto ist rot → 🇪🇸 El coche es rojo (SER!)",
+        "Rule: SER für Farben (permanente Eigenschaft)"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex025",
@@ -391,10 +1390,50 @@
       "correctAnswer": "es",
       "explanation": "SER für Beziehungen/Verwandtschaft: es mi + Verwandtschaft",
       "germanBridge": "🇩🇪 Sie ist meine Schwester → 🇪🇸 Es mi hermana - SER für Beziehungen!",
-      "examples": ["Es mi padre", "Son mis amigos", "Soy tu hermano"],
+      "examples": [
+        "Es mi padre",
+        "Son mis amigos",
+        "Soy tu hermano"
+      ],
       "useCase": "identity",
       "rule": "SER für Familien-/Freundschaftsbeziehungen",
-      "pattern": "SER + possessiv + Person"
+      "pattern": "SER + possessiv + Person",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "relationship",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist meine Schwester → 🇪🇸 Es mi hermana - SER für Beziehungen!",
+        "Rule: SER für Familien-/Freundschaftsbeziehungen"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex026",
@@ -403,13 +1442,56 @@
       "concept": "ser-price",
       "question": "Übersetze: 'Wie viel kostet es?' (¿Cuánto es?)",
       "correctAnswer": "¿Cuánto es?",
-      "alternativeAnswers": ["¿cuánto es?", "Cuánto es"],
+      "alternativeAnswers": [
+        "¿cuánto es?",
+        "Cuánto es"
+      ],
       "explanation": "SER für Preise: ¿Cuánto es? = Wie viel kostet es?",
       "germanBridge": "🇩🇪 Wie viel kostet es? → 🇪🇸 ¿Cuánto es? - SER für Preise!",
-      "examples": ["Son 5 euros", "Es 50 céntimos", "¿Cuánto es todo?"],
+      "examples": [
+        "Son 5 euros",
+        "Es 50 céntimos",
+        "¿Cuánto es todo?"
+      ],
       "useCase": "price",
       "rule": "SER für Preisangaben",
-      "note": "Antwort: 'Son X euros' oder 'Es X euros'"
+      "note": "Antwort: 'Son X euros' oder 'Es X euros'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "price",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Wie viel kostet es? → 🇪🇸 ¿Cuánto es? - SER für Preise!",
+        "Rule: SER für Preisangaben"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex027",
@@ -420,10 +1502,50 @@
       "correctAnswer": "es",
       "explanation": "SER für Wertungen/Einschätzungen: es + Adjektiv",
       "germanBridge": "🇩🇪 Das ist wichtig → 🇪🇸 Es importante - SER für Wertungen!",
-      "examples": ["Es necesario", "Es difícil", "Es fácil"],
+      "examples": [
+        "Es necesario",
+        "Es difícil",
+        "Es fácil"
+      ],
       "useCase": "judgment",
       "rule": "SER für Einschätzungen/Bewertungen",
-      "pattern": "Es + Adjektiv (unpersönlich)"
+      "pattern": "Es + Adjektiv (unpersönlich)",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "important",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das ist wichtig → 🇪🇸 Es importante - SER für Wertungen!",
+        "Rule: SER für Einschätzungen/Bewertungen"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex028",
@@ -440,10 +1562,50 @@
       ],
       "explanation": "SER für Passiv (Vorgangspassiv): fue escrito por = wurde geschrieben von",
       "germanBridge": "🇩🇪 wurde geschrieben → 🇪🇸 fue escrito (SER im Passiv!)",
-      "examples": ["Fue construido por arquitectos", "Es hecho en España"],
+      "examples": [
+        "Fue construido por arquitectos",
+        "Es hecho en España"
+      ],
       "useCase": "passive",
       "rule": "SER für Passiv (Handlung)",
-      "note": "Fortgeschritten - nur zur Einführung!"
+      "note": "Fortgeschritten - nur zur Einführung!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "passive",
+        "voice",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 12,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 wurde geschrieben → 🇪🇸 fue escrito (SER im Passiv!)",
+        "Rule: SER für Passiv (Handlung)"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex029",
@@ -452,12 +1614,55 @@
       "concept": "ser-comprehensive-1",
       "question": "Übersetze: 'Ich bin Lehrer und ich bin aus Deutschland.'",
       "correctAnswer": "Soy profesor y soy de Alemania",
-      "alternativeAnswers": ["soy profesor y soy de Alemania", "Yo soy profesor y soy de Alemania"],
+      "alternativeAnswers": [
+        "soy profesor y soy de Alemania",
+        "Yo soy profesor y soy de Alemania"
+      ],
       "explanation": "Beide Sätze nutzen SER: Beruf (soy profesor) + Herkunft (soy de Alemania).",
       "germanBridge": "🇩🇪 Ich bin Lehrer... aus Deutschland → 🇪🇸 Soy profesor... soy de Alemania",
-      "examples": ["Soy estudiante y soy de España", "Es doctor y es de México"],
+      "examples": [
+        "Soy estudiante y soy de España",
+        "Es doctor y es de México"
+      ],
       "useCase": "multiple",
-      "rule": "SER für Beruf UND Herkunft"
+      "rule": "SER für Beruf UND Herkunft",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u2_ex020",
+        "u3_ex016",
+        "u3_ex017",
+        "u3_ex018",
+        "u3_ex019"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "comprehensive",
+        "1",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 6,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin Lehrer... aus Deutschland → 🇪🇸 Soy profesor... soy de Alemania",
+        "Rule: SER für Beruf UND Herkunft"
+      ],
+      "expectedAccuracy": 0.65,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex030",
@@ -468,10 +1673,49 @@
       "correctAnswer": "soy",
       "explanation": "Existenzielles SER: 'Ich bin' im philosophischen Sinne.",
       "germanBridge": "🇩🇪 Ich bin (existiere) → 🇪🇸 soy - SER für Existenz!",
-      "examples": ["Soy humano", "Somos seres vivos"],
+      "examples": [
+        "Soy humano",
+        "Somos seres vivos"
+      ],
       "useCase": "existence",
       "rule": "SER für Existenz/Sein an sich",
-      "culturalNote": "Berühmtes Zitat von René Descartes: 'Cogito, ergo sum'"
+      "culturalNote": "Berühmtes Zitat von René Descartes: 'Cogito, ergo sum'",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "existential",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ich bin (existiere) → 🇪🇸 soy - SER für Existenz!",
+        "Rule: SER für Existenz/Sein an sich"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex031",
@@ -480,12 +1724,55 @@
       "concept": "ser-opinion",
       "question": "Übersetze: 'Meiner Meinung nach ist das richtig.'",
       "correctAnswer": "En mi opinión, esto es correcto",
-      "alternativeAnswers": ["en mi opinión, esto es correcto", "En mi opinión esto es correcto"],
+      "alternativeAnswers": [
+        "en mi opinión, esto es correcto",
+        "En mi opinión esto es correcto"
+      ],
       "explanation": "SER für Meinungen/Einschätzungen: es correcto/incorrecto",
       "germanBridge": "🇩🇪 Das ist richtig → 🇪🇸 Esto es correcto - SER für Urteile!",
-      "examples": ["Es verdad", "Es falso", "Es cierto"],
+      "examples": [
+        "Es verdad",
+        "Es falso",
+        "Es cierto"
+      ],
       "useCase": "judgment",
-      "rule": "SER für wahr/falsch/richtig/inkorrekt"
+      "rule": "SER für wahr/falsch/richtig/inkorrekt",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "opinion",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Das ist richtig → 🇪🇸 Esto es correcto - SER für Urteile!",
+        "Rule: SER für wahr/falsch/richtig/inkorrekt"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex032",
@@ -502,9 +1789,49 @@
       ],
       "explanation": "SER für Definitionen: X es Y (X ist Y, definitorisch)",
       "germanBridge": "🇩🇪 Ein Hund ist ein Tier → 🇪🇸 Un perro es un animal - SER für Definitionen!",
-      "examples": ["Madrid es la capital", "El agua es vida", "Un libro es cultura"],
+      "examples": [
+        "Madrid es la capital",
+        "El agua es vida",
+        "Un libro es cultura"
+      ],
       "useCase": "definition",
-      "rule": "SER für Definitionen und Kategorisierungen"
+      "rule": "SER für Definitionen und Kategorisierungen",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "definition",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 13,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Ein Hund ist ein Tier → 🇪🇸 Un perro es un animal - SER für Definitionen!",
+        "Rule: SER für Definitionen und Kategorisierungen"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": false
     },
     {
       "id": "u2_ex033",
@@ -513,12 +1840,54 @@
       "concept": "ser-comprehensive-2",
       "question": "Übersetze: 'Sie (ella) ist Spanierin, Lehrerin und sehr nett.'",
       "correctAnswer": "Ella es española, profesora y muy amable",
-      "alternativeAnswers": ["ella es española, profesora y muy amable", "Es española, profesora y muy amable"],
+      "alternativeAnswers": [
+        "ella es española, profesora y muy amable",
+        "Es española, profesora y muy amable"
+      ],
       "explanation": "Alles mit SER: Nationalität (española) + Beruf (profesora) + Charakter (amable).",
       "germanBridge": "🇩🇪 Sie ist... → 🇪🇸 Es... - alles permanente Eigenschaften!",
-      "examples": ["Es alemana, doctora y inteligente"],
+      "examples": [
+        "Es alemana, doctora y inteligente"
+      ],
       "useCase": "multiple",
-      "rule": "SER für alle permanenten Eigenschaften"
+      "rule": "SER für alle permanenten Eigenschaften",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "comprehensive",
+        "2",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Sie ist... → 🇪🇸 Es... - alles permanente Eigenschaften!",
+        "Rule: SER für alle permanenten Eigenschaften"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": true
     },
     {
       "id": "u2_ex034",
@@ -529,10 +1898,50 @@
       "correctAnswer": "Es",
       "explanation": "Unpersönliches ES mit SER: Es posible/imposible/necesario/...",
       "germanBridge": "🇩🇪 Es ist möglich → 🇪🇸 Es posible - unpersönliches SER!",
-      "examples": ["Es importante", "Es necesario", "Es difícil"],
+      "examples": [
+        "Es importante",
+        "Es necesario",
+        "Es difícil"
+      ],
       "useCase": "impersonal",
       "rule": "Es + Adjektiv (unpersönliche Konstruktion)",
-      "pattern": "Es + Adjektiv + Infinitiv"
+      "pattern": "Es + Adjektiv + Infinitiv",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-blank",
+        "ser",
+        "impersonal",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 11,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Es ist möglich → 🇪🇸 Es posible - unpersönliches SER!",
+        "Rule: Es + Adjektiv (unpersönliche Konstruktion)"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": false,
+      "certificationRequired": true
     },
     {
       "id": "u2_ex035",
@@ -543,16 +1952,95 @@
       "correctAnswer": "es, es, soy",
       "explanation": "Alle drei: SER! Datum (es lunes) + Event-Ort (es en Madrid) + Beruf (soy estudiante).",
       "germanBridge": "🇩🇪 Alles mit 'sein' → 🇪🇸 Alles mit SER (aber Achtung: später kommt ESTAR!)",
-      "examples": ["Hoy es martes", "La fiesta es aquí", "Soy profesor"],
+      "examples": [
+        "Hoy es martes",
+        "La fiesta es aquí",
+        "Soy profesor"
+      ],
       "useCase": "multiple",
       "rule": "SER für Datum, Event-Orte, Berufe",
-      "note": "Alle drei Verwendungen von SER in einem Satz!"
+      "note": "Alle drei Verwendungen von SER in einem Satz!",
+      "prerequisites": [],
+      "relatedConcepts": [
+        "estar-conjugation",
+        "tener-conjugation"
+      ],
+      "discriminationPairs": [
+        "u3_ex021",
+        "u3_ex022",
+        "u3_ex023",
+        "u3_ex024",
+        "u3_ex025"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "comprehensive",
+        "ser",
+        "all",
+        "uses",
+        "verb-ser",
+        "intermediate",
+        "german-optimized"
+      ],
+      "estimatedResponseTime": 33,
+      "memoryComplexity": 7,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 Alles mit 'sein' → 🇪🇸 Alles mit SER (aber Achtung: später kommt ESTAR!)",
+        "Rule: SER für Datum, Event-Orte, Berufe"
+      ],
+      "expectedAccuracy": 0.6,
+      "milestone": true,
+      "certificationRequired": true
     }
   ],
   "progressionNotes": {
-    "easyExercises": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    "mediumExercises": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
-    "hardExercises": [22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35],
+    "easyExercises": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "mediumExercises": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "hardExercises": [
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
     "germanAdvantages": [
       "Deutsch hat auch 'sein' - das Konzept ist vertraut",
       "Konjugation ist ähnlich komplex wie im Deutschen"
@@ -576,10 +2064,9 @@
     "doctorMnemonic": {
       "description": "DOCTOR hilft dir, SER zu erkennen",
       "D": "Description (permanente Beschreibung)",
-      "O": "Occupation (Beruf)",
+      "O": "Origin (Herkunft)",
       "C": "Characteristic (Charaktereigenschaft)",
       "T": "Time (Uhrzeit/Datum)",
-      "O": "Origin (Herkunft)",
       "R": "Relationship (Beziehung)"
     }
   }
