@@ -4773,6 +4773,11 @@ class AppController {
 
             // Load next unit
             await this.loadUnit(nextUnit);
+
+            // Save progress after successfully loading new unit
+            this.saveProgress();
+
+            console.log(`✅ Progress saved: Now at Unit ${nextUnit}`);
         } catch (error) {
             console.error(`❌ Error loading unit ${nextUnit}:`, error);
             this.ui.showError(`Fehler beim Laden von Lektion ${nextUnit}. Bitte Seite neu laden.`);
