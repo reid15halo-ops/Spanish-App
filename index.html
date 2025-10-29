@@ -2,536 +2,681 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="app-version" content="0.0">
-    <title>Spanisch-Lern-App [ASCII-ONLY]</title>
-    
-    <!-- Preload critical resources for performance -->
-    <link rel="preload" href="css/style.css" as="style">
-    <link rel="preload" href="js/app.js" as="script">
-    <link rel="preload" href="js/srs.js" as="script">
-    <link rel="preload" href="data/items.json" as="fetch" crossorigin>
-    
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="manifest" href="manifest.webmanifest">
-    <meta name="theme-color" content="#22273a">
-    <meta name="description" content="ASCII-only Spanish learning app with SRS, no gamification">
-    <!-- No-Gamification Build Guard CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanish Learning App - Zero Friction</title>
+    <meta name="description" content="Spanisch lernen für deutsche Muttersprachler - Fokussiert, minimalistisch, effektiv">
+
     <style>
-        .nogame-banner {
-            position: fixed;
+        /* ============================================
+           ZERO-FRICTION UI - DESIGN SYSTEM
+           ============================================ */
+
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Colors */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --text-primary: #1A1A1A;
+            --text-secondary: #333333;
+            --text-muted: #555555;
+            --accent: #20B2AA;
+            --accent-hover: #1A9993;
+            --success: #2E7D32;
+            --error: #C62828;
+            --warning: #F57C00;
+            --info: #1976D2;
+            --border: #E0E0E0;
+            --border-focus: #20B2AA;
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --font-size-base: 16px;
+            --font-size-large: 18px;
+            --font-size-xl: 20px;
+            --font-size-small: 14px;
+            --font-size-xs: 12px;
+            --line-height: 1.5;
+
+            /* Spacing (8px grid) */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 48px;
+
+            /* Border Radius */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height);
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+
+        .app-container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header - Minimal */
+        .minimal-header {
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+            padding: var(--space-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 10000;
-            background: linear-gradient(90deg, #dc3545, #c82333);
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .status-bar {
+            font-size: var(--font-size-small);
+            color: var(--text-muted);
+            display: flex;
+            gap: var(--space-md);
+            align-items: center;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        /* Main Exercise Area */
+        .exercise-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-lg);
+        }
+
+        /* ============================================
+           EXERCISE CARD
+           ============================================ */
+
+        .exercise-card {
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            padding: var(--space-xl);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .exercise-card {
+                padding: var(--space-xxl);
+                max-width: 700px;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .exercise-card {
+                max-width: 800px;
+            }
+        }
+
+        /* German Bridge */
+        .german-bridge {
+            background: var(--info);
             color: white;
-            padding: 15px;
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-lg);
+            font-size: var(--font-size-small);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .german-bridge.hidden {
+            display: none;
+        }
+
+        /* Question */
+        .question {
+            font-size: var(--font-size-xl);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--space-xl);
+            line-height: 1.6;
+        }
+
+        .question .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Answer Options */
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .answer-btn {
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-md);
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-base);
+            font-family: var(--font-family);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .answer-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .answer-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .answer-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .answer-btn.correct {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+            animation: correctPulse 0.3s ease;
+        }
+
+        .answer-btn.incorrect {
+            background: var(--error);
+            border-color: var(--error);
+            color: white;
+            animation: shake 0.3s ease;
+        }
+
+        .answer-text {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-xs);
+        }
+
+        .answer-es {
+            font-weight: 500;
+            font-size: var(--font-size-large);
+        }
+
+        .answer-de {
+            font-size: var(--font-size-small);
+            opacity: 0.8;
+        }
+
+        /* Text Input */
+        .text-input {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-large);
+            font-family: var(--font-family);
+            border: 2px solid var(--border);
+            border-radius: var(--radius-md);
+            transition: border-color var(--transition-normal);
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(32, 178, 170, 0.1);
+        }
+
+        .text-input.correct {
+            border-color: var(--success);
+            background: rgba(46, 125, 50, 0.05);
+        }
+
+        .text-input.incorrect {
+            border-color: var(--error);
+            background: rgba(198, 40, 40, 0.05);
+            animation: shake 0.3s ease;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: var(--space-md) var(--space-lg);
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            font-family: var(--font-family);
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            margin-top: var(--space-lg);
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .submit-btn:focus {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        /* Feedback */
+        .feedback {
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-lg);
+            font-size: var(--font-size-base);
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback.show {
+            display: block;
+        }
+
+        .feedback.success {
+            background: rgba(46, 125, 50, 0.1);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .feedback.error {
+            background: rgba(198, 40, 40, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+        }
+
+        /* Hint Container */
+        .hint-container {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        .hint-container.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .hint-btn {
+            background: var(--warning);
+            color: white;
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-small);
+            cursor: pointer;
+            transition: all var(--transition-normal);
+        }
+
+        .hint-btn:hover {
+            background: #E67600;
+        }
+
+        .hint-content {
+            margin-top: var(--space-md);
+            padding: var(--space-md);
+            background: white;
+            border-radius: var(--radius-sm);
+            border-left: 4px solid var(--warning);
+        }
+
+        .hint-level {
+            font-size: var(--font-size-xs);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: var(--space-xs);
+        }
+
+        /* Explanation */
+        .explanation {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--info);
+            display: none;
+        }
+
+        .explanation.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .explanation h4 {
+            margin-bottom: var(--space-md);
+            color: var(--info);
+        }
+
+        .explanation p {
+            margin-bottom: var(--space-sm);
+            line-height: 1.6;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 4px;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: var(--space-xl);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            transition: width var(--transition-slow);
+        }
+
+        .progress-text {
             text-align: center;
-            font-weight: bold;
-            font-size: 1.1em;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            transform: translateY(-100%);
-            transition: transform 0.3s ease;
+            margin-top: var(--space-sm);
+            font-size: var(--font-size-xs);
+            color: var(--text-muted);
         }
-        .nogame-banner.show {
-            transform: translateY(0);
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .nogame-banner a {
-            color: #fff;
-            text-decoration: underline;
-            margin-left: 10px;
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
-        .nogame-status {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 9999;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-            transition: all 0.3s ease;
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
         }
-        .nogame-status.clean {
-            background: #d4edda;
-            color: #155724;
-            border: 2px solid #c3e6cb;
+
+        /* ============================================
+           ACCESSIBILITY
+           ============================================ */
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
         }
-        .nogame-status.violation {
-            background: #f8d7da;
-            color: #721c24;
-            border: 2px solid #f5c6cb;
-            animation: pulse 2s infinite;
+
+        /* Focus visible for keyboard users */
+        *:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.7; }
-            100% { opacity: 1; }
+
+        /* ============================================
+           LOADING & ERROR STATES
+           ============================================ */
+
+        .loading {
+            text-align: center;
+            padding: var(--space-xxl);
+            color: var(--text-muted);
         }
-        body.nogame-blocked {
-            pointer-events: none;
-            filter: blur(2px);
-        }
-        .nogame-banner ~ * {
-            margin-top: 60px;
-        }
-        /* ASCII compliance notice */
-        .ascii-notice {
-            background: #e7f3ff;
-            border: 1px solid #0056b3;
-            color: #0056b3;
-            padding: 10px;
-            margin: 10px;
-            border-radius: 5px;
-            font-size: 0.9em;
+
+        .error-message {
+            background: rgba(198, 40, 40, 0.1);
+            border: 1px solid var(--error);
+            color: var(--error);
+            padding: var(--space-lg);
+            border-radius: var(--radius-md);
             text-align: center;
         }
-        /* ASCII status indicator */
-        .ascii-status {
-            position: fixed;
-            top: 50px;
-            right: 10px;
-            z-index: 9998;
-            padding: 6px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            font-weight: bold;
-            transition: all 0.3s ease;
+
+        /* ============================================
+           MOBILE OPTIMIZATIONS
+           ============================================ */
+
+        @media (max-width: 768px) {
+            .minimal-header {
+                padding: var(--space-sm) var(--space-md);
+            }
+
+            .logo {
+                font-size: var(--font-size-base);
+            }
+
+            .status-bar {
+                font-size: var(--font-size-xs);
+                gap: var(--space-sm);
+            }
+
+            .exercise-area {
+                padding: var(--space-md);
+            }
+
+            .exercise-card {
+                padding: var(--space-lg);
+            }
+
+            .question {
+                font-size: var(--font-size-large);
+            }
+
+            .answer-btn {
+                padding: var(--space-md);
+            }
         }
-        .ascii-status.compliant {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
+
+        /* ============================================
+           UTILITY CLASSES
+           ============================================ */
+
+        .hidden {
+            display: none !important;
         }
-        .ascii-status.non-compliant {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-lg {
+            margin-top: var(--space-lg);
+        }
+
+        .mb-lg {
+            margin-bottom: var(--space-lg);
         }
     </style>
 </head>
 <body>
-    <!-- Skip link for keyboard navigation -->
-    <a href="#app-main" class="skip-link">Skip to main content</a>
-    
-    <!-- ARIA live region for screen reader announcements -->
-    <div id="aria-live-region" role="status" aria-live="polite" aria-atomic="true"></div>
-    
-    <!-- ASCII Compliance Notice -->
-    <div class="ascii-notice">
-        ⚠️ ASCII-ONLY Version: Deutsche Umlaute normalisiert (ae, oe, ue, ss)
-    </div>
-
-    <!-- No-Gamification Status Banner -->
-    <div id="nogame-banner" class="nogame-banner">
-        🛡️ GAMIFICATION ERKANNT - BUILD BLOCKIERT
-        <a href="test.html" target="_blank">→ Test Report</a>
-    </div>
-    
-    <!-- No-Gamification Status Indicator -->
-    <div id="nogame-status" class="nogame-status clean">
-        ✅ Clean
-    </div>
-
-    <!-- ASCII Compliance Status -->
-    <div id="ascii-status" class="ascii-status compliant">
-        🔤 ASCII-OK
-    </div>
-
-    <header class="app-header" role="banner">
-        <div id="debug-toolbar" role="toolbar" aria-label="Debug controls">
-            <select id="debug-mode-select" aria-label="Learning mode">
-                <option value="learn">Lernen</option>
-                <option value="srs">Ueben</option>
-                <option value="conjugation">Konjugation</option>
-                <option value="free-pick">Freie Wahl</option>
-            </select>
-            <select id="debug-force-type-select">
-                <option value="">Typ erzwingen</option>
-                <option value="choice">Multiple Choice</option>
-                <option value="typing">Luecke</option>
-                <option value="conjugation">Konjugation</option>
-                <option value="sentence">Satz</option>
-                <option value="match">Match</option>
-            </select>
-            <label>SRS: <input type="checkbox" id="debug-srs-toggle" checked></label>
-            <button id="debug-srs-reset-box">Box 0</button>
-            <button id="debug-srs-due-now">Faellig</button>
-            <button id="debug-db-reimport">DB Re-Import</button>
-            <button id="ascii-migrate-btn">ASCII Migration</button>
-            <button id="ascii-verify-btn">ASCII Verify</button>
-            <button id="conjugator-test-btn">Test Konjugator</button>
-            <button id="zeiten-workbench-btn" onclick="window.open('zeiten-workbench.html', '_blank')">📚 Zeiten-Workbench</button>
-            <button id="zeiten-uebungen-btn" onclick="window.open('zeiten-uebungen.html', '_blank')">🎯 Zeiten-Uebungen</button>
-            <button id="explain-test-btn" onclick="window.open('explain-test.html', '_blank')">🔍 Fehlererklaerungen</button>
-            <button id="sentence-analyzer-btn" onclick="window.open('sentence-analyzer-test.html', '_blank')">📝 Satzanalyse</button>
-            <button id="verb-pack-btn" onclick="window.open('verb-pack-test.html', '_blank')">📦 Verb-Packs</button>
-            <button id="periphrastic-btn" onclick="window.open('periphrastic-test.html', '_blank')">🔄 Periphrasen</button>
-            <button id="timeline-btn" onclick="window.open('timeline-view.html', '_blank')">⏰ Zeitachse</button>
-            <button id="diagnostic-btn" onclick="window.open('diagnostic-test.html', '_blank')">🔍 Diagnose</button>
-            <button id="csv-import-btn" onclick="window.open('csv-import-export.html', '_blank')">📁 CSV Import</button>
-        </div>
-        <div class="settings-container">
-            <button id="dark-mode-toggle" aria-label="Dark Mode umschalten">🌙</button>
-        </div>
-    </header>
-
-    <main id="app-main" class="app-main" role="main">
-        <div id="exercise-container" class="exercise-container" role="region" aria-label="Exercise area"></div>
-        <div id="feedback-container" class="feedback-container" role="region" aria-label="Feedback area" aria-live="polite"></div>
-        <div id="free-pick-container" class="free-pick-container" style="display: none;">
-            <h2>Freie Auswahl</h2>
-            <div class="filters">
-                <input type="text" id="free-pick-filter-text" placeholder="Text filtern...">
-                <select id="free-pick-filter-tag"><option value="">Tag...</option></select>
+    <div id="app" class="app-container">
+        <!-- Minimal Header -->
+        <header class="minimal-header">
+            <div class="logo">Spanish Learning App</div>
+            <div class="status-bar">
+                <div class="status-item">
+                    <span id="unit-status">Unit 1/7</span>
+                </div>
+                <div class="status-item">
+                    <span id="exercise-status">0/0</span>
+                </div>
             </div>
-            <ul id="free-pick-list"></ul>
-        </div>
-    </main>
+        </header>
 
-    <footer id="app-footer" class="app-footer" role="contentinfo">
-        <div id="status-bar" role="status" aria-live="polite"></div>
-        <button id="check-btn" class="footer-btn" aria-label="Check answer or proceed to next exercise">Ueberpruefen</button>
-        <button id="repeat-item-btn" class="footer-btn-secondary" style="display: none;" aria-label="Repeat current item">Item wiederholen</button>
-        <button id="repeat-round-btn" class="footer-btn-secondary" style="display: none;" aria-label="Repeat current round">Runde wiederholen</button>
-    </footer>
+        <!-- Main Exercise Area -->
+        <main class="exercise-area">
+            <!-- Loading State -->
+            <div id="loading" class="loading">
+                <p>Übungen werden geladen...</p>
+            </div>
 
-    <div id="error-overlay" style="display: none;">
-        <div class="error-content">
-            <h2>Unhandled Error</h2>
-            <pre id="error-stack"></pre>
-            <textarea id="error-state-dump"></textarea>
-            <button id="error-copy-btn">Copy</button>
-            <button id="error-close-btn">Close</button>
-        </div>
+            <!-- Error State -->
+            <div id="error" class="error-message hidden">
+                <p>Fehler beim Laden der Übungen.</p>
+                <button onclick="location.reload()" class="submit-btn mt-lg">
+                    Neu laden
+                </button>
+            </div>
+
+            <!-- Exercise Card -->
+            <div id="exercise-card" class="exercise-card hidden">
+                <!-- German Bridge (optional) -->
+                <div id="german-bridge" class="german-bridge hidden">
+                    <span>💡</span>
+                    <span id="bridge-text"></span>
+                </div>
+
+                <!-- Question -->
+                <div class="question">
+                    <p id="question-text"></p>
+                </div>
+
+                <!-- Answer Options (Dynamic) -->
+                <div id="answer-container">
+                    <!-- Multiple Choice or Text Input inserted here -->
+                </div>
+
+                <!-- Feedback -->
+                <div id="feedback" class="feedback">
+                    <p id="feedback-text"></p>
+                </div>
+
+                <!-- Hint Container -->
+                <div id="hint-container" class="hint-container">
+                    <button id="hint-btn" class="hint-btn">
+                        💡 Hinweis anzeigen
+                    </button>
+                    <div id="hint-content" class="hint-content hidden">
+                        <div class="hint-level" id="hint-level"></div>
+                        <p id="hint-text"></p>
+                    </div>
+                </div>
+
+                <!-- Explanation -->
+                <div id="explanation" class="explanation">
+                    <h4>Erklärung:</h4>
+                    <div id="explanation-content"></div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progress-text">0% abgeschlossen</span>
+                </div>
+            </div>
+        </main>
     </div>
 
-    <!-- ASCII Normalization Utils -->
-    <script src="js/utils/ascii.js"></script>
-    
-    <!-- Performance Utilities -->
-    <script src="js/utils/performance.js"></script>
-    
-    <!-- A11y & Performance Hardening -->
-    <script src="js/utils/a11y-perf-hardening.js"></script>
-    
-    <!-- Spanish Normalization -->
-    <script src="js/normalize-es.js"></script>
-    
-    <!-- Conjugation System -->
-    <script src="js/conjugator.js"></script>
-    
-    <!-- Migration Tools -->
-    <script src="js/utils/migrator.js"></script>
+    <!-- Load Logic Modules -->
+    <script src="js/phase1-controller.js"></script>
+    <script src="js/adaptive-learning-orchestrator.js"></script>
+    <script src="js/german-spanish-learning-system.js"></script>
+    <script src="js/vocabulary-loader.js"></script>
 
-    <!-- Final Verification -->
-    <script src="js/utils/final-verification.js"></script>
+    <!-- App Controller (Integration Layer) -->
+    <script src="js/app-controller.js"></script>
 
-    <!-- Verb Build Reporter -->
-    <script src="js/utils/verb-build-reporter.js"></script>
-    
-    <!-- Error Explainer System -->
-    <script src="js/explain.js"></script>
-    <script src="js/explain-ui.js"></script>
-    
-    <!-- Sentence Analyzer -->
-    <script src="js/sentence-analyzer.js"></script>
-    
-    <!-- Verb Pack System -->
-    <script src="js/verb-pack-system.js"></script>
-    
-    <!-- Periphrastic System -->
-    <script src="js/periphrastic-system.js"></script>
-    
-    <!-- No-Gamification Build Guard -->
-    <script src="js/no-gamification.lint.js"></script>
-    <script src="test/nogame-dom-spec.js"></script>
-    <script src="test/nogame-db-spec.js"></script>
+    <!-- UI Controller -->
+    <script src="js/ui-controller.js"></script>
+
+    <!-- Initialize App -->
     <script>
-        // No-Gamification Build Guard - Auto-run on page load
-        class BuildGuard {
-            constructor() {
-                this.banner = document.getElementById('nogame-banner');
-                this.status = document.getElementById('nogame-status');
-                this.isBlocked = false;
-            }
-
-            async runGuard() {
-                try {
-                    console.log('🛡️ Running No-Gamification Build Guard...');
-                    
-                    // Quick lint check
-                    const linter = new NoGamificationLinter();
-                    const lintResult = await linter.scanWorkspace();
-                    
-                    // Quick DOM check
-                    const domGuard = new NoGamificationDOMGuard();
-                    const domResult = await domGuard.scanDOM();
-                    
-                    // Quick DB check  
-                    const dbGuard = new NoGamificationDBGuard();
-                    const dbResult = await dbGuard.scanDatabase();
-                    
-                    const allPassed = lintResult.passed && domResult.passed && dbGuard.passed;
-                    const totalViolations = (lintResult.violations?.length || 0) + 
-                                          (domResult.violations?.length || 0) + 
-                                          (dbResult.violations?.length || 0);
-                    
-                    if (allPassed) {
-                        this.showClean();
-                    } else {
-                        this.showViolation(totalViolations);
-                    }
-                    
-                    console.log(`🛡️ Build Guard: ${allPassed ? 'CLEAN' : 'BLOCKED'} (${totalViolations} violations)`);
-                    
-                } catch (error) {
-                    console.error('Build Guard failed:', error);
-                    this.showError(error.message);
-                }
-            }
-
-            showClean() {
-                this.status.className = 'nogame-status clean';
-                this.status.textContent = '✅ Clean';
-                this.banner.classList.remove('show');
-                document.body.classList.remove('nogame-blocked');
-                this.isBlocked = false;
-            }
-
-            showViolation(count) {
-                this.status.className = 'nogame-status violation';
-                this.status.textContent = `❌ ${count} Violations`;
-                this.banner.classList.add('show');
-                document.body.classList.add('nogame-blocked');
-                this.isBlocked = true;
-            }
-
-            showError(message) {
-                this.status.className = 'nogame-status violation';
-                this.status.textContent = '⚠️ Error';
-                console.error('Build Guard Error:', message);
-            }
-        }
-
-        // ASCII Compliance Guard
-        class AsciiComplianceGuard {
-            constructor() {
-                this.violations = [];
-                this.statusElement = document.getElementById('ascii-status');
-            }
-
-            async runComplianceCheck() {
-                console.group('🔤 ASCII Compliance Check');
-                
-                try {
-                    this.violations = [];
-                    
-                    // Check current page content
-                    this.checkPageContent();
-                    
-                    // Check UI elements
-                    this.checkUIElements();
-                    
-                    // Update status
-                    this.updateStatus();
-                    
-                    if (this.violations.length === 0) {
-                        console.log('✅ ASCII Compliance: All checks passed');
-                    } else {
-                        console.warn(`❌ ASCII Compliance: ${this.violations.length} violations found`);
-                        this.violations.forEach(v => console.warn(v));
-                    }
-                    
-                } catch (error) {
-                    console.error('ASCII compliance check failed:', error);
-                }
-                
-                console.groupEnd();
-            }
-
-            checkPageContent() {
-                try {
-                    const pageText = document.body.innerText;
-                    const violations = asciiNormalizer.scanForViolations(pageText);
-                    
-                    if (violations.length > 0) {
-                        this.violations.push({
-                            type: 'page-content',
-                            violations,
-                            message: 'German umlauts found in page content'
-                        });
-                    }
-                } catch (error) {
-                    console.warn('Could not check page content:', error);
-                }
-            }
-
-            checkUIElements() {
-                // Check common UI elements for ASCII compliance
-                const elementsToCheck = [
-                    '#status-bar',
-                    '#check-btn',
-                    '#repeat-item-btn',
-                    '#repeat-round-btn',
-                    '.exercise-type',
-                    '.direction',
-                    '.feedback-text'
-                ];
-
-                elementsToCheck.forEach(selector => {
-                    try {
-                        const element = document.querySelector(selector);
-                        if (element && element.textContent) {
-                            const violations = asciiNormalizer.scanForViolations(element.textContent);
-                            if (violations.length > 0) {
-                                this.violations.push({
-                                    type: 'ui-element',
-                                    selector,
-                                    violations,
-                                    text: element.textContent
-                                });
-                            }
-                        }
-                    } catch (error) {
-                        // Element not found, ignore
-                    }
-                });
-            }
-
-            updateStatus() {
-                if (this.statusElement) {
-                    if (this.violations.length === 0) {
-                        this.statusElement.className = 'ascii-status compliant';
-                        this.statusElement.textContent = '🔤 ASCII-OK';
-                    } else {
-                        this.statusElement.className = 'ascii-status non-compliant';
-                        this.statusElement.textContent = `🔤 ${this.violations.length} Issues`;
-                    }
-                }
-            }
-        }
-
-        // Initialize guards
-        let buildGuard;
-        let asciiGuard;
-        
+        // Start app when DOM is ready
         document.addEventListener('DOMContentLoaded', () => {
-            buildGuard = new BuildGuard();
-            asciiGuard = new AsciiComplianceGuard();
-            
-            // Run guards after a short delay
-            setTimeout(async () => {
-                await buildGuard.runGuard();
-                await asciiGuard.runComplianceCheck();
-            }, 1000);
-            
-            // Re-run guards when page becomes visible
-            document.addEventListener('visibilitychange', () => {
-                if (!document.hidden) {
-                    setTimeout(async () => {
-                        await buildGuard.runGuard();
-                        await asciiGuard.runComplianceCheck();
-                    }, 100);
-                }
-            });
+            console.log('✅ Spanish Learning App - Zero Friction UI');
+            console.log('📚 Initializing...');
 
-            // ASCII Migration Button
-            const migrateBtnElement = document.getElementById('ascii-migrate-btn');
-            if (migrateBtnElement) {
-                migrateBtnElement.addEventListener('click', async () => {
-                    try {
-                        console.log('🔄 Starting ASCII migration...');
-                        const migrator = new DataMigrator();
-                        await migrator.migrateItemsJson();
-                        
-                        // Refresh app after migration
-                        if (window.app) {
-                            window.app.loadVocabulary();
-                        }
-                    } catch (error) {
-                        console.error('Migration failed:', error);
-                        alert('Migration fehlgeschlagen: ' + error.message);
-                    }
-                });
+            // Check if required modules are loaded
+            if (typeof Phase1Controller === 'undefined') {
+                console.error('❌ Phase1Controller not loaded');
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+                return;
             }
 
-            // ASCII Verification Button
-            const verifyBtnElement = document.getElementById('ascii-verify-btn');
-            if (verifyBtnElement) {
-                verifyBtnElement.addEventListener('click', async () => {
-                    try {
-                        console.log('🔍 Starting comprehensive ASCII verification...');
-                        const verifier = new FinalAsciiVerification();
-                        const results = await verifier.runFullVerification();
-                        
-                        if (results.overallPassed) {
-                            alert('✅ ASCII Verification PASSED! Check console for details.');
-                        } else {
-                            alert('❌ ASCII Verification FAILED! Check console for details.');
-                        }
-                    } catch (error) {
-                        console.error('Verification failed:', error);
-                        alert('Verification fehlgeschlagen: ' + error.message);
-                    }
-                });
-            }
+            // Initialize UI Controller
+            window.uiController = new UIController();
 
-            // Conjugator Test Button
-            const conjugatorTestBtnElement = document.getElementById('conjugator-test-btn');
-            if (conjugatorTestBtnElement) {
-                conjugatorTestBtnElement.addEventListener('click', async () => {
-                    try {
-                        console.log('🔤 Starting comprehensive conjugator tests...');
-                        if (window.app && window.app.conjugatorLoaded) {
-                            
-                            // Initialize build reporter
-                            const reporter = new VerbBuildReporter(window.app.conjugator);
-                            
-                            // Generate comprehensive report
-                            const report = await reporter.generateBuildReport();
-                            
-                            // Print summary to console
-                            reporter.printSummary(report);
-                            
-                            // Show user feedback
-                            const status = report.summary?.overallStatus || 'UNKNOWN';
-                            const verbCount = report.summary?.verbsLoaded || 0;
-                            const conjugationRate = report.summary?.conjugationSuccessRate || 0;
-                            const analysisRate = report.summary?.analysisAccuracyRate || 0;
-                            
-                            let message = `🔤 CONJUGATOR BUILD REPORT\\n\\n`;
-                            message += `Status: ${status}\\n`;
-                            message += `Verbs: ${verbCount}\\n`;
-                            message += `Conjugation Success: ${conjugationRate.toFixed(1)}%\\n`;
-                            message += `Analysis Accuracy: ${analysisRate.toFixed(1)}%\\n\\n`;
-                            message += `Detailed report saved as verb-build-report.json\\n`;
-                            message += `Check console for full details.`;
-                            
-                            alert(message);
-                            
-                        } else {
-                            alert('❌ Conjugator not loaded yet.');
-                        }
-                    } catch (error) {
-                        console.error('Conjugator test failed:', error);
-                        alert('❌ Conjugator test failed: ' + error.message);
-                    }
-                });
-            }
+            // Initialize App Controller
+            window.appController = new AppController(window.uiController);
+
+            // Start the app
+            window.appController.initialize();
         });
-
-        // Periodic guard check (every 30 seconds)
-        setInterval(async () => {
-            if (buildGuard && asciiGuard && !document.hidden) {
-                await buildGuard.runGuard();
-                await asciiGuard.runComplianceCheck();
-            }
-        }, 30000);
     </script>
-
-    <script src="js/srs.js"></script>
-    <script src="js/app.js"></script>
 </body>
 </html>
