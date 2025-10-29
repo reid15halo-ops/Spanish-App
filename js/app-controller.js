@@ -138,6 +138,7 @@ class AppController {
 
     /**
      * Load unit data from file
+     * MODIFIED: Use mock exercises directly if JSON files not available
      */
     async loadUnitData(unitNumber) {
         const unitFiles = {
@@ -165,9 +166,37 @@ class AppController {
             const data = await response.json();
             return data;
         } catch (error) {
-            console.error(`Error loading ${path}:`, error);
-            throw error;
+            console.warn(`⚠️ Could not load ${path}, using mock exercises instead`);
+            console.log('💡 This is expected when opening index.html directly (file://)');
+            console.log('💡 The mock exercises provide 10 demo exercises for testing');
+
+            // Fallback to mock exercises from Phase1Controller
+            if (this.phase1 && this.phase1.exercises) {
+                return {
+                    unitNumber: unitNumber,
+                    unitName: this.getUnitName(unitNumber),
+                    exercises: this.phase1.exercises
+                };
+            }
+
+            throw new Error('No exercises available (neither JSON files nor mock exercises)');
         }
+    }
+
+    /**
+     * Get unit name by number
+     */
+    getUnitName(unitNumber) {
+        const unitNames = {
+            1: 'Pronomen',
+            2: 'SER',
+            3: 'ESTAR',
+            4: 'SER/ESTAR Kontrast',
+            5: 'TENER',
+            6: 'Vokabular',
+            7: 'Integration'
+        };
+        return unitNames[unitNumber] || `Unit ${unitNumber}`;
     }
 
     /**
