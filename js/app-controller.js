@@ -17,7 +17,9 @@ class AppController {
         this.templateEngine = null;
         this.dynamicGenerator = null;
         this.progressTracker = null;
-        this.useDynamicExercises = false; // Toggle for dynamic vs static
+        this.useDynamicExercises = false; // Set to true after initialization
+        this.maxStaticUnits = 7; // Units 1-7 are static, 8+ are dynamic
+        this.totalUnits = 50; // Extended to 50 units with dynamic system
 
         this.state = {
             currentUnit: 1,
@@ -168,7 +170,7 @@ class AppController {
             this.state.currentExerciseIndex = 0;
 
             // Update UI status
-            this.ui.updateStatus(unitNumber, 7, 1, this.state.exercises.length);
+            this.ui.updateStatus(unitNumber, this.totalUnits, 1, this.state.exercises.length);
 
             // Load first exercise
             this.loadExercise(0);
@@ -182,10 +184,18 @@ class AppController {
     }
 
     /**
-     * Load unit data from file
-     * MODIFIED: Use mock exercises directly if JSON files not available
+     * Load unit data from file or generate dynamically
+     * Units 1-7: Static exercises (Basics)
+     * Units 8+: Dynamically generated adaptive exercises
      */
     async loadUnitData(unitNumber) {
+        // Check if we should use dynamic exercises
+        if (unitNumber > this.maxStaticUnits && this.useDynamicExercises && this.dynamicGenerator) {
+            console.log(`🎯 Generating dynamic exercises for Unit ${unitNumber}...`);
+            return this.generateDynamicUnit(unitNumber);
+        }
+
+        // Load static units (1-7)
         const unitFiles = {
             1: 'unit1-pronouns.json',
             2: 'unit2-ser.json',
@@ -197,8 +207,14 @@ class AppController {
         };
 
         const filename = unitFiles[unitNumber];
-        if (!filename) {
+        if (!filename && unitNumber <= this.maxStaticUnits) {
             throw new Error(`Invalid unit number: ${unitNumber}`);
+        }
+
+        // If unit > 7 but dynamic system not available, generate fallback
+        if (!filename && !this.useDynamicExercises) {
+            console.warn(`⚠️ Unit ${unitNumber} not available, dynamic system disabled`);
+            return this.generateFallbackUnit(unitNumber);
         }
 
         const path = `data/phase1-exercises/${filename}`;
@@ -229,10 +245,43 @@ class AppController {
     }
 
     /**
+     * Generate dynamic unit (Units 8+)
+     */
+    generateDynamicUnit(unitNumber) {
+        const exerciseCount = 10; // 10 exercises per unit
+        const exercises = this.dynamicGenerator.generateNext(exerciseCount);
+
+        return {
+            unitNumber: unitNumber,
+            unitName: this.getUnitName(unitNumber),
+            exercises: exercises,
+            isDynamic: true
+        };
+    }
+
+    /**
+     * Generate fallback unit when dynamic system not available
+     */
+    generateFallbackUnit(unitNumber) {
+        // Use Phase1 mock exercises as fallback
+        if (this.phase1 && this.phase1.exercises) {
+            return {
+                unitNumber: unitNumber,
+                unitName: this.getUnitName(unitNumber),
+                exercises: this.phase1.exercises,
+                isFallback: true
+            };
+        }
+
+        throw new Error(`Unit ${unitNumber} not available`);
+    }
+
+    /**
      * Get unit name by number
      */
     getUnitName(unitNumber) {
-        const unitNames = {
+        // Static units (1-7) - Basics
+        const staticUnitNames = {
             1: 'Pronomen',
             2: 'SER',
             3: 'ESTAR',
@@ -241,7 +290,35 @@ class AppController {
             6: 'Vokabular',
             7: 'Integration'
         };
-        return unitNames[unitNumber] || `Unit ${unitNumber}`;
+
+        if (unitNumber <= this.maxStaticUnits) {
+            return staticUnitNames[unitNumber] || `Unit ${unitNumber}`;
+        }
+
+        // Dynamic units (8+) - Themed units
+        const dynamicThemes = {
+            8: 'Zahlen & Zeit',
+            9: 'Familie & Menschen',
+            10: 'Essen & Trinken',
+            11: 'Reisen & Orte',
+            12: 'Alltag & Aktivitäten',
+            13: 'Gefühle & Eigenschaften',
+            14: 'Wetter & Natur',
+            15: 'Hobbys & Freizeit',
+            16: 'Arbeit & Beruf',
+            17: 'Gesundheit & Körper',
+            18: 'Kleidung & Mode',
+            19: 'Technologie & Medien',
+            20: 'Kultur & Feste'
+        };
+
+        if (dynamicThemes[unitNumber]) {
+            return dynamicThemes[unitNumber];
+        }
+
+        // For units beyond 20, use generic adaptive names
+        const level = Math.floor((unitNumber - 8) / 5) + 1; // Level 1 = Units 8-12, Level 2 = 13-17, etc.
+        return `Adaptives Training (Level ${level})`;
     }
 
     /**
@@ -265,7 +342,7 @@ class AppController {
         // Update status and progress
         this.ui.updateStatus(
             this.state.currentUnit,
-            7,
+            this.totalUnits,
             index + 1,
             this.state.exercises.length
         );
@@ -583,7 +660,7 @@ class AppController {
     async loadNextUnit() {
         const nextUnit = this.state.currentUnit + 1;
 
-        if (nextUnit > 7) {
+        if (nextUnit > this.totalUnits) {
             console.log('🎊 All units completed!');
             return;
         }
@@ -612,7 +689,7 @@ class AppController {
     showUnitCompletion() {
         console.log('🎉 Unit completed!');
 
-        this.ui.showCompletion(this.state.sessionStats, this.state.currentUnit, 7);
+        this.ui.showCompletion(this.state.sessionStats, this.state.currentUnit, this.totalUnits);
 
         // Save progress
         this.saveProgress();
