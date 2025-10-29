@@ -563,26 +563,51 @@ class UIController {
     /**
      * Show completion message
      */
-    showCompletion(stats) {
+    showCompletion(stats, currentUnit = 1, totalUnits = 7) {
         const accuracy = Math.round((stats.correct / stats.total) * 100);
         const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
+        const hasNextUnit = currentUnit < totalUnits;
 
         const html = `
             <div class="text-center">
                 <h2 style="font-size: 32px; margin-bottom: 24px;">${emoji}</h2>
-                <h3 style="margin-bottom: 16px;">Unit abgeschlossen!</h3>
+                <h3 style="margin-bottom: 16px;">Lektion ${currentUnit} abgeschlossen!</h3>
                 <p style="font-size: 24px; margin-bottom: 24px;">
                     ${stats.correct}/${stats.total} richtig (${accuracy}%)
                 </p>
-                <button class="submit-btn" onclick="location.reload()">
-                    Weiter üben
-                </button>
+                ${hasNextUnit ? `
+                    <button class="submit-btn" id="next-unit-btn" style="margin-bottom: 16px;">
+                        Nächste Lektion (${currentUnit + 1}/${totalUnits}) →
+                    </button>
+                    <br>
+                    <button class="submit-btn" onclick="location.reload()" style="background: var(--bg-secondary); opacity: 0.7;">
+                        Diese Lektion wiederholen
+                    </button>
+                ` : `
+                    <p style="margin-bottom: 24px; color: var(--success); font-weight: bold;">
+                        🎊 Alle Lektionen abgeschlossen! 🎊
+                    </p>
+                    <button class="submit-btn" onclick="location.reload()">
+                        Von vorne beginnen
+                    </button>
+                `}
             </div>
         `;
 
         this.elements.answerContainer.innerHTML = html;
         this.hideFeedback();
         this.hideHints();
+
+        // Attach next unit button handler
+        if (hasNextUnit) {
+            const nextBtn = document.getElementById('next-unit-btn');
+            if (nextBtn && this.onNextUnit) {
+                nextBtn.addEventListener('click', () => {
+                    this.onNextUnit();
+                });
+                nextBtn.focus();
+            }
+        }
     }
 
     /**

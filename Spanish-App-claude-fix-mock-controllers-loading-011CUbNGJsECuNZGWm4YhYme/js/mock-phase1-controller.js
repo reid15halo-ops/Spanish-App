@@ -284,63 +284,89 @@ class Phase1Controller {
                 `
             },
 
-            // TENER Exercise
+            // TENER Exercise - FIXED: Consistent format!
             {
                 id: 'mock_tener_1',
                 type: 'multiple-choice',
                 concept: 'tener-age',
                 difficulty: 4,
-                question: 'Wie sagt man "Ich bin 25 Jahre alt" auf Spanisch?',
-                correctAnswer: 'Yo tengo 25 años',
+                question: 'Vervollständige: "Yo ___ 25 años" (Ich bin 25 Jahre alt)',
+                correctAnswer: 'tengo',
                 german: 'Ich bin 25 Jahre alt',
-                germanBridge: '⚠️ Achtung! Im Spanischen: TENER (haben) für Alter, nicht SER!',
+                germanBridge: '⚠️ Häufiger Fehler! Deutsch: "Ich BIN alt" → Spanisch: "Yo TENGO años"',
                 options: [
-                    { spanish: 'Yo tengo 25 años', german: '(ich habe 25 Jahre)', value: 'Yo tengo 25 años' },
-                    { spanish: 'Yo soy 25 años', german: '(falsch)', value: 'Yo soy 25 años' },
-                    { spanish: 'Yo estoy 25 años', german: '(falsch)', value: 'Yo estoy 25 años' }
+                    { spanish: 'tengo', german: '(habe - richtig!)', value: 'tengo' },
+                    { spanish: 'soy', german: '(bin - falsch!)', value: 'soy' },
+                    { spanish: 'estoy', german: '(bin - falsch!)', value: 'estoy' }
                 ],
                 hints: [
-                    'Im Spanischen "hat" man sein Alter!',
-                    'TENER wird für Alter verwendet',
-                    'Die richtige Antwort ist "Yo tengo 25 años".'
+                    'Im Spanischen "hat" man sein Alter, man "ist" es nicht!',
+                    'TENER wird für Alter verwendet, nicht SER oder ESTAR.',
+                    'Die richtige Antwort ist: <strong>tengo</strong> (Yo tengo 25 años)'
                 ],
                 explanation: `
-                    <p>Dies ist ein <strong>häufiger Fehler</strong> für Deutsche:</p>
+                    <p><strong>Häufiger Fehler für Deutsche!</strong></p>
                     <p>🇩🇪 Deutsch: "Ich <strong>bin</strong> 25 Jahre alt"</p>
-                    <p>🇪🇸 Spanisch: "Yo <strong>tengo</strong> 25 años" (wörtlich: Ich habe 25 Jahre)</p>
+                    <p>🇪🇸 Spanisch: "Yo <strong>tengo</strong> 25 años" (wörtlich: Ich <em>habe</em> 25 Jahre)</p>
                     <p>✅ Yo <strong>tengo</strong> 25 años (richtig)</p>
                     <p>❌ Yo <strong>soy</strong> 25 años (falsch)</p>
-                `
+                    <p>❌ Yo <strong>estoy</strong> 25 años (falsch)</p>
+                    <p><em>Im Spanischen besitzt man sein Alter, man ist es nicht!</em></p>
+                `,
+                feedbackCorrect: 'Perfekt! Im Spanischen verwendet man TENER für das Alter.',
+                feedbackIncorrect: 'Achtung! Für Alter verwendet man TENER (haben), nicht SER/ESTAR (sein).'
             },
 
-            // Integration Exercise
+            // Integration Exercise - FIXED: Better difficulty progression
             {
                 id: 'mock_integration_1',
-                type: 'multiple-choice',
+                type: 'translation',
                 concept: 'integration-comprehensive',
                 difficulty: 7,
-                question: 'Vervollständige: "Yo ___ María, ___ estudiante y ___ en Barcelona"',
-                correctAnswer: 'soy, soy, estoy',
-                german: 'Ich bin María, ich bin Studentin und ich bin in Barcelona',
-                germanBridge: '💡 Name = SER, Beruf = SER, Ort = ESTAR',
-                options: [
-                    { spanish: 'soy, soy, estoy', german: '(richtig)', value: 'soy, soy, estoy' },
-                    { spanish: 'estoy, estoy, estoy', german: '(falsch)', value: 'estoy, estoy, estoy' },
-                    { spanish: 'soy, estoy, soy', german: '(falsch)', value: 'soy, estoy, soy' }
-                ],
+                question: 'Vervollständige den ersten Teil: "Yo ___ María" (Ich bin María - Name)',
+                correctAnswer: 'soy',
+                german: 'Ich bin María',
+                germanBridge: '💡 Name ist eine Identität → SER (dauerhaft)',
                 hints: [
-                    'Name und Beruf = SER (dauerhaft)',
-                    'Ort = ESTAR (Location)',
-                    'Die richtige Antwort ist "soy, soy, estoy".'
+                    'Name ist eine dauerhafte Eigenschaft.',
+                    'DOCTOR Regel: Identity → SER',
+                    'Die richtige Antwort ist: <strong>soy</strong>'
                 ],
                 explanation: `
-                    <p>Diese Übung kombiniert alle drei Verben:</p>
-                    <ol>
-                        <li><strong>Yo soy María</strong> - Name (SER)</li>
-                        <li><strong>soy estudiante</strong> - Beruf (SER)</li>
-                        <li><strong>estoy en Barcelona</strong> - Ort (ESTAR)</li>
-                    </ol>
-                `
+                    <p><strong>Namen und Identität verwenden SER:</strong></p>
+                    <p>✅ Yo <strong>soy</strong> María (richtig)</p>
+                    <p>❌ Yo <strong>estoy</strong> María (falsch)</p>
+                    <p>SER = dauerhafte Eigenschaften, Identität</p>
+                `,
+                feedbackCorrect: 'Perfekt! Namen verwendet man mit SER.',
+                feedbackIncorrect: 'Namen sind dauerhaft → Verwende SER (nicht ESTAR).'
+            },
+            {
+                id: 'mock_integration_2',
+                type: 'multiple-choice',
+                concept: 'integration-location',
+                difficulty: 7,
+                question: 'Vervollständige: "Yo ___ en Barcelona" (Ich bin in Barcelona)',
+                correctAnswer: 'estoy',
+                german: 'Ich bin in Barcelona',
+                germanBridge: '💡 Ort/Location → ESTAR (nicht SER!)',
+                options: [
+                    { spanish: 'estoy', german: '(bin - am Ort)', value: 'estoy' },
+                    { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' }
+                ],
+                hints: [
+                    'Ortsangaben verwenden ESTAR.',
+                    'LECH Regel: L = Location → ESTAR',
+                    'Die richtige Antwort ist: <strong>estoy</strong>'
+                ],
+                explanation: `
+                    <p><strong>Ortsangaben immer mit ESTAR:</strong></p>
+                    <p>✅ Yo <strong>estoy</strong> en Barcelona (richtig)</p>
+                    <p>❌ Yo <strong>soy</strong> en Barcelona (falsch)</p>
+                    <p>ESTAR = Ort, vorübergehende Position</p>
+                `,
+                feedbackCorrect: 'Excelente! Orte verwendet man mit ESTAR.',
+                feedbackIncorrect: 'Ort = ESTAR (LECH Regel: Location), nicht SER!'
             }
         ];
     }

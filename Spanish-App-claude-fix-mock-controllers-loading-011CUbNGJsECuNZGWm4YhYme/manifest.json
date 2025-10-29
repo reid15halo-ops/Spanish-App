@@ -1,0 +1,120 @@
+{
+  "name": "Spanish Learning App - Spanisch lernen",
+  "short_name": "Spanish App",
+  "description": "Spanisch lernen für deutsche Muttersprachler - Effektiv, fokussiert, überall verfügbar",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#20B2AA",
+  "orientation": "any",
+  "lang": "de",
+  "dir": "ltr",
+  "categories": ["education", "productivity", "language"],
+  "icons": [
+    {
+      "src": "icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/mobile-1.png",
+      "sizes": "540x960",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Hauptansicht mit Übungen"
+    },
+    {
+      "src": "screenshots/desktop-1.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop-Ansicht"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Neue Übung starten",
+      "short_name": "Übung",
+      "description": "Starte eine neue Lernübung",
+      "url": "/index.html?action=new-exercise",
+      "icons": [
+        {
+          "src": "icons/shortcut-exercise.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Lernstatistik",
+      "short_name": "Statistik",
+      "description": "Zeige deine Lernfortschritte",
+      "url": "/index.html?action=stats",
+      "icons": [
+        {
+          "src": "icons/shortcut-stats.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Vokabeltrainer",
+      "short_name": "Vokabeln",
+      "description": "Vokabeln üben",
+      "url": "/index.html?action=vocabulary",
+      "icons": [
+        {
+          "src": "icons/shortcut-vocab.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

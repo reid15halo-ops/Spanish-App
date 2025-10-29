@@ -17,7 +17,9 @@ class AppController {
         this.templateEngine = null;
         this.dynamicGenerator = null;
         this.progressTracker = null;
-        this.useDynamicExercises = false; // Toggle for dynamic vs static
+        this.useDynamicExercises = false; // Set to true after initialization
+        this.maxStaticUnits = 7; // Units 1-7 are static, 8+ are dynamic
+        this.totalUnits = 50; // Extended to 50 units with dynamic system
 
         this.state = {
             currentUnit: 1,
@@ -30,10 +32,14 @@ class AppController {
             }
         };
 
+        // Initialize Emoji Vocabulary for progressive hints
+        this.emojiVocab = typeof EmojiVocabulary !== 'undefined' ? new EmojiVocabulary() : null;
+
         // Bind UI callbacks
         this.ui.onAnswerSelected = this.handleAnswer.bind(this);
         this.ui.onHintRequested = this.getHint.bind(this);
         this.ui.onNextExercise = this.loadNextExercise.bind(this);
+        this.ui.onNextUnit = this.loadNextUnit.bind(this);
     }
 
     /**
@@ -167,7 +173,7 @@ class AppController {
             this.state.currentExerciseIndex = 0;
 
             // Update UI status
-            this.ui.updateStatus(unitNumber, 7, 1, this.state.exercises.length);
+            this.ui.updateStatus(unitNumber, this.totalUnits, 1, this.state.exercises.length);
 
             // Load first exercise
             this.loadExercise(0);
@@ -181,10 +187,18 @@ class AppController {
     }
 
     /**
-     * Load unit data from file
-     * MODIFIED: Use mock exercises directly if JSON files not available
+     * Load unit data from file or generate dynamically
+     * Units 1-7: Static exercises (Basics)
+     * Units 8+: Dynamically generated adaptive exercises
      */
     async loadUnitData(unitNumber) {
+        // Check if we should use dynamic exercises
+        if (unitNumber > this.maxStaticUnits && this.useDynamicExercises && this.dynamicGenerator) {
+            console.log(`🎯 Generating dynamic exercises for Unit ${unitNumber}...`);
+            return this.generateDynamicUnit(unitNumber);
+        }
+
+        // Load static units (1-7)
         const unitFiles = {
             1: 'unit1-pronouns.json',
             2: 'unit2-ser.json',
@@ -196,8 +210,14 @@ class AppController {
         };
 
         const filename = unitFiles[unitNumber];
-        if (!filename) {
+        if (!filename && unitNumber <= this.maxStaticUnits) {
             throw new Error(`Invalid unit number: ${unitNumber}`);
+        }
+
+        // If unit > 7 but dynamic system not available, generate fallback
+        if (!filename && !this.useDynamicExercises) {
+            console.warn(`⚠️ Unit ${unitNumber} not available, dynamic system disabled`);
+            return this.generateFallbackUnit(unitNumber);
         }
 
         const path = `data/phase1-exercises/${filename}`;
@@ -228,10 +248,43 @@ class AppController {
     }
 
     /**
+     * Generate dynamic unit (Units 8+)
+     */
+    generateDynamicUnit(unitNumber) {
+        const exerciseCount = 10; // 10 exercises per unit
+        const exercises = this.dynamicGenerator.generateNext(exerciseCount);
+
+        return {
+            unitNumber: unitNumber,
+            unitName: this.getUnitName(unitNumber),
+            exercises: exercises,
+            isDynamic: true
+        };
+    }
+
+    /**
+     * Generate fallback unit when dynamic system not available
+     */
+    generateFallbackUnit(unitNumber) {
+        // Use Phase1 mock exercises as fallback
+        if (this.phase1 && this.phase1.exercises) {
+            return {
+                unitNumber: unitNumber,
+                unitName: this.getUnitName(unitNumber),
+                exercises: this.phase1.exercises,
+                isFallback: true
+            };
+        }
+
+        throw new Error(`Unit ${unitNumber} not available`);
+    }
+
+    /**
      * Get unit name by number
      */
     getUnitName(unitNumber) {
-        const unitNames = {
+        // Static units (1-7) - Basics
+        const staticUnitNames = {
             1: 'Pronomen',
             2: 'SER',
             3: 'ESTAR',
@@ -240,7 +293,35 @@ class AppController {
             6: 'Vokabular',
             7: 'Integration'
         };
-        return unitNames[unitNumber] || `Unit ${unitNumber}`;
+
+        if (unitNumber <= this.maxStaticUnits) {
+            return staticUnitNames[unitNumber] || `Unit ${unitNumber}`;
+        }
+
+        // Dynamic units (8+) - Themed units
+        const dynamicThemes = {
+            8: 'Zahlen & Zeit',
+            9: 'Familie & Menschen',
+            10: 'Essen & Trinken',
+            11: 'Reisen & Orte',
+            12: 'Alltag & Aktivitäten',
+            13: 'Gefühle & Eigenschaften',
+            14: 'Wetter & Natur',
+            15: 'Hobbys & Freizeit',
+            16: 'Arbeit & Beruf',
+            17: 'Gesundheit & Körper',
+            18: 'Kleidung & Mode',
+            19: 'Technologie & Medien',
+            20: 'Kultur & Feste'
+        };
+
+        if (dynamicThemes[unitNumber]) {
+            return dynamicThemes[unitNumber];
+        }
+
+        // For units beyond 20, use generic adaptive names
+        const level = Math.floor((unitNumber - 8) / 5) + 1; // Level 1 = Units 8-12, Level 2 = 13-17, etc.
+        return `Adaptives Training (Level ${level})`;
     }
 
     /**
@@ -264,7 +345,7 @@ class AppController {
         // Update status and progress
         this.ui.updateStatus(
             this.state.currentUnit,
-            7,
+            this.totalUnits,
             index + 1,
             this.state.exercises.length
         );
@@ -287,13 +368,16 @@ class AppController {
         };
 
         // Generate options based on type
-        if (exercise.type === 'conjugation' || exercise.type === 'multiple-choice') {
-            uiExercise.options = this.generateOptions(exercise);
+        // 🐛 FIX BUG #1: Check for existing options FIRST before generating new ones
+        if (exercise.options && Array.isArray(exercise.options) && exercise.options.length > 0) {
+            // Use provided options (priority #1)
+            uiExercise.options = exercise.options;
         } else if (exercise.type === 'translation') {
             uiExercise.type = 'translation';
             uiExercise.options = [];
-        } else if (exercise.options && Array.isArray(exercise.options)) {
-            uiExercise.options = exercise.options;
+        } else if (exercise.type === 'conjugation' || exercise.type === 'multiple-choice') {
+            // Generate options as fallback
+            uiExercise.options = this.generateOptions(exercise);
         } else {
             // Default: create options from answer
             uiExercise.options = [
@@ -366,8 +450,51 @@ class AppController {
             }
         }
 
+        // 🐛 FIX BUG #2: Validate minimum 3 options
+        if (options.length < 3) {
+            console.warn(`⚠️ Exercise ${exercise.id} has only ${options.length} options. Adding generic distractors.`);
+            const needed = 3 - options.length;
+            const generic = this.generateGenericDistractors(exercise, needed);
+            options.push(...generic);
+        }
+
         // Shuffle options
         return this.shuffleArray(options);
+    }
+
+    /**
+     * Generate generic distractors as fallback
+     * 🐛 FIX BUG #2: Ensures every exercise has at least 3 options
+     */
+    generateGenericDistractors(exercise, count) {
+        const genericVerbs = [
+            { spanish: 'soy', german: '(bin - dauerhaft)' },
+            { spanish: 'estoy', german: '(bin - vorübergehend)' },
+            { spanish: 'tengo', german: '(habe)' },
+            { spanish: 'hago', german: '(mache)' },
+            { spanish: 'voy', german: '(gehe)' },
+            { spanish: 'está', german: '(ist)' },
+            { spanish: 'hay', german: '(es gibt)' },
+            { spanish: 'puedo', german: '(kann)' },
+            { spanish: 'quiero', german: '(will)' }
+        ];
+
+        const distractors = [];
+        const correctAnswer = exercise.correctAnswer;
+
+        // Pick distractors that don't match the correct answer
+        for (const verb of genericVerbs) {
+            if (verb.spanish !== correctAnswer && distractors.length < count) {
+                distractors.push({
+                    spanish: verb.spanish,
+                    german: verb.german,
+                    value: verb.spanish,
+                    isCorrect: false
+                });
+            }
+        }
+
+        return distractors;
     }
 
     /**
@@ -434,16 +561,31 @@ class AppController {
         let explanation = '';
 
         if (isCorrect) {
-            const messages = [
-                '¡Muy bien! ✅',
-                '¡Perfecto! 🎉',
-                '¡Excelente! ⭐',
-                'Richtig! 👍',
-                'Korrekt! ✨'
-            ];
-            message = messages[Math.floor(Math.random() * messages.length)];
+            // Use custom feedback if available
+            if (exercise.feedbackCorrect) {
+                message = exercise.feedbackCorrect;
+            } else {
+                const messages = [
+                    '¡Muy bien! ✅',
+                    '¡Perfecto! 🎉',
+                    '¡Excelente! ⭐',
+                    'Richtig! 👍',
+                    'Korrekt! ✨'
+                ];
+                message = messages[Math.floor(Math.random() * messages.length)];
+            }
+
+            // Show explanation for correct answers too if available
+            if (exercise.explanation) {
+                explanation = exercise.explanation;
+            }
         } else {
-            message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            // Use custom feedback if available
+            if (exercise.feedbackIncorrect) {
+                message = `${exercise.feedbackIncorrect} Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+            } else {
+                message = `Leider falsch. Die richtige Antwort ist: ${exercise.correctAnswer}`;
+            }
 
             // Generate explanation using German system
             if (this.germanSystem && typeof this.germanSystem.generateGermanOptimizedFeedback === 'function') {
@@ -510,6 +652,10 @@ class AppController {
 
     /**
      * Get hint for current exercise
+     * Progressive hint system:
+     * - Level 1 (nach 1. Fehler): Standard-Hint
+     * - Level 2 (nach 2. Fehler): Deutsches Wort zeigen
+     * - Level 3 (nach 3. Fehler): Emoji + korrektes spanisches Wort
      */
     getHint(level) {
         const exercise = this.state.exercises[this.state.currentExerciseIndex];
@@ -524,6 +670,7 @@ class AppController {
         // Generate default hints based on concept
         const concept = exercise.concept || '';
 
+        // LEVEL 1: Standard conceptual hint
         if (level === 1) {
             if (concept.includes('ser')) {
                 return 'Denk an die DOCTOR-Regel für SER!';
@@ -535,7 +682,17 @@ class AppController {
             return 'Überlege, welches Verb hier am besten passt.';
         }
 
+        // LEVEL 2: Show German word (no emoji yet)
         if (level === 2) {
+            // First try to find emoji vocabulary in correct answer
+            if (this.emojiVocab) {
+                const germanWord = this.emojiVocab.getGerman(exercise.correctAnswer);
+                if (germanWord) {
+                    return `💡 <strong>Hinweis:</strong> Das gesuchte Wort bedeutet "<em>${germanWord}</em>" auf Deutsch.`;
+                }
+            }
+
+            // Fallback to concept-based hints
             if (concept.includes('ser')) {
                 return 'SER = dauerhafte Eigenschaften (Beruf, Herkunft, Charakter)';
             } else if (concept.includes('estar')) {
@@ -546,8 +703,20 @@ class AppController {
             return 'Beachte den Kontext der Frage genau.';
         }
 
+        // LEVEL 3: Show emoji + correct answer
         if (level === 3) {
-            return `Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong><br><br>${this.generateDefaultExplanation(exercise)}`;
+            let hint = `Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+
+            // Add emoji if available
+            if (this.emojiVocab) {
+                const emoji = this.emojiVocab.getEmoji(exercise.correctAnswer);
+                if (emoji) {
+                    hint = `${emoji} Die richtige Antwort ist: <strong>${exercise.correctAnswer}</strong>`;
+                }
+            }
+
+            hint += `<br><br>${this.generateDefaultExplanation(exercise)}`;
+            return hint;
         }
 
         return null;
@@ -562,15 +731,49 @@ class AppController {
     }
 
     /**
+     * Load next unit
+     */
+    async loadNextUnit() {
+        const nextUnit = this.state.currentUnit + 1;
+
+        if (nextUnit > this.totalUnits) {
+            console.log('🎊 All units completed!');
+            return;
+        }
+
+        console.log(`📚 Loading next unit: ${nextUnit}`);
+
+        try {
+            // Reset stats for new unit
+            this.state.sessionStats = {
+                correct: 0,
+                total: 0,
+                startTime: Date.now()
+            };
+
+            // Load next unit
+            await this.loadUnit(nextUnit);
+
+            // 🐛 FIX BUG #3: Save progress AFTER unit is loaded (not before)
+            this.saveProgress();
+
+        } catch (error) {
+            console.error(`❌ Error loading unit ${nextUnit}:`, error);
+            this.ui.showError(`Fehler beim Laden von Lektion ${nextUnit}. Bitte Seite neu laden.`);
+        }
+    }
+
+    /**
      * Show unit completion
      */
     showUnitCompletion() {
         console.log('🎉 Unit completed!');
 
-        this.ui.showCompletion(this.state.sessionStats);
+        this.ui.showCompletion(this.state.sessionStats, this.state.currentUnit, this.totalUnits);
 
-        // Save progress
-        this.saveProgress();
+        // 🐛 FIX BUG #3: Progress is now saved in loadNextUnit() AFTER the next unit loads
+        // This prevents saving currentUnit BEFORE it's incremented
+        // this.saveProgress(); // ← Removed: was causing lesson repetition bug
     }
 
     /**

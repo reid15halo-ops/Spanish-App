@@ -2,9 +2,31 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Spanish Learning App - Zero Friction</title>
     <meta name="description" content="Spanisch lernen für deutsche Muttersprachler - Fokussiert, minimalistisch, effektiv">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
+    <!-- Theme Color for Mobile Browsers -->
+    <meta name="theme-color" content="#20B2AA" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1A9993" media="(prefers-color-scheme: dark)">
+
+    <!-- Apple Touch Icons (iOS) -->
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Spanish App">
+
+    <!-- Microsoft Tiles (Windows) -->
+    <meta name="msapplication-TileColor" content="#20B2AA">
+    <meta name="msapplication-TileImage" content="/icons/icon-144.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16.png">
 
     <style>
         /* ============================================
@@ -75,6 +97,87 @@
             background: var(--bg-secondary);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            /* Touch optimization */
+            -webkit-tap-highlight-color: rgba(32, 178, 170, 0.2);
+            touch-action: manipulation;
+        }
+
+        /* ============================================
+           MOBILE & TOUCH OPTIMIZATIONS
+           ============================================ */
+
+        /* Better touch targets (minimum 44x44px) */
+        button,
+        a,
+        input[type="submit"],
+        input[type="button"],
+        .clickable {
+            min-height: 44px;
+            min-width: 44px;
+        }
+
+        /* Smooth scrolling for mobile */
+        * {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Remove 300ms tap delay on mobile */
+        a, button, input, select, textarea {
+            touch-action: manipulation;
+        }
+
+        /* Prevent text selection on buttons (better UX on mobile) */
+        button, .btn {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Improve tap highlight color */
+        button:active,
+        .btn:active,
+        a:active {
+            opacity: 0.8;
+        }
+
+        /* Better focus states for touch devices */
+        @media (hover: none) {
+            button:hover,
+            .btn:hover {
+                /* Disable hover effects on touch devices */
+                opacity: 1;
+            }
+
+            button:active,
+            .btn:active {
+                transform: scale(0.98);
+                transition: transform 0.1s ease;
+            }
+        }
+
+        /* Improve input fields on mobile */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            /* Prevent zoom on iOS when focused */
+            font-size: 16px;
+        }
+
+        /* Safe area insets for notched devices (iPhone X+) */
+        @supports (padding: env(safe-area-inset-bottom)) {
+            body {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+                padding-left: env(safe-area-inset-left);
+                padding-right: env(safe-area-inset-right);
+            }
+        }
+
+        /* Pull-to-refresh prevention (optional, can be removed if needed) */
+        body {
+            overscroll-behavior-y: contain;
         }
 
         /* ============================================
@@ -673,6 +776,39 @@
            MOBILE OPTIMIZATIONS
            ============================================ */
 
+        /* Small Mobile (Portrait, <480px) */
+        @media (max-width: 480px) {
+            :root {
+                /* Smaller spacing on tiny screens */
+                --space-md: 12px;
+                --space-lg: 20px;
+                --space-xl: 28px;
+            }
+
+            .exercise-card {
+                padding: var(--space-md);
+                margin: var(--space-sm);
+            }
+
+            .question {
+                font-size: var(--font-size-base);
+                line-height: 1.4;
+            }
+
+            .answer-btn {
+                padding: var(--space-sm) var(--space-md);
+                font-size: var(--font-size-small);
+            }
+
+            /* Stack status items vertically on tiny screens */
+            .status-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 2px;
+            }
+        }
+
+        /* Tablet & Large Mobile (481px - 768px) */
         @media (max-width: 768px) {
             .minimal-header {
                 padding: var(--space-sm) var(--space-md);
@@ -701,6 +837,67 @@
 
             .answer-btn {
                 padding: var(--space-md);
+            }
+
+            /* Larger buttons for better touch targets */
+            button {
+                min-height: 48px;
+                padding: var(--space-md) var(--space-lg);
+            }
+
+            /* Better spacing between interactive elements */
+            .btn + .btn,
+            button + button {
+                margin-top: var(--space-md);
+            }
+        }
+
+        /* Landscape mode optimizations */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .exercise-area {
+                padding: var(--space-sm);
+            }
+
+            .exercise-card {
+                padding: var(--space-md);
+                max-width: 90vw;
+            }
+
+            .minimal-header {
+                padding: var(--space-xs) var(--space-md);
+            }
+
+            /* Reduce vertical spacing in landscape */
+            h1, h2, h3 {
+                margin-top: var(--space-sm);
+                margin-bottom: var(--space-sm);
+            }
+        }
+
+        /* iOS-specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            /* Fix iOS Safari bottom bar overlap */
+            .app-container {
+                min-height: -webkit-fill-available;
+            }
+
+            /* Prevent iOS zoom on input focus (already set font-size: 16px) */
+            input, textarea, select {
+                font-size: 16px;
+            }
+        }
+
+        /* Standalone PWA mode (when installed) */
+        .standalone-mode .minimal-header {
+            /* Extra padding for status bar on installed PWA */
+            padding-top: calc(var(--space-md) + env(safe-area-inset-top, 0px));
+        }
+
+        /* High-DPI screens (Retina displays) */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            body {
+                /* Slightly bolder fonts on retina */
+                -webkit-font-smoothing: subpixel-antialiased;
             }
         }
 
@@ -1022,7 +1219,17 @@
     <!-- Using Mock Controllers for standalone demo -->
     <!-- To use real controllers, replace mock-* with real files -->
     <script src="js/mock-phase1-controller.js"></script>
-    <script src="js/mock-adaptive-learning.js"></script>
+
+    <!-- ✅ REAL Adaptive Learning System (Production-Ready) -->
+    <script src="js/adaptive-knowledge-tracker-v2.js"></script>
+    <script src="js/learning-analytics.js"></script>
+    <script src="js/interleaved-practice-system.js"></script>
+    <script src="js/adaptive-learning-orchestrator.js"></script>
+
+    <!-- Optional: Advanced SRS & Error Detection -->
+    <!-- <script src="js/srs.js"></script> -->
+    <!-- <script src="js/adaptive-repetition.js"></script> -->
+
     <script src="js/mock-german-system.js"></script>
 
     <!-- Dynamic Exercise System -->
@@ -1033,11 +1240,17 @@
     <!-- Matching Exercises -->
     <script src="js/matching-exercise.js"></script>
 
+    <!-- Emoji Vocabulary for Progressive Hints -->
+    <script src="js/emoji-vocabulary.js"></script>
+
     <!-- App Controller (Integration Layer) -->
     <script src="js/app-controller.js"></script>
 
     <!-- UI Controller -->
     <script src="js/ui-controller.js"></script>
+
+    <!-- 🐛 Bug Debugger Tool -->
+    <script src="js/exercise-bug-debugger.js"></script>
 
     <!-- Initialize App -->
     <script>
@@ -1065,6 +1278,19 @@
 
             // Start the app
             window.appController.initialize();
+
+            // 🐛 Debug Tool Info
+            console.log('\n' + '='.repeat(50));
+            console.log('🐛 Bug Debugger verfügbar!');
+            console.log('='.repeat(50));
+            console.log('Zum Testen aller Bugs, führe aus:');
+            console.log('  > debugExercises()');
+            console.log('');
+            console.log('Oder für erweiterte Optionen:');
+            console.log('  > const dbg = new ExerciseBugDebugger(appController)');
+            console.log('  > dbg.runAllTests()');
+            console.log('  > dbg.exportReport()  // HTML-Report herunterladen');
+            console.log('='.repeat(50) + '\n');
         });
 
         /**
@@ -1132,6 +1358,152 @@
                 });
             });
         }
+    </script>
+
+    <!-- PWA Service Worker Registration -->
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker registered:', registration.scope);
+
+                        // Check for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New version available
+                                    if (confirm('Neue Version verfügbar! Jetzt aktualisieren?')) {
+                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('❌ Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        const installPromptShown = localStorage.getItem('install-prompt-shown');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent default browser prompt
+            e.preventDefault();
+            deferredPrompt = e;
+
+            // Show custom install button (if not already shown)
+            if (!installPromptShown) {
+                showInstallPrompt();
+            }
+        });
+
+        function showInstallPrompt() {
+            // Create install banner
+            const banner = document.createElement('div');
+            banner.id = 'install-banner';
+            banner.style.cssText = `
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #20B2AA, #1A9993);
+                color: white;
+                padding: 16px;
+                box-shadow: 0 -2px 10px rgba(0,0,0,0.2);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                z-index: 1000;
+                animation: slideUp 0.3s ease;
+            `;
+
+            banner.innerHTML = `
+                <div style="flex: 1;">
+                    <strong style="display: block; margin-bottom: 4px;">📱 App installieren</strong>
+                    <span style="font-size: 14px; opacity: 0.9;">Für schnelleren Zugriff auf dem Smartphone</span>
+                </div>
+                <button id="install-btn" style="
+                    background: white;
+                    color: #20B2AA;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 8px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    margin-right: 8px;
+                    font-size: 14px;
+                ">Installieren</button>
+                <button id="dismiss-btn" style="
+                    background: transparent;
+                    color: white;
+                    border: 1px solid white;
+                    padding: 10px 16px;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    font-size: 14px;
+                ">Später</button>
+            `;
+
+            // Add animation
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideUp {
+                    from { transform: translateY(100%); }
+                    to { transform: translateY(0); }
+                }
+            `;
+            document.head.appendChild(style);
+            document.body.appendChild(banner);
+
+            // Install button handler
+            document.getElementById('install-btn').addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+
+                    if (outcome === 'accepted') {
+                        console.log('✅ User accepted PWA install');
+                    } else {
+                        console.log('❌ User dismissed PWA install');
+                    }
+
+                    deferredPrompt = null;
+                    banner.remove();
+                    localStorage.setItem('install-prompt-shown', 'true');
+                }
+            });
+
+            // Dismiss button handler
+            document.getElementById('dismiss-btn').addEventListener('click', () => {
+                banner.remove();
+                localStorage.setItem('install-prompt-shown', 'true');
+            });
+        }
+
+        // Detect if app is running as standalone (installed)
+        function isStandalone() {
+            return (window.matchMedia('(display-mode: standalone)').matches) ||
+                   (window.navigator.standalone) ||
+                   document.referrer.includes('android-app://');
+        }
+
+        if (isStandalone()) {
+            console.log('✅ App running as installed PWA');
+            document.body.classList.add('standalone-mode');
+        }
+
+        // Handle PWA install success
+        window.addEventListener('appinstalled', () => {
+            console.log('✅ PWA successfully installed');
+            localStorage.setItem('install-prompt-shown', 'true');
+        });
     </script>
 </body>
 </html>

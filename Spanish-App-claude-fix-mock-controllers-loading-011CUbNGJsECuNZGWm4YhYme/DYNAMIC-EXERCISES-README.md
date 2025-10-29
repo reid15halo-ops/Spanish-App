@@ -270,45 +270,225 @@ window.appController.progressTracker.reset();
 
 ## 🎓 Vocabulary Database
 
-### **50+ Wörter mit Emojis**
+### **300+ Wörter mit Emojis**
 
-#### **Food** (10 items)
+#### **Food / Comida** (40 items)
 ```
-manzana 🍎    naranja 🍊    plátano 🍌
-pan 🍞        agua 💧       café ☕
-pizza 🍕      hamburguesa 🍔 helado 🍦
-chocolate 🍫
-```
-
-#### **Places** (8 items)
-```
-casa 🏠       escuela 🏫    restaurante 🍽️
-hospital 🏥   parque 🌳     playa 🏖️
-ciudad 🏙️    biblioteca 📚
-```
-
-#### **People** (8 items)
-```
-estudiante 🎓  profesor 👨‍🏫   médico 👨‍⚕️
-amigo 👦      hermano 👦    hermana 👧
+manzana 🍎       naranja 🍊       plátano 🍌
+pan 🍞           agua 💧          café ☕
+pizza 🍕         hamburguesa 🍔   helado 🍦
+chocolate 🍫     leche 🥛         té 🍵
+queso 🧀         huevo 🥚         arroz 🍚
+pasta 🍝         sopa 🍲          ensalada 🥗
+pollo 🍗         carne 🥩         pescado 🐟
+tomate 🍅        patata 🥔        zanahoria 🥕
+lechuga 🥬       cebolla 🧅       ajo 🧄
+fresa 🍓         uva 🍇           sandía 🍉
+limón 🍋         pera 🍐          durazno 🍑
+cerezas 🍒       piña 🍍          mango 🥭
+aguacate 🥑      pepino 🥒        azúcar 🧂
+sal 🧂           mantequilla 🧈   yogur 🥄
 ```
 
-#### **Animals** (6 items)
+#### **Places / Lugares** (30 items)
 ```
-perro 🐕      gato 🐈       pájaro 🐦
-pez 🐟        caballo 🐴    elefante 🐘
+casa 🏠          escuela 🏫       restaurante 🍽️
+hospital 🏥      parque 🌳        playa 🏖️
+ciudad 🏙️       biblioteca 📚    oficina 🏢
+banco 🏦         supermercado 🛒  tienda 🏪
+aeropuerto ✈️    estación 🚉      hotel 🏨
+museo 🏛️         teatro 🎭        cine 🎬
+iglesia ⛪       montaña ⛰️       campo 🌾
+jardín 🪴        universidad 🎓   farmacia 💊
+café ☕          bar 🍺           gimnasio 💪
+piscina 🏊       estadio 🏟️      calle 🛣️
 ```
 
-#### **Emotions** (6 items)
+#### **People / Personas** (25 items)
 ```
-feliz 😊      triste 😢     cansado 😴
-enojado 😠    contento 😌
+estudiante 🎓    profesor 👨‍🏫      médico 👨‍⚕️
+amigo 👦         hermano 👦       hermana 👧
+madre 👩         padre 👨         hijo 👶
+hija 👧          abuelo 👴        abuela 👵
+tío 👨          tía 👩          primo 👦
+niño 👶          niña 👧          hombre 👨
+mujer 👩         bebé 👶          familia 👨‍👩‍👧‍👦
+enfermera 👩‍⚕️    ingeniero 👷      artista 🎨
+músico 🎵        policía 👮        bombero 🚒
 ```
 
-#### **Colors** (6 items)
+#### **Animals / Animales** (30 items)
 ```
-rojo 🔴       azul 🔵       verde 🟢
-amarillo 🟡   negro ⚫      blanco ⚪
+perro 🐕         gato 🐈          pájaro 🐦
+pez 🐟           caballo 🐴       elefante 🐘
+león 🦁          tigre 🐯         oso 🐻
+mono 🐒          jirafa 🦒        cebra 🦓
+vaca 🐄          cerdo 🐷         oveja 🐑
+conejo 🐰        ratón 🐭         serpiente 🐍
+tortuga 🐢       rana 🐸          mariposa 🦋
+abeja 🐝         hormiga 🐜       araña 🕷️
+lobo 🐺          zorro 🦊         canguro 🦘
+koala 🐨         pingüino 🐧      delfín 🐬
+tiburón 🦈       ballena 🐋       pulpo 🐙
+```
+
+#### **Emotions / Emociones** (20 items)
+```
+feliz 😊         triste 😢        cansado 😴
+enojado 😠       contento 😌      emocionado 🤩
+nervioso 😰      tranquilo 😌     sorprendido 😲
+aburrido 😑      asustado 😨      preocupado 😟
+orgulloso 😊     avergonzado 😳   celoso 😒
+confundido 🤔    frustrado 😤     aliviado 😅
+enamorado 😍     nostálgico 🥺    agradecido 🙏
+```
+
+#### **Colors / Colores** (15 items)
+```
+rojo 🔴          azul 🔵          verde 🟢
+amarillo 🟡      negro ⚫         blanco ⚪
+naranja 🟠       morado 🟣        rosa 🌸
+marrón 🟤        gris ⚪          dorado 🌟
+plateado 🪙      turquesa 💎      beige 🟫
+```
+
+#### **Weather / Clima** (15 items)
+```
+sol ☀️          lluvia 🌧️       nieve ❄️
+nube ☁️          viento 💨        tormenta ⛈️
+niebla 🌫️       relámpago ⚡     trueno 🌩️
+arcoíris 🌈      calor 🌡️        frío 🥶
+helada 🧊        granizo 🌨️      tornado 🌪️
+```
+
+#### **Transportation / Transporte** (20 items)
+```
+coche 🚗         autobús 🚌       tren 🚆
+avión ✈️         barco 🚢         bicicleta 🚲
+moto 🏍️         taxi 🚕          metro 🚇
+camión 🚚        helicóptero 🚁   cohete 🚀
+ambulancia 🚑    policía 🚔       bomberos 🚒
+tractor 🚜        scooter 🛴      patineta 🛹
+camioneta 🚐     carro 🚙         yate 🛥️
+```
+
+#### **Body Parts / Cuerpo** (25 items)
+```
+cabeza 👤        cara 😀          ojo 👁️
+nariz 👃         boca 👄          oreja 👂
+mano ✋          dedo 👆          brazo 💪
+pierna 🦵        pie 🦶           rodilla 🦵
+codo 💪          hombro 🤷         espalda 🧍
+pecho 🫁         estómago 🫄       corazón ❤️
+diente 🦷        pelo 💇          piel 🧴
+cerebro 🧠       hueso 🦴         músculo 💪
+```
+
+#### **Clothing / Ropa** (25 items)
+```
+camisa 👔        pantalón 👖      vestido 👗
+falda 🩳         zapato 👞        bota 🥾
+calcetín 🧦      sombrero 🎩      gorra 🧢
+chaqueta 🧥      abrigo 🧥        bufanda 🧣
+guante 🧤        cinturón 👔      corbata 👔
+suéter 🧶        camiseta 👕      short 🩳
+pijama 👔        bikini 👙        traje 🤵
+gafas 👓         reloj ⌚         anillo 💍
+collar 📿        pulsera 📿
+```
+
+#### **Time / Tiempo** (20 items)
+```
+hoy 📅          ayer 📆          mañana 📅
+semana 📅        mes 📆           año 📅
+lunes 📅         martes 📅        miércoles 📅
+jueves 📅        viernes 📅       sábado 📅
+domingo 📅       mañana 🌅        tarde 🌆
+noche 🌃         hora ⏰          minuto ⏱️
+segundo ⏱️       día 📅           tiempo ⏰
+```
+
+#### **Objects / Objetos** (30 items)
+```
+mesa 🪑          silla 🪑         cama 🛏️
+libro 📚         lápiz ✏️         bolígrafo 🖊️
+papel 📄         teléfono 📱      computadora 💻
+televisión 📺    puerta 🚪        ventana 🪟
+llave 🔑         bolsa 👜         mochila 🎒
+dinero 💵        tarjeta 💳       billete 💶
+reloj ⏰         lámpara 💡       espejo 🪞
+cepillo 🪥       jabón 🧼         toalla 🧻
+botella 🍾       vaso 🥤          plato 🍽️
+cuchara 🥄       tenedor 🍴       cuchillo 🔪
+```
+
+#### **Nature / Naturaleza** (25 items)
+```
+árbol 🌲         flor 🌸          planta 🌱
+hierba 🌿        hoja 🍃          rama 🌳
+raíz 🌱          semilla 🌱       fruto 🍎
+bosque 🌲        selva 🌴         desierto 🏜️
+río 🏞️          lago 🏞️          mar 🌊
+océano 🌊        isla 🏝️          volcán 🌋
+estrella ⭐      luna 🌙          sol ☀️
+tierra 🌍        cielo 🌌         planeta 🪐
+montaña ⛰️       colina ⛰️        valle 🏞️
+```
+
+#### **Technology / Tecnología** (20 items)
+```
+ordenador 💻     teléfono 📱      tablet 📱
+ratón 🖱️        teclado ⌨️       pantalla 🖥️
+impresora 🖨️    cámara 📷        auriculares 🎧
+micrófono 🎤     altavoz 🔊       wifi 📶
+internet 🌐      correo 📧        mensaje 💬
+aplicación 📱    programa 💾      archivo 📁
+carpeta 📂       USB 💾           batería 🔋
+```
+
+#### **Sports / Deportes** (20 items)
+```
+fútbol ⚽        baloncesto 🏀    tenis 🎾
+natación 🏊      ciclismo 🚴      atletismo 🏃
+béisbol ⚾       voleibol 🏐      golf ⛳
+esquí ⛷️        surf 🏄          yoga 🧘
+boxeo 🥊         karate 🥋        gimnasia 🤸
+hockey 🏒        rugby 🏉         patinaje ⛸️
+escalada 🧗      buceo 🤿
+```
+
+#### **Music / Música** (15 items)
+```
+canción 🎵       música 🎶        instrumento 🎸
+guitarra 🎸      piano 🎹         batería 🥁
+violín 🎻        trompeta 🎺      flauta 🎵
+saxofón 🎷       arpa 🎵          micrófono 🎤
+concierto 🎤     banda 🎸         orquesta 🎻
+```
+
+#### **Numbers / Números** (20 items)
+```
+cero 0️⃣         uno 1️⃣          dos 2️⃣
+tres 3️⃣         cuatro 4️⃣       cinco 5️⃣
+seis 6️⃣         siete 7️⃣        ocho 8️⃣
+nueve 9️⃣        diez 🔟          once 1️⃣1️⃣
+doce 1️⃣2️⃣       veinte 2️⃣0️⃣     treinta 3️⃣0️⃣
+cuarenta 4️⃣0️⃣   cincuenta 5️⃣0️⃣  cien 💯
+mil 1️⃣0️⃣0️⃣0️⃣   millón 💰        primero 🥇
+```
+
+#### **Actions/Verbs / Verbos** (30 items)
+```
+hablar 💬        comer 🍽️        beber 🥤
+caminar 🚶       correr 🏃        saltar 🤾
+dormir 😴        despertar ⏰     trabajar 💼
+estudiar 📚      leer 📖          escribir ✍️
+escuchar 👂      ver 👀           mirar 👁️
+pensar 🤔        sentir ❤️        amar 💕
+cocinar 🍳       limpiar 🧹       comprar 🛒
+vender 💰        abrir 🔓         cerrar 🔒
+empezar ▶️       terminar ⏹️      continuar ⏩
+bailar 💃        cantar 🎤        jugar 🎮
 ```
 
 ---
