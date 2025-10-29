@@ -331,7 +331,7 @@ class UIController {
     /**
      * Show feedback (correct or incorrect)
      */
-    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null) {
+    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null, currentAttempts = 0, maxAttemptsBeforeHint = 3) {
         this.elements.feedbackText.textContent = message;
         this.elements.feedback.className = 'feedback show ' + (isCorrect ? 'feedback--success' : 'feedback--error');
 
@@ -379,9 +379,26 @@ class UIController {
             }
         }
 
-        // Show hint button if incorrect
+        // Show hint button only after reaching attempt threshold
         if (!isCorrect) {
-            this.elements.hintContainer.classList.add('show');
+            if (currentAttempts >= maxAttemptsBeforeHint) {
+                // Unlock hints after threshold reached
+                this.elements.hintContainer.classList.add('show');
+            } else {
+                // Show message about hint unlock
+                const remaining = maxAttemptsBeforeHint - currentAttempts;
+                const hintMessage = `💡 Hinweis verfügbar nach ${remaining} weiteren Fehlversuch${remaining !== 1 ? 'en' : ''} (${currentAttempts}/${maxAttemptsBeforeHint})`;
+
+                // Add hint unlock message to feedback if not already there
+                if (feedbackHint) {
+                    const existingHint = feedbackHint.textContent;
+                    feedbackHint.textContent = existingHint ? `${existingHint}\n\n${hintMessage}` : hintMessage;
+                    feedbackHint.style.display = 'block';
+                } else {
+                    // Append message to feedback text
+                    this.elements.feedbackText.textContent += `\n\n${hintMessage}`;
+                }
+            }
         }
     }
 

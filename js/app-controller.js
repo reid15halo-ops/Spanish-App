@@ -25,6 +25,8 @@ class AppController {
             currentUnit: 1,
             currentExerciseIndex: 0,
             exercises: [],
+            currentAttempts: 0,  // NEW: Track attempts per exercise
+            maxAttemptsBeforeHint: 3,  // NEW: Hints after 3 failed attempts
             sessionStats: {
                 correct: 0,
                 total: 0,
@@ -332,6 +334,7 @@ class AppController {
 
         const exercise = this.state.exercises[index];
         this.state.currentExerciseIndex = index;
+        this.state.currentAttempts = 0;  // Reset attempts for new exercise
 
         // Transform exercise to UI format
         const uiExercise = this.transformExerciseForUI(exercise);
@@ -468,6 +471,11 @@ class AppController {
         // Check if correct
         const isCorrect = userAnswer === correctAnswer;
 
+        // Track attempts (only increment on wrong answers)
+        if (!isCorrect) {
+            this.state.currentAttempts++;
+        }
+
         // Update session stats
         this.state.sessionStats.total++;
         if (isCorrect) {
@@ -488,11 +496,15 @@ class AppController {
         // Get feedback message
         const feedback = this.generateFeedback(exercise, answer, isCorrect);
 
-        // Show feedback in UI
+        // Show feedback in UI with attempt tracking for hint unlock
         this.ui.showFeedback(
             isCorrect,
             feedback.message,
-            exercise.correctAnswer
+            exercise.correctAnswer,
+            feedback.hint || '',
+            null, // attemptsRemaining (not used)
+            this.state.currentAttempts,
+            this.state.maxAttemptsBeforeHint
         );
 
         // Show explanation if incorrect

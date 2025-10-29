@@ -1198,7 +1198,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ estudiante" (Ich bin Student)',
                 correctAnswer: 'soy',
                 german: 'Ich bin Student',
-                germanBridge: '⚠️ Häufiger Fehler! Beruf/Identität = SER (nicht ESTAR)',
+                germanBridge: '⚠️ Häufiger Fehler! Beruf ist eine dauerhafte Eigenschaft',
                 options: [
                     { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
                     { spanish: 'estoy', german: '(bin - vorübergehend)', value: 'estoy' },
@@ -1252,7 +1252,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ en Madrid" (Ich bin in Madrid)',
                 correctAnswer: 'estoy',
                 german: 'Ich bin in Madrid',
-                germanBridge: '💡 Ort/Location = ESTAR',
+                germanBridge: '💡 Achtung! Hier geht es um einen Ort (Location)',
                 options: [
                     { spanish: 'estoy', german: '(bin - am Ort)', value: 'estoy' },
                     { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
@@ -1277,7 +1277,7 @@ class Phase1Controller {
                 question: 'Wähle die richtige Form: "Yo ___ profesor" (Ich bin Lehrer)',
                 correctAnswer: 'soy',
                 german: 'Ich bin Lehrer (Beruf)',
-                germanBridge: '⚠️ Achtung! Beruf = SER (dauerhaft), nicht ESTAR',
+                germanBridge: '⚠️ Achtung! Beruf ist eine dauerhafte Eigenschaft',
                 options: [
                     { spanish: 'soy', german: '(SER - Beruf)', value: 'soy' },
                     { spanish: 'estoy', german: '(ESTAR - falsch hier)', value: 'estoy' },
@@ -1303,7 +1303,7 @@ class Phase1Controller {
                 question: 'Wähle die richtige Form: "Yo ___ feliz hoy" (Ich bin heute glücklich)',
                 correctAnswer: 'estoy',
                 german: 'Ich bin heute glücklich',
-                germanBridge: '💡 "heute" = vorübergehend → ESTAR',
+                germanBridge: '💡 Achtung! "heute" signalisiert einen vorübergehenden Zustand',
                 options: [
                     { spanish: 'estoy', german: '(ESTAR - vorübergehend)', value: 'estoy' },
                     { spanish: 'soy', german: '(SER - dauerhaft)', value: 'soy' },
@@ -1330,7 +1330,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ 25 años" (Ich bin 25 Jahre alt)',
                 correctAnswer: 'tengo',
                 german: 'Ich bin 25 Jahre alt',
-                germanBridge: '⚠️ Häufiger Fehler! Deutsch: "Ich BIN alt" → Spanisch: "Yo TENGO años"',
+                germanBridge: '⚠️ Häufiger Fehler! Für Alter wird ein anderes Verb verwendet (nicht "sein"!)',
                 options: [
                     { spanish: 'tengo', german: '(habe - richtig!)', value: 'tengo' },
                     { spanish: 'soy', german: '(bin - falsch!)', value: 'soy' },
@@ -1363,7 +1363,7 @@ class Phase1Controller {
                 question: 'Vervollständige den ersten Teil: "Yo ___ María" (Ich bin María - Name)',
                 correctAnswer: 'soy',
                 german: 'Ich bin María',
-                germanBridge: '💡 Name ist eine Identität → SER (dauerhaft)',
+                germanBridge: '💡 Name ist eine Identität (dauerhafte Eigenschaft)',
                 hints: [
                     'Name ist eine dauerhafte Eigenschaft.',
                     'DOCTOR Regel: Identity → SER',
@@ -1386,7 +1386,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ en Barcelona" (Ich bin in Barcelona)',
                 correctAnswer: 'estoy',
                 german: 'Ich bin in Barcelona',
-                germanBridge: '💡 Ort/Location → ESTAR (nicht SER!)',
+                germanBridge: '💡 Achtung! Hier geht es um einen Ort (Location)',
                 options: [
                     { spanish: 'estoy', german: '(bin - am Ort)', value: 'estoy' },
                     { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
@@ -3763,7 +3763,7 @@ class UIController {
     /**
      * Show feedback (correct or incorrect)
      */
-    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null) {
+    showFeedback(isCorrect, message, correctAnswer = null, hint = '', attemptsRemaining = null, currentAttempts = 0, maxAttemptsBeforeHint = 3) {
         this.elements.feedbackText.textContent = message;
         this.elements.feedback.className = 'feedback show ' + (isCorrect ? 'feedback--success' : 'feedback--error');
 
@@ -3811,9 +3811,26 @@ class UIController {
             }
         }
 
-        // Show hint button if incorrect
+        // Show hint button only after reaching attempt threshold
         if (!isCorrect) {
-            this.elements.hintContainer.classList.add('show');
+            if (currentAttempts >= maxAttemptsBeforeHint) {
+                // Unlock hints after threshold reached
+                this.elements.hintContainer.classList.add('show');
+            } else {
+                // Show message about hint unlock
+                const remaining = maxAttemptsBeforeHint - currentAttempts;
+                const hintMessage = `💡 Hinweis verfügbar nach ${remaining} weiteren Fehlversuch${remaining !== 1 ? 'en' : ''} (${currentAttempts}/${maxAttemptsBeforeHint})`;
+
+                // Add hint unlock message to feedback if not already there
+                if (feedbackHint) {
+                    const existingHint = feedbackHint.textContent;
+                    feedbackHint.textContent = existingHint ? `${existingHint}\n\n${hintMessage}` : hintMessage;
+                    feedbackHint.style.display = 'block';
+                } else {
+                    // Append message to feedback text
+                    this.elements.feedbackText.textContent += `\n\n${hintMessage}`;
+                }
+            }
         }
     }
 
@@ -4115,6 +4132,8 @@ class AppController {
             currentUnit: 1,
             currentExerciseIndex: 0,
             exercises: [],
+            currentAttempts: 0,  // Track attempts per exercise
+            maxAttemptsBeforeHint: 3,  // Hints after 3 failed attempts
             sessionStats: {
                 correct: 0,
                 total: 0,
@@ -4422,6 +4441,7 @@ class AppController {
 
         const exercise = this.state.exercises[index];
         this.state.currentExerciseIndex = index;
+        this.state.currentAttempts = 0;  // Reset attempts for new exercise
 
         // Transform exercise to UI format
         const uiExercise = this.transformExerciseForUI(exercise);
@@ -4562,6 +4582,9 @@ class AppController {
         this.state.sessionStats.total++;
         if (isCorrect) {
             this.state.sessionStats.correct++;
+        } else {
+            // Increment attempts on wrong answers for hint unlock
+            this.state.currentAttempts++;
         }
 
         // Record in adaptive learning
@@ -4578,11 +4601,15 @@ class AppController {
         // Get feedback message
         const feedback = this.generateFeedback(exercise, answer, isCorrect);
 
-        // Show feedback in UI
+        // Show feedback in UI with attempt tracking for hint unlock
         this.ui.showFeedback(
             isCorrect,
             feedback.message,
-            exercise.correctAnswer
+            exercise.correctAnswer,
+            feedback.hint || '',
+            null, // attemptsRemaining (not used)
+            this.state.currentAttempts,
+            this.state.maxAttemptsBeforeHint
         );
 
         // Show explanation if incorrect

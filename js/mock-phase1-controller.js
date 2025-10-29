@@ -165,7 +165,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ estudiante" (Ich bin Student)',
                 correctAnswer: 'soy',
                 german: 'Ich bin Student',
-                germanBridge: '⚠️ Häufiger Fehler! Beruf/Identität = SER (nicht ESTAR)',
+                germanBridge: '⚠️ Häufiger Fehler! Beruf ist eine dauerhafte Eigenschaft',
                 options: [
                     { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
                     { spanish: 'estoy', german: '(bin - vorübergehend)', value: 'estoy' },
@@ -219,7 +219,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ en Madrid" (Ich bin in Madrid)',
                 correctAnswer: 'estoy',
                 german: 'Ich bin in Madrid',
-                germanBridge: '💡 Ort/Location = ESTAR',
+                germanBridge: '💡 Achtung! Hier geht es um einen Ort (Location)',
                 options: [
                     { spanish: 'estoy', german: '(bin - am Ort)', value: 'estoy' },
                     { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
@@ -244,7 +244,7 @@ class Phase1Controller {
                 question: 'Wähle die richtige Form: "Yo ___ profesor" (Ich bin Lehrer)',
                 correctAnswer: 'soy',
                 german: 'Ich bin Lehrer (Beruf)',
-                germanBridge: '⚠️ Achtung! Beruf = SER (dauerhaft), nicht ESTAR',
+                germanBridge: '⚠️ Achtung! Beruf ist eine dauerhafte Eigenschaft',
                 options: [
                     { spanish: 'soy', german: '(SER - Beruf)', value: 'soy' },
                     { spanish: 'estoy', german: '(ESTAR - falsch hier)', value: 'estoy' },
@@ -270,7 +270,7 @@ class Phase1Controller {
                 question: 'Wähle die richtige Form: "Yo ___ feliz hoy" (Ich bin heute glücklich)',
                 correctAnswer: 'estoy',
                 german: 'Ich bin heute glücklich',
-                germanBridge: '💡 "heute" = vorübergehend → ESTAR',
+                germanBridge: '💡 Achtung! "heute" signalisiert einen vorübergehenden Zustand',
                 options: [
                     { spanish: 'estoy', german: '(ESTAR - vorübergehend)', value: 'estoy' },
                     { spanish: 'soy', german: '(SER - dauerhaft)', value: 'soy' },
@@ -297,7 +297,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ 25 años" (Ich bin 25 Jahre alt)',
                 correctAnswer: 'tengo',
                 german: 'Ich bin 25 Jahre alt',
-                germanBridge: '⚠️ Häufiger Fehler! Deutsch: "Ich BIN alt" → Spanisch: "Yo TENGO años"',
+                germanBridge: '⚠️ Häufiger Fehler! Für Alter wird ein anderes Verb verwendet (nicht "sein"!)',
                 options: [
                     { spanish: 'tengo', german: '(habe - richtig!)', value: 'tengo' },
                     { spanish: 'soy', german: '(bin - falsch!)', value: 'soy' },
@@ -330,7 +330,7 @@ class Phase1Controller {
                 question: 'Vervollständige den ersten Teil: "Yo ___ María" (Ich bin María - Name)',
                 correctAnswer: 'soy',
                 german: 'Ich bin María',
-                germanBridge: '💡 Name ist eine Identität → SER (dauerhaft)',
+                germanBridge: '💡 Name ist eine Identität (dauerhafte Eigenschaft)',
                 hints: [
                     'Name ist eine dauerhafte Eigenschaft.',
                     'DOCTOR Regel: Identity → SER',
@@ -353,7 +353,7 @@ class Phase1Controller {
                 question: 'Vervollständige: "Yo ___ en Barcelona" (Ich bin in Barcelona)',
                 correctAnswer: 'estoy',
                 german: 'Ich bin in Barcelona',
-                germanBridge: '💡 Ort/Location → ESTAR (nicht SER!)',
+                germanBridge: '💡 Achtung! Hier geht es um einen Ort (Location)',
                 options: [
                     { spanish: 'estoy', german: '(bin - am Ort)', value: 'estoy' },
                     { spanish: 'soy', german: '(bin - dauerhaft)', value: 'soy' },
