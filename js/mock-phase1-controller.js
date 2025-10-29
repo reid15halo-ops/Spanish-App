@@ -247,7 +247,8 @@ class Phase1Controller {
                 germanBridge: '⚠️ Achtung! Beruf = SER (dauerhaft), nicht ESTAR',
                 options: [
                     { spanish: 'soy', german: '(SER - Beruf)', value: 'soy' },
-                    { spanish: 'estoy', german: '(ESTAR - falsch hier)', value: 'estoy' }
+                    { spanish: 'estoy', german: '(ESTAR - falsch hier)', value: 'estoy' },
+                    { spanish: 'tengo', german: '(TENER - haben)', value: 'tengo' }
                 ],
                 hints: [
                     'Beruf ist eine dauerhafte Eigenschaft!',
@@ -272,7 +273,8 @@ class Phase1Controller {
                 germanBridge: '💡 "heute" = vorübergehend → ESTAR',
                 options: [
                     { spanish: 'estoy', german: '(ESTAR - vorübergehend)', value: 'estoy' },
-                    { spanish: 'soy', german: '(SER - dauerhaft)', value: 'soy' }
+                    { spanish: 'soy', german: '(SER - dauerhaft)', value: 'soy' },
+                    { spanish: 'tengo', german: '(TENER - haben)', value: 'tengo' }
                 ],
                 hints: [
                     'Gefühle sind vorübergehende Zustände!',
