@@ -190,7 +190,11 @@ class UIController {
     renderAnswerOptions(exercise) {
         this.elements.answerContainer.innerHTML = '';
 
-        if (exercise.type === 'multiple-choice' || exercise.type === 'conjugation') {
+        if (exercise.type === 'matching') {
+            this.renderMatching(exercise);
+        } else if (exercise.type === 'emoji-guess' || exercise.type === 'emoji-fill') {
+            this.renderEmojiExercise(exercise);
+        } else if (exercise.type === 'multiple-choice' || exercise.type === 'conjugation') {
             this.renderMultipleChoice(exercise);
         } else if (exercise.type === 'translation' || exercise.type === 'fill-blank') {
             this.renderTextInput(exercise);
@@ -579,6 +583,42 @@ class UIController {
         this.elements.answerContainer.innerHTML = html;
         this.hideFeedback();
         this.hideHints();
+    }
+
+    /**
+     * Render matching exercise
+     */
+    renderMatching(exercise) {
+        if (typeof MatchingExercise === 'undefined' || typeof MatchingExerciseRenderer === 'undefined') {
+            console.error('Matching exercise module not loaded');
+            this.elements.answerContainer.innerHTML = '<p>Matching exercise not available</p>';
+            return;
+        }
+
+        // Create matching exercise from data
+        const matching = new MatchingExercise(exercise.pairs || []);
+        const renderer = new MatchingExerciseRenderer(this.elements.answerContainer, matching);
+
+        // Set completion callback
+        renderer.onComplete = () => {
+            // Auto-submit when complete
+            const results = matching.validate();
+            const accuracy = results.accuracy;
+
+            if (this.onAnswerSelected) {
+                this.onAnswerSelected(JSON.stringify(results), null);
+            }
+        };
+
+        renderer.render();
+    }
+
+    /**
+     * Render emoji exercise (guess or fill)
+     */
+    renderEmojiExercise(exercise) {
+        // Emoji exercises are just text input with emoji in the question
+        this.renderTextInput(exercise);
     }
 }
 

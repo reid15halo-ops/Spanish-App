@@ -12,6 +12,13 @@ class AppController {
         this.adaptiveLearning = null;
         this.germanSystem = null;
 
+        // Dynamic exercise system
+        this.vocab = null;
+        this.templateEngine = null;
+        this.dynamicGenerator = null;
+        this.progressTracker = null;
+        this.useDynamicExercises = false; // Toggle for dynamic vs static
+
         this.state = {
             currentUnit: 1,
             currentExerciseIndex: 0,
@@ -47,6 +54,9 @@ class AppController {
 
             // Initialize German-Spanish System (if available)
             this.initializeGermanSystem();
+
+            // Initialize Dynamic Exercise System (if available)
+            this.useDynamicExercises = this.initializeDynamicSystem();
 
             // Load first unit
             await this.loadUnit(1);
@@ -101,6 +111,40 @@ class AppController {
             console.log('✅ German-Spanish System initialized');
         } else {
             console.warn('⚠️ German-Spanish System not available');
+        }
+    }
+
+    /**
+     * Initialize Dynamic Exercise Generation System
+     */
+    initializeDynamicSystem() {
+        // Check if dynamic modules are loaded
+        if (typeof VocabularyDatabase === 'undefined' ||
+            typeof SentenceTemplateEngine === 'undefined' ||
+            typeof DynamicExerciseGenerator === 'undefined' ||
+            typeof UserProgressTracker === 'undefined') {
+            console.warn('⚠️ Dynamic exercise system not available');
+            return false;
+        }
+
+        try {
+            // Initialize components
+            this.vocab = new VocabularyDatabase();
+            this.templateEngine = new SentenceTemplateEngine(this.vocab);
+            this.progressTracker = new UserProgressTracker();
+            this.dynamicGenerator = new DynamicExerciseGenerator(
+                this.vocab,
+                this.templateEngine,
+                this.progressTracker
+            );
+
+            console.log('✅ Dynamic Exercise System initialized');
+            console.log('📊 User Progress:', this.progressTracker.getStats());
+
+            return true;
+        } catch (error) {
+            console.error('❌ Error initializing dynamic system:', error);
+            return false;
         }
     }
 
