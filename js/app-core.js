@@ -79,6 +79,48 @@ class ExerciseRenderer {
     }
 
     /**
+     * Extract German translation from text (text in parentheses)
+     */
+    extractGermanTranslation(text) {
+        const match = text.match(/\(([^)]+)\)/);
+        if (match) {
+            return {
+                spanish: text.replace(/\s*\([^)]+\)/, '').trim(),
+                german: match[1].trim()
+            };
+        }
+        return { spanish: text, german: null };
+    }
+
+    /**
+     * Render German help section (hidden by default, with toggle)
+     */
+    renderGermanHelp(germanTranslation, germanBridge, example) {
+        const hasAnyHelp = germanTranslation || germanBridge || example;
+        if (!hasAnyHelp) return '';
+
+        return `
+            <button class="btn-toggle-translation" onclick="app.toggleGermanHelp(this)">
+                <span class="toggle-icon">▶</span>
+                <span class="toggle-text">Deutsche Hilfe anzeigen</span>
+            </button>
+            <div class="german-help-area hidden">
+                ${germanTranslation ? `
+                    <div class="german-translation">
+                        <strong>🇩🇪 Übersetzung:</strong> ${germanTranslation}
+                    </div>
+                ` : ''}
+                ${germanBridge ? `
+                    <div class="german-bridge">${germanBridge}</div>
+                ` : ''}
+                ${example ? `
+                    <p class="example-hint"><em>Beispiel: ${example}</em></p>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    /**
      * Render an exercise based on its type
      * @param {Object} exercise - Exercise data
      * @param {Function} onAnswer - Callback when user submits answer
@@ -214,9 +256,11 @@ class ExerciseRenderer {
      * Render reading comprehension
      */
     renderReadingComprehension(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="reading-comprehension">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
                 <div class="dialog-box">
                     <div class="dialog-title">📖 Dialog:</div>
@@ -227,22 +271,19 @@ class ExerciseRenderer {
                     `).join('')}
                 </div>
 
-                <button class="btn-toggle-translation" onclick="
-                    this.nextElementSibling.classList.toggle('hidden');
-                    this.classList.toggle('active');
-                    const text = this.querySelector('.toggle-text');
-                    if (this.classList.contains('active')) {
-                        text.textContent = 'Übersetzung ausblenden';
-                    } else {
-                        text.textContent = 'Übersetzung anzeigen';
-                    }
-                ">
+                <button class="btn-toggle-translation" onclick="app.toggleGermanHelp(this)">
                     <span class="toggle-icon">▶</span>
                     <span class="toggle-text">Übersetzung anzeigen</span>
                 </button>
 
-                <div class="translation-box hidden">
-                    <div class="translation-title">🇩🇪 Übersetzung:</div>
+                <div class="german-help-area hidden">
+                    ${parsed.german ? `
+                        <div class="german-translation">
+                            <strong>🇩🇪 Frage:</strong> ${parsed.german}
+                        </div>
+                    ` : ''}
+
+                    <div class="translation-title">🇩🇪 Dialog-Übersetzung:</div>
                     ${exercise.translation.map(line => `
                         <p class="translation-line">
                             <strong>${line.speaker}:</strong> ${line.text}
@@ -280,17 +321,13 @@ class ExerciseRenderer {
      * Render fill-blank exercise
      */
     renderFillBlank(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="fill-blank">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.example ? `
-                    <p class="example-hint"><em>Beispiel: ${exercise.example}</em></p>
-                ` : ''}
-
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, exercise.example)}
 
                 <div class="input-group">
                     <input type="text" id="answer-input" class="text-input"
@@ -311,13 +348,13 @@ class ExerciseRenderer {
      * Render multiple-choice exercise
      */
     renderMultipleChoice(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="multiple-choice">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
 
                 <div class="options">
                     ${exercise.options.map((opt, i) => `
@@ -340,13 +377,13 @@ class ExerciseRenderer {
      * Render translation exercise
      */
     renderTranslation(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="translation">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
 
                 <div class="input-group">
                     <input type="text" id="answer-input" class="text-input"
@@ -367,13 +404,13 @@ class ExerciseRenderer {
      * Render sentence-building exercise
      */
     renderSentenceBuilding(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="sentence-building">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
 
                 <p class="instruction">Verwende die Wörter: ${exercise.words.join(', ')}</p>
 
@@ -459,6 +496,13 @@ class App {
             correct: 0,
             total: 0
         };
+
+        // Track German help usage for adaptive learning
+        this.germanHelpUsage = {
+            totalExercises: 0,
+            helpUsed: 0,
+            exercisesWithHelp: []
+        };
     }
 
     /**
@@ -484,6 +528,9 @@ class App {
 
             // Build sidebar navigation
             this.buildSidebar();
+
+            // Load German help usage tracking
+            this.loadGermanHelpUsage();
 
             // Check for saved progress
             const savedProgress = this.loadProgress();
@@ -575,6 +622,59 @@ class App {
     }
 
     /**
+     * Toggle German help visibility and track usage
+     */
+    toggleGermanHelp(button) {
+        const helpArea = button.nextElementSibling;
+        if (!helpArea) return;
+
+        const isOpening = helpArea.classList.contains('hidden');
+
+        // Toggle visibility
+        helpArea.classList.toggle('hidden');
+        button.classList.toggle('active');
+
+        // Update button text
+        const textSpan = button.querySelector('.toggle-text');
+        if (textSpan) {
+            textSpan.textContent = isOpening ? 'Deutsche Hilfe ausblenden' : 'Deutsche Hilfe anzeigen';
+        }
+
+        // Track usage for adaptive learning (only when opening)
+        if (isOpening) {
+            this.trackGermanHelpUsage();
+        }
+    }
+
+    /**
+     * Track German help usage for adaptive learning
+     */
+    trackGermanHelpUsage() {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise) return;
+
+        this.germanHelpUsage.helpUsed++;
+
+        // Track which exercises required help
+        if (!this.germanHelpUsage.exercisesWithHelp.includes(exercise.id)) {
+            this.germanHelpUsage.exercisesWithHelp.push(exercise.id);
+        }
+
+        // Save usage data
+        this.saveGermanHelpUsage();
+
+        // Log for analytics (only in debug mode)
+        if (window.Logger && window.__DEV__) {
+            const usagePercent = Math.round(
+                (this.germanHelpUsage.helpUsed / Math.max(this.germanHelpUsage.totalExercises, 1)) * 100
+            );
+            window.Logger.debug(
+                `German help used: ${this.germanHelpUsage.helpUsed}/${this.germanHelpUsage.totalExercises} (${usagePercent}%)`
+            );
+        }
+    }
+
+    /**
      * Load a unit
      */
     async loadUnit(unitNumber) {
@@ -614,6 +714,9 @@ class App {
         this.attempts = 0;
 
         const exercise = this.exercises[index];
+
+        // Track total exercises for German help usage stats
+        this.germanHelpUsage.totalExercises++;
 
         window.Logger?.debug(`Exercise ${index + 1}/${this.exercises.length}: ${exercise.type} (${exercise.id})`);
 
@@ -1078,6 +1181,33 @@ class App {
             window.Logger?.error('Error loading progress:', error);
         }
         return null;
+    }
+
+    /**
+     * Save German help usage to localStorage
+     */
+    saveGermanHelpUsage() {
+        try {
+            localStorage.setItem('spanish-app-german-help', JSON.stringify(this.germanHelpUsage));
+            window.Logger?.debug('German help usage saved:', this.germanHelpUsage);
+        } catch (error) {
+            window.Logger?.error('Error saving German help usage:', error);
+        }
+    }
+
+    /**
+     * Load German help usage from localStorage
+     */
+    loadGermanHelpUsage() {
+        try {
+            const stored = localStorage.getItem('spanish-app-german-help');
+            if (stored) {
+                this.germanHelpUsage = JSON.parse(stored);
+                window.Logger?.debug('German help usage loaded:', this.germanHelpUsage);
+            }
+        } catch (error) {
+            window.Logger?.error('Error loading German help usage:', error);
+        }
     }
 
     /**
