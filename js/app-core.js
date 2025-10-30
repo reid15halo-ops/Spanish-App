@@ -643,6 +643,9 @@ class App {
         // Initialize Adaptive Learning System
         this.adaptiveSystem = new window.AdaptiveLearningSystem();
 
+        // Initialize Unit Mastery System (Adaptive Unit Progression)
+        this.masterySystem = new UnitMasterySystem(this.adaptiveSystem);
+
         this.currentUnit = 1;
         this.exercises = [];
         this.currentIndex = 0;
@@ -1007,6 +1010,9 @@ class App {
         // Record attempt in adaptive learning system
         this.adaptiveSystem.recordAttempt(exercise, validationResult.isCorrect);
 
+        // Check if unit has been mastered and unlock next unit
+        this.checkUnitMastery();
+
         // Save progress after updating stats
         this.saveProgress();
 
@@ -1228,10 +1234,27 @@ class App {
             cursor: pointer;
         `;
 
+        const unlockedUnits = this.masterySystem.getUnlockedUnits();
+        const masteredUnits = this.masterySystem.getMasteredUnits();
+
         for (let i = 1; i <= 7; i++) {
             const option = document.createElement('option');
             option.value = i;
-            option.textContent = `Lektion ${i}`;
+
+            const isUnlocked = unlockedUnits.includes(i);
+            const isMastered = masteredUnits.includes(i);
+
+            // Build option text with status indicators
+            let text = `Lektion ${i}`;
+            if (isMastered) {
+                text += ' ✅';  // Mastered
+            } else if (!isUnlocked) {
+                text += ' 🔒';  // Locked
+            }
+
+            option.textContent = text;
+            option.disabled = !isUnlocked;  // Disable locked units
+
             if (i === this.currentUnit) {
                 option.selected = true;
             }
@@ -1252,6 +1275,49 @@ class App {
 
         unitSelector.appendChild(select);
         nav.appendChild(unitSelector);
+
+        // Add unit mastery progress indicator
+        const unitProgressDiv = document.createElement('div');
+        unitProgressDiv.style.cssText = `
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+        `;
+
+        const progressPercent = this.masterySystem.getUnitProgressPercentage(this.currentUnit);
+        const unitReport = this.masterySystem.getUnitProgressReport(this.currentUnit);
+        const isMastered = unitReport.isMastered;
+
+        unitProgressDiv.innerHTML = `
+            <div style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">
+                ${isMastered ? '✅ Unit Gemeistert' : '🎯 Unit Fortschritt'}
+            </div>
+            <div style="margin-bottom: 5px;">
+                <strong style="font-size: 16px; color: var(--text);">${progressPercent}%</strong>
+            </div>
+            <div style="background: var(--border); height: 8px; border-radius: 4px; overflow: hidden;">
+                <div style="
+                    background: ${isMastered ? 'var(--success)' : 'var(--primary)'};
+                    height: 100%;
+                    width: ${progressPercent}%;
+                    transition: width 0.3s ease;
+                    border-radius: 4px;
+                "></div>
+            </div>
+            ${!isMastered && unitReport.analysis.nextSteps.length > 0 ? `
+                <div style="margin-top: 10px; font-size: 11px; color: var(--text-muted);">
+                    <strong>Nächste Schritte:</strong>
+                    <ul style="margin: 5px 0 0 0; padding-left: 20px;">
+                        ${unitReport.analysis.nextSteps.slice(0, 2).map(step =>
+                            `<li style="margin-bottom: 3px;">${step}</li>`
+                        ).join('')}
+                    </ul>
+                </div>
+            ` : ''}
+        `;
+
+        nav.appendChild(unitProgressDiv);
 
         // Group exercises by concept if available
         const groupedExercises = this.groupExercisesByConcept();
@@ -1717,6 +1783,147 @@ class App {
         } catch (error) {
             window.Logger?.error('Error loading German help usage:', error);
         }
+    }
+
+    /**
+     * Check if current unit has been mastered and unlock next unit
+     * Called after each answer attempt
+     */
+    checkUnitMastery() {
+        try {
+            const result = this.masterySystem.checkAndUnlockNextUnit(this.currentUnit);
+
+            if (result.unlockedNew) {
+                // Unit mastered! Show celebration
+                this.showUnitMasteryModal(result);
+            }
+        } catch (error) {
+            window.Logger?.error('Error checking unit mastery:', error);
+        }
+    }
+
+    /**
+     * Show modal when unit is mastered
+     */
+    showUnitMasteryModal(result) {
+        const modal = document.createElement('div');
+        modal.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: fadeIn 0.3s ease;
+        `;
+
+        const analysis = result.analysis;
+        const overallAccuracy = Math.round(analysis.overallAccuracy * 100);
+        const conceptCoverage = Math.round(analysis.conceptMastery.coverage * 100);
+
+        modal.innerHTML = `
+            <div style="
+                background: white;
+                padding: 40px;
+                border-radius: 16px;
+                max-width: 500px;
+                text-align: center;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+                animation: slideUp 0.5s ease;
+            ">
+                <div style="font-size: 64px; margin-bottom: 20px;">🎉</div>
+                <h2 style="color: var(--success); margin-bottom: 15px; font-size: 28px;">
+                    Unit ${result.masteredUnit} Gemeistert!
+                </h2>
+                <p style="color: var(--text); margin-bottom: 25px; font-size: 16px; line-height: 1.6;">
+                    Herzlichen Glückwunsch! Du hast Unit ${result.masteredUnit} erfolgreich abgeschlossen.
+                </p>
+
+                <div style="background: var(--bg-secondary); padding: 20px; border-radius: 8px; margin-bottom: 25px; text-align: left;">
+                    <h3 style="font-size: 16px; margin-bottom: 15px; color: var(--text);">📊 Deine Leistung:</h3>
+                    <div style="margin-bottom: 10px;">
+                        <strong>Gesamtgenauigkeit:</strong> ${overallAccuracy}%
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>Konzepte gemeistert:</strong> ${analysis.conceptMastery.masteredCount}/${analysis.conceptMastery.totalConcepts} (${conceptCoverage}%)
+                    </div>
+                    <div>
+                        <strong>Übungen absolviert:</strong> ${analysis.criteria.exercisesAttempted.value}
+                    </div>
+                </div>
+
+                <div style="background: var(--primary); color: white; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
+                    <strong>🔓 Unit ${result.unlockedUnit} ist jetzt freigeschaltet!</strong>
+                </div>
+
+                <button id="continue-next-unit" style="
+                    background: var(--primary);
+                    color: white;
+                    border: none;
+                    padding: 15px 40px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    margin-right: 10px;
+                    transition: all 0.2s;
+                " onmouseover="this.style.background='var(--primary-hover)'" onmouseout="this.style.background='var(--primary)'">
+                    Zu Unit ${result.unlockedUnit}
+                </button>
+
+                <button id="stay-current-unit" style="
+                    background: white;
+                    color: var(--primary);
+                    border: 2px solid var(--primary);
+                    padding: 15px 40px;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                " onmouseover="this.style.background='var(--bg-secondary)'" onmouseout="this.style.background='white'">
+                    Weiter üben
+                </button>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Add animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from {
+                    transform: translateY(50px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Button handlers
+        document.getElementById('continue-next-unit').addEventListener('click', async () => {
+            modal.remove();
+            await this.loadUnit(result.unlockedUnit);
+            this.showExercise(0);
+            this.buildSidebar();  // Rebuild sidebar to show new unit
+        });
+
+        document.getElementById('stay-current-unit').addEventListener('click', () => {
+            modal.remove();
+        });
     }
 
     /**
