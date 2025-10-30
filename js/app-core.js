@@ -150,6 +150,9 @@ class ExerciseRenderer {
             case 'fill-blank':
                 html = this.renderFillBlank(exercise, onAnswer);
                 break;
+            case 'conjugation':
+                html = this.renderConjugation(exercise, onAnswer);
+                break;
             case 'multiple-choice':
                 html = this.renderMultipleChoice(exercise, onAnswer);
                 break;
@@ -159,6 +162,27 @@ class ExerciseRenderer {
             case 'sentence-building':
                 html = this.renderSentenceBuilding(exercise, onAnswer);
                 break;
+
+            // All other text-input based exercises
+            case 'meaning-change':
+            case 'error-correction':
+            case 'conversation':
+            case 'comprehensive':
+            case 'practical-scenario':
+            case 'mixed-grammar':
+            case 'comprehensive-translation':
+            case 'final-mastery':
+            case 'correction':
+            case 'mastery-check':
+            case 'final-certification':
+            case 'error-identification':
+            case 'contrast-sentence':
+            case 'contrast-pair':
+            case 'contrast-intro':
+            case 'advanced-application':
+                html = this.renderGenericTextInput(exercise, onAnswer);
+                break;
+
             default:
                 html = `<p>Unknown exercise type: ${exercise.type}</p>`;
         }
@@ -345,6 +369,137 @@ class ExerciseRenderer {
     }
 
     /**
+     * Render conjugation exercise
+     */
+    renderConjugation(exercise, onAnswer) {
+        return `
+            <div class="conjugation">
+                <p class="question">${exercise.question}</p>
+
+                ${exercise.germanBridge ? `
+                    <div class="german-bridge">${exercise.germanBridge}</div>
+                ` : ''}
+
+                ${exercise.note ? `
+                    <p class="note"><strong>📌 Hinweis:</strong> ${exercise.note}</p>
+                ` : ''}
+
+                <div class="input-group">
+                    <input type="text" id="answer-input" class="text-input"
+                           placeholder="Deine Antwort..." autocomplete="off">
+                    <button class="btn-primary" onclick="app.checkAnswer()">Prüfen</button>
+                </div>
+
+                ${exercise.mnemonic ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
+                    </div>
+                ` : ''}
+
+                <div id="feedback-area" class="feedback-area hidden"></div>
+
+                ${exercise.examples && exercise.examples.length > 0 ? `
+                    <div class="examples-box hidden" id="examples-box">
+                        <strong>📚 Beispiele:</strong>
+                        ${exercise.examples.map(ex => `<p class="example">${ex}</p>`).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    /**
+     * Render generic text-input exercise (used for many exercise types)
+     */
+    renderGenericTextInput(exercise, onAnswer) {
+        // Get exercise type label for display
+        const typeLabels = {
+            'meaning-change': 'Bedeutungsänderung',
+            'error-correction': 'Fehlerkorrektur',
+            'conversation': 'Konversation',
+            'comprehensive': 'Umfassende Übung',
+            'practical-scenario': 'Praxisszenario',
+            'mixed-grammar': 'Gemischte Grammatik',
+            'comprehensive-translation': 'Umfassende Übersetzung',
+            'final-mastery': 'Abschlussprüfung',
+            'correction': 'Korrektur',
+            'mastery-check': 'Meisterschaftstest',
+            'final-certification': 'Abschlusszertifizierung',
+            'error-identification': 'Fehleridentifikation',
+            'contrast-sentence': 'Kontrastsatz',
+            'contrast-pair': 'Kontrastpaar',
+            'contrast-intro': 'Kontrasteinführung',
+            'advanced-application': 'Erweiterte Anwendung'
+        };
+
+        const typeLabel = typeLabels[exercise.type] || exercise.type;
+
+        return `
+            <div class="generic-text-input ${exercise.type}">
+                <div class="exercise-type-badge">${typeLabel}</div>
+
+                <p class="question">${exercise.question}</p>
+
+                ${exercise.germanBridge ? `
+                    <div class="german-bridge">${exercise.germanBridge}</div>
+                ` : ''}
+
+                ${exercise.note ? `
+                    <p class="note"><strong>📌 Hinweis:</strong> ${exercise.note}</p>
+                ` : ''}
+
+                ${exercise.warning ? `
+                    <p class="warning"><strong>${exercise.warning}</strong></p>
+                ` : ''}
+
+                ${exercise.rule ? `
+                    <p class="rule"><strong>📏 Regel:</strong> ${exercise.rule}</p>
+                ` : ''}
+
+                ${exercise.context ? `
+                    <p class="context"><em>${exercise.context}</em></p>
+                ` : ''}
+
+                <div class="input-group">
+                    <textarea id="answer-input" class="text-input-area"
+                           placeholder="Deine Antwort..." rows="3" autocomplete="off"></textarea>
+                    <button class="btn-primary" onclick="app.checkAnswer()">Prüfen</button>
+                </div>
+
+                ${exercise.mnemonic ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
+                    </div>
+                ` : ''}
+
+                ${exercise.hint ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Hinweis:</strong> ${exercise.hint}</p>
+                    </div>
+                ` : ''}
+
+                <div id="feedback-area" class="feedback-area hidden"></div>
+
+                ${exercise.examples && exercise.examples.length > 0 ? `
+                    <div class="examples-box hidden" id="examples-box">
+                        <strong>📚 Beispiele:</strong>
+                        ${exercise.examples.map(ex => `<p class="example">${ex}</p>`).join('')}
+                    </div>
+                ` : ''}
+
+                ${exercise.breakdown ? `
+                    <div class="breakdown-box hidden" id="breakdown-box">
+                        <strong>🔍 Analyse:</strong>
+                        ${Object.entries(exercise.breakdown).map(([key, value]) =>
+                            `<p class="breakdown-item"><strong>${key}:</strong> ${value}</p>`
+                        ).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    /**
      * Render multiple-choice exercise
      */
     renderMultipleChoice(exercise, onAnswer) {
@@ -484,6 +639,9 @@ class App {
     constructor() {
         this.loader = new ExerciseLoader();
         this.renderer = null; // Will be set when container is ready
+
+        // Initialize Adaptive Learning System
+        this.adaptiveSystem = new window.AdaptiveLearningSystem();
 
         this.currentUnit = 1;
         this.exercises = [];
@@ -687,22 +845,41 @@ class App {
      */
     async loadUnit(unitNumber) {
         try {
-            window.Logger?.info(`Loading Unit ${unitNumber}...`);
+            window.Logger?.info(`Loading Unit ${unitNumber} (Adaptive Mode)...`);
 
-            const data = await this.loader.loadUnit(unitNumber);
+            // Load all exercises from all units for adaptive selection
+            const allExercises = [];
+
+            for (let unit = 1; unit <= 7; unit++) {
+                const data = await this.loader.loadUnit(unit);
+                data.exercises.forEach(ex => {
+                    allExercises.push({
+                        ...ex,
+                        unitNumber: unit,
+                        unitName: data.metadata?.title || `Unit ${unit}`
+                    });
+                });
+            }
+
+            window.Logger?.info(`Loaded ${allExercises.length} total exercises from all units`);
+
+            // Create adaptive sequence based on performance
+            this.exercises = this.adaptiveSystem.createAdaptiveSequence(allExercises, 50);
+
+            window.Logger?.success(`Created adaptive sequence: ${this.exercises.length} exercises`);
 
             this.currentUnit = unitNumber;
-            this.exercises = data.exercises;
             this.currentIndex = 0;
             this.attempts = 0;
 
             // Update progress
             this.updateProgress();
 
-            window.Logger?.success(`Loaded ${this.exercises.length} exercises`);
+            // Show adaptive recommendations
+            this.showAdaptiveRecommendations();
 
         } catch (error) {
-            window.Logger?.error('Error loading unit:', error);
+            window.Logger?.error('Error loading adaptive exercises:', error);
             window.ErrorBoundary?.handleError(error, { context: `Loading Unit ${unitNumber}` });
             throw error;
         }
@@ -815,6 +992,9 @@ class App {
                 this.renderer.showHint();
             }
         }
+
+        // Record attempt in adaptive learning system
+        this.adaptiveSystem.recordAttempt(exercise, isCorrect);
 
         // Save progress after updating stats
         this.saveProgress();
@@ -1020,9 +1200,31 @@ class App {
             const section = document.createElement('div');
             section.className = 'unit-section';
 
+            // Get mastery level for this concept
+            const firstEx = exercises[0]?.exercise;
+            const conceptKey = firstEx?.concept || 'general';
+            const mastery = this.adaptiveSystem.getConceptMastery(conceptKey);
+            const masteryPercent = Math.round(mastery * 100);
+
             const title = document.createElement('div');
             title.className = 'unit-title';
-            title.textContent = concept;
+            title.style.cssText = 'display: flex; justify-content: space-between; align-items: center;';
+
+            const conceptName = document.createElement('span');
+            conceptName.textContent = concept;
+
+            const masteryBadge = document.createElement('span');
+            masteryBadge.style.cssText = `
+                font-size: 11px;
+                padding: 2px 8px;
+                border-radius: 12px;
+                background: ${mastery >= 0.8 ? '#4CAF50' : mastery >= 0.5 ? '#FF9800' : '#f44336'};
+                color: white;
+            `;
+            masteryBadge.textContent = `${masteryPercent}%`;
+
+            title.appendChild(conceptName);
+            title.appendChild(masteryBadge);
             section.appendChild(title);
 
             const list = document.createElement('ul');
@@ -1518,6 +1720,80 @@ class App {
                 modal.classList.add('hidden');
             };
         }
+    }
+
+    /**
+     * Show adaptive learning recommendations
+     */
+    showAdaptiveRecommendations() {
+        const recommendations = this.adaptiveSystem.getRecommendations();
+        const stats = this.adaptiveSystem.getStatistics();
+
+        // Log recommendations to console
+        console.log('🎯 Adaptive Learning Recommendations:', recommendations);
+        console.log('📊 Learning Statistics:', stats);
+
+        // Update sidebar with adaptive info
+        const sidebar = document.getElementById('sidebar');
+        if (!sidebar) return;
+
+        // Create adaptive info panel
+        let adaptivePanel = document.getElementById('adaptive-panel');
+        if (!adaptivePanel) {
+            adaptivePanel = document.createElement('div');
+            adaptivePanel.id = 'adaptive-panel';
+            adaptivePanel.style.cssText = `
+                background: rgba(32, 178, 170, 0.1);
+                border: 2px solid var(--primary);
+                border-radius: 8px;
+                padding: 15px;
+                margin: 15px 0;
+            `;
+
+            // Insert after sidebar header
+            const sidebarHeader = sidebar.querySelector('.sidebar-header');
+            if (sidebarHeader && sidebarHeader.nextSibling) {
+                sidebar.insertBefore(adaptivePanel, sidebarHeader.nextSibling);
+            }
+        }
+
+        // Build adaptive info HTML
+        let html = '<div style="font-size: 14px;">';
+
+        // Overall mastery
+        const masteryPercent = Math.round(recommendations.overallMastery * 100);
+        html += `<div style="margin-bottom: 10px;">
+            <strong>🎯 Gesamtfortschritt:</strong> ${masteryPercent}%
+            <div style="background: #ddd; height: 8px; border-radius: 4px; margin-top: 5px;">
+                <div style="background: var(--primary); height: 100%; width: ${masteryPercent}%; border-radius: 4px;"></div>
+            </div>
+        </div>`;
+
+        // Weak concepts
+        if (recommendations.weakConcepts.length > 0) {
+            html += '<div style="margin-bottom: 10px;"><strong>⚠️ Schwache Bereiche:</strong><ul style="margin: 5px 0; padding-left: 20px;">';
+            recommendations.weakConcepts.slice(0, 3).forEach(weak => {
+                const percent = Math.round(weak.mastery * 100);
+                html += `<li style="font-size: 12px;">${weak.concept}: ${percent}%</li>`;
+            });
+            html += '</ul></div>';
+        }
+
+        // Next difficulty
+        html += `<div style="margin-bottom: 10px;">
+            <strong>📈 Empfohlene Schwierigkeit:</strong> Level ${recommendations.nextDifficulty}/5
+        </div>`;
+
+        // Exercises for review
+        if (recommendations.reviewExercises.length > 0) {
+            html += `<div>
+                <strong>🔄 Zu wiederholen:</strong> ${recommendations.reviewExercises.length} Übungen
+            </div>`;
+        }
+
+        html += '</div>';
+
+        adaptivePanel.innerHTML = html;
     }
 }
 
