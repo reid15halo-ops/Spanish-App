@@ -490,14 +490,167 @@
             border-left: 4px solid var(--error);
         }
 
+        /* Feedback Layout */
+        .feedback-success,
+        .feedback-error {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .feedback-icon {
+            font-size: 24px;
+            flex-shrink: 0;
+            line-height: 1;
+        }
+
+        .feedback-content {
+            flex: 1;
+        }
+
         .feedback-message {
             font-weight: 600;
             margin-bottom: 8px;
+            font-size: 16px;
         }
 
-        .correct-answer {
+        .feedback-secondary {
             color: var(--text-muted);
+            font-size: 14px;
             margin-top: 8px;
+        }
+
+        .feedback-hint {
+            padding: 10px 12px;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .correct-answer-box {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 6px;
+        }
+
+        .correct-answer-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .correct-answer-text {
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Style Improvements Section */
+        .style-improvements {
+            margin-top: 20px;
+            padding: 15px 18px;
+            background: linear-gradient(135deg, #e8f4f8 0%, #f0f8ff 100%);
+            border-left: 4px solid #4CAF50;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .improvement-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #2E7D32;
+        }
+
+        .improvement-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .improvement-title {
+            font-size: 15px;
+        }
+
+        .improvement-item {
+            margin: 10px 0;
+            padding: 10px 14px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 6px;
+            border: 1px solid rgba(46, 125, 50, 0.1);
+        }
+
+        .improvement-item.accent {
+            border-left: 3px solid #FF9800;
+        }
+
+        .improvement-item.punctuation {
+            border-left: 3px solid #2196F3;
+        }
+
+        .improvement-item.capitalization {
+            border-left: 3px solid #9C27B0;
+        }
+
+        .improvement-comparison {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 15px;
+        }
+
+        .comparison-label {
+            font-size: 12px;
+            color: #666;
+            font-weight: 600;
+            min-width: 20px;
+        }
+
+        .user-version {
+            background: #ffebee;
+            color: #c62828;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+
+        .correct-version {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .arrow {
+            color: #666;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .improvement-explanation {
+            font-size: 13px;
+            color: #555;
+            font-style: italic;
+            line-height: 1.4;
+            padding-left: 30px;
+        }
+
+        /* Continue Button */
+        .btn-continue {
+            margin-top: 15px;
+            width: 100%;
         }
 
         /* ===== HINT ===== */
@@ -848,6 +1001,10 @@
 
     <!-- Inlined Exercise Data (All units + vocabulary - no fetch() calls) -->
     <script src="js/exercise-data.js"></script>
+
+    <!-- Tolerant Validation & Improved Feedback -->
+    <script src="js/tolerant-validator.js"></script>
+    <script src="js/improved-feedback.js"></script>
 
     <!-- Consolidated Core App (App + Loader + Renderer) -->
     <script src="js/app-core.js"></script>

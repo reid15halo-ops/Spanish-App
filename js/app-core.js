@@ -503,6 +503,10 @@ class App {
             helpUsed: 0,
             exercisesWithHelp: []
         };
+
+        // Initialize tolerant validator and improved feedback system
+        this.validator = new TolerantAnswerValidator();
+        this.feedbackSystem = new ImprovedFeedbackSystem();
     }
 
     /**
@@ -787,60 +791,48 @@ class App {
             correctAnswer = exercise.correctAnswer;
         }
 
-        // Normalize answers for comparison
-        const normalizedUserAnswer = this.normalizeAnswer(userAnswer);
-        const normalizedCorrectAnswer = this.normalizeAnswer(correctAnswer);
+        // Use tolerant validator for improved feedback
+        const validationResult = this.validator.validateAnswer(
+            userAnswer,
+            correctAnswer,
+            exercise
+        );
 
-        const isCorrect = normalizedUserAnswer === normalizedCorrectAnswer;
-
-        // Update stats
+        // Update stats (only based on core correctness)
         this.stats.total++;
-        if (isCorrect) {
+        if (validationResult.isCorrect) {
             this.stats.correct++;
         } else {
             this.attempts++;
+
+            // Show hint based on settings (only for incorrect answers)
+            const maxAttempts = this.getMaxAttemptsBeforeHint();
+            if (this.attempts >= maxAttempts && exercise.hint) {
+                this.renderer.showHint();
+            }
         }
 
         // Save progress after updating stats
         this.saveProgress();
 
-        // Show feedback
-        if (isCorrect) {
-            this.renderer.showFeedback(true, '✅ Richtig! Sehr gut!');
+        // Show improved feedback
+        this.feedbackSystem.showValidationResult(validationResult, exercise);
 
-            // Show explanation if available
-            if (exercise.explanation) {
-                setTimeout(() => {
-                    alert(`💡 ${exercise.explanation}`);
-                }, 500);
-            }
+        // Disable input/buttons to prevent multiple submissions
+        this.disableInput();
+    }
 
-            // Auto-advance after delay
-            setTimeout(() => {
-                this.next();
-            }, 1500);
-
-        } else {
-            this.renderer.showFeedback(false, '❌ Leider falsch. Versuch es nochmal!', correctAnswer);
-
-            // Show hint based on settings
-            const maxAttempts = this.getMaxAttemptsBeforeHint();
-            if (this.attempts >= maxAttempts && exercise.hint) {
-                this.renderer.showHint();
-            }
-
-            // Disable input/buttons
-            const input = document.getElementById('answer-input');
-            if (input) {
-                input.disabled = true;
-            }
-
-            const buttons = document.querySelectorAll('.btn-option, .btn-primary');
-            buttons.forEach(btn => btn.disabled = true);
-
-            // Show "Next" button
-            this.showNextButton();
+    /**
+     * Disable input and buttons after answer submission
+     */
+    disableInput() {
+        const input = document.getElementById('answer-input');
+        if (input) {
+            input.disabled = true;
         }
+
+        const buttons = document.querySelectorAll('.btn-option, .btn-primary');
+        buttons.forEach(btn => btn.disabled = true);
     }
 
     /**
