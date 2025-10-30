@@ -4,17 +4,14 @@
  * All exercise data inlined as JavaScript objects
  * Generated from JSON files to avoid CORS issues with file:// URLs
  *
- * Generated: 2025-10-30T08:36:46.121Z
+ * Generated: 2025-10-30T08:55:59.634Z
  */
-
-// Initialize ExerciseData namespace
-window.ExerciseData = {};
 
 // ====================================================================
 // PHASE 1 UNITS
 // ====================================================================
 
-window.UNIT_1_PRONOUNS = {
+export const UNIT_1_PRONOUNS = {
   "metadata": {
     "unit": 1,
     "phase": 1,
@@ -454,7 +451,8 @@ window.UNIT_1_PRONOUNS = {
         "mucho gusto"
       ],
       "explanation": "In diesem Dialog stellen sich zwei Personen vor. Beachte: 'Me llamo' (Ich heiße) und 'Yo soy' (Ich bin) bedeuten beide 'Ich bin', aber 'me llamo' verwendet man für den Namen.",
-      "audioHint": "Höre genau hin: 'ME YA-mo' (me llamo), 'MU-cho GUS-to' (mucho gusto)"
+      "audioHint": "Höre genau hin: 'ME YA-mo' (me llamo), 'MU-cho GUS-to' (mucho gusto)",
+      "germanBridge": "🇩🇪→🇪🇸 Deutsche Struktur ähnlich: \"Ich bin\" → \"Yo soy\""
     },
     {
       "id": "u1_input002",
@@ -509,7 +507,8 @@ window.UNIT_1_PRONOUNS = {
         "España"
       ],
       "explanation": "'De dónde eres?' = 'Woher kommst du?' | 'Soy de...' = 'Ich komme aus...'",
-      "grammarNote": "SER wird verwendet für Herkunft: Soy DE Alemania"
+      "grammarNote": "SER wird verwendet für Herkunft: Soy DE Alemania",
+      "germanBridge": "🇩🇪→🇪🇸 \"aus Deutschland\" → \"de Alemania\" (verwende SER)"
     },
     {
       "id": "u1_input003",
@@ -562,7 +561,8 @@ window.UNIT_1_PRONOUNS = {
         "qué bien"
       ],
       "explanation": "'Yo soy + Beruf' = 'Ich bin + Beruf'. Beachte: estudiante ist gleich für Mann und Frau!",
-      "grammarNote": "SER wird verwendet für Beruf: Soy profesora"
+      "grammarNote": "SER wird verwendet für Beruf: Soy profesora",
+      "germanBridge": "🇩🇪→🇪🇸 Beruf mit SER: \"Ich bin Arzt\" → \"Soy médico\""
     },
     {
       "id": "u1_input004",
@@ -1053,7 +1053,7 @@ window.UNIT_1_PRONOUNS = {
   ]
 };
 
-window.UNIT_2_SER = {
+export const UNIT_2_SER = {
   "metadata": {
     "unit": 2,
     "phase": 1,
@@ -3059,7 +3059,7 @@ window.UNIT_2_SER = {
     {
       "id": "u2_ex030",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-existential",
       "question": "Pienso, luego ___. (Ich denke, also bin ich. - Descartes)",
       "correctAnswer": "soy",
@@ -3112,7 +3112,7 @@ window.UNIT_2_SER = {
     {
       "id": "u2_ex031",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-opinion",
       "question": "Übersetze: 'Meiner Meinung nach ist das richtig.'",
       "correctAnswer": "En mi opinión, esto es correcto",
@@ -3169,7 +3169,7 @@ window.UNIT_2_SER = {
     {
       "id": "u2_ex032",
       "type": "multiple-choice",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-definition",
       "question": "Wie definierst du etwas: 'Ein Hund ist ein Tier'?",
       "correctAnswer": "Un perro es un animal",
@@ -3228,7 +3228,7 @@ window.UNIT_2_SER = {
     {
       "id": "u2_ex033",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-comprehensive-2",
       "question": "Übersetze: 'Sie (ella) ist Spanierin, Lehrerin und sehr nett.'",
       "correctAnswer": "Ella es española, profesora y muy amable",
@@ -3284,7 +3284,7 @@ window.UNIT_2_SER = {
     {
       "id": "u2_ex034",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-impersonal",
       "question": "___ posible aprender español. (Es ist möglich, Spanisch zu lernen.)",
       "correctAnswer": "Es",
@@ -3338,7 +3338,7 @@ window.UNIT_2_SER = {
     {
       "id": "u2_ex035",
       "type": "comprehensive",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-all-uses",
       "question": "Wähle das RICHTIGE Verb: 'Heute ___ Montag und die Party ___ in Madrid. Ich ___ Student.'",
       "correctAnswer": "es, es, soy",
@@ -3461,10 +3461,36 @@ window.UNIT_2_SER = {
       "T": "Time (Uhrzeit/Datum)",
       "R": "Relationship (Beziehung)"
     }
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u2_vocab001 - u2_vocab013",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 13
+    },
+    "phase1_input": {
+      "exercises": "u2_input001 - u2_input008",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 8
+    },
+    "phase2_guided": {
+      "exercises": "u2_guided001 - u2_guided022",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 22
+    },
+    "phase3_free": {
+      "exercises": "u2_free001 - u2_free012",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 12
+    }
   }
 };
 
-window.UNIT_3_ESTAR = {
+export const UNIT_3_ESTAR = {
   "metadata": {
     "unit": 3,
     "phase": 1,
@@ -4677,9 +4703,9 @@ window.UNIT_3_ESTAR = {
       "difficulty": 4,
       "concept": "estar-emotion-vs-characteristic",
       "question": "Welches ist richtig: 'Er ist nervös' (gerade jetzt)?",
-      "correctAnswer": "Está nervioso (ESTAR - temporär)",
+      "correctAnswer": "Está nervioso (ESTAR - temporar)",
       "options": [
-        "Está nervioso (ESTAR - temporär)",
+        "Está nervioso (ESTAR - temporar)",
         "Es nervioso (SER - Charaktereigenschaft)",
         "Beides bedeutet dasselbe"
       ],
@@ -5370,7 +5396,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex028",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-ready",
       "question": "Übersetze: 'Bist du fertig?' (listo/lista)",
       "correctAnswer": "¿Estás listo?",
@@ -5431,7 +5457,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex029",
       "type": "multiple-choice",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-meaning-change",
       "question": "'Él está listo' vs 'Él es listo' - Was ist der Unterschied?",
       "correctAnswer": "Está listo = er ist fertig | Es listo = er ist schlau",
@@ -5492,7 +5518,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex030",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-availability",
       "question": "¿El director ___? - No, ___ ocupado. (Ist der Direktor da? - Nein, er ist beschäftigt.)",
       "correctAnswer": "está, está",
@@ -5549,7 +5575,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex031",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-pregnant",
       "question": "Übersetze: 'Sie ist schwanger.' (embarazada)",
       "correctAnswer": "Está embarazada",
@@ -5608,7 +5634,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex032",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-dead-alive",
       "question": "El gato ___ vivo. (Die Katze ist lebendig.)",
       "correctAnswer": "está",
@@ -5664,7 +5690,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex033",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-full-empty",
       "question": "Übersetze: 'Das Glas ist voll.' (lleno)",
       "correctAnswer": "El vaso está lleno",
@@ -5723,7 +5749,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex034",
       "type": "comprehensive",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-multiple-uses",
       "question": "Ergänze: 'Yo ___ en casa, ___ cansado y ___ leyendo un libro.'",
       "correctAnswer": "estoy, estoy, estoy",
@@ -5781,7 +5807,7 @@ window.UNIT_3_ESTAR = {
     {
       "id": "u3_ex035",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "estar-comprehensive",
       "question": "Übersetze: 'Wir sind im Park, sind glücklich und spielen gerade.' (jugar → jugando)",
       "correctAnswer": "Estamos en el parque, estamos felices y estamos jugando",
@@ -5904,10 +5930,36 @@ window.UNIT_3_ESTAR = {
       "C": "Condition (Zustand - está abierta)",
       "E": "Emotion (Gefühle - estoy feliz)"
     }
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u3_vocab001 - u3_vocab013",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 13
+    },
+    "phase1_input": {
+      "exercises": "u3_input001 - u3_input008",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 8
+    },
+    "phase2_guided": {
+      "exercises": "u3_guided001 - u3_guided022",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 22
+    },
+    "phase3_free": {
+      "exercises": "u3_free001 - u3_free012",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 12
+    }
   }
 };
 
-window.UNIT_4_SER_ESTAR_CONTRAST = {
+export const UNIT_4_SER_ESTAR_CONTRAST = {
   "metadata": {
     "unit": 4,
     "phase": 1,
@@ -6119,7 +6171,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
       "difficulty": 3,
       "concept": "ser-estar-fundamental",
       "question": "Was ist der Hauptunterschied zwischen SER und ESTAR?",
-      "correctAnswer": "SER = permanent/inhärent | ESTAR = temporär/Zustand",
+      "correctAnswer": "SER = permanent/inharent | ESTAR = temporar/Zustand",
       "explanation": "SER beschreibt WAS/WER etwas IST (Essenz), ESTAR beschreibt WIE/WO etwas IST (Zustand).",
       "germanBridge": "🇩🇪 Deutsch 'sein' → 🇪🇸 SER (Was ist es?) + ESTAR (Wie/Wo ist es?)",
       "examples": [
@@ -6251,10 +6303,10 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
       "difficulty": 3,
       "concept": "ser-estar-emotion-vs-personality",
       "question": "'Er ist nervös' (gerade jetzt) - SER oder ESTAR?",
-      "correctAnswer": "ESTAR (Está nervioso - jetzt nervös)",
+      "correctAnswer": "ESTAR (Está nervioso - jetzt nervos)",
       "options": [
-        "ESTAR (Está nervioso - jetzt nervös)",
-        "SER (Es nervioso - nervöse Person)",
+        "ESTAR (Está nervioso - jetzt nervos)",
+        "SER (Es nervioso - nervose Person)",
         "Beides gleich"
       ],
       "explanation": "ESTAR nervioso = jetzt nervös (Emotion) | SER nervioso = nervöse Person (Charakter)",
@@ -6890,7 +6942,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
       "difficulty": 5,
       "concept": "ser-estar-verde",
       "question": "Unterschied: 'La manzana es verde' vs 'La manzana está verde'?",
-      "correctAnswer": "Es verde = sie ist grün (Farbe) | Está verde = sie ist unreif",
+      "correctAnswer": "Es verde = sie ist grun (Farbe) | Está verde = sie ist unreif",
       "explanation": "VERDE ändert Bedeutung: SER verde = grüne Farbe | ESTAR verde = unreif",
       "germanBridge": "🇩🇪 Der Apfel ist grün (Farbe - SER) | Der Apfel ist unreif (Zustand - ESTAR)",
       "examples": [
@@ -7133,10 +7185,10 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex017",
       "type": "meaning-change",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-bueno",
       "question": "Unterschied: 'Es bueno' vs 'Está bueno'?",
-      "correctAnswer": "Es bueno = er ist gut (Person/Qualität) | Está bueno = er sieht gut aus/es schmeckt gut",
+      "correctAnswer": "Es bueno = er ist gut (Person/Qualitat) | Está bueno = er sieht gut aus/es schmeckt gut",
       "explanation": "BUENO ändert Bedeutung: SER bueno = gute Person/Qualität | ESTAR bueno = attraktiv/lecker",
       "germanBridge": "🇩🇪 Er ist gut (Charakter - SER) | Er ist gutaussehend (ESTAR) - unterschiedlich!",
       "examples": [
@@ -7194,10 +7246,10 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex018",
       "type": "meaning-change",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-malo",
       "question": "Unterschied: 'Es malo' vs 'Está malo'?",
-      "correctAnswer": "Es malo = er ist böse/schlecht | Está malo = er ist krank/verdorben",
+      "correctAnswer": "Es malo = er ist bose/schlecht | Está malo = er ist krank/verdorben",
       "explanation": "MALO ändert Bedeutung: SER malo = böse/schlecht | ESTAR malo = krank/schlecht geworden",
       "germanBridge": "🇩🇪 Er ist böse (Charakter - SER) | Er ist krank (Zustand - ESTAR)",
       "examples": [
@@ -7254,7 +7306,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex019",
       "type": "contrast-sentence",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-aburrido",
       "question": "Wähle richtig: 'Der Film war langweilig.'",
       "correctAnswer": "La película fue aburrida",
@@ -7318,7 +7370,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex020",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-interesado",
       "question": "Él ___ interesante. (Er ist interessant - als Person.)",
       "correctAnswer": "es",
@@ -7380,7 +7432,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex021",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-interesado-interested",
       "question": "Yo ___ interesado en español. (Ich bin an Spanisch interessiert.)",
       "correctAnswer": "estoy",
@@ -7444,7 +7496,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex022",
       "type": "multiple-choice",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-age",
       "question": "'Ich bin 25 Jahre alt' - Welches Verb?",
       "correctAnswer": "TENER (Tengo 25 años) - Nicht SER oder ESTAR!",
@@ -7512,7 +7564,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex023",
       "type": "correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-common-mistake-1",
       "question": "Korrigiere: ❌ 'Yo soy en casa.'",
       "correctAnswer": "Yo estoy en casa",
@@ -7581,7 +7633,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex024",
       "type": "correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-common-mistake-2",
       "question": "Korrigiere: ❌ 'María es cansada.'",
       "correctAnswer": "María está cansada",
@@ -7650,7 +7702,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex025",
       "type": "correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-common-mistake-3",
       "question": "Korrigiere: ❌ 'Yo estoy de Alemania.'",
       "correctAnswer": "Yo soy de Alemania",
@@ -7720,7 +7772,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex026",
       "type": "correction",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-common-mistake-4",
       "question": "Korrigiere: ❌ 'El libro está de Pedro.'",
       "correctAnswer": "El libro es de Pedro",
@@ -7790,7 +7842,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex027",
       "type": "translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-profession-vs-state",
       "question": "Übersetze: 'Ich bin Lehrer und ich bin müde.'",
       "correctAnswer": "Soy profesor y estoy cansado",
@@ -7856,7 +7908,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex028",
       "type": "translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-origin-location",
       "question": "Übersetze: 'Ich bin aus Berlin, aber ich bin in Madrid.'",
       "correctAnswer": "Soy de Berlín, pero estoy en Madrid",
@@ -7922,7 +7974,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex029",
       "type": "comprehensive",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-multiple-contrast",
       "question": "Ergänze: 'Juan ___ inteligente, ___ de España y ___ en Alemania ahora.'",
       "correctAnswer": "es, es, está",
@@ -7986,7 +8038,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex030",
       "type": "multiple-choice",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-food-description",
       "question": "'Die Suppe ist kalt' (Temperatur) - SER oder ESTAR?",
       "correctAnswer": "ESTAR (La sopa está fría - Zustand)",
@@ -8052,7 +8104,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex031",
       "type": "fill-blank",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-dead-alive",
       "question": "Romeo y Julieta _____ muertos. (Romeo und Julia sind tot.)",
       "correctAnswer": "están",
@@ -8115,7 +8167,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex032",
       "type": "translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-material-condition",
       "question": "Übersetze: 'Der Tisch ist aus Holz und ist kaputt.'",
       "correctAnswer": "La mesa es de madera y está rota",
@@ -8179,10 +8231,10 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex033",
       "type": "meaning-change",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-seguro",
       "question": "Unterschied: 'Es seguro' vs 'Está seguro'?",
-      "correctAnswer": "Es seguro = es ist sicher (Ort/Sache) | Está seguro = er ist sich sicher (überzeugt)",
+      "correctAnswer": "Es seguro = es ist sicher (Ort/Sache) | Está seguro = er ist sich sicher (uberzeugt)",
       "explanation": "SEGURO ändert Bedeutung: SER seguro = sicherer Ort | ESTAR seguro = sicher/überzeugt sein",
       "germanBridge": "🇩🇪 Es ist ein sicherer Ort (SER) | Er ist sich sicher (ESTAR)",
       "examples": [
@@ -8239,7 +8291,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex034",
       "type": "meaning-change",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-atento",
       "question": "Unterschied: 'Es atento' vs 'Está atento'?",
       "correctAnswer": "Es atento = er ist aufmerksam (Charakter) | Está atento = er passt auf (jetzt)",
@@ -8299,7 +8351,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex035",
       "type": "comprehensive",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-full-description",
       "question": "Ergänze: 'María ___ española, ___ profesora, ___ muy inteligente, pero hoy ___ cansada y ___ en casa.'",
       "correctAnswer": "es, es, es, está, está",
@@ -8364,7 +8416,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex036",
       "type": "translation",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-contrasting-siblings",
       "question": "Übersetze: 'Pedro ist groß und intelligent, aber heute ist er müde und ist zu Hause.'",
       "correctAnswer": "Pedro es alto e inteligente, pero hoy está cansado y está en casa",
@@ -8429,7 +8481,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex037",
       "type": "error-identification",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-error-detection",
       "question": "Welcher Satz ist FALSCH? A) Soy alemán  B) Estoy en Berlín  C) Soy en Berlín  D) Estoy cansado",
       "correctAnswer": "C) Soy en Berlín",
@@ -8494,10 +8546,10 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex038",
       "type": "comprehensive",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "ser-estar-context-dependent",
       "question": "Wann würdest du 'Es aburrida' vs 'Está aburrida' sagen?",
-      "correctAnswer": "Es aburrida = sie ist eine langweilige Person | Está aburrida = sie fühlt sich gelangweilt",
+      "correctAnswer": "Es aburrida = sie ist eine langweilige Person | Está aburrida = sie fuhlt sich gelangweilt",
       "explanation": "Komplett unterschiedliche Bedeutung: SER = Charaktereigenschaft | ESTAR = momentanes Gefühl",
       "germanBridge": "🇩🇪 Sie ist langweilig (Charakter - SER) | Sie ist gelangweilt (Gefühl - ESTAR)",
       "examples": [
@@ -8556,7 +8608,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex039",
       "type": "advanced-application",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "ser-estar-all-rules",
       "question": "Erkläre: Warum 'La reunión es en mi oficina' aber 'Yo estoy en mi oficina'?",
       "correctAnswer": "Events verwenden SER + en (wo stattfindet) | Personen/Objekte verwenden ESTAR + en (wo sich befinden)",
@@ -8618,7 +8670,7 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
     {
       "id": "u4_ex040",
       "type": "mastery-check",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "ser-estar-complete-mastery",
       "question": "Vervollständige mit SER oder ESTAR: 'Yo ___ Juan, ___ alemán, ___ profesor de español, ___ muy alto e inteligente. Hoy ___ martes, ___ las 3 de la tarde, ___ en mi oficina, ___ cansado pero ___ contento porque mi clase ___ muy interesante y mis estudiantes ___ muy listos. La oficina ___ pequeña pero ___ limpia. Mi próxima clase ___ a las 5 y ___ en el aula 202.'",
       "correctAnswer": "soy, soy, soy, soy, es, son, estoy, estoy, estoy, es, son, es, está, es, es",
@@ -8767,10 +8819,36 @@ window.UNIT_4_SER_ESTAR_CONTRAST = {
       "seguro: SER = sicher (Ort) | ESTAR = sich sicher sein",
       "atento: SER = aufmerksam (Charakter) | ESTAR = aufpassen (jetzt)"
     ]
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u4_vocab001 - u4_vocab012",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 12
+    },
+    "phase1_input": {
+      "exercises": "u4_input001 - u4_input007",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 7
+    },
+    "phase2_guided": {
+      "exercises": "u4_guided001 - u4_guided020",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 20
+    },
+    "phase3_free": {
+      "exercises": "u4_free001 - u4_free011",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 11
+    }
   }
 };
 
-window.UNIT_5_TENER = {
+export const UNIT_5_TENER = {
   "metadata": {
     "unit": 5,
     "phase": 1,
@@ -9958,11 +10036,11 @@ window.UNIT_5_TENER = {
       "difficulty": 4,
       "concept": "tener-vs-estar-tired",
       "question": "Was ist der Unterschied: 'Tengo sueño' vs 'Estoy cansado'?",
-      "correctAnswer": "Tengo sueño = schläfrig | Estoy cansado = müde/erschöpft",
+      "correctAnswer": "Tengo sueño = schlafrig | Estoy cansado = mude/erschopft",
       "options": [
-        "Tengo sueño = schläfrig | Estoy cansado = müde/erschöpft",
+        "Tengo sueño = schlafrig | Estoy cansado = mude/erschopft",
         "Kein Unterschied",
-        "Tengo sueño = müde | Estoy cansado = schläfrig",
+        "Tengo sueño = mude | Estoy cansado = schlafrig",
         "Tengo sueño = formell | Estoy cansado = informell"
       ],
       "explanation": "TENER sueño = Schläfrigkeit (möchte schlafen) | ESTAR cansado = Müdigkeit/Erschöpfung (nach Arbeit)",
@@ -10230,10 +10308,10 @@ window.UNIT_5_TENER = {
       "difficulty": 5,
       "concept": "tener-shame",
       "question": "Übersetze: 'Sie (ella) schämt sich.' (vergüenza)",
-      "correctAnswer": "Ella tiene vergüenza",
+      "correctAnswer": "Ella tiene verguenza",
       "alternativeAnswers": [
-        "ella tiene vergüenza",
-        "Tiene vergüenza"
+        "ella tiene verguenza",
+        "Tiene verguenza"
       ],
       "explanation": "TENER vergüenza = sich schämen: tiene vergüenza",
       "germanBridge": "🇩🇪 Sie schämt sich → 🇪🇸 Tiene vergüenza (wörtlich: hat Scham)",
@@ -10280,7 +10358,7 @@ window.UNIT_5_TENER = {
     {
       "id": "u5_ex024",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "tener-care",
       "question": "¡Ten cuidado! (___ Vorsicht! - Imperativ)",
       "correctAnswer": "Hab",
@@ -10330,7 +10408,7 @@ window.UNIT_5_TENER = {
     {
       "id": "u5_ex025",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "tener-que-obligation",
       "question": "Yo ___ que estudiar. (Ich muss lernen.)",
       "correctAnswer": "tengo",
@@ -10383,7 +10461,7 @@ window.UNIT_5_TENER = {
     {
       "id": "u5_ex026",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "tener-que-plural",
       "question": "Übersetze: 'Wir müssen gehen.' (ir)",
       "correctAnswer": "Tenemos que ir",
@@ -10436,7 +10514,7 @@ window.UNIT_5_TENER = {
     {
       "id": "u5_ex027",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "tener-ganas-desire",
       "question": "Yo ___ ganas de comer pizza. (Ich habe Lust, Pizza zu essen.)",
       "correctAnswer": "tengo",
@@ -10486,7 +10564,7 @@ window.UNIT_5_TENER = {
     {
       "id": "u5_ex028",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "tener-ganas-negative",
       "question": "Übersetze: 'Ich habe keine Lust zu arbeiten.' (trabajar)",
       "correctAnswer": "No tengo ganas de trabajar",
@@ -10539,7 +10617,7 @@ window.UNIT_5_TENER = {
     {
       "id": "u5_ex029",
       "type": "comprehensive",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "tener-multiple-uses",
       "question": "Ergänze: 'Yo ___ 25 años, ___ hambre y ___ que comer, pero no ___ ganas.'",
       "correctAnswer": "tengo, tengo, tengo, tengo",
@@ -10591,7 +10669,7 @@ window.UNIT_5_TENER = {
     {
       "id": "u5_ex030",
       "type": "mastery-check",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "tener-complete-mastery",
       "question": "Vervollständige: 'Mi hermana ___ 20 años, ___ mucha hambre y sed, ___ frío y ___ que estudiar, pero ___ ganas de dormir porque ___ mucho sueño. También ___ miedo del examen y ___ prisa.'",
       "correctAnswer": "tiene, tiene, tiene, tiene, tiene, tiene, tiene, tiene, tiene",
@@ -10725,10 +10803,36 @@ window.UNIT_5_TENER = {
       "weather": "Hace calor/frío (es ist heiß/kalt - Wetter)",
       "difference": "TENER für Personen | HACER für Wetter!"
     }
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u5_vocab001 - u5_vocab011",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 11
+    },
+    "phase1_input": {
+      "exercises": "u5_input001 - u5_input007",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 7
+    },
+    "phase2_guided": {
+      "exercises": "u5_guided001 - u5_guided018",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 18
+    },
+    "phase3_free": {
+      "exercises": "u5_free001 - u5_free011",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 11
+    }
   }
 };
 
-window.UNIT_6_VOCABULARY = {
+export const UNIT_6_VOCABULARY = {
   "metadata": {
     "unit": 6,
     "phase": 1,
@@ -12812,10 +12916,36 @@ window.UNIT_6_VOCABULARY = {
       "teléfono = Telefon",
       "música = Musik"
     ]
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u6_vocab001 - u6_vocab012",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 12
+    },
+    "phase1_input": {
+      "exercises": "u6_input001 - u6_input007",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 7
+    },
+    "phase2_guided": {
+      "exercises": "u6_guided001 - u6_guided020",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 20
+    },
+    "phase3_free": {
+      "exercises": "u6_free001 - u6_free011",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 11
+    }
   }
 };
 
-window.UNIT_7_INTEGRATION = {
+export const UNIT_7_INTEGRATION = {
   "metadata": {
     "unit": 7,
     "phase": 1,
@@ -12914,7 +13044,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex002",
       "type": "comprehensive-translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "describing-person",
       "integratedUnits": [
         2,
@@ -12972,7 +13102,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex003",
       "type": "comprehensive-translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "daily-routine",
       "integratedUnits": [
         3,
@@ -13024,7 +13154,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex004",
       "type": "comprehensive-translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "family-description",
       "integratedUnits": [
         2,
@@ -13081,7 +13211,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex005",
       "type": "comprehensive-translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "weekend-plans",
       "integratedUnits": [
         3,
@@ -13190,7 +13320,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex007",
       "type": "conversation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "asking-how-are-you",
       "integratedUnits": [
         3,
@@ -13246,7 +13376,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex008",
       "type": "conversation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "making-plans",
       "integratedUnits": [
         3,
@@ -13300,7 +13430,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex009",
       "type": "conversation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "restaurant-order",
       "integratedUnits": [
         5,
@@ -13352,7 +13482,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex010",
       "type": "conversation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "phone-call",
       "integratedUnits": [
         2,
@@ -13407,7 +13537,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex011",
       "type": "practical-scenario",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "at-hotel-reception",
       "integratedUnits": [
         2,
@@ -13460,7 +13590,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex012",
       "type": "practical-scenario",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "asking-directions",
       "integratedUnits": [
         3,
@@ -13514,7 +13644,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex013",
       "type": "practical-scenario",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "doctor-appointment",
       "integratedUnits": [
         3,
@@ -13569,7 +13699,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex014",
       "type": "practical-scenario",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "job-interview",
       "integratedUnits": [
         2,
@@ -13623,7 +13753,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex015",
       "type": "practical-scenario",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "making-appointment",
       "integratedUnits": [
         3,
@@ -13675,7 +13805,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex016",
       "type": "error-correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "common-mistakes-1",
       "integratedUnits": [
         3,
@@ -13726,7 +13856,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex017",
       "type": "error-correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "common-mistakes-2",
       "integratedUnits": [
         2,
@@ -13777,7 +13907,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex018",
       "type": "error-correction",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "common-mistakes-3",
       "integratedUnits": [
         4,
@@ -13829,7 +13959,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex019",
       "type": "error-correction",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "common-mistakes-4",
       "integratedUnits": [
         2,
@@ -13881,7 +14011,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex020",
       "type": "error-correction",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "common-mistakes-5",
       "integratedUnits": [
         4,
@@ -13934,7 +14064,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex021",
       "type": "mixed-grammar",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "pronoun-verb-agreement",
       "integratedUnits": [
         1,
@@ -13990,7 +14120,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex022",
       "type": "mixed-grammar",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "verb-conjugation-mix",
       "integratedUnits": [
         2,
@@ -14043,7 +14173,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex023",
       "type": "mixed-grammar",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "all-verbs-all-persons",
       "integratedUnits": [
         1,
@@ -14099,7 +14229,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex024",
       "type": "mixed-grammar",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "formal-informal-mix",
       "integratedUnits": [
         1,
@@ -14151,7 +14281,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex025",
       "type": "mixed-grammar",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "adjective-agreement",
       "integratedUnits": [
         6
@@ -14202,7 +14332,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex026",
       "type": "final-mastery",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "complete-description",
       "integratedUnits": [
         1,
@@ -14273,7 +14403,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex027",
       "type": "final-mastery",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "daily-routine-full",
       "integratedUnits": [
         1,
@@ -14341,7 +14471,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex028",
       "type": "final-mastery",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "ser-estar-tener-complete",
       "integratedUnits": [
         2,
@@ -14421,7 +14551,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex029",
       "type": "final-mastery",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "free-composition",
       "integratedUnits": [
         1,
@@ -14432,7 +14562,7 @@ window.UNIT_7_INTEGRATION = {
         6
       ],
       "question": "Schreibe 5 Sätze über dich selbst auf Spanisch. Nutze:\n- SER (Name, Beruf, Herkunft)\n- TENER (Alter, Familie)\n- ESTAR (Wo du bist, wie du dich fühlst)\n- Vokabular (Farben, Zahlen, etc.)\n\nBeispiel-Struktur:\n1. Me llamo ___ y soy ___.\n2. Tengo ___ años y tengo ___.\n3. Soy de ___ pero estoy en ___.\n4. Estoy ___ (Zustand) y tengo ___.\n5. Mi ___ es ___ (Beschreibung).",
-      "correctAnswer": "Individuelle Antworten - Prüfung auf korrekte Verb-Verwendung",
+      "correctAnswer": "Individuelle Antworten - Prufung auf korrekte Verb-Verwendung",
       "explanation": "Freie Komposition zeigt vollständige A1-Meisterschaft. Jeder Satz sollte grammatisch korrekt sein.",
       "germanBridge": "🇩🇪 Freie Anwendung - zeigt wahres Verständnis!",
       "evaluationCriteria": {
@@ -14481,7 +14611,7 @@ window.UNIT_7_INTEGRATION = {
     {
       "id": "u7_ex030",
       "type": "final-certification",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "phase1-complete",
       "integratedUnits": [
         1,
@@ -14492,7 +14622,7 @@ window.UNIT_7_INTEGRATION = {
         6
       ],
       "question": "FINAL PHASE 1 TEST - Übersetze die komplexe Konversation:\n\nA: ¡Hola! ¿Cómo te llamas?\nB: Me llamo Carlos. ¿Y tú?\nA: Yo soy María. ¿De dónde eres?\nB: Soy de Madrid, pero estoy viviendo en Berlín ahora. ¿Y tú?\nA: Soy alemana. ¿Qué haces en Berlín?\nB: Soy estudiante. Tengo 22 años y estudio medicina. ¿Tú qué haces?\nA: Yo soy profesora. Tengo 28 años. ¿Te gusta Berlín?\nB: Sí, me gusta mucho, pero tengo frío en invierno y tengo ganas de volver a España.\nA: Lo entiendo. ¿Tienes hambre? Hay un restaurante español cerca.\nB: Sí, tengo mucha hambre. ¡Vamos!",
-      "correctAnswer": "A: Hallo! Wie heißt du? B: Ich heiße Carlos. Und du? A: Ich bin Maria. Woher kommst du? B: Ich bin aus Madrid, aber ich wohne jetzt in Berlin. Und du? A: Ich bin Deutsche. Was machst du in Berlin? B: Ich bin Student. Ich bin 22 Jahre alt und studiere Medizin. Was machst du? A: Ich bin Lehrerin. Ich bin 28 Jahre alt. Gefällt dir Berlin? B: Ja, es gefällt mir sehr, aber mir ist im Winter kalt und ich habe Lust nach Spanien zurückzukehren. A: Ich verstehe. Hast du Hunger? Es gibt ein spanisches Restaurant in der Nähe. B: Ja, ich habe sehr viel Hunger. Lass uns gehen!",
+      "correctAnswer": "A: Hallo! Wie heisst du? B: Ich heisse Carlos. Und du? A: Ich bin Maria. Woher kommst du? B: Ich bin aus Madrid, aber ich wohne jetzt in Berlin. Und du? A: Ich bin Deutsche. Was machst du in Berlin? B: Ich bin Student. Ich bin 22 Jahre alt und studiere Medizin. Was machst du? A: Ich bin Lehrerin. Ich bin 28 Jahre alt. Gefallt dir Berlin? B: Ja, es gefallt mir sehr, aber mir ist im Winter kalt und ich habe Lust nach Spanien zuruckzukehren. A: Ich verstehe. Hast du Hunger? Es gibt ein spanisches Restaurant in der Nahe. B: Ja, ich habe sehr viel Hunger. Lass uns gehen!",
       "explanation": "Vollständige natürliche Konversation mit ALLEN Phase-1-Konzepten: Pronomen, SER, ESTAR, TENER, Vokabular, Idiome",
       "germanBridge": "🇩🇪 Realistische Konversation - zeigt A1-Niveau-Meisterschaft!",
       "breakdown": {
@@ -14619,6 +14749,32 @@ window.UNIT_7_INTEGRATION = {
       "estimatedDuration": "3-4 Wochen"
     },
     "certification": "🏆 PHASE 1 (A1-BÁSICO) ABGESCHLOSSEN! 🏆"
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u7_vocab001 - u7_vocab007",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 7
+    },
+    "phase1_input": {
+      "exercises": "u7_input001 - u7_input004",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 4
+    },
+    "phase2_guided": {
+      "exercises": "u7_guided001 - u7_guided012",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 12
+    },
+    "phase3_free": {
+      "exercises": "u7_free001 - u7_free007",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 7
+    }
   }
 };
 
@@ -14626,7 +14782,7 @@ window.UNIT_7_INTEGRATION = {
 // VOCABULARY & VERBS
 // ====================================================================
 
-window.PHASE1_VOCABULARY = {
+export const PHASE1_VOCABULARY = {
   "metadata": {
     "phase": 1,
     "level": "A1",
@@ -15724,7 +15880,7 @@ window.PHASE1_VOCABULARY = {
   }
 };
 
-window.VERBS = [
+export const VERBS = [
   {
     "infinitivo": "ser",
     "clase": "irregular",
@@ -16521,7 +16677,7 @@ window.VERBS = [
   }
 ];
 
-window.ITEMS = [
+export const ITEMS = [
   {
     "id": "05d42200a282d479fd674977e53c152ca1503a38",
     "src": "IMG_20251009_153706.jpg",
@@ -18350,7 +18506,7 @@ window.ITEMS = [
   }
 ];
 
-window.ITEMS_ASCII = [
+export const ITEMS_ASCII = [
   {
     "id": "05d42200a282d479fd674977e53c152ca1503a38",
     "src": "IMG_20251009_153706.jpg",
@@ -20186,7 +20342,7 @@ window.ITEMS_ASCII = [
 /**
  * Get all Phase 1 units
  */
-window.ExerciseData.getAllPhase1Units = function() {
+export function getAllPhase1Units() {
   return [
     UNIT_1_PRONOUNS,
     UNIT_2_SER,
@@ -20201,7 +20357,7 @@ window.ExerciseData.getAllPhase1Units = function() {
 /**
  * Get all Phase 1 exercises
  */
-window.ExerciseData.getAllPhase1Exercises = function() {
+export function getAllPhase1Exercises() {
   const units = getAllPhase1Units();
   return units.flatMap(unit => unit.exercises || []);
 }
@@ -20209,7 +20365,7 @@ window.ExerciseData.getAllPhase1Exercises = function() {
 /**
  * Get unit by number
  */
-window.ExerciseData.getUnit = function(unitNumber) {
+export function getUnit(unitNumber) {
   const units = getAllPhase1Units();
   return units[unitNumber - 1] || null;
 }
@@ -20217,7 +20373,7 @@ window.ExerciseData.getUnit = function(unitNumber) {
 /**
  * Get exercise by ID
  */
-window.ExerciseData.getExerciseById = function(exerciseId) {
+export function getExerciseById(exerciseId) {
   const exercises = getAllPhase1Exercises();
   return exercises.find(ex => ex.id === exerciseId) || null;
 }
@@ -20225,14 +20381,14 @@ window.ExerciseData.getExerciseById = function(exerciseId) {
 /**
  * Get vocabulary by category
  */
-window.ExerciseData.getVocabularyByCategory = function(categoryId) {
+export function getVocabularyByCategory(categoryId) {
   return PHASE1_VOCABULARY.categories[categoryId] || null;
 }
 
 /**
  * Get all vocabulary words
  */
-window.ExerciseData.getAllVocabularyWords = function() {
+export function getAllVocabularyWords() {
   const categories = Object.values(PHASE1_VOCABULARY.categories);
   return categories.flatMap(cat => cat.words || []);
 }
@@ -20240,8 +20396,8 @@ window.ExerciseData.getAllVocabularyWords = function() {
 /**
  * Data source info
  */
-window.DATA_INFO = {
-  generated: '2025-10-30T08:36:46.137Z',
+export const DATA_INFO = {
+  generated: '2025-10-30T08:55:59.652Z',
   totalUnits: 7,
   totalExercises: 332,
   totalVocabularyWords: 120,

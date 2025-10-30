@@ -1,0 +1,426 @@
+{
+  "timestamp": "2025-10-30T08:55:43.791Z",
+  "totalExercises": 332,
+  "validExercises": 332,
+  "errors": [],
+  "warnings": [],
+  "improvements": [
+    {
+      "unit": "unit4-ser-estar-contrast.json",
+      "exercise": 45,
+      "id": "u4_ex035",
+      "suggestion": "Question too long (102 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit4-ser-estar-contrast.json",
+      "exercise": 50,
+      "id": "u4_ex040",
+      "suggestion": "Question too long (364 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit4-ser-estar-contrast.json",
+      "exercise": 50,
+      "id": "u4_ex040",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit5-tener.json",
+      "exercise": 47,
+      "id": "u5_ex030",
+      "suggestion": "Question too long (186 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit5-tener.json",
+      "exercise": 47,
+      "id": "u5_ex030",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit6-vocabulary.json",
+      "exercise": 21,
+      "id": "u6_ex006",
+      "suggestion": "Consider adding alternative correct answers for flexibility",
+      "type": "flexibility"
+    },
+    {
+      "unit": "unit6-vocabulary.json",
+      "exercise": 32,
+      "id": "u6_ex017",
+      "suggestion": "Consider adding alternative correct answers for flexibility",
+      "type": "flexibility"
+    },
+    {
+      "unit": "unit6-vocabulary.json",
+      "exercise": 39,
+      "id": "u6_ex024",
+      "suggestion": "Question too long (108 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 1,
+      "id": "u7_ex001",
+      "suggestion": "Question too long (104 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 2,
+      "id": "u7_ex002",
+      "suggestion": "Question too long (102 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 4,
+      "id": "u7_ex004",
+      "suggestion": "Question too long (104 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 6,
+      "id": "u7_ex006",
+      "suggestion": "Question too long (182 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 6,
+      "id": "u7_ex006",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 7,
+      "id": "u7_ex007",
+      "suggestion": "Question too long (167 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 7,
+      "id": "u7_ex007",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 8,
+      "id": "u7_ex008",
+      "suggestion": "Question too long (221 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 8,
+      "id": "u7_ex008",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 9,
+      "id": "u7_ex009",
+      "suggestion": "Question too long (210 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 9,
+      "id": "u7_ex009",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 10,
+      "id": "u7_ex010",
+      "suggestion": "Question too long (168 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 10,
+      "id": "u7_ex010",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 11,
+      "id": "u7_ex011",
+      "suggestion": "Question too long (250 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 11,
+      "id": "u7_ex011",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 12,
+      "id": "u7_ex012",
+      "suggestion": "Question too long (179 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 12,
+      "id": "u7_ex012",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 13,
+      "id": "u7_ex013",
+      "suggestion": "Question too long (186 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 13,
+      "id": "u7_ex013",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 14,
+      "id": "u7_ex014",
+      "suggestion": "Question too long (173 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 14,
+      "id": "u7_ex014",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 15,
+      "id": "u7_ex015",
+      "suggestion": "Question too long (219 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 15,
+      "id": "u7_ex015",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 17,
+      "id": "u7_ex017",
+      "suggestion": "Question too long (104 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 18,
+      "id": "u7_ex018",
+      "suggestion": "Question too long (133 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 18,
+      "id": "u7_ex018",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 19,
+      "id": "u7_ex019",
+      "suggestion": "Question too long (190 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 19,
+      "id": "u7_ex019",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 21,
+      "id": "u7_ex021",
+      "suggestion": "Question too long (124 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 21,
+      "id": "u7_ex021",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 23,
+      "id": "u7_ex023",
+      "suggestion": "Question too long (124 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 23,
+      "id": "u7_ex023",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 24,
+      "id": "u7_ex024",
+      "suggestion": "Question too long (105 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 25,
+      "id": "u7_ex025",
+      "suggestion": "Question too long (117 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 26,
+      "id": "u7_ex026",
+      "suggestion": "Question too long (274 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 26,
+      "id": "u7_ex026",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 27,
+      "id": "u7_ex027",
+      "suggestion": "Question too long (344 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 27,
+      "id": "u7_ex027",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 28,
+      "id": "u7_ex028",
+      "suggestion": "Question too long (291 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 28,
+      "id": "u7_ex028",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 29,
+      "id": "u7_ex029",
+      "suggestion": "Question too long (365 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 29,
+      "id": "u7_ex029",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 30,
+      "id": "u7_ex030",
+      "suggestion": "Question too long (553 chars). Consider splitting for better cognitive load.",
+      "type": "cognitive-load"
+    },
+    {
+      "unit": "unit7-integration.json",
+      "exercise": 30,
+      "id": "u7_ex030",
+      "suggestion": "Question may be too long for mobile screens",
+      "type": "mobile-ux"
+    }
+  ],
+  "germanBridges": {
+    "complete": 330,
+    "missing": 2,
+    "enhanced": []
+  },
+  "difficulty": {
+    "byLevel": {
+      "1": 118,
+      "2": 57,
+      "3": 69,
+      "4": 52,
+      "5": 36
+    },
+    "progression": []
+  },
+  "summary": {
+    "totalExercises": 332,
+    "validExercises": 332,
+    "validPercentage": 100,
+    "issues": {
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "improvements": {
+      "total": 52,
+      "byType": {
+        "cognitive-load": 29,
+        "mobile-ux": 21,
+        "flexibility": 2
+      }
+    },
+    "germanBridges": {
+      "completionRate": "99%",
+      "complete": 330,
+      "missing": 2,
+      "enhanced": 0
+    },
+    "difficulty": {
+      "distribution": {
+        "1": 118,
+        "2": 57,
+        "3": 69,
+        "4": 52,
+        "5": 36
+      },
+      "balance": {
+        "status": "good",
+        "reasons": []
+      }
+    }
+  }
+}

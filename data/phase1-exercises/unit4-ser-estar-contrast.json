@@ -35,23 +35,182 @@
     "ESTAR": "PLACE - Position, Location, Action, Condition, Emotion"
   },
   "exercises": [
-    {"id": "u4_vocab001", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "aburrido", "translation": "langweilig (SER) / gelangweilt (ESTAR)", "emoji": "😑", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Aburrido' ändert seine Bedeutung: SER aburrido = langweilig sein | ESTAR aburrido = gelangweilt sein", "germanBridge": "🇩🇪 SER: Die Person IST langweilig | ESTAR: Die Person FÜHLT sich gelangweilt", "note": "Weiblich: aburrida", "audioHint": "Aussprache: 'a-bu-RRI-do'", "exampleSentence": "La película es aburrida / Yo estoy aburrido", "exampleTranslation": "Der Film ist langweilig / Ich bin gelangweilt"},
-    {"id": "u4_vocab002", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "listo", "translation": "schlau (SER) / bereit (ESTAR)", "emoji": "🧠", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Listo' ändert seine Bedeutung: SER listo = schlau/intelligent sein | ESTAR listo = bereit sein", "germanBridge": "🇩🇪 SER: Die Person IST schlau | ESTAR: Die Person IST bereit", "note": "Weiblich: lista", "audioHint": "Aussprache: 'LIS-to'", "exampleSentence": "Él es listo / Él está listo", "exampleTranslation": "Er ist schlau / Er ist bereit"},
-    {"id": "u4_vocab003", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "rico", "translation": "reich (SER) / lecker (ESTAR)", "emoji": "💰", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Rico' ändert seine Bedeutung: SER rico = reich sein (Geld) | ESTAR rico = lecker schmecken", "germanBridge": "🇩🇪 SER: Die Person IST reich | ESTAR: Das Essen IST lecker", "note": "Weiblich: rica", "audioHint": "Aussprache: 'RI-ko'", "exampleSentence": "Soy rico / La comida está rica", "exampleTranslation": "Ich bin reich / Das Essen ist lecker"},
-    {"id": "u4_vocab004", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "bueno (Kontrast)", "translation": "gut/freundlich (SER) / gesund/lecker (ESTAR)", "emoji": "👍", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Bueno' ändert Nuance: SER bueno = gut/freundlich (Charakter) | ESTAR bueno = gesund/gut schmecken", "germanBridge": "🇩🇪 SER: gute Person | ESTAR: gesund oder lecker", "note": "Weiblich: buena", "audioHint": "Aussprache: 'BUE-no'", "exampleSentence": "Es bueno / Está bueno", "exampleTranslation": "Er ist gut (Person) / Es ist lecker/gesund"},
-    {"id": "u4_vocab005", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "malo (Kontrast)", "translation": "schlecht/böse (SER) / krank/schlecht (ESTAR)", "emoji": "👎", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Malo' ändert Nuance: SER malo = böse/schlecht (Charakter) | ESTAR malo = krank oder schlecht schmecken", "germanBridge": "🇩🇪 SER: schlechte Person | ESTAR: krank oder schmeckt schlecht", "note": "Weiblich: mala", "audioHint": "Aussprache: 'MA-lo'", "exampleSentence": "Es malo / Está malo", "exampleTranslation": "Er ist böse / Er ist krank"},
-    {"id": "u4_vocab006", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "vivo", "translation": "clever (SER) / lebendig (ESTAR)", "emoji": "⚡", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Vivo' ändert seine Bedeutung: SER vivo = clever/schlau sein | ESTAR vivo = lebendig/am Leben sein", "germanBridge": "🇩🇪 SER: Die Person IST clever | ESTAR: Die Person IST am Leben", "note": "Weiblich: viva", "audioHint": "Aussprache: 'VI-vo'", "exampleSentence": "Es vivo / Está vivo", "exampleTranslation": "Er ist clever / Er ist am Leben"},
-    {"id": "u4_vocab007", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "seguro", "translation": "sicher (SER) / überzeugt (ESTAR)", "emoji": "🔒", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Seguro' ändert seine Bedeutung: SER seguro = sicher sein (Ort/Sache) | ESTAR seguro = überzeugt/sicher sein", "germanBridge": "🇩🇪 SER: Der Ort IST sicher | ESTAR: Ich BIN mir sicher", "note": "Weiblich: segura", "audioHint": "Aussprache: 'se-GU-ro'", "exampleSentence": "Es seguro / Estoy seguro", "exampleTranslation": "Es ist sicher (Ort) / Ich bin überzeugt"},
-    {"id": "u4_vocab008", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "verde", "translation": "grün (Farbe=SER) / unreif (ESTAR)", "emoji": "🍏", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Verde' ändert seine Bedeutung: SER verde = grün sein (Farbe) | ESTAR verde = unreif sein (Obst)", "germanBridge": "🇩🇪 SER: Das Auto IST grün | ESTAR: Die Banane IST unreif", "audioHint": "Aussprache: 'VER-de'", "exampleSentence": "El coche es verde / La banana está verde", "exampleTranslation": "Das Auto ist grün / Die Banane ist unreif"},
-    {"id": "u4_vocab009", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "atento", "translation": "aufmerksam (Eigenschaft=SER) / achtsam (Moment=ESTAR)", "emoji": "👀", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Atento' ändert Nuance: SER atento = aufmerksame Person (Eigenschaft) | ESTAR atento = gerade aufpassen", "germanBridge": "🇩🇪 SER: aufmerksame Person | ESTAR: gerade aufmerksam", "note": "Weiblich: atenta", "audioHint": "Aussprache: 'a-TEN-to'", "exampleSentence": "Es atento / Está atento", "exampleTranslation": "Er ist aufmerksam (Eigenschaft) / Er passt auf"},
-    {"id": "u4_vocab010", "type": "vocabulary-card", "difficulty": 2, "concept": "vocabulary-introduction", "word": "interesado", "translation": "interessiert (Charakter=SER) / interessiert an (ESTAR)", "emoji": "🤔", "category": "contrast-adjective", "question": "Lerne dieses Wort:", "explanation": "'Interesado' ändert Nuance: SER interesado = eigennützig sein | ESTAR interesado = an etwas interessiert sein", "germanBridge": "🇩🇪 SER: eigennützige Person | ESTAR: interessiert an etwas", "note": "Weiblich: interesada", "audioHint": "Aussprache: 'in-te-re-SA-do'", "exampleSentence": "Es interesado / Está interesado en español", "exampleTranslation": "Er ist eigennützig / Er ist an Spanisch interessiert"},
+    {
+      "id": "u4_vocab001",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "aburrido",
+      "translation": "langweilig (SER) / gelangweilt (ESTAR)",
+      "emoji": "😑",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Aburrido' ändert seine Bedeutung: SER aburrido = langweilig sein | ESTAR aburrido = gelangweilt sein",
+      "germanBridge": "🇩🇪 SER: Die Person IST langweilig | ESTAR: Die Person FÜHLT sich gelangweilt",
+      "note": "Weiblich: aburrida",
+      "audioHint": "Aussprache: 'a-bu-RRI-do'",
+      "exampleSentence": "La película es aburrida / Yo estoy aburrido",
+      "exampleTranslation": "Der Film ist langweilig / Ich bin gelangweilt"
+    },
+    {
+      "id": "u4_vocab002",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "listo",
+      "translation": "schlau (SER) / bereit (ESTAR)",
+      "emoji": "🧠",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Listo' ändert seine Bedeutung: SER listo = schlau/intelligent sein | ESTAR listo = bereit sein",
+      "germanBridge": "🇩🇪 SER: Die Person IST schlau | ESTAR: Die Person IST bereit",
+      "note": "Weiblich: lista",
+      "audioHint": "Aussprache: 'LIS-to'",
+      "exampleSentence": "Él es listo / Él está listo",
+      "exampleTranslation": "Er ist schlau / Er ist bereit"
+    },
+    {
+      "id": "u4_vocab003",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "rico",
+      "translation": "reich (SER) / lecker (ESTAR)",
+      "emoji": "💰",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Rico' ändert seine Bedeutung: SER rico = reich sein (Geld) | ESTAR rico = lecker schmecken",
+      "germanBridge": "🇩🇪 SER: Die Person IST reich | ESTAR: Das Essen IST lecker",
+      "note": "Weiblich: rica",
+      "audioHint": "Aussprache: 'RI-ko'",
+      "exampleSentence": "Soy rico / La comida está rica",
+      "exampleTranslation": "Ich bin reich / Das Essen ist lecker"
+    },
+    {
+      "id": "u4_vocab004",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "bueno (Kontrast)",
+      "translation": "gut/freundlich (SER) / gesund/lecker (ESTAR)",
+      "emoji": "👍",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Bueno' ändert Nuance: SER bueno = gut/freundlich (Charakter) | ESTAR bueno = gesund/gut schmecken",
+      "germanBridge": "🇩🇪 SER: gute Person | ESTAR: gesund oder lecker",
+      "note": "Weiblich: buena",
+      "audioHint": "Aussprache: 'BUE-no'",
+      "exampleSentence": "Es bueno / Está bueno",
+      "exampleTranslation": "Er ist gut (Person) / Es ist lecker/gesund"
+    },
+    {
+      "id": "u4_vocab005",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "malo (Kontrast)",
+      "translation": "schlecht/böse (SER) / krank/schlecht (ESTAR)",
+      "emoji": "👎",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Malo' ändert Nuance: SER malo = böse/schlecht (Charakter) | ESTAR malo = krank oder schlecht schmecken",
+      "germanBridge": "🇩🇪 SER: schlechte Person | ESTAR: krank oder schmeckt schlecht",
+      "note": "Weiblich: mala",
+      "audioHint": "Aussprache: 'MA-lo'",
+      "exampleSentence": "Es malo / Está malo",
+      "exampleTranslation": "Er ist böse / Er ist krank"
+    },
+    {
+      "id": "u4_vocab006",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "vivo",
+      "translation": "clever (SER) / lebendig (ESTAR)",
+      "emoji": "⚡",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Vivo' ändert seine Bedeutung: SER vivo = clever/schlau sein | ESTAR vivo = lebendig/am Leben sein",
+      "germanBridge": "🇩🇪 SER: Die Person IST clever | ESTAR: Die Person IST am Leben",
+      "note": "Weiblich: viva",
+      "audioHint": "Aussprache: 'VI-vo'",
+      "exampleSentence": "Es vivo / Está vivo",
+      "exampleTranslation": "Er ist clever / Er ist am Leben"
+    },
+    {
+      "id": "u4_vocab007",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "seguro",
+      "translation": "sicher (SER) / überzeugt (ESTAR)",
+      "emoji": "🔒",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Seguro' ändert seine Bedeutung: SER seguro = sicher sein (Ort/Sache) | ESTAR seguro = überzeugt/sicher sein",
+      "germanBridge": "🇩🇪 SER: Der Ort IST sicher | ESTAR: Ich BIN mir sicher",
+      "note": "Weiblich: segura",
+      "audioHint": "Aussprache: 'se-GU-ro'",
+      "exampleSentence": "Es seguro / Estoy seguro",
+      "exampleTranslation": "Es ist sicher (Ort) / Ich bin überzeugt"
+    },
+    {
+      "id": "u4_vocab008",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "verde",
+      "translation": "grün (Farbe=SER) / unreif (ESTAR)",
+      "emoji": "🍏",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Verde' ändert seine Bedeutung: SER verde = grün sein (Farbe) | ESTAR verde = unreif sein (Obst)",
+      "germanBridge": "🇩🇪 SER: Das Auto IST grün | ESTAR: Die Banane IST unreif",
+      "audioHint": "Aussprache: 'VER-de'",
+      "exampleSentence": "El coche es verde / La banana está verde",
+      "exampleTranslation": "Das Auto ist grün / Die Banane ist unreif"
+    },
+    {
+      "id": "u4_vocab009",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "atento",
+      "translation": "aufmerksam (Eigenschaft=SER) / achtsam (Moment=ESTAR)",
+      "emoji": "👀",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Atento' ändert Nuance: SER atento = aufmerksame Person (Eigenschaft) | ESTAR atento = gerade aufpassen",
+      "germanBridge": "🇩🇪 SER: aufmerksame Person | ESTAR: gerade aufmerksam",
+      "note": "Weiblich: atenta",
+      "audioHint": "Aussprache: 'a-TEN-to'",
+      "exampleSentence": "Es atento / Está atento",
+      "exampleTranslation": "Er ist aufmerksam (Eigenschaft) / Er passt auf"
+    },
+    {
+      "id": "u4_vocab010",
+      "type": "vocabulary-card",
+      "difficulty": 2,
+      "concept": "vocabulary-introduction",
+      "word": "interesado",
+      "translation": "interessiert (Charakter=SER) / interessiert an (ESTAR)",
+      "emoji": "🤔",
+      "category": "contrast-adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Interesado' ändert Nuance: SER interesado = eigennützig sein | ESTAR interesado = an etwas interessiert sein",
+      "germanBridge": "🇩🇪 SER: eigennützige Person | ESTAR: interessiert an etwas",
+      "note": "Weiblich: interesada",
+      "audioHint": "Aussprache: 'in-te-re-SA-do'",
+      "exampleSentence": "Es interesado / Está interesado en español",
+      "exampleTranslation": "Er ist eigennützig / Er ist an Spanisch interessiert"
+    },
     {
       "id": "u4_ex001",
       "type": "contrast-intro",
       "difficulty": 3,
       "concept": "ser-estar-fundamental",
       "question": "Was ist der Hauptunterschied zwischen SER und ESTAR?",
-      "correctAnswer": "SER = permanent/inhärent | ESTAR = temporär/Zustand",
+      "correctAnswer": "SER = permanent/inharent | ESTAR = temporar/Zustand",
       "explanation": "SER beschreibt WAS/WER etwas IST (Essenz), ESTAR beschreibt WIE/WO etwas IST (Zustand).",
       "germanBridge": "🇩🇪 Deutsch 'sein' → 🇪🇸 SER (Was ist es?) + ESTAR (Wie/Wo ist es?)",
       "examples": [
@@ -183,10 +342,10 @@
       "difficulty": 3,
       "concept": "ser-estar-emotion-vs-personality",
       "question": "'Er ist nervös' (gerade jetzt) - SER oder ESTAR?",
-      "correctAnswer": "ESTAR (Está nervioso - jetzt nervös)",
+      "correctAnswer": "ESTAR (Está nervioso - jetzt nervos)",
       "options": [
-        "ESTAR (Está nervioso - jetzt nervös)",
-        "SER (Es nervioso - nervöse Person)",
+        "ESTAR (Está nervioso - jetzt nervos)",
+        "SER (Es nervioso - nervose Person)",
         "Beides gleich"
       ],
       "explanation": "ESTAR nervioso = jetzt nervös (Emotion) | SER nervioso = nervöse Person (Charakter)",
@@ -822,7 +981,7 @@
       "difficulty": 5,
       "concept": "ser-estar-verde",
       "question": "Unterschied: 'La manzana es verde' vs 'La manzana está verde'?",
-      "correctAnswer": "Es verde = sie ist grün (Farbe) | Está verde = sie ist unreif",
+      "correctAnswer": "Es verde = sie ist grun (Farbe) | Está verde = sie ist unreif",
       "explanation": "VERDE ändert Bedeutung: SER verde = grüne Farbe | ESTAR verde = unreif",
       "germanBridge": "🇩🇪 Der Apfel ist grün (Farbe - SER) | Der Apfel ist unreif (Zustand - ESTAR)",
       "examples": [
@@ -1065,10 +1224,10 @@
     {
       "id": "u4_ex017",
       "type": "meaning-change",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-bueno",
       "question": "Unterschied: 'Es bueno' vs 'Está bueno'?",
-      "correctAnswer": "Es bueno = er ist gut (Person/Qualität) | Está bueno = er sieht gut aus/es schmeckt gut",
+      "correctAnswer": "Es bueno = er ist gut (Person/Qualitat) | Está bueno = er sieht gut aus/es schmeckt gut",
       "explanation": "BUENO ändert Bedeutung: SER bueno = gute Person/Qualität | ESTAR bueno = attraktiv/lecker",
       "germanBridge": "🇩🇪 Er ist gut (Charakter - SER) | Er ist gutaussehend (ESTAR) - unterschiedlich!",
       "examples": [
@@ -1126,10 +1285,10 @@
     {
       "id": "u4_ex018",
       "type": "meaning-change",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-malo",
       "question": "Unterschied: 'Es malo' vs 'Está malo'?",
-      "correctAnswer": "Es malo = er ist böse/schlecht | Está malo = er ist krank/verdorben",
+      "correctAnswer": "Es malo = er ist bose/schlecht | Está malo = er ist krank/verdorben",
       "explanation": "MALO ändert Bedeutung: SER malo = böse/schlecht | ESTAR malo = krank/schlecht geworden",
       "germanBridge": "🇩🇪 Er ist böse (Charakter - SER) | Er ist krank (Zustand - ESTAR)",
       "examples": [
@@ -1186,7 +1345,7 @@
     {
       "id": "u4_ex019",
       "type": "contrast-sentence",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-aburrido",
       "question": "Wähle richtig: 'Der Film war langweilig.'",
       "correctAnswer": "La película fue aburrida",
@@ -1250,7 +1409,7 @@
     {
       "id": "u4_ex020",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-interesado",
       "question": "Él ___ interesante. (Er ist interessant - als Person.)",
       "correctAnswer": "es",
@@ -1312,7 +1471,7 @@
     {
       "id": "u4_ex021",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-interesado-interested",
       "question": "Yo ___ interesado en español. (Ich bin an Spanisch interessiert.)",
       "correctAnswer": "estoy",
@@ -1376,7 +1535,7 @@
     {
       "id": "u4_ex022",
       "type": "multiple-choice",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-age",
       "question": "'Ich bin 25 Jahre alt' - Welches Verb?",
       "correctAnswer": "TENER (Tengo 25 años) - Nicht SER oder ESTAR!",
@@ -1444,7 +1603,7 @@
     {
       "id": "u4_ex023",
       "type": "correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-common-mistake-1",
       "question": "Korrigiere: ❌ 'Yo soy en casa.'",
       "correctAnswer": "Yo estoy en casa",
@@ -1513,7 +1672,7 @@
     {
       "id": "u4_ex024",
       "type": "correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-common-mistake-2",
       "question": "Korrigiere: ❌ 'María es cansada.'",
       "correctAnswer": "María está cansada",
@@ -1582,7 +1741,7 @@
     {
       "id": "u4_ex025",
       "type": "correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-estar-common-mistake-3",
       "question": "Korrigiere: ❌ 'Yo estoy de Alemania.'",
       "correctAnswer": "Yo soy de Alemania",
@@ -1652,7 +1811,7 @@
     {
       "id": "u4_ex026",
       "type": "correction",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-common-mistake-4",
       "question": "Korrigiere: ❌ 'El libro está de Pedro.'",
       "correctAnswer": "El libro es de Pedro",
@@ -1722,7 +1881,7 @@
     {
       "id": "u4_ex027",
       "type": "translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-profession-vs-state",
       "question": "Übersetze: 'Ich bin Lehrer und ich bin müde.'",
       "correctAnswer": "Soy profesor y estoy cansado",
@@ -1788,7 +1947,7 @@
     {
       "id": "u4_ex028",
       "type": "translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-origin-location",
       "question": "Übersetze: 'Ich bin aus Berlin, aber ich bin in Madrid.'",
       "correctAnswer": "Soy de Berlín, pero estoy en Madrid",
@@ -1854,7 +2013,7 @@
     {
       "id": "u4_ex029",
       "type": "comprehensive",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-multiple-contrast",
       "question": "Ergänze: 'Juan ___ inteligente, ___ de España y ___ en Alemania ahora.'",
       "correctAnswer": "es, es, está",
@@ -1918,7 +2077,7 @@
     {
       "id": "u4_ex030",
       "type": "multiple-choice",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-food-description",
       "question": "'Die Suppe ist kalt' (Temperatur) - SER oder ESTAR?",
       "correctAnswer": "ESTAR (La sopa está fría - Zustand)",
@@ -1984,7 +2143,7 @@
     {
       "id": "u4_ex031",
       "type": "fill-blank",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-dead-alive",
       "question": "Romeo y Julieta _____ muertos. (Romeo und Julia sind tot.)",
       "correctAnswer": "están",
@@ -2047,7 +2206,7 @@
     {
       "id": "u4_ex032",
       "type": "translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "ser-estar-material-condition",
       "question": "Übersetze: 'Der Tisch ist aus Holz und ist kaputt.'",
       "correctAnswer": "La mesa es de madera y está rota",
@@ -2111,10 +2270,10 @@
     {
       "id": "u4_ex033",
       "type": "meaning-change",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-seguro",
       "question": "Unterschied: 'Es seguro' vs 'Está seguro'?",
-      "correctAnswer": "Es seguro = es ist sicher (Ort/Sache) | Está seguro = er ist sich sicher (überzeugt)",
+      "correctAnswer": "Es seguro = es ist sicher (Ort/Sache) | Está seguro = er ist sich sicher (uberzeugt)",
       "explanation": "SEGURO ändert Bedeutung: SER seguro = sicherer Ort | ESTAR seguro = sicher/überzeugt sein",
       "germanBridge": "🇩🇪 Es ist ein sicherer Ort (SER) | Er ist sich sicher (ESTAR)",
       "examples": [
@@ -2171,7 +2330,7 @@
     {
       "id": "u4_ex034",
       "type": "meaning-change",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-atento",
       "question": "Unterschied: 'Es atento' vs 'Está atento'?",
       "correctAnswer": "Es atento = er ist aufmerksam (Charakter) | Está atento = er passt auf (jetzt)",
@@ -2231,7 +2390,7 @@
     {
       "id": "u4_ex035",
       "type": "comprehensive",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-full-description",
       "question": "Ergänze: 'María ___ española, ___ profesora, ___ muy inteligente, pero hoy ___ cansada y ___ en casa.'",
       "correctAnswer": "es, es, es, está, está",
@@ -2296,7 +2455,7 @@
     {
       "id": "u4_ex036",
       "type": "translation",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-contrasting-siblings",
       "question": "Übersetze: 'Pedro ist groß und intelligent, aber heute ist er müde und ist zu Hause.'",
       "correctAnswer": "Pedro es alto e inteligente, pero hoy está cansado y está en casa",
@@ -2361,7 +2520,7 @@
     {
       "id": "u4_ex037",
       "type": "error-identification",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "ser-estar-error-detection",
       "question": "Welcher Satz ist FALSCH? A) Soy alemán  B) Estoy en Berlín  C) Soy en Berlín  D) Estoy cansado",
       "correctAnswer": "C) Soy en Berlín",
@@ -2426,10 +2585,10 @@
     {
       "id": "u4_ex038",
       "type": "comprehensive",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "ser-estar-context-dependent",
       "question": "Wann würdest du 'Es aburrida' vs 'Está aburrida' sagen?",
-      "correctAnswer": "Es aburrida = sie ist eine langweilige Person | Está aburrida = sie fühlt sich gelangweilt",
+      "correctAnswer": "Es aburrida = sie ist eine langweilige Person | Está aburrida = sie fuhlt sich gelangweilt",
       "explanation": "Komplett unterschiedliche Bedeutung: SER = Charaktereigenschaft | ESTAR = momentanes Gefühl",
       "germanBridge": "🇩🇪 Sie ist langweilig (Charakter - SER) | Sie ist gelangweilt (Gefühl - ESTAR)",
       "examples": [
@@ -2488,7 +2647,7 @@
     {
       "id": "u4_ex039",
       "type": "advanced-application",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "ser-estar-all-rules",
       "question": "Erkläre: Warum 'La reunión es en mi oficina' aber 'Yo estoy en mi oficina'?",
       "correctAnswer": "Events verwenden SER + en (wo stattfindet) | Personen/Objekte verwenden ESTAR + en (wo sich befinden)",
@@ -2550,7 +2709,7 @@
     {
       "id": "u4_ex040",
       "type": "mastery-check",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "ser-estar-complete-mastery",
       "question": "Vervollständige mit SER oder ESTAR: 'Yo ___ Juan, ___ alemán, ___ profesor de español, ___ muy alto e inteligente. Hoy ___ martes, ___ las 3 de la tarde, ___ en mi oficina, ___ cansado pero ___ contento porque mi clase ___ muy interesante y mis estudiantes ___ muy listos. La oficina ___ pequeña pero ___ limpia. Mi próxima clase ___ a las 5 y ___ en el aula 202.'",
       "correctAnswer": "soy, soy, soy, soy, es, son, estoy, estoy, estoy, es, son, es, está, es, es",
@@ -2699,5 +2858,31 @@
       "seguro: SER = sicher (Ort) | ESTAR = sich sicher sein",
       "atento: SER = aufmerksam (Charakter) | ESTAR = aufpassen (jetzt)"
     ]
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u4_vocab001 - u4_vocab012",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 12
+    },
+    "phase1_input": {
+      "exercises": "u4_input001 - u4_input007",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 7
+    },
+    "phase2_guided": {
+      "exercises": "u4_guided001 - u4_guided020",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 20
+    },
+    "phase3_free": {
+      "exercises": "u4_free001 - u4_free011",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 11
+    }
   }
 }
