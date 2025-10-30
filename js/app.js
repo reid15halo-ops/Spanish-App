@@ -81,24 +81,45 @@ class App {
     }
 
     /**
-     * Setup mobile sidebar toggle
+     * Setup sidebar toggle (desktop and mobile)
      */
     setupSidebarToggle() {
         const toggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('sidebar');
 
         if (toggle && sidebar) {
+            // Load saved sidebar state
+            const savedState = localStorage.getItem('sidebar-collapsed');
+            if (savedState === 'true') {
+                sidebar.classList.add('collapsed');
+                document.body.classList.add('sidebar-collapsed');
+            }
+
+            // Toggle sidebar
             toggle.addEventListener('click', () => {
-                sidebar.classList.toggle('mobile-open');
+                const isCollapsed = sidebar.classList.toggle('collapsed');
+                document.body.classList.toggle('sidebar-collapsed', isCollapsed);
+
+                // Save state
+                localStorage.setItem('sidebar-collapsed', isCollapsed);
+
+                // Update toggle icon
+                toggle.textContent = isCollapsed ? '☰' : '✕';
             });
 
-            // Close sidebar when clicking on exercise
-            document.querySelectorAll('.exercise-item').forEach(item => {
-                item.addEventListener('click', () => {
-                    if (window.innerWidth <= 768) {
-                        sidebar.classList.remove('mobile-open');
+            // Set initial toggle icon
+            toggle.textContent = sidebar.classList.contains('collapsed') ? '☰' : '✕';
+
+            // Close sidebar when clicking on exercise on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    const exerciseItem = e.target.closest('.exercise-item');
+                    if (exerciseItem) {
+                        sidebar.classList.add('collapsed');
+                        document.body.classList.add('sidebar-collapsed');
+                        toggle.textContent = '☰';
                     }
-                });
+                }
             });
         }
     }

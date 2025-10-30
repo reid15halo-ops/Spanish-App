@@ -51,6 +51,14 @@
             max-height: 100vh;
             position: sticky;
             top: 0;
+            transition: margin-left 0.3s ease, width 0.3s ease;
+        }
+
+        #sidebar.collapsed {
+            width: 0;
+            padding: 0;
+            margin-left: -270px;
+            overflow: hidden;
         }
 
         #main-content {
@@ -127,7 +135,6 @@
         }
 
         .sidebar-toggle {
-            display: none;
             position: fixed;
             top: 20px;
             left: 20px;
@@ -139,6 +146,21 @@
             border-radius: var(--radius);
             cursor: pointer;
             font-size: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: left 0.3s ease;
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--primary-hover);
+            transform: scale(1.05);
+        }
+
+        #sidebar.collapsed ~ .sidebar-toggle {
+            left: 20px;
+        }
+
+        body:not(.sidebar-collapsed) .sidebar-toggle {
+            left: 290px;
         }
 
         /* ===== PROGRESS ===== */
@@ -614,15 +636,16 @@
                 width: 100%;
                 max-height: none;
                 position: relative;
-                display: none;
             }
 
-            #sidebar.mobile-open {
-                display: block;
+            #sidebar.collapsed {
+                display: none;
+                margin-left: 0;
+                width: 100%;
             }
 
             .sidebar-toggle {
-                display: block;
+                left: 20px !important;
             }
 
             #main-content {
@@ -648,8 +671,8 @@
     </style>
 </head>
 <body>
-    <!-- Sidebar Toggle (Mobile) -->
-    <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+    <!-- Sidebar Toggle -->
+    <button class="sidebar-toggle" id="sidebar-toggle">✕</button>
 
     <div id="app">
         <!-- Sidebar -->
