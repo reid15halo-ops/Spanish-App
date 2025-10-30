@@ -35,12 +35,110 @@
 
         /* ===== LAYOUT ===== */
         #app {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
+            display: flex;
             min-height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+
+        #sidebar {
+            width: 250px;
+            background: var(--bg);
+            padding: 20px;
+            box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            max-height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+
+        #main-content {
+            flex: 1;
+            padding: 20px;
             display: flex;
             flex-direction: column;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .unit-section {
+            margin-bottom: 20px;
+        }
+
+        .unit-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .exercise-list {
+            list-style: none;
+        }
+
+        .exercise-item {
+            padding: 10px 12px;
+            margin: 4px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 2px solid transparent;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .exercise-item:hover {
+            background: var(--bg-secondary);
+            border-color: var(--primary);
+        }
+
+        .exercise-item.active {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+        }
+
+        .exercise-item.completed {
+            background: rgba(46, 125, 50, 0.1);
+            color: var(--success);
+        }
+
+        .exercise-item.completed::before {
+            content: '✓';
+            font-weight: bold;
+        }
+
+        .exercise-number {
+            min-width: 25px;
+            font-weight: 600;
+        }
+
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-size: 20px;
         }
 
         /* ===== PROGRESS ===== */
@@ -359,8 +457,25 @@
         #actions {
             margin-top: 20px;
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             gap: 10px;
+        }
+
+        #prev-btn {
+            background: var(--bg);
+            padding: 12px 20px;
+            border: 2px solid var(--border);
+            color: var(--text);
+        }
+
+        #prev-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: rgba(32, 178, 170, 0.05);
+        }
+
+        #prev-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         #settings-btn {
@@ -490,8 +605,27 @@
         }
 
         /* ===== RESPONSIVE ===== */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             #app {
+                flex-direction: column;
+            }
+
+            #sidebar {
+                width: 100%;
+                max-height: none;
+                position: relative;
+                display: none;
+            }
+
+            #sidebar.mobile-open {
+                display: block;
+            }
+
+            .sidebar-toggle {
+                display: block;
+            }
+
+            #main-content {
                 padding: 10px;
             }
 
@@ -514,24 +648,37 @@
     </style>
 </head>
 <body>
+    <!-- Sidebar Toggle (Mobile) -->
+    <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+
     <div id="app">
-        <!-- Progress Bar -->
-        <div id="progress">
-            <span class="progress-text">Laden...</span>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 0%"></div>
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="sidebar-header">Übungen</div>
+            <div id="exercise-nav"></div>
+        </aside>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Progress Bar -->
+            <div id="progress">
+                <span class="progress-text">Laden...</span>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 0%"></div>
+                </div>
             </div>
-        </div>
 
-        <!-- Exercise Area -->
-        <div id="exercise-area">
-            <p>Lädt Übungen...</p>
-        </div>
+            <!-- Exercise Area -->
+            <div id="exercise-area">
+                <p>Lädt Übungen...</p>
+            </div>
 
-        <!-- Actions -->
-        <div id="actions">
-            <button id="settings-btn" title="Einstellungen">⚙️</button>
-        </div>
+            <!-- Actions -->
+            <div id="actions">
+                <button id="prev-btn" title="Vorherige Übung" style="display:none;">← Zurück</button>
+                <button id="settings-btn" title="Einstellungen">⚙️</button>
+            </div>
+        </main>
     </div>
 
     <!-- Settings Modal -->

@@ -742,8 +742,9 @@ class UIController {
 
         if ((e.key === 'ArrowLeft' || e.key === 'ArrowUp') && this.state.isAnswered) {
             e.preventDefault();
-            // TODO: Implement previous exercise navigation
-            console.log('Previous exercise navigation not yet implemented');
+            if (this.onPreviousExercise) {
+                this.onPreviousExercise();
+            }
         }
 
         // Escape to close hints/explanations
