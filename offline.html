@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline - Spanish Learning App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .offline-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            text-align: center;
+            max-width: 500px;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .offline-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .offline-icon::before {
+            content: '';
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border: 3px solid rgba(102, 126, 234, 0.3);
+            border-radius: 50%;
+            animation: ripple 2s ease-out infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .wifi-icon {
+            font-size: 60px;
+            color: white;
+            position: relative;
+        }
+
+        .wifi-slash {
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: white;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            border-radius: 2px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        p {
+            color: #666;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .tips {
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .tips h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .tips ul {
+            list-style: none;
+        }
+
+        .tips li {
+            color: #555;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .tips li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #20B2AA;
+            font-weight: bold;
+        }
+
+        .retry-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .retry-button:active {
+            transform: translateY(0);
+        }
+
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+
+        .status.checking {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status.online {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status.offline {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        @media (max-width: 600px) {
+            .offline-container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .offline-icon {
+                width: 100px;
+                height: 100px;
+            }
+
+            .wifi-icon {
+                font-size: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">
+            <div class="wifi-icon">
+                📶
+                <div class="wifi-slash"></div>
+            </div>
+        </div>
+
+        <h1>Du bist offline</h1>
+        <p>
+            Es sieht so aus, als hättest du keine Internetverbindung.
+            Aber keine Sorge – sobald du wieder online bist, kannst du weiterlernen!
+        </p>
+
+        <div class="tips">
+            <h3>Was du tun kannst:</h3>
+            <ul>
+                <li>Überprüfe deine WLAN- oder mobile Datenverbindung</li>
+                <li>Stelle sicher, dass der Flugmodus deaktiviert ist</li>
+                <li>Versuche, die Seite neu zu laden</li>
+                <li>Warte einen Moment und versuche es erneut</li>
+            </ul>
+        </div>
+
+        <button class="retry-button" onclick="checkConnection()">
+            Verbindung prüfen
+        </button>
+
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+
+    <script>
+        // Auto-check connection every 5 seconds
+        let checkInterval;
+
+        function showStatus(message, type) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = 'status ' + type;
+            status.style.display = 'block';
+        }
+
+        function checkConnection() {
+            showStatus('Verbindung wird geprüft...', 'checking');
+
+            // Try to fetch a small resource
+            fetch('manifest.json', {
+                method: 'HEAD',
+                cache: 'no-cache'
+            })
+            .then(response => {
+                if (response.ok) {
+                    showStatus('✓ Verbindung wiederhergestellt! Weiterleitung...', 'online');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 1000);
+                } else {
+                    showStatus('✗ Noch keine Verbindung', 'offline');
+                }
+            })
+            .catch(error => {
+                showStatus('✗ Noch keine Verbindung', 'offline');
+            });
+        }
+
+        // Start auto-checking
+        checkInterval = setInterval(() => {
+            if (navigator.onLine) {
+                checkConnection();
+            }
+        }, 5000);
+
+        // Listen to online event
+        window.addEventListener('online', () => {
+            showStatus('✓ Verbindung wiederhergestellt! Weiterleitung...', 'online');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        });
+
+        // Listen to offline event
+        window.addEventListener('offline', () => {
+            showStatus('✗ Verbindung verloren', 'offline');
+        });
+
+        // Initial status
+        if (!navigator.onLine) {
+            showStatus('✗ Keine Internetverbindung', 'offline');
+        }
+    </script>
+</body>
+</html>
