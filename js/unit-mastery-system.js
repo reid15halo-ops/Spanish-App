@@ -21,7 +21,7 @@ class UnitMasterySystem {
       minConceptCoverage: 0.80,  // 80% of concepts
 
       // Minimum number of exercises that must be attempted
-      minExercisesAttempted: 30,  // At least 30 exercises
+      minExercisesAttempted: 150,  // At least 150 exercises
 
       // Minimum number of unique concepts practiced
       minUniqueConcepts: 5,
@@ -31,7 +31,7 @@ class UnitMasterySystem {
 
       // Minimum accuracy in last N attempts (recent performance)
       recentAttemptsCount: 10,
-      minRecentAccuracy: 0.70  // 70% in recent attempts
+      minRecentAccuracy: 1.0  // 100% in recent attempts
     };
 
     this.loadMasteryData();
