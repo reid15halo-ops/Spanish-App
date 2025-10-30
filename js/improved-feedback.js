@@ -14,13 +14,11 @@ class ImprovedFeedbackSystem {
     }
 
     /**
-     * Get or create feedback area
+     * Get feedback area (always fresh lookup)
      */
     getFeedbackArea() {
-        if (!this.feedbackArea) {
-            this.feedbackArea = document.getElementById('feedback-area');
-        }
-        return this.feedbackArea;
+        // Always get fresh reference since exercises are re-rendered
+        return document.getElementById('feedback-area');
     }
 
     /**
@@ -28,7 +26,12 @@ class ImprovedFeedbackSystem {
      */
     showValidationResult(validationResult, exercise) {
         const feedbackArea = this.getFeedbackArea();
-        if (!feedbackArea) return;
+        if (!feedbackArea) {
+            console.error('[ImprovedFeedbackSystem] feedback-area element not found!');
+            return;
+        }
+
+        console.log('[ImprovedFeedbackSystem] Showing validation result:', validationResult);
 
         // Clear previous feedback
         feedbackArea.innerHTML = '';
@@ -47,11 +50,16 @@ class ImprovedFeedbackSystem {
 
             // Auto-advance after short pause
             const delay = validationResult.styleImprovements.length > 0 ? 4000 : 1500;
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 if (window.app) {
                     window.app.next();
                 }
             }, delay);
+
+            // Store timeout ID in app for potential cancellation
+            if (window.app) {
+                window.app.autoAdvanceTimeout = timeoutId;
+            }
 
         } else {
             // Exercise is incorrect → learning aid
