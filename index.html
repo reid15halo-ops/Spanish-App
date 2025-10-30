@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn Spanish from German with adaptive exercises and offline support">
+    <meta name="theme-color" content="#20B2AA">
     <title>Spanish Learning App</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon-152x152.png">
 
     <style>
         /* ===== RESET & BASE ===== */
@@ -706,34 +715,88 @@
 
     <!-- Settings Modal -->
     <div id="settings-modal" class="hidden">
-        <div class="modal-content">
+        <div class="modal-content" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
             <h2>⚙️ Einstellungen</h2>
 
-            <p style="margin-bottom: 20px; color: var(--text-muted);">
-                Wähle, wie viele Hinweise du erhalten möchtest:
-            </p>
+            <!-- Learning Settings -->
+            <div style="margin-bottom: 30px;">
+                <h3 style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Lernhilfe</h3>
+                <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 14px;">
+                    Wähle, wie viele Hinweise du erhalten möchtest:
+                </p>
 
-            <label>
-                <input type="radio" name="help" value="keine">
-                <strong>Keine Hilfe</strong><br>
-                <small>Du erhältst keine Hinweise. Ideal für Fortgeschrittene.</small>
-            </label>
+                <label>
+                    <input type="radio" name="help" value="keine">
+                    <strong>Keine Hilfe</strong><br>
+                    <small>Du erhältst keine Hinweise. Ideal für Fortgeschrittene.</small>
+                </label>
 
-            <label>
-                <input type="radio" name="help" value="normal" checked>
-                <strong>Normal</strong><br>
-                <small>Hinweise erscheinen nach 3 Fehlversuchen. Empfohlen.</small>
-            </label>
+                <label>
+                    <input type="radio" name="help" value="normal" checked>
+                    <strong>Normal</strong><br>
+                    <small>Hinweise erscheinen nach 3 Fehlversuchen. Empfohlen.</small>
+                </label>
 
-            <label>
-                <input type="radio" name="help" value="viel">
-                <strong>Viel Hilfe</strong><br>
-                <small>Hinweise erscheinen nach dem 1. Fehlversuch. Ideal für Anfänger.</small>
-            </label>
+                <label>
+                    <input type="radio" name="help" value="viel">
+                    <strong>Viel Hilfe</strong><br>
+                    <small>Hinweise erscheinen nach dem 1. Fehlversuch. Ideal für Anfänger.</small>
+                </label>
+            </div>
+
+            <!-- Data Management -->
+            <div style="margin-bottom: 30px; padding-top: 20px; border-top: 2px solid var(--border);">
+                <h3 style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Datenmanagement</h3>
+
+                <button onclick="window.DataBackup?.exportBackup()"
+                        style="width: 100%; margin-bottom: 10px; background: var(--primary); color: white;">
+                    📥 Daten exportieren
+                </button>
+
+                <button onclick="document.getElementById('import-file-input').click()"
+                        style="width: 100%; margin-bottom: 10px; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
+                    📤 Daten importieren
+                </button>
+                <input type="file" id="import-file-input" accept=".json" style="display: none;"
+                       onchange="window.DataBackup?.importBackup(event)">
+
+                <button onclick="if(confirm('Alle Daten löschen?')) window.DataBackup?.clearAllData()"
+                        style="width: 100%; background: var(--error); color: white;">
+                    🗑️ Alle Daten löschen
+                </button>
+            </div>
+
+            <!-- GDPR & Privacy -->
+            <div style="margin-bottom: 20px; padding-top: 20px; border-top: 2px solid var(--border);">
+                <h3 style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Datenschutz (DSGVO)</h3>
+
+                <button onclick="window.GDPR?.exerciseRightToAccess()"
+                        style="width: 100%; margin-bottom: 10px; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
+                    📋 Meine Daten anzeigen (Auskunftsrecht)
+                </button>
+
+                <button onclick="window.open('privacy-policy.html', '_blank')"
+                        style="width: 100%; margin-bottom: 10px; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
+                    🔒 Datenschutzerklärung
+                </button>
+
+                <button onclick="window.GDPR?.exerciseRightToDeletion()"
+                        style="width: 100%; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
+                    ❌ Alle Daten löschen (Löschungsrecht)
+                </button>
+            </div>
+
+            <!-- App Info -->
+            <div style="margin-bottom: 20px; padding-top: 20px; border-top: 2px solid var(--border);">
+                <p style="font-size: 12px; color: var(--text-muted); text-align: center;">
+                    Version: <span id="app-version">1.0.0</span><br>
+                    Umgebung: <span id="app-env">production</span>
+                </p>
+            </div>
 
             <div class="modal-actions">
                 <button id="close-settings" style="background: var(--bg-secondary); color: var(--text);">
-                    Abbrechen
+                    Schließen
                 </button>
                 <button id="save-settings" class="btn-primary" style="margin: 0;">
                     Speichern
@@ -743,8 +806,69 @@
     </div>
 
     <!-- Scripts -->
+
+    <!-- Environment & Configuration -->
+    <script src="js/config/environment.js"></script>
+
+    <!-- Monitoring Systems -->
+    <script src="js/monitoring/error-monitor.js"></script>
+    <script src="js/monitoring/performance-monitor.js"></script>
+
+    <!-- Utilities -->
+    <script src="js/utils/data-backup.js"></script>
+    <script src="js/utils/gdpr-compliance.js"></script>
+
+    <!-- Core App -->
     <script src="js/exercise-loader.js"></script>
     <script src="js/exercise-renderer.js"></script>
     <script src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('[PWA] Service Worker registered:', registration.scope);
+
+                        // Check for updates every hour
+                        setInterval(() => {
+                            registration.update();
+                        }, 60 * 60 * 1000);
+
+                        // Listen for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New version available
+                                    if (confirm('Eine neue Version ist verfügbar. Jetzt aktualisieren?')) {
+                                        newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                        window.location.reload();
+                                    }
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        console.error('[PWA] Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // Log app initialization
+        console.log('[App] Spanish Learning App v' + (window.ENV?.getVersion() || '1.0.0'));
+        console.log('[App] Environment:', window.ENV?.currentEnv || 'unknown');
+        console.log('[App] Debug mode:', window.ENV?.get('enableDebugMode') || false);
+
+        // Update app info in settings modal
+        if (window.ENV) {
+            const versionEl = document.getElementById('app-version');
+            const envEl = document.getElementById('app-env');
+            if (versionEl) versionEl.textContent = window.ENV.getVersion();
+            if (envEl) envEl.textContent = window.ENV.currentEnv;
+        }
+    </script>
 </body>
 </html>
