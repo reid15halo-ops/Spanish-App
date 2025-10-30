@@ -966,7 +966,10 @@ class App {
      * Handle user answer
      */
     handleAnswer(userAnswer) {
+        console.log('[App] handleAnswer called with:', userAnswer);
+
         const exercise = this.exercises[this.currentIndex];
+        console.log('[App] Current exercise:', exercise.type, exercise.id);
 
         // Get correct answer (different location for reading-comprehension)
         let correctAnswer;
@@ -976,12 +979,16 @@ class App {
             correctAnswer = exercise.correctAnswer;
         }
 
+        console.log('[App] Correct answer:', correctAnswer);
+
         // Use tolerant validator for improved feedback
         const validationResult = this.validator.validateAnswer(
             userAnswer,
             correctAnswer,
             exercise
         );
+
+        console.log('[App] Validation result:', validationResult);
 
         // Update stats (only based on core correctness)
         this.stats.total++;
@@ -1003,8 +1010,12 @@ class App {
         // Save progress after updating stats
         this.saveProgress();
 
+        console.log('[App] About to call feedbackSystem.showValidationResult');
+
         // Show improved feedback
         this.feedbackSystem.showValidationResult(validationResult, exercise);
+
+        console.log('[App] After feedbackSystem.showValidationResult');
 
         // Disable input/buttons to prevent multiple submissions
         this.disableInput();
