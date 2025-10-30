@@ -959,6 +959,64 @@ class App {
 
         nav.innerHTML = '';
 
+        // Add unit selector at the top
+        const unitSelector = document.createElement('div');
+        unitSelector.className = 'unit-selector';
+        unitSelector.style.cssText = `
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        `;
+
+        const selectLabel = document.createElement('div');
+        selectLabel.textContent = 'Lektion auswählen:';
+        selectLabel.style.cssText = `
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        `;
+        unitSelector.appendChild(selectLabel);
+
+        const select = document.createElement('select');
+        select.style.cssText = `
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+        `;
+
+        for (let i = 1; i <= 7; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `Lektion ${i}`;
+            if (i === this.currentUnit) {
+                option.selected = true;
+            }
+            select.appendChild(option);
+        }
+
+        select.addEventListener('change', async (e) => {
+            const newUnit = parseInt(e.target.value);
+            if (newUnit !== this.currentUnit) {
+                if (confirm(`Möchtest du zu Lektion ${newUnit} wechseln? Dein Fortschritt wird gespeichert.`)) {
+                    await this.switchToUnit(newUnit);
+                } else {
+                    // Reset selection
+                    e.target.value = this.currentUnit;
+                }
+            }
+        });
+
+        unitSelector.appendChild(select);
+        nav.appendChild(unitSelector);
+
         // Group exercises by concept if available
         const groupedExercises = this.groupExercisesByConcept();
 
@@ -998,6 +1056,39 @@ class App {
 
             section.appendChild(list);
             nav.appendChild(section);
+        }
+    }
+
+    /**
+     * Switch to a different unit
+     */
+    async switchToUnit(unitNumber) {
+        try {
+            // Save current progress
+            this.saveProgress();
+
+            // Reset stats for new unit
+            this.stats = {
+                correct: 0,
+                total: 0
+            };
+
+            // Load new unit
+            await this.loadUnit(unitNumber);
+
+            // Rebuild sidebar
+            this.buildSidebar();
+
+            // Show first exercise
+            this.showExercise(0);
+
+            // Save new progress
+            this.saveProgress();
+
+            window.Logger?.success(`Zu Lektion ${unitNumber} gewechselt!`);
+        } catch (error) {
+            window.Logger?.error('Error switching unit:', error);
+            alert(`Fehler beim Wechseln zu Lektion ${unitNumber}. Bitte versuche es erneut.`);
         }
     }
 
@@ -1099,6 +1190,9 @@ class App {
         const accuracy = Math.round((this.stats.correct / this.stats.total) * 100);
         const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
 
+        // Check if there's a next unit
+        const hasNextUnit = this.currentUnit < 7; // We have 7 units total
+
         const container = document.getElementById('exercise-area');
         container.innerHTML = `
             <div class="completion">
@@ -1108,11 +1202,92 @@ class App {
                     <p class="score">${this.stats.correct}/${this.stats.total} richtig</p>
                     <p class="accuracy">${accuracy}% Genauigkeit</p>
                 </div>
-                <button class="btn-primary" onclick="location.reload()">
-                    Nochmal üben
-                </button>
+
+                ${hasNextUnit ? `
+                    <button class="btn-primary" onclick="app.loadNextUnit()" style="margin-bottom: 10px;">
+                        Weiter zu Lektion ${this.currentUnit + 1} →
+                    </button>
+                    <button class="btn-primary" onclick="app.restartCurrentUnit()"
+                            style="background: var(--bg); color: var(--text); border: 2px solid var(--border);">
+                        Lektion ${this.currentUnit} wiederholen
+                    </button>
+                ` : `
+                    <p style="margin: 20px 0; font-size: 18px; color: var(--text-muted);">
+                        🎓 Du hast alle verfügbaren Lektionen abgeschlossen!
+                    </p>
+                    <button class="btn-primary" onclick="location.reload()">
+                        Nochmal üben
+                    </button>
+                `}
             </div>
         `;
+    }
+
+    /**
+     * Load next unit
+     */
+    async loadNextUnit() {
+        const nextUnit = this.currentUnit + 1;
+
+        if (nextUnit > 7) {
+            alert('Du hast bereits alle Lektionen abgeschlossen!');
+            return;
+        }
+
+        try {
+            // Reset stats for new unit
+            this.stats = {
+                correct: 0,
+                total: 0
+            };
+
+            // Load next unit
+            await this.loadUnit(nextUnit);
+
+            // Rebuild sidebar
+            this.buildSidebar();
+
+            // Show first exercise
+            this.showExercise(0);
+
+            // Save progress
+            this.saveProgress();
+
+            window.Logger?.success(`Lektion ${nextUnit} gestartet!`);
+        } catch (error) {
+            window.Logger?.error('Error loading next unit:', error);
+            alert(`Fehler beim Laden von Lektion ${nextUnit}. Bitte versuche es erneut.`);
+        }
+    }
+
+    /**
+     * Restart current unit
+     */
+    async restartCurrentUnit() {
+        try {
+            // Reset stats
+            this.stats = {
+                correct: 0,
+                total: 0
+            };
+
+            // Reload current unit
+            await this.loadUnit(this.currentUnit);
+
+            // Rebuild sidebar
+            this.buildSidebar();
+
+            // Show first exercise
+            this.showExercise(0);
+
+            // Save progress
+            this.saveProgress();
+
+            window.Logger?.success(`Lektion ${this.currentUnit} neu gestartet!`);
+        } catch (error) {
+            window.Logger?.error('Error restarting unit:', error);
+            alert('Fehler beim Neustarten. Bitte versuche es erneut.');
+        }
     }
 
     /**
