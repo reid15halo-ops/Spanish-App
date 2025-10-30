@@ -25,49 +25,59 @@ class App {
      * Initialize and start the app
      */
     async init() {
-        console.log('🚀 Starting Spanish Learning App...');
+        window.Logger?.debug('Starting Spanish Learning App...');
 
-        // Get container
-        const container = document.getElementById('exercise-area');
-        if (!container) {
-            console.error('❌ Exercise container not found!');
-            return;
+        // Show loading state
+        const loaderId = window.LoadingManager?.show('exercise-area', 'Uebungen werden geladen...');
+
+        try {
+            // Get container
+            const container = document.getElementById('exercise-area');
+            if (!container) {
+                throw new Error('Exercise container not found');
+            }
+
+            this.renderer = new ExerciseRenderer(container);
+
+            // Load Unit 1
+            await this.loadUnit(1);
+
+            // Build sidebar navigation
+            this.buildSidebar();
+
+            // Check for saved progress
+            const savedProgress = this.loadProgress();
+            let startIndex = 0;
+
+            if (savedProgress && savedProgress.unit === this.currentUnit) {
+                // Restore progress
+                startIndex = savedProgress.index;
+                this.stats = savedProgress.stats;
+                window.Logger?.info(`Continuing from exercise ${startIndex + 1}/${this.exercises.length}`);
+            } else {
+                window.Logger?.debug('Starting fresh');
+            }
+
+            // Hide loading state
+            window.LoadingManager?.hide(loaderId);
+
+            // Show exercise (either saved position or first)
+            this.showExercise(startIndex);
+
+            // Setup navigation buttons
+            this.setupNavigationButtons();
+
+            // Setup settings button
+            this.setupSettingsButton();
+
+            // Setup mobile sidebar toggle
+            this.setupSidebarToggle();
+
+            window.Logger?.success('App ready!');
+        } catch (error) {
+            window.LoadingManager?.hide(loaderId);
+            window.ErrorBoundary?.handleError(error, { context: 'App initialization' });
         }
-
-        this.renderer = new ExerciseRenderer(container);
-
-        // Load Unit 1
-        await this.loadUnit(1);
-
-        // Build sidebar navigation
-        this.buildSidebar();
-
-        // Check for saved progress
-        const savedProgress = this.loadProgress();
-        let startIndex = 0;
-
-        if (savedProgress && savedProgress.unit === this.currentUnit) {
-            // Restore progress
-            startIndex = savedProgress.index;
-            this.stats = savedProgress.stats;
-            console.log(`📂 Continuing from exercise ${startIndex + 1}/${this.exercises.length}`);
-        } else {
-            console.log('🆕 Starting fresh');
-        }
-
-        // Show exercise (either saved position or first)
-        this.showExercise(startIndex);
-
-        // Setup navigation buttons
-        this.setupNavigationButtons();
-
-        // Setup settings button
-        this.setupSettingsButton();
-
-        // Setup mobile sidebar toggle
-        this.setupSidebarToggle();
-
-        console.log('✅ App ready!');
     }
 
     /**
@@ -129,7 +139,7 @@ class App {
      */
     async loadUnit(unitNumber) {
         try {
-            console.log(`📚 Loading Unit ${unitNumber}...`);
+            window.Logger?.info(`Loading Unit ${unitNumber}...`);
 
             const data = await this.loader.loadUnit(unitNumber);
 
@@ -141,11 +151,12 @@ class App {
             // Update progress
             this.updateProgress();
 
-            console.log(`✅ Loaded ${this.exercises.length} exercises`);
+            window.Logger?.success(`Loaded ${this.exercises.length} exercises`);
 
         } catch (error) {
-            console.error('❌ Error loading unit:', error);
-            alert('Fehler beim Laden der Übungen. Bitte Seite neu laden.');
+            window.Logger?.error('Error loading unit:', error);
+            window.ErrorBoundary?.handleError(error, { context: `Loading Unit ${unitNumber}` });
+            throw error;
         }
     }
 
