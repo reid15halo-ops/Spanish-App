@@ -6,39 +6,39 @@
     "concept": "introducing-yourself",
     "title": "Sich vorstellen",
     "title_es": "Presentarse",
-    "description": "Lerne dich auf Spanisch vorzustellen: Name, Herkunft, Beruf",
-    "totalExercises": 45,
-    "estimatedTime": "4-5 Sessions (je 10 Min)",
+    "description": "Lerne dich auf Spanisch vorzustellen: Name, Herkunft, Beruf, Alter, Familie - formell und informell",
+    "totalExercises": 112,
+    "estimatedTime": "9-11 Sessions (je 10-15 Min)",
     "learningApproach": "Vorbereitung → Input → Geführte Produktion → Freie Produktion",
-    "communicativeGoal": "Nach dieser Unit kannst du: Dich vorstellen, nach dem Namen fragen, sagen woher du kommst",
+    "communicativeGoal": "Nach dieser Unit kannst du: Dich formell und informell vorstellen, nach dem Namen fragen, sagen woher du kommst, dein Alter angeben, deine Familie vorstellen, verschiedene Berufe benennen",
     "germanAdvantage": true,
     "germanAdvantageNote": "Deutsche Satzstruktur ist ähnlich - 'Ich bin María' → 'Yo soy María'",
-    "version": "5.0"
+    "version": "6.0"
   },
   "learningPhases": {
     "phase0_prep": {
-      "exercises": "u1_vocab001 - u1_vocab012 + u1_context001 - u1_context005",
-      "goal": "Grundwortschatz aufbauen",
-      "time": "5-10 Minuten",
-      "exerciseCount": 17
+      "exercises": "u1_vocab001 - u1_vocab030 + u1_context001 - u1_context010",
+      "goal": "Grundwortschatz aufbauen - erweitert mit Berufen, Ländern, Zahlen, formeller Anrede",
+      "time": "15-20 Minuten",
+      "exerciseCount": 40
     },
     "phase1_input": {
-      "exercises": "u1_input001 - u1_input005",
-      "goal": "Verstehen durch authentische Dialoge",
-      "time": "10-15 Minuten",
-      "exerciseCount": 5
+      "exercises": "u1_input001 - u1_input012",
+      "goal": "Verstehen durch authentische Dialoge - formelle/informelle Situationen",
+      "time": "20-25 Minuten",
+      "exerciseCount": 12
     },
     "phase2_guided": {
-      "exercises": "u1_guided001 - u1_guided015",
-      "goal": "Mit Hilfe produzieren",
-      "time": "15-20 Minuten",
-      "exerciseCount": 15
+      "exercises": "u1_guided001 - u1_guided035",
+      "goal": "Mit Hilfe produzieren - erweiterte Strukturen",
+      "time": "25-30 Minuten",
+      "exerciseCount": 35
     },
     "phase3_free": {
-      "exercises": "u1_free001 - u1_free008",
-      "goal": "Selbstständig kommunizieren",
-      "time": "10-15 Minuten",
-      "exerciseCount": 8
+      "exercises": "u1_free001 - u1_free025",
+      "goal": "Selbstständig kommunizieren - komplexe Vorstellungen",
+      "time": "20-25 Minuten",
+      "exerciseCount": 25
     }
   },
   "exercises": [
@@ -241,6 +241,299 @@
       "mnemonic": "Ähnlich wie 'studieren' → estudiante"
     },
     {
+      "id": "u1_vocab013",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "profesor / profesora",
+      "translation": "Lehrer/Lehrerin",
+      "emoji": "👨‍🏫",
+      "category": "profession",
+      "question": "Lerne diesen Beruf:",
+      "germanBridge": "🇩🇪 Lehrer → 🇪🇸 profesor / profesora",
+      "audioHint": "Aussprache: 'pro-fe-SOR' / 'pro-fe-SO-ra'",
+      "exampleSentence": "Mi madre es profesora.",
+      "exampleTranslation": "Meine Mutter ist Lehrerin.",
+      "explanation": "Beachte die Endungen: -or (männlich) / -ora (weiblich)"
+    },
+    {
+      "id": "u1_vocab014",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "médico / médica",
+      "translation": "Arzt/Ärztin",
+      "emoji": "👨‍⚕️",
+      "category": "profession",
+      "question": "Lerne diesen Beruf:",
+      "germanBridge": "🇩🇪 Arzt → 🇪🇸 médico / médica",
+      "audioHint": "Aussprache: 'ME-di-ko' / 'ME-di-ka'",
+      "exampleSentence": "Soy médico.",
+      "exampleTranslation": "Ich bin Arzt.",
+      "explanation": "Endungen: -o (männlich) / -a (weiblich)"
+    },
+    {
+      "id": "u1_vocab015",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "ingeniero / ingeniera",
+      "translation": "Ingenieur/Ingenieurin",
+      "emoji": "👷",
+      "category": "profession",
+      "question": "Lerne diesen Beruf:",
+      "germanBridge": "🇩🇪 Ingenieur → 🇪🇸 ingeniero / ingeniera",
+      "audioHint": "Aussprache: 'in-he-ni-E-ro' / 'in-he-ni-E-ra'",
+      "exampleSentence": "Mi hermano es ingeniero.",
+      "exampleTranslation": "Mein Bruder ist Ingenieur.",
+      "explanation": "Ein wichtiger technischer Beruf"
+    },
+    {
+      "id": "u1_vocab016",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "enfermero / enfermera",
+      "translation": "Krankenpfleger/Krankenschwester",
+      "emoji": "👩‍⚕️",
+      "category": "profession",
+      "question": "Lerne diesen Beruf:",
+      "germanBridge": "🇩🇪 Krankenschwester → 🇪🇸 enfermero / enfermera",
+      "audioHint": "Aussprache: 'en-fer-ME-ro' / 'en-fer-ME-ra'",
+      "exampleSentence": "Ella es enfermera.",
+      "exampleTranslation": "Sie ist Krankenschwester.",
+      "explanation": "Medizinischer Pflegeberuf"
+    },
+    {
+      "id": "u1_vocab017",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "abogado / abogada",
+      "translation": "Anwalt/Anwältin",
+      "emoji": "⚖️",
+      "category": "profession",
+      "question": "Lerne diesen Beruf:",
+      "germanBridge": "🇩🇪 Anwalt → 🇪🇸 abogado / abogada",
+      "audioHint": "Aussprache: 'a-bo-GA-do' / 'a-bo-GA-da'",
+      "exampleSentence": "Mi padre es abogado.",
+      "exampleTranslation": "Mein Vater ist Anwalt.",
+      "explanation": "Juristischer Beruf"
+    },
+    {
+      "id": "u1_vocab018",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "cocinero / cocinera",
+      "translation": "Koch/Köchin",
+      "emoji": "👨‍🍳",
+      "category": "profession",
+      "question": "Lerne diesen Beruf:",
+      "germanBridge": "🇩🇪 Koch → 🇪🇸 cocinero / cocinera",
+      "audioHint": "Aussprache: 'ko-tsi-NE-ro' / 'ko-tsi-NE-ra'",
+      "exampleSentence": "Soy cocinero profesional.",
+      "exampleTranslation": "Ich bin professioneller Koch.",
+      "explanation": "Von 'cocina' (Küche) abgeleitet"
+    },
+    {
+      "id": "u1_vocab019",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "Francia",
+      "translation": "Frankreich",
+      "emoji": "🇫🇷",
+      "category": "country",
+      "question": "Lerne dieses Land:",
+      "germanBridge": "🇩🇪 Frankreich → 🇪🇸 Francia",
+      "audioHint": "Aussprache: 'FRAN-sja'",
+      "exampleSentence": "Soy de Francia.",
+      "exampleTranslation": "Ich bin aus Frankreich.",
+      "explanation": "Unser Nachbarland im Süden"
+    },
+    {
+      "id": "u1_vocab020",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "Italia",
+      "translation": "Italien",
+      "emoji": "🇮🇹",
+      "category": "country",
+      "question": "Lerne dieses Land:",
+      "germanBridge": "🇩🇪 Italien → 🇪🇸 Italia",
+      "audioHint": "Aussprache: 'i-TA-lja'",
+      "exampleSentence": "Mi amigo es de Italia.",
+      "exampleTranslation": "Mein Freund ist aus Italien.",
+      "explanation": "Ähnlich wie im Deutschen!"
+    },
+    {
+      "id": "u1_vocab021",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "Estados Unidos",
+      "translation": "USA/Vereinigte Staaten",
+      "emoji": "🇺🇸",
+      "category": "country",
+      "question": "Lerne dieses Land:",
+      "germanBridge": "🇩🇪 USA → 🇪🇸 Estados Unidos",
+      "audioHint": "Aussprache: 'es-TA-dos u-NI-dos'",
+      "exampleSentence": "Él es de Estados Unidos.",
+      "exampleTranslation": "Er ist aus den USA.",
+      "explanation": "Wörtlich: 'Vereinigte Staaten'"
+    },
+    {
+      "id": "u1_vocab022",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "Inglaterra",
+      "translation": "England",
+      "emoji": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+      "category": "country",
+      "question": "Lerne dieses Land:",
+      "germanBridge": "🇩🇪 England → 🇪🇸 Inglaterra",
+      "audioHint": "Aussprache: 'in-gla-TE-rra'",
+      "exampleSentence": "Mi profesora es de Inglaterra.",
+      "exampleTranslation": "Meine Lehrerin ist aus England.",
+      "explanation": "Beachte das Doppel-R!"
+    },
+    {
+      "id": "u1_vocab023",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "tengo... años",
+      "translation": "ich bin... Jahre alt",
+      "emoji": "🎂",
+      "category": "age",
+      "question": "Lerne diese wichtige Phrase:",
+      "germanBridge": "🇩🇪 ich bin... Jahre alt → 🇪🇸 tengo... años",
+      "audioHint": "Aussprache: 'TEN-go... A-ños'",
+      "exampleSentence": "Tengo veinticinco años.",
+      "exampleTranslation": "Ich bin fünfundzwanzig Jahre alt.",
+      "explanation": "WICHTIG: Im Spanischen sagt man 'ich habe... Jahre' (tengo), nicht 'ich bin'!",
+      "mnemonic": "Wörtlich: 'Ich habe... Jahre'"
+    },
+    {
+      "id": "u1_vocab024",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "¿cuántos años tienes?",
+      "translation": "wie alt bist du?",
+      "emoji": "❓",
+      "category": "question",
+      "question": "Lerne diese Frage:",
+      "germanBridge": "🇩🇪 wie alt bist du? → 🇪🇸 ¿cuántos años tienes?",
+      "audioHint": "Aussprache: 'KWAN-tos A-ños ti-E-nes?'",
+      "exampleSentence": "¿Cuántos años tienes? - Tengo veinte años.",
+      "exampleTranslation": "Wie alt bist du? - Ich bin zwanzig Jahre alt.",
+      "explanation": "Wörtlich: 'Wie viele Jahre hast du?'"
+    },
+    {
+      "id": "u1_vocab025",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "usted",
+      "translation": "Sie (formell)",
+      "emoji": "🤵",
+      "category": "pronoun",
+      "question": "Lerne das formelle Pronomen:",
+      "germanBridge": "🇩🇪 Sie (formell) → 🇪🇸 usted",
+      "audioHint": "Aussprache: 'us-TED'",
+      "exampleSentence": "¿Cómo se llama usted?",
+      "exampleTranslation": "Wie heißen Sie?",
+      "explanation": "Verwende 'usted' für höfliche, formelle Anrede (Chef, Fremde, ältere Personen)",
+      "mnemonic": "Oft abgekürzt als 'Ud.' oder 'Vd.'"
+    },
+    {
+      "id": "u1_vocab026",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "buenos días",
+      "translation": "guten Morgen",
+      "emoji": "🌅",
+      "category": "greeting",
+      "question": "Lerne diese Tageszeit-Begrüßung:",
+      "germanBridge": "🇩🇪 guten Morgen → 🇪🇸 buenos días",
+      "audioHint": "Aussprache: 'BWE-nos DI-as'",
+      "exampleSentence": "Buenos días, señor García.",
+      "exampleTranslation": "Guten Morgen, Herr García.",
+      "explanation": "Verwendung: morgens bis ca. 12 Uhr",
+      "mnemonic": "Wörtlich: 'gute Tage'"
+    },
+    {
+      "id": "u1_vocab027",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "buenas tardes",
+      "translation": "guten Tag/Nachmittag",
+      "emoji": "🌤️",
+      "category": "greeting",
+      "question": "Lerne diese Tageszeit-Begrüßung:",
+      "germanBridge": "🇩🇪 guten Tag → 🇪🇸 buenas tardes",
+      "audioHint": "Aussprache: 'BWE-nas TAR-des'",
+      "exampleSentence": "Buenas tardes, ¿cómo está usted?",
+      "exampleTranslation": "Guten Tag, wie geht es Ihnen?",
+      "explanation": "Verwendung: 12 Uhr bis Sonnenuntergang",
+      "mnemonic": "Wörtlich: 'gute Nachmittage'"
+    },
+    {
+      "id": "u1_vocab028",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "buenas noches",
+      "translation": "guten Abend/gute Nacht",
+      "emoji": "🌙",
+      "category": "greeting",
+      "question": "Lerne diese Tageszeit-Begrüßung:",
+      "germanBridge": "🇩🇪 guten Abend → 🇪🇸 buenas noches",
+      "audioHint": "Aussprache: 'BWE-nas NO-tches'",
+      "exampleSentence": "Buenas noches, hasta mañana.",
+      "exampleTranslation": "Gute Nacht, bis morgen.",
+      "explanation": "Verwendung: ab Sonnenuntergang und beim Verabschieden am Abend"
+    },
+    {
+      "id": "u1_vocab029",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "encantado / encantada",
+      "translation": "sehr erfreut (ich bin)",
+      "emoji": "😊",
+      "category": "phrase",
+      "question": "Lerne diese höfliche Phrase:",
+      "germanBridge": "🇩🇪 sehr erfreut → 🇪🇸 encantado/a",
+      "audioHint": "Aussprache: 'en-kan-TA-do' / 'en-kan-TA-da'",
+      "exampleSentence": "Mucho gusto. - Encantado.",
+      "exampleTranslation": "Sehr erfreut. - Gleichfalls.",
+      "explanation": "Männer sagen 'encantado', Frauen 'encantada'. Elegantere Alternative zu 'mucho gusto'",
+      "mnemonic": "Wörtlich: 'verzaubert, entzückt'"
+    },
+    {
+      "id": "u1_vocab030",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "mi familia",
+      "translation": "meine Familie",
+      "emoji": "👨‍👩‍👧‍👦",
+      "category": "family",
+      "question": "Lerne diesen Begriff:",
+      "germanBridge": "🇩🇪 meine Familie → 🇪🇸 mi familia",
+      "audioHint": "Aussprache: 'mi fa-MI-lja'",
+      "exampleSentence": "Mi familia es de España.",
+      "exampleTranslation": "Meine Familie ist aus Spanien.",
+      "explanation": "Wichtig für Vorstellungen und Gespräche über deine Herkunft"
+    },
+    {
       "id": "u1_context001",
       "type": "vocabulary-in-context",
       "difficulty": 1,
@@ -385,6 +678,148 @@
       "germanBridge": "🇩🇪 ich heiße → 🇪🇸 me llamo",
       "audioHint": "Aussprache: 'me YA-mo' (ll wie 'j')",
       "pattern": "Me llamo [dein Name]"
+    },
+    {
+      "id": "u1_context006",
+      "type": "vocabulary-in-context",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "usted",
+      "translation": "Sie (formell)",
+      "emoji": "🤵",
+      "category": "pronoun",
+      "question": "Sieh dir 'usted' in verschiedenen Kontexten:",
+      "exampleSentences": [
+        {
+          "es": "¿Cómo se llama usted?",
+          "de": "Wie heißen Sie?"
+        },
+        {
+          "es": "¿De dónde es usted?",
+          "de": "Woher kommen Sie?"
+        },
+        {
+          "es": "Usted es muy amable.",
+          "de": "Sie sind sehr freundlich."
+        }
+      ],
+      "usage": "Verwende 'usted' für formelle Situationen - mit Verb in 3. Person!",
+      "germanBridge": "🇩🇪 Sie (formell) → 🇪🇸 usted",
+      "audioHint": "Aussprache: 'us-TED'",
+      "note": "WICHTIG: Mit 'usted' verwendet man die Verbform für 'er/sie': es, se llama"
+    },
+    {
+      "id": "u1_context007",
+      "type": "vocabulary-in-context",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "tengo... años",
+      "translation": "ich bin... Jahre alt",
+      "emoji": "🎂",
+      "category": "age",
+      "question": "Sieh dir die Altersangabe in Aktion:",
+      "exampleSentences": [
+        {
+          "es": "Tengo veinte años.",
+          "de": "Ich bin zwanzig Jahre alt."
+        },
+        {
+          "es": "¿Cuántos años tienes? - Tengo dieciocho años.",
+          "de": "Wie alt bist du? - Ich bin achtzehn Jahre alt."
+        },
+        {
+          "es": "Mi hermano tiene quince años.",
+          "de": "Mein Bruder ist fünfzehn Jahre alt."
+        }
+      ],
+      "usage": "Im Spanischen 'hast' du Jahre, nicht 'bist' du alt!",
+      "germanBridge": "🇩🇪 ich bin... Jahre alt → 🇪🇸 tengo... años (ich habe... Jahre)",
+      "audioHint": "Aussprache: 'TEN-go... A-ños'",
+      "pattern": "Tengo [Zahl] años"
+    },
+    {
+      "id": "u1_context008",
+      "type": "vocabulary-in-context",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "berufe",
+      "translation": "Berufe",
+      "emoji": "👔",
+      "category": "profession",
+      "question": "Sieh dir verschiedene Berufe in Sätzen an:",
+      "exampleSentences": [
+        {
+          "es": "Soy médico. Mi hermana es enfermera.",
+          "de": "Ich bin Arzt. Meine Schwester ist Krankenschwester."
+        },
+        {
+          "es": "Mi padre es ingeniero y mi madre es profesora.",
+          "de": "Mein Vater ist Ingenieur und meine Mutter ist Lehrerin."
+        },
+        {
+          "es": "¿Eres estudiante o ya trabajas?",
+          "de": "Bist du Student oder arbeitest du schon?"
+        }
+      ],
+      "usage": "Berufe mit SER: Soy + Beruf (ohne Artikel!)",
+      "germanBridge": "🇩🇪 Ich bin Arzt → 🇪🇸 Soy médico (kein Artikel!)",
+      "note": "Beachte die männlichen/weiblichen Endungen: -o/-a, -or/-ora"
+    },
+    {
+      "id": "u1_context009",
+      "type": "vocabulary-in-context",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "tageszeiten",
+      "translation": "Tageszeiten-Begrüßungen",
+      "emoji": "🌅",
+      "category": "greeting",
+      "question": "Sieh dir Begrüßungen zu verschiedenen Tageszeiten an:",
+      "exampleSentences": [
+        {
+          "es": "Buenos días, señora López. ¿Cómo está usted?",
+          "de": "Guten Morgen, Frau López. Wie geht es Ihnen?"
+        },
+        {
+          "es": "Buenas tardes. Me llamo Carlos.",
+          "de": "Guten Tag. Ich heiße Carlos."
+        },
+        {
+          "es": "Buenas noches. Hasta mañana.",
+          "de": "Gute Nacht. Bis morgen."
+        }
+      ],
+      "usage": "Buenos días (morgens) → Buenas tardes (mittags/nachmittags) → Buenas noches (abends/nachts)",
+      "germanBridge": "🇩🇪 Guten Morgen/Tag/Abend → 🇪🇸 Buenos días/Buenas tardes/Buenas noches",
+      "note": "Beachte: 'buenos' (männlich) nur bei 'días', 'buenas' (weiblich) bei 'tardes' und 'noches'"
+    },
+    {
+      "id": "u1_context010",
+      "type": "vocabulary-in-context",
+      "difficulty": 1,
+      "phase": "prep",
+      "word": "länder",
+      "translation": "Länder",
+      "emoji": "🌍",
+      "category": "country",
+      "question": "Sieh dir verschiedene Länder in Sätzen an:",
+      "exampleSentences": [
+        {
+          "es": "Soy de Francia, pero vivo en España.",
+          "de": "Ich bin aus Frankreich, aber ich lebe in Spanien."
+        },
+        {
+          "es": "Mi amigo es de Italia y mi amiga es de Inglaterra.",
+          "de": "Mein Freund ist aus Italien und meine Freundin ist aus England."
+        },
+        {
+          "es": "¿Eres de Estados Unidos o de Canadá?",
+          "de": "Bist du aus den USA oder aus Kanada?"
+        }
+      ],
+      "usage": "Herkunft mit SER: Soy de + Land",
+      "germanBridge": "🇩🇪 Ich bin aus... → 🇪🇸 Soy de...",
+      "note": "Ländernamen meist ohne Artikel, Ausnahme: Estados Unidos (die Vereinigten Staaten)"
     },
     {
       "id": "u1_input001",
@@ -647,6 +1082,410 @@
       "explanation": "Zwei wichtige Fragen: ¿Cómo te llamas? (Wie heißt du?) | ¿De dónde eres? (Woher kommst du?)"
     },
     {
+      "id": "u1_input006",
+      "type": "reading-comprehension",
+      "difficulty": 2,
+      "phase": "input",
+      "concept": "formal-introduction",
+      "question": "Lies diesen formellen Dialog:",
+      "dialog": [
+        {
+          "speaker": "Sr. García",
+          "text": "Buenos días. ¿Cómo se llama usted?"
+        },
+        {
+          "speaker": "Sra. Müller",
+          "text": "Buenos días. Me llamo Anna Müller. ¿Y usted?"
+        },
+        {
+          "speaker": "Sr. García",
+          "text": "Yo soy Roberto García. Mucho gusto."
+        },
+        {
+          "speaker": "Sra. Müller",
+          "text": "Encantada, señor García."
+        }
+      ],
+      "translation": [
+        {
+          "speaker": "Herr García",
+          "text": "Guten Morgen. Wie heißen Sie?"
+        },
+        {
+          "speaker": "Frau Müller",
+          "text": "Guten Morgen. Ich heiße Anna Müller. Und Sie?"
+        },
+        {
+          "speaker": "Herr García",
+          "text": "Ich bin Roberto García. Sehr erfreut."
+        },
+        {
+          "speaker": "Frau Müller",
+          "text": "Sehr erfreut, Herr García."
+        }
+      ],
+      "comprehensionCheck": {
+        "question": "Wie ist die Situation?",
+        "correctAnswer": "Formell",
+        "options": [
+          "Formell",
+          "Informell",
+          "Zwischen Freunden",
+          "In der Familie"
+        ]
+      },
+      "newVocabulary": [
+        "usted",
+        "cómo se llama",
+        "señor",
+        "señora",
+        "encantado/a"
+      ],
+      "explanation": "In formellen Situationen: 'usted' + '¿Cómo se llama?' (nicht 'te llamas')",
+      "grammarNote": "Mit 'usted' verwendet man die 3. Person: se llama (er/sie heißt), es (er/sie ist)",
+      "germanBridge": "🇩🇪→🇪🇸 Sie (formell) = usted + Verb in 3. Person"
+    },
+    {
+      "id": "u1_input007",
+      "type": "reading-comprehension",
+      "difficulty": 2,
+      "phase": "input",
+      "concept": "age-introduction",
+      "question": "Lies den Dialog über Alter:",
+      "dialog": [
+        {
+          "speaker": "Laura",
+          "text": "Hola, soy Laura. ¿Y tú?"
+        },
+        {
+          "speaker": "David",
+          "text": "Me llamo David. ¿Cuántos años tienes?"
+        },
+        {
+          "speaker": "Laura",
+          "text": "Tengo veintitrés años. ¿Y tú?"
+        },
+        {
+          "speaker": "David",
+          "text": "Yo tengo veinticinco años."
+        }
+      ],
+      "translation": [
+        {
+          "speaker": "Laura",
+          "text": "Hallo, ich bin Laura. Und du?"
+        },
+        {
+          "speaker": "David",
+          "text": "Ich heiße David. Wie alt bist du?"
+        },
+        {
+          "speaker": "Laura",
+          "text": "Ich bin dreiundzwanzig Jahre alt. Und du?"
+        },
+        {
+          "speaker": "David",
+          "text": "Ich bin fünfundzwanzig Jahre alt."
+        }
+      ],
+      "comprehensionCheck": {
+        "question": "Wie alt ist Laura?",
+        "correctAnswer": "23",
+        "options": [
+          "23",
+          "25",
+          "20",
+          "22"
+        ]
+      },
+      "newVocabulary": [
+        "cuántos años tienes",
+        "tengo... años",
+        "veintitrés",
+        "veinticinco"
+      ],
+      "explanation": "Alter im Spanischen: 'Tengo X años' (Ich habe X Jahre), nicht 'Soy X años'!",
+      "grammarNote": "Verb TENER (haben) für Alter: tengo = ich habe, tienes = du hast",
+      "germanBridge": "🇩🇪 'Ich bin 23 Jahre alt' → 🇪🇸 'Tengo veintitrés años' (Ich habe 23 Jahre)"
+    },
+    {
+      "id": "u1_input008",
+      "type": "reading-comprehension",
+      "difficulty": 2,
+      "phase": "input",
+      "concept": "complete-introduction-with-age",
+      "question": "Lies diese vollständige Vorstellung:",
+      "dialog": [
+        {
+          "speaker": "Sofia",
+          "text": "¡Hola! Me llamo Sofia. Soy de Francia. Tengo veintiocho años y soy ingeniera."
+        },
+        {
+          "speaker": "Juan",
+          "text": "Mucho gusto, Sofia. Yo me llamo Juan. Soy médico. Soy de España y tengo treinta años."
+        }
+      ],
+      "translation": [
+        {
+          "speaker": "Sofia",
+          "text": "Hallo! Ich heiße Sofia. Ich bin aus Frankreich. Ich bin achtundzwanzig Jahre alt und ich bin Ingenieurin."
+        },
+        {
+          "speaker": "Juan",
+          "text": "Sehr erfreut, Sofia. Ich heiße Juan. Ich bin Arzt. Ich bin aus Spanien und ich bin dreißig Jahre alt."
+        }
+      ],
+      "comprehensionCheck": {
+        "question": "Was ist Sofia von Beruf?",
+        "correctAnswer": "ingeniera",
+        "options": [
+          "médica",
+          "ingeniera",
+          "profesora",
+          "estudiante"
+        ]
+      },
+      "newVocabulary": [
+        "ingeniero/a",
+        "veintiocho",
+        "treinta"
+      ],
+      "explanation": "Komplette Vorstellung: Name + Herkunft + Alter + Beruf",
+      "pattern": "Me llamo [Name]. Soy de [Land]. Tengo [Zahl] años. Soy [Beruf]."
+    },
+    {
+      "id": "u1_input009",
+      "type": "reading-comprehension",
+      "difficulty": 2,
+      "phase": "input",
+      "concept": "family-introduction",
+      "question": "Lies über Familie:",
+      "dialog": [
+        {
+          "speaker": "Elena",
+          "text": "Mi familia es de México. Mi padre es abogado y mi madre es profesora."
+        },
+        {
+          "speaker": "Tom",
+          "text": "¡Qué interesante! Mi familia es de Alemania. Mi hermano es estudiante y mi hermana es enfermera."
+        }
+      ],
+      "translation": [
+        {
+          "speaker": "Elena",
+          "text": "Meine Familie ist aus Mexiko. Mein Vater ist Anwalt und meine Mutter ist Lehrerin."
+        },
+        {
+          "speaker": "Tom",
+          "text": "Wie interessant! Meine Familie ist aus Deutschland. Mein Bruder ist Student und meine Schwester ist Krankenschwester."
+        }
+      ],
+      "comprehensionCheck": {
+        "question": "Was ist der Vater von Elena?",
+        "correctAnswer": "abogado",
+        "options": [
+          "profesor",
+          "abogado",
+          "médico",
+          "ingeniero"
+        ]
+      },
+      "newVocabulary": [
+        "mi familia",
+        "mi padre",
+        "mi madre",
+        "mi hermano",
+        "mi hermana",
+        "abogado/a"
+      ],
+      "explanation": "Familie vorstellen: Mi padre/madre/hermano/hermana + es/son + Beruf",
+      "germanBridge": "🇩🇪→🇪🇸 Mein Vater/Meine Mutter → Mi padre/Mi madre"
+    },
+    {
+      "id": "u1_input010",
+      "type": "reading-comprehension",
+      "difficulty": 2,
+      "phase": "input",
+      "concept": "different-times-of-day",
+      "question": "Lies Dialoge zu verschiedenen Tageszeiten:",
+      "dialog": [
+        {
+          "speaker": "Narrador",
+          "text": "7:00 Uhr morgens:"
+        },
+        {
+          "speaker": "Ana",
+          "text": "Buenos días, Carlos. ¿Cómo estás?"
+        },
+        {
+          "speaker": "Narrador",
+          "text": "14:00 Uhr nachmittags:"
+        },
+        {
+          "speaker": "Pedro",
+          "text": "Buenas tardes, señora López."
+        },
+        {
+          "speaker": "Narrador",
+          "text": "21:00 Uhr abends:"
+        },
+        {
+          "speaker": "María",
+          "text": "Buenas noches. Hasta mañana."
+        }
+      ],
+      "translation": [
+        {
+          "speaker": "Erzähler",
+          "text": "7:00 Uhr morgens:"
+        },
+        {
+          "speaker": "Ana",
+          "text": "Guten Morgen, Carlos. Wie geht's?"
+        },
+        {
+          "speaker": "Erzähler",
+          "text": "14:00 Uhr nachmittags:"
+        },
+        {
+          "speaker": "Pedro",
+          "text": "Guten Tag, Frau López."
+        },
+        {
+          "speaker": "Erzähler",
+          "text": "21:00 Uhr abends:"
+        },
+        {
+          "speaker": "María",
+          "text": "Guten Abend/Gute Nacht. Bis morgen."
+        }
+      ],
+      "comprehensionCheck": {
+        "question": "Welche Begrüßung verwendet man um 14:00 Uhr?",
+        "correctAnswer": "Buenas tardes",
+        "options": [
+          "Buenos días",
+          "Buenas tardes",
+          "Buenas noches",
+          "Hola"
+        ]
+      },
+      "newVocabulary": [
+        "buenos días",
+        "buenas tardes",
+        "buenas noches"
+      ],
+      "explanation": "Tageszeiten: Buenos días (morgens bis ~12h) → Buenas tardes (~12-20h) → Buenas noches (ab ~20h)"
+    },
+    {
+      "id": "u1_input011",
+      "type": "reading-comprehension",
+      "difficulty": 2,
+      "phase": "input",
+      "concept": "multiple-professions",
+      "question": "Lies über verschiedene Berufe:",
+      "dialog": [
+        {
+          "speaker": "Interviewer",
+          "text": "¿Qué hace tu familia?"
+        },
+        {
+          "speaker": "Carmen",
+          "text": "Mi madre es médica en un hospital. Mi padre es ingeniero. Mi hermana mayor es abogada y mi hermano pequeño es estudiante. Yo soy cocinera."
+        }
+      ],
+      "translation": [
+        {
+          "speaker": "Interviewer",
+          "text": "Was macht deine Familie beruflich?"
+        },
+        {
+          "speaker": "Carmen",
+          "text": "Meine Mutter ist Ärztin in einem Krankenhaus. Mein Vater ist Ingenieur. Meine ältere Schwester ist Anwältin und mein kleiner Bruder ist Student. Ich bin Köchin."
+        }
+      ],
+      "comprehensionCheck": {
+        "question": "Was ist Carmen von Beruf?",
+        "correctAnswer": "cocinera",
+        "options": [
+          "médica",
+          "abogada",
+          "cocinera",
+          "estudiante"
+        ]
+      },
+      "newVocabulary": [
+        "cocinero/a",
+        "hermana mayor",
+        "hermano pequeño",
+        "qué hace"
+      ],
+      "explanation": "Verschiedene Berufe in einer Familie - beachte die Endungen: -o (m) / -a (f)"
+    },
+    {
+      "id": "u1_input012",
+      "type": "reading-comprehension",
+      "difficulty": 3,
+      "phase": "input",
+      "concept": "formal-and-informal-mixed",
+      "question": "Lies diesen gemischten Dialog (formell + informell):",
+      "dialog": [
+        {
+          "speaker": "Profesora López",
+          "text": "Buenos días, clase. Soy la profesora López. ¿Cómo se llama usted?"
+        },
+        {
+          "speaker": "Student",
+          "text": "Me llamo Max. Soy de Alemania y tengo diecinueve años."
+        },
+        {
+          "speaker": "Profesora López",
+          "text": "Bienvenido, Max. Y tú, ¿cómo te llamas?"
+        },
+        {
+          "speaker": "Studentin",
+          "text": "Yo me llamo Lisa. También soy de Alemania. Tengo veinte años."
+        }
+      ],
+      "translation": [
+        {
+          "speaker": "Lehrerin López",
+          "text": "Guten Morgen, Klasse. Ich bin die Lehrerin López. Wie heißen Sie?"
+        },
+        {
+          "speaker": "Student",
+          "text": "Ich heiße Max. Ich bin aus Deutschland und ich bin neunzehn Jahre alt."
+        },
+        {
+          "speaker": "Lehrerin López",
+          "text": "Willkommen, Max. Und du, wie heißt du?"
+        },
+        {
+          "speaker": "Studentin",
+          "text": "Ich heiße Lisa. Ich bin auch aus Deutschland. Ich bin zwanzig Jahre alt."
+        }
+      ],
+      "comprehensionCheck": {
+        "question": "Wann verwendet die Lehrerin 'usted' und wann 'tú'?",
+        "correctAnswer": "Erst usted (formell), dann tú (lockerer)",
+        "options": [
+          "Nur usted",
+          "Nur tú",
+          "Erst usted (formell), dann tú (lockerer)",
+          "Immer gemischt"
+        ]
+      },
+      "newVocabulary": [
+        "clase",
+        "bienvenido/a",
+        "también",
+        "diecinueve",
+        "veinte"
+      ],
+      "explanation": "Lehrer können zwischen formell (usted) und informell (tú) wechseln, je nach Situation und Verhältnis zu Schülern",
+      "grammarNote": "Beachte den Unterschied: '¿Cómo se llama usted?' (formell) vs '¿Cómo te llamas?' (informell)"
+    },
+    {
       "id": "u1_guided001",
       "type": "fill-blank",
       "difficulty": 1,
@@ -875,6 +1714,328 @@
       "hint": "SER + weibliche Form"
     },
     {
+      "id": "u1_guided016",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "formal-greeting",
+      "question": "____ días, señora García. (Guten Morgen, Frau García.)",
+      "correctAnswer": "Buenos",
+      "example": "Beispiel: Buenos días, señor López.",
+      "hint": "Die formelle Morgenbegrüßung",
+      "explanation": "'Buenos días' = Guten Morgen (formell und informell)",
+      "germanBridge": "🇩🇪 Guten Morgen → 🇪🇸 Buenos días"
+    },
+    {
+      "id": "u1_guided017",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "formal-asking-name",
+      "question": "¿Cómo ____ llama usted? (Wie heißen Sie?)",
+      "correctAnswer": "se",
+      "example": "Beispiel: ¿Cómo se llama usted?",
+      "hint": "Das Reflexivpronomen für 'usted' (3. Person)",
+      "explanation": "Mit 'usted' verwendet man 'se' (nicht 'te')!",
+      "germanBridge": "🇩🇪 Wie heißen Sie? → 🇪🇸 ¿Cómo se llama usted?"
+    },
+    {
+      "id": "u1_guided018",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "age-statement",
+      "question": "____ veinticinco años. (Ich bin 25 Jahre alt.)",
+      "correctAnswer": "Tengo",
+      "alternativeAnswers": ["tengo"],
+      "example": "Beispiel: Tengo veinte años.",
+      "hint": "Das Verb für 'haben' in der yo-Form",
+      "explanation": "Für Alter verwendet man TENER (haben), nicht SER!",
+      "germanBridge": "🇩🇪 Ich bin... Jahre alt → 🇪🇸 Tengo... años (Ich habe... Jahre)"
+    },
+    {
+      "id": "u1_guided019",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "asking-age",
+      "question": "¿Cuántos años ____? (Wie alt bist du?)",
+      "correctAnswer": "tienes",
+      "example": "Beispiel: ¿Cuántos años tienes?",
+      "hint": "TENER für 'tú'",
+      "explanation": "'¿Cuántos años tienes?' = Wörtlich: 'Wie viele Jahre hast du?'",
+      "germanBridge": "🇩🇪 Wie alt bist du? → 🇪🇸 ¿Cuántos años tienes?"
+    },
+    {
+      "id": "u1_guided020",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "family-member",
+      "question": "Mi ____ es médica. (Meine Mutter ist Ärztin.)",
+      "correctAnswer": "madre",
+      "example": "Beispiel: Mi padre es ingeniero.",
+      "hint": "Das Wort für 'Mutter'",
+      "explanation": "Mi padre = Mein Vater, Mi madre = Meine Mutter",
+      "germanBridge": "🇩🇪 Meine Mutter → 🇪🇸 Mi madre"
+    },
+    {
+      "id": "u1_guided021",
+      "type": "fill-blank",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "profession-engineer",
+      "question": "Mi hermano es ____. (Mein Bruder ist Ingenieur.)",
+      "correctAnswer": "ingeniero",
+      "example": "Beispiel: Mi hermana es ingeniera.",
+      "hint": "Der technische Beruf (männlich)",
+      "explanation": "Ingeniero (m) / Ingeniera (f) = Ingenieur/in",
+      "germanBridge": "🇩🇪 Ingenieur → 🇪🇸 ingeniero"
+    },
+    {
+      "id": "u1_guided022",
+      "type": "fill-blank",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "complete-with-age",
+      "question": "Me llamo Ana, ____ veintiún años y soy estudiante. (Ich heiße Ana, bin 21 Jahre alt und bin Studentin.)",
+      "correctAnswer": "tengo",
+      "example": "Beispiel: Me llamo Pedro, tengo veinte años.",
+      "hint": "Das Verb für 'haben'",
+      "explanation": "Vollständige Vorstellung mit Alter: Name + tengo... años + Beruf",
+      "germanBridge": "🇩🇪 ich habe → 🇪🇸 tengo"
+    },
+    {
+      "id": "u1_guided023",
+      "type": "fill-blank",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "afternoon-greeting",
+      "question": "____ tardes. ¿Cómo está usted? (Guten Tag. Wie geht es Ihnen?)",
+      "correctAnswer": "Buenas",
+      "alternativeAnswers": ["buenas"],
+      "example": "Beispiel: Buenas tardes, señor.",
+      "hint": "Die Nachmittagsbegrüßung (weiblich!)",
+      "explanation": "'Buenas tardes' = Guten Tag/Nachmittag (12-20 Uhr)",
+      "germanBridge": "🇩🇪 Guten Tag → 🇪🇸 Buenas tardes"
+    },
+    {
+      "id": "u1_guided024",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "formal-vs-informal",
+      "question": "Wie fragt man FORMELL nach dem Namen?",
+      "correctAnswer": "¿Cómo se llama usted?",
+      "options": [
+        "¿Cómo se llama usted?",
+        "¿Cómo te llamas?",
+        "¿Cómo estás?",
+        "¿Cómo te llama?"
+      ],
+      "explanation": "Formell: '¿Cómo se llama usted?' | Informell: '¿Cómo te llamas?'",
+      "germanBridge": "🇩🇪 Wie heißen Sie? (formell) → 🇪🇸 ¿Cómo se llama usted?",
+      "hint": "Mit 'usted' und 'se'"
+    },
+    {
+      "id": "u1_guided025",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "age-expression",
+      "question": "Wie sagt man 'Ich bin 20 Jahre alt'?",
+      "correctAnswer": "Tengo veinte años",
+      "options": [
+        "Tengo veinte años",
+        "Soy veinte años",
+        "Estoy veinte años",
+        "Tengo veinte"
+      ],
+      "explanation": "TENER (nicht SER!) für Alter: Tengo + Zahl + años",
+      "germanBridge": "🇩🇪 Ich bin 20 Jahre alt → 🇪🇸 Tengo veinte años",
+      "hint": "Mit TENER und 'años'"
+    },
+    {
+      "id": "u1_guided026",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "profession-lawyer",
+      "question": "Wie sagt man 'Mein Vater ist Anwalt'?",
+      "correctAnswer": "Mi padre es abogado",
+      "options": [
+        "Mi padre es abogado",
+        "Mi padre está abogado",
+        "Mi hermano es abogado",
+        "Mi padre es profesor"
+      ],
+      "explanation": "'Mi padre' = Mein Vater, 'abogado' = Anwalt",
+      "germanBridge": "🇩🇪 Mein Vater ist Anwalt → 🇪🇸 Mi padre es abogado",
+      "hint": "'Mi padre' + SER + Beruf"
+    },
+    {
+      "id": "u1_guided027",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "country-france",
+      "question": "Wie sagt man 'Ich bin aus Frankreich'?",
+      "correctAnswer": "Soy de Francia",
+      "options": [
+        "Soy de Francia",
+        "Soy de France",
+        "Estoy de Francia",
+        "Soy Francia"
+      ],
+      "explanation": "Frankreich = Francia (mit 'i'!)",
+      "germanBridge": "🇩🇪 Ich bin aus Frankreich → 🇪🇸 Soy de Francia",
+      "hint": "SER + de + Francia"
+    },
+    {
+      "id": "u1_guided028",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "evening-greeting",
+      "question": "Welche Begrüßung verwendet man am Abend?",
+      "correctAnswer": "Buenas noches",
+      "options": [
+        "Buenos días",
+        "Buenas tardes",
+        "Buenas noches",
+        "Buen día"
+      ],
+      "explanation": "'Buenas noches' = Guten Abend/Gute Nacht (ab ~20 Uhr)",
+      "germanBridge": "🇩🇪 Guten Abend → 🇪🇸 Buenas noches",
+      "hint": "Die Begrüßung für die Nacht"
+    },
+    {
+      "id": "u1_guided029",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "phase": "guided",
+      "concept": "profession-cook",
+      "question": "Wie sagt man 'Ich bin Koch' (männlich)?",
+      "correctAnswer": "Soy cocinero",
+      "options": [
+        "Soy cocinero",
+        "Soy cocinera",
+        "Soy cocina",
+        "Estoy cocinero"
+      ],
+      "explanation": "Cocinero (m) / Cocinera (f) = Koch/Köchin",
+      "germanBridge": "🇩🇪 Ich bin Koch → 🇪🇸 Soy cocinero",
+      "hint": "SER + cocinero (männlich)"
+    },
+    {
+      "id": "u1_guided030",
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "family-siblings",
+      "question": "Wie sagt man 'Meine Schwester ist Krankenschwester'?",
+      "correctAnswer": "Mi hermana es enfermera",
+      "options": [
+        "Mi hermana es enfermera",
+        "Mi hermano es enfermero",
+        "Mi madre es enfermera",
+        "Mi hermana está enfermera"
+      ],
+      "explanation": "'Mi hermana' = Meine Schwester, 'enfermera' = Krankenschwester",
+      "germanBridge": "🇩🇪 Meine Schwester ist Krankenschwester → 🇪🇸 Mi hermana es enfermera",
+      "hint": "'hermana' + enfermera (beide weiblich)"
+    },
+    {
+      "id": "u1_guided031",
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "asking-age-question",
+      "question": "Wie fragt man 'Wie alt bist du?'",
+      "correctAnswer": "¿Cuántos años tienes?",
+      "options": [
+        "¿Cuántos años tienes?",
+        "¿Qué años tienes?",
+        "¿Cuándo años tienes?",
+        "¿Cuánto años tienes?"
+      ],
+      "explanation": "'¿Cuántos años tienes?' = Wörtlich: 'Wie viele Jahre hast du?'",
+      "germanBridge": "🇩🇪 Wie alt bist du? → 🇪🇸 ¿Cuántos años tienes?",
+      "hint": "'Cuántos' (wie viele) + años + tienes"
+    },
+    {
+      "id": "u1_guided032",
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "country-usa",
+      "question": "Wie heißt 'USA' auf Spanisch?",
+      "correctAnswer": "Estados Unidos",
+      "options": [
+        "Estados Unidos",
+        "América",
+        "USA",
+        "Los Estados"
+      ],
+      "explanation": "Estados Unidos = Vereinigte Staaten (wörtlich: Vereinigte Staaten)",
+      "germanBridge": "🇩🇪 USA → 🇪🇸 Estados Unidos",
+      "hint": "Zwei Wörter: Estados..."
+    },
+    {
+      "id": "u1_guided033",
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "polite-response",
+      "question": "Welche höfliche Antwort gibt man bei Vorstellungen?",
+      "correctAnswer": "Mucho gusto / Encantado/a",
+      "options": [
+        "Mucho gusto / Encantado/a",
+        "De nada",
+        "Gracias",
+        "Por favor"
+      ],
+      "explanation": "'Mucho gusto' oder 'Encantado/a' = Sehr erfreut",
+      "germanBridge": "🇩🇪 Sehr erfreut → 🇪🇸 Mucho gusto / Encantado/a",
+      "hint": "Die Antwort bei Vorstellungen"
+    },
+    {
+      "id": "u1_guided034",
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "my-family",
+      "question": "Wie sagt man 'Meine Familie ist aus Spanien'?",
+      "correctAnswer": "Mi familia es de España",
+      "options": [
+        "Mi familia es de España",
+        "Mi familia está en España",
+        "Mis familias son de España",
+        "La familia es de España"
+      ],
+      "explanation": "'Mi familia es de...' = Meine Familie ist aus...",
+      "germanBridge": "🇩🇪 Meine Familie ist aus... → 🇪🇸 Mi familia es de...",
+      "hint": "Mi familia + SER + de"
+    },
+    {
+      "id": "u1_guided035",
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "phase": "guided",
+      "concept": "complete-formal-intro",
+      "question": "Welche Vorstellung ist FORMELL korrekt?",
+      "correctAnswer": "Buenos días. Me llamo Pedro García. ¿Cómo se llama usted?",
+      "options": [
+        "Buenos días. Me llamo Pedro García. ¿Cómo se llama usted?",
+        "Hola. Soy Pedro. ¿Cómo te llamas?",
+        "Buenos días. Soy Pedro. ¿Cómo te llamas tú?",
+        "Hola. Me llamo Pedro. ¿Y tú?"
+      ],
+      "explanation": "Formell: Buenos días (nicht Hola) + vollständiger Name + ¿Cómo se llama usted? (nicht te llamas)",
+      "germanBridge": "🇩🇪 Formelle Vorstellung → Buenos días + vollständiger Name + usted",
+      "hint": "Buenos días + se llama usted"
+    },
+    {
       "id": "u1_free001",
       "type": "translation",
       "difficulty": 2,
@@ -1036,6 +2197,379 @@
       "explanation": "Drei Teile: Begrüßung + Name + Herkunft",
       "germanBridge": "🇩🇪 Hallo! Ich heiße... Ich bin aus... → 🇪🇸 ¡Hola! Me llamo... Soy de...",
       "hint": "Drei Sätze kombinieren"
+    },
+    {
+      "id": "u1_free009",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "formal-greeting-morning",
+      "question": "Übersetze: 'Guten Morgen. Wie heißen Sie?'",
+      "correctAnswer": "Buenos días. ¿Cómo se llama usted?",
+      "alternativeAnswers": [
+        "Buenos días ¿Cómo se llama usted?",
+        "Buenos días. ¿Cómo se llama usted",
+        "Buenos días, ¿cómo se llama usted?"
+      ],
+      "explanation": "Formelle Begrüßung: Buenos días + ¿Cómo se llama usted? (nicht te llamas)",
+      "germanBridge": "🇩🇪 Guten Morgen. Wie heißen Sie? → 🇪🇸 Buenos días. ¿Cómo se llama usted?",
+      "hint": "Formell mit 'usted' und 'se'"
+    },
+    {
+      "id": "u1_free010",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "age-statement-translation",
+      "question": "Übersetze: 'Ich bin zwanzig Jahre alt.'",
+      "correctAnswer": "Tengo veinte años",
+      "alternativeAnswers": [
+        "Tengo veinte años.",
+        "Yo tengo veinte años",
+        "Yo tengo veinte años."
+      ],
+      "explanation": "WICHTIG: Verwende TENER (haben), nicht SER für Alter!",
+      "germanBridge": "🇩🇪 Ich bin... Jahre alt → 🇪🇸 Tengo... años",
+      "hint": "Mit TENER + años"
+    },
+    {
+      "id": "u1_free011",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "family-father-profession",
+      "question": "Übersetze: 'Mein Vater ist Ingenieur.'",
+      "correctAnswer": "Mi padre es ingeniero",
+      "alternativeAnswers": [
+        "Mi padre es ingeniero.",
+        "Mi padre es un ingeniero"
+      ],
+      "explanation": "Familie + Beruf mit SER (ohne Artikel!)",
+      "germanBridge": "🇩🇪 Mein Vater ist Ingenieur → 🇪🇸 Mi padre es ingeniero",
+      "hint": "Mi padre + SER + Beruf"
+    },
+    {
+      "id": "u1_free012",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "family-mother-profession",
+      "question": "Übersetze: 'Meine Mutter ist Ärztin.'",
+      "correctAnswer": "Mi madre es médica",
+      "alternativeAnswers": [
+        "Mi madre es médica.",
+        "Mi madre es una médica"
+      ],
+      "explanation": "Beachte die weibliche Form: médica (nicht médico)",
+      "germanBridge": "🇩🇪 Meine Mutter ist Ärztin → 🇪🇸 Mi madre es médica",
+      "hint": "Mi madre + es + médica (weiblich)"
+    },
+    {
+      "id": "u1_free013",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "asking-age-translation",
+      "question": "Übersetze: 'Wie alt bist du?'",
+      "correctAnswer": "¿Cuántos años tienes?",
+      "alternativeAnswers": [
+        "Cuántos años tienes?",
+        "¿Cuántos años tienes"
+      ],
+      "explanation": "Wörtlich: 'Wie viele Jahre hast du?'",
+      "germanBridge": "🇩🇪 Wie alt bist du? → 🇪🇸 ¿Cuántos años tienes?",
+      "hint": "¿Cuántos años...?"
+    },
+    {
+      "id": "u1_free014",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "origin-france",
+      "question": "Übersetze: 'Ich bin aus Frankreich.'",
+      "correctAnswer": "Soy de Francia",
+      "alternativeAnswers": [
+        "Soy de Francia.",
+        "Yo soy de Francia",
+        "Yo soy de Francia."
+      ],
+      "explanation": "Frankreich = Francia (beachte die spanische Schreibweise)",
+      "germanBridge": "🇩🇪 Ich bin aus Frankreich → 🇪🇸 Soy de Francia",
+      "hint": "Soy de + Francia"
+    },
+    {
+      "id": "u1_free015",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "complete-with-age-profession",
+      "question": "Übersetze: 'Ich heiße Laura, ich bin 25 Jahre alt und ich bin Lehrerin.'",
+      "correctAnswer": "Me llamo Laura, tengo veinticinco años y soy profesora",
+      "alternativeAnswers": [
+        "Me llamo Laura, tengo veinticinco años y soy profesora.",
+        "Me llamo Laura tengo veinticinco años y soy profesora"
+      ],
+      "explanation": "Vollständige Vorstellung: Name + Alter (mit TENER) + Beruf (mit SER)",
+      "germanBridge": "🇩🇪 Ich heiße... ich bin... Jahre alt und ich bin... → 🇪🇸 Me llamo... tengo... años y soy...",
+      "hint": "Drei Teile mit 'y' verbunden"
+    },
+    {
+      "id": "u1_free016",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "afternoon-greeting",
+      "question": "Übersetze: 'Guten Tag, Herr García.'",
+      "correctAnswer": "Buenas tardes, señor García",
+      "alternativeAnswers": [
+        "Buenas tardes señor García",
+        "Buenas tardes, señor García."
+      ],
+      "explanation": "'Buenas tardes' = Guten Tag/Nachmittag",
+      "germanBridge": "🇩🇪 Guten Tag → 🇪🇸 Buenas tardes",
+      "hint": "Buenas tardes + señor"
+    },
+    {
+      "id": "u1_free017",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "family-siblings",
+      "question": "Übersetze: 'Mein Bruder ist Student und meine Schwester ist Krankenschwester.'",
+      "correctAnswer": "Mi hermano es estudiante y mi hermana es enfermera",
+      "alternativeAnswers": [
+        "Mi hermano es estudiante y mi hermana es enfermera.",
+        "Mi hermano es un estudiante y mi hermana es una enfermera"
+      ],
+      "explanation": "Geschwister vorstellen mit Berufen",
+      "germanBridge": "🇩🇪 Mein Bruder/Meine Schwester → 🇪🇸 Mi hermano/Mi hermana",
+      "hint": "Mi hermano... y mi hermana..."
+    },
+    {
+      "id": "u1_free018",
+      "type": "translation",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "polite-response-translation",
+      "question": "Übersetze: 'Sehr erfreut.' (weiblich)",
+      "correctAnswer": "Encantada",
+      "alternativeAnswers": [
+        "Encantada.",
+        "Mucho gusto"
+      ],
+      "explanation": "Elegante Antwort bei Vorstellungen - Frauen sagen 'encantada'",
+      "germanBridge": "🇩🇪 Sehr erfreut (f) → 🇪🇸 Encantada",
+      "hint": "Die weibliche Form von 'encantado'"
+    },
+    {
+      "id": "u1_free019",
+      "type": "sentence-building",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "formal-intro-building",
+      "question": "Bilde einen formellen Vorstellungssatz: 'Guten Morgen. Ich heiße Pedro García.'",
+      "correctAnswer": "Buenos días. Me llamo Pedro García.",
+      "words": [
+        "Buenos",
+        "días",
+        "Me",
+        "llamo",
+        "Pedro",
+        "García",
+        "Hola",
+        "Soy",
+        "te"
+      ],
+      "correctOrder": [
+        "Buenos",
+        "días",
+        "Me",
+        "llamo",
+        "Pedro",
+        "García"
+      ],
+      "explanation": "Formelle Vorstellung: Buenos días (nicht Hola) + vollständiger Name",
+      "germanBridge": "🇩🇪 Guten Morgen. Ich heiße... → 🇪🇸 Buenos días. Me llamo...",
+      "hint": "Buenos días + Me llamo + vollständiger Name"
+    },
+    {
+      "id": "u1_free020",
+      "type": "sentence-building",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "age-building",
+      "question": "Bilde einen Satz: 'Ich bin 18 Jahre alt.'",
+      "correctAnswer": "Tengo dieciocho años.",
+      "words": [
+        "Tengo",
+        "dieciocho",
+        "años",
+        "Soy",
+        "veinte",
+        "edad"
+      ],
+      "correctOrder": [
+        "Tengo",
+        "dieciocho",
+        "años"
+      ],
+      "explanation": "Alter mit TENER: Tengo + Zahl + años",
+      "germanBridge": "🇩🇪 Ich bin... Jahre alt → 🇪🇸 Tengo... años",
+      "hint": "Tengo + Zahl + años"
+    },
+    {
+      "id": "u1_free021",
+      "type": "sentence-building",
+      "difficulty": 3,
+      "phase": "free",
+      "concept": "family-profession-building",
+      "question": "Bilde einen Satz: 'Mein Vater ist Anwalt.'",
+      "correctAnswer": "Mi padre es abogado.",
+      "words": [
+        "Mi",
+        "padre",
+        "es",
+        "abogado",
+        "madre",
+        "ingeniero",
+        "está"
+      ],
+      "correctOrder": [
+        "Mi",
+        "padre",
+        "es",
+        "abogado"
+      ],
+      "explanation": "Familie + Beruf: Mi + Familienmitglied + es + Beruf",
+      "germanBridge": "🇩🇪 Mein Vater ist Anwalt → 🇪🇸 Mi padre es abogado",
+      "hint": "Mi padre + es + Beruf"
+    },
+    {
+      "id": "u1_free022",
+      "type": "sentence-building",
+      "difficulty": 4,
+      "phase": "free",
+      "concept": "complete-formal-intro-building",
+      "question": "Bilde eine vollständige formelle Vorstellung: 'Guten Tag. Ich heiße Anna Müller. Ich bin aus Deutschland. Ich bin Lehrerin.'",
+      "correctAnswer": "Buenas tardes. Me llamo Anna Müller. Soy de Alemania. Soy profesora.",
+      "words": [
+        "Buenas",
+        "tardes",
+        "Me",
+        "llamo",
+        "Anna",
+        "Müller",
+        "Soy",
+        "de",
+        "Alemania",
+        "profesora",
+        "estudiante",
+        "España"
+      ],
+      "correctOrder": [
+        "Buenas",
+        "tardes",
+        "Me",
+        "llamo",
+        "Anna",
+        "Müller",
+        "Soy",
+        "de",
+        "Alemania",
+        "Soy",
+        "profesora"
+      ],
+      "explanation": "Vollständige formelle Vorstellung: Tageszeit-Begrüßung + Name + Herkunft + Beruf",
+      "germanBridge": "🇩🇪 Guten Tag... → 🇪🇸 Buenas tardes...",
+      "hint": "Vier Teile: Begrüßung + Name + Herkunft + Beruf"
+    },
+    {
+      "id": "u1_free023",
+      "type": "sentence-building",
+      "difficulty": 4,
+      "phase": "free",
+      "concept": "intro-with-age-building",
+      "question": "Bilde: 'Ich heiße Pedro, ich bin 22 Jahre alt und ich bin aus Spanien.'",
+      "correctAnswer": "Me llamo Pedro, tengo veintidós años y soy de España.",
+      "words": [
+        "Me",
+        "llamo",
+        "Pedro",
+        "tengo",
+        "veintidós",
+        "años",
+        "y",
+        "soy",
+        "de",
+        "España",
+        "veinticinco",
+        "Francia"
+      ],
+      "correctOrder": [
+        "Me",
+        "llamo",
+        "Pedro",
+        "tengo",
+        "veintidós",
+        "años",
+        "y",
+        "soy",
+        "de",
+        "España"
+      ],
+      "explanation": "Name + Alter (TENER) + Herkunft (SER)",
+      "germanBridge": "🇩🇪 Ich heiße... ich bin... Jahre alt und ich bin aus... → 🇪🇸 Me llamo... tengo... años y soy de...",
+      "hint": "Drei Teile mit Kommata und 'y'"
+    },
+    {
+      "id": "u1_free024",
+      "type": "sentence-building",
+      "difficulty": 4,
+      "phase": "free",
+      "concept": "family-description-building",
+      "question": "Bilde: 'Meine Familie ist aus Mexiko. Mein Vater ist Arzt.'",
+      "correctAnswer": "Mi familia es de México. Mi padre es médico.",
+      "words": [
+        "Mi",
+        "familia",
+        "es",
+        "de",
+        "México",
+        "padre",
+        "médico",
+        "madre",
+        "España",
+        "ingeniero"
+      ],
+      "correctOrder": [
+        "Mi",
+        "familia",
+        "es",
+        "de",
+        "México",
+        "Mi",
+        "padre",
+        "es",
+        "médico"
+      ],
+      "explanation": "Familie beschreiben: Familie + Herkunft, dann Familienmitglied + Beruf",
+      "germanBridge": "🇩🇪 Meine Familie ist aus... Mein Vater ist... → 🇪🇸 Mi familia es de... Mi padre es...",
+      "hint": "Zwei Sätze: Mi familia... Mi padre..."
+    },
+    {
+      "id": "u1_free025",
+      "type": "translation",
+      "difficulty": 4,
+      "phase": "free",
+      "concept": "ultra-complete-introduction",
+      "question": "Übersetze diese vollständige Vorstellung: 'Guten Morgen. Ich heiße Carlos López. Ich bin 28 Jahre alt. Ich bin aus Spanien und ich bin Ingenieur. Meine Familie ist aus Madrid. Sehr erfreut.'",
+      "correctAnswer": "Buenos días. Me llamo Carlos López. Tengo veintiocho años. Soy de España y soy ingeniero. Mi familia es de Madrid. Mucho gusto.",
+      "alternativeAnswers": [
+        "Buenos días. Me llamo Carlos López. Tengo veintiocho años. Soy de España y soy ingeniero. Mi familia es de Madrid. Encantado."
+      ],
+      "explanation": "Ultra-vollständige Vorstellung mit allen Elementen: Begrüßung, Name, Alter, Herkunft, Beruf, Familie, Höflichkeit",
+      "germanBridge": "🇩🇪 Vollständige formelle Vorstellung mit allen Details",
+      "hint": "Viele Sätze kombinieren - nimm dir Zeit!"
     }
   ]
 }
