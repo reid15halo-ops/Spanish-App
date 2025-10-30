@@ -79,6 +79,48 @@ class ExerciseRenderer {
     }
 
     /**
+     * Extract German translation from text (text in parentheses)
+     */
+    extractGermanTranslation(text) {
+        const match = text.match(/\(([^)]+)\)/);
+        if (match) {
+            return {
+                spanish: text.replace(/\s*\([^)]+\)/, '').trim(),
+                german: match[1].trim()
+            };
+        }
+        return { spanish: text, german: null };
+    }
+
+    /**
+     * Render German help section (hidden by default, with toggle)
+     */
+    renderGermanHelp(germanTranslation, germanBridge, example) {
+        const hasAnyHelp = germanTranslation || germanBridge || example;
+        if (!hasAnyHelp) return '';
+
+        return `
+            <button class="btn-toggle-translation" onclick="app.toggleGermanHelp(this)">
+                <span class="toggle-icon">▶</span>
+                <span class="toggle-text">Deutsche Hilfe anzeigen</span>
+            </button>
+            <div class="german-help-area hidden">
+                ${germanTranslation ? `
+                    <div class="german-translation">
+                        <strong>🇩🇪 Übersetzung:</strong> ${germanTranslation}
+                    </div>
+                ` : ''}
+                ${germanBridge ? `
+                    <div class="german-bridge">${germanBridge}</div>
+                ` : ''}
+                ${example ? `
+                    <p class="example-hint"><em>Beispiel: ${example}</em></p>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    /**
      * Render an exercise based on its type
      * @param {Object} exercise - Exercise data
      * @param {Function} onAnswer - Callback when user submits answer
@@ -238,9 +280,11 @@ class ExerciseRenderer {
      * Render reading comprehension
      */
     renderReadingComprehension(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="reading-comprehension">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
                 <div class="dialog-box">
                     <div class="dialog-title">📖 Dialog:</div>
@@ -251,22 +295,19 @@ class ExerciseRenderer {
                     `).join('')}
                 </div>
 
-                <button class="btn-toggle-translation" onclick="
-                    this.nextElementSibling.classList.toggle('hidden');
-                    this.classList.toggle('active');
-                    const text = this.querySelector('.toggle-text');
-                    if (this.classList.contains('active')) {
-                        text.textContent = 'Übersetzung ausblenden';
-                    } else {
-                        text.textContent = 'Übersetzung anzeigen';
-                    }
-                ">
+                <button class="btn-toggle-translation" onclick="app.toggleGermanHelp(this)">
                     <span class="toggle-icon">▶</span>
                     <span class="toggle-text">Übersetzung anzeigen</span>
                 </button>
 
-                <div class="translation-box hidden">
-                    <div class="translation-title">🇩🇪 Übersetzung:</div>
+                <div class="german-help-area hidden">
+                    ${parsed.german ? `
+                        <div class="german-translation">
+                            <strong>🇩🇪 Frage:</strong> ${parsed.german}
+                        </div>
+                    ` : ''}
+
+                    <div class="translation-title">🇩🇪 Dialog-Übersetzung:</div>
                     ${exercise.translation.map(line => `
                         <p class="translation-line">
                             <strong>${line.speaker}:</strong> ${line.text}
@@ -304,17 +345,13 @@ class ExerciseRenderer {
      * Render fill-blank exercise
      */
     renderFillBlank(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="fill-blank">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.example ? `
-                    <p class="example-hint"><em>Beispiel: ${exercise.example}</em></p>
-                ` : ''}
-
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, exercise.example)}
 
                 <div class="input-group">
                     <input type="text" id="answer-input" class="text-input"
@@ -466,13 +503,13 @@ class ExerciseRenderer {
      * Render multiple-choice exercise
      */
     renderMultipleChoice(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="multiple-choice">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
 
                 <div class="options">
                     ${exercise.options.map((opt, i) => `
@@ -495,13 +532,13 @@ class ExerciseRenderer {
      * Render translation exercise
      */
     renderTranslation(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="translation">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
 
                 <div class="input-group">
                     <input type="text" id="answer-input" class="text-input"
@@ -522,13 +559,13 @@ class ExerciseRenderer {
      * Render sentence-building exercise
      */
     renderSentenceBuilding(exercise, onAnswer) {
+        const parsed = this.extractGermanTranslation(exercise.question);
+
         return `
             <div class="sentence-building">
-                <p class="question">${exercise.question}</p>
+                <p class="question">${parsed.spanish}</p>
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
 
                 <p class="instruction">Verwende die Wörter: ${exercise.words.join(', ')}</p>
 
@@ -617,6 +654,21 @@ class App {
             correct: 0,
             total: 0
         };
+
+        // Track German help usage for adaptive learning
+        this.germanHelpUsage = {
+            totalExercises: 0,
+            helpUsed: 0,
+            exercisesWithHelp: []
+        };
+
+        // Initialize tolerant validator and improved feedback system
+        this.validator = new TolerantAnswerValidator();
+        this.feedbackSystem = new ImprovedFeedbackSystem();
+
+        // Initialize level test and adaptive practice systems
+        this.levelTestSystem = new LevelTestSystem();
+        this.adaptivePracticeSystem = new AdaptivePracticeSystem();
     }
 
     /**
@@ -642,6 +694,9 @@ class App {
 
             // Build sidebar navigation
             this.buildSidebar();
+
+            // Load German help usage tracking
+            this.loadGermanHelpUsage();
 
             // Check for saved progress
             const savedProgress = this.loadProgress();
@@ -733,6 +788,59 @@ class App {
     }
 
     /**
+     * Toggle German help visibility and track usage
+     */
+    toggleGermanHelp(button) {
+        const helpArea = button.nextElementSibling;
+        if (!helpArea) return;
+
+        const isOpening = helpArea.classList.contains('hidden');
+
+        // Toggle visibility
+        helpArea.classList.toggle('hidden');
+        button.classList.toggle('active');
+
+        // Update button text
+        const textSpan = button.querySelector('.toggle-text');
+        if (textSpan) {
+            textSpan.textContent = isOpening ? 'Deutsche Hilfe ausblenden' : 'Deutsche Hilfe anzeigen';
+        }
+
+        // Track usage for adaptive learning (only when opening)
+        if (isOpening) {
+            this.trackGermanHelpUsage();
+        }
+    }
+
+    /**
+     * Track German help usage for adaptive learning
+     */
+    trackGermanHelpUsage() {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise) return;
+
+        this.germanHelpUsage.helpUsed++;
+
+        // Track which exercises required help
+        if (!this.germanHelpUsage.exercisesWithHelp.includes(exercise.id)) {
+            this.germanHelpUsage.exercisesWithHelp.push(exercise.id);
+        }
+
+        // Save usage data
+        this.saveGermanHelpUsage();
+
+        // Log for analytics (only in debug mode)
+        if (window.Logger && window.__DEV__) {
+            const usagePercent = Math.round(
+                (this.germanHelpUsage.helpUsed / Math.max(this.germanHelpUsage.totalExercises, 1)) * 100
+            );
+            window.Logger.debug(
+                `German help used: ${this.germanHelpUsage.helpUsed}/${this.germanHelpUsage.totalExercises} (${usagePercent}%)`
+            );
+        }
+    }
+
+    /**
      * Load a unit
      */
     async loadUnit(unitNumber) {
@@ -791,6 +899,9 @@ class App {
         this.attempts = 0;
 
         const exercise = this.exercises[index];
+
+        // Track total exercises for German help usage stats
+        this.germanHelpUsage.totalExercises++;
 
         window.Logger?.debug(`Exercise ${index + 1}/${this.exercises.length}: ${exercise.type} (${exercise.id})`);
 
@@ -861,18 +972,25 @@ class App {
             correctAnswer = exercise.correctAnswer;
         }
 
-        // Normalize answers for comparison
-        const normalizedUserAnswer = this.normalizeAnswer(userAnswer);
-        const normalizedCorrectAnswer = this.normalizeAnswer(correctAnswer);
+        // Use tolerant validator for improved feedback
+        const validationResult = this.validator.validateAnswer(
+            userAnswer,
+            correctAnswer,
+            exercise
+        );
 
-        const isCorrect = normalizedUserAnswer === normalizedCorrectAnswer;
-
-        // Update stats
+        // Update stats (only based on core correctness)
         this.stats.total++;
-        if (isCorrect) {
+        if (validationResult.isCorrect) {
             this.stats.correct++;
         } else {
             this.attempts++;
+
+            // Show hint based on settings (only for incorrect answers)
+            const maxAttempts = this.getMaxAttemptsBeforeHint();
+            if (this.attempts >= maxAttempts && exercise.hint) {
+                this.renderer.showHint();
+            }
         }
 
         // Record attempt in adaptive learning system
@@ -881,43 +999,24 @@ class App {
         // Save progress after updating stats
         this.saveProgress();
 
-        // Show feedback
-        if (isCorrect) {
-            this.renderer.showFeedback(true, '✅ Richtig! Sehr gut!');
+        // Show improved feedback
+        this.feedbackSystem.showValidationResult(validationResult, exercise);
 
-            // Show explanation if available
-            if (exercise.explanation) {
-                setTimeout(() => {
-                    alert(`💡 ${exercise.explanation}`);
-                }, 500);
-            }
+        // Disable input/buttons to prevent multiple submissions
+        this.disableInput();
+    }
 
-            // Auto-advance after delay
-            setTimeout(() => {
-                this.next();
-            }, 1500);
-
-        } else {
-            this.renderer.showFeedback(false, '❌ Leider falsch. Versuch es nochmal!', correctAnswer);
-
-            // Show hint based on settings
-            const maxAttempts = this.getMaxAttemptsBeforeHint();
-            if (this.attempts >= maxAttempts && exercise.hint) {
-                this.renderer.showHint();
-            }
-
-            // Disable input/buttons
-            const input = document.getElementById('answer-input');
-            if (input) {
-                input.disabled = true;
-            }
-
-            const buttons = document.querySelectorAll('.btn-option, .btn-primary');
-            buttons.forEach(btn => btn.disabled = true);
-
-            // Show "Next" button
-            this.showNextButton();
+    /**
+     * Disable input and buttons after answer submission
+     */
+    disableInput() {
+        const input = document.getElementById('answer-input');
+        if (input) {
+            input.disabled = true;
         }
+
+        const buttons = document.querySelectorAll('.btn-option, .btn-primary');
+        buttons.forEach(btn => btn.disabled = true);
     }
 
     /**
@@ -1036,6 +1135,64 @@ class App {
 
         nav.innerHTML = '';
 
+        // Add unit selector at the top
+        const unitSelector = document.createElement('div');
+        unitSelector.className = 'unit-selector';
+        unitSelector.style.cssText = `
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+        `;
+
+        const selectLabel = document.createElement('div');
+        selectLabel.textContent = 'Lektion auswählen:';
+        selectLabel.style.cssText = `
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        `;
+        unitSelector.appendChild(selectLabel);
+
+        const select = document.createElement('select');
+        select.style.cssText = `
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+            cursor: pointer;
+        `;
+
+        for (let i = 1; i <= 7; i++) {
+            const option = document.createElement('option');
+            option.value = i;
+            option.textContent = `Lektion ${i}`;
+            if (i === this.currentUnit) {
+                option.selected = true;
+            }
+            select.appendChild(option);
+        }
+
+        select.addEventListener('change', async (e) => {
+            const newUnit = parseInt(e.target.value);
+            if (newUnit !== this.currentUnit) {
+                if (confirm(`Möchtest du zu Lektion ${newUnit} wechseln? Dein Fortschritt wird gespeichert.`)) {
+                    await this.switchToUnit(newUnit);
+                } else {
+                    // Reset selection
+                    e.target.value = this.currentUnit;
+                }
+            }
+        });
+
+        unitSelector.appendChild(select);
+        nav.appendChild(unitSelector);
+
         // Group exercises by concept if available
         const groupedExercises = this.groupExercisesByConcept();
 
@@ -1097,6 +1254,39 @@ class App {
 
             section.appendChild(list);
             nav.appendChild(section);
+        }
+    }
+
+    /**
+     * Switch to a different unit
+     */
+    async switchToUnit(unitNumber) {
+        try {
+            // Save current progress
+            this.saveProgress();
+
+            // Reset stats for new unit
+            this.stats = {
+                correct: 0,
+                total: 0
+            };
+
+            // Load new unit
+            await this.loadUnit(unitNumber);
+
+            // Rebuild sidebar
+            this.buildSidebar();
+
+            // Show first exercise
+            this.showExercise(0);
+
+            // Save new progress
+            this.saveProgress();
+
+            window.Logger?.success(`Zu Lektion ${unitNumber} gewechselt!`);
+        } catch (error) {
+            window.Logger?.error('Error switching unit:', error);
+            alert(`Fehler beim Wechseln zu Lektion ${unitNumber}. Bitte versuche es erneut.`);
         }
     }
 
@@ -1198,6 +1388,12 @@ class App {
         const accuracy = Math.round((this.stats.correct / this.stats.total) * 100);
         const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
 
+        // Check if there's a next unit
+        const hasNextUnit = this.currentUnit < 7; // We have 7 units total
+
+        // Check if user completed Unit 7 (A1 complete)
+        const completedA1 = this.currentUnit === 7;
+
         const container = document.getElementById('exercise-area');
         container.innerHTML = `
             <div class="completion">
@@ -1207,11 +1403,165 @@ class App {
                     <p class="score">${this.stats.correct}/${this.stats.total} richtig</p>
                     <p class="accuracy">${accuracy}% Genauigkeit</p>
                 </div>
-                <button class="btn-primary" onclick="location.reload()">
-                    Nochmal üben
-                </button>
+
+                ${completedA1 ? `
+                    <div style="margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white;">
+                        <h3 style="margin: 0 0 15px 0; font-size: 24px;">🎓 ¡Felicidades!</h3>
+                        <p style="margin: 0 0 20px 0; font-size: 16px;">
+                            ¡Has completado todas las lecciones de nivel A1!
+                        </p>
+                        <button class="btn-primary" onclick="app.startLevelTest('A1')"
+                                style="background: white; color: #667eea; margin-bottom: 10px;">
+                            📝 Hacer Examen de Nivel A1
+                        </button>
+                    </div>
+                    <button class="btn-primary" onclick="app.restartCurrentUnit()"
+                            style="background: var(--bg); color: var(--text); border: 2px solid var(--border); margin-top: 10px;">
+                        Repetir Lektion 7
+                    </button>
+                ` : hasNextUnit ? `
+                    <button class="btn-primary" onclick="app.loadNextUnit()" style="margin-bottom: 10px;">
+                        Weiter zu Lektion ${this.currentUnit + 1} →
+                    </button>
+                    <button class="btn-primary" onclick="app.restartCurrentUnit()"
+                            style="background: var(--bg); color: var(--text); border: 2px solid var(--border);">
+                        Lektion ${this.currentUnit} wiederholen
+                    </button>
+                ` : `
+                    <p style="margin: 20px 0; font-size: 18px; color: var(--text-muted);">
+                        🎓 Du hast alle verfügbaren Lektionen abgeschlossen!
+                    </p>
+                    <button class="btn-primary" onclick="location.reload()">
+                        Nochmal üben
+                    </button>
+                `}
             </div>
         `;
+
+        // Mark Unit 7 as completed for level test system
+        if (completedA1) {
+            this.markUnitComplete(7);
+        }
+    }
+
+    /**
+     * Mark unit as completed
+     */
+    markUnitComplete(unitNumber) {
+        try {
+            const progress = JSON.parse(localStorage.getItem('spanish-app-progress') || '{}');
+            if (!progress.completedUnits) {
+                progress.completedUnits = [];
+            }
+            if (!progress.completedUnits.includes(unitNumber)) {
+                progress.completedUnits.push(unitNumber);
+            }
+            localStorage.setItem('spanish-app-progress', JSON.stringify(progress));
+        } catch (error) {
+            console.error('Error marking unit complete:', error);
+        }
+    }
+
+    /**
+     * Start level test
+     */
+    async startLevelTest(level) {
+        try {
+            window.Logger?.info(`Starting ${level} level test...`);
+
+            // Get the test
+            const test = this.levelTestSystem.getTestById(level);
+            if (!test) {
+                alert('Test not found!');
+                return;
+            }
+
+            // Show test instructions
+            const proceed = confirm(
+                `Examen de Nivel ${level}\n\n` +
+                `${test.description}\n\n` +
+                `Tiempo: ${test.timeLimit} minutos\n` +
+                `Puntuación mínima: ${test.passingScore}%\n\n` +
+                `IMPORTANTE: El examen está completamente en español sin ayuda en alemán.\n\n` +
+                `¿Estás listo para comenzar?`
+            );
+
+            if (!proceed) return;
+
+            // TODO: Implement test UI and flow
+            alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.');
+
+        } catch (error) {
+            window.Logger?.error('Error starting level test:', error);
+            alert('Fehler beim Starten des Tests');
+        }
+    }
+
+    /**
+     * Load next unit
+     */
+    async loadNextUnit() {
+        const nextUnit = this.currentUnit + 1;
+
+        if (nextUnit > 7) {
+            alert('Du hast bereits alle Lektionen abgeschlossen!');
+            return;
+        }
+
+        try {
+            // Reset stats for new unit
+            this.stats = {
+                correct: 0,
+                total: 0
+            };
+
+            // Load next unit
+            await this.loadUnit(nextUnit);
+
+            // Rebuild sidebar
+            this.buildSidebar();
+
+            // Show first exercise
+            this.showExercise(0);
+
+            // Save progress
+            this.saveProgress();
+
+            window.Logger?.success(`Lektion ${nextUnit} gestartet!`);
+        } catch (error) {
+            window.Logger?.error('Error loading next unit:', error);
+            alert(`Fehler beim Laden von Lektion ${nextUnit}. Bitte versuche es erneut.`);
+        }
+    }
+
+    /**
+     * Restart current unit
+     */
+    async restartCurrentUnit() {
+        try {
+            // Reset stats
+            this.stats = {
+                correct: 0,
+                total: 0
+            };
+
+            // Reload current unit
+            await this.loadUnit(this.currentUnit);
+
+            // Rebuild sidebar
+            this.buildSidebar();
+
+            // Show first exercise
+            this.showExercise(0);
+
+            // Save progress
+            this.saveProgress();
+
+            window.Logger?.success(`Lektion ${this.currentUnit} neu gestartet!`);
+        } catch (error) {
+            window.Logger?.error('Error restarting unit:', error);
+            alert('Fehler beim Neustarten. Bitte versuche es erneut.');
+        }
     }
 
     /**
@@ -1280,6 +1630,33 @@ class App {
             window.Logger?.error('Error loading progress:', error);
         }
         return null;
+    }
+
+    /**
+     * Save German help usage to localStorage
+     */
+    saveGermanHelpUsage() {
+        try {
+            localStorage.setItem('spanish-app-german-help', JSON.stringify(this.germanHelpUsage));
+            window.Logger?.debug('German help usage saved:', this.germanHelpUsage);
+        } catch (error) {
+            window.Logger?.error('Error saving German help usage:', error);
+        }
+    }
+
+    /**
+     * Load German help usage from localStorage
+     */
+    loadGermanHelpUsage() {
+        try {
+            const stored = localStorage.getItem('spanish-app-german-help');
+            if (stored) {
+                this.germanHelpUsage = JSON.parse(stored);
+                window.Logger?.debug('German help usage loaded:', this.germanHelpUsage);
+            }
+        } catch (error) {
+            window.Logger?.error('Error loading German help usage:', error);
+        }
     }
 
     /**
