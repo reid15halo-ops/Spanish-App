@@ -26,7 +26,12 @@ class ImprovedFeedbackSystem {
      */
     showValidationResult(validationResult, exercise) {
         const feedbackArea = this.getFeedbackArea();
-        if (!feedbackArea) return;
+        if (!feedbackArea) {
+            console.error('[ImprovedFeedbackSystem] feedback-area element not found!');
+            return;
+        }
+
+        console.log('[ImprovedFeedbackSystem] Showing validation result:', validationResult);
 
         // Clear previous feedback
         feedbackArea.innerHTML = '';
