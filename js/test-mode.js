@@ -1,6 +1,13 @@
 /**
- * Test Mode - Complete Testing System
- * Features: 30-minute timer, question navigation, submission, results dashboard
+ * Test Mode - Complete Testing System (FINALIZED VERSION)
+ * Features:
+ * - Configurable timer and question count
+ * - State persistence (survives page reload)
+ * - Pause/Resume functionality
+ * - Sound notifications
+ * - Test history
+ * - Enhanced rendering
+ * - Mobile optimized
  */
 
 class TestMode {
@@ -12,7 +19,19 @@ class TestMode {
         this.endTime = null;
         this.timerInterval = null;
         this.timeRemaining = 30 * 60; // 30 minutes in seconds
-        this.renderer = null;
+        this.isPaused = false;
+        this.testId = null;
+
+        // Configuration
+        this.config = {
+            questionCount: 40,
+            timeLimitMinutes: 30,
+            soundEnabled: true,
+            autoSave: true
+        };
+
+        // Load config from localStorage
+        this.loadConfig();
 
         // DOM elements
         this.elements = {
@@ -37,13 +56,38 @@ class TestMode {
         };
     }
 
+    loadConfig() {
+        try {
+            const saved = localStorage.getItem('test-mode-config');
+            if (saved) {
+                this.config = { ...this.config, ...JSON.parse(saved) };
+            }
+        } catch (e) {
+            console.error('Failed to load config:', e);
+        }
+    }
+
+    saveConfig() {
+        try {
+            localStorage.setItem('test-mode-config', JSON.stringify(this.config));
+        } catch (e) {
+            console.error('Failed to save config:', e);
+        }
+    }
+
     async init() {
         try {
-            // Load exercises
-            await this.loadExercises();
+            // Check for existing test in progress
+            const savedState = this.loadTestState();
 
-            // Initialize renderer
-            this.renderer = new window.ExerciseRenderer(this.elements.questionContent);
+            if (savedState && confirm('Möchten Sie Ihren vorherigen Test fortsetzen?')) {
+                await this.restoreTestState(savedState);
+            } else {
+                // Start new test
+                this.clearTestState();
+                await this.loadExercises();
+                this.testId = this.generateTestId();
+            }
 
             // Setup event listeners
             this.setupEventListeners();
@@ -52,17 +96,30 @@ class TestMode {
             this.buildQuestionNavigation();
 
             // Show first question
-            this.showQuestion(0);
+            this.showQuestion(this.currentIndex);
 
             // Start timer
             this.startTimer();
 
+            // Setup auto-save
+            if (this.config.autoSave) {
+                this.setupAutoSave();
+            }
+
             // Hide loading overlay
             this.elements.loadingOverlay.style.display = 'none';
+
+            // Show welcome message
+            this.showToast('Test gestartet! Viel Erfolg!', 'success');
         } catch (error) {
             console.error('Failed to initialize test mode:', error);
+            this.showToast('Fehler beim Laden des Tests', 'error');
             alert('Fehler beim Laden des Tests. Bitte versuchen Sie es erneut.');
         }
+    }
+
+    generateTestId() {
+        return `test-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
     }
 
     async loadExercises() {
@@ -93,8 +150,8 @@ class TestMode {
             }
         });
 
-        // Select a diverse subset of exercises (40 questions for a 30-min test)
-        this.exercises = this.selectDiverseExercises(allExercises, 40);
+        // Select a diverse subset of exercises
+        this.exercises = this.selectDiverseExercises(allExercises, this.config.questionCount);
 
         console.log(`Loaded ${this.exercises.length} exercises for test`);
     }
@@ -146,9 +203,28 @@ class TestMode {
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (this.elements.resultsContainer.style.display !== 'none') return;
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
             if (e.key === 'ArrowLeft') this.navigateQuestion(-1);
             if (e.key === 'ArrowRight') this.navigateQuestion(1);
+            if (e.key === 'p' || e.key === 'P') this.togglePause();
+        });
+
+        // Prevent accidental page close
+        window.addEventListener('beforeunload', (e) => {
+            if (this.timerInterval && !this.endTime) {
+                e.preventDefault();
+                e.returnValue = 'Test läuft noch. Wirklich verlassen?';
+                return e.returnValue;
+            }
+        });
+
+        // Handle visibility change (tab switching)
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && this.config.soundEnabled) {
+                // Don't pause timer when tab is hidden, just save state
+                this.saveTestState();
+            }
         });
     }
 
@@ -160,6 +236,7 @@ class TestMode {
             btn.className = 'question-btn';
             btn.textContent = index + 1;
             btn.dataset.index = index;
+            btn.title = `Frage ${index + 1}`;
             btn.addEventListener('click', () => this.showQuestion(index));
             this.elements.questionGrid.appendChild(btn);
         });
@@ -210,6 +287,11 @@ class TestMode {
         // Update nav buttons
         this.elements.prevBtn.disabled = index === 0;
         this.elements.nextBtn.disabled = false;
+
+        // Save state
+        if (this.config.autoSave) {
+            this.saveTestState();
+        }
     }
 
     getPhaseLabel(phase) {
@@ -231,21 +313,6 @@ class TestMode {
         exerciseDiv.className = 'exercise-container';
 
         // Render based on type
-        if (this.renderer && typeof this.renderer.render === 'function') {
-            // Use the existing renderer
-            this.renderer.render(exercise, (answer) => this.handleAnswer(index, answer));
-        } else {
-            // Fallback rendering
-            this.renderFallback(exerciseDiv, exercise, index);
-        }
-
-        // Restore saved answer if exists
-        if (this.userAnswers.has(index)) {
-            this.restoreAnswer(index);
-        }
-    }
-
-    renderFallback(container, exercise, index) {
         const type = exercise.type;
 
         // Question text
@@ -253,22 +320,29 @@ class TestMode {
             const questionP = document.createElement('p');
             questionP.className = 'exercise-question';
             questionP.textContent = exercise.question;
-            container.appendChild(questionP);
+            exerciseDiv.appendChild(questionP);
         }
 
         // Render based on type
         if (type === 'multiple-choice') {
-            this.renderMultipleChoice(container, exercise, index);
-        } else if (type === 'fill-blank' || type === 'translation') {
-            this.renderTextInput(container, exercise, index);
+            this.renderMultipleChoice(exerciseDiv, exercise, index);
+        } else if (type === 'fill-blank' || type === 'translation' || type === 'conjugation') {
+            this.renderTextInput(exerciseDiv, exercise, index);
         } else if (type === 'vocabulary-card') {
-            this.renderVocabularyCard(container, exercise, index);
+            this.renderVocabularyCard(exerciseDiv, exercise, index);
+        } else if (type === 'reading-comprehension') {
+            this.renderReadingComprehension(exerciseDiv, exercise, index);
         } else {
             // Generic rendering
-            this.renderGeneric(container, exercise, index);
+            this.renderTextInput(exerciseDiv, exercise, index);
         }
 
-        this.elements.questionContent.appendChild(container);
+        container.appendChild(exerciseDiv);
+
+        // Restore saved answer if exists
+        if (this.userAnswers.has(index)) {
+            this.restoreAnswer(index);
+        }
     }
 
     renderMultipleChoice(container, exercise, index) {
@@ -281,6 +355,7 @@ class TestMode {
             btn.className = 'option-btn';
             btn.textContent = option;
             btn.dataset.index = i;
+            btn.dataset.option = option;
             btn.addEventListener('click', () => {
                 // Remove previous selection
                 optionsDiv.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
@@ -299,20 +374,69 @@ class TestMode {
         input.className = 'answer-input';
         input.placeholder = 'Ihre Antwort...';
         input.dataset.questionIndex = index;
+        input.autocomplete = 'off';
+
+        // Add German keyboard helper
+        if (exercise.type === 'translation' || exercise.type === 'fill-blank') {
+            const helperDiv = document.createElement('div');
+            helperDiv.className = 'keyboard-helper';
+            helperDiv.innerHTML = `
+                <small style="color: #666; margin-top: 0.5rem; display: block;">
+                    Sonderzeichen:
+                    <button type="button" class="char-btn" data-char="ä">ä</button>
+                    <button type="button" class="char-btn" data-char="ö">ö</button>
+                    <button type="button" class="char-btn" data-char="ü">ü</button>
+                    <button type="button" class="char-btn" data-char="ß">ß</button>
+                    <button type="button" class="char-btn" data-char="á">á</button>
+                    <button type="button" class="char-btn" data-char="é">é</button>
+                    <button type="button" class="char-btn" data-char="í">í</button>
+                    <button type="button" class="char-btn" data-char="ó">ó</button>
+                    <button type="button" class="char-btn" data-char="ú">ú</button>
+                    <button type="button" class="char-btn" data-char="ñ">ñ</button>
+                    <button type="button" class="char-btn" data-char="¿">¿</button>
+                    <button type="button" class="char-btn" data-char="¡">¡</button>
+                </small>
+            `;
+
+            // Add click handlers for character buttons
+            helperDiv.querySelectorAll('.char-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const char = btn.dataset.char;
+                    const cursorPos = input.selectionStart;
+                    const textBefore = input.value.substring(0, cursorPos);
+                    const textAfter = input.value.substring(input.selectionEnd);
+                    input.value = textBefore + char + textAfter;
+                    input.focus();
+                    input.setSelectionRange(cursorPos + 1, cursorPos + 1);
+                    this.handleAnswer(index, input.value);
+                });
+            });
+
+            container.appendChild(input);
+            container.appendChild(helperDiv);
+        } else {
+            container.appendChild(input);
+        }
 
         // Auto-save on change
+        let debounceTimer;
         input.addEventListener('input', (e) => {
-            this.handleAnswer(index, e.target.value);
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(() => {
+                this.handleAnswer(index, e.target.value);
+            }, 300);
         });
 
         // Submit on Enter
         input.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
+                this.handleAnswer(index, input.value);
                 this.navigateQuestion(1);
             }
         });
 
-        container.appendChild(input);
+        // Focus input
+        setTimeout(() => input.focus(), 100);
     }
 
     renderVocabularyCard(container, exercise, index) {
@@ -339,17 +463,49 @@ class TestMode {
         question.style.marginTop = '2rem';
         card.appendChild(question);
 
-        this.renderTextInput(card, exercise, index);
         container.appendChild(card);
+        this.renderTextInput(container, exercise, index);
     }
 
-    renderGeneric(container, exercise, index) {
-        // Generic text input for unknown types
-        const p = document.createElement('p');
-        p.textContent = exercise.question || 'Bitte beantworten Sie diese Frage:';
-        container.appendChild(p);
+    renderReadingComprehension(container, exercise, index) {
+        // Show dialog or text
+        if (exercise.dialog) {
+            const dialogBox = document.createElement('div');
+            dialogBox.className = 'dialog-box';
+            dialogBox.style.cssText = 'background: #f5f5f5; padding: 1rem; border-radius: 8px; margin: 1rem 0;';
 
-        this.renderTextInput(container, exercise, index);
+            exercise.dialog.forEach(line => {
+                const p = document.createElement('p');
+                p.innerHTML = `<strong>${line.speaker}:</strong> <em>${line.text}</em>`;
+                p.style.marginBottom = '0.5rem';
+                dialogBox.appendChild(p);
+            });
+
+            container.appendChild(dialogBox);
+        }
+
+        // Show comprehension question
+        if (exercise.comprehensionCheck) {
+            const checkDiv = document.createElement('div');
+            checkDiv.style.marginTop = '1.5rem';
+
+            const question = document.createElement('p');
+            question.textContent = exercise.comprehensionCheck.question;
+            question.style.fontWeight = '600';
+            question.style.marginBottom = '1rem';
+            checkDiv.appendChild(question);
+
+            container.appendChild(checkDiv);
+
+            // Render as multiple choice
+            this.renderMultipleChoice(checkDiv, {
+                ...exercise,
+                options: exercise.comprehensionCheck.options
+            }, index);
+        } else {
+            // Fallback to text input
+            this.renderTextInput(container, exercise, index);
+        }
     }
 
     restoreAnswer(index) {
@@ -363,7 +519,7 @@ class TestMode {
         }
 
         const selectedBtn = Array.from(this.elements.questionContent.querySelectorAll('.option-btn'))
-            .find(btn => btn.textContent === answer);
+            .find(btn => btn.dataset.option === answer || btn.textContent === answer);
         if (selectedBtn) {
             selectedBtn.classList.add('selected');
         }
@@ -379,6 +535,11 @@ class TestMode {
 
         // Update navigation to show answered state
         this.updateQuestionNavigation();
+
+        // Auto-save state
+        if (this.config.autoSave) {
+            this.saveTestState();
+        }
     }
 
     navigateQuestion(direction) {
@@ -388,17 +549,104 @@ class TestMode {
         }
     }
 
+    togglePause() {
+        if (this.isPaused) {
+            this.resumeTest();
+        } else {
+            this.pauseTest();
+        }
+    }
+
+    pauseTest() {
+        if (this.isPaused || !this.timerInterval) return;
+
+        this.isPaused = true;
+        clearInterval(this.timerInterval);
+        this.timerInterval = null;
+
+        // Show pause overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'pause-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 4000;
+            color: white;
+        `;
+        overlay.innerHTML = `
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">⏸️ Pause</h2>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">Test pausiert</p>
+            <button id="resume-btn" style="
+                padding: 1rem 2rem;
+                font-size: 1.2rem;
+                background: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+            ">Fortsetzen</button>
+        `;
+        document.body.appendChild(overlay);
+
+        document.getElementById('resume-btn').addEventListener('click', () => {
+            this.resumeTest();
+        });
+
+        this.saveTestState();
+    }
+
+    resumeTest() {
+        if (!this.isPaused) return;
+
+        this.isPaused = false;
+        const overlay = document.getElementById('pause-overlay');
+        if (overlay) {
+            overlay.remove();
+        }
+
+        this.startTimer();
+    }
+
     startTimer() {
-        this.startTime = Date.now();
+        if (this.timerInterval) return;
+
+        if (!this.startTime) {
+            this.startTime = Date.now();
+        }
+
+        this.updateTimerDisplay();
 
         this.timerInterval = setInterval(() => {
+            if (this.isPaused) return;
+
             this.timeRemaining--;
 
             if (this.timeRemaining <= 0) {
                 this.timeRemaining = 0;
                 clearInterval(this.timerInterval);
-                this.submitTest();
+                this.playSound('timeup');
+                this.showToast('Zeit abgelaufen! Test wird abgegeben...', 'warning');
+                setTimeout(() => this.submitTest(), 2000);
                 return;
+            }
+
+            // Sound warnings
+            if (this.config.soundEnabled) {
+                if (this.timeRemaining === 300) { // 5 minutes
+                    this.playSound('warning');
+                    this.showToast('Noch 5 Minuten!', 'warning');
+                } else if (this.timeRemaining === 60) { // 1 minute
+                    this.playSound('warning');
+                    this.showToast('Noch 1 Minute!', 'error');
+                }
             }
 
             this.updateTimerDisplay();
@@ -420,6 +668,65 @@ class TestMode {
         if (this.timeRemaining <= 60) { // 1 minute
             this.elements.timer.classList.add('danger');
         }
+    }
+
+    playSound(type) {
+        if (!this.config.soundEnabled) return;
+
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            let frequency, duration;
+            if (type === 'warning') {
+                frequency = 800;
+                duration = 200;
+            } else if (type === 'timeup') {
+                frequency = 400;
+                duration = 500;
+            } else {
+                frequency = 600;
+                duration = 150;
+            }
+
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration / 1000);
+        } catch (e) {
+            console.warn('Sound playback failed:', e);
+        }
+    }
+
+    showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: ${type === 'error' ? '#f44336' : type === 'warning' ? '#ff9800' : type === 'success' ? '#4CAF50' : '#2196F3'};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 5000;
+            animation: slideIn 0.3s ease;
+        `;
+        toast.textContent = message;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.3s ease';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
     }
 
     confirmSubmit() {
@@ -446,18 +753,30 @@ class TestMode {
         // Stop timer
         if (this.timerInterval) {
             clearInterval(this.timerInterval);
+            this.timerInterval = null;
         }
         this.endTime = Date.now();
 
         // Calculate results
         const results = this.calculateResults();
 
+        // Save to history
+        this.saveTestHistory(results);
+
+        // Clear current test state
+        this.clearTestState();
+
         // Show results
         this.showResults(results);
+
+        // Play completion sound
+        this.playSound('complete');
     }
 
     calculateResults() {
         const results = {
+            testId: this.testId,
+            date: new Date().toISOString(),
             totalQuestions: this.exercises.length,
             answeredCount: this.userAnswers.size,
             correctCount: 0,
@@ -465,6 +784,7 @@ class TestMode {
             score: 0,
             percentage: 0,
             timeTaken: this.startTime ? (this.endTime - this.startTime) / 1000 : 0,
+            timeLimit: this.config.timeLimitMinutes * 60,
             details: [],
             byCategory: new Map(),
             byDifficulty: new Map(),
@@ -560,6 +880,12 @@ class TestMode {
         if (exercise.correctAnswer) return exercise.correctAnswer;
         if (exercise.translation) return exercise.translation;
         if (exercise.answer) return exercise.answer;
+
+        // For reading comprehension
+        if (exercise.comprehensionCheck && exercise.comprehensionCheck.correctAnswer) {
+            return exercise.comprehensionCheck.correctAnswer;
+        }
+
         return '';
     }
 
@@ -583,6 +909,107 @@ class TestMode {
         };
 
         return normalize(userAnswer) === normalize(correctAnswer);
+    }
+
+    // State persistence methods
+    saveTestState() {
+        try {
+            const state = {
+                testId: this.testId,
+                exercises: this.exercises,
+                currentIndex: this.currentIndex,
+                userAnswers: Array.from(this.userAnswers.entries()),
+                startTime: this.startTime,
+                timeRemaining: this.timeRemaining,
+                config: this.config,
+                savedAt: Date.now()
+            };
+            localStorage.setItem('test-mode-state', JSON.stringify(state));
+        } catch (e) {
+            console.error('Failed to save test state:', e);
+        }
+    }
+
+    loadTestState() {
+        try {
+            const saved = localStorage.getItem('test-mode-state');
+            if (!saved) return null;
+
+            const state = JSON.parse(saved);
+
+            // Check if state is recent (less than 24 hours old)
+            const age = Date.now() - state.savedAt;
+            if (age > 24 * 60 * 60 * 1000) {
+                this.clearTestState();
+                return null;
+            }
+
+            return state;
+        } catch (e) {
+            console.error('Failed to load test state:', e);
+            return null;
+        }
+    }
+
+    async restoreTestState(state) {
+        this.testId = state.testId;
+        this.exercises = state.exercises;
+        this.currentIndex = state.currentIndex;
+        this.userAnswers = new Map(state.userAnswers);
+        this.startTime = state.startTime;
+        this.timeRemaining = state.timeRemaining;
+        this.config = state.config;
+
+        console.log('Test state restored');
+    }
+
+    clearTestState() {
+        try {
+            localStorage.removeItem('test-mode-state');
+        } catch (e) {
+            console.error('Failed to clear test state:', e);
+        }
+    }
+
+    setupAutoSave() {
+        // Save every 30 seconds
+        setInterval(() => {
+            if (this.timerInterval && !this.endTime) {
+                this.saveTestState();
+            }
+        }, 30000);
+    }
+
+    // Test history methods
+    saveTestHistory(results) {
+        try {
+            let history = [];
+            const saved = localStorage.getItem('test-mode-history');
+            if (saved) {
+                history = JSON.parse(saved);
+            }
+
+            // Convert Maps to objects for JSON serialization
+            const serializable = {
+                ...results,
+                byCategory: Object.fromEntries(results.byCategory),
+                byDifficulty: Object.fromEntries(results.byDifficulty),
+                byUnit: Object.fromEntries(results.byUnit),
+                byType: Object.fromEntries(results.byType),
+                byPhase: Object.fromEntries(results.byPhase)
+            };
+
+            history.unshift(serializable);
+
+            // Keep only last 10 tests
+            if (history.length > 10) {
+                history = history.slice(0, 10);
+            }
+
+            localStorage.setItem('test-mode-history', JSON.stringify(history));
+        } catch (e) {
+            console.error('Failed to save test history:', e);
+        }
     }
 
     showResults(results) {
@@ -614,6 +1041,12 @@ class TestMode {
 
         // Setup results event listeners
         this.setupResultsListeners(results);
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Show success message
+        this.showToast('Test abgeschlossen!', 'success');
     }
 
     renderCategoryAnalysis(results) {
@@ -778,7 +1211,8 @@ class TestMode {
         if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
-        const width = canvas.parentElement.clientWidth;
+        const parent = canvas.parentElement;
+        const width = parent.clientWidth;
         const height = 300;
 
         canvas.width = width;
@@ -789,11 +1223,11 @@ class TestMode {
 
         if (data.length === 0) return;
 
-        const barWidth = width / data.length - 10;
+        const barWidth = Math.min((width / data.length) - 10, 80);
         const maxHeight = height - 60;
 
         data.forEach((item, index) => {
-            const x = index * (barWidth + 10);
+            const x = (width / data.length) * index + ((width / data.length) - barWidth) / 2;
             const barHeight = (item.percentage / 100) * maxHeight;
             const y = height - 40 - barHeight;
 
@@ -821,7 +1255,7 @@ class TestMode {
             ctx.translate(x + barWidth / 2, height - 20);
             ctx.rotate(-Math.PI / 4);
             const label = item[labelKey] || `Item ${index + 1}`;
-            ctx.fillText(label.toString().substring(0, 15), 0, 0);
+            ctx.fillText(label.toString().substring(0, 20), 0, 0);
             ctx.restore();
         });
     }
@@ -919,6 +1353,15 @@ class TestMode {
         document.getElementById('backToMainBtn').addEventListener('click', () => {
             window.location.href = 'index.html';
         });
+
+        // Print results
+        const printBtn = document.createElement('button');
+        printBtn.className = 'btn-action btn-print';
+        printBtn.textContent = '🖨️ Drucken';
+        printBtn.style.background = '#9C27B0';
+        printBtn.style.color = 'white';
+        printBtn.addEventListener('click', () => this.printResults());
+        document.querySelector('.results-actions').insertBefore(printBtn, document.getElementById('backToMainBtn'));
     }
 
     exportResults(results) {
@@ -951,8 +1394,74 @@ class TestMode {
         a.download = `spanish-test-results-${new Date().toISOString().split('T')[0]}.json`;
         a.click();
         URL.revokeObjectURL(url);
+
+        this.showToast('Ergebnisse exportiert!', 'success');
+    }
+
+    printResults() {
+        window.print();
     }
 }
+
+// Add print styles
+const printStyles = document.createElement('style');
+printStyles.textContent = `
+    @media print {
+        .test-header,
+        .results-actions,
+        .btn-close,
+        .filter-btn,
+        .chart-container {
+            display: none !important;
+        }
+
+        .results-container {
+            display: block !important;
+        }
+
+        .review-item {
+            page-break-inside: avoid;
+        }
+    }
+
+    .char-btn {
+        padding: 0.25rem 0.5rem;
+        margin: 0 0.125rem;
+        border: 1px solid #ddd;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+
+    .char-btn:hover {
+        background: #f0f0f0;
+        border-color: #2196F3;
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(printStyles);
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
