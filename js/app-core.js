@@ -108,6 +108,9 @@ class ExerciseRenderer {
             case 'fill-blank':
                 html = this.renderFillBlank(exercise, onAnswer);
                 break;
+            case 'conjugation':
+                html = this.renderConjugation(exercise, onAnswer);
+                break;
             case 'multiple-choice':
                 html = this.renderMultipleChoice(exercise, onAnswer);
                 break;
@@ -303,6 +306,46 @@ class ExerciseRenderer {
                 </div>
 
                 <div id="feedback-area" class="feedback-area hidden"></div>
+            </div>
+        `;
+    }
+
+    /**
+     * Render conjugation exercise
+     */
+    renderConjugation(exercise, onAnswer) {
+        return `
+            <div class="conjugation">
+                <p class="question">${exercise.question}</p>
+
+                ${exercise.germanBridge ? `
+                    <div class="german-bridge">${exercise.germanBridge}</div>
+                ` : ''}
+
+                ${exercise.note ? `
+                    <p class="note"><strong>📌 Hinweis:</strong> ${exercise.note}</p>
+                ` : ''}
+
+                <div class="input-group">
+                    <input type="text" id="answer-input" class="text-input"
+                           placeholder="Deine Antwort..." autocomplete="off">
+                    <button class="btn-primary" onclick="app.checkAnswer()">Prüfen</button>
+                </div>
+
+                ${exercise.mnemonic ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
+                    </div>
+                ` : ''}
+
+                <div id="feedback-area" class="feedback-area hidden"></div>
+
+                ${exercise.examples && exercise.examples.length > 0 ? `
+                    <div class="examples-box hidden" id="examples-box">
+                        <strong>📚 Beispiele:</strong>
+                        ${exercise.examples.map(ex => `<p class="example">${ex}</p>`).join('')}
+                    </div>
+                ` : ''}
             </div>
         `;
     }
