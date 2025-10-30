@@ -8,37 +8,19 @@
  */
 
 // ====================================================================
-// IMPORT EXERCISE DATA
-// ====================================================================
-
-import {
-    UNIT_1_PRONOUNS,
-    UNIT_2_SER,
-    UNIT_3_ESTAR,
-    UNIT_4_SER_ESTAR_CONTRAST,
-    UNIT_5_TENER,
-    UNIT_6_VOCABULARY,
-    UNIT_7_INTEGRATION,
-    getAllPhase1Units,
-    getAllPhase1Exercises,
-    getUnit,
-    DATA_INFO
-} from './exercise-data.js';
-
-// ====================================================================
 // EXERCISE LOADER (No fetch() - uses inlined data)
 // ====================================================================
 
 class ExerciseLoader {
     constructor() {
         this.units = {
-            1: UNIT_1_PRONOUNS,
-            2: UNIT_2_SER,
-            3: UNIT_3_ESTAR,
-            4: UNIT_4_SER_ESTAR_CONTRAST,
-            5: UNIT_5_TENER,
-            6: UNIT_6_VOCABULARY,
-            7: UNIT_7_INTEGRATION
+            1: window.UNIT_1_PRONOUNS,
+            2: window.UNIT_2_SER,
+            3: window.UNIT_3_ESTAR,
+            4: window.UNIT_4_SER_ESTAR_CONTRAST,
+            5: window.UNIT_5_TENER,
+            6: window.UNIT_6_VOCABULARY,
+            7: window.UNIT_7_INTEGRATION
         };
     }
 

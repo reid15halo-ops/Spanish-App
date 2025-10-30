@@ -810,21 +810,17 @@
     <!-- Environment & Configuration -->
     <script src="js/config/environment.js"></script>
 
-    <!-- Monitoring Systems -->
-    <script src="js/monitoring/error-monitor.js"></script>
-    <script src="js/monitoring/performance-monitor.js"></script>
+    <!-- Consolidated Monitoring (Error + Performance) -->
+    <script src="js/monitoring.js"></script>
 
-    <!-- Utilities -->
-    <script src="js/utils/logger.js"></script>
-    <script src="js/utils/loading.js"></script>
-    <script src="js/utils/error-boundary.js"></script>
-    <script src="js/utils/data-backup.js"></script>
-    <script src="js/utils/gdpr-compliance.js"></script>
+    <!-- Consolidated Utilities (Logger, Loading, ErrorBoundary, DataBackup, GDPR, Accessibility, etc.) -->
+    <script src="js/utils.js"></script>
 
-    <!-- Core App -->
-    <script src="js/exercise-loader.js"></script>
-    <script src="js/exercise-renderer.js"></script>
-    <script src="js/app.js"></script>
+    <!-- Inlined Exercise Data (All units + vocabulary - no fetch() calls) -->
+    <script src="js/exercise-data.js"></script>
+
+    <!-- Consolidated Core App (App + Loader + Renderer) -->
+    <script src="js/app-core.js"></script>
 
     <!-- Service Worker Registration -->
     <script>

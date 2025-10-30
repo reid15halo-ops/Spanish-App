@@ -7,11 +7,14 @@
  * Generated: 2025-10-30T08:36:46.121Z
  */
 
+// Initialize ExerciseData namespace
+window.ExerciseData = {};
+
 // ====================================================================
 // PHASE 1 UNITS
 // ====================================================================
 
-export const UNIT_1_PRONOUNS = {
+window.UNIT_1_PRONOUNS = {
   "metadata": {
     "unit": 1,
     "phase": 1,
@@ -1050,7 +1053,7 @@ export const UNIT_1_PRONOUNS = {
   ]
 };
 
-export const UNIT_2_SER = {
+window.UNIT_2_SER = {
   "metadata": {
     "unit": 2,
     "phase": 1,
@@ -3461,7 +3464,7 @@ export const UNIT_2_SER = {
   }
 };
 
-export const UNIT_3_ESTAR = {
+window.UNIT_3_ESTAR = {
   "metadata": {
     "unit": 3,
     "phase": 1,
@@ -5904,7 +5907,7 @@ export const UNIT_3_ESTAR = {
   }
 };
 
-export const UNIT_4_SER_ESTAR_CONTRAST = {
+window.UNIT_4_SER_ESTAR_CONTRAST = {
   "metadata": {
     "unit": 4,
     "phase": 1,
@@ -8767,7 +8770,7 @@ export const UNIT_4_SER_ESTAR_CONTRAST = {
   }
 };
 
-export const UNIT_5_TENER = {
+window.UNIT_5_TENER = {
   "metadata": {
     "unit": 5,
     "phase": 1,
@@ -10725,7 +10728,7 @@ export const UNIT_5_TENER = {
   }
 };
 
-export const UNIT_6_VOCABULARY = {
+window.UNIT_6_VOCABULARY = {
   "metadata": {
     "unit": 6,
     "phase": 1,
@@ -12812,7 +12815,7 @@ export const UNIT_6_VOCABULARY = {
   }
 };
 
-export const UNIT_7_INTEGRATION = {
+window.UNIT_7_INTEGRATION = {
   "metadata": {
     "unit": 7,
     "phase": 1,
@@ -14623,7 +14626,7 @@ export const UNIT_7_INTEGRATION = {
 // VOCABULARY & VERBS
 // ====================================================================
 
-export const PHASE1_VOCABULARY = {
+window.PHASE1_VOCABULARY = {
   "metadata": {
     "phase": 1,
     "level": "A1",
@@ -15721,7 +15724,7 @@ export const PHASE1_VOCABULARY = {
   }
 };
 
-export const VERBS = [
+window.VERBS = [
   {
     "infinitivo": "ser",
     "clase": "irregular",
@@ -16518,7 +16521,7 @@ export const VERBS = [
   }
 ];
 
-export const ITEMS = [
+window.ITEMS = [
   {
     "id": "05d42200a282d479fd674977e53c152ca1503a38",
     "src": "IMG_20251009_153706.jpg",
@@ -18347,7 +18350,7 @@ export const ITEMS = [
   }
 ];
 
-export const ITEMS_ASCII = [
+window.ITEMS_ASCII = [
   {
     "id": "05d42200a282d479fd674977e53c152ca1503a38",
     "src": "IMG_20251009_153706.jpg",
@@ -20183,7 +20186,7 @@ export const ITEMS_ASCII = [
 /**
  * Get all Phase 1 units
  */
-export function getAllPhase1Units() {
+window.ExerciseData.getAllPhase1Units = function() {
   return [
     UNIT_1_PRONOUNS,
     UNIT_2_SER,
@@ -20198,7 +20201,7 @@ export function getAllPhase1Units() {
 /**
  * Get all Phase 1 exercises
  */
-export function getAllPhase1Exercises() {
+window.ExerciseData.getAllPhase1Exercises = function() {
   const units = getAllPhase1Units();
   return units.flatMap(unit => unit.exercises || []);
 }
@@ -20206,7 +20209,7 @@ export function getAllPhase1Exercises() {
 /**
  * Get unit by number
  */
-export function getUnit(unitNumber) {
+window.ExerciseData.getUnit = function(unitNumber) {
   const units = getAllPhase1Units();
   return units[unitNumber - 1] || null;
 }
@@ -20214,7 +20217,7 @@ export function getUnit(unitNumber) {
 /**
  * Get exercise by ID
  */
-export function getExerciseById(exerciseId) {
+window.ExerciseData.getExerciseById = function(exerciseId) {
   const exercises = getAllPhase1Exercises();
   return exercises.find(ex => ex.id === exerciseId) || null;
 }
@@ -20222,14 +20225,14 @@ export function getExerciseById(exerciseId) {
 /**
  * Get vocabulary by category
  */
-export function getVocabularyByCategory(categoryId) {
+window.ExerciseData.getVocabularyByCategory = function(categoryId) {
   return PHASE1_VOCABULARY.categories[categoryId] || null;
 }
 
 /**
  * Get all vocabulary words
  */
-export function getAllVocabularyWords() {
+window.ExerciseData.getAllVocabularyWords = function() {
   const categories = Object.values(PHASE1_VOCABULARY.categories);
   return categories.flatMap(cat => cat.words || []);
 }
@@ -20237,7 +20240,7 @@ export function getAllVocabularyWords() {
 /**
  * Data source info
  */
-export const DATA_INFO = {
+window.DATA_INFO = {
   generated: '2025-10-30T08:36:46.137Z',
   totalUnits: 7,
   totalExercises: 332,
