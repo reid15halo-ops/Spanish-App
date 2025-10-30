@@ -165,7 +165,7 @@ class App {
      */
     showExercise(index) {
         if (index < 0 || index >= this.exercises.length) {
-            console.log('🎉 Unit complete!');
+            window.Logger?.debug('Unit complete!');
             this.showCompletion();
             return;
         }
@@ -175,7 +175,7 @@ class App {
 
         const exercise = this.exercises[index];
 
-        console.log(`📝 Exercise ${index + 1}/${this.exercises.length}: ${exercise.type} (${exercise.id})`);
+        window.Logger?.debug(`Exercise ${index + 1}/${this.exercises.length}: ${exercise.type} (${exercise.id})`);
 
         // Clear previous feedback
         this.renderer.clearFeedback();
@@ -318,7 +318,7 @@ class App {
     }
 
     /**
-     * Show next button
+     * Show next button with context-aware label
      */
     showNextButton() {
         const feedbackArea = document.getElementById('feedback-area');
@@ -327,10 +327,16 @@ class App {
         // Check if button already exists
         if (document.getElementById('next-btn')) return;
 
+        // Determine context-aware button label
+        const isLastExercise = this.currentIndex >= this.exercises.length - 1;
+        const buttonText = isLastExercise
+            ? 'Lektion abschliessen →'
+            : 'Naechste Uebung →';
+
         const nextBtn = document.createElement('button');
         nextBtn.id = 'next-btn';
         nextBtn.className = 'btn-primary';
-        nextBtn.textContent = 'Weiter →';
+        nextBtn.textContent = buttonText;
         nextBtn.onclick = () => this.next();
 
         feedbackArea.appendChild(nextBtn);
@@ -366,7 +372,7 @@ class App {
     }
 
     /**
-     * Update progress display
+     * Update progress display with enhanced visual indicators
      */
     updateProgress() {
         const progressEl = document.getElementById('progress');
@@ -376,8 +382,19 @@ class App {
         const totalEx = this.exercises.length;
         const percentage = Math.round((currentEx / totalEx) * 100);
 
+        // Get current exercise info for context
+        const currentExercise = this.exercises[this.currentIndex];
+        const conceptLabel = currentExercise ? this.getConceptLabel(currentExercise.concept || '') : '';
+
+        // Show concept if available
+        const conceptDisplay = conceptLabel && conceptLabel !== 'Allgemein'
+            ? ` • ${conceptLabel}`
+            : '';
+
         progressEl.innerHTML = `
-            <span class="progress-text">Lektion ${this.currentUnit} • Übung ${currentEx}/${totalEx}</span>
+            <span class="progress-text">
+                Lektion ${this.currentUnit}${conceptDisplay} • Uebung ${currentEx}/${totalEx} (${percentage}%)
+            </span>
             <div class="progress-bar">
                 <div class="progress-fill" style="width: ${percentage}%"></div>
             </div>
@@ -565,7 +582,7 @@ class App {
                 return JSON.parse(stored);
             }
         } catch (error) {
-            console.error('Error loading settings:', error);
+            window.Logger?.error('Error loading settings:', error);
         }
 
         // Default settings
@@ -580,9 +597,9 @@ class App {
     saveSettings() {
         try {
             localStorage.setItem('spanish-app-settings', JSON.stringify(this.settings));
-            console.log('✅ Settings saved:', this.settings);
+            window.Logger?.debug('Settings saved:', this.settings);
         } catch (error) {
-            console.error('Error saving settings:', error);
+            window.Logger?.error('Error saving settings:', error);
         }
     }
 
@@ -600,9 +617,9 @@ class App {
                 }
             };
             localStorage.setItem('spanish-app-progress', JSON.stringify(progress));
-            console.log('💾 Progress saved:', progress);
+            window.Logger?.debug('Progress saved:', progress);
         } catch (error) {
-            console.error('Error saving progress:', error);
+            window.Logger?.error('Error saving progress:', error);
         }
     }
 
@@ -614,11 +631,11 @@ class App {
             const stored = localStorage.getItem('spanish-app-progress');
             if (stored) {
                 const progress = JSON.parse(stored);
-                console.log('📂 Progress loaded:', progress);
+                window.Logger?.debug('Progress loaded:', progress);
                 return progress;
             }
         } catch (error) {
-            console.error('Error loading progress:', error);
+            window.Logger?.error('Error loading progress:', error);
         }
         return null;
     }
