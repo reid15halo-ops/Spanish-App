@@ -45,11 +45,16 @@ class ImprovedFeedbackSystem {
 
             // Auto-advance after short pause
             const delay = validationResult.styleImprovements.length > 0 ? 4000 : 1500;
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 if (window.app) {
                     window.app.next();
                 }
             }, delay);
+
+            // Store timeout ID in app for potential cancellation
+            if (window.app) {
+                window.app.autoAdvanceTimeout = timeoutId;
+            }
 
         } else {
             // Exercise is incorrect → learning aid

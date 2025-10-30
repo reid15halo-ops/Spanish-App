@@ -662,6 +662,10 @@ class App {
             exercisesWithHelp: []
         };
 
+        // Prevent double-navigation race conditions
+        this.autoAdvanceTimeout = null;
+        this.isNavigating = false;
+
         // Initialize tolerant validator and improved feedback system
         this.validator = new TolerantAnswerValidator();
         this.feedbackSystem = new ImprovedFeedbackSystem();
@@ -1066,17 +1070,48 @@ class App {
      * Go to next exercise
      */
     next() {
+        // Prevent race condition: ignore if already navigating
+        if (this.isNavigating) {
+            return;
+        }
+
+        // Clear any pending auto-advance
+        if (this.autoAdvanceTimeout) {
+            clearTimeout(this.autoAdvanceTimeout);
+            this.autoAdvanceTimeout = null;
+        }
+
+        this.isNavigating = true;
         this.showExercise(this.currentIndex + 1);
         this.saveProgress();
+
+        // Reset navigation flag after a short delay
+        setTimeout(() => {
+            this.isNavigating = false;
+        }, 100);
     }
 
     /**
      * Go to previous exercise
      */
     previous() {
+        if (this.isNavigating) {
+            return;
+        }
+
         if (this.currentIndex > 0) {
+            if (this.autoAdvanceTimeout) {
+                clearTimeout(this.autoAdvanceTimeout);
+                this.autoAdvanceTimeout = null;
+            }
+
+            this.isNavigating = true;
             this.showExercise(this.currentIndex - 1);
             this.saveProgress();
+
+            setTimeout(() => {
+                this.isNavigating = false;
+            }, 100);
         }
     }
 
@@ -1084,9 +1119,23 @@ class App {
      * Jump to specific exercise
      */
     jumpToExercise(index) {
+        if (this.isNavigating) {
+            return;
+        }
+
         if (index >= 0 && index < this.exercises.length) {
+            if (this.autoAdvanceTimeout) {
+                clearTimeout(this.autoAdvanceTimeout);
+                this.autoAdvanceTimeout = null;
+            }
+
+            this.isNavigating = true;
             this.showExercise(index);
             this.saveProgress();
+
+            setTimeout(() => {
+                this.isNavigating = false;
+            }, 100);
         }
     }
 
