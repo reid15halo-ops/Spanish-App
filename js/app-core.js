@@ -507,6 +507,10 @@ class App {
         // Initialize tolerant validator and improved feedback system
         this.validator = new TolerantAnswerValidator();
         this.feedbackSystem = new ImprovedFeedbackSystem();
+
+        // Initialize level test and adaptive practice systems
+        this.levelTestSystem = new LevelTestSystem();
+        this.adaptivePracticeSystem = new AdaptivePracticeSystem();
     }
 
     /**
@@ -1185,6 +1189,9 @@ class App {
         // Check if there's a next unit
         const hasNextUnit = this.currentUnit < 7; // We have 7 units total
 
+        // Check if user completed Unit 7 (A1 complete)
+        const completedA1 = this.currentUnit === 7;
+
         const container = document.getElementById('exercise-area');
         container.innerHTML = `
             <div class="completion">
@@ -1195,7 +1202,22 @@ class App {
                     <p class="accuracy">${accuracy}% Genauigkeit</p>
                 </div>
 
-                ${hasNextUnit ? `
+                ${completedA1 ? `
+                    <div style="margin: 30px 0; padding: 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; color: white;">
+                        <h3 style="margin: 0 0 15px 0; font-size: 24px;">🎓 ¡Felicidades!</h3>
+                        <p style="margin: 0 0 20px 0; font-size: 16px;">
+                            ¡Has completado todas las lecciones de nivel A1!
+                        </p>
+                        <button class="btn-primary" onclick="app.startLevelTest('A1')"
+                                style="background: white; color: #667eea; margin-bottom: 10px;">
+                            📝 Hacer Examen de Nivel A1
+                        </button>
+                    </div>
+                    <button class="btn-primary" onclick="app.restartCurrentUnit()"
+                            style="background: var(--bg); color: var(--text); border: 2px solid var(--border); margin-top: 10px;">
+                        Repetir Lektion 7
+                    </button>
+                ` : hasNextUnit ? `
                     <button class="btn-primary" onclick="app.loadNextUnit()" style="margin-bottom: 10px;">
                         Weiter zu Lektion ${this.currentUnit + 1} →
                     </button>
@@ -1213,6 +1235,64 @@ class App {
                 `}
             </div>
         `;
+
+        // Mark Unit 7 as completed for level test system
+        if (completedA1) {
+            this.markUnitComplete(7);
+        }
+    }
+
+    /**
+     * Mark unit as completed
+     */
+    markUnitComplete(unitNumber) {
+        try {
+            const progress = JSON.parse(localStorage.getItem('spanish-app-progress') || '{}');
+            if (!progress.completedUnits) {
+                progress.completedUnits = [];
+            }
+            if (!progress.completedUnits.includes(unitNumber)) {
+                progress.completedUnits.push(unitNumber);
+            }
+            localStorage.setItem('spanish-app-progress', JSON.stringify(progress));
+        } catch (error) {
+            console.error('Error marking unit complete:', error);
+        }
+    }
+
+    /**
+     * Start level test
+     */
+    async startLevelTest(level) {
+        try {
+            window.Logger?.info(`Starting ${level} level test...`);
+
+            // Get the test
+            const test = this.levelTestSystem.getTestById(level);
+            if (!test) {
+                alert('Test not found!');
+                return;
+            }
+
+            // Show test instructions
+            const proceed = confirm(
+                `Examen de Nivel ${level}\n\n` +
+                `${test.description}\n\n` +
+                `Tiempo: ${test.timeLimit} minutos\n` +
+                `Puntuación mínima: ${test.passingScore}%\n\n` +
+                `IMPORTANTE: El examen está completamente en español sin ayuda en alemán.\n\n` +
+                `¿Estás listo para comenzar?`
+            );
+
+            if (!proceed) return;
+
+            // TODO: Implement test UI and flow
+            alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.');
+
+        } catch (error) {
+            window.Logger?.error('Error starting level test:', error);
+            alert('Fehler beim Starten des Tests');
+        }
     }
 
     /**
