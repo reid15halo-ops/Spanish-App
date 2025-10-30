@@ -50,15 +50,23 @@ class ImprovedFeedbackSystem {
 
             // Auto-advance after short pause
             const delay = validationResult.styleImprovements.length > 0 ? 4000 : 1500;
+            console.log('[ImprovedFeedbackSystem] Setting auto-advance timeout with delay:', delay);
             const timeoutId = setTimeout(() => {
+                console.log('[ImprovedFeedbackSystem] Auto-advance timeout triggered!');
                 if (window.app) {
+                    console.log('[ImprovedFeedbackSystem] Calling window.app.next()');
                     window.app.next();
+                } else {
+                    console.error('[ImprovedFeedbackSystem] window.app is not defined!');
                 }
             }, delay);
 
             // Store timeout ID in app for potential cancellation
             if (window.app) {
                 window.app.autoAdvanceTimeout = timeoutId;
+                console.log('[ImprovedFeedbackSystem] Stored timeout ID:', timeoutId);
+            } else {
+                console.error('[ImprovedFeedbackSystem] window.app not available to store timeout!');
             }
 
         } else {
