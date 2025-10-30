@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spanisch Test - 30 Minuten</title>
+    <link rel="stylesheet" href="css/ux-enhancements.css">
+    <link rel="stylesheet" href="css/test-mode.css">
+</head>
+<body>
+    <!-- Test Header with Timer -->
+    <header class="test-header">
+        <div class="header-content">
+            <h1>Spanisch Test</h1>
+            <div class="timer-container">
+                <svg class="timer-icon" viewBox="0 0 24 24" width="24" height="24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 6 L12 12 L16 14" fill="none" stroke="currentColor" stroke-width="2"/>
+                </svg>
+                <span class="timer" id="timer">30:00</span>
+            </div>
+            <button id="submitTestBtn" class="btn-submit">Test Abgeben</button>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="test-container">
+        <!-- Question Navigation Sidebar -->
+        <aside class="question-nav" id="questionNav">
+            <div class="nav-header">
+                <h3>Fragen</h3>
+                <button class="toggle-nav" id="toggleNav" aria-label="Navigation ein/ausblenden">
+                    <span class="toggle-icon">◀</span>
+                </button>
+            </div>
+            <div class="question-grid" id="questionGrid">
+                <!-- Question buttons will be generated here -->
+            </div>
+            <div class="nav-legend">
+                <div class="legend-item">
+                    <span class="status-dot status-answered"></span>
+                    <span>Beantwortet</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-dot status-current"></span>
+                    <span>Aktuell</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-dot status-unanswered"></span>
+                    <span>Offen</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Question Display Area -->
+        <main class="question-area">
+            <div class="question-header">
+                <div class="question-meta">
+                    <span class="question-number" id="questionNumber">Frage 1</span>
+                    <span class="question-difficulty" id="questionDifficulty"></span>
+                    <span class="question-phase" id="questionPhase"></span>
+                </div>
+            </div>
+
+            <div class="question-content" id="questionContent">
+                <!-- Question will be rendered here -->
+            </div>
+
+            <div class="question-controls">
+                <button id="prevBtn" class="btn-nav btn-prev">◀ Zurück</button>
+                <button id="nextBtn" class="btn-nav btn-next">Weiter ▶</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Results Dashboard (Initially Hidden) -->
+    <div class="results-container" id="resultsContainer" style="display: none;">
+        <div class="results-header">
+            <h1>Test Ergebnisse</h1>
+            <button id="closeResultsBtn" class="btn-close">✕</button>
+        </div>
+
+        <div class="results-summary">
+            <div class="summary-card card-score">
+                <div class="card-icon">🎯</div>
+                <div class="card-content">
+                    <h3>Punktzahl</h3>
+                    <div class="score-display">
+                        <span class="score-value" id="scoreValue">0</span>
+                        <span class="score-total">/100</span>
+                    </div>
+                    <div class="score-percentage" id="scorePercentage">0%</div>
+                </div>
+            </div>
+
+            <div class="summary-card card-time">
+                <div class="card-icon">⏱️</div>
+                <div class="card-content">
+                    <h3>Zeit</h3>
+                    <div class="time-display" id="timeDisplay">00:00</div>
+                    <div class="time-label">von 30:00</div>
+                </div>
+            </div>
+
+            <div class="summary-card card-correct">
+                <div class="card-icon">✓</div>
+                <div class="card-content">
+                    <h3>Richtig</h3>
+                    <div class="stat-display" id="correctCount">0</div>
+                    <div class="stat-label">Antworten</div>
+                </div>
+            </div>
+
+            <div class="summary-card card-incorrect">
+                <div class="card-icon">✗</div>
+                <div class="card-content">
+                    <h3>Falsch</h3>
+                    <div class="stat-display" id="incorrectCount">0</div>
+                    <div class="stat-label">Antworten</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weakness Visualization -->
+        <div class="weakness-analysis">
+            <h2>Schwachstellen-Analyse</h2>
+
+            <!-- By Category -->
+            <div class="analysis-section">
+                <h3>Nach Kategorie</h3>
+                <div class="chart-container">
+                    <canvas id="categoryChart"></canvas>
+                </div>
+                <div class="category-list" id="categoryList"></div>
+            </div>
+
+            <!-- By Difficulty -->
+            <div class="analysis-section">
+                <h3>Nach Schwierigkeitsgrad</h3>
+                <div class="chart-container">
+                    <canvas id="difficultyChart"></canvas>
+                </div>
+                <div class="difficulty-breakdown" id="difficultyBreakdown"></div>
+            </div>
+
+            <!-- By Unit -->
+            <div class="analysis-section">
+                <h3>Nach Lerneinheit</h3>
+                <div class="chart-container">
+                    <canvas id="unitChart"></canvas>
+                </div>
+                <div class="unit-breakdown" id="unitBreakdown"></div>
+            </div>
+
+            <!-- By Exercise Type -->
+            <div class="analysis-section">
+                <h3>Nach Übungstyp</h3>
+                <div class="type-breakdown" id="typeBreakdown"></div>
+            </div>
+        </div>
+
+        <!-- Detailed Question Review -->
+        <div class="question-review">
+            <h2>Fragen im Detail</h2>
+            <div class="review-filters">
+                <button class="filter-btn active" data-filter="all">Alle</button>
+                <button class="filter-btn" data-filter="incorrect">Falsch</button>
+                <button class="filter-btn" data-filter="correct">Richtig</button>
+            </div>
+            <div class="review-list" id="reviewList"></div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="results-actions">
+            <button id="retryTestBtn" class="btn-action btn-retry">Nochmal versuchen</button>
+            <button id="exportResultsBtn" class="btn-action btn-export">Ergebnisse exportieren</button>
+            <button id="backToMainBtn" class="btn-action btn-main">Zurück zur Hauptseite</button>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <p>Lade Test...</p>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal" style="display: none;">
+        <div class="modal-content">
+            <h2>Test abgeben?</h2>
+            <p id="confirmMessage">Möchten Sie den Test wirklich abgeben?</p>
+            <div class="modal-actions">
+                <button id="confirmSubmitBtn" class="btn-confirm">Ja, abgeben</button>
+                <button id="cancelSubmitBtn" class="btn-cancel">Abbrechen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/exercise-data.js"></script>
+    <script src="js/app-core.js"></script>
+    <script src="js/test-mode.js"></script>
+</body>
+</html>
