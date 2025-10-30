@@ -14,13 +14,11 @@ class ImprovedFeedbackSystem {
     }
 
     /**
-     * Get or create feedback area
+     * Get feedback area (always fresh lookup)
      */
     getFeedbackArea() {
-        if (!this.feedbackArea) {
-            this.feedbackArea = document.getElementById('feedback-area');
-        }
-        return this.feedbackArea;
+        // Always get fresh reference since exercises are re-rendered
+        return document.getElementById('feedback-area');
     }
 
     /**
