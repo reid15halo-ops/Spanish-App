@@ -993,13 +993,148 @@ class SentenceTemplateEngine {
     }
 
     /**
-     * Generate answer options
+     * Generate answer options with intelligent distractors
      */
-    generateOptions(correctAnswer, templateType) {
-        // TODO: Generate intelligent distractors based on template type
-        return [
-            { spanish: correctAnswer, german: '(richtig)', value: correctAnswer }
-        ];
+    generateOptions(correctAnswer, templateType, exercise = {}) {
+        const options = [];
+        const distractors = [];
+
+        // Generate distractors based on template type
+        if (templateType.includes('ser-estar') || templateType.includes('contrast')) {
+            // SER/ESTAR contrast exercises
+            distractors.push(...this.generateSerEstarDistractors(correctAnswer, exercise));
+        } else if (templateType.includes('ser')) {
+            // SER conjugation exercises
+            distractors.push(...this.generateSerDistractors(correctAnswer, exercise));
+        } else if (templateType.includes('estar')) {
+            // ESTAR conjugation exercises
+            distractors.push(...this.generateEstarDistractors(correctAnswer, exercise));
+        } else if (templateType.includes('tener')) {
+            // TENER conjugation exercises
+            distractors.push(...this.generateTenerDistractors(correctAnswer, exercise));
+        } else {
+            // Generic distractors for other exercise types
+            distractors.push(...this.generateGenericDistractors(correctAnswer));
+        }
+
+        // Add correct answer
+        options.push({ spanish: correctAnswer, german: '(richtig)', value: correctAnswer });
+
+        // Add unique distractors (max 3)
+        const uniqueDistractors = [...new Set(distractors)]
+            .filter(d => d !== correctAnswer)
+            .slice(0, 3);
+
+        uniqueDistractors.forEach(distractor => {
+            options.push({ spanish: distractor, german: '(falsch)', value: distractor });
+        });
+
+        // Shuffle options
+        return this.shuffleArray(options);
+    }
+
+    /**
+     * Generate SER/ESTAR contrast distractors
+     */
+    generateSerEstarDistractors(correctAnswer, exercise) {
+        const distractors = [];
+        const person = this.extractPerson(exercise);
+
+        // If correct answer uses SER, add ESTAR form and vice versa
+        if (correctAnswer.includes('soy')) {
+            distractors.push('estoy');
+        } else if (correctAnswer.includes('eres')) {
+            distractors.push('estás');
+        } else if (correctAnswer.includes('es ')) {
+            distractors.push('está');
+        } else if (correctAnswer.includes('somos')) {
+            distractors.push('estamos');
+        } else if (correctAnswer.includes('sois')) {
+            distractors.push('estáis');
+        } else if (correctAnswer.includes('son')) {
+            distractors.push('están');
+        } else if (correctAnswer.includes('estoy')) {
+            distractors.push('soy');
+        } else if (correctAnswer.includes('estás')) {
+            distractors.push('eres');
+        } else if (correctAnswer.includes('está')) {
+            distractors.push('es');
+        } else if (correctAnswer.includes('estamos')) {
+            distractors.push('somos');
+        } else if (correctAnswer.includes('estáis')) {
+            distractors.push('sois');
+        } else if (correctAnswer.includes('están')) {
+            distractors.push('son');
+        }
+
+        // Add TENER as additional distractor
+        const tenerForms = ['tengo', 'tienes', 'tiene', 'tenemos', 'tenéis', 'tienen'];
+        distractors.push(tenerForms[Math.floor(Math.random() * tenerForms.length)]);
+
+        return distractors;
+    }
+
+    /**
+     * Generate SER conjugation distractors
+     */
+    generateSerDistractors(correctAnswer, exercise) {
+        const serForms = ['soy', 'eres', 'es', 'somos', 'sois', 'son'];
+        return serForms.filter(form => form !== correctAnswer).slice(0, 3);
+    }
+
+    /**
+     * Generate ESTAR conjugation distractors
+     */
+    generateEstarDistractors(correctAnswer, exercise) {
+        const estarForms = ['estoy', 'estás', 'está', 'estamos', 'estáis', 'están'];
+        return estarForms.filter(form => form !== correctAnswer).slice(0, 3);
+    }
+
+    /**
+     * Generate TENER conjugation distractors
+     */
+    generateTenerDistractors(correctAnswer, exercise) {
+        const tenerForms = ['tengo', 'tienes', 'tiene', 'tenemos', 'tenéis', 'tienen'];
+        return tenerForms.filter(form => form !== correctAnswer).slice(0, 3);
+    }
+
+    /**
+     * Generate generic distractors
+     */
+    generateGenericDistractors(correctAnswer) {
+        // Return some common wrong answers
+        return ['soy', 'estoy', 'tengo', 'es', 'está', 'tiene']
+            .filter(form => form !== correctAnswer)
+            .slice(0, 3);
+    }
+
+    /**
+     * Extract person from exercise context
+     */
+    extractPerson(exercise) {
+        if (!exercise || !exercise.question) return 'yo';
+
+        const question = exercise.question.toLowerCase();
+        if (question.includes('yo')) return 'yo';
+        if (question.includes('tú')) return 'tu';
+        if (question.includes('él') || question.includes('ella')) return 'el';
+        if (question.includes('nosotros')) return 'nosotros';
+        if (question.includes('vosotros')) return 'vosotros';
+        if (question.includes('ellos') || question.includes('ellas')) return 'ellos';
+
+        return 'yo';
+    }
+
+    /**
+     * Shuffle array using Fisher-Yates algorithm
+     */
+    shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
     }
 
     /**

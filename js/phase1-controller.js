@@ -613,10 +613,41 @@ class Phase1Controller {
      * Get Unit 6 vocabulary for adaptive practice
      */
     getUnit6Vocabulary() {
-        // This would load from phase1-vocabulary.json
-        // For now, return empty array
-        // TODO: Implement vocabulary loading
+        // Load vocabulary from cache if available
+        if (this.vocabularyCache) {
+            return this.vocabularyCache;
+        }
+
+        // Return empty array if vocabulary not loaded yet
+        // Vocabulary will be loaded asynchronously via loadVocabulary()
         return [];
+    }
+
+    /**
+     * Load vocabulary from phase1-vocabulary.json
+     */
+    async loadVocabulary() {
+        try {
+            const response = await fetch('data/phase1-vocabulary.json');
+            const data = await response.json();
+
+            // Flatten all vocabulary words from all categories into a single array
+            this.vocabularyCache = [];
+
+            for (const categoryKey in data.categories) {
+                const category = data.categories[categoryKey];
+                if (category.words && Array.isArray(category.words)) {
+                    this.vocabularyCache.push(...category.words);
+                }
+            }
+
+            console.log(`✅ Loaded ${this.vocabularyCache.length} vocabulary words`);
+            return this.vocabularyCache;
+        } catch (error) {
+            console.error('Failed to load vocabulary:', error);
+            this.vocabularyCache = [];
+            return [];
+        }
     }
 
     /**

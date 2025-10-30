@@ -39,6 +39,9 @@ class App {
         // Load Unit 1
         await this.loadUnit(1);
 
+        // Build sidebar navigation
+        this.buildSidebar();
+
         // Check for saved progress
         const savedProgress = this.loadProgress();
         let startIndex = 0;
@@ -55,10 +58,49 @@ class App {
         // Show exercise (either saved position or first)
         this.showExercise(startIndex);
 
+        // Setup navigation buttons
+        this.setupNavigationButtons();
+
         // Setup settings button
         this.setupSettingsButton();
 
+        // Setup mobile sidebar toggle
+        this.setupSidebarToggle();
+
         console.log('✅ App ready!');
+    }
+
+    /**
+     * Setup navigation buttons
+     */
+    setupNavigationButtons() {
+        const prevBtn = document.getElementById('prev-btn');
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.previous());
+        }
+    }
+
+    /**
+     * Setup mobile sidebar toggle
+     */
+    setupSidebarToggle() {
+        const toggle = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+
+        if (toggle && sidebar) {
+            toggle.addEventListener('click', () => {
+                sidebar.classList.toggle('mobile-open');
+            });
+
+            // Close sidebar when clicking on exercise
+            document.querySelectorAll('.exercise-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        sidebar.classList.remove('mobile-open');
+                    }
+                });
+            });
+        }
     }
 
     /**
@@ -272,6 +314,26 @@ class App {
     }
 
     /**
+     * Go to previous exercise
+     */
+    previous() {
+        if (this.currentIndex > 0) {
+            this.showExercise(this.currentIndex - 1);
+            this.saveProgress();
+        }
+    }
+
+    /**
+     * Jump to specific exercise
+     */
+    jumpToExercise(index) {
+        if (index >= 0 && index < this.exercises.length) {
+            this.showExercise(index);
+            this.saveProgress();
+        }
+    }
+
+    /**
      * Update progress display
      */
     updateProgress() {
@@ -288,6 +350,154 @@ class App {
                 <div class="progress-fill" style="width: ${percentage}%"></div>
             </div>
         `;
+
+        // Update sidebar
+        this.updateSidebar();
+
+        // Update prev button state
+        this.updateNavigationButtons();
+    }
+
+    /**
+     * Build sidebar navigation
+     */
+    buildSidebar() {
+        const nav = document.getElementById('exercise-nav');
+        if (!nav) return;
+
+        nav.innerHTML = '';
+
+        // Group exercises by concept if available
+        const groupedExercises = this.groupExercisesByConcept();
+
+        for (const [concept, exercises] of Object.entries(groupedExercises)) {
+            const section = document.createElement('div');
+            section.className = 'unit-section';
+
+            const title = document.createElement('div');
+            title.className = 'unit-title';
+            title.textContent = concept;
+            section.appendChild(title);
+
+            const list = document.createElement('ul');
+            list.className = 'exercise-list';
+
+            exercises.forEach(({ exercise, index }) => {
+                const item = document.createElement('li');
+                item.className = 'exercise-item';
+                item.dataset.index = index;
+
+                const number = document.createElement('span');
+                number.className = 'exercise-number';
+                number.textContent = `${index + 1}.`;
+
+                const label = document.createElement('span');
+                label.textContent = this.getExerciseLabel(exercise);
+
+                item.appendChild(number);
+                item.appendChild(label);
+
+                item.addEventListener('click', () => {
+                    this.jumpToExercise(index);
+                });
+
+                list.appendChild(item);
+            });
+
+            section.appendChild(list);
+            nav.appendChild(section);
+        }
+    }
+
+    /**
+     * Group exercises by concept for sidebar
+     */
+    groupExercisesByConcept() {
+        const groups = {};
+
+        this.exercises.forEach((exercise, index) => {
+            const concept = exercise.concept || 'Allgemein';
+            const groupName = this.getConceptLabel(concept);
+
+            if (!groups[groupName]) {
+                groups[groupName] = [];
+            }
+
+            groups[groupName].push({ exercise, index });
+        });
+
+        return groups;
+    }
+
+    /**
+     * Get label for exercise in sidebar
+     */
+    getExerciseLabel(exercise) {
+        if (exercise.question) {
+            return exercise.question.substring(0, 30) + (exercise.question.length > 30 ? '...' : '');
+        }
+        return exercise.type || 'Übung';
+    }
+
+    /**
+     * Get readable label for concept
+     */
+    getConceptLabel(concept) {
+        const labels = {
+            'ser-conjugation': 'SER Konjugation',
+            'estar-conjugation': 'ESTAR Konjugation',
+            'tener': 'TENER',
+            'ser-estar-contrast': 'SER vs ESTAR',
+            'vocabulary': 'Vokabeln',
+            'integration': 'Integration'
+        };
+
+        // Try to find match
+        for (const [key, label] of Object.entries(labels)) {
+            if (concept.includes(key)) {
+                return label;
+            }
+        }
+
+        return concept;
+    }
+
+    /**
+     * Update sidebar to highlight current exercise
+     */
+    updateSidebar() {
+        const items = document.querySelectorAll('.exercise-item');
+        items.forEach(item => {
+            const index = parseInt(item.dataset.index);
+            item.classList.remove('active', 'completed');
+
+            if (index === this.currentIndex) {
+                item.classList.add('active');
+            } else if (index < this.currentIndex) {
+                item.classList.add('completed');
+            }
+        });
+
+        // Scroll active item into view
+        const activeItem = document.querySelector('.exercise-item.active');
+        if (activeItem) {
+            activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+    }
+
+    /**
+     * Update navigation button states
+     */
+    updateNavigationButtons() {
+        const prevBtn = document.getElementById('prev-btn');
+        if (prevBtn) {
+            if (this.currentIndex > 0) {
+                prevBtn.style.display = 'block';
+                prevBtn.disabled = false;
+            } else {
+                prevBtn.disabled = true;
+            }
+        }
     }
 
     /**
