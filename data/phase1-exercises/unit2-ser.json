@@ -2004,7 +2004,7 @@
     {
       "id": "u2_ex030",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-existential",
       "question": "Pienso, luego ___. (Ich denke, also bin ich. - Descartes)",
       "correctAnswer": "soy",
@@ -2057,7 +2057,7 @@
     {
       "id": "u2_ex031",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-opinion",
       "question": "Übersetze: 'Meiner Meinung nach ist das richtig.'",
       "correctAnswer": "En mi opinión, esto es correcto",
@@ -2114,7 +2114,7 @@
     {
       "id": "u2_ex032",
       "type": "multiple-choice",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-definition",
       "question": "Wie definierst du etwas: 'Ein Hund ist ein Tier'?",
       "correctAnswer": "Un perro es un animal",
@@ -2173,7 +2173,7 @@
     {
       "id": "u2_ex033",
       "type": "translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-comprehensive-2",
       "question": "Übersetze: 'Sie (ella) ist Spanierin, Lehrerin und sehr nett.'",
       "correctAnswer": "Ella es española, profesora y muy amable",
@@ -2229,7 +2229,7 @@
     {
       "id": "u2_ex034",
       "type": "fill-blank",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-impersonal",
       "question": "___ posible aprender español. (Es ist möglich, Spanisch zu lernen.)",
       "correctAnswer": "Es",
@@ -2283,7 +2283,7 @@
     {
       "id": "u2_ex035",
       "type": "comprehensive",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "ser-all-uses",
       "question": "Wähle das RICHTIGE Verb: 'Heute ___ Montag und die Party ___ in Madrid. Ich ___ Student.'",
       "correctAnswer": "es, es, soy",
@@ -2405,6 +2405,32 @@
       "C": "Characteristic (Charaktereigenschaft)",
       "T": "Time (Uhrzeit/Datum)",
       "R": "Relationship (Beziehung)"
+    }
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u2_vocab001 - u2_vocab013",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 13
+    },
+    "phase1_input": {
+      "exercises": "u2_input001 - u2_input008",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 8
+    },
+    "phase2_guided": {
+      "exercises": "u2_guided001 - u2_guided022",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 22
+    },
+    "phase3_free": {
+      "exercises": "u2_free001 - u2_free012",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 12
     }
   }
 }

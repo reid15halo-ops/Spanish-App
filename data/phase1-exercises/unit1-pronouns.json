@@ -251,9 +251,18 @@
       "category": "pronoun",
       "question": "Sieh dir 'yo' in verschiedenen Sätzen an:",
       "exampleSentences": [
-        {"es": "Yo soy Pedro.", "de": "Ich bin Pedro."},
-        {"es": "Yo me llamo Ana.", "de": "Ich heiße Ana."},
-        {"es": "Yo soy de Alemania.", "de": "Ich komme aus Deutschland."}
+        {
+          "es": "Yo soy Pedro.",
+          "de": "Ich bin Pedro."
+        },
+        {
+          "es": "Yo me llamo Ana.",
+          "de": "Ich heiße Ana."
+        },
+        {
+          "es": "Yo soy de Alemania.",
+          "de": "Ich komme aus Deutschland."
+        }
       ],
       "usage": "Verwende 'yo' um über dich selbst zu sprechen (kann oft weggelassen werden)",
       "germanBridge": "🇩🇪 ich → 🇪🇸 yo",
@@ -270,9 +279,18 @@
       "category": "pronoun",
       "question": "Sieh dir 'tú' in verschiedenen Sätzen an:",
       "exampleSentences": [
-        {"es": "Tú eres María.", "de": "Du bist María."},
-        {"es": "¿De dónde eres tú?", "de": "Woher kommst du?"},
-        {"es": "Tú eres mi amigo.", "de": "Du bist mein Freund."}
+        {
+          "es": "Tú eres María.",
+          "de": "Du bist María."
+        },
+        {
+          "es": "¿De dónde eres tú?",
+          "de": "Woher kommst du?"
+        },
+        {
+          "es": "Tú eres mi amigo.",
+          "de": "Du bist mein Freund."
+        }
       ],
       "usage": "Verwende 'tú' für informelles 'du' (mit Freunden, Familie)",
       "germanBridge": "🇩🇪 du → 🇪🇸 tú (Mit Akzent!)",
@@ -290,9 +308,18 @@
       "category": "verb",
       "question": "Sieh dir das Verb 'ser' in Aktion:",
       "exampleSentences": [
-        {"es": "Yo soy estudiante.", "de": "Ich bin Student."},
-        {"es": "Tú eres profesor.", "de": "Du bist Lehrer."},
-        {"es": "Soy de España.", "de": "Ich bin aus Spanien."}
+        {
+          "es": "Yo soy estudiante.",
+          "de": "Ich bin Student."
+        },
+        {
+          "es": "Tú eres profesor.",
+          "de": "Du bist Lehrer."
+        },
+        {
+          "es": "Soy de España.",
+          "de": "Ich bin aus Spanien."
+        }
       ],
       "conjugation": {
         "yo": "soy",
@@ -313,9 +340,18 @@
       "category": "greeting",
       "question": "Sieh dir 'hola' in verschiedenen Situationen:",
       "exampleSentences": [
-        {"es": "¡Hola! ¿Cómo te llamas?", "de": "Hallo! Wie heißt du?"},
-        {"es": "¡Hola, Pedro!", "de": "Hallo, Pedro!"},
-        {"es": "Hola, yo soy Ana.", "de": "Hallo, ich bin Ana."}
+        {
+          "es": "¡Hola! ¿Cómo te llamas?",
+          "de": "Hallo! Wie heißt du?"
+        },
+        {
+          "es": "¡Hola, Pedro!",
+          "de": "Hallo, Pedro!"
+        },
+        {
+          "es": "Hola, yo soy Ana.",
+          "de": "Hallo, ich bin Ana."
+        }
       ],
       "usage": "Universelle Begrüßung zu jeder Tageszeit",
       "germanBridge": "🇩🇪 hallo → 🇪🇸 hola",
@@ -332,9 +368,18 @@
       "category": "phrase",
       "question": "Sieh dir 'me llamo' in Aktion:",
       "exampleSentences": [
-        {"es": "Me llamo Pedro.", "de": "Ich heiße Pedro."},
-        {"es": "¿Cómo te llamas? - Me llamo Ana.", "de": "Wie heißt du? - Ich heiße Ana."},
-        {"es": "Hola, me llamo María.", "de": "Hallo, ich heiße María."}
+        {
+          "es": "Me llamo Pedro.",
+          "de": "Ich heiße Pedro."
+        },
+        {
+          "es": "¿Cómo te llamas? - Me llamo Ana.",
+          "de": "Wie heißt du? - Ich heiße Ana."
+        },
+        {
+          "es": "Hola, me llamo María.",
+          "de": "Hallo, ich heiße María."
+        }
       ],
       "usage": "Verwende 'me llamo' + dein Name um dich vorzustellen",
       "germanBridge": "🇩🇪 ich heiße → 🇪🇸 me llamo",
@@ -349,23 +394,52 @@
       "concept": "self-introduction",
       "question": "Lies den Dialog und verstehe ihn:",
       "dialog": [
-        {"speaker": "Pedro", "text": "¡Hola! Me llamo Pedro."},
-        {"speaker": "María", "text": "¡Hola, Pedro! Yo soy María."},
-        {"speaker": "Pedro", "text": "Mucho gusto, María."}
+        {
+          "speaker": "Pedro",
+          "text": "¡Hola! Me llamo Pedro."
+        },
+        {
+          "speaker": "María",
+          "text": "¡Hola, Pedro! Yo soy María."
+        },
+        {
+          "speaker": "Pedro",
+          "text": "Mucho gusto, María."
+        }
       ],
       "translation": [
-        {"speaker": "Pedro", "text": "Hallo! Ich heiße Pedro."},
-        {"speaker": "María", "text": "Hallo, Pedro! Ich bin María."},
-        {"speaker": "Pedro", "text": "Sehr erfreut, María."}
+        {
+          "speaker": "Pedro",
+          "text": "Hallo! Ich heiße Pedro."
+        },
+        {
+          "speaker": "María",
+          "text": "Hallo, Pedro! Ich bin María."
+        },
+        {
+          "speaker": "Pedro",
+          "text": "Sehr erfreut, María."
+        }
       ],
       "comprehensionCheck": {
         "question": "Wie heißt die Frau?",
         "correctAnswer": "María",
-        "options": ["Pedro", "María", "Ana", "Juan"]
+        "options": [
+          "Pedro",
+          "María",
+          "Ana",
+          "Juan"
+        ]
       },
-      "newVocabulary": ["hola", "me llamo", "yo soy", "mucho gusto"],
+      "newVocabulary": [
+        "hola",
+        "me llamo",
+        "yo soy",
+        "mucho gusto"
+      ],
       "explanation": "In diesem Dialog stellen sich zwei Personen vor. Beachte: 'Me llamo' (Ich heiße) und 'Yo soy' (Ich bin) bedeuten beide 'Ich bin', aber 'me llamo' verwendet man für den Namen.",
-      "audioHint": "Höre genau hin: 'ME YA-mo' (me llamo), 'MU-cho GUS-to' (mucho gusto)"
+      "audioHint": "Höre genau hin: 'ME YA-mo' (me llamo), 'MU-cho GUS-to' (mucho gusto)",
+      "germanBridge": "🇩🇪→🇪🇸 Deutsche Struktur ähnlich: \"Ich bin\" → \"Yo soy\""
     },
     {
       "id": "u1_input002",
@@ -375,23 +449,53 @@
       "concept": "origin",
       "question": "Lies den Dialog:",
       "dialog": [
-        {"speaker": "Ana", "text": "¿De dónde eres?"},
-        {"speaker": "Tom", "text": "Soy de Alemania. ¿Y tú?"},
-        {"speaker": "Ana", "text": "Yo soy de España."}
+        {
+          "speaker": "Ana",
+          "text": "¿De dónde eres?"
+        },
+        {
+          "speaker": "Tom",
+          "text": "Soy de Alemania. ¿Y tú?"
+        },
+        {
+          "speaker": "Ana",
+          "text": "Yo soy de España."
+        }
       ],
       "translation": [
-        {"speaker": "Ana", "text": "Woher kommst du?"},
-        {"speaker": "Tom", "text": "Ich komme aus Deutschland. Und du?"},
-        {"speaker": "Ana", "text": "Ich komme aus Spanien."}
+        {
+          "speaker": "Ana",
+          "text": "Woher kommst du?"
+        },
+        {
+          "speaker": "Tom",
+          "text": "Ich komme aus Deutschland. Und du?"
+        },
+        {
+          "speaker": "Ana",
+          "text": "Ich komme aus Spanien."
+        }
       ],
       "comprehensionCheck": {
         "question": "Woher kommt Tom?",
         "correctAnswer": "Alemania",
-        "options": ["España", "Alemania", "Francia", "Italia"]
+        "options": [
+          "España",
+          "Alemania",
+          "Francia",
+          "Italia"
+        ]
       },
-      "newVocabulary": ["de dónde", "eres", "soy de", "Alemania", "España"],
+      "newVocabulary": [
+        "de dónde",
+        "eres",
+        "soy de",
+        "Alemania",
+        "España"
+      ],
       "explanation": "'De dónde eres?' = 'Woher kommst du?' | 'Soy de...' = 'Ich komme aus...'",
-      "grammarNote": "SER wird verwendet für Herkunft: Soy DE Alemania"
+      "grammarNote": "SER wird verwendet für Herkunft: Soy DE Alemania",
+      "germanBridge": "🇩🇪→🇪🇸 \"aus Deutschland\" → \"de Alemania\" (verwende SER)"
     },
     {
       "id": "u1_input003",
@@ -401,23 +505,51 @@
       "concept": "profession",
       "question": "Lies den Dialog:",
       "dialog": [
-        {"speaker": "Luis", "text": "Yo soy estudiante. ¿Y tú?"},
-        {"speaker": "Emma", "text": "Yo soy profesora."},
-        {"speaker": "Luis", "text": "¡Qué bien!"}
+        {
+          "speaker": "Luis",
+          "text": "Yo soy estudiante. ¿Y tú?"
+        },
+        {
+          "speaker": "Emma",
+          "text": "Yo soy profesora."
+        },
+        {
+          "speaker": "Luis",
+          "text": "¡Qué bien!"
+        }
       ],
       "translation": [
-        {"speaker": "Luis", "text": "Ich bin Student. Und du?"},
-        {"speaker": "Emma", "text": "Ich bin Lehrerin."},
-        {"speaker": "Luis", "text": "Wie schön!"}
+        {
+          "speaker": "Luis",
+          "text": "Ich bin Student. Und du?"
+        },
+        {
+          "speaker": "Emma",
+          "text": "Ich bin Lehrerin."
+        },
+        {
+          "speaker": "Luis",
+          "text": "Wie schön!"
+        }
       ],
       "comprehensionCheck": {
         "question": "Was ist Emma von Beruf?",
         "correctAnswer": "profesora",
-        "options": ["estudiante", "profesora", "médica", "ingeniera"]
+        "options": [
+          "estudiante",
+          "profesora",
+          "médica",
+          "ingeniera"
+        ]
       },
-      "newVocabulary": ["estudiante", "profesor/profesora", "qué bien"],
+      "newVocabulary": [
+        "estudiante",
+        "profesor/profesora",
+        "qué bien"
+      ],
       "explanation": "'Yo soy + Beruf' = 'Ich bin + Beruf'. Beachte: estudiante ist gleich für Mann und Frau!",
-      "grammarNote": "SER wird verwendet für Beruf: Soy profesora"
+      "grammarNote": "SER wird verwendet für Beruf: Soy profesora",
+      "germanBridge": "🇩🇪→🇪🇸 Beruf mit SER: \"Ich bin Arzt\" → \"Soy médico\""
     },
     {
       "id": "u1_input004",
@@ -427,17 +559,31 @@
       "concept": "complete-introduction",
       "question": "Lies Karlas vollständige Vorstellung:",
       "dialog": [
-        {"speaker": "Karla", "text": "¡Hola! Me llamo Karla. Soy de México. Soy médica."}
+        {
+          "speaker": "Karla",
+          "text": "¡Hola! Me llamo Karla. Soy de México. Soy médica."
+        }
       ],
       "translation": [
-        {"speaker": "Karla", "text": "Hallo! Ich heiße Karla. Ich komme aus Mexiko. Ich bin Ärztin."}
+        {
+          "speaker": "Karla",
+          "text": "Hallo! Ich heiße Karla. Ich komme aus Mexiko. Ich bin Ärztin."
+        }
       ],
       "comprehensionCheck": {
         "question": "Woher kommt Karla?",
         "correctAnswer": "México",
-        "options": ["España", "México", "Argentina", "Colombia"]
+        "options": [
+          "España",
+          "México",
+          "Argentina",
+          "Colombia"
+        ]
       },
-      "newVocabulary": ["México", "médico/médica"],
+      "newVocabulary": [
+        "México",
+        "médico/médica"
+      ],
       "explanation": "Eine komplette Vorstellung: Name + Herkunft + Beruf",
       "pattern": "Me llamo [Name]. Soy de [Land]. Soy [Beruf]."
     },
@@ -449,23 +595,55 @@
       "concept": "asking-questions",
       "question": "Lies die Fragen:",
       "dialog": [
-        {"speaker": "Anna", "text": "¿Cómo te llamas?"},
-        {"speaker": "Marco", "text": "Me llamo Marco."},
-        {"speaker": "Anna", "text": "¿De dónde eres?"},
-        {"speaker": "Marco", "text": "Soy de Italia."}
+        {
+          "speaker": "Anna",
+          "text": "¿Cómo te llamas?"
+        },
+        {
+          "speaker": "Marco",
+          "text": "Me llamo Marco."
+        },
+        {
+          "speaker": "Anna",
+          "text": "¿De dónde eres?"
+        },
+        {
+          "speaker": "Marco",
+          "text": "Soy de Italia."
+        }
       ],
       "translation": [
-        {"speaker": "Anna", "text": "Wie heißt du?"},
-        {"speaker": "Marco", "text": "Ich heiße Marco."},
-        {"speaker": "Anna", "text": "Woher kommst du?"},
-        {"speaker": "Marco", "text": "Ich komme aus Italien."}
+        {
+          "speaker": "Anna",
+          "text": "Wie heißt du?"
+        },
+        {
+          "speaker": "Marco",
+          "text": "Ich heiße Marco."
+        },
+        {
+          "speaker": "Anna",
+          "text": "Woher kommst du?"
+        },
+        {
+          "speaker": "Marco",
+          "text": "Ich komme aus Italien."
+        }
       ],
       "comprehensionCheck": {
         "question": "Welche Frage stellt Anna zuerst?",
         "correctAnswer": "¿Cómo te llamas?",
-        "options": ["¿Cómo te llamas?", "¿De dónde eres?", "¿Qué haces?", "¿Cómo estás?"]
+        "options": [
+          "¿Cómo te llamas?",
+          "¿De dónde eres?",
+          "¿Qué haces?",
+          "¿Cómo estás?"
+        ]
       },
-      "newVocabulary": ["cómo te llamas", "Italia"],
+      "newVocabulary": [
+        "cómo te llamas",
+        "Italia"
+      ],
       "explanation": "Zwei wichtige Fragen: ¿Cómo te llamas? (Wie heißt du?) | ¿De dónde eres? (Woher kommst du?)"
     },
     {
@@ -476,7 +654,9 @@
       "concept": "self-introduction",
       "question": "____ soy María. (Ich bin María.)",
       "correctAnswer": "Yo",
-      "alternativeAnswers": ["yo"],
+      "alternativeAnswers": [
+        "yo"
+      ],
       "example": "Beispiel: Yo soy Pedro.",
       "hint": "Das Pronomen für 'ich'",
       "explanation": "'Yo' = ich. Im Spanischen kann es oft weggelassen werden, aber hier verwenden wir es.",
@@ -583,7 +763,9 @@
       "concept": "greeting",
       "question": "____! ¿Cómo te llamas? (Hallo! Wie heißt du?)",
       "correctAnswer": "Hola",
-      "alternativeAnswers": ["hola"],
+      "alternativeAnswers": [
+        "hola"
+      ],
       "example": "Beispiel: ¡Hola! Yo soy María.",
       "hint": "Die Begrüßung (h ist stumm)",
       "explanation": "'¡Hola!' = Hallo!",
@@ -610,7 +792,12 @@
       "concept": "name-vs-identity",
       "question": "Wie sagt man 'Ich heiße Pedro'?",
       "correctAnswer": "Me llamo Pedro",
-      "options": ["Me llamo Pedro", "Soy Pedro", "Yo Pedro", "Llamo Pedro"],
+      "options": [
+        "Me llamo Pedro",
+        "Soy Pedro",
+        "Yo Pedro",
+        "Llamo Pedro"
+      ],
       "explanation": "'Me llamo' verwendet man für den Namen. 'Soy Pedro' ist auch möglich, aber 'Me llamo' ist üblicher für die Vorstellung.",
       "germanBridge": "🇩🇪 Ich heiße → 🇪🇸 Me llamo",
       "hint": "Die feste Phrase mit 'llamo'"
@@ -623,7 +810,12 @@
       "concept": "origin-phrase",
       "question": "Wie sagt man 'Ich komme aus Spanien'?",
       "correctAnswer": "Soy de España",
-      "options": ["Soy de España", "Estoy en España", "Soy España", "De España soy"],
+      "options": [
+        "Soy de España",
+        "Estoy en España",
+        "Soy España",
+        "De España soy"
+      ],
       "explanation": "'Soy de' = Ich bin aus/komme aus. Verwende immer SER + de für Herkunft!",
       "germanBridge": "🇩🇪 Ich komme aus → 🇪🇸 Soy de",
       "hint": "SER + Präposition 'de'"
@@ -636,7 +828,12 @@
       "concept": "asking-origin",
       "question": "Wie fragt man 'Woher kommst du?'",
       "correctAnswer": "¿De dónde eres?",
-      "options": ["¿De dónde eres?", "¿Dónde estás?", "¿De eres?", "¿Cómo eres?"],
+      "options": [
+        "¿De dónde eres?",
+        "¿Dónde estás?",
+        "¿De eres?",
+        "¿Cómo eres?"
+      ],
       "explanation": "'¿De dónde eres?' = Woher kommst du? (wörtlich: Von wo bist du?)",
       "germanBridge": "🇩🇪 Woher kommst du? → 🇪🇸 ¿De dónde eres?",
       "hint": "Die Frage mit 'de dónde'"
@@ -649,7 +846,12 @@
       "concept": "pronoun-choice",
       "question": "Was ist das Pronomen für 'ich'?",
       "correctAnswer": "yo",
-      "options": ["yo", "tú", "él", "me"],
+      "options": [
+        "yo",
+        "tú",
+        "él",
+        "me"
+      ],
       "explanation": "'Yo' = ich. Es kann oft weggelassen werden, aber es ist das Subjektpronomen.",
       "germanBridge": "🇩🇪 ich → 🇪🇸 yo",
       "hint": "Klingt wie 'Jo'"
@@ -662,7 +864,12 @@
       "concept": "profession-identification",
       "question": "Wie sagt man 'Ich bin Ärztin' (weiblich)?",
       "correctAnswer": "Soy médica",
-      "options": ["Soy médica", "Soy médico", "Estoy médica", "Soy doctor"],
+      "options": [
+        "Soy médica",
+        "Soy médico",
+        "Estoy médica",
+        "Soy doctor"
+      ],
       "explanation": "'Médica' ist die weibliche Form von Arzt. Verwende SER für Berufe!",
       "germanBridge": "🇩🇪 Ich bin Ärztin → 🇪🇸 Soy médica",
       "hint": "SER + weibliche Form"
@@ -675,7 +882,10 @@
       "concept": "full-introduction",
       "question": "Übersetze: 'Hallo! Ich heiße María.'",
       "correctAnswer": "¡Hola! Me llamo María",
-      "alternativeAnswers": ["Hola! Me llamo María", "¡Hola! Me llamo María."],
+      "alternativeAnswers": [
+        "Hola! Me llamo María",
+        "¡Hola! Me llamo María."
+      ],
       "explanation": "Beginne mit der Begrüßung, dann 'Me llamo' + Name.",
       "germanBridge": "🇩🇪 Hallo! Ich heiße... → 🇪🇸 ¡Hola! Me llamo...",
       "hint": "Denk an die Ausrufezeichen: ¡...!"
@@ -688,7 +898,10 @@
       "concept": "origin-statement",
       "question": "Übersetze: 'Ich komme aus Deutschland.'",
       "correctAnswer": "Soy de Alemania",
-      "alternativeAnswers": ["Yo soy de Alemania", "Soy de Alemania."],
+      "alternativeAnswers": [
+        "Yo soy de Alemania",
+        "Soy de Alemania."
+      ],
       "explanation": "Verwende 'Soy de' + Ländername.",
       "germanBridge": "🇩🇪 Ich komme aus... → 🇪🇸 Soy de...",
       "hint": "SER + de + Land"
@@ -701,7 +914,10 @@
       "concept": "profession-statement",
       "question": "Übersetze: 'Ich bin Student.' (männlich)",
       "correctAnswer": "Soy estudiante",
-      "alternativeAnswers": ["Yo soy estudiante", "Soy estudiante."],
+      "alternativeAnswers": [
+        "Yo soy estudiante",
+        "Soy estudiante."
+      ],
       "explanation": "'Estudiante' ist gleich für Mann und Frau!",
       "germanBridge": "🇩🇪 Ich bin Student → 🇪🇸 Soy estudiante",
       "hint": "SER + Beruf"
@@ -714,7 +930,10 @@
       "concept": "asking-name-question",
       "question": "Übersetze: 'Wie heißt du?'",
       "correctAnswer": "¿Cómo te llamas?",
-      "alternativeAnswers": ["Como te llamas?", "¿Cómo te llamas"],
+      "alternativeAnswers": [
+        "Como te llamas?",
+        "¿Cómo te llamas"
+      ],
       "explanation": "Die Standardfrage für den Namen.",
       "germanBridge": "🇩🇪 Wie heißt du? → 🇪🇸 ¿Cómo te llamas?",
       "hint": "Beginnt mit '¿Cómo...'"
@@ -727,7 +946,10 @@
       "concept": "complete-introduction-long",
       "question": "Übersetze: 'Ich heiße Pedro und ich bin aus Mexiko.'",
       "correctAnswer": "Me llamo Pedro y soy de México",
-      "alternativeAnswers": ["Me llamo Pedro y soy de Mexico", "Me llamo Pedro y soy de México."],
+      "alternativeAnswers": [
+        "Me llamo Pedro y soy de Mexico",
+        "Me llamo Pedro y soy de México."
+      ],
       "explanation": "Kombiniere beide Phrasen mit 'y' (und).",
       "germanBridge": "🇩🇪 Ich heiße... und ich bin aus... → 🇪🇸 Me llamo... y soy de...",
       "hint": "Zwei Teile verbunden mit 'y'"
@@ -740,8 +962,20 @@
       "concept": "self-introduction-building",
       "question": "Bilde einen Satz: 'Hallo, ich heiße Ana.'",
       "correctAnswer": "¡Hola! Me llamo Ana.",
-      "words": ["¡Hola!", "Me", "llamo", "Ana", "Soy", "de"],
-      "correctOrder": ["¡Hola!", "Me", "llamo", "Ana"],
+      "words": [
+        "¡Hola!",
+        "Me",
+        "llamo",
+        "Ana",
+        "Soy",
+        "de"
+      ],
+      "correctOrder": [
+        "¡Hola!",
+        "Me",
+        "llamo",
+        "Ana"
+      ],
       "explanation": "Reihenfolge: Begrüßung + Me llamo + Name",
       "germanBridge": "🇩🇪 Hallo, ich heiße Ana → 🇪🇸 ¡Hola! Me llamo Ana.",
       "hint": "Beginne mit der Begrüßung"
@@ -754,8 +988,19 @@
       "concept": "origin-building",
       "question": "Bilde einen Satz: 'Ich bin aus Spanien.'",
       "correctAnswer": "Soy de España.",
-      "words": ["Soy", "de", "España", "estudiante", "yo", "en"],
-      "correctOrder": ["Soy", "de", "España"],
+      "words": [
+        "Soy",
+        "de",
+        "España",
+        "estudiante",
+        "yo",
+        "en"
+      ],
+      "correctOrder": [
+        "Soy",
+        "de",
+        "España"
+      ],
       "explanation": "Reihenfolge: Soy + de + Land",
       "germanBridge": "🇩🇪 Ich bin aus Spanien → 🇪🇸 Soy de España.",
       "hint": "SER + Präposition + Land"
@@ -768,8 +1013,26 @@
       "concept": "complete-intro-building",
       "question": "Bilde einen vollständigen Vorstellungssatz: 'Hallo! Ich heiße Tom. Ich bin aus Deutschland.'",
       "correctAnswer": "¡Hola! Me llamo Tom. Soy de Alemania.",
-      "words": ["¡Hola!", "Me", "llamo", "Tom", "Soy", "de", "Alemania", "España", "estudiante"],
-      "correctOrder": ["¡Hola!", "Me", "llamo", "Tom", "Soy", "de", "Alemania"],
+      "words": [
+        "¡Hola!",
+        "Me",
+        "llamo",
+        "Tom",
+        "Soy",
+        "de",
+        "Alemania",
+        "España",
+        "estudiante"
+      ],
+      "correctOrder": [
+        "¡Hola!",
+        "Me",
+        "llamo",
+        "Tom",
+        "Soy",
+        "de",
+        "Alemania"
+      ],
       "explanation": "Drei Teile: Begrüßung + Name + Herkunft",
       "germanBridge": "🇩🇪 Hallo! Ich heiße... Ich bin aus... → 🇪🇸 ¡Hola! Me llamo... Soy de...",
       "hint": "Drei Sätze kombinieren"

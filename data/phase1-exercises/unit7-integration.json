@@ -97,7 +97,7 @@
     {
       "id": "u7_ex002",
       "type": "comprehensive-translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "describing-person",
       "integratedUnits": [
         2,
@@ -155,7 +155,7 @@
     {
       "id": "u7_ex003",
       "type": "comprehensive-translation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "daily-routine",
       "integratedUnits": [
         3,
@@ -207,7 +207,7 @@
     {
       "id": "u7_ex004",
       "type": "comprehensive-translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "family-description",
       "integratedUnits": [
         2,
@@ -264,7 +264,7 @@
     {
       "id": "u7_ex005",
       "type": "comprehensive-translation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "weekend-plans",
       "integratedUnits": [
         3,
@@ -373,7 +373,7 @@
     {
       "id": "u7_ex007",
       "type": "conversation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "asking-how-are-you",
       "integratedUnits": [
         3,
@@ -429,7 +429,7 @@
     {
       "id": "u7_ex008",
       "type": "conversation",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "making-plans",
       "integratedUnits": [
         3,
@@ -483,7 +483,7 @@
     {
       "id": "u7_ex009",
       "type": "conversation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "restaurant-order",
       "integratedUnits": [
         5,
@@ -535,7 +535,7 @@
     {
       "id": "u7_ex010",
       "type": "conversation",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "phone-call",
       "integratedUnits": [
         2,
@@ -590,7 +590,7 @@
     {
       "id": "u7_ex011",
       "type": "practical-scenario",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "at-hotel-reception",
       "integratedUnits": [
         2,
@@ -643,7 +643,7 @@
     {
       "id": "u7_ex012",
       "type": "practical-scenario",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "asking-directions",
       "integratedUnits": [
         3,
@@ -697,7 +697,7 @@
     {
       "id": "u7_ex013",
       "type": "practical-scenario",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "doctor-appointment",
       "integratedUnits": [
         3,
@@ -752,7 +752,7 @@
     {
       "id": "u7_ex014",
       "type": "practical-scenario",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "job-interview",
       "integratedUnits": [
         2,
@@ -806,7 +806,7 @@
     {
       "id": "u7_ex015",
       "type": "practical-scenario",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "making-appointment",
       "integratedUnits": [
         3,
@@ -858,7 +858,7 @@
     {
       "id": "u7_ex016",
       "type": "error-correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "common-mistakes-1",
       "integratedUnits": [
         3,
@@ -909,7 +909,7 @@
     {
       "id": "u7_ex017",
       "type": "error-correction",
-      "difficulty": 6,
+      "difficulty": 3,
       "concept": "common-mistakes-2",
       "integratedUnits": [
         2,
@@ -960,7 +960,7 @@
     {
       "id": "u7_ex018",
       "type": "error-correction",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "common-mistakes-3",
       "integratedUnits": [
         4,
@@ -1012,7 +1012,7 @@
     {
       "id": "u7_ex019",
       "type": "error-correction",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "common-mistakes-4",
       "integratedUnits": [
         2,
@@ -1064,7 +1064,7 @@
     {
       "id": "u7_ex020",
       "type": "error-correction",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "common-mistakes-5",
       "integratedUnits": [
         4,
@@ -1117,7 +1117,7 @@
     {
       "id": "u7_ex021",
       "type": "mixed-grammar",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "pronoun-verb-agreement",
       "integratedUnits": [
         1,
@@ -1173,7 +1173,7 @@
     {
       "id": "u7_ex022",
       "type": "mixed-grammar",
-      "difficulty": 7,
+      "difficulty": 4,
       "concept": "verb-conjugation-mix",
       "integratedUnits": [
         2,
@@ -1226,7 +1226,7 @@
     {
       "id": "u7_ex023",
       "type": "mixed-grammar",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "all-verbs-all-persons",
       "integratedUnits": [
         1,
@@ -1282,7 +1282,7 @@
     {
       "id": "u7_ex024",
       "type": "mixed-grammar",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "formal-informal-mix",
       "integratedUnits": [
         1,
@@ -1334,7 +1334,7 @@
     {
       "id": "u7_ex025",
       "type": "mixed-grammar",
-      "difficulty": 8,
+      "difficulty": 4,
       "concept": "adjective-agreement",
       "integratedUnits": [
         6
@@ -1385,7 +1385,7 @@
     {
       "id": "u7_ex026",
       "type": "final-mastery",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "complete-description",
       "integratedUnits": [
         1,
@@ -1456,7 +1456,7 @@
     {
       "id": "u7_ex027",
       "type": "final-mastery",
-      "difficulty": 9,
+      "difficulty": 5,
       "concept": "daily-routine-full",
       "integratedUnits": [
         1,
@@ -1524,7 +1524,7 @@
     {
       "id": "u7_ex028",
       "type": "final-mastery",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "ser-estar-tener-complete",
       "integratedUnits": [
         2,
@@ -1604,7 +1604,7 @@
     {
       "id": "u7_ex029",
       "type": "final-mastery",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "free-composition",
       "integratedUnits": [
         1,
@@ -1615,7 +1615,7 @@
         6
       ],
       "question": "Schreibe 5 Sätze über dich selbst auf Spanisch. Nutze:\n- SER (Name, Beruf, Herkunft)\n- TENER (Alter, Familie)\n- ESTAR (Wo du bist, wie du dich fühlst)\n- Vokabular (Farben, Zahlen, etc.)\n\nBeispiel-Struktur:\n1. Me llamo ___ y soy ___.\n2. Tengo ___ años y tengo ___.\n3. Soy de ___ pero estoy en ___.\n4. Estoy ___ (Zustand) y tengo ___.\n5. Mi ___ es ___ (Beschreibung).",
-      "correctAnswer": "Individuelle Antworten - Prüfung auf korrekte Verb-Verwendung",
+      "correctAnswer": "Individuelle Antworten - Prufung auf korrekte Verb-Verwendung",
       "explanation": "Freie Komposition zeigt vollständige A1-Meisterschaft. Jeder Satz sollte grammatisch korrekt sein.",
       "germanBridge": "🇩🇪 Freie Anwendung - zeigt wahres Verständnis!",
       "evaluationCriteria": {
@@ -1664,7 +1664,7 @@
     {
       "id": "u7_ex030",
       "type": "final-certification",
-      "difficulty": 10,
+      "difficulty": 5,
       "concept": "phase1-complete",
       "integratedUnits": [
         1,
@@ -1675,7 +1675,7 @@
         6
       ],
       "question": "FINAL PHASE 1 TEST - Übersetze die komplexe Konversation:\n\nA: ¡Hola! ¿Cómo te llamas?\nB: Me llamo Carlos. ¿Y tú?\nA: Yo soy María. ¿De dónde eres?\nB: Soy de Madrid, pero estoy viviendo en Berlín ahora. ¿Y tú?\nA: Soy alemana. ¿Qué haces en Berlín?\nB: Soy estudiante. Tengo 22 años y estudio medicina. ¿Tú qué haces?\nA: Yo soy profesora. Tengo 28 años. ¿Te gusta Berlín?\nB: Sí, me gusta mucho, pero tengo frío en invierno y tengo ganas de volver a España.\nA: Lo entiendo. ¿Tienes hambre? Hay un restaurante español cerca.\nB: Sí, tengo mucha hambre. ¡Vamos!",
-      "correctAnswer": "A: Hallo! Wie heißt du? B: Ich heiße Carlos. Und du? A: Ich bin Maria. Woher kommst du? B: Ich bin aus Madrid, aber ich wohne jetzt in Berlin. Und du? A: Ich bin Deutsche. Was machst du in Berlin? B: Ich bin Student. Ich bin 22 Jahre alt und studiere Medizin. Was machst du? A: Ich bin Lehrerin. Ich bin 28 Jahre alt. Gefällt dir Berlin? B: Ja, es gefällt mir sehr, aber mir ist im Winter kalt und ich habe Lust nach Spanien zurückzukehren. A: Ich verstehe. Hast du Hunger? Es gibt ein spanisches Restaurant in der Nähe. B: Ja, ich habe sehr viel Hunger. Lass uns gehen!",
+      "correctAnswer": "A: Hallo! Wie heisst du? B: Ich heisse Carlos. Und du? A: Ich bin Maria. Woher kommst du? B: Ich bin aus Madrid, aber ich wohne jetzt in Berlin. Und du? A: Ich bin Deutsche. Was machst du in Berlin? B: Ich bin Student. Ich bin 22 Jahre alt und studiere Medizin. Was machst du? A: Ich bin Lehrerin. Ich bin 28 Jahre alt. Gefallt dir Berlin? B: Ja, es gefallt mir sehr, aber mir ist im Winter kalt und ich habe Lust nach Spanien zuruckzukehren. A: Ich verstehe. Hast du Hunger? Es gibt ein spanisches Restaurant in der Nahe. B: Ja, ich habe sehr viel Hunger. Lass uns gehen!",
       "explanation": "Vollständige natürliche Konversation mit ALLEN Phase-1-Konzepten: Pronomen, SER, ESTAR, TENER, Vokabular, Idiome",
       "germanBridge": "🇩🇪 Realistische Konversation - zeigt A1-Niveau-Meisterschaft!",
       "breakdown": {
@@ -1802,5 +1802,31 @@
       "estimatedDuration": "3-4 Wochen"
     },
     "certification": "🏆 PHASE 1 (A1-BÁSICO) ABGESCHLOSSEN! 🏆"
+  },
+  "learningPhases": {
+    "phase0_prep": {
+      "exercises": "u7_vocab001 - u7_vocab007",
+      "goal": "Grundwortschatz aufbauen",
+      "time": "5-10 Minuten",
+      "exerciseCount": 7
+    },
+    "phase1_input": {
+      "exercises": "u7_input001 - u7_input004",
+      "goal": "Verstehen durch authentische Beispiele",
+      "time": "10-15 Minuten",
+      "exerciseCount": 4
+    },
+    "phase2_guided": {
+      "exercises": "u7_guided001 - u7_guided012",
+      "goal": "Mit Hilfe produzieren",
+      "time": "15-20 Minuten",
+      "exerciseCount": 12
+    },
+    "phase3_free": {
+      "exercises": "u7_free001 - u7_free007",
+      "goal": "Selbstständig anwenden",
+      "time": "10-15 Minuten",
+      "exerciseCount": 7
+    }
   }
 }
