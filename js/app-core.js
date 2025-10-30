@@ -1862,15 +1862,14 @@ class App {
 // ====================================================================
 
 // Initialize app when page loads
-let app;
-
 window.addEventListener('DOMContentLoaded', () => {
-    app = new App();
+    const app = new App();
+
+    // Make app available globally BEFORE init
+    window.app = app;
+
     app.init();
 });
-
-// Make app available globally
-window.app = app;
 
 // Also make classes available globally for backwards compatibility
 window.ExerciseLoader = ExerciseLoader;
