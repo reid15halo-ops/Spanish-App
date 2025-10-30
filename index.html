@@ -815,6 +815,9 @@
     <script src="js/monitoring/performance-monitor.js"></script>
 
     <!-- Utilities -->
+    <script src="js/utils/logger.js"></script>
+    <script src="js/utils/loading.js"></script>
+    <script src="js/utils/error-boundary.js"></script>
     <script src="js/utils/data-backup.js"></script>
     <script src="js/utils/gdpr-compliance.js"></script>
 
@@ -830,7 +833,7 @@
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('sw.js')
                     .then(registration => {
-                        console.log('[PWA] Service Worker registered:', registration.scope);
+                        window.Logger?.info('Service Worker registered:', registration.scope);
 
                         // Check for updates every hour
                         setInterval(() => {
@@ -843,7 +846,7 @@
                             newWorker.addEventListener('statechange', () => {
                                 if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
                                     // New version available
-                                    if (confirm('Eine neue Version ist verfügbar. Jetzt aktualisieren?')) {
+                                    if (confirm('Eine neue Version ist verfuegbar. Jetzt aktualisieren?')) {
                                         newWorker.postMessage({ type: 'SKIP_WAITING' });
                                         window.location.reload();
                                     }
@@ -852,15 +855,15 @@
                         });
                     })
                     .catch(error => {
-                        console.error('[PWA] Service Worker registration failed:', error);
+                        window.Logger?.error('Service Worker registration failed:', error);
                     });
             });
         }
 
-        // Log app initialization
-        console.log('[App] Spanish Learning App v' + (window.ENV?.getVersion() || '1.0.0'));
-        console.log('[App] Environment:', window.ENV?.currentEnv || 'unknown');
-        console.log('[App] Debug mode:', window.ENV?.get('enableDebugMode') || false);
+        // Log app initialization (production-aware)
+        window.Logger?.info('Spanish Learning App v' + (window.ENV?.getVersion() || '1.0.0'));
+        window.Logger?.debug('Environment:', window.ENV?.currentEnv || 'unknown');
+        window.Logger?.debug('Debug mode:', window.ENV?.get('enableDebugMode') || false);
 
         // Update app info in settings modal
         if (window.ENV) {
