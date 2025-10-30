@@ -994,7 +994,7 @@ class App {
         }
 
         // Record attempt in adaptive learning system
-        this.adaptiveSystem.recordAttempt(exercise, isCorrect);
+        this.adaptiveSystem.recordAttempt(exercise, validationResult.isCorrect);
 
         // Save progress after updating stats
         this.saveProgress();
