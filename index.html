@@ -521,6 +521,105 @@
             background: rgba(32, 178, 170, 0.05);
         }
 
+        /* ===== NEW EXERCISE TYPES ===== */
+        .exercise-type-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .text-input-area {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-family: inherit;
+            margin-bottom: 15px;
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .text-input-area:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .warning {
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #FF9800;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            margin: 15px 0;
+            color: #E65100;
+            font-weight: 600;
+        }
+
+        .rule {
+            background: rgba(33, 150, 243, 0.1);
+            border-left: 4px solid #2196F3;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            margin: 15px 0;
+        }
+
+        .context {
+            background: var(--bg-secondary);
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            margin: 15px 0;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .note {
+            background: rgba(156, 39, 176, 0.1);
+            border-left: 4px solid #9C27B0;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            margin: 15px 0;
+        }
+
+        .examples-box,
+        .breakdown-box {
+            background: var(--bg-secondary);
+            padding: 16px;
+            border-radius: var(--radius);
+            margin-top: 15px;
+        }
+
+        .examples-box.hidden,
+        .breakdown-box.hidden {
+            display: none;
+        }
+
+        .example {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .example::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .breakdown-item {
+            margin: 8px 0;
+            padding: 8px;
+            background: white;
+            border-radius: 4px;
+        }
+
         /* ===== SETTINGS MODAL ===== */
         #settings-modal {
             position: fixed;

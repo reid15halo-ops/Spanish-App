@@ -120,6 +120,27 @@ class ExerciseRenderer {
             case 'sentence-building':
                 html = this.renderSentenceBuilding(exercise, onAnswer);
                 break;
+
+            // All other text-input based exercises
+            case 'meaning-change':
+            case 'error-correction':
+            case 'conversation':
+            case 'comprehensive':
+            case 'practical-scenario':
+            case 'mixed-grammar':
+            case 'comprehensive-translation':
+            case 'final-mastery':
+            case 'correction':
+            case 'mastery-check':
+            case 'final-certification':
+            case 'error-identification':
+            case 'contrast-sentence':
+            case 'contrast-pair':
+            case 'contrast-intro':
+            case 'advanced-application':
+                html = this.renderGenericTextInput(exercise, onAnswer);
+                break;
+
             default:
                 html = `<p>Unknown exercise type: ${exercise.type}</p>`;
         }
@@ -344,6 +365,97 @@ class ExerciseRenderer {
                     <div class="examples-box hidden" id="examples-box">
                         <strong>📚 Beispiele:</strong>
                         ${exercise.examples.map(ex => `<p class="example">${ex}</p>`).join('')}
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }
+
+    /**
+     * Render generic text-input exercise (used for many exercise types)
+     */
+    renderGenericTextInput(exercise, onAnswer) {
+        // Get exercise type label for display
+        const typeLabels = {
+            'meaning-change': 'Bedeutungsänderung',
+            'error-correction': 'Fehlerkorrektur',
+            'conversation': 'Konversation',
+            'comprehensive': 'Umfassende Übung',
+            'practical-scenario': 'Praxisszenario',
+            'mixed-grammar': 'Gemischte Grammatik',
+            'comprehensive-translation': 'Umfassende Übersetzung',
+            'final-mastery': 'Abschlussprüfung',
+            'correction': 'Korrektur',
+            'mastery-check': 'Meisterschaftstest',
+            'final-certification': 'Abschlusszertifizierung',
+            'error-identification': 'Fehleridentifikation',
+            'contrast-sentence': 'Kontrastsatz',
+            'contrast-pair': 'Kontrastpaar',
+            'contrast-intro': 'Kontrasteinführung',
+            'advanced-application': 'Erweiterte Anwendung'
+        };
+
+        const typeLabel = typeLabels[exercise.type] || exercise.type;
+
+        return `
+            <div class="generic-text-input ${exercise.type}">
+                <div class="exercise-type-badge">${typeLabel}</div>
+
+                <p class="question">${exercise.question}</p>
+
+                ${exercise.germanBridge ? `
+                    <div class="german-bridge">${exercise.germanBridge}</div>
+                ` : ''}
+
+                ${exercise.note ? `
+                    <p class="note"><strong>📌 Hinweis:</strong> ${exercise.note}</p>
+                ` : ''}
+
+                ${exercise.warning ? `
+                    <p class="warning"><strong>${exercise.warning}</strong></p>
+                ` : ''}
+
+                ${exercise.rule ? `
+                    <p class="rule"><strong>📏 Regel:</strong> ${exercise.rule}</p>
+                ` : ''}
+
+                ${exercise.context ? `
+                    <p class="context"><em>${exercise.context}</em></p>
+                ` : ''}
+
+                <div class="input-group">
+                    <textarea id="answer-input" class="text-input-area"
+                           placeholder="Deine Antwort..." rows="3" autocomplete="off"></textarea>
+                    <button class="btn-primary" onclick="app.checkAnswer()">Prüfen</button>
+                </div>
+
+                ${exercise.mnemonic ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
+                    </div>
+                ` : ''}
+
+                ${exercise.hint ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Hinweis:</strong> ${exercise.hint}</p>
+                    </div>
+                ` : ''}
+
+                <div id="feedback-area" class="feedback-area hidden"></div>
+
+                ${exercise.examples && exercise.examples.length > 0 ? `
+                    <div class="examples-box hidden" id="examples-box">
+                        <strong>📚 Beispiele:</strong>
+                        ${exercise.examples.map(ex => `<p class="example">${ex}</p>`).join('')}
+                    </div>
+                ` : ''}
+
+                ${exercise.breakdown ? `
+                    <div class="breakdown-box hidden" id="breakdown-box">
+                        <strong>🔍 Analyse:</strong>
+                        ${Object.entries(exercise.breakdown).map(([key, value]) =>
+                            `<p class="breakdown-item"><strong>${key}:</strong> ${value}</p>`
+                        ).join('')}
                     </div>
                 ` : ''}
             </div>
