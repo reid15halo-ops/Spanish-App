@@ -1,0 +1,75 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    /* Modules */
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    /* JavaScript Support - CRITICAL for gradual migration */
+    "allowJs": true,        // ✅ Allow .js files during migration
+    "checkJs": false,       // ✅ Don't type-check .js files yet
+
+    /* Emit */
+    "declaration": true,    // ✅ Generate .d.ts files
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./",
+    "removeComments": false,
+    "noEmitOnError": false, // ✅ Compile even with type errors during migration
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Type Checking - START PERMISSIVE, gradually enable */
+    "strict": false,                    // ✅ Start false, enable later
+    "noImplicitAny": false,            // ✅ Allow implicit any during migration
+    "strictNullChecks": false,         // ✅ Enable after core migration
+    "strictFunctionTypes": false,      // ✅ Enable in strict mode
+    "strictBindCallApply": false,      // ✅ Enable in strict mode
+    "strictPropertyInitialization": false, // ✅ Enable in strict mode
+    "noImplicitThis": false,           // ✅ Enable in strict mode
+    "alwaysStrict": true,              // ✅ Keep enabled
+
+    /* Additional Checks - Enable gradually */
+    "noUnusedLocals": false,           // ✅ Enable after migration
+    "noUnusedParameters": false,       // ✅ Enable after migration
+    "noImplicitReturns": false,        // ✅ Enable after migration
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false, // ✅ Enable in strict mode
+
+    /* Completeness */
+    "skipLibCheck": true,              // ✅ Skip type checking of .d.ts files
+
+    /* Advanced */
+    "preserveConstEnums": true,
+    "isolatedModules": true
+  },
+
+  "include": [
+    "js/**/*.ts",
+    "js/**/*.js",
+    "types/**/*.ts",
+    "*.ts"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist",
+    "archive",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "totalFiles": 17,
+  "jsFiles": 16,
+  "tsFiles": 1,
+  "migrationProgress": 6,
+  "typeErrors": [],
+  "warnings": [],
+  "functionalityTests": [
+    {
+      "name": "Dist files exist",
+      "passed": true,
+      "details": "16 JS files, 16 .d.ts files"
+    },
+    {
+      "name": "normalize-es module",
+      "passed": true,
+      "details": "Compiled successfully (7712 bytes)"
+    },
+    {
+      "name": "Type definitions",
+      "passed": true,
+      "details": "Types are properly exported"
+    }
+  ],
+  "performanceTests": [
+    {
+      "name": "Build time",
+      "baseline": 2,
+      "current": 2.202,
+      "acceptable": true,
+      "percentChange": 10.099999999999998
+    }
+  ],
+  "success": true,
+  "timestamp": "2025-10-31T09:03:00.379Z"
+}
