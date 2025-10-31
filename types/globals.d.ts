@@ -199,6 +199,29 @@ declare global {
       show(message?: string): void;
       hide(): void;
     };
+
+    // Loading Manager
+    LoadingManager?: {
+      show(container: string, message?: string): string | number;
+      hide(id?: string | number): void;
+    };
+
+    // Error Boundary
+    ErrorBoundary?: {
+      handleError(error: Error, context?: Record<string, any>): void;
+    };
+
+    // Adaptive Learning System
+    AdaptiveLearningSystem: new () => any;
+
+    // Level Test System
+    LevelTestSystem: new () => any;
+
+    // Adaptive Practice System
+    AdaptivePracticeSystem: new () => any;
+
+    // Development flag
+    __DEV__?: boolean;
   }
 
   // Class interfaces (for constructor types)
