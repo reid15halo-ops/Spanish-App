@@ -6426,6 +6426,25 @@
         "heading": "🎯 Dein Lernziel für diese Unit",
         "content": "Nach Abschluss dieser Unit solltest du:\n✅ SER in allen Personen konjugieren können\n✅ Die DOCTOR-Regel anwenden können\n✅ Wissen, wann SER (und nicht ESTAR) zu verwenden ist\n✅ Berufe und Nationalitäten ohne Artikel nennen können\n✅ Uhrzeiten korrekt angeben können\n✅ Besitz mit SER DE ausdrücken können\n\n**¡Vamos! Auf zu den Übungen!**"
       }
-    ]
+    ],
+    "preview": {
+      "summary": "SER ist das erste von zwei 'sein'-Verben im Spanischen. Es wird für PERMANENTE Dinge verwendet: Identität, Beruf, Herkunft, Eigenschaften, Zeit. Die DOCTOR-Regel hilft dir zu wissen, wann SER richtig ist.",
+      "keyPoints": [
+        "🎭 SER für permanente Dinge (Beruf, Herkunft, Charakter)",
+        "📋 DOCTOR-Regel: Description, Occupation, Characteristic, Time, Origin, Relationship",
+        "⏰ Uhrzeiten: SON las tres (Plural!), nicht ES las tres",
+        "💼 Berufe OHNE Artikel: Soy profesor (nicht: un profesor)",
+        "🌍 Herkunft: Soy DE Alemania (SER + DE)"
+      ],
+      "whyImportant": "SER ist eines der wichtigsten Verben überhaupt. Ohne SER kannst du nicht sagen, wer du bist, was du tust oder woher du kommst.",
+      "learningGoals": [
+        "SER in allen Personen konjugieren (soy, eres, es...)",
+        "Die DOCTOR-Regel anwenden können",
+        "Berufe und Nationalitäten ohne Artikel nennen",
+        "Uhrzeiten korrekt mit SER angeben",
+        "Wissen, wann SER (und nicht ESTAR) zu verwenden ist"
+      ],
+      "estimatedPreviewTime": "50 Sekunden"
+    }
   }
 }
