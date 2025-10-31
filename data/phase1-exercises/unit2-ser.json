@@ -7,11 +7,11 @@
     "title": "SER: Berufe & Eigenschaften",
     "title_es": "SER: Profesiones y características",
     "description": "Lerne wichtige Berufe, Eigenschaften und das Verb SER für permanente Zustände",
-    "totalExercises": 55,
-    "estimatedTime": "35-40 Minuten",
+    "totalExercises": 155,
+    "estimatedTime": "80-90 Minuten",
     "germanChallenge": true,
     "germanChallengeNote": "⚠️ Im Deutschen gibt es nur 'sein', im Spanischen SER und ESTAR! SER = permanente Zustände.",
-    "version": "2.0"
+    "version": "3.0"
   },
   "learningObjectives": [
     "Konjugation von SER in allen Personen",
@@ -374,6 +374,406 @@
       "audioHint": "Aussprache: 'vi-E-ho'",
       "exampleSentence": "Mi perro es viejo",
       "exampleTranslation": "Mein Hund ist alt"
+    },
+    {
+      "id": "u2_vocab021",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "arquitecto",
+      "translation": "Architekt",
+      "emoji": "🏛️",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Arquitecto' bedeutet 'Architekt'.",
+      "germanBridge": "🇩🇪 Architekt → 🇪🇸 arquitecto",
+      "note": "Weiblich: arquitecta",
+      "audioHint": "Aussprache: 'ar-ki-TEK-to'",
+      "exampleSentence": "Ella es arquitecta",
+      "exampleTranslation": "Sie ist Architektin"
+    },
+    {
+      "id": "u2_vocab022",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "periodista",
+      "translation": "Journalist/Journalistin",
+      "emoji": "📰",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Periodista' bedeutet 'Journalist' - gleich für beide Geschlechter!",
+      "germanBridge": "🇩🇪 Journalist → 🇪🇸 periodista",
+      "note": "Gleich für männlich und weiblich",
+      "audioHint": "Aussprache: 'pe-rio-DIS-ta'",
+      "exampleSentence": "Yo soy periodista",
+      "exampleTranslation": "Ich bin Journalist/Journalistin"
+    },
+    {
+      "id": "u2_vocab023",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "dentista",
+      "translation": "Zahnarzt/Zahnärztin",
+      "emoji": "🦷",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Dentista' bedeutet 'Zahnarzt' oder 'Zahnärztin' - gleich für beide!",
+      "germanBridge": "🇩🇪 Zahnarzt → 🇪🇸 dentista",
+      "note": "Gleich für männlich und weiblich",
+      "audioHint": "Aussprache: 'den-TIS-ta'",
+      "exampleSentence": "Tú eres dentista",
+      "exampleTranslation": "Du bist Zahnarzt/Zahnärztin"
+    },
+    {
+      "id": "u2_vocab024",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "científico",
+      "translation": "Wissenschaftler",
+      "emoji": "🔬",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Científico' bedeutet 'Wissenschaftler'.",
+      "germanBridge": "🇩🇪 Wissenschaftler → 🇪🇸 científico",
+      "note": "Weiblich: científica",
+      "audioHint": "Aussprache: 'si-en-TI-fi-ko'",
+      "exampleSentence": "Él es científico",
+      "exampleTranslation": "Er ist Wissenschaftler"
+    },
+    {
+      "id": "u2_vocab025",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "músico",
+      "translation": "Musiker",
+      "emoji": "🎵",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Músico' bedeutet 'Musiker'.",
+      "germanBridge": "🇩🇪 Musiker → 🇪🇸 músico",
+      "note": "Weiblich: música",
+      "audioHint": "Aussprache: 'MU-si-ko'",
+      "exampleSentence": "Nosotros somos músicos",
+      "exampleTranslation": "Wir sind Musiker"
+    },
+    {
+      "id": "u2_vocab026",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "artista",
+      "translation": "Künstler/Künstlerin",
+      "emoji": "🎨",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Artista' bedeutet 'Künstler' - gleich für beide Geschlechter!",
+      "germanBridge": "🇩🇪 Künstler → 🇪🇸 artista",
+      "note": "Gleich für männlich und weiblich",
+      "audioHint": "Aussprache: 'ar-TIS-ta'",
+      "exampleSentence": "Ella es artista",
+      "exampleTranslation": "Sie ist Künstlerin"
+    },
+    {
+      "id": "u2_vocab027",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "piloto",
+      "translation": "Pilot/Pilotin",
+      "emoji": "✈️",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Piloto' bedeutet 'Pilot' oder 'Pilotin' - gleich für beide!",
+      "germanBridge": "🇩🇪 Pilot → 🇪🇸 piloto",
+      "note": "Gleich für männlich und weiblich",
+      "audioHint": "Aussprache: 'pi-LO-to'",
+      "exampleSentence": "Yo soy piloto",
+      "exampleTranslation": "Ich bin Pilot/Pilotin"
+    },
+    {
+      "id": "u2_vocab028",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "agricultor",
+      "translation": "Landwirt",
+      "emoji": "👨‍🌾",
+      "category": "profession",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Agricultor' bedeutet 'Landwirt' oder 'Bauer'.",
+      "germanBridge": "🇩🇪 Landwirt → 🇪🇸 agricultor",
+      "note": "Weiblich: agricultora",
+      "audioHint": "Aussprache: 'a-gri-kul-TOR'",
+      "exampleSentence": "Él es agricultor",
+      "exampleTranslation": "Er ist Landwirt"
+    },
+    {
+      "id": "u2_vocab029",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "feliz",
+      "translation": "glücklich",
+      "emoji": "😊",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Feliz' bedeutet 'glücklich' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 glücklich → 🇪🇸 feliz",
+      "audioHint": "Aussprache: 'fe-LIS'",
+      "exampleSentence": "Yo soy feliz",
+      "exampleTranslation": "Ich bin glücklich"
+    },
+    {
+      "id": "u2_vocab030",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "triste",
+      "translation": "traurig",
+      "emoji": "😢",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Triste' bedeutet 'traurig' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 traurig → 🇪🇸 triste",
+      "audioHint": "Aussprache: 'TRIS-te'",
+      "exampleSentence": "Él es triste",
+      "exampleTranslation": "Er ist traurig"
+    },
+    {
+      "id": "u2_vocab031",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "simpático",
+      "translation": "sympathisch, nett",
+      "emoji": "😄",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Simpático' bedeutet 'sympathisch' oder 'nett'.",
+      "germanBridge": "🇩🇪 sympathisch → 🇪🇸 simpático",
+      "note": "Weiblich: simpática",
+      "audioHint": "Aussprache: 'sim-PA-ti-ko'",
+      "exampleSentence": "Tú eres muy simpático",
+      "exampleTranslation": "Du bist sehr sympathisch"
+    },
+    {
+      "id": "u2_vocab032",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "tímido",
+      "translation": "schüchtern",
+      "emoji": "🙈",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Tímido' bedeutet 'schüchtern'.",
+      "germanBridge": "🇩🇪 schüchtern → 🇪🇸 tímido",
+      "note": "Weiblich: tímida",
+      "audioHint": "Aussprache: 'TI-mi-do'",
+      "exampleSentence": "Ella es tímida",
+      "exampleTranslation": "Sie ist schüchtern"
+    },
+    {
+      "id": "u2_vocab033",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "valiente",
+      "translation": "mutig",
+      "emoji": "🦁",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Valiente' bedeutet 'mutig' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 mutig → 🇪🇸 valiente",
+      "audioHint": "Aussprache: 'va-li-EN-te'",
+      "exampleSentence": "Tú eres valiente",
+      "exampleTranslation": "Du bist mutig"
+    },
+    {
+      "id": "u2_vocab034",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "generoso",
+      "translation": "großzügig",
+      "emoji": "🎁",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Generoso' bedeutet 'großzügig'.",
+      "germanBridge": "🇩🇪 großzügig → 🇪🇸 generoso",
+      "note": "Weiblich: generosa",
+      "audioHint": "Aussprache: 'he-ne-RO-so'",
+      "exampleSentence": "Él es generoso",
+      "exampleTranslation": "Er ist großzügig"
+    },
+    {
+      "id": "u2_vocab035",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "perezoso",
+      "translation": "faul",
+      "emoji": "🦥",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Perezoso' bedeutet 'faul'.",
+      "germanBridge": "🇩🇪 faul → 🇪🇸 perezoso",
+      "note": "Weiblich: perezosa",
+      "audioHint": "Aussprache: 'pe-re-SO-so'",
+      "exampleSentence": "Yo soy perezoso",
+      "exampleTranslation": "Ich bin faul"
+    },
+    {
+      "id": "u2_vocab036",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "trabajador",
+      "translation": "fleißig",
+      "emoji": "💪",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Trabajador' bedeutet 'fleißig' oder 'arbeitam'.",
+      "germanBridge": "🇩🇪 fleißig → 🇪🇸 trabajador",
+      "note": "Weiblich: trabajadora",
+      "audioHint": "Aussprache: 'tra-ba-ha-DOR'",
+      "exampleSentence": "Ella es trabajadora",
+      "exampleTranslation": "Sie ist fleißig"
+    },
+    {
+      "id": "u2_vocab037",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "paciente",
+      "translation": "geduldig",
+      "emoji": "🧘",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Paciente' bedeutet 'geduldig' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 geduldig → 🇪🇸 paciente",
+      "audioHint": "Aussprache: 'pa-si-EN-te'",
+      "exampleSentence": "Tú eres paciente",
+      "exampleTranslation": "Du bist geduldig"
+    },
+    {
+      "id": "u2_vocab038",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "impaciente",
+      "translation": "ungeduldig",
+      "emoji": "⏰",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Impaciente' bedeutet 'ungeduldig' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 ungeduldig → 🇪🇸 impaciente",
+      "audioHint": "Aussprache: 'im-pa-si-EN-te'",
+      "exampleSentence": "Yo soy impaciente",
+      "exampleTranslation": "Ich bin ungeduldig"
+    },
+    {
+      "id": "u2_vocab039",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "honesto",
+      "translation": "ehrlich",
+      "emoji": "✨",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Honesto' bedeutet 'ehrlich'.",
+      "germanBridge": "🇩🇪 ehrlich → 🇪🇸 honesto",
+      "note": "Weiblich: honesta",
+      "audioHint": "Aussprache: 'o-NES-to'",
+      "exampleSentence": "Él es honesto",
+      "exampleTranslation": "Er ist ehrlich"
+    },
+    {
+      "id": "u2_vocab040",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "amable",
+      "translation": "freundlich",
+      "emoji": "🤗",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Amable' bedeutet 'freundlich' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 freundlich → 🇪🇸 amable",
+      "audioHint": "Aussprache: 'a-MA-ble'",
+      "exampleSentence": "Tú eres amable",
+      "exampleTranslation": "Du bist freundlich"
+    },
+    {
+      "id": "u2_vocab041",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "orgulloso",
+      "translation": "stolz",
+      "emoji": "🦚",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Orgulloso' bedeutet 'stolz'.",
+      "germanBridge": "🇩🇪 stolz → 🇪🇸 orgulloso",
+      "note": "Weiblich: orgullosa",
+      "audioHint": "Aussprache: 'or-gu-YO-so'",
+      "exampleSentence": "Ella es orgullosa",
+      "exampleTranslation": "Sie ist stolz"
+    },
+    {
+      "id": "u2_vocab042",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "creativo",
+      "translation": "kreativ",
+      "emoji": "🎭",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Creativo' bedeutet 'kreativ'.",
+      "germanBridge": "🇩🇪 kreativ → 🇪🇸 creativo",
+      "note": "Weiblich: creativa",
+      "audioHint": "Aussprache: 'kre-a-TI-vo'",
+      "exampleSentence": "Yo soy creativo",
+      "exampleTranslation": "Ich bin kreativ"
+    },
+    {
+      "id": "u2_vocab043",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "responsable",
+      "translation": "verantwortungsvoll",
+      "emoji": "📋",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Responsable' bedeutet 'verantwortungsvoll' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 verantwortungsvoll → 🇪🇸 responsable",
+      "audioHint": "Aussprache: 'res-pon-SA-ble'",
+      "exampleSentence": "Tú eres responsable",
+      "exampleTranslation": "Du bist verantwortungsvoll"
+    },
+    {
+      "id": "u2_vocab044",
+      "type": "vocabulary-card",
+      "difficulty": 1,
+      "concept": "vocabulary-introduction",
+      "word": "optimista",
+      "translation": "optimistisch",
+      "emoji": "🌞",
+      "category": "adjective",
+      "question": "Lerne dieses Wort:",
+      "explanation": "'Optimista' bedeutet 'optimistisch' - für alle Geschlechter gleich!",
+      "germanBridge": "🇩🇪 optimistisch → 🇪🇸 optimista",
+      "audioHint": "Aussprache: 'op-ti-MIS-ta'",
+      "exampleSentence": "Nosotros somos optimistas",
+      "exampleTranslation": "Wir sind optimistisch"
     },
     {
       "id": "u2_ex001",
@@ -2334,6 +2734,3364 @@
       "expectedAccuracy": 0.6,
       "milestone": true,
       "certificationRequired": true
+    },
+    {
+      "id": "u2_ex036",
+      "type": "conjugation",
+      "difficulty": 1,
+      "concept": "ser-conjugation-review",
+      "question": "Konjugiere SER für 'nosotros' (wir)",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos - 1. Person Plural.",
+      "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
+      "examples": [
+        "Nosotros somos alemanes",
+        "Somos amigos"
+      ],
+      "mnemonic": "SOMOS = SO sind wir (MOS)",
+      "prerequisites": [
+        "pronoun-plural-first"
+      ],
+      "relatedConcepts": [
+        "estar-conjugation"
+      ],
+      "discriminationPairs": [
+        "u3_ex001"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "conjugation",
+        "ser",
+        "nosotros"
+      ],
+      "estimatedResponseTime": 4,
+      "memoryComplexity": 1,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "🇩🇪 wir sind → 🇪🇸 nosotros somos"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex037",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-profession",
+      "question": "Ergänze mit der richtigen Form von SER: 'Ellos ___ arquitectos.'",
+      "correctAnswer": "son",
+      "explanation": "Ellos son - 3. Person Plural. 'Sie sind Architekten.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellos son",
+      "examples": [
+        "Ellos son ingenieros",
+        "Son profesores"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser-conjugation-ellos"
+      ],
+      "relatedConcepts": [
+        "professions"
+      ],
+      "discriminationPairs": [
+        "u3_ex005"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "expectedAccuracy": 0.8,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex038",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Tú ___ muy valiente.'",
+      "correctAnswer": "eres",
+      "explanation": "Tú eres - 2. Person Singular. 'Du bist sehr mutig.'",
+      "germanBridge": "🇩🇪 du bist mutig → 🇪🇸 tú eres valiente",
+      "examples": [
+        "Eres inteligente",
+        "Eres simpático"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "ser-conjugation-tu"
+      ],
+      "relatedConcepts": [
+        "adjectives"
+      ],
+      "discriminationPairs": [
+        "u3_ex010"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "adjective"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für permanente Eigenschaften"
+      ],
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex039",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "ser-identity",
+      "question": "Übersetze: 'Ich bin María.'",
+      "correctAnswer": "Yo soy María",
+      "explanation": "Yo soy + Name für Identität.",
+      "germanBridge": "🇩🇪 Ich bin María → 🇪🇸 Yo soy María",
+      "examples": [
+        "Soy Pedro",
+        "Soy Ana"
+      ],
+      "useCase": "identity",
+      "rule": "SER für Namen und Identität",
+      "prerequisites": [
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "identity"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "identity"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für Identität"
+      ],
+      "expectedAccuracy": 0.88,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex040",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "ser-origin",
+      "question": "Übersetze: 'Wir sind aus Deutschland.'",
+      "correctAnswer": "Nosotros somos de Alemania",
+      "explanation": "Somos de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Wir sind aus Deutschland → 🇪🇸 Somos de Alemania",
+      "examples": [
+        "Soy de España",
+        "Son de México"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser-conjugation-nosotros"
+      ],
+      "relatedConcepts": [
+        "countries"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "origin"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex041",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "concept": "ser-time",
+      "question": "Wähle die richtige Form: 'Es ist drei Uhr.' → '___'",
+      "options": [
+        "Son las tres",
+        "Es las tres",
+        "Soy las tres",
+        "Somos las tres"
+      ],
+      "correctAnswer": "Son las tres",
+      "explanation": "SON LAS + Zahl für Uhrzeiten (Plural!).",
+      "germanBridge": "🇩🇪 Es ist drei Uhr → 🇪🇸 Son las tres",
+      "examples": [
+        "Son las cinco",
+        "Son las ocho"
+      ],
+      "useCase": "time",
+      "rule": "SON LAS für Uhrzeiten (Plural)",
+      "prerequisites": [
+        "ser-conjugation-ellos"
+      ],
+      "relatedConcepts": [
+        "time-expressions"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "time"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.3,
+      "transferType": "negative",
+      "falseFriendRisk": true,
+      "contrastiveElements": [
+        "⚠️ Im Deutschen 'es ist', im Spanischen 'son las' (Plural!)"
+      ],
+      "expectedAccuracy": 0.7,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex042",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-profession",
+      "question": "Ergänze: 'María ___ dentista.'",
+      "correctAnswer": "es",
+      "explanation": "Ella es - 3. Person Singular für 'sie ist'.",
+      "germanBridge": "🇩🇪 sie ist → 🇪🇸 ella es",
+      "examples": [
+        "Es médica",
+        "Es profesora"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser-conjugation-el-ella"
+      ],
+      "relatedConcepts": [
+        "professions"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex043",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Nosotros ___ optimistas.'",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos - 1. Person Plural. 'Wir sind optimistisch.'",
+      "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
+      "examples": [
+        "Somos felices",
+        "Somos inteligentes"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "ser-conjugation-nosotros"
+      ],
+      "relatedConcepts": [
+        "adjectives"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "adjective"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für permanente Eigenschaften"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex044",
+      "type": "translation",
+      "difficulty": 2,
+      "concept": "ser-profession",
+      "question": "Übersetze: 'Sie (Plural) sind Künstler.'",
+      "correctAnswer": "Ellos son artistas",
+      "explanation": "Ellos son + Beruf (Plural).",
+      "germanBridge": "🇩🇪 Sie sind Künstler → 🇪🇸 Ellos son artistas",
+      "examples": [
+        "Son músicos",
+        "Son profesores"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser-conjugation-ellos"
+      ],
+      "relatedConcepts": [
+        "professions"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "profession"
+      ],
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "expectedAccuracy": 0.83,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex045",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Ella ___ muy simpática.'",
+      "correctAnswer": "es",
+      "explanation": "Ella es - 3. Person Singular. 'Sie ist sehr sympathisch.'",
+      "germanBridge": "🇩🇪 sie ist → 🇪🇸 ella es",
+      "examples": [
+        "Es amable",
+        "Es generosa"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "ser-conjugation-el-ella"
+      ],
+      "relatedConcepts": [
+        "adjectives"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "adjective"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für permanente Eigenschaften"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex046",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "ser-time",
+      "question": "Übersetze: 'Es ist Montag.'",
+      "correctAnswer": "Es lunes",
+      "explanation": "ES + Wochentag (ohne Artikel!).",
+      "germanBridge": "🇩🇪 Es ist Montag → 🇪🇸 Es lunes",
+      "examples": [
+        "Es martes",
+        "Es viernes"
+      ],
+      "useCase": "time",
+      "rule": "ES + Wochentag für Tage",
+      "note": "⚠️ Kein Artikel vor Wochentagen!",
+      "prerequisites": [
+        "ser-conjugation-el-ella"
+      ],
+      "relatedConcepts": [
+        "days-of-week"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "time"
+      ],
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 4,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "Kein Artikel vor Wochentagen"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex047",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-origin",
+      "question": "Ergänze: 'Yo ___ de Madrid.'",
+      "correctAnswer": "soy",
+      "explanation": "Yo soy de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Ich bin aus Madrid → 🇪🇸 Yo soy de Madrid",
+      "examples": [
+        "Soy de Barcelona",
+        "Soy de Valencia"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "cities"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "origin"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "expectedAccuracy": 0.87,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex048",
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "concept": "ser-adjective",
+      "question": "Wähle: 'Ellos ___ muy trabajadores.'",
+      "options": [
+        "son",
+        "soy",
+        "eres",
+        "es"
+      ],
+      "correctAnswer": "son",
+      "explanation": "Ellos son - 3. Person Plural. 'Sie sind sehr fleißig.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellos son",
+      "examples": [
+        "Son pacientes",
+        "Son honestos"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "ser-conjugation-ellos"
+      ],
+      "relatedConcepts": [
+        "adjectives"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "adjective"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für permanente Eigenschaften"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex049",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "ser-possession",
+      "question": "Übersetze: 'Das Buch ist von Pedro.'",
+      "correctAnswer": "El libro es de Pedro",
+      "explanation": "ES DE + Person für Besitz.",
+      "germanBridge": "🇩🇪 Das Buch ist von Pedro → 🇪🇸 El libro es de Pedro",
+      "examples": [
+        "Es de María",
+        "Es de mi hermano"
+      ],
+      "useCase": "possession",
+      "rule": "ES DE für Besitz",
+      "prerequisites": [
+        "ser-conjugation-el-ella"
+      ],
+      "relatedConcepts": [
+        "possession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "possession"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 4,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.2,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER DE für Besitz"
+      ],
+      "expectedAccuracy": 0.75,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex050",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Tú ___ piloto.'",
+      "correctAnswer": "eres",
+      "explanation": "Tú eres - 2. Person Singular. 'Du bist Pilot/Pilotin.'",
+      "germanBridge": "🇩🇪 du bist → 🇪🇸 tú eres",
+      "examples": [
+        "Eres científico",
+        "Eres músico"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser-conjugation-tu"
+      ],
+      "relatedConcepts": [
+        "professions"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex051",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Vosotros ___ creativos.'",
+      "correctAnswer": "sois",
+      "explanation": "Vosotros sois - 2. Person Plural (Spanien). 'Ihr seid kreativ.'",
+      "germanBridge": "🇩🇪 ihr seid → 🇪🇸 vosotros sois",
+      "examples": [
+        "Sois inteligentes",
+        "Sois amables"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "ser-conjugation-vosotros"
+      ],
+      "relatedConcepts": [
+        "adjectives"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "adjective",
+        "vosotros"
+      ],
+      "estimatedResponseTime": 6,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "Vosotros = Ihr (Spanien)"
+      ],
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex052",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "ser-comprehensive",
+      "question": "Übersetze: 'Ich bin Journalist und ich bin aus Berlin.'",
+      "correctAnswer": "Yo soy periodista y soy de Berlín",
+      "explanation": "Yo soy + Beruf + y + soy de + Ort.",
+      "germanBridge": "🇩🇪 Ich bin Journalist und aus Berlin → 🇪🇸 Soy periodista y soy de Berlín",
+      "examples": [
+        "Soy médico y soy de España",
+        "Soy profesor y soy de México"
+      ],
+      "useCase": "multiple",
+      "rule": "SER für Beruf UND Herkunft",
+      "prerequisites": [
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "professions",
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "comprehensive"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 5,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.3,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für mehrere Verwendungen kombiniert"
+      ],
+      "expectedAccuracy": 0.72,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex053",
+      "type": "fill-in",
+      "difficulty": 2,
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Yo ___ responsable.'",
+      "correctAnswer": "soy",
+      "explanation": "Yo soy - 1. Person Singular. 'Ich bin verantwortungsvoll.'",
+      "germanBridge": "🇩🇪 ich bin → 🇪🇸 yo soy",
+      "examples": [
+        "Soy honesto",
+        "Soy paciente"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "ser-conjugation-yo"
+      ],
+      "relatedConcepts": [
+        "adjectives"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "adjective"
+      ],
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für permanente Eigenschaften"
+      ],
+      "expectedAccuracy": 0.88,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex054",
+      "type": "multiple-choice",
+      "difficulty": 3,
+      "concept": "ser-vs-estar-preview",
+      "question": "Was ist richtig? 'Das Haus ___ groß.' (permanent)",
+      "options": [
+        "La casa es grande",
+        "La casa está grande",
+        "La casa soy grande",
+        "La casa son grande"
+      ],
+      "correctAnswer": "La casa es grande",
+      "explanation": "ES für permanente Eigenschaft (Größe des Hauses).",
+      "germanBridge": "🇩🇪 Das Haus ist groß → 🇪🇸 La casa es grande",
+      "examples": [
+        "El libro es interesante",
+        "La ciudad es bonita"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "note": "⚠️ Später lernst du ESTAR für temporäre Zustände!",
+      "prerequisites": [
+        "ser-conjugation-el-ella"
+      ],
+      "relatedConcepts": [
+        "adjectives"
+      ],
+      "discriminationPairs": [
+        "u3_ex015"
+      ],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "adjective"
+      ],
+      "estimatedResponseTime": 10,
+      "memoryComplexity": 4,
+      "interferenceRisk": "high",
+      "spacingMultiplier": 1.4,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für permanente, ESTAR für temporäre Zustände"
+      ],
+      "expectedAccuracy": 0.68,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex055",
+      "type": "translation",
+      "difficulty": 3,
+      "concept": "ser-definition",
+      "question": "Übersetze: 'Ein Hund ist ein Tier.'",
+      "correctAnswer": "Un perro es un animal",
+      "explanation": "ES für Definitionen und Klassifizierungen.",
+      "germanBridge": "🇩🇪 Ein Hund ist ein Tier → 🇪🇸 Un perro es un animal",
+      "examples": [
+        "Un gato es un animal",
+        "Una manzana es una fruta"
+      ],
+      "useCase": "definition",
+      "rule": "SER für Definitionen",
+      "prerequisites": [
+        "ser-conjugation-el-ella"
+      ],
+      "relatedConcepts": [
+        "definitions"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "definition"
+      ],
+      "estimatedResponseTime": 9,
+      "memoryComplexity": 4,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.1,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "contrastiveElements": [
+        "SER für Definitionen"
+      ],
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex056",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Ellas ___ científicas.'",
+      "correctAnswer": "son",
+      "explanation": "Ellas son - 3. Person Plural. 'Sie sind Wissenschaftlerinnen.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellas son",
+      "examples": [
+        "Son médicas",
+        "Son profesoras"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex057",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Él ___ tímido.'",
+      "correctAnswer": "es",
+      "explanation": "Él es - 3. Person Singular. 'Er ist schüchtern.'",
+      "germanBridge": "🇩🇪 er ist → 🇪🇸 él es",
+      "examples": [
+        "Es valiente",
+        "Es generoso"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für permanente Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für permanente Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex058",
+      "concept": "ser-origin",
+      "question": "Ergänze: 'Ellos ___ de España.'",
+      "correctAnswer": "son",
+      "explanation": "Ellos son de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Sie sind aus Spanien → 🇪🇸 Ellos son de España",
+      "examples": [
+        "Son de México",
+        "Son de Argentina"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex059",
+      "concept": "ser-profession",
+      "question": "Übersetze: 'Wir sind Lehrer.'",
+      "correctAnswer": "Nosotros somos profesores",
+      "explanation": "Nosotros somos + Beruf (Plural).",
+      "germanBridge": "🇩🇪 Wir sind Lehrer → 🇪🇸 Nosotros somos profesores",
+      "examples": [
+        "Somos médicos",
+        "Somos ingenieros"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex060",
+      "concept": "ser-adjective",
+      "question": "Übersetze: 'Sie (sing.) ist glücklich.'",
+      "correctAnswer": "Ella es feliz",
+      "explanation": "Ella es + Adjektiv für permanente Eigenschaft.",
+      "germanBridge": "🇩🇪 Sie ist glücklich → 🇪🇸 Ella es feliz",
+      "examples": [
+        "Es triste",
+        "Es simpática"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex061",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Nosotros ___ periodistas.'",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos - 1. Person Plural. 'Wir sind Journalisten.'",
+      "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
+      "examples": [
+        "Somos arquitectos",
+        "Somos dentistas"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex062",
+      "concept": "ser-adjective",
+      "question": "Wähle: 'Yo ___ paciente.'",
+      "correctAnswer": "soy",
+      "explanation": "Yo soy - 1. Person Singular. 'Ich bin geduldig.'",
+      "germanBridge": "🇩🇪 ich bin → 🇪🇸 yo soy",
+      "examples": [
+        "Soy impaciente",
+        "Soy amable"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "soy",
+        "eres",
+        "es",
+        "somos"
+      ]
+    },
+    {
+      "id": "u2_ex063",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Ella ___ agricultora.'",
+      "correctAnswer": "es",
+      "explanation": "Ella es - 3. Person Singular. 'Sie ist Landwirtin.'",
+      "germanBridge": "🇩🇪 sie ist → 🇪🇸 ella es",
+      "examples": [
+        "Es piloto",
+        "Es músico"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex064",
+      "concept": "ser-origin",
+      "question": "Übersetze: 'Er ist aus München.'",
+      "correctAnswer": "Él es de Múnich",
+      "explanation": "Él es de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Er ist aus München → 🇪🇸 Él es de Múnich",
+      "examples": [
+        "Es de Berlín",
+        "Es de Hamburgo"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex065",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Tú ___ creativo.'",
+      "correctAnswer": "eres",
+      "explanation": "Tú eres - 2. Person Singular. 'Du bist kreativ.'",
+      "germanBridge": "🇩🇪 du bist → 🇪🇸 tú eres",
+      "examples": [
+        "Eres orgulloso",
+        "Eres trabajador"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex066",
+      "concept": "ser-comprehensive",
+      "question": "Übersetze: 'Sie sind aus Paris und sie sind Künstler.'",
+      "correctAnswer": "Ellos son de París y son artistas",
+      "explanation": "SER für Herkunft UND Beruf.",
+      "germanBridge": "🇩🇪 Sie sind aus Paris und Künstler → 🇪🇸 Son de París y son artistas",
+      "examples": [
+        "Son de Roma y son músicos"
+      ],
+      "useCase": "multiple",
+      "rule": "SER für mehrere Verwendungen",
+      "prerequisites": [
+        "ser_comprehensive"
+      ],
+      "relatedConcepts": [
+        "multiple"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "multiple"
+      ],
+      "contrastiveElements": [
+        "SER für mehrere Verwendungen"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex067",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Vosotros ___ honestos.'",
+      "correctAnswer": "sois",
+      "explanation": "Vosotros sois - 2. Person Plural. 'Ihr seid ehrlich.'",
+      "germanBridge": "🇩🇪 ihr seid → 🇪🇸 vosotros sois",
+      "examples": [
+        "Sois generosos",
+        "Sois simpáticos"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex068",
+      "concept": "ser-time",
+      "question": "Wähle: 'Es ist fünf Uhr.'",
+      "correctAnswer": "Son las cinco",
+      "explanation": "SON LAS + Zahl für Uhrzeiten.",
+      "germanBridge": "🇩🇪 Es ist fünf Uhr → 🇪🇸 Son las cinco",
+      "examples": [
+        "Son las seis",
+        "Son las siete"
+      ],
+      "useCase": "time",
+      "rule": "SON LAS für Uhrzeiten",
+      "prerequisites": [
+        "ser_time"
+      ],
+      "relatedConcepts": [
+        "time"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "time"
+      ],
+      "contrastiveElements": [
+        "SON LAS für Uhrzeiten"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "Son las cinco",
+        "Es las cinco",
+        "Soy las cinco",
+        "Está las cinco"
+      ]
+    },
+    {
+      "id": "u2_ex069",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Yo ___ bombero.'",
+      "correctAnswer": "soy",
+      "explanation": "Yo soy - 1. Person Singular. 'Ich bin Feuerwehrmann.'",
+      "germanBridge": "🇩🇪 ich bin → 🇪🇸 yo soy",
+      "examples": [
+        "Soy policía",
+        "Soy abogado"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex070",
+      "concept": "ser-adjective",
+      "question": "Übersetze: 'Ihr seid sehr fleißig.'",
+      "correctAnswer": "Vosotros sois muy trabajadores",
+      "explanation": "Vosotros sois + Adjektiv (Plural).",
+      "germanBridge": "🇩🇪 Ihr seid fleißig → 🇪🇸 Vosotros sois trabajadores",
+      "examples": [
+        "Sois pacientes",
+        "Sois responsables"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex071",
+      "concept": "ser-origin",
+      "question": "Ergänze: 'Ella ___ de Londres.'",
+      "correctAnswer": "es",
+      "explanation": "Ella es de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Sie ist aus London → 🇪🇸 Ella es de Londres",
+      "examples": [
+        "Es de París",
+        "Es de Roma"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex072",
+      "concept": "ser-profession",
+      "question": "Wähle: 'Ellas ___ enfermeras.'",
+      "correctAnswer": "son",
+      "explanation": "Ellas son - 3. Person Plural. 'Sie sind Krankenschwestern.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellas son",
+      "examples": [
+        "Son médicas",
+        "Son doctoras"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "son",
+        "soy",
+        "eres",
+        "somos"
+      ]
+    },
+    {
+      "id": "u2_ex073",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Nosotros ___ valientes.'",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos - 1. Person Plural. 'Wir sind mutig.'",
+      "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
+      "examples": [
+        "Somos fuertes",
+        "Somos amables"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex074",
+      "concept": "ser-possession",
+      "question": "Übersetze: 'Die Tasche ist von Ana.'",
+      "correctAnswer": "La bolsa es de Ana",
+      "explanation": "ES DE + Person für Besitz.",
+      "germanBridge": "🇩🇪 Die Tasche ist von Ana → 🇪🇸 La bolsa es de Ana",
+      "examples": [
+        "Es de Pedro",
+        "Es de María"
+      ],
+      "useCase": "possession",
+      "rule": "ES DE für Besitz",
+      "prerequisites": [
+        "ser_possession"
+      ],
+      "relatedConcepts": [
+        "possession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "possession"
+      ],
+      "contrastiveElements": [
+        "ES DE für Besitz"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex075",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Tú ___ cocinero.'",
+      "correctAnswer": "eres",
+      "explanation": "Tú eres - 2. Person Singular. 'Du bist Koch.'",
+      "germanBridge": "🇩🇪 du bist → 🇪🇸 tú eres",
+      "examples": [
+        "Eres ingeniero",
+        "Eres profesor"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex076",
+      "concept": "ser-time",
+      "question": "Übersetze: 'Es ist Freitag.'",
+      "correctAnswer": "Es viernes",
+      "explanation": "ES + Wochentag (ohne Artikel).",
+      "germanBridge": "🇩🇪 Es ist Freitag → 🇪🇸 Es viernes",
+      "examples": [
+        "Es lunes",
+        "Es martes"
+      ],
+      "useCase": "time",
+      "rule": "ES + Wochentag",
+      "prerequisites": [
+        "ser_time"
+      ],
+      "relatedConcepts": [
+        "time"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "time"
+      ],
+      "contrastiveElements": [
+        "ES + Wochentag"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex077",
+      "concept": "ser-adjective",
+      "question": "Wähle: 'Ellos ___ perezosos.'",
+      "correctAnswer": "son",
+      "explanation": "Ellos son - 3. Person Plural. 'Sie sind faul.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellos son",
+      "examples": [
+        "Son trabajadores",
+        "Son responsables"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "son",
+        "soy",
+        "eres",
+        "es"
+      ]
+    },
+    {
+      "id": "u2_ex078",
+      "concept": "ser-origin",
+      "question": "Ergänze: 'Nosotros ___ de Italia.'",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Wir sind aus Italien → 🇪🇸 Nosotros somos de Italia",
+      "examples": [
+        "Somos de Francia",
+        "Somos de Alemania"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex079",
+      "concept": "ser-profession",
+      "question": "Übersetze: 'Du bist Zahnarzt.'",
+      "correctAnswer": "Tú eres dentista",
+      "explanation": "Tú eres + Beruf.",
+      "germanBridge": "🇩🇪 Du bist Zahnarzt → 🇪🇸 Tú eres dentista",
+      "examples": [
+        "Eres médico",
+        "Eres doctor"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex080",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Ella ___ amable.'",
+      "correctAnswer": "es",
+      "explanation": "Ella es - 3. Person Singular. 'Sie ist freundlich.'",
+      "germanBridge": "🇩🇪 sie ist → 🇪🇸 ella es",
+      "examples": [
+        "Es simpática",
+        "Es generosa"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex081",
+      "concept": "ser-origin",
+      "question": "Wähle: 'Yo ___ de Barcelona.'",
+      "correctAnswer": "soy",
+      "explanation": "Yo soy de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Ich bin aus Barcelona → 🇪🇸 Yo soy de Barcelona",
+      "examples": [
+        "Soy de Madrid",
+        "Soy de Valencia"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "soy",
+        "eres",
+        "es",
+        "son"
+      ]
+    },
+    {
+      "id": "u2_ex082",
+      "concept": "ser-definition",
+      "question": "Übersetze: 'Eine Katze ist ein Tier.'",
+      "correctAnswer": "Un gato es un animal",
+      "explanation": "ES für Definitionen.",
+      "germanBridge": "🇩🇪 Eine Katze ist ein Tier → 🇪🇸 Un gato es un animal",
+      "examples": [
+        "Un perro es un animal"
+      ],
+      "useCase": "definition",
+      "rule": "SER für Definitionen",
+      "prerequisites": [
+        "ser_definition"
+      ],
+      "relatedConcepts": [
+        "definition"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "definition"
+      ],
+      "contrastiveElements": [
+        "SER für Definitionen"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex083",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Ellos ___ abogados.'",
+      "correctAnswer": "son",
+      "explanation": "Ellos son - 3. Person Plural. 'Sie sind Anwälte.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellos son",
+      "examples": [
+        "Son ingenieros",
+        "Son arquitectos"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex084",
+      "concept": "ser-adjective",
+      "question": "Übersetze: 'Ich bin stolz.'",
+      "correctAnswer": "Yo soy orgulloso",
+      "explanation": "Yo soy + Adjektiv.",
+      "germanBridge": "🇩🇪 Ich bin stolz → 🇪🇸 Yo soy orgulloso",
+      "examples": [
+        "Soy feliz",
+        "Soy triste"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex085",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Vosotros ___ inteligentes.'",
+      "correctAnswer": "sois",
+      "explanation": "Vosotros sois - 2. Person Plural. 'Ihr seid intelligent.'",
+      "germanBridge": "🇩🇪 ihr seid → 🇪🇸 vosotros sois",
+      "examples": [
+        "Sois creativos",
+        "Sois responsables"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex086",
+      "concept": "ser-comprehensive",
+      "question": "Übersetze: 'Wir sind Musiker und wir sind aus Wien.'",
+      "correctAnswer": "Nosotros somos músicos y somos de Viena",
+      "explanation": "SER für Beruf UND Herkunft.",
+      "germanBridge": "🇩🇪 Wir sind Musiker aus Wien → 🇪🇸 Somos músicos y somos de Viena",
+      "examples": [
+        "Somos profesores y somos de Madrid"
+      ],
+      "useCase": "multiple",
+      "rule": "SER für mehrere Verwendungen",
+      "prerequisites": [
+        "ser_comprehensive"
+      ],
+      "relatedConcepts": [
+        "multiple"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "multiple"
+      ],
+      "contrastiveElements": [
+        "SER für mehrere Verwendungen"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex087",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Él ___ impaciente.'",
+      "correctAnswer": "es",
+      "explanation": "Él es - 3. Person Singular. 'Er ist ungeduldig.'",
+      "germanBridge": "🇩🇪 er ist → 🇪🇸 él es",
+      "examples": [
+        "Es paciente",
+        "Es tranquilo"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex088",
+      "concept": "ser-profession",
+      "question": "Wähle: 'Tú ___ ingeniero.'",
+      "correctAnswer": "eres",
+      "explanation": "Tú eres - 2. Person Singular. 'Du bist Ingenieur.'",
+      "germanBridge": "🇩🇪 du bist → 🇪🇸 tú eres",
+      "examples": [
+        "Eres arquitecto",
+        "Eres científico"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "eres",
+        "soy",
+        "es",
+        "somos"
+      ]
+    },
+    {
+      "id": "u2_ex089",
+      "concept": "ser-origin",
+      "question": "Ergänze: 'Tú ___ de Tokio.'",
+      "correctAnswer": "eres",
+      "explanation": "Tú eres de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Du bist aus Tokio → 🇪🇸 Tú eres de Tokio",
+      "examples": [
+        "Eres de Pekín",
+        "Eres de Seúl"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex090",
+      "concept": "ser-adjective",
+      "question": "Übersetze: 'Sie (Plural) sind verantwortungsvoll.'",
+      "correctAnswer": "Ellos son responsables",
+      "explanation": "Ellos son + Adjektiv (Plural).",
+      "germanBridge": "🇩🇪 Sie sind verantwortungsvoll → 🇪🇸 Ellos son responsables",
+      "examples": [
+        "Son honestos",
+        "Son trabajadores"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex091",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Vosotros ___ policías.'",
+      "correctAnswer": "sois",
+      "explanation": "Vosotros sois - 2. Person Plural. 'Ihr seid Polizisten.'",
+      "germanBridge": "🇩🇪 ihr seid → 🇪🇸 vosotros sois",
+      "examples": [
+        "Sois bomberos",
+        "Sois médicos"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex092",
+      "concept": "ser-time",
+      "question": "Übersetze: 'Es ist acht Uhr.'",
+      "correctAnswer": "Son las ocho",
+      "explanation": "SON LAS + Zahl für Uhrzeiten.",
+      "germanBridge": "🇩🇪 Es ist acht Uhr → 🇪🇸 Son las ocho",
+      "examples": [
+        "Son las nueve",
+        "Son las diez"
+      ],
+      "useCase": "time",
+      "rule": "SON LAS für Uhrzeiten",
+      "prerequisites": [
+        "ser_time"
+      ],
+      "relatedConcepts": [
+        "time"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "time"
+      ],
+      "contrastiveElements": [
+        "SON LAS für Uhrzeiten"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex093",
+      "concept": "ser-adjective",
+      "question": "Wähle: 'Nosotros ___ felices.'",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos - 1. Person Plural. 'Wir sind glücklich.'",
+      "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
+      "examples": [
+        "Somos tristes",
+        "Somos contentos"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "somos",
+        "soy",
+        "eres",
+        "son"
+      ]
+    },
+    {
+      "id": "u2_ex094",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Ella ___ médica.'",
+      "correctAnswer": "es",
+      "explanation": "Ella es - 3. Person Singular. 'Sie ist Ärztin.'",
+      "germanBridge": "🇩🇪 sie ist → 🇪🇸 ella es",
+      "examples": [
+        "Es enfermera",
+        "Es doctora"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex095",
+      "concept": "ser-origin",
+      "question": "Übersetze: 'Sie (sing.) ist aus Moskau.'",
+      "correctAnswer": "Ella es de Moscú",
+      "explanation": "Ella es de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Sie ist aus Moskau → 🇪🇸 Ella es de Moscú",
+      "examples": [
+        "Es de San Petersburgo"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex096",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Yo ___ optimista.'",
+      "correctAnswer": "soy",
+      "explanation": "Yo soy - 1. Person Singular. 'Ich bin optimistisch.'",
+      "germanBridge": "🇩🇪 ich bin → 🇪🇸 yo soy",
+      "examples": [
+        "Soy pesimista",
+        "Soy realista"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex097",
+      "concept": "ser-origin",
+      "question": "Wähle: 'Ellos ___ de México.'",
+      "correctAnswer": "son",
+      "explanation": "Ellos son de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Sie sind aus Mexiko → 🇪🇸 Ellos son de México",
+      "examples": [
+        "Son de Argentina",
+        "Son de Chile"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "son",
+        "soy",
+        "eres",
+        "somos"
+      ]
+    },
+    {
+      "id": "u2_ex098",
+      "concept": "ser-profession",
+      "question": "Übersetze: 'Er ist Pilot.'",
+      "correctAnswer": "Él es piloto",
+      "explanation": "Él es + Beruf.",
+      "germanBridge": "🇩🇪 Er ist Pilot → 🇪🇸 Él es piloto",
+      "examples": [
+        "Es conductor",
+        "Es capitán"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex099",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Ellas ___ simpáticas.'",
+      "correctAnswer": "son",
+      "explanation": "Ellas son - 3. Person Plural. 'Sie sind sympathisch.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellas son",
+      "examples": [
+        "Son amables",
+        "Son generosas"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex100",
+      "concept": "ser-comprehensive",
+      "question": "Übersetze: 'Ich bin Architekt und ich bin aus Hamburg.'",
+      "correctAnswer": "Yo soy arquitecto y soy de Hamburgo",
+      "explanation": "SER für Beruf UND Herkunft.",
+      "germanBridge": "🇩🇪 Ich bin Architekt aus Hamburg → 🇪🇸 Soy arquitecto y soy de Hamburgo",
+      "examples": [
+        "Soy ingeniero y soy de Múnich"
+      ],
+      "useCase": "multiple",
+      "rule": "SER für mehrere Verwendungen",
+      "prerequisites": [
+        "ser_comprehensive"
+      ],
+      "relatedConcepts": [
+        "multiple"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "multiple"
+      ],
+      "contrastiveElements": [
+        "SER für mehrere Verwendungen"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex101",
+      "concept": "ser-profession",
+      "question": "Wähle: 'Nosotros ___ científicos.'",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos - 1. Person Plural. 'Wir sind Wissenschaftler.'",
+      "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
+      "examples": [
+        "Somos investigadores",
+        "Somos profesores"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "somos",
+        "soy",
+        "eres",
+        "son"
+      ]
+    },
+    {
+      "id": "u2_ex102",
+      "concept": "ser-origin",
+      "question": "Ergänze: 'Vosotros ___ de Granada.'",
+      "correctAnswer": "sois",
+      "explanation": "Vosotros sois de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Ihr seid aus Granada → 🇪🇸 Vosotros sois de Granada",
+      "examples": [
+        "Sois de Sevilla",
+        "Sois de Málaga"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex103",
+      "concept": "ser-adjective",
+      "question": "Übersetze: 'Er ist ehrlich.'",
+      "correctAnswer": "Él es honesto",
+      "explanation": "Él es + Adjektiv.",
+      "germanBridge": "🇩🇪 Er ist ehrlich → 🇪🇸 Él es honesto",
+      "examples": [
+        "Es sincero",
+        "Es transparente"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex104",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Ellos ___ músicos.'",
+      "correctAnswer": "son",
+      "explanation": "Ellos son - 3. Person Plural. 'Sie sind Musiker.'",
+      "germanBridge": "🇩🇪 sie sind → 🇪🇸 ellos son",
+      "examples": [
+        "Son artistas",
+        "Son cantantes"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex105",
+      "concept": "ser-adjective",
+      "question": "Wähle: 'Tú ___ generoso.'",
+      "correctAnswer": "eres",
+      "explanation": "Tú eres - 2. Person Singular. 'Du bist großzügig.'",
+      "germanBridge": "🇩🇪 du bist → 🇪🇸 tú eres",
+      "examples": [
+        "Eres amable",
+        "Eres bondadoso"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "eres",
+        "soy",
+        "es",
+        "somos"
+      ]
+    },
+    {
+      "id": "u2_ex106",
+      "concept": "ser-time",
+      "question": "Übersetze: 'Es ist Dienstag.'",
+      "correctAnswer": "Es martes",
+      "explanation": "ES + Wochentag (ohne Artikel).",
+      "germanBridge": "🇩🇪 Es ist Dienstag → 🇪🇸 Es martes",
+      "examples": [
+        "Es miércoles",
+        "Es jueves"
+      ],
+      "useCase": "time",
+      "rule": "ES + Wochentag",
+      "prerequisites": [
+        "ser_time"
+      ],
+      "relatedConcepts": [
+        "time"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "time"
+      ],
+      "contrastiveElements": [
+        "ES + Wochentag"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex107",
+      "concept": "ser-adjective",
+      "question": "Ergänze: 'Nosotros ___ creativos.'",
+      "correctAnswer": "somos",
+      "explanation": "Nosotros somos - 1. Person Plural. 'Wir sind kreativ.'",
+      "germanBridge": "🇩🇪 wir sind → 🇪🇸 nosotros somos",
+      "examples": [
+        "Somos innovadores",
+        "Somos originales"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex108",
+      "concept": "ser-possession",
+      "question": "Übersetze: 'Der Stuhl ist von Miguel.'",
+      "correctAnswer": "La silla es de Miguel",
+      "explanation": "ES DE + Person für Besitz.",
+      "germanBridge": "🇩🇪 Der Stuhl ist von Miguel → 🇪🇸 La silla es de Miguel",
+      "examples": [
+        "Es de Juan",
+        "Es de Carlos"
+      ],
+      "useCase": "possession",
+      "rule": "ES DE für Besitz",
+      "prerequisites": [
+        "ser_possession"
+      ],
+      "relatedConcepts": [
+        "possession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "possession"
+      ],
+      "contrastiveElements": [
+        "ES DE für Besitz"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex109",
+      "concept": "ser-origin",
+      "question": "Wähle: 'Ella ___ de Brasil.'",
+      "correctAnswer": "es",
+      "explanation": "Ella es de + Ort für Herkunft.",
+      "germanBridge": "🇩🇪 Sie ist aus Brasilien → 🇪🇸 Ella es de Brasil",
+      "examples": [
+        "Es de Colombia",
+        "Es de Perú"
+      ],
+      "useCase": "origin",
+      "rule": "SER DE für Herkunft",
+      "prerequisites": [
+        "ser_origin"
+      ],
+      "relatedConcepts": [
+        "origin"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "multiple-choice",
+        "ser",
+        "origin"
+      ],
+      "contrastiveElements": [
+        "SER DE für Herkunft"
+      ],
+      "type": "multiple-choice",
+      "difficulty": 2,
+      "estimatedResponseTime": 8,
+      "memoryComplexity": 3,
+      "interferenceRisk": "medium",
+      "spacingMultiplier": 1.1,
+      "transferType": "neutral",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.78,
+      "milestone": false,
+      "certificationRequired": false,
+      "options": [
+        "es",
+        "soy",
+        "eres",
+        "son"
+      ]
+    },
+    {
+      "id": "u2_ex110",
+      "concept": "ser-profession",
+      "question": "Ergänze: 'Yo ___ profesor.'",
+      "correctAnswer": "soy",
+      "explanation": "Yo soy - 1. Person Singular. 'Ich bin Lehrer.'",
+      "germanBridge": "🇩🇪 ich bin → 🇪🇸 yo soy",
+      "examples": [
+        "Soy maestro",
+        "Soy instructor"
+      ],
+      "useCase": "profession",
+      "rule": "SER für Berufe",
+      "prerequisites": [
+        "ser_profession"
+      ],
+      "relatedConcepts": [
+        "profession"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "fill-in",
+        "ser",
+        "profession"
+      ],
+      "contrastiveElements": [
+        "SER für Berufe"
+      ],
+      "type": "fill-in",
+      "difficulty": 2,
+      "estimatedResponseTime": 5,
+      "memoryComplexity": 2,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.85,
+      "milestone": false,
+      "certificationRequired": false
+    },
+    {
+      "id": "u2_ex111",
+      "concept": "ser-adjective",
+      "question": "Übersetze: 'Wir sind geduldig.'",
+      "correctAnswer": "Nosotros somos pacientes",
+      "explanation": "Nosotros somos + Adjektiv (Plural).",
+      "germanBridge": "🇩🇪 Wir sind geduldig → 🇪🇸 Nosotros somos pacientes",
+      "examples": [
+        "Somos tranquilos",
+        "Somos calmados"
+      ],
+      "useCase": "characteristic",
+      "rule": "SER für Eigenschaften",
+      "prerequisites": [
+        "ser_adjective"
+      ],
+      "relatedConcepts": [
+        "characteristic"
+      ],
+      "discriminationPairs": [],
+      "categoryTags": [
+        "unit-2",
+        "phase-1",
+        "A1",
+        "translation",
+        "ser",
+        "characteristic"
+      ],
+      "contrastiveElements": [
+        "SER für Eigenschaften"
+      ],
+      "type": "translation",
+      "difficulty": 2,
+      "estimatedResponseTime": 7,
+      "memoryComplexity": 3,
+      "interferenceRisk": "low",
+      "spacingMultiplier": 1.0,
+      "transferType": "positive",
+      "falseFriendRisk": false,
+      "expectedAccuracy": 0.82,
+      "milestone": false,
+      "certificationRequired": false
     }
   ],
   "progressionNotes": {
@@ -2409,28 +6167,28 @@
   },
   "learningPhases": {
     "phase0_prep": {
-      "exercises": "u2_vocab001 - u2_vocab013",
+      "exercises": "u2_vocab001 - u2_vocab044",
       "goal": "Grundwortschatz aufbauen",
-      "time": "5-10 Minuten",
-      "exerciseCount": 13
+      "time": "15-20 Minuten",
+      "exerciseCount": 44
     },
     "phase1_input": {
-      "exercises": "u2_input001 - u2_input008",
+      "exercises": "u2_ex001 - u2_ex035",
       "goal": "Verstehen durch authentische Beispiele",
-      "time": "10-15 Minuten",
-      "exerciseCount": 8
+      "time": "20-25 Minuten",
+      "exerciseCount": 35
     },
     "phase2_guided": {
-      "exercises": "u2_guided001 - u2_guided022",
+      "exercises": "u2_ex036 - u2_ex085",
       "goal": "Mit Hilfe produzieren",
-      "time": "15-20 Minuten",
-      "exerciseCount": 22
+      "time": "25-30 Minuten",
+      "exerciseCount": 50
     },
     "phase3_free": {
-      "exercises": "u2_free001 - u2_free012",
+      "exercises": "u2_ex086 - u2_ex111",
       "goal": "Selbstständig anwenden",
-      "time": "10-15 Minuten",
-      "exerciseCount": 12
+      "time": "20-25 Minuten",
+      "exerciseCount": 26
     }
   }
 }
