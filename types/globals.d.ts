@@ -47,7 +47,7 @@ declare global {
       getLevel(): LogLevel;
     };
 
-    // Main App Instance
+    // Main App Instance (class constructor)
     App: {
       init(): Promise<void>;
       loadUnit(unitNumber: number): Promise<void>;
@@ -58,6 +58,15 @@ declare global {
       getProgress(): UserProgress;
       saveProgress(): void;
       loadProgress(): UserProgress | null;
+    };
+
+    // Main app instance (lowercase - the actual running instance)
+    app?: {
+      next(): void;
+      previous(): void;
+      submit(answer: string): void;
+      autoAdvanceTimeout?: number;
+      // Add other methods as needed
     };
 
     // Exercise Loader
