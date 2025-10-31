@@ -1,0 +1,30 @@
+{
+  "name": "spanish-learning-app",
+  "version": "1.0.0",
+  "description": "Spanish Learning App with adaptive exercises - TypeScript Migration",
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "build-prod": "tsc && node build-production.js",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint . --ext .ts,.js",
+    "test": "echo \"No tests yet\" && exit 0",
+    "migrate-check": "tsc --noEmit --strict"
+  },
+  "keywords": [
+    "spanish",
+    "learning",
+    "education",
+    "pwa",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.6",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "eslint": "^8.56.0"
+  }
+}
