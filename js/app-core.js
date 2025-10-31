@@ -643,6 +643,12 @@ class App {
         // Initialize Adaptive Learning System
         this.adaptiveSystem = new window.AdaptiveLearningSystem();
 
+        // Initialize Unit Mastery System
+        this.masterySystem = new window.UnitMasterySystem();
+
+        // Initialize Introduction UI
+        this.introductionUI = new window.IntroductionUI();
+
         this.currentUnit = 1;
         this.exercises = [];
         this.currentIndex = 0;
@@ -846,16 +852,25 @@ class App {
 
     /**
      * Load a unit
+     * @param {number} unitNumber - Unit number to load
+     * @param {boolean} showIntro - Whether to show the introduction (default: true for new units)
      */
-    async loadUnit(unitNumber) {
+    async loadUnit(unitNumber, showIntro = true) {
         try {
             window.Logger?.info(`Loading Unit ${unitNumber} (Adaptive Mode)...`);
 
             // Load all exercises from all units for adaptive selection
             const allExercises = [];
+            let currentUnitData = null;
 
             for (let unit = 1; unit <= 7; unit++) {
                 const data = await this.loader.loadUnit(unit);
+
+                // Save current unit data for introduction
+                if (unit === unitNumber) {
+                    currentUnitData = data;
+                }
+
                 data.exercises.forEach(ex => {
                     allExercises.push({
                         ...ex,
@@ -876,11 +891,28 @@ class App {
             this.currentIndex = 0;
             this.attempts = 0;
 
+            // Store current unit data for introduction
+            this.currentUnitData = currentUnitData;
+
             // Update progress
             this.updateProgress();
 
             // Show adaptive recommendations
             this.showAdaptiveRecommendations();
+
+            // Show introduction if requested and not seen before
+            if (showIntro && currentUnitData && currentUnitData.introduction) {
+                const hasSeenIntro = this.introductionUI.hasSeenIntroduction(unitNumber);
+
+                if (!hasSeenIntro) {
+                    // Show introduction, then proceed to exercises
+                    this.introductionUI.showIntroduction(currentUnitData, () => {
+                        this.introductionUI.markIntroductionSeen(unitNumber);
+                        this.showExercise(0);
+                    });
+                    return; // Don't show exercise yet
+                }
+            }
 
         } catch (error) {
             window.Logger?.error('Error loading adaptive exercises:', error);
@@ -1006,6 +1038,11 @@ class App {
 
         // Record attempt in adaptive learning system
         this.adaptiveSystem.recordAttempt(exercise, validationResult.isCorrect);
+
+        // Record attempt in unit mastery system
+        if (exercise.unitNumber) {
+            this.masterySystem.recordAttempt(exercise.unitNumber, exercise, validationResult.isCorrect);
+        }
 
         // Save progress after updating stats
         this.saveProgress();
@@ -1228,13 +1265,35 @@ class App {
             cursor: pointer;
         `;
 
+        // Get all units status from mastery system
+        const unitsStatus = this.masterySystem.getAllUnitsStatus();
+
         for (let i = 1; i <= 7; i++) {
+            const unitStatus = unitsStatus[i - 1];
             const option = document.createElement('option');
             option.value = i;
-            option.textContent = `Lektion ${i}`;
+
+            // Build label with status indicators
+            let label = `Lektion ${i}`;
+            if (unitStatus.isMastered) {
+                label += ' ✅';
+            } else if (!unitStatus.isUnlocked) {
+                label += ' 🔒';
+            } else if (unitStatus.masteryPercent > 0) {
+                label += ` (${unitStatus.masteryPercent}%)`;
+            }
+
+            option.textContent = label;
+
+            // Disable locked units
+            if (!unitStatus.isUnlocked) {
+                option.disabled = true;
+            }
+
             if (i === this.currentUnit) {
                 option.selected = true;
             }
+
             select.appendChild(option);
         }
 
@@ -1252,6 +1311,74 @@ class App {
 
         unitSelector.appendChild(select);
         nav.appendChild(unitSelector);
+
+        // Add mastery status panel for current unit
+        const currentUnitStatus = unitsStatus[this.currentUnit - 1];
+        if (currentUnitStatus) {
+            const masteryPanel = document.createElement('div');
+            masteryPanel.style.cssText = `
+                margin-bottom: 20px;
+                padding: 15px;
+                background: ${currentUnitStatus.isMastered ? 'linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)' : 'rgba(32, 178, 170, 0.1)'};
+                border: 2px solid ${currentUnitStatus.isMastered ? '#4CAF50' : 'var(--primary)'};
+                border-radius: 8px;
+                color: ${currentUnitStatus.isMastered ? 'white' : 'var(--text)'};
+            `;
+
+            masteryPanel.innerHTML = `
+                <div style="font-size: 12px; font-weight: 600; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">
+                    ${currentUnitStatus.isMastered ? '✅ Unit Gemeistert!' : '🎯 Mastery-Fortschritt'}
+                </div>
+                <div style="margin-bottom: 8px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px; font-size: 11px;">
+                        <span>Gesamtfortschritt</span>
+                        <span style="font-weight: 600;">${currentUnitStatus.masteryPercent}%</span>
+                    </div>
+                    <div style="background: rgba(0, 0, 0, 0.1); height: 6px; border-radius: 3px; overflow: hidden;">
+                        <div style="background: ${currentUnitStatus.isMastered ? 'white' : 'var(--primary)'}; height: 100%; width: ${currentUnitStatus.masteryPercent}%; transition: width 0.3s ease;"></div>
+                    </div>
+                </div>
+                <div style="font-size: 11px; opacity: 0.9;">
+                    📚 ${currentUnitStatus.exercisesCompleted}/150 Übungen
+                </div>
+            `;
+
+            nav.appendChild(masteryPanel);
+        }
+
+        // Add "View Introduction" button
+        if (this.currentUnitData && this.currentUnitData.introduction) {
+            const introButton = document.createElement('button');
+            introButton.className = 'btn-view-intro';
+            introButton.textContent = '📖 Unit-Einführung anzeigen';
+            introButton.style.cssText = `
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                background: var(--bg);
+                border: 2px solid var(--primary);
+                color: var(--primary);
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
+                transition: all 0.2s ease;
+            `;
+
+            introButton.addEventListener('click', () => {
+                this.showCurrentUnitIntroduction();
+            });
+
+            introButton.addEventListener('mouseenter', () => {
+                introButton.style.background = 'rgba(32, 178, 170, 0.1)';
+            });
+
+            introButton.addEventListener('mouseleave', () => {
+                introButton.style.background = 'var(--bg)';
+            });
+
+            nav.appendChild(introButton);
+        }
 
         // Group exercises by concept if available
         const groupedExercises = this.groupExercisesByConcept();
@@ -1315,6 +1442,21 @@ class App {
             section.appendChild(list);
             nav.appendChild(section);
         }
+    }
+
+    /**
+     * Show current unit introduction (can be called anytime)
+     */
+    showCurrentUnitIntroduction() {
+        if (!this.currentUnitData || !this.currentUnitData.introduction) {
+            alert('Keine Einführung für diese Unit verfügbar.');
+            return;
+        }
+
+        // Show introduction, then return to current exercise
+        this.introductionUI.showIntroduction(this.currentUnitData, () => {
+            this.showExercise(this.currentIndex);
+        });
     }
 
     /**
