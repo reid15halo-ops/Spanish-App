@@ -17,6 +17,7 @@ import type { UnitData } from '../types/exercise-data';
 // Import classes
 import { TolerantAnswerValidator } from './tolerant-validator.js';
 import { ImprovedFeedbackSystem } from './improved-feedback.js';
+import { AdaptivePracticeSystem } from './adaptive-practice-system.js';
 
 // ====================================================================
 // Type Definitions

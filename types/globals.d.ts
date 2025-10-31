@@ -220,8 +220,31 @@ declare global {
     // Adaptive Practice System
     AdaptivePracticeSystem: new () => any;
 
+    // Unit Getter Function
+    getUnit?: (unitNumber: number) => any;
+
+    // Lazy Exercise Loader
+    LazyExerciseLoader?: new () => any;
+
+    // Spanish App Instance
+    SpanishApp?: {
+      currentExerciseIndex?: number;
+      allExercises?: any[];
+      renderCurrentExercise?: (...args: any[]) => any;
+    };
+
+    // Performance Optimizer
+    PerformanceOptimizer?: any;
+
+    // Production Config
+    ProductionConfig?: any;
+
+    // React DevTools Hook (for future React integration)
+    __REACT_DEVTOOLS_GLOBAL_HOOK__?: any;
+
     // Development flag
     __DEV__?: boolean;
+    __PRODUCTION__?: boolean;
   }
 
   // Class interfaces (for constructor types)
@@ -287,6 +310,15 @@ interface ServiceWorkerGlobalScope {
 // Augment console to include 'success' method (custom)
 interface Console {
   success?(message?: any, ...optionalParams: any[]): void;
+}
+
+// Augment Performance to include Chrome's memory API
+interface Performance {
+  memory?: {
+    usedJSHeapSize: number;
+    totalJSHeapSize: number;
+    jsHeapSizeLimit: number;
+  };
 }
 
 export {};
