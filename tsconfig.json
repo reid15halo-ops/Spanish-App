@@ -1,0 +1,63 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    /* Modules */
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    /* JavaScript Support - CRITICAL FOR GRADUAL MIGRATION */
+    "allowJs": true,              // ✅ Allow JavaScript files during migration
+    "checkJs": false,             // ✅ Don't type-check JS files yet
+
+    /* Emit */
+    "declaration": true,          // ✅ Generate .d.ts files
+    "declarationMap": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "removeComments": false,
+    "noEmit": false,              // ✅ Emit JavaScript output
+    "noEmitOnError": false,       // ✅ Continue even with errors (gradual migration)
+
+    /* Type Checking - PERMISSIVE START (will tighten later) */
+    "strict": false,              // ✅ Start permissive, enable later
+    "noImplicitAny": false,       // ✅ Allow implicit any during migration
+    "strictNullChecks": false,    // ✅ Enable later
+    "strictFunctionTypes": false,
+    "strictBindCallApply": false,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": false,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": [
+    "js/**/*.js",
+    "js/**/*.ts",
+    "types/**/*.ts",
+    "*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "archive",
+    "**/*.spec.ts"
+  ]
+}

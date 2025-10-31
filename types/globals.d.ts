@@ -1,0 +1,260 @@
+/**
+ * Global Type Declarations
+ *
+ * Declares types for global window objects and third-party libraries
+ * This enables TypeScript to understand the runtime environment
+ */
+
+import type {
+  Exercise,
+  ValidationResult,
+  UserProgress,
+  UserSettings,
+  LogLevel,
+  PerformanceMetric,
+  ErrorLog,
+  BackupData,
+  GDPRDataExport
+} from './core';
+
+// ====================================================================
+// WINDOW GLOBAL OBJECTS
+// ====================================================================
+
+declare global {
+  interface Window {
+    // Environment Configuration (already declared in environment.ts, but include here for completeness)
+    ENV: {
+      currentEnv: 'development' | 'staging' | 'production';
+      get<T = any>(key: string): T;
+      getAll(): Record<string, any>;
+      isProduction(): boolean;
+      isDevelopment(): boolean;
+      isStaging(): boolean;
+      getVersion(): string;
+      getFeatureFlag(featureName: string): boolean;
+      log(level: LogLevel, message: string, ...args: any[]): void;
+    };
+
+    // Logger System
+    Logger: {
+      debug(message: string, ...args: any[]): void;
+      info(message: string, ...args: any[]): void;
+      warn(message: string, ...args: any[]): void;
+      error(message: string, ...args: any[]): void;
+      success(message: string, ...args: any[]): void;
+      setLevel(level: LogLevel): void;
+      getLevel(): LogLevel;
+    };
+
+    // Main App Instance
+    App: {
+      init(): Promise<void>;
+      loadUnit(unitNumber: number): Promise<void>;
+      showExercise(index: number): void;
+      handleAnswer(answer: string): void;
+      nextExercise(): void;
+      previousExercise(): void;
+      getProgress(): UserProgress;
+      saveProgress(): void;
+      loadProgress(): UserProgress | null;
+    };
+
+    // Exercise Loader
+    ExerciseLoader: {
+      new(): ExerciseLoader;
+      loadUnit(unitNumber: number): Promise<{
+        metadata: any;
+        exercises: Exercise[];
+        phases?: any[];
+      }>;
+      getUnitInfo(unitNumber: number): Promise<any>;
+    };
+
+    // Exercise Renderer
+    ExerciseRenderer: {
+      new(container: HTMLElement): ExerciseRenderer;
+      render(exercise: Exercise): void;
+      clear(): void;
+    };
+
+    // Tolerant Answer Validator
+    TolerantAnswerValidator: {
+      new(): TolerantAnswerValidator;
+      validateAnswer(
+        userAnswer: string,
+        correctAnswer: string,
+        exercise: Exercise
+      ): ValidationResult;
+    };
+
+    // Improved Feedback System
+    ImprovedFeedbackSystem: {
+      new(): ImprovedFeedbackSystem;
+      showValidationResult(result: ValidationResult, exercise: Exercise): void;
+      clear(): void;
+    };
+
+    // Adaptive Learning Orchestrator
+    AdaptiveLearningOrchestrator: {
+      new(): AdaptiveLearningOrchestrator;
+      startSession(): void;
+      getNextOptimizedExercise(
+        exercises: Exercise[],
+        currentUnit: number,
+        userProgress: UserProgress
+      ): Exercise | null;
+      recordExerciseAttempt(
+        exercise: Exercise,
+        userAnswer: string,
+        isCorrect: boolean,
+        responseTime: number
+      ): void;
+      endSession(): any;
+      getLearningInsights(): any;
+      generateRecommendations(): any[];
+    };
+
+    // Data Backup System
+    DataBackup: {
+      exportBackup(): void;
+      importBackup(event: Event): void;
+      clearAllData(): void;
+      createBackup(): BackupData;
+      restoreBackup(backup: BackupData): boolean;
+    };
+
+    // GDPR Compliance
+    GDPR: {
+      exerciseRightToAccess(): void;
+      exerciseRightToDeletion(): void;
+      exportData(): GDPRDataExport;
+      showPrivacyPolicy(): void;
+    };
+
+    // Performance Monitor
+    PerformanceMonitor: {
+      recordMetric(metric: PerformanceMetric): void;
+      getMetrics(): PerformanceMetric[];
+      clearMetrics(): void;
+      reportToConsole(): void;
+    };
+
+    // Error Handler
+    ErrorHandler: {
+      captureError(error: Error, context?: Record<string, any>): void;
+      getErrors(): ErrorLog[];
+      clearErrors(): void;
+    };
+
+    // Unit Data (Inlined from exercise-data.js)
+    UNIT_1_PRONOUNS: {
+      metadata: any;
+      learningPhases: any[];
+      exercises: Exercise[];
+    };
+    UNIT_2_SER: {
+      metadata: any;
+      learningPhases: any[];
+      exercises: Exercise[];
+    };
+    UNIT_3_ESTAR: {
+      metadata: any;
+      learningPhases: any[];
+      exercises: Exercise[];
+    };
+    UNIT_4_SER_ESTAR_CONTRAST: {
+      metadata: any;
+      learningPhases: any[];
+      exercises: Exercise[];
+    };
+    UNIT_5_TENER: {
+      metadata: any;
+      learningPhases: any[];
+      exercises: Exercise[];
+    };
+    UNIT_6_VOCABULARY: {
+      metadata: any;
+      learningPhases: any[];
+      exercises: Exercise[];
+    };
+    UNIT_7_INTEGRATION: {
+      metadata: any;
+      learningPhases: any[];
+      exercises: Exercise[];
+    };
+    PHASE_1_VOCABULARY: any;
+
+    // Loading Spinner
+    LoadingSpinner?: {
+      show(message?: string): void;
+      hide(): void;
+    };
+  }
+
+  // Class interfaces (for constructor types)
+  interface ExerciseLoader {
+    loadUnit(unitNumber: number): Promise<{
+      metadata: any;
+      exercises: Exercise[];
+      phases?: any[];
+    }>;
+    getUnitInfo(unitNumber: number): Promise<any>;
+  }
+
+  interface ExerciseRenderer {
+    render(exercise: Exercise): void;
+    clear(): void;
+  }
+
+  interface TolerantAnswerValidator {
+    validateAnswer(
+      userAnswer: string,
+      correctAnswer: string,
+      exercise: Exercise
+    ): ValidationResult;
+  }
+
+  interface ImprovedFeedbackSystem {
+    showValidationResult(result: ValidationResult, exercise: Exercise): void;
+    clear(): void;
+  }
+
+  interface AdaptiveLearningOrchestrator {
+    startSession(): void;
+    getNextOptimizedExercise(
+      exercises: Exercise[],
+      currentUnit: number,
+      userProgress: UserProgress
+    ): Exercise | null;
+    recordExerciseAttempt(
+      exercise: Exercise,
+      userAnswer: string,
+      isCorrect: boolean,
+      responseTime: number
+    ): void;
+    endSession(): any;
+    getLearningInsights(): any;
+    generateRecommendations(): any[];
+  }
+}
+
+// ====================================================================
+// THIRD-PARTY LIBRARIES
+// ====================================================================
+
+// Service Worker API (already included in lib.dom, but for reference)
+interface ServiceWorkerGlobalScope {
+  addEventListener(type: string, listener: EventListener): void;
+}
+
+// ====================================================================
+// MODULE AUGMENTATION
+// ====================================================================
+
+// Augment console to include 'success' method (custom)
+interface Console {
+  success?(message?: any, ...optionalParams: any[]): void;
+}
+
+export {};
