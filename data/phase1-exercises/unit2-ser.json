@@ -6190,5 +6190,242 @@
       "time": "20-25 Minuten",
       "exerciseCount": 26
     }
+  },
+  "introduction": {
+    "title": "Unit 2: Das Verb SER - Deine Identität ausdrücken",
+    "subtitle": "Das erste 'sein' - für alles Permanente",
+    "readingTime": "10-12 Minuten",
+    "sections": [
+      {
+        "heading": "🎯 Was ist SER und warum ist es so wichtig?",
+        "content": "SER ist eines der wichtigsten Verben im Spanischen. Es bedeutet 'sein' - aber ACHTUNG: Im Spanischen gibt es ZWEI Verben für 'sein'!\n\n• **SER** = für permanente, unveränderliche Dinge\n• **ESTAR** = für temporäre Zustände und Orte (kommt in Unit 3)\n\nAls Deutschsprachiger musst du lernen, zwischen diesen beiden zu unterscheiden - das ist eine der größten Herausforderungen!"
+      },
+      {
+        "heading": "📋 Die Konjugation von SER",
+        "content": "SER ist unregelmäßig - du musst es auswendig lernen!\n\n**Präsens (Presente):**\n• yo **soy** = ich bin\n• tú **eres** = du bist\n• él/ella/usted **es** = er/sie ist, Sie sind\n• nosotros/as **somos** = wir sind\n• vosotros/as **sois** = ihr seid\n• ellos/ellas/ustedes **son** = sie sind",
+        "examples": [
+          {
+            "spanish": "Yo soy médico.",
+            "german": "Ich bin Arzt.",
+            "note": "Beruf - permanent"
+          },
+          {
+            "spanish": "Tú eres alemán.",
+            "german": "Du bist Deutscher.",
+            "note": "Nationalität - permanent"
+          },
+          {
+            "spanish": "Ella es inteligente.",
+            "german": "Sie ist intelligent.",
+            "note": "Eigenschaft - permanent"
+          },
+          {
+            "spanish": "Nosotros somos amigos.",
+            "german": "Wir sind Freunde.",
+            "note": "Beziehung"
+          },
+          {
+            "spanish": "Ellos son de España.",
+            "german": "Sie sind aus Spanien.",
+            "note": "Herkunft - permanent"
+          }
+        ]
+      },
+      {
+        "heading": "🔑 Wann benutzt du SER? - Die DOCTOR-Regel",
+        "content": "Eine Eselsbrücke hilft dir: **DOCTOR**\n\n**D = Description (Beschreibung)**\nFür permanente, unveränderliche Eigenschaften:",
+        "examples": [
+          {
+            "spanish": "Ella es alta.",
+            "german": "Sie ist groß.",
+            "note": "Körpergröße ändert sich nicht"
+          },
+          {
+            "spanish": "El libro es interesante.",
+            "german": "Das Buch ist interessant.",
+            "note": "Eigenschaft des Buches"
+          },
+          {
+            "spanish": "Soy tímido.",
+            "german": "Ich bin schüchtern.",
+            "note": "Charakter"
+          }
+        ]
+      },
+      {
+        "heading": "**O = Origin (Herkunft)**",
+        "content": "Für die Herkunft benutzt du **SER DE**:",
+        "examples": [
+          {
+            "spanish": "Soy de Alemania.",
+            "german": "Ich bin aus Deutschland.",
+            "note": ""
+          },
+          {
+            "spanish": "Ella es de Madrid.",
+            "german": "Sie ist aus Madrid.",
+            "note": ""
+          },
+          {
+            "spanish": "Somos de Europa.",
+            "german": "Wir sind aus Europa.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**C = Characteristic (Charaktereigenschaft)**",
+        "content": "Für permanente Charaktereigenschaften:",
+        "examples": [
+          {
+            "spanish": "Él es generoso.",
+            "german": "Er ist großzügig.",
+            "note": ""
+          },
+          {
+            "spanish": "Eres muy inteligente.",
+            "german": "Du bist sehr intelligent.",
+            "note": ""
+          },
+          {
+            "spanish": "Son simpáticos.",
+            "german": "Sie sind sympathisch.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**T = Time (Zeit/Datum)**",
+        "content": "Für Uhrzeiten und Daten:",
+        "examples": [
+          {
+            "spanish": "Son las tres.",
+            "german": "Es ist drei Uhr.",
+            "note": "⚠️ Plural 'son' für Uhrzeiten!"
+          },
+          {
+            "spanish": "Es la una.",
+            "german": "Es ist ein Uhr.",
+            "note": "Singular nur bei 'una'"
+          },
+          {
+            "spanish": "Hoy es lunes.",
+            "german": "Heute ist Montag.",
+            "note": "Wochentag"
+          },
+          {
+            "spanish": "Es el 25 de diciembre.",
+            "german": "Es ist der 25. Dezember.",
+            "note": "Datum"
+          }
+        ]
+      },
+      {
+        "heading": "**O = Occupation (Beruf)**",
+        "content": "Für Berufe (OHNE Artikel!):",
+        "examples": [
+          {
+            "spanish": "Soy profesor.",
+            "german": "Ich bin Lehrer.",
+            "note": "⚠️ Kein Artikel!"
+          },
+          {
+            "spanish": "Ella es médica.",
+            "german": "Sie ist Ärztin.",
+            "note": ""
+          },
+          {
+            "spanish": "Somos ingenieros.",
+            "german": "Wir sind Ingenieure.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**R = Relationship (Beziehung)**",
+        "content": "Für Beziehungen zwischen Menschen:",
+        "examples": [
+          {
+            "spanish": "Es mi hermano.",
+            "german": "Er ist mein Bruder.",
+            "note": ""
+          },
+          {
+            "spanish": "Somos amigos.",
+            "german": "Wir sind Freunde.",
+            "note": ""
+          },
+          {
+            "spanish": "Ella es mi jefa.",
+            "german": "Sie ist meine Chefin.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "➕ Weitere wichtige SER-Verwendungen",
+        "content": "**Besitz mit SER DE:**",
+        "examples": [
+          {
+            "spanish": "El libro es de Pedro.",
+            "german": "Das Buch ist von Pedro.",
+            "note": "Gehört Pedro"
+          },
+          {
+            "spanish": "¿De quién es esto?",
+            "german": "Wem gehört das?",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**Material mit SER DE:**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "La mesa es de madera.",
+            "german": "Der Tisch ist aus Holz.",
+            "note": ""
+          },
+          {
+            "spanish": "El anillo es de oro.",
+            "german": "Der Ring ist aus Gold.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**Definitionen:**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Un perro es un animal.",
+            "german": "Ein Hund ist ein Tier.",
+            "note": ""
+          },
+          {
+            "spanish": "Madrid es la capital de España.",
+            "german": "Madrid ist die Hauptstadt Spaniens.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "⚠️ Wichtig für Deutschsprachige!",
+        "content": "**1. Kein Artikel bei Berufen und Nationalitäten!**\n❌ Falsch: \"Soy UN profesor.\"\n✅ Richtig: \"Soy profesor.\"\n\n❌ Falsch: \"Ella es UNA española.\"\n✅ Richtig: \"Ella es española.\"\n\n**2. Uhrzeiten im Plural!**\nIm Deutschen: \"Es ist drei Uhr\" (Singular)\nIm Spanischen: \"SON las tres\" (Plural!)\n\n**3. SER für permanente Dinge!**\nWenn etwas sich nicht ändert oder eine grundlegende Eigenschaft ist → SER\nWenn etwas temporär ist → ESTAR (Unit 3)"
+      },
+      {
+        "heading": "❌ Häufige Fehler",
+        "content": "**FEHLER 1: SER für Orte verwenden**\n❌ Falsch: \"Yo soy en casa.\"\n✅ Richtig: \"Yo estoy en casa.\"\n(Orte = temporär → ESTAR!)\n\n**FEHLER 2: SER für Emotionen**\n❌ Falsch: \"Soy feliz hoy.\"\n✅ Richtig: \"Estoy feliz hoy.\"\n(Emotionen = temporär → ESTAR!)\n\n**FEHLER 3: Artikel bei Berufen**\n❌ Falsch: \"Soy un médico.\"\n✅ Richtig: \"Soy médico.\"\n\n**FEHLER 4: Uhrzeit im Singular**\n❌ Falsch: \"Es las tres.\"\n✅ Richtig: \"Son las tres.\""
+      },
+      {
+        "heading": "💡 Merkhilfen",
+        "content": "**Eselsbrücke 1: DOCTOR**\nDescription - Origin - Characteristic - Time - Occupation - Relationship\n\n**Eselsbrücke 2: \"Permanent = SER\"**\nFrage dich: Ändert sich das? Wenn NEIN → SER\n\n**Eselsbrücke 3: \"SER oder SEIN\"**\nSER klingt wie \"sein\" auf Deutsch - das hilft beim Merken!\n\n**Eselsbrücke 4: Konjugation merken**\nsoy - eres - es - somos - sois - son\n(So-Y, e-RES, ES, so-MOS, so-IS, SON)"
+      },
+      {
+        "heading": "🎯 Dein Lernziel für diese Unit",
+        "content": "Nach Abschluss dieser Unit solltest du:\n✅ SER in allen Personen konjugieren können\n✅ Die DOCTOR-Regel anwenden können\n✅ Wissen, wann SER (und nicht ESTAR) zu verwenden ist\n✅ Berufe und Nationalitäten ohne Artikel nennen können\n✅ Uhrzeiten korrekt angeben können\n✅ Besitz mit SER DE ausdrücken können\n\n**¡Vamos! Auf zu den Übungen!**"
+      }
+    ]
   }
 }

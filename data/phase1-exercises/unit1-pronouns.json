@@ -1037,5 +1037,127 @@
       "germanBridge": "🇩🇪 Hallo! Ich heiße... Ich bin aus... → 🇪🇸 ¡Hola! Me llamo... Soy de...",
       "hint": "Drei Sätze kombinieren"
     }
-  ]
+  ],
+  "introduction": {
+    "title": "Willkommen zu Unit 1: Spanische Personalpronomen",
+    "subtitle": "Die Grundlage jeder Konversation",
+    "readingTime": "8-10 Minuten",
+    "sections": [
+      {
+        "heading": "🎯 Warum sind Personalpronomen so wichtig?",
+        "content": "Personalpronomen sind die Bausteine der spanischen Sprache. Sie ermöglichen es dir, über dich selbst, andere Menschen und Dinge zu sprechen. Ohne Pronomen wäre Kommunikation nahezu unmöglich!\n\nIm Spanischen funktionieren Pronomen etwas anders als im Deutschen, besonders weil du sie oft WEGLASSEN kannst - die Verbform verrät bereits, wer gemeint ist."
+      },
+      {
+        "heading": "📋 Die spanischen Personalpronomen im Überblick",
+        "content": "**Singular (Einzahl):**\n• yo = ich\n• tú = du (informell, Freunde & Familie)\n• él = er\n• ella = sie\n• usted = Sie (formell, höflich)\n\n**Plural (Mehrzahl):**\n• nosotros/nosotras = wir (m/f)\n• vosotros/vosotras = ihr (m/f, nur in Spanien!)\n• ellos/ellas = sie (m/f)\n• ustedes = Sie/ihr (formell Plural ODER in Lateinamerika für \"ihr\")",
+        "examples": [
+          {
+            "spanish": "Yo soy María.",
+            "german": "Ich bin María.",
+            "note": ""
+          },
+          {
+            "spanish": "Tú eres mi amigo.",
+            "german": "Du bist mein Freund.",
+            "note": ""
+          },
+          {
+            "spanish": "Nosotros somos estudiantes.",
+            "german": "Wir sind Studenten.",
+            "note": ""
+          },
+          {
+            "spanish": "Ellos son profesores.",
+            "german": "Sie sind Lehrer.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "⚠️ Besonderheiten für Deutschsprachige",
+        "content": "**1. Tú vs. Usted - Die Du/Sie-Unterscheidung**\n• Tú = informell (Freunde, Familie, Kinder, gleichaltrige Kollegen)\n• Usted = formell (Vorgesetzte, ältere Menschen, Fremde, offizielle Situationen)\n\n**2. Vosotros nur in Spanien!**\nIn Lateinamerika sagt man stattdessen \"ustedes\" für \"ihr\" - sowohl formell als auch informell!\n\n**3. Geschlechtsformen**\nIm Plural gibt es männliche und weibliche Formen:\n• nosotros (wir - männlich oder gemischt) / nosotras (wir - nur Frauen)\n• vosotros/vosotras, ellos/ellas\n\n**4. Pronomen oft weggelassen!**\nAnders als im Deutschen kannst du im Spanischen oft das Pronomen weglassen:",
+        "examples": [
+          {
+            "spanish": "Soy alemán.",
+            "german": "Ich bin Deutscher.",
+            "note": "'Yo' nicht nötig!"
+          },
+          {
+            "spanish": "¿Cómo estás?",
+            "german": "Wie geht es dir?",
+            "note": "'Tú' nicht nötig!"
+          },
+          {
+            "spanish": "Somos amigos.",
+            "german": "Wir sind Freunde.",
+            "note": "'Nosotros' nicht nötig!"
+          }
+        ]
+      },
+      {
+        "heading": "💡 Wann MUSST du das Pronomen verwenden?",
+        "content": "Obwohl Spanier Pronomen oft weglassen, gibt es Situationen, wo du sie BRAUCHST:\n\n**1. Zur Betonung oder Klarstellung:**",
+        "examples": [
+          {
+            "spanish": "YO soy médico, TÚ eres profesor.",
+            "german": "ICH bin Arzt, DU bist Lehrer.",
+            "note": "Betonung!"
+          },
+          {
+            "spanish": "Él es de España, ELLA es de México.",
+            "german": "Er ist aus Spanien, SIE ist aus Mexiko.",
+            "note": "Klarstellung er vs. sie"
+          }
+        ]
+      },
+      {
+        "heading": "**2. Nach Präpositionen:**",
+        "content": "Nach Wörtern wie 'para' (für), 'con' (mit), 'sin' (ohne) MUSST du Pronomen verwenden:",
+        "examples": [
+          {
+            "spanish": "Esto es para TI.",
+            "german": "Das ist für DICH.",
+            "note": "Beachte: 'ti', nicht 'tú'!"
+          },
+          {
+            "spanish": "Voy con ELLA.",
+            "german": "Ich gehe mit IHR.",
+            "note": ""
+          },
+          {
+            "spanish": "Sin NOSOTROS, no funciona.",
+            "german": "Ohne UNS funktioniert es nicht.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**3. In Vergleichen:**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Soy más alto que TÚ.",
+            "german": "Ich bin größer als DU.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "🎓 Tipps für erfolgreiches Lernen",
+        "content": "**1. Lerne die Reihenfolge auswendig:**\nyo - tú - él/ella/usted - nosotros - vosotros - ellos/ellas/ustedes\nDiese Reihenfolge ist Standard für alle Verb-Konjugationen!\n\n**2. Übe mit Verben zusammen:**\nPronomen alleine zu lernen hilft wenig. Lerne sie direkt mit Verben:\n• yo soy (ich bin)\n• tú eres (du bist)\n• él/ella es (er/sie ist)\n\n**3. Denke an den Kontext:**\n• Spanien oder Lateinamerika? (vosotros vs. ustedes)\n• Formell oder informell? (tú vs. usted)\n• Männlich oder weiblich? (nosotros vs. nosotras)"
+      },
+      {
+        "heading": "❌ Häufige Fehler vermeiden",
+        "content": "**FEHLER 1: Pronomen überbenutzen**\n❌ Falsch: \"Yo soy María. Yo soy de Alemania. Yo soy profesora.\"\n✅ Richtig: \"Soy María. Soy de Alemania. Soy profesora.\"\n\n**FEHLER 2: Tú vs. Ti verwechseln**\n❌ Falsch: \"Esto es para tú.\"\n✅ Richtig: \"Esto es para ti.\"\n\n**FEHLER 3: Vosotros in Lateinamerika verwenden**\n❌ In Mexiko: \"Vosotros sois...\"\n✅ In Mexiko: \"Ustedes son...\"\n\n**FEHLER 4: Geschlecht bei Gruppen**\n❌ Falsch: \"Ana, María y yo somos...\"\n✅ Richtig: \"Ana, María y yo somos...\" (nosotras - nur Frauen!)"
+      },
+      {
+        "heading": "🔄 Schnellübersicht: Deutsch ↔ Spanisch",
+        "content": "| Deutsch | Spanisch | Wann? |\n|---------|----------|-------|\n| ich | yo | immer gleich |\n| du | tú | informell |\n| Sie (Höflichkeit) | usted | formell |\n| er | él | mit Akzent! |\n| sie (w) | ella | |\n| wir | nosotros/as | geschlechtsabhängig |\n| ihr | vosotros/as | nur Spanien |\n| ihr | ustedes | Lateinamerika |\n| sie (pl) | ellos/as | geschlechtsabhängig |"
+      },
+      {
+        "heading": "🎯 Dein Lernziel für diese Unit",
+        "content": "Nach Abschluss dieser Unit solltest du:\n✅ Alle spanischen Personalpronomen kennen\n✅ Wissen, wann du sie benutzt und wann nicht\n✅ Den Unterschied zwischen tú/usted verstehen\n✅ Vosotros vs. ustedes richtig anwenden\n✅ Pronomen mit Verben kombinieren können\n✅ Die Geschlechtsformen beherrschen\n\n**Bereit? ¡Vamos! (Los geht's!)**"
+      }
+    ]
+  }
 }

@@ -2884,5 +2884,254 @@
       "time": "10-15 Minuten",
       "exerciseCount": 11
     }
+  },
+  "introduction": {
+    "title": "Unit 4: SER vs ESTAR - Die Meisterprüfung",
+    "subtitle": "Die größte Herausforderung für Deutschsprachige meistern",
+    "readingTime": "15-18 Minuten",
+    "difficulty": "CRITICAL",
+    "sections": [
+      {
+        "heading": "🎯 Warum ist SER vs. ESTAR so schwierig?",
+        "content": "Als Deutschsprachiger hast du es hier mit der GRÖSSTEN Herausforderung im Spanischen zu tun!\n\n**Das Problem:**\nIm Deutschen gibt es nur EIN Verb für 'sein'.\nIm Spanischen gibt es ZWEI: SER und ESTAR.\n\nDu musst bei JEDEM Satz entscheiden: Welches nehme ich?\n\n**Die gute Nachricht:**\nMit den richtigen Regeln und viel Übung wirst du es automatisieren. Diese Unit hilft dir dabei!"
+      },
+      {
+        "heading": "📊 Die Grundregel (vereinfacht)",
+        "content": "**SER = PERMANENT**\nFür Dinge, die sich nicht oder kaum ändern:\n• Identität: Yo soy María\n• Beruf: Soy profesor\n• Herkunft: Soy de Alemania\n• Charaktereigenschaften: Él es inteligente\n• Zeit/Datum: Son las tres\n\n**ESTAR = TEMPORÄR**\nFür Dinge, die sich ändern können:\n• Orte: Estoy en casa\n• Emotionen: Estoy feliz\n• Zustände: Estoy cansado\n• Verlaufsform: Estoy trabajando\n• Bedingungen: La puerta está abierta"
+      },
+      {
+        "heading": "⚡ Adjektive die ihre Bedeutung ändern",
+        "content": "Das Faszinierende: Manche Adjektive ändern komplett ihre Bedeutung, je nachdem ob du SER oder ESTAR benutzt!\n\n**1. LISTO - Der Klassiker**",
+        "examples": [
+          {
+            "spanish": "Juan ES listo.",
+            "german": "Juan IST intelligent.",
+            "note": "Permanente Eigenschaft"
+          },
+          {
+            "spanish": "Juan ESTÁ listo.",
+            "german": "Juan IST bereit.",
+            "note": "Temporärer Zustand"
+          },
+          {
+            "spanish": "¿Estás listo para salir?",
+            "german": "Bist du bereit rauszugehen?",
+            "note": "Sehr häufig!"
+          }
+        ]
+      },
+      {
+        "heading": "**2. ABURRIDO - Langweilig vs. Gelangweilt**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "La película ES aburrida.",
+            "german": "Der Film IST langweilig.",
+            "note": "Eigenschaft des Films"
+          },
+          {
+            "spanish": "Yo ESTOY aburrido.",
+            "german": "Ich BIN gelangweilt.",
+            "note": "Mein Gefühl"
+          },
+          {
+            "spanish": "Las clases SON aburridas.",
+            "german": "Die Kurse SIND langweilig.",
+            "note": ""
+          },
+          {
+            "spanish": "Los estudiantes ESTÁN aburridos.",
+            "german": "Die Studenten SIND gelangweilt.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**3. MALO - Böse vs. Krank**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES malo.",
+            "german": "Er IST böse.",
+            "note": "Schlechter Charakter"
+          },
+          {
+            "spanish": "Él ESTÁ malo.",
+            "german": "Er IST krank / Ihm geht's schlecht.",
+            "note": "Gesundheitszustand"
+          }
+        ]
+      },
+      {
+        "heading": "**4. BUENO - Gut (Eigenschaft) vs. Gut (Zustand)**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Ella ES buena.",
+            "german": "Sie IST gut/nett (Person).",
+            "note": "Charakter"
+          },
+          {
+            "spanish": "Ella ESTÁ buena.",
+            "german": "Sie SIEHT gut aus / ist sexy.",
+            "note": "⚠️ Umgangssprache!"
+          }
+        ]
+      },
+      {
+        "heading": "**5. VIVO - Clever vs. Lebendig**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES vivo.",
+            "german": "Er IST clever/schlau.",
+            "note": "Intelligenz"
+          },
+          {
+            "spanish": "Él ESTÁ vivo.",
+            "german": "Er IST lebendig/am Leben.",
+            "note": "Lebens-Zustand"
+          }
+        ]
+      },
+      {
+        "heading": "**6. RICO - Reich vs. Lecker**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES rico.",
+            "german": "Er IST reich.",
+            "note": "Hat viel Geld"
+          },
+          {
+            "spanish": "La comida ESTÁ rica.",
+            "german": "Das Essen IST lecker.",
+            "note": "Geschmack"
+          }
+        ]
+      },
+      {
+        "heading": "**7. VERDE - Grün (Farbe) vs. Unreif**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "La manzana ES verde.",
+            "german": "Der Apfel IST grün (grüne Sorte).",
+            "note": "Farbe"
+          },
+          {
+            "spanish": "La manzana ESTÁ verde.",
+            "german": "Der Apfel IST unreif.",
+            "note": "Reifezustand"
+          }
+        ]
+      },
+      {
+        "heading": "**8. SEGURO - Selbstsicher vs. Sicher/Überzeugt**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES seguro.",
+            "german": "Er IST selbstsicher.",
+            "note": "Persönlichkeit"
+          },
+          {
+            "spanish": "Él ESTÁ seguro.",
+            "german": "Er IST sicher/überzeugt (von etwas).",
+            "note": "Zustand"
+          }
+        ]
+      },
+      {
+        "heading": "**9. LOCO - Verrückt (Persönlichkeit) vs. Verrückt (Zustand)**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES loco.",
+            "german": "Er IST verrückt (im Kopf).",
+            "note": "Psychischer Zustand permanent"
+          },
+          {
+            "spanish": "Él ESTÁ loco.",
+            "german": "Er IST verrückt (benimmt sich gerade so).",
+            "note": "Temporäres Verhalten"
+          }
+        ]
+      },
+      {
+        "heading": "**10. GUAPO - Hübsch (sein) vs. Hübsch (aussehen)**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Ella ES guapa.",
+            "german": "Sie IST hübsch.",
+            "note": "Generell schön"
+          },
+          {
+            "spanish": "Ella ESTÁ guapa hoy.",
+            "german": "Sie SIEHT heute hübsch aus.",
+            "note": "Heute besonders"
+          }
+        ]
+      },
+      {
+        "heading": "🗺️ Der Orts-Trick: Event vs. Objekt",
+        "content": "**ESTAR für OBJEKTE (wo etwas ist):**",
+        "examples": [
+          {
+            "spanish": "El libro ESTÁ en la mesa.",
+            "german": "Das Buch ist auf dem Tisch.",
+            "note": "Wo IST das Buch?"
+          },
+          {
+            "spanish": "Madrid ESTÁ en España.",
+            "german": "Madrid liegt in Spanien.",
+            "note": "Geografische Position"
+          },
+          {
+            "spanish": "Yo ESTOY en casa.",
+            "german": "Ich bin zu Hause.",
+            "note": "Wo BIN ich?"
+          }
+        ]
+      },
+      {
+        "heading": "**SER für EVENTS (wo etwas stattfindet):**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "La fiesta ES en mi casa.",
+            "german": "Die Party ist in meinem Haus.",
+            "note": "Wo FINDET die Party statt?"
+          },
+          {
+            "spanish": "El concierto ES en el estadio.",
+            "german": "Das Konzert ist im Stadion.",
+            "note": "Wo FINDET es statt?"
+          },
+          {
+            "spanish": "La reunión ES aquí.",
+            "german": "Das Meeting ist hier.",
+            "note": "Wo FINDET es statt?"
+          }
+        ]
+      },
+      {
+        "heading": "⚠️ Die 10 häufigsten Fehler",
+        "content": "**FEHLER 1: SER für Orte von Personen/Objekten**\n❌ \"Yo SOY en casa.\"\n✅ \"Yo ESTOY en casa.\"\n\n**FEHLER 2: ESTAR für Berufe**\n❌ \"Él ESTÁ profesor.\"\n✅ \"Él ES profesor.\"\n\n**FEHLER 3: SER für Emotionen**\n❌ \"SOY feliz.\"\n✅ \"ESTOY feliz.\"\n\n**FEHLER 4: ESTAR für Nationalitäten**\n❌ \"ESTOY alemán.\"\n✅ \"SOY alemán.\"\n\n**FEHLER 5: Listo verwechseln**\n❌ \"SOY listo para ir.\" (Ich bin intelligent zum Gehen?)\n✅ \"ESTOY listo para ir.\" (Ich bin bereit zu gehen.)\n\n**FEHLER 6: SER für müde/krank**\n❌ \"SOY cansado.\"\n✅ \"ESTOY cansado.\"\n\n**FEHLER 7: ESTAR für Uhrzeiten**\n❌ \"ESTÁN las tres.\"\n✅ \"SON las tres.\"\n\n**FEHLER 8: SER für Wetter**\n❌ \"ES frío hoy.\" (Es ist kalt heute)\n✅ \"ESTÁ frío hoy.\" oder \"Hace frío.\"\n\n**FEHLER 9: Falsche Objektposition**\n❌ \"El libro ES en la mesa.\"\n✅ \"El libro ESTÁ en la mesa.\"\n\n**FEHLER 10: Event-Location verwechseln**\n❌ \"La fiesta ESTÁ en mi casa.\"\n✅ \"La fiesta ES en mi casa.\" (Event!)"
+      },
+      {
+        "heading": "🎯 Entscheidungsbaum: SER oder ESTAR?",
+        "content": "**Schritt 1: Ist es ein Ort?**\n→ JA: Ist es ein Objekt/Person? → ESTAR\n→ JA: Ist es ein Event? → SER\n\n**Schritt 2: Ist es eine Emotion/Gefühl?**\n→ JA → ESTAR\n\n**Schritt 3: Ist es eine Verlaufsform (am tun)?**\n→ JA → ESTAR + Gerundio\n\n**Schritt 4: Ist es ein temporärer Zustand?**\n(müde, krank, offen, geschlossen, kalt, heiß)\n→ JA → ESTAR\n\n**Schritt 5: Ist es ein Beruf?**\n→ JA → SER\n\n**Schritt 6: Ist es eine Uhrzeit/ein Datum?**\n→ JA → SER\n\n**Schritt 7: Ist es eine Herkunft?**\n→ JA → SER DE\n\n**Schritt 8: Ist es eine permanente Eigenschaft?**\n(Charakter, Aussehen generell, Nationalität)\n→ JA → SER\n\n**Im Zweifel:**\nKann es sich leicht ändern? → ESTAR\nIst es fundamental/dauerhaft? → SER"
+      },
+      {
+        "heading": "💡 Lernstrategien",
+        "content": "**1. Die Permanenz-Frage**\nFrage dich immer: \"Kann sich das leicht ändern?\"\n• JA → ESTAR (Emotion, Ort, Zustand)\n• NEIN → SER (Beruf, Herkunft, Charakter)\n\n**2. Die DOCTOR vs. PLACE Regel**\n**SER = DOCTOR**\n• Description\n• Occupation\n• Characteristic\n• Time\n• Origin\n• Relationship\n\n**ESTAR = PLACE**\n• Position\n• Location\n• Action (gerundio)\n• Condition\n• Emotion\n\n**3. Kontext ist König**\n• \"Él es listo\" (Er ist generell intelligent)\n• \"Él está listo\" (Er ist jetzt, in diesem Moment, bereit)\n\n**4. Viel üben!**\nDu brauchst 90+ Übungen über 14 Tage, um es zu automatisieren.\nErwartete Fehlerrate am Anfang: 60-80%\nZiel nach dieser Unit: unter 20%"
+      },
+      {
+        "heading": "🎯 Dein Lernziel für diese Unit",
+        "content": "Nach Abschluss dieser Unit solltest du:\n✅ Sicher zwischen SER und ESTAR wählen können\n✅ Die 10 wichtigsten Bedeutungswechsel kennen\n✅ Event-Orte vs. Objekt-Orte unterscheiden\n✅ Den Entscheidungsbaum automatisch anwenden\n✅ Fehlerrate unter 20% haben\n✅ Die DOCTOR und PLACE Regeln beherrschen\n\n**Diese Unit ist KRITISCH für deinen Erfolg!**\n**Nimm dir Zeit und übe intensiv!**\n\n**¡Adelante! (Vorwärts!)**"
+      }
+    ]
   }
 }

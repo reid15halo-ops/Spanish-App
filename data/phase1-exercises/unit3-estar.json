@@ -8100,5 +8100,364 @@
       "time": "20-25 Minuten",
       "exerciseCount": 35
     }
+  },
+  "introduction": {
+    "title": "Unit 3: Das Verb ESTAR - Orte und Zustände",
+    "subtitle": "Das zweite 'sein' - für alles Temporäre",
+    "readingTime": "12-15 Minuten",
+    "sections": [
+      {
+        "heading": "🎯 ESTAR - Das temporäre 'sein'",
+        "content": "Jetzt wird es spannend! Nach SER lernst du nun ESTAR - das zweite Verb für 'sein' im Spanischen.\n\n**Der große Unterschied:**\n• **SER** = permanent, unveränderlich (Unit 2)\n• **ESTAR** = temporär, veränderlich, Orte\n\nDas ist DIE große Herausforderung für Deutschsprachige! Im Deutschen gibt es nur EIN 'sein', im Spanischen musst du wählen."
+      },
+      {
+        "heading": "📋 Die Konjugation von ESTAR",
+        "content": "ESTAR ist ebenfalls unregelmäßig:\n\n**Präsens (Presente):**\n• yo **estoy** = ich bin\n• tú **estás** = du bist\n• él/ella/usted **está** = er/sie ist, Sie sind\n• nosotros/as **estamos** = wir sind\n• vosotros/as **estáis** = ihr seid\n• ellos/ellas/ustedes **están** = sie sind\n\n⚠️ **Beachte die Akzente!** Estás, está, estáis, están - alle mit Akzent!",
+        "examples": [
+          {
+            "spanish": "Yo estoy en casa.",
+            "german": "Ich bin zu Hause.",
+            "note": "Ort"
+          },
+          {
+            "spanish": "Tú estás cansado.",
+            "german": "Du bist müde.",
+            "note": "Temporärer Zustand"
+          },
+          {
+            "spanish": "Ella está feliz.",
+            "german": "Sie ist glücklich.",
+            "note": "Emotion"
+          },
+          {
+            "spanish": "Estamos trabajando.",
+            "german": "Wir arbeiten gerade.",
+            "note": "Verlaufsform"
+          },
+          {
+            "spanish": "Ellos están en Madrid.",
+            "german": "Sie sind in Madrid.",
+            "note": "Ort"
+          }
+        ]
+      },
+      {
+        "heading": "🔑 Wann benutzt du ESTAR? - Die PLACE-Regel",
+        "content": "Eselsbrücke: **PLACE**\n\n**P = Position/Place (Position/Ort)**\nFür Orte und Positionen - wo sich etwas/jemand BEFINDET:",
+        "examples": [
+          {
+            "spanish": "Estoy en la escuela.",
+            "german": "Ich bin in der Schule.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Dónde estás?",
+            "german": "Wo bist du?",
+            "note": ""
+          },
+          {
+            "spanish": "El libro está en la mesa.",
+            "german": "Das Buch ist auf dem Tisch.",
+            "note": ""
+          },
+          {
+            "spanish": "Madrid está en España.",
+            "german": "Madrid liegt in Spanien.",
+            "note": "Geografische Lage"
+          }
+        ]
+      },
+      {
+        "heading": "**L = Location (Lage)**",
+        "content": "Für die Lage von Dingen und Orten:",
+        "examples": [
+          {
+            "spanish": "El restaurante está cerca.",
+            "german": "Das Restaurant ist in der Nähe.",
+            "note": ""
+          },
+          {
+            "spanish": "Estamos aquí.",
+            "german": "Wir sind hier.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**A = Action (Handlung/Verlaufsform)**",
+        "content": "Für die Verlaufsform (was gerade passiert) - **ESTAR + Gerundio**:",
+        "examples": [
+          {
+            "spanish": "Estoy trabajando.",
+            "german": "Ich arbeite gerade.",
+            "note": "Verlaufsform"
+          },
+          {
+            "spanish": "Estás comiendo.",
+            "german": "Du isst gerade.",
+            "note": ""
+          },
+          {
+            "spanish": "Están estudiando.",
+            "german": "Sie lernen gerade.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Qué estás haciendo?",
+            "german": "Was machst du (gerade)?",
+            "note": "Sehr häufig!"
+          }
+        ]
+      },
+      {
+        "heading": "**C = Condition (Zustand/Bedingung)**",
+        "content": "Für temporäre Zustände von Dingen:",
+        "examples": [
+          {
+            "spanish": "La puerta está abierta.",
+            "german": "Die Tür ist offen.",
+            "note": "Zustand"
+          },
+          {
+            "spanish": "El café está frío.",
+            "german": "Der Kaffee ist kalt.",
+            "note": "Temperatur"
+          },
+          {
+            "spanish": "El coche está roto.",
+            "german": "Das Auto ist kaputt.",
+            "note": "Zustand"
+          },
+          {
+            "spanish": "La casa está limpia.",
+            "german": "Das Haus ist sauber.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**E = Emotion (Gefühle/Emotionen)**",
+        "content": "Für Gefühle und Emotionen (die sich ändern können!):",
+        "examples": [
+          {
+            "spanish": "Estoy feliz.",
+            "german": "Ich bin glücklich.",
+            "note": "Emotion - temporär"
+          },
+          {
+            "spanish": "Estás triste.",
+            "german": "Du bist traurig.",
+            "note": ""
+          },
+          {
+            "spanish": "Estamos cansados.",
+            "german": "Wir sind müde.",
+            "note": "Zustand"
+          },
+          {
+            "spanish": "Ella está nerviosa.",
+            "german": "Sie ist nervös.",
+            "note": ""
+          },
+          {
+            "spanish": "Están enojados.",
+            "german": "Sie sind wütend.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "⚡ Der kritische Unterschied: SER vs. ESTAR",
+        "content": "Viele Adjektive ändern ihre BEDEUTUNG, je nachdem ob du SER oder ESTAR benutzt!\n\n**1. SER listo vs. ESTAR listo**",
+        "examples": [
+          {
+            "spanish": "Él ES listo.",
+            "german": "Er ist INTELLIGENT.",
+            "note": "Permanente Eigenschaft"
+          },
+          {
+            "spanish": "Él ESTÁ listo.",
+            "german": "Er ist BEREIT.",
+            "note": "Temporärer Zustand"
+          }
+        ]
+      },
+      {
+        "heading": "**2. SER aburrido vs. ESTAR aburrido**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "La clase ES aburrida.",
+            "german": "Die Klasse ist LANGWEILIG.",
+            "note": "Eigenschaft der Klasse"
+          },
+          {
+            "spanish": "Yo ESTOY aburrido.",
+            "german": "Ich bin GELANGWEILT.",
+            "note": "Mein Gefühl"
+          }
+        ]
+      },
+      {
+        "heading": "**3. SER malo vs. ESTAR malo**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES malo.",
+            "german": "Er ist BÖSE.",
+            "note": "Charakter"
+          },
+          {
+            "spanish": "Él ESTÁ malo.",
+            "german": "Er ist KRANK / Ihm geht es schlecht.",
+            "note": "Zustand"
+          }
+        ]
+      },
+      {
+        "heading": "**4. SER vivo vs. ESTAR vivo**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Ella ES viva.",
+            "german": "Sie ist CLEVER/LEBHAFT.",
+            "note": "Charakter"
+          },
+          {
+            "spanish": "Ella ESTÁ viva.",
+            "german": "Sie ist LEBENDIG/AM LEBEN.",
+            "note": "Zustand"
+          }
+        ]
+      },
+      {
+        "heading": "**5. SER rico vs. ESTAR rico**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES rico.",
+            "german": "Er ist REICH.",
+            "note": "Finanzielle Situation"
+          },
+          {
+            "spanish": "La comida ESTÁ rica.",
+            "german": "Das Essen ist LECKER.",
+            "note": "Geschmack"
+          }
+        ]
+      },
+      {
+        "heading": "**6. SER verde vs. ESTAR verde**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "La manzana ES verde.",
+            "german": "Der Apfel ist GRÜN (Farbe).",
+            "note": "Grüne Sorte"
+          },
+          {
+            "spanish": "La manzana ESTÁ verde.",
+            "german": "Der Apfel ist UNREIF.",
+            "note": "Zustand"
+          }
+        ]
+      },
+      {
+        "heading": "**7. SER seguro vs. ESTAR seguro**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Él ES seguro.",
+            "german": "Er ist SELBSTSICHER.",
+            "note": "Persönlichkeit"
+          },
+          {
+            "spanish": "Él ESTÁ seguro.",
+            "german": "Er ist SICHER/ÜBERZEUGT (von etwas).",
+            "note": "Zustand"
+          }
+        ]
+      },
+      {
+        "heading": "📍 Spezialfall: Orte und Herkunft",
+        "content": "**ESTAR für temporären Aufenthalt:**",
+        "examples": [
+          {
+            "spanish": "Estoy en España.",
+            "german": "Ich bin in Spanien (im Urlaub).",
+            "note": "Temporär"
+          },
+          {
+            "spanish": "Estamos en Madrid.",
+            "german": "Wir sind in Madrid (gerade).",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**SER DE für Herkunft:**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Soy de Alemania.",
+            "german": "Ich bin aus Deutschland (komme von dort).",
+            "note": "Permanent"
+          }
+        ]
+      },
+      {
+        "heading": "**Kombination:**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Soy de Berlín, pero ahora estoy en Madrid.",
+            "german": "Ich bin aus Berlin, aber jetzt bin ich in Madrid.",
+            "note": "Herkunft vs. aktueller Ort"
+          }
+        ]
+      },
+      {
+        "heading": "🔄 Die Verlaufsform (Presente Continuo)",
+        "content": "**ESTAR + Gerundio** ist extrem wichtig!\n\n**Gerundio bilden:**\n• -AR Verben: trabajar → trabaj**ando**\n• -ER Verben: comer → com**iendo**\n• -IR Verben: escribir → escrib**iendo**",
+        "examples": [
+          {
+            "spanish": "Estoy hablando.",
+            "german": "Ich spreche gerade.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Qué estás haciendo?",
+            "german": "Was machst du gerade?",
+            "note": "Sehr häufig!"
+          },
+          {
+            "spanish": "Están comiendo.",
+            "german": "Sie essen gerade.",
+            "note": ""
+          },
+          {
+            "spanish": "Estamos estudiando.",
+            "german": "Wir lernen gerade.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "⚠️ Wichtig für Deutschsprachige!",
+        "content": "**1. Für Orte IMMER ESTAR, nie SER!**\n❌ Falsch: \"Yo soy en casa.\"\n✅ Richtig: \"Yo estoy en casa.\"\n\n**2. Für Emotionen ESTAR, nicht SER!**\n❌ Falsch: \"Soy feliz hoy.\"\n✅ Richtig: \"Estoy feliz hoy.\"\n\n**3. Die Akzente nicht vergessen!**\nestás, está, estáis, están (alle mit Akzent!)\n\n**4. ¿Cómo estás? - Wie geht's?**\n❌ Falsch: \"¿Cómo eres?\"\n✅ Richtig: \"¿Cómo estás?\"\n(Das ist eine Emotion/Zustand, nicht eine permanente Eigenschaft!)"
+      },
+      {
+        "heading": "❌ Häufige Fehler",
+        "content": "**FEHLER 1: SER für Orte**\n❌ \"Yo soy en Madrid.\"\n✅ \"Yo estoy en Madrid.\"\n\n**FEHLER 2: ESTAR für Berufe**\n❌ \"Estoy profesor.\"\n✅ \"Soy profesor.\"\n\n**FEHLER 3: SER für Emotionen**\n❌ \"Soy cansado.\"\n✅ \"Estoy cansado.\"\n\n**FEHLER 4: Akzente vergessen**\n❌ \"Tu estas aquí.\"\n✅ \"Tú estás aquí.\"\n\n**FEHLER 5: Listo verwechseln**\n❌ \"Soy listo para salir.\" (Ich bin intelligent zum Ausgehen?)\n✅ \"Estoy listo para salir.\" (Ich bin bereit zum Ausgehen.)"
+      },
+      {
+        "heading": "💡 Entscheidungshilfe: SER oder ESTAR?",
+        "content": "**Frage 1: Ist es ein Ort?**\n→ JA = ESTAR\n\n**Frage 2: Ist es eine Emotion/Gefühl?**\n→ JA = ESTAR\n\n**Frage 3: Ist es ein temporärer Zustand?**\n→ JA = ESTAR\n\n**Frage 4: Ist es eine Verlaufsform (am tun)?**\n→ JA = ESTAR\n\n**Frage 5: Ist es eine permanente Eigenschaft/Beruf/Herkunft?**\n→ JA = SER\n\n**Im Zweifel:**\nÄndert es sich leicht oder ist es nur vorübergehend? → ESTAR\nIst es eine grundlegende, dauerhafte Eigenschaft? → SER"
+      },
+      {
+        "heading": "🎯 Dein Lernziel für diese Unit",
+        "content": "Nach Abschluss dieser Unit solltest du:\n✅ ESTAR in allen Personen konjugieren können\n✅ Die PLACE-Regel anwenden können\n✅ Den Unterschied zwischen SER und ESTAR verstehen\n✅ Orte mit ESTAR angeben können\n✅ Emotionen mit ESTAR ausdrücken können\n✅ Die Verlaufsform (estar + gerundio) bilden können\n✅ Bedeutungswechsel bei Adjektiven kennen (listo, aburrido, etc.)\n\n**¡Empecemos! (Fangen wir an!)**"
+      }
+    ]
   }
 }

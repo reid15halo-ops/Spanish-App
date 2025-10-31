@@ -1979,5 +1979,273 @@
       "time": "10-15 Minuten",
       "exerciseCount": 11
     }
+  },
+  "introduction": {
+    "title": "Unit 5: Das Verb TENER - Haben und Besitzen",
+    "subtitle": "Ausdrücken was du hast - und was du brauchst",
+    "readingTime": "10-12 Minuten",
+    "sections": [
+      {
+        "heading": "🎯 TENER - Ein vielseitiges Verb",
+        "content": "TENER bedeutet 'haben' - aber es wird im Spanischen viel öfter und vielseitiger verwendet als im Deutschen!\n\n**Wichtig für Deutschsprachige:**\nViele deutsche Ausdrücke mit 'sein' verwendest du im Spanischen mit TENER (haben)!\n\nBeispiel:\n• Deutsch: \"Ich BIN hungrig.\"\n• Spanisch: \"Tengo hambre.\" (wörtlich: \"Ich HABE Hunger.\")"
+      },
+      {
+        "heading": "📋 Die Konjugation von TENER",
+        "content": "TENER ist unregelmäßig:\n\n**Präsens (Presente):**\n• yo **tengo** = ich habe\n• tú **tienes** = du hast\n• él/ella/usted **tiene** = er/sie hat, Sie haben\n• nosotros/as **tenemos** = wir haben\n• vosotros/as **tenéis** = ihr habt\n• ellos/ellas/ustedes **tienen** = sie haben",
+        "examples": [
+          {
+            "spanish": "Yo tengo un libro.",
+            "german": "Ich habe ein Buch.",
+            "note": ""
+          },
+          {
+            "spanish": "Tú tienes hambre.",
+            "german": "Du hast Hunger.",
+            "note": ""
+          },
+          {
+            "spanish": "Ella tiene 25 años.",
+            "german": "Sie ist 25 Jahre alt.",
+            "note": "Wörtlich: Sie hat 25 Jahre"
+          },
+          {
+            "spanish": "Tenemos que estudiar.",
+            "german": "Wir müssen lernen.",
+            "note": ""
+          },
+          {
+            "spanish": "Ellos tienen frío.",
+            "german": "Ihnen ist kalt.",
+            "note": "Wörtlich: Sie haben Kälte"
+          }
+        ]
+      },
+      {
+        "heading": "🔑 TENER für Besitz",
+        "content": "Die grundlegende Verwendung - für Dinge, die du besitzt:",
+        "examples": [
+          {
+            "spanish": "Tengo un coche.",
+            "german": "Ich habe ein Auto.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Tienes un bolígrafo?",
+            "german": "Hast du einen Stift?",
+            "note": ""
+          },
+          {
+            "spanish": "Ella tiene tres hermanos.",
+            "german": "Sie hat drei Geschwister.",
+            "note": ""
+          },
+          {
+            "spanish": "Tenemos una casa grande.",
+            "german": "Wir haben ein großes Haus.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "⚠️ TENER für Alter (nicht SER!)",
+        "content": "**KRITISCH für Deutsche:**\nIm Deutschen: \"Ich BIN 30 Jahre alt.\"\nIm Spanischen: \"TENGO 30 años.\" (Ich HABE 30 Jahre)",
+        "examples": [
+          {
+            "spanish": "¿Cuántos años tienes?",
+            "german": "Wie alt bist du?",
+            "note": "Wörtlich: Wie viele Jahre hast du?"
+          },
+          {
+            "spanish": "Tengo 25 años.",
+            "german": "Ich bin 25 Jahre alt.",
+            "note": ""
+          },
+          {
+            "spanish": "Mi hijo tiene 5 años.",
+            "german": "Mein Sohn ist 5 Jahre alt.",
+            "note": ""
+          },
+          {
+            "spanish": "Tienen 40 años.",
+            "german": "Sie sind 40 Jahre alt.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "🌡️ TENER für Körperzustände",
+        "content": "Im Deutschen verwendest du oft 'sein', im Spanischen TENER!\n\n**Hunger und Durst:**",
+        "examples": [
+          {
+            "spanish": "Tengo hambre.",
+            "german": "Ich bin hungrig / Ich habe Hunger.",
+            "note": ""
+          },
+          {
+            "spanish": "Tengo sed.",
+            "german": "Ich bin durstig / Ich habe Durst.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Tienes hambre?",
+            "german": "Bist du hungrig?",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**Temperaturempfinden:**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Tengo frío.",
+            "german": "Mir ist kalt.",
+            "note": "Wörtlich: Ich habe Kälte"
+          },
+          {
+            "spanish": "Tengo calor.",
+            "german": "Mir ist warm/heiß.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Tienes frío?",
+            "german": "Ist dir kalt?",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**Andere Zustände:**",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Tengo sueño.",
+            "german": "Ich bin müde/schläfrig.",
+            "note": "Wörtlich: Ich habe Schlaf"
+          },
+          {
+            "spanish": "Tengo miedo.",
+            "german": "Ich habe Angst.",
+            "note": ""
+          },
+          {
+            "spanish": "Tengo prisa.",
+            "german": "Ich bin in Eile / habe es eilig.",
+            "note": ""
+          },
+          {
+            "spanish": "Tengo razón.",
+            "german": "Ich habe recht.",
+            "note": ""
+          },
+          {
+            "spanish": "Tienes suerte.",
+            "german": "Du hast Glück.",
+            "note": ""
+          },
+          {
+            "spanish": "Tengo cuidado.",
+            "german": "Ich bin vorsichtig.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "💪 TENER QUE - Müssen (Verpflichtung)",
+        "content": "**TENER QUE + Infinitiv** = müssen, etwas tun müssen\n\nDies ist eine der häufigsten Konstruktionen!",
+        "examples": [
+          {
+            "spanish": "Tengo que estudiar.",
+            "german": "Ich muss lernen.",
+            "note": ""
+          },
+          {
+            "spanish": "Tienes que trabajar.",
+            "german": "Du musst arbeiten.",
+            "note": ""
+          },
+          {
+            "spanish": "Tiene que ir al médico.",
+            "german": "Er/Sie muss zum Arzt gehen.",
+            "note": ""
+          },
+          {
+            "spanish": "Tenemos que salir ahora.",
+            "german": "Wir müssen jetzt gehen.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Qué tengo que hacer?",
+            "german": "Was muss ich tun?",
+            "note": "Sehr häufig!"
+          }
+        ]
+      },
+      {
+        "heading": "🎁 Weitere TENER-Ausdrücke",
+        "content": "**TENER GANAS DE + Infinitiv** = Lust haben zu:",
+        "examples": [
+          {
+            "spanish": "Tengo ganas de comer.",
+            "german": "Ich habe Lust zu essen.",
+            "note": ""
+          },
+          {
+            "spanish": "¿Tienes ganas de salir?",
+            "german": "Hast du Lust rauszugehen?",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**TENER EN CUENTA** = berücksichtigen:",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Tengo en cuenta tu opinión.",
+            "german": "Ich berücksichtige deine Meinung.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**TENER LUGAR** = stattfinden:",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "La reunión tiene lugar a las 3.",
+            "german": "Das Meeting findet um 3 statt.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "**TENER ÉXITO** = Erfolg haben:",
+        "content": "",
+        "examples": [
+          {
+            "spanish": "Ella tiene mucho éxito.",
+            "german": "Sie hat viel Erfolg.",
+            "note": ""
+          }
+        ]
+      },
+      {
+        "heading": "⚠️ Häufige Fehler vermeiden",
+        "content": "**FEHLER 1: SER für Alter**\n❌ \"Soy 25 años.\"\n✅ \"Tengo 25 años.\"\n\n**FEHLER 2: ESTAR für Hunger/Durst**\n❌ \"Estoy hambre.\"\n✅ \"Tengo hambre.\"\n\n**FEHLER 3: SER/ESTAR für Temperatur (Person)**\n❌ \"Soy frío.\" / \"Estoy frío.\"\n✅ \"Tengo frío.\"\n\n**FEHLER 4: Que vergessen bei müssen**\n❌ \"Tengo estudiar.\"\n✅ \"Tengo QUE estudiar.\"\n\n**FEHLER 5: De statt que**\n❌ \"Tengo de estudiar.\"\n✅ \"Tengo QUE estudiar.\""
+      },
+      {
+        "heading": "🔄 TENER vs. SER/ESTAR - Wann was?",
+        "content": "**TENER für:**\n• Alter: Tengo 30 años\n• Besitz: Tengo un coche\n• Körperzustände: Tengo hambre, frío, sed\n• Müssen: Tengo que ir\n• Lust: Tengo ganas de...\n\n**SER für:**\n• Permanente Eigenschaften: Soy alto\n• Beruf: Soy médico\n• Nationalität: Soy alemán\n\n**ESTAR für:**\n• Temporäre Zustände: Estoy cansado\n• Emotionen: Estoy feliz\n• Orte: Estoy en casa"
+      },
+      {
+        "heading": "💡 Merkhilfen",
+        "content": "**Eselsbrücke 1: \"Ich HABE Jahre\"**\nIm Spanischen \"hast\" du dein Alter, du \"bist\" es nicht!\n\n**Eselsbrücke 2: \"TENER für Körper\"**\nAlle körperlichen Empfindungen → TENER\n(Hunger, Durst, Kälte, Wärme, Müdigkeit)\n\n**Eselsbrücke 3: \"QUE zwischen TENER und Verb\"**\nWenn du 'müssen' ausdrücken willst:\nTENER + QUE + Infinitiv"
+      },
+      {
+        "heading": "🎯 Dein Lernziel für diese Unit",
+        "content": "Nach Abschluss dieser Unit solltest du:\n✅ TENER in allen Personen konjugieren können\n✅ Alter mit TENER angeben können\n✅ Körperzustände mit TENER ausdrücken können\n✅ TENER QUE für 'müssen' verwenden können\n✅ Die wichtigsten TENER-Ausdrücke kennen\n✅ Nicht mehr TENER mit SER/ESTAR verwechseln\n\n**¡Vamos a practicar! (Lass uns üben!)**"
+      }
+    ]
   }
 }
