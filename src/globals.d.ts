@@ -20,6 +20,7 @@ declare global {
         AdaptivePracticeSystem: any;
         LevelTestSystem: any;
         ErrorHandler: any;
+        ErrorBoundary: any;
         ExerciseData: any;
         ProductionConfig: any;
         PerformanceOptimizer: any;

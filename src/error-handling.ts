@@ -379,6 +379,9 @@ class ErrorHandler {
 // Create global instance
 window.ErrorHandler = new ErrorHandler();
 
+// Create alias for backward compatibility (app-core uses ErrorBoundary)
+(window as any).ErrorBoundary = window.ErrorHandler;
+
 // Auto-initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {

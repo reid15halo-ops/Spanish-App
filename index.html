@@ -1087,32 +1087,32 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts - Load Order is Critical! -->
 
-    <!-- Environment & Configuration -->
+    <!-- 1. Environment & Configuration -->
     <script src="js/config/environment.js"></script>
+    <script src="js/production-config.js"></script>
 
-    <!-- Consolidated Monitoring (Error + Performance) -->
+    <!-- 2. Monitoring & Error Handling -->
     <script src="js/monitoring.js"></script>
+    <script src="js/error-handling.js"></script>
 
-    <!-- Consolidated Utilities (Logger, Loading, ErrorBoundary, DataBackup, GDPR, Accessibility, etc.) -->
+    <!-- 3. Utilities & Data Management -->
     <script src="js/utils.js"></script>
+    <script src="js/data-manager.js"></script>
+    <script src="js/performance-optimizations.js"></script>
 
-    <!-- Inlined Exercise Data (All units + vocabulary - no fetch() calls) -->
+    <!-- 4. Inlined Exercise Data (All units + vocabulary - no fetch() calls) -->
     <script src="js/exercise-data.js"></script>
 
-    <!-- Adaptive Learning System -->
+    <!-- 5. Learning Systems -->
     <script src="js/adaptive-learning.js"></script>
-
-    <!-- Tolerant Validation & Improved Feedback -->
     <script src="js/tolerant-validator.js"></script>
     <script src="js/improved-feedback.js"></script>
-
-    <!-- Level Test & Adaptive Practice System -->
     <script src="js/level-test-system.js"></script>
     <script src="js/adaptive-practice-system.js"></script>
 
-    <!-- Consolidated Core App (App + Loader + Renderer) -->
+    <!-- 6. Main App (App + Loader + Renderer) -->
     <script src="js/app-core.js"></script>
 
     <!-- Service Worker Registration -->
