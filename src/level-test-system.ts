@@ -1,34 +1,103 @@
-"use strict";
 /**
  * Level Test System - TypeScript Version
  *
  * Comprehensive testing system for assessing learner proficiency
  * Simplified migration with core functionality
  */
-Object.defineProperty(exports, "__esModule", { value: true });
+
+import type { Exercise } from './types';
+
+// ====================================================================
+// TYPES & INTERFACES
+// ====================================================================
+
+interface Progress {
+    completedUnits?: number[];
+    [key: string]: any;
+}
+
+interface TestSection {
+    id: string;
+    name: string;
+    weight: number;
+    exercises: Exercise[];
+}
+
+interface LevelTest {
+    level: string;
+    title: string;
+    description: string;
+    timeLimit: number;
+    passingScore: number;
+    fullSpanish: boolean;
+    sections: TestSection[];
+}
+
+interface SectionResult {
+    sectionId: string;
+    sectionName: string;
+    totalQuestions: number;
+    correctAnswers: number;
+    percentage: number;
+    weight: number;
+    weightedScore: number;
+}
+
+interface WeakArea {
+    section: string;
+    concept: string;
+    percentage: number;
+    correctAnswers: number;
+    totalQuestions: number;
+}
+
+interface TestResults {
+    testId: string;
+    level: string;
+    timestamp: string;
+    totalScore: number;
+    maxScore: number;
+    scorePercentage: number;
+    passed: boolean;
+    sectionResults: SectionResult[];
+    weakAreas: WeakArea[];
+    recommendations: Recommendation[];
+}
+
+interface Recommendation {
+    type: string;
+    message: string;
+    action: string;
+    units?: number[];
+    practiceExercises?: number;
+}
+
 // ====================================================================
 // LEVEL TEST SYSTEM
 // ====================================================================
+
 class LevelTestSystem {
-    constructor() {
-        this.currentTest = null;
-        this.testResults = {};
-        this.weakAreas = [];
-    }
+    private currentTest: LevelTest | null = null;
+    private testResults: Record<string, TestResults> = {};
+    private weakAreas: WeakArea[] = [];
+
     /**
      * Get appropriate level test based on completed units
      */
-    getRecommendedTest() {
+    public getRecommendedTest(): string | null {
         const progress = this.loadProgress();
+
         if (progress && progress.completedUnits && progress.completedUnits.includes(7)) {
             return 'A1';
         }
+
         return null;
     }
+
     /**
      * Generate A1 Level Test - COMPLETAMENTE EN ESPAÑOL
      */
-    generateA1Test() {
+    public generateA1Test(): LevelTest {
         return {
             level: 'A1',
             title: 'Examen de Nivel A1',
@@ -70,50 +139,60 @@ class LevelTestSystem {
             ]
         };
     }
-    generateVocabularyTestExercises() {
+
+    private generateVocabularyTestExercises(): Exercise[] {
         return [
             { id: 'test_vocab_1', type: 'multiple-choice', question: '¿Cómo te llamas?', options: ['Me llamo Juan'], correctAnswer: 'Me llamo Juan', concept: 'greetings' },
             { id: 'test_vocab_2', type: 'fill-blank', question: 'Hola, ____ Juan.', correctAnswer: 'soy', concept: 'introductions' }
         ];
     }
-    generateSerEstarTestExercises() {
+
+    private generateSerEstarTestExercises(): Exercise[] {
         return [
             { id: 'test_ser_estar_1', type: 'fill-blank', question: 'Yo ____ médico.', correctAnswer: 'soy', concept: 'ser_profession' },
             { id: 'test_ser_estar_2', type: 'fill-blank', question: 'Yo ____ cansado.', correctAnswer: 'estoy', concept: 'estar_state' }
         ];
     }
-    generateTenerTestExercises() {
+
+    private generateTenerTestExercises(): Exercise[] {
         return [
             { id: 'test_tener_1', type: 'fill-blank', question: 'Yo ____ 25 años.', correctAnswer: 'tengo', concept: 'tener_age' }
         ];
     }
-    generateReadingTestExercises() {
+
+    private generateReadingTestExercises(): Exercise[] {
         return [
             { id: 'test_reading_1', type: 'reading-comprehension', concept: 'reading' }
         ];
     }
-    generatePracticalTestExercises() {
+
+    private generatePracticalTestExercises(): Exercise[] {
         return [
             { id: 'test_practical_1', type: 'fill-blank', concept: 'practical' }
         ];
     }
+
     /**
      * Analyze test results
      */
-    analyzeTestResults(test, userAnswers) {
-        const sectionResults = [];
+    public analyzeTestResults(test: LevelTest, userAnswers: Record<string, string>): TestResults {
+        const sectionResults: SectionResult[] = [];
         let totalWeightedScore = 0;
+
         test.sections.forEach(section => {
             let correctAnswers = 0;
             const totalQuestions = section.exercises.length;
+
             section.exercises.forEach(exercise => {
                 const userAnswer = userAnswers[exercise.id || ''];
                 if (userAnswer && this.checkAnswer(exercise, userAnswer)) {
                     correctAnswers++;
                 }
             });
+
             const percentage = totalQuestions > 0 ? (correctAnswers / totalQuestions) * 100 : 0;
             const weightedScore = (percentage / 100) * section.weight;
+
             sectionResults.push({
                 sectionId: section.id,
                 sectionName: section.name,
@@ -123,11 +202,14 @@ class LevelTestSystem {
                 weight: section.weight,
                 weightedScore
             });
+
             totalWeightedScore += weightedScore;
         });
+
         const weakAreas = this.identifyWeakAreas(sectionResults);
         const passed = totalWeightedScore >= test.passingScore;
-        const results = {
+
+        const results: TestResults = {
             testId: test.level + '_' + Date.now(),
             level: test.level,
             timestamp: new Date().toISOString(),
@@ -139,55 +221,65 @@ class LevelTestSystem {
             weakAreas,
             recommendations: []
         };
+
         results.recommendations = this.generateRecommendations(results);
+
         this.testResults[results.testId] = results;
         this.saveTestResults();
+
         return results;
     }
-    checkAnswer(exercise, userAnswer) {
+
+    private checkAnswer(exercise: Exercise, userAnswer: string): boolean {
         if (window.TolerantAnswerValidator) {
             const validator = new window.TolerantAnswerValidator();
             const result = validator.validateAnswer(userAnswer, exercise.correctAnswer || '', exercise);
             return result.isCorrect;
         }
-        const normalize = (str) => String(str).toLowerCase().trim();
+
+        const normalize = (str: string) => String(str).toLowerCase().trim();
         return normalize(userAnswer) === normalize(exercise.correctAnswer || '');
     }
-    identifyWeakAreas(sectionResults) {
+
+    private identifyWeakAreas(sectionResults: SectionResult[]): WeakArea[] {
         return sectionResults
             .filter(section => section.percentage < 70)
             .map(section => ({
-            section: section.sectionName,
-            concept: section.sectionId,
-            percentage: section.percentage,
-            correctAnswers: section.correctAnswers,
-            totalQuestions: section.totalQuestions
-        }));
+                section: section.sectionName,
+                concept: section.sectionId,
+                percentage: section.percentage,
+                correctAnswers: section.correctAnswers,
+                totalQuestions: section.totalQuestions
+            }));
     }
-    generateRecommendations(results) {
-        const recommendations = [];
+
+    public generateRecommendations(results: TestResults): Recommendation[] {
+        const recommendations: Recommendation[] = [];
+
         if (!results.passed) {
             recommendations.push({
                 type: 'overall',
                 message: `Du hast ${results.scorePercentage}% erreicht. Die Bestehensgrenze liegt bei 70%.`,
                 action: 'Wiederhole die schwächeren Bereiche und versuche den Test erneut.'
             });
-        }
-        else {
+        } else {
             recommendations.push({
                 type: 'overall',
                 message: `Glückwunsch! Du hast ${results.scorePercentage}% erreicht und den Test bestanden!`,
                 action: 'Du bist bereit für die nächste Stufe!'
             });
         }
+
         results.weakAreas.forEach(area => {
             const recommendation = this.getRecommendationForWeakArea(area);
             recommendations.push(recommendation);
         });
+
         return recommendations;
     }
-    getRecommendationForWeakArea(weakArea) {
-        const recommendations = {
+
+    private getRecommendationForWeakArea(weakArea: WeakArea): Recommendation {
+        const recommendations: Record<string, Recommendation> = {
             'vocabulary': {
                 type: 'practice',
                 message: `Vokabular (${weakArea.percentage}%) braucht mehr Übung`,
@@ -210,6 +302,7 @@ class LevelTestSystem {
                 practiceExercises: 15
             }
         };
+
         return recommendations[weakArea.concept] || {
             type: 'practice',
             message: `${weakArea.section} braucht mehr Übung`,
@@ -217,39 +310,40 @@ class LevelTestSystem {
             practiceExercises: 15
         };
     }
-    getTestById(testId) {
+
+    public getTestById(testId: string): LevelTest | null {
         if (testId === 'A1' || testId === 'a1') {
             return this.generateA1Test();
         }
         return null;
     }
-    loadProgress() {
+
+    private loadProgress(): Progress {
         try {
             return JSON.parse(localStorage.getItem('progress') || '{}');
-        }
-        catch (error) {
+        } catch (error) {
             return {};
         }
     }
-    saveTestResults() {
+
+    private saveTestResults(): void {
         try {
             localStorage.setItem('test-results', JSON.stringify(this.testResults));
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Failed to save test results:', error);
         }
     }
-    loadTestResults() {
+
+    public loadTestResults(): void {
         try {
             const saved = localStorage.getItem('test-results');
             if (saved) {
                 this.testResults = JSON.parse(saved);
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Failed to load test results:', error);
         }
     }
 }
+
 window.LevelTestSystem = LevelTestSystem;
-//# sourceMappingURL=level-test-system.js.map

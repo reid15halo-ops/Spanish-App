@@ -18,7 +18,10 @@ declare global {
         AdaptiveLearningSystem: any;
         AdaptivePracticeSystem: any;
         LevelTestSystem: any;
+        ErrorHandler: any;
+        ExerciseData: any;
         getUnit?: (unitNumber: number) => any;
+        __DEV__?: boolean;
     }
 }
 
