@@ -1,0 +1,19 @@
+{
+  "name": "spanish-learning-app",
+  "version": "1.0.0",
+  "description": "Spanish Learning App with Adaptive Learning - TypeScript Migration",
+  "scripts": {
+    "build": "tsc && node build-post.js",
+    "watch": "tsc --watch",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean"
+  },
+  "keywords": ["spanish", "learning", "typescript", "pwa"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/node": "^20.10.5"
+  }
+}

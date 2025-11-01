@@ -3,26 +3,53 @@
  *
  * Manages different configurations for development, staging, and production
  */
+
+type Environment = 'development' | 'staging' | 'production';
+type CacheStrategy = 'network-first' | 'cache-first';
+type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+
+interface FeatureFlags {
+    experimentalFeatures: boolean;
+    betaFeatures: boolean;
+    mockData: boolean;
+}
+
+interface EnvironmentConfiguration {
+    environment: Environment;
+    apiUrl: string;
+    enableDebugMode: boolean;
+    enableAnalytics: boolean;
+    enableErrorReporting: boolean;
+    cacheStrategy: CacheStrategy;
+    logLevel: LogLevel;
+    version: string;
+    features: FeatureFlags;
+}
+
 class EnvironmentConfig {
+    public readonly currentEnv: Environment;
+    private readonly config: EnvironmentConfiguration;
+
     constructor() {
         this.currentEnv = this.detectEnvironment();
         this.config = this.loadConfig(this.currentEnv);
     }
-    detectEnvironment() {
+
+    private detectEnvironment(): Environment {
         // Detect based on hostname
         const hostname = window.location.hostname;
+
         if (hostname === 'localhost' || hostname === '127.0.0.1') {
             return 'development';
-        }
-        else if (hostname.includes('staging') || hostname.includes('preview')) {
+        } else if (hostname.includes('staging') || hostname.includes('preview')) {
             return 'staging';
-        }
-        else {
+        } else {
             return 'production';
         }
     }
-    loadConfig(env) {
-        const configs = {
+
+    private loadConfig(env: Environment): EnvironmentConfiguration {
+        const configs: Record<Environment, EnvironmentConfiguration> = {
             development: {
                 environment: 'development',
                 apiUrl: 'http://localhost:3000',
@@ -69,38 +96,48 @@ class EnvironmentConfig {
                 }
             }
         };
+
         return configs[env];
     }
-    get(key) {
+
+    public get<K extends keyof EnvironmentConfiguration>(key: K): EnvironmentConfiguration[K] {
         return this.config[key];
     }
-    getAll() {
+
+    public getAll(): EnvironmentConfiguration {
         return { ...this.config };
     }
-    isProduction() {
+
+    public isProduction(): boolean {
         return this.currentEnv === 'production';
     }
-    isDevelopment() {
+
+    public isDevelopment(): boolean {
         return this.currentEnv === 'development';
     }
-    isStaging() {
+
+    public isStaging(): boolean {
         return this.currentEnv === 'staging';
     }
-    getVersion() {
+
+    public getVersion(): string {
         return this.config.version;
     }
-    getFeatureFlag(featureName) {
+
+    public getFeatureFlag<K extends keyof FeatureFlags>(featureName: K): boolean {
         return this.config.features[featureName] || false;
     }
-    log(level, message, ...args) {
-        const levels = ['debug', 'info', 'warn', 'error'];
+
+    public log(level: LogLevel, message: string, ...args: unknown[]): void {
+        const levels: LogLevel[] = ['debug', 'info', 'warn', 'error'];
         const configLevel = levels.indexOf(this.config.logLevel);
         const messageLevel = levels.indexOf(level);
+
         if (messageLevel >= configLevel) {
             console[level](`[${this.currentEnv.toUpperCase()}]`, message, ...args);
         }
     }
 }
+
 // Create global instance
 window.ENV = new EnvironmentConfig();
-//# sourceMappingURL=environment.js.map

@@ -12,23 +12,28 @@
  * - Provides detailed feedback
  * - Generates personalized practice recommendations
  */
+
 class LevelTestSystem {
     constructor() {
         this.currentTest = null;
         this.testResults = {};
         this.weakAreas = [];
     }
+
     /**
      * Get appropriate level test based on completed units
      */
     getRecommendedTest() {
         // Check which units have been completed
         const progress = this.loadProgress();
+
         if (progress && progress.completedUnits && progress.completedUnits.includes(7)) {
             return 'A1';
         }
+
         return null; // No test recommended yet
     }
+
     /**
      * Generate A1 Level Test - COMPLETAMENTE EN ESPAÑOL
      */
@@ -74,6 +79,7 @@ class LevelTestSystem {
             ]
         };
     }
+
     /**
      * Generate vocabulary test exercises - EN ESPAÑOL
      */
@@ -121,6 +127,7 @@ class LevelTestSystem {
             }
         ];
     }
+
     /**
      * Generate SER vs ESTAR test exercises - EN ESPAÑOL
      */
@@ -179,6 +186,7 @@ class LevelTestSystem {
             }
         ];
     }
+
     /**
      * Generate TENER test exercises - EN ESPAÑOL
      */
@@ -215,6 +223,7 @@ class LevelTestSystem {
             }
         ];
     }
+
     /**
      * Generate reading comprehension test exercises - EN ESPAÑOL
      */
@@ -252,6 +261,7 @@ class LevelTestSystem {
             }
         ];
     }
+
     /**
      * Generate practical application test exercises - EN ESPAÑOL
      */
@@ -282,6 +292,7 @@ class LevelTestSystem {
             }
         ];
     }
+
     /**
      * Grade test results
      */
@@ -290,6 +301,7 @@ class LevelTestSystem {
         if (!test) {
             return { error: 'Test not found' };
         }
+
         const results = {
             testId,
             level: test.level,
@@ -302,6 +314,7 @@ class LevelTestSystem {
             strengths: [],
             recommendations: []
         };
+
         // Grade each section
         test.sections.forEach(section => {
             const sectionResult = {
@@ -313,9 +326,11 @@ class LevelTestSystem {
                 percentage: 0,
                 details: []
             };
+
             section.exercises.forEach(exercise => {
                 const userAnswer = userAnswers[exercise.id];
                 const isCorrect = this.checkAnswer(exercise, userAnswer);
+
                 sectionResult.details.push({
                     exerciseId: exercise.id,
                     userAnswer,
@@ -323,13 +338,19 @@ class LevelTestSystem {
                     isCorrect,
                     concept: exercise.concept
                 });
+
                 if (isCorrect) {
                     sectionResult.correctAnswers++;
                     results.correctAnswers++;
                 }
+
                 results.totalQuestions++;
             });
-            sectionResult.percentage = Math.round((sectionResult.correctAnswers / sectionResult.totalQuestions) * 100);
+
+            sectionResult.percentage = Math.round(
+                (sectionResult.correctAnswers / sectionResult.totalQuestions) * 100
+            );
+
             // Identify weak areas (< 60%)
             if (sectionResult.percentage < 60) {
                 results.weakAreas.push({
@@ -338,63 +359,82 @@ class LevelTestSystem {
                     concept: section.id
                 });
             }
+
             // Identify strengths (>= 80%)
             if (sectionResult.percentage >= 80) {
                 results.strengths.push(section.name);
             }
+
             results.sectionResults.push(sectionResult);
         });
+
         // Calculate overall score
-        results.scorePercentage = Math.round((results.correctAnswers / results.totalQuestions) * 100);
+        results.scorePercentage = Math.round(
+            (results.correctAnswers / results.totalQuestions) * 100
+        );
+
         results.passed = results.scorePercentage >= test.passingScore;
+
         // Generate recommendations
         results.recommendations = this.generateRecommendations(results);
+
         // Save results
         this.saveTestResults(results);
+
         return results;
     }
+
     /**
      * Check if answer is correct (using tolerant validation)
      */
     checkAnswer(exercise, userAnswer) {
-        if (!userAnswer)
-            return false;
+        if (!userAnswer) return false;
+
         // Use TolerantAnswerValidator if available
         if (typeof window.TolerantAnswerValidator === 'function') {
             const validator = new window.TolerantAnswerValidator();
-            const result = validator.validateAnswer(userAnswer, exercise.correctAnswer, exercise);
+            const result = validator.validateAnswer(
+                userAnswer,
+                exercise.correctAnswer,
+                exercise
+            );
             return result.isCorrect;
         }
+
         // Fallback to simple comparison
         const normalize = (str) => String(str).toLowerCase().trim();
         return normalize(userAnswer) === normalize(exercise.correctAnswer);
     }
+
     /**
      * Generate personalized recommendations
      */
     generateRecommendations(results) {
         const recommendations = [];
+
         if (!results.passed) {
             recommendations.push({
                 type: 'overall',
                 message: `Du hast ${results.scorePercentage}% erreicht. Die Bestehensgrenze liegt bei 70%.`,
                 action: 'Wiederhole die schwächeren Bereiche und versuche den Test erneut.'
             });
-        }
-        else {
+        } else {
             recommendations.push({
                 type: 'overall',
                 message: `Glückwunsch! Du hast ${results.scorePercentage}% erreicht und den Test bestanden!`,
                 action: 'Du bist bereit für die nächste Stufe!'
             });
         }
+
         // Recommendations for weak areas
         results.weakAreas.forEach(area => {
             const recommendation = this.getRecommendationForWeakArea(area);
             recommendations.push(recommendation);
         });
+
         return recommendations;
     }
+
     /**
      * Get specific recommendation for weak area
      */
@@ -436,6 +476,7 @@ class LevelTestSystem {
                 practiceExercises: 20
             }
         };
+
         return recommendations[weakArea.concept] || {
             type: 'practice',
             message: `${weakArea.section} braucht mehr Übung`,
@@ -443,6 +484,7 @@ class LevelTestSystem {
             practiceExercises: 15
         };
     }
+
     /**
      * Get test by ID
      */
@@ -453,6 +495,7 @@ class LevelTestSystem {
         // Future: A2, B1, B2 tests
         return null;
     }
+
     /**
      * Save test results
      */
@@ -464,16 +507,18 @@ class LevelTestSystem {
                 ...results,
                 timestamp: new Date().toISOString()
             });
+
             // Keep only last 10 attempts
             if (existing.length > 10) {
                 existing.shift();
             }
+
             localStorage.setItem(key, JSON.stringify(existing));
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error saving test results:', error);
         }
     }
+
     /**
      * Get test history
      */
@@ -481,24 +526,23 @@ class LevelTestSystem {
         try {
             const key = `level-test-${testId}`;
             return JSON.parse(localStorage.getItem(key) || '[]');
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error loading test history:', error);
             return [];
         }
     }
+
     /**
      * Load progress
      */
     loadProgress() {
         try {
             return JSON.parse(localStorage.getItem('spanish-app-progress') || '{}');
-        }
-        catch (error) {
+        } catch (error) {
             return {};
         }
     }
 }
+
 // Make available globally
 window.LevelTestSystem = LevelTestSystem;
-//# sourceMappingURL=level-test-system.js.map

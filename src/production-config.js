@@ -8,24 +8,27 @@
  * - Performance optimization activation
  * - Error reporting configuration
  */
+
 class ProductionConfig {
     constructor() {
         this.env = window.ENV || this.createFallbackEnv();
         this.initialized = false;
         this.debugElements = [];
     }
+
     /**
      * Create fallback environment if ENV not available
      */
     createFallbackEnv() {
         return {
             isProduction: () => !window.location.hostname.includes('localhost') &&
-                !window.location.hostname.includes('127.0.0.1'),
+                               !window.location.hostname.includes('127.0.0.1'),
             isDevelopment: () => window.location.hostname.includes('localhost') ||
-                window.location.hostname.includes('127.0.0.1'),
+                                window.location.hostname.includes('127.0.0.1'),
             get: (key) => ({ enableDebugMode: false }[key])
         };
     }
+
     /**
      * Enhanced production detection with multiple indicators
      */
@@ -36,17 +39,22 @@ class ProductionConfig {
             !window.location.hostname.includes('127.0.0.1'),
             !window.location.hostname.includes('192.168.'),
             !window.location.hostname.includes('10.0.'),
+
             // Protocol checks
             !window.location.protocol.includes('file:'),
+
             // Debug parameter check
             !window.location.search.includes('debug=true'),
             !window.location.search.includes('dev=true'),
+
             // Hash check
             !window.location.hash.includes('debug')
         ];
+
         // All indicators must be true for production
         return indicators.filter(i => i).length >= 6;
     }
+
     /**
      * Initialize production configuration
      */
@@ -54,61 +62,76 @@ class ProductionConfig {
         if (this.initialized) {
             return;
         }
+
         const isProduction = ProductionConfig.isProduction();
+
         if (isProduction) {
             this.configureProduction();
-        }
-        else {
+        } else {
             this.configureDevelopment();
         }
+
         this.initialized = true;
+
         // Log initialization
         if (!isProduction) {
             console.log('%c[Production Config] Initialized', 'color: #20B2AA; font-weight: bold');
             console.log('Environment:', isProduction ? 'PRODUCTION' : 'DEVELOPMENT');
         }
     }
+
     /**
      * Configure for production environment
      */
     configureProduction() {
         // 1. Disable console logging (except errors)
         this.disableConsoleLogging();
+
         // 2. Hide debug elements
         this.hideDebugElements();
+
         // 3. Enable error reporting
         this.enableErrorReporting();
+
         // 4. Optimize performance
         this.optimizePerformance();
+
         // 5. Set production-specific settings
         this.setProductionSettings();
     }
+
     /**
      * Configure for development environment
      */
     configureDevelopment() {
         // Enable verbose logging
         this.enableVerboseLogging();
+
         // Show debug info
         this.showDebugInfo();
+
         // Enable development tools
         this.enableDevelopmentTools();
     }
+
     /**
      * Disable console logging in production (keep errors)
      */
     disableConsoleLogging() {
         const originalError = console.error;
         const originalWarn = console.warn;
+
         // Keep error and warn, disable others
-        console.log = () => { };
-        console.info = () => { };
-        console.debug = () => { };
-        console.trace = () => { };
+        console.log = () => {};
+        console.info = () => {};
+        console.debug = () => {};
+        console.trace = () => {};
+
         // Preserve error and warn for critical issues
         console.error = originalError;
         console.warn = originalWarn;
     }
+
     /**
      * Enable verbose logging in development
      */
@@ -117,16 +140,20 @@ class ProductionConfig {
         const originalLog = console.log;
         const originalInfo = console.info;
         const originalDebug = console.debug;
+
         console.log = (...args) => {
             originalLog(`[${new Date().toISOString()}]`, ...args);
         };
+
         console.info = (...args) => {
             originalInfo(`[${new Date().toISOString()}]`, ...args);
         };
+
         console.debug = (...args) => {
             originalDebug(`[${new Date().toISOString()}]`, ...args);
         };
     }
+
     /**
      * Hide debug elements in production
      */
@@ -137,12 +164,14 @@ class ProductionConfig {
             element.style.display = 'none';
             this.debugElements.push(element);
         });
+
         // Hide debug toolbar if it exists
         const debugToolbar = document.getElementById('debug-toolbar');
         if (debugToolbar) {
             debugToolbar.style.display = 'none';
         }
     }
+
     /**
      * Show debug info in development
      */
@@ -163,22 +192,24 @@ class ProductionConfig {
             z-index: 10000;
             max-width: 300px;
         `;
+
         debugPanel.innerHTML = `
             <div><strong>DEBUG MODE</strong></div>
             <div>Environment: ${this.env.currentEnv || 'development'}</div>
             <div>Version: ${this.env.getVersion ? this.env.getVersion() : '1.0.0'}</div>
             <div>Hostname: ${window.location.hostname}</div>
         `;
+
         // Add after DOM is loaded
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => {
                 document.body.appendChild(debugPanel);
             });
-        }
-        else {
+        } else {
             document.body.appendChild(debugPanel);
         }
     }
+
     /**
      * Enable error reporting in production
      */
@@ -197,6 +228,7 @@ class ProductionConfig {
                 url: window.location.href
             });
         });
+
         // Promise rejection handler
         window.addEventListener('unhandledrejection', (event) => {
             this.reportError({
@@ -209,6 +241,7 @@ class ProductionConfig {
             });
         });
     }
+
     /**
      * Report error (in production, could send to analytics)
      */
@@ -217,21 +250,24 @@ class ProductionConfig {
         try {
             const errors = JSON.parse(localStorage.getItem('app-errors') || '[]');
             errors.push(errorInfo);
+
             // Keep only last 50 errors
             if (errors.length > 50) {
                 errors.shift();
             }
+
             localStorage.setItem('app-errors', JSON.stringify(errors));
-        }
-        catch (e) {
+        } catch (e) {
             // Silently fail if localStorage is full
         }
+
         // In production, you could send to error tracking service
         // Example: Sentry, LogRocket, etc.
         // if (window.ErrorTracker) {
         //     window.ErrorTracker.captureException(errorInfo);
         // }
     }
+
     /**
      * Optimize performance for production
      */
@@ -242,6 +278,7 @@ class ProductionConfig {
         // preconnect.rel = 'preconnect';
         // preconnect.href = 'https://api.example.com';
         // document.head.appendChild(preconnect);
+
         // 2. Set resource hints
         const dnsPrefetch = document.createElement('link');
         dnsPrefetch.rel = 'dns-prefetch';
@@ -249,18 +286,17 @@ class ProductionConfig {
         if (document.head) {
             document.head.appendChild(dnsPrefetch);
         }
+
         // 3. Enable passive event listeners for better scroll performance
         if ('passive' in (EventTarget.prototype.addEventListener || {})) {
             const originalAddEventListener = EventTarget.prototype.addEventListener;
-            EventTarget.prototype.addEventListener = function (type, listener, options) {
+            EventTarget.prototype.addEventListener = function(type, listener, options) {
                 if (type === 'touchstart' || type === 'touchmove' || type === 'wheel') {
                     if (typeof options === 'boolean') {
                         options = { capture: options, passive: true };
-                    }
-                    else if (typeof options === 'object' && options.passive === undefined) {
+                    } else if (typeof options === 'object' && options.passive === undefined) {
                         options.passive = true;
-                    }
-                    else if (options === undefined) {
+                    } else if (options === undefined) {
                         options = { passive: true };
                     }
                 }
@@ -268,6 +304,7 @@ class ProductionConfig {
             };
         }
     }
+
     /**
      * Set production-specific settings
      */
@@ -275,14 +312,17 @@ class ProductionConfig {
         // Set production flag
         window.__PRODUCTION__ = true;
         window.__DEV__ = false;
+
         // Disable right-click context menu in production (optional)
         // Commented out as it might interfere with user experience
         // document.addEventListener('contextmenu', (e) => e.preventDefault());
+
         // Disable text selection for better app-like feel (optional)
         // Commented out as it might interfere with accessibility
         // document.body.style.userSelect = 'none';
         // document.body.style.webkitUserSelect = 'none';
     }
+
     /**
      * Enable development tools
      */
@@ -290,15 +330,18 @@ class ProductionConfig {
         // Set development flags
         window.__PRODUCTION__ = false;
         window.__DEV__ = true;
+
         // Enable React DevTools detection (if using React in future)
         window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.__REACT_DEVTOOLS_GLOBAL_HOOK__ || {};
     }
+
     /**
      * Get current environment
      */
     getEnvironment() {
         return ProductionConfig.isProduction() ? 'production' : 'development';
     }
+
     /**
      * Check if feature should be enabled
      */
@@ -312,19 +355,21 @@ class ProductionConfig {
             'offline-support': true, // Always enabled
             'pwa': true // Always enabled
         };
+
         return features[featureName] !== undefined ? features[featureName] : false;
     }
+
     /**
      * Get stored errors (for debugging)
      */
     getStoredErrors() {
         try {
             return JSON.parse(localStorage.getItem('app-errors') || '[]');
-        }
-        catch (e) {
+        } catch (e) {
             return [];
         }
     }
+
     /**
      * Clear stored errors
      */
@@ -332,25 +377,25 @@ class ProductionConfig {
         try {
             localStorage.removeItem('app-errors');
             return true;
-        }
-        catch (e) {
+        } catch (e) {
             return false;
         }
     }
 }
+
 // Create global instance
 window.ProductionConfig = new ProductionConfig();
+
 // Auto-initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.ProductionConfig.initialize();
     });
-}
-else {
+} else {
     window.ProductionConfig.initialize();
 }
+
 // Export for modules
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { ProductionConfig };
 }
-//# sourceMappingURL=production-config.js.map

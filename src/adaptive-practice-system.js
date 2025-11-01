@@ -9,11 +9,13 @@
  *
  * Creates targeted practice sessions to improve weak areas
  */
+
 class AdaptivePracticeSystem {
     constructor() {
         this.weakAreas = [];
         this.practiceHistory = [];
     }
+
     /**
      * Generate personalized practice session based on test results
      */
@@ -21,6 +23,7 @@ class AdaptivePracticeSystem {
         if (!testResults || !testResults.weakAreas) {
             return null;
         }
+
         const session = {
             id: `practice_${Date.now()}`,
             basedOnTest: testResults.testId,
@@ -28,18 +31,23 @@ class AdaptivePracticeSystem {
             weakAreas: testResults.weakAreas,
             exercises: []
         };
+
         // Generate targeted exercises for each weak area
         testResults.weakAreas.forEach(weakArea => {
             const exercises = this.generateExercisesForWeakArea(weakArea);
             session.exercises.push(...exercises);
         });
+
         // Add mixed exercises to reinforce learning
         const mixedExercises = this.generateMixedExercises(testResults.weakAreas);
         session.exercises.push(...mixedExercises);
+
         // Shuffle exercises for variety
         session.exercises = this.shuffleArray(session.exercises);
+
         return session;
     }
+
     /**
      * Generate exercises for specific weak area
      */
@@ -51,12 +59,15 @@ class AdaptivePracticeSystem {
             'reading': () => this.generateReadingPractice(),
             'practical': () => this.generatePracticalPractice()
         };
+
         const generator = generators[weakArea.concept];
         if (generator) {
             return generator();
         }
+
         return [];
     }
+
     /**
      * Generate vocabulary practice exercises
      */
@@ -107,6 +118,7 @@ class AdaptivePracticeSystem {
             }
         ];
     }
+
     /**
      * Generate SER vs ESTAR practice exercises
      */
@@ -176,6 +188,7 @@ class AdaptivePracticeSystem {
             }
         ];
     }
+
     /**
      * Generate TENER practice exercises
      */
@@ -224,6 +237,7 @@ class AdaptivePracticeSystem {
             }
         ];
     }
+
     /**
      * Generate reading practice exercises
      */
@@ -263,6 +277,7 @@ class AdaptivePracticeSystem {
             }
         ];
     }
+
     /**
      * Generate practical application practice
      */
@@ -296,11 +311,13 @@ class AdaptivePracticeSystem {
             }
         ];
     }
+
     /**
      * Generate mixed exercises to reinforce multiple concepts
      */
     generateMixedExercises(weakAreas) {
         const concepts = weakAreas.map(w => w.concept);
+
         return [
             {
                 id: 'practice_mixed_1',
@@ -328,6 +345,7 @@ class AdaptivePracticeSystem {
             }
         ];
     }
+
     /**
      * Get exercises from existing units that match weak areas
      */
@@ -339,8 +357,10 @@ class AdaptivePracticeSystem {
             'reading': [1, 2, 3, 4, 5, 6, 7],
             'practical': [7]
         };
+
         const units = unitMapping[weakArea.concept] || [];
         const relevantExercises = [];
+
         units.forEach(unitNum => {
             const unit = window.getUnit ? window.getUnit(unitNum) : null;
             if (unit && unit.exercises) {
@@ -352,13 +372,16 @@ class AdaptivePracticeSystem {
                     // Also include exercises that haven't been mastered
                     return this.needsPractice(ex.id);
                 });
+
                 relevantExercises.push(...filtered);
             }
         });
+
         // Shuffle and return requested count
         const shuffled = this.shuffleArray(relevantExercises);
         return shuffled.slice(0, count);
     }
+
     /**
      * Check if exercise needs practice (based on history)
      */
@@ -368,33 +391,40 @@ class AdaptivePracticeSystem {
         const recentAttempts = history
             .filter(h => h.exerciseId === exerciseId)
             .slice(-3); // Last 3 attempts
-        if (recentAttempts.length === 0)
-            return true; // Never attempted
+
+        if (recentAttempts.length === 0) return true; // Never attempted
+
         const correctAttempts = recentAttempts.filter(h => h.correct).length;
         return correctAttempts < 2; // Needs practice if less than 2 correct
     }
+
     /**
      * Track practice session progress
      */
     trackPracticeProgress(exerciseId, isCorrect, timeSpent) {
         const history = this.loadPracticeHistory();
+
         history.push({
             exerciseId,
             correct: isCorrect,
             timestamp: new Date().toISOString(),
             timeSpent
         });
+
         // Keep only last 1000 attempts
         if (history.length > 1000) {
             history.shift();
         }
+
         this.savePracticeHistory(history);
     }
+
     /**
      * Get practice recommendations
      */
     getRecommendations(testResults) {
         const recommendations = [];
+
         testResults.recommendations.forEach(rec => {
             if (rec.type === 'practice' && rec.units) {
                 recommendations.push({
@@ -405,8 +435,10 @@ class AdaptivePracticeSystem {
                 });
             }
         });
+
         return recommendations;
     }
+
     /**
      * Shuffle array (Fisher-Yates algorithm)
      */
@@ -418,30 +450,30 @@ class AdaptivePracticeSystem {
         }
         return shuffled;
     }
+
     /**
      * Load practice history from localStorage
      */
     loadPracticeHistory() {
         try {
             return JSON.parse(localStorage.getItem('adaptive-practice-history') || '[]');
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error loading practice history:', error);
             return [];
         }
     }
+
     /**
      * Save practice history to localStorage
      */
     savePracticeHistory(history) {
         try {
             localStorage.setItem('adaptive-practice-history', JSON.stringify(history));
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Error saving practice history:', error);
         }
     }
 }
+
 // Make available globally
 window.AdaptivePracticeSystem = AdaptivePracticeSystem;
-//# sourceMappingURL=adaptive-practice-system.js.map

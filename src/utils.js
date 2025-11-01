@@ -14,13 +14,17 @@
  *
  * Generated: 2025-10-30T08:40:15.805Z
  */
+
+
 // ====================================================================
 // LOGGER
 // ====================================================================
+
 class Logger {
     constructor() {
         this.env = window.ENV || { isDevelopment: () => false, get: () => 'error' };
         this.logLevel = this.env.get('logLevel') || 'error';
+
         // Log level hierarchy: debug < info < warn < error
         this.levels = {
             debug: 0,
@@ -29,6 +33,7 @@ class Logger {
             error: 3
         };
     }
+
     /**
      * Check if a log level should be output
      */
@@ -37,6 +42,7 @@ class Logger {
         const messageLevel = this.levels[level] || this.levels.error;
         return messageLevel >= currentLevel;
     }
+
     /**
      * Debug logging (only in development)
      */
@@ -45,6 +51,7 @@ class Logger {
             console.log('[DEBUG]', ...args);
         }
     }
+
     /**
      * Info logging (development and staging)
      */
@@ -53,6 +60,7 @@ class Logger {
             console.log('[INFO]', ...args);
         }
     }
+
     /**
      * Warning logging (all environments)
      */
@@ -61,6 +69,7 @@ class Logger {
             console.warn('[WARN]', ...args);
         }
     }
+
     /**
      * Error logging (all environments)
      */
@@ -69,6 +78,7 @@ class Logger {
             console.error('[ERROR]', ...args);
         }
     }
+
     /**
      * Success message (only in development)
      */
@@ -77,6 +87,7 @@ class Logger {
             console.log('[SUCCESS]', '✅', ...args);
         }
     }
+
     /**
      * Group logging (only in development)
      */
@@ -85,11 +96,13 @@ class Logger {
             console.group(label);
         }
     }
+
     groupEnd() {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.groupEnd();
         }
     }
+
     /**
      * Table logging (only in development)
      */
@@ -98,6 +111,7 @@ class Logger {
             console.table(data);
         }
     }
+
     /**
      * Time tracking (only in development)
      */
@@ -106,21 +120,28 @@ class Logger {
             console.time(label);
         }
     }
+
     timeEnd(label) {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.timeEnd(label);
         }
     }
 }
+
 // Create global logger instance
 window.Logger = new Logger();
+
+
+
 // ====================================================================
 // LOADING
 // ====================================================================
+
 class LoadingManager {
     constructor() {
         this.activeLoaders = new Set();
     }
+
     /**
      * Show loading spinner in a container
      * @param {string|HTMLElement} container - Container ID or element
@@ -132,10 +153,12 @@ class LoadingManager {
         const containerEl = typeof container === 'string'
             ? document.getElementById(container)
             : container;
+
         if (!containerEl) {
             window.Logger?.warn('Loading container not found:', container);
             return loaderId;
         }
+
         // Create loader element
         const loader = document.createElement('div');
         loader.id = loaderId;
@@ -146,17 +169,20 @@ class LoadingManager {
                 <p class="loading-message">${message}</p>
             </div>
         `;
+
         containerEl.appendChild(loader);
         this.activeLoaders.add(loaderId);
+
         return loaderId;
     }
+
     /**
      * Hide loading spinner
      * @param {string} loaderId - ID returned from show()
      */
     hide(loaderId) {
-        if (!loaderId)
-            return;
+        if (!loaderId) return;
+
         const loader = document.getElementById(loaderId);
         if (loader) {
             loader.classList.add('fade-out');
@@ -166,6 +192,7 @@ class LoadingManager {
             }, 300);
         }
     }
+
     /**
      * Show inline loading indicator (smaller, for buttons)
      * @param {string|HTMLElement} container
@@ -175,8 +202,9 @@ class LoadingManager {
         const containerEl = typeof container === 'string'
             ? document.getElementById(container)
             : container;
-        if (!containerEl)
-            return;
+
+        if (!containerEl) return;
+
         const originalContent = containerEl.innerHTML;
         containerEl.dataset.originalContent = originalContent;
         containerEl.disabled = true;
@@ -185,6 +213,7 @@ class LoadingManager {
             <span>${message}</span>
         `;
     }
+
     /**
      * Hide inline loading indicator
      * @param {string|HTMLElement} container
@@ -193,8 +222,9 @@ class LoadingManager {
         const containerEl = typeof container === 'string'
             ? document.getElementById(container)
             : container;
-        if (!containerEl)
-            return;
+
+        if (!containerEl) return;
+
         const originalContent = containerEl.dataset.originalContent;
         if (originalContent) {
             containerEl.innerHTML = originalContent;
@@ -202,6 +232,7 @@ class LoadingManager {
         }
         containerEl.disabled = false;
     }
+
     /**
      * Hide all active loaders
      */
@@ -210,6 +241,7 @@ class LoadingManager {
             this.hide(loaderId);
         });
     }
+
     /**
      * Check if any loaders are active
      */
@@ -217,6 +249,7 @@ class LoadingManager {
         return this.activeLoaders.size > 0;
     }
 }
+
 // Add CSS styles for loading components
 const loadingStyles = document.createElement('style');
 loadingStyles.textContent = `
@@ -290,18 +323,25 @@ loadingStyles.textContent = `
         min-height: 200px;
     }
 `;
+
 document.head.appendChild(loadingStyles);
+
 // Create global loading manager instance
 window.LoadingManager = new LoadingManager();
+
+
+
 // ====================================================================
 // ERROR BOUNDARY
 // ====================================================================
+
 class ErrorBoundary {
     constructor() {
         this.errors = [];
         this.maxErrors = 10;
         this.setupGlobalHandlers();
     }
+
     /**
      * Setup global error handlers
      */
@@ -315,6 +355,7 @@ class ErrorBoundary {
             });
             event.preventDefault();
         });
+
         // Catch unhandled promise rejections
         window.addEventListener('unhandledrejection', (event) => {
             this.handleError(event.reason, {
@@ -323,22 +364,26 @@ class ErrorBoundary {
             event.preventDefault();
         });
     }
+
     /**
      * Handle an error with user-friendly display
      */
     handleError(error, context = {}) {
         // Log error (will respect environment settings)
         window.Logger?.error('Error caught by boundary:', error, context);
+
         // Store error
         this.errors.push({
             error: error,
             context: context,
             timestamp: new Date().toISOString()
         });
+
         // Keep only last N errors
         if (this.errors.length > this.maxErrors) {
             this.errors.shift();
         }
+
         // Report to monitoring if available
         if (window.ErrorMonitor) {
             window.ErrorMonitor.logError({
@@ -348,15 +393,18 @@ class ErrorBoundary {
                 context: context
             });
         }
+
         // Show user-friendly error message
         this.showErrorUI(error, context);
     }
+
     /**
      * Show user-friendly error message
      */
     showErrorUI(error, context = {}) {
         const errorType = context.type || 'Error';
         const errorMessage = error?.message || String(error);
+
         // Create error dialog
         const dialog = document.createElement('div');
         dialog.className = 'error-boundary-dialog';
@@ -385,7 +433,9 @@ class ErrorBoundary {
                 </div>
             </div>
         `;
+
         document.body.appendChild(dialog);
+
         // Auto-remove after 10 seconds if user doesn't interact
         setTimeout(() => {
             if (dialog.parentElement) {
@@ -394,6 +444,7 @@ class ErrorBoundary {
             }
         }, 10000);
     }
+
     /**
      * Wrap a function with error handling
      */
@@ -401,6 +452,7 @@ class ErrorBoundary {
         return (...args) => {
             try {
                 const result = fn(...args);
+
                 // Handle async functions
                 if (result && typeof result.catch === 'function') {
                     return result.catch(error => {
@@ -410,9 +462,9 @@ class ErrorBoundary {
                         });
                     });
                 }
+
                 return result;
-            }
-            catch (error) {
+            } catch (error) {
                 this.handleError(error, {
                     ...context,
                     functionName: fn.name || 'anonymous'
@@ -420,6 +472,7 @@ class ErrorBoundary {
             }
         };
     }
+
     /**
      * Wrap an async function with error handling
      */
@@ -427,8 +480,7 @@ class ErrorBoundary {
         return async (...args) => {
             try {
                 return await fn(...args);
-            }
-            catch (error) {
+            } catch (error) {
                 this.handleError(error, {
                     ...context,
                     functionName: fn.name || 'anonymous'
@@ -437,12 +489,14 @@ class ErrorBoundary {
             }
         };
     }
+
     /**
      * Get error history
      */
     getErrors() {
         return [...this.errors];
     }
+
     /**
      * Clear error history
      */
@@ -450,6 +504,7 @@ class ErrorBoundary {
         this.errors = [];
     }
 }
+
 // Add CSS styles for error boundary
 const errorBoundaryStyles = document.createElement('style');
 errorBoundaryStyles.textContent = `
@@ -579,17 +634,24 @@ errorBoundaryStyles.textContent = `
         background: #e0e0e0;
     }
 `;
+
 document.head.appendChild(errorBoundaryStyles);
+
 // Create global error boundary instance
 window.ErrorBoundary = new ErrorBoundary();
+
+
+
 // ====================================================================
 // DATA BACKUP
 // ====================================================================
+
 class DataBackupSystem {
     constructor() {
         this.version = '1.0.0';
         this.backupPrefix = 'spanish-app-backup';
     }
+
     /**
      * Create complete backup of user data
      */
@@ -603,37 +665,50 @@ class DataBackupSystem {
                 knowledgeTracker: this.getLocalStorageData('adaptive-knowledge'),
                 learningProgress: this.getLocalStorageData('learning-progress'),
                 sessionHistory: this.getLocalStorageData('session-history'),
+
                 // User settings
                 settings: this.getLocalStorageData('spanish-app-settings'),
+
                 // Exercise progress
                 exerciseProgress: this.getLocalStorageData('spanish-app-progress'),
+
                 // Statistics
                 stats: this.getLocalStorageData('learning-stats'),
+
                 // Personal patterns
                 personalPatterns: this.getLocalStorageData('personal-patterns'),
+
                 // Sidebar state
                 uiState: this.getLocalStorageData('sidebar-collapsed')
             },
             checksum: null
         };
+
         // Calculate checksum for integrity
         backup.checksum = await this.calculateChecksum(backup.data);
+
         return backup;
     }
+
     /**
      * Export backup to JSON file
      */
     async exportBackup(encrypt = false, password = null) {
         const backup = await this.createBackup();
+
         let dataToExport = backup;
+
         if (encrypt && password) {
             dataToExport = await this.encryptBackup(backup, password);
         }
+
         const blob = new Blob([JSON.stringify(dataToExport, null, 2)], {
             type: 'application/json'
         });
+
         const filename = `${this.backupPrefix}-${new Date().toISOString().split('T')[0]}.json`;
         this.downloadBlob(blob, filename);
+
         return {
             success: true,
             filename,
@@ -641,6 +716,7 @@ class DataBackupSystem {
             encrypted: encrypt
         };
     }
+
     /**
      * Import backup from file
      */
@@ -648,48 +724,61 @@ class DataBackupSystem {
         try {
             const text = await file.text();
             let backup = JSON.parse(text);
+
             // Check if encrypted
             if (backup.encrypted && password) {
                 backup = await this.decryptBackup(backup, password);
             }
+
             // Validate backup
             const isValid = await this.validateBackup(backup);
             if (!isValid) {
                 throw new Error('Invalid backup file or corrupted data');
             }
+
             // Check version compatibility
             if (!this.isCompatibleVersion(backup.version)) {
                 throw new Error(`Incompatible backup version: ${backup.version}`);
             }
+
             return {
                 backup,
                 valid: true,
                 version: backup.version,
                 timestamp: backup.timestamp
             };
-        }
-        catch (error) {
+        } catch (error) {
             return {
                 valid: false,
                 error: error.message
             };
         }
     }
+
     /**
      * Restore data from backup
      */
     async restoreBackup(backup, options = {}) {
-        const { overwrite = true, merge = false, confirm = true } = options;
+        const {
+            overwrite = true,
+            merge = false,
+            confirm = true
+        } = options;
+
         if (confirm) {
-            const confirmRestore = window.confirm('This will restore your data from the backup. Continue?');
+            const confirmRestore = window.confirm(
+                'This will restore your data from the backup. Continue?'
+            );
             if (!confirmRestore) {
                 return { success: false, cancelled: true };
             }
         }
+
         try {
             // Backup current data first (safety)
             const safetyBackup = await this.createBackup();
             sessionStorage.setItem('safety-backup', JSON.stringify(safetyBackup));
+
             // Restore data
             for (const [key, value] of Object.entries(backup.data)) {
                 if (value !== null) {
@@ -698,32 +787,33 @@ class DataBackupSystem {
                         const existing = this.getLocalStorageData(key);
                         const merged = { ...existing, ...value };
                         localStorage.setItem(this.getStorageKey(key), JSON.stringify(merged));
-                    }
-                    else {
+                    } else {
                         // Overwrite
                         localStorage.setItem(this.getStorageKey(key), JSON.stringify(value));
                     }
                 }
             }
+
             return {
                 success: true,
                 restoredAt: Date.now(),
                 itemsRestored: Object.keys(backup.data).length
             };
-        }
-        catch (error) {
+        } catch (error) {
             // Attempt to restore safety backup
             const safetyBackup = sessionStorage.getItem('safety-backup');
             if (safetyBackup) {
                 console.error('Restore failed, reverting to safety backup');
                 // Could implement automatic revert here
             }
+
             return {
                 success: false,
                 error: error.message
             };
         }
     }
+
     /**
      * Get localStorage data safely
      */
@@ -731,12 +821,12 @@ class DataBackupSystem {
         try {
             const data = localStorage.getItem(this.getStorageKey(key));
             return data ? JSON.parse(data) : null;
-        }
-        catch (error) {
+        } catch (error) {
             console.error(`Error reading ${key}:`, error);
             return null;
         }
     }
+
     /**
      * Get storage key (add prefix if needed)
      */
@@ -748,6 +838,7 @@ class DataBackupSystem {
         }
         return key;
     }
+
     /**
      * Calculate checksum for data integrity
      */
@@ -755,14 +846,17 @@ class DataBackupSystem {
         const str = JSON.stringify(data);
         const encoder = new TextEncoder();
         const dataBuffer = encoder.encode(str);
+
         if (window.crypto && window.crypto.subtle) {
             const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
             const hashArray = Array.from(new Uint8Array(hashBuffer));
             return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
         }
+
         // Fallback simple checksum
         return this.simpleChecksum(str);
     }
+
     /**
      * Simple checksum fallback
      */
@@ -775,6 +869,7 @@ class DataBackupSystem {
         }
         return hash.toString(16);
     }
+
     /**
      * Validate backup integrity
      */
@@ -782,6 +877,7 @@ class DataBackupSystem {
         if (!backup.version || !backup.timestamp || !backup.data) {
             return false;
         }
+
         // Verify checksum if present
         if (backup.checksum) {
             const calculatedChecksum = await this.calculateChecksum(backup.data);
@@ -790,8 +886,10 @@ class DataBackupSystem {
                 return false;
             }
         }
+
         return true;
     }
+
     /**
      * Check version compatibility
      */
@@ -800,6 +898,7 @@ class DataBackupSystem {
         const major = backupVersion.split('.')[0];
         return major === '1';
     }
+
     /**
      * Encrypt backup (simple AES-GCM)
      */
@@ -808,20 +907,41 @@ class DataBackupSystem {
             console.warn('Encryption not available, saving unencrypted');
             return backup;
         }
+
         try {
             const encoder = new TextEncoder();
             const data = encoder.encode(JSON.stringify(backup));
+
             // Derive key from password
-            const keyMaterial = await crypto.subtle.importKey('raw', encoder.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']);
+            const keyMaterial = await crypto.subtle.importKey(
+                'raw',
+                encoder.encode(password),
+                { name: 'PBKDF2' },
+                false,
+                ['deriveKey']
+            );
+
             const salt = crypto.getRandomValues(new Uint8Array(16));
-            const key = await crypto.subtle.deriveKey({
-                name: 'PBKDF2',
-                salt: salt,
-                iterations: 100000,
-                hash: 'SHA-256'
-            }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['encrypt']);
+            const key = await crypto.subtle.deriveKey(
+                {
+                    name: 'PBKDF2',
+                    salt: salt,
+                    iterations: 100000,
+                    hash: 'SHA-256'
+                },
+                keyMaterial,
+                { name: 'AES-GCM', length: 256 },
+                false,
+                ['encrypt']
+            );
+
             const iv = crypto.getRandomValues(new Uint8Array(12));
-            const encrypted = await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, data);
+            const encrypted = await crypto.subtle.encrypt(
+                { name: 'AES-GCM', iv: iv },
+                key,
+                data
+            );
+
             return {
                 encrypted: true,
                 version: this.version,
@@ -829,12 +949,12 @@ class DataBackupSystem {
                 iv: Array.from(iv),
                 data: Array.from(new Uint8Array(encrypted))
             };
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Encryption failed:', error);
             return backup;
         }
     }
+
     /**
      * Decrypt backup
      */
@@ -842,28 +962,50 @@ class DataBackupSystem {
         if (!window.crypto || !window.crypto.subtle) {
             throw new Error('Decryption not available');
         }
+
         try {
             const encoder = new TextEncoder();
             const decoder = new TextDecoder();
+
             // Derive key from password
-            const keyMaterial = await crypto.subtle.importKey('raw', encoder.encode(password), { name: 'PBKDF2' }, false, ['deriveKey']);
+            const keyMaterial = await crypto.subtle.importKey(
+                'raw',
+                encoder.encode(password),
+                { name: 'PBKDF2' },
+                false,
+                ['deriveKey']
+            );
+
             const salt = new Uint8Array(encryptedBackup.salt);
-            const key = await crypto.subtle.deriveKey({
-                name: 'PBKDF2',
-                salt: salt,
-                iterations: 100000,
-                hash: 'SHA-256'
-            }, keyMaterial, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+            const key = await crypto.subtle.deriveKey(
+                {
+                    name: 'PBKDF2',
+                    salt: salt,
+                    iterations: 100000,
+                    hash: 'SHA-256'
+                },
+                keyMaterial,
+                { name: 'AES-GCM', length: 256 },
+                false,
+                ['decrypt']
+            );
+
             const iv = new Uint8Array(encryptedBackup.iv);
             const data = new Uint8Array(encryptedBackup.data);
-            const decrypted = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: iv }, key, data);
+
+            const decrypted = await crypto.subtle.decrypt(
+                { name: 'AES-GCM', iv: iv },
+                key,
+                data
+            );
+
             const decryptedText = decoder.decode(decrypted);
             return JSON.parse(decryptedText);
-        }
-        catch (error) {
+        } catch (error) {
             throw new Error('Decryption failed - wrong password?');
         }
     }
+
     /**
      * Download blob as file
      */
@@ -877,6 +1019,7 @@ class DataBackupSystem {
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
     }
+
     /**
      * Auto-backup to localStorage (weekly)
      */
@@ -884,6 +1027,7 @@ class DataBackupSystem {
         const lastBackup = localStorage.getItem('last-auto-backup');
         const now = Date.now();
         const weekInMs = 7 * 24 * 60 * 60 * 1000;
+
         if (!lastBackup || (now - parseInt(lastBackup)) > weekInMs) {
             const backup = await this.createBackup();
             localStorage.setItem('auto-backup', JSON.stringify(backup));
@@ -891,34 +1035,47 @@ class DataBackupSystem {
             console.log('Auto-backup created');
         }
     }
+
     /**
      * Clear all user data (GDPR right to deletion)
      */
     async clearAllData(confirm = true) {
         if (confirm) {
-            const confirmDelete = window.confirm('This will permanently delete all your learning data. This cannot be undone. Continue?');
+            const confirmDelete = window.confirm(
+                'This will permanently delete all your learning data. This cannot be undone. Continue?'
+            );
             if (!confirmDelete) {
                 return { success: false, cancelled: true };
             }
-            const doubleConfirm = window.prompt('Type "DELETE" to confirm permanent data deletion:');
+
+            const doubleConfirm = window.prompt(
+                'Type "DELETE" to confirm permanent data deletion:'
+            );
             if (doubleConfirm !== 'DELETE') {
                 return { success: false, cancelled: true };
             }
         }
+
         // Create final backup before deletion
         const finalBackup = await this.exportBackup(false);
+
         // Clear all Spanish app data
         const keys = Object.keys(localStorage);
-        const appKeys = keys.filter(key => key.startsWith('spanish-app') ||
+        const appKeys = keys.filter(key =>
+            key.startsWith('spanish-app') ||
             key.startsWith('adaptive') ||
             key.startsWith('learning') ||
             key.startsWith('session') ||
-            key.includes('sidebar'));
+            key.includes('sidebar')
+        );
+
         appKeys.forEach(key => localStorage.removeItem(key));
+
         // Clear IndexedDB if used
         if (window.indexedDB) {
             indexedDB.deleteDatabase('spanish-app-db');
         }
+
         return {
             success: true,
             deletedKeys: appKeys.length,
@@ -926,28 +1083,36 @@ class DataBackupSystem {
         };
     }
 }
+
 // Create global instance
 window.DataBackup = new DataBackupSystem();
+
 // Auto-backup on page load
 if (window.ENV && !window.ENV.isDevelopment()) {
     window.addEventListener('load', () => {
         window.DataBackup.autoBackup();
     });
 }
+
+
+
 // ====================================================================
 // GDPR COMPLIANCE
 // ====================================================================
+
 class GDPRCompliance {
     constructor() {
         this.consentGiven = this.loadConsent();
         this.init();
     }
+
     init() {
         // Show consent banner if not given
         if (!this.consentGiven) {
             this.showConsentBanner();
         }
     }
+
     /**
      * Show GDPR consent banner
      */
@@ -974,20 +1139,25 @@ class GDPRCompliance {
                 </div>
             </div>
         `;
+
         document.body.appendChild(banner);
+
         document.getElementById('gdpr-accept').addEventListener('click', () => {
             this.giveConsent();
             banner.remove();
         });
+
         document.getElementById('gdpr-decline').addEventListener('click', () => {
             this.declineConsent();
             banner.remove();
         });
+
         document.getElementById('gdpr-details').addEventListener('click', (e) => {
             e.preventDefault();
             this.showPrivacyPolicy();
         });
     }
+
     /**
      * Give consent
      */
@@ -998,6 +1168,7 @@ class GDPRCompliance {
         }));
         this.consentGiven = true;
     }
+
     /**
      * Decline consent
      */
@@ -1008,6 +1179,7 @@ class GDPRCompliance {
         }));
         this.consentGiven = false;
     }
+
     /**
      * Load consent
      */
@@ -1018,12 +1190,12 @@ class GDPRCompliance {
                 const consent = JSON.parse(stored);
                 return consent.given;
             }
-        }
-        catch (error) {
+        } catch (error) {
             console.error('Failed to load consent:', error);
         }
         return false;
     }
+
     /**
      * Right to access - Export all user data
      */
@@ -1041,6 +1213,7 @@ class GDPRCompliance {
                 personalPatterns: this.getStoredData('personal-patterns')
             }
         };
+
         // Create downloadable file
         const blob = new Blob([JSON.stringify(userData, null, 2)], {
             type: 'application/json'
@@ -1051,8 +1224,10 @@ class GDPRCompliance {
         a.download = `my-data-${Date.now()}.json`;
         a.click();
         URL.revokeObjectURL(url);
+
         return userData;
     }
+
     /**
      * Right to deletion - Delete all user data
      */
@@ -1060,14 +1235,17 @@ class GDPRCompliance {
         if (window.DataBackup) {
             return await window.DataBackup.clearAllData(true);
         }
+
         // Fallback
         const confirm = window.confirm('Delete all your data permanently?');
-        if (!confirm)
-            return { cancelled: true };
+        if (!confirm) return { cancelled: true };
+
         const keys = Object.keys(localStorage);
         keys.forEach(key => localStorage.removeItem(key));
+
         return { success: true, message: 'All data deleted' };
     }
+
     /**
      * Right to data portability
      */
@@ -1075,8 +1253,10 @@ class GDPRCompliance {
         if (window.DataBackup) {
             return await window.DataBackup.exportBackup(false);
         }
+
         return await this.exerciseRightToAccess();
     }
+
     /**
      * Get stored data safely
      */
@@ -1084,11 +1264,11 @@ class GDPRCompliance {
         try {
             const data = localStorage.getItem(key);
             return data ? JSON.parse(data) : null;
-        }
-        catch (error) {
+        } catch (error) {
             return null;
         }
     }
+
     /**
      * Show privacy policy
      */
@@ -1096,10 +1276,15 @@ class GDPRCompliance {
         window.open('privacy-policy.html', '_blank');
     }
 }
+
 window.GDPR = new GDPRCompliance();
+
+
+
 // ====================================================================
 // TOUCH GESTURES
 // ====================================================================
+
 class TouchGestureManager {
     constructor(options = {}) {
         this.options = {
@@ -1108,6 +1293,7 @@ class TouchGestureManager {
             touchTargetSize: 48, // WCAG AAA minimum
             ...options
         };
+
         this.touchStart = null;
         this.touchEnd = null;
         this.handlers = {
@@ -1116,9 +1302,11 @@ class TouchGestureManager {
             swipeUp: [],
             swipeDown: []
         };
+
         this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         this.init();
     }
+
     /**
      * Initialize touch event listeners
      */
@@ -1128,11 +1316,14 @@ class TouchGestureManager {
             this.reducedMotion = e.matches;
             window.Logger?.info('Reduced motion preference changed:', e.matches);
         });
+
         // Add touch event listeners
         document.addEventListener('touchstart', (e) => this.handleTouchStart(e), { passive: true });
         document.addEventListener('touchend', (e) => this.handleTouchEnd(e), { passive: false });
+
         window.Logger?.debug('Touch gesture system initialized');
     }
+
     /**
      * Handle touch start
      */
@@ -1144,50 +1335,58 @@ class TouchGestureManager {
             time: Date.now()
         };
     }
+
     /**
      * Handle touch end
      */
     handleTouchEnd(e) {
-        if (!this.touchStart)
-            return;
+        if (!this.touchStart) return;
+
         const touch = e.changedTouches[0];
         this.touchEnd = {
             x: touch.clientX,
             y: touch.clientY,
             time: Date.now()
         };
+
         this.detectSwipe();
     }
+
     /**
      * Detect swipe direction
      */
     detectSwipe() {
         const { touchStart, touchEnd, options } = this;
-        if (!touchStart || !touchEnd)
-            return;
+
+        if (!touchStart || !touchEnd) return;
+
         const deltaX = touchEnd.x - touchStart.x;
         const deltaY = touchEnd.y - touchStart.y;
         const deltaTime = touchEnd.time - touchStart.time;
+
         // Check if swipe is fast enough
         if (deltaTime > options.maxSwipeTime) {
             return;
         }
+
         // Check if swipe is long enough
         const absX = Math.abs(deltaX);
         const absY = Math.abs(deltaY);
+
         if (absX < options.minSwipeDistance && absY < options.minSwipeDistance) {
             return;
         }
+
         // Determine direction
         let direction;
         if (absX > absY) {
             // Horizontal swipe
             direction = deltaX > 0 ? 'swipeRight' : 'swipeLeft';
-        }
-        else {
+        } else {
             // Vertical swipe
             direction = deltaY > 0 ? 'swipeDown' : 'swipeUp';
         }
+
         // Trigger handlers
         this.trigger(direction, {
             deltaX,
@@ -1198,10 +1397,12 @@ class TouchGestureManager {
             endX: touchEnd.x,
             endY: touchEnd.y
         });
+
         // Reset
         this.touchStart = null;
         this.touchEnd = null;
     }
+
     /**
      * Register a swipe handler
      * @param {string} direction - 'swipeLeft', 'swipeRight', 'swipeUp', 'swipeDown'
@@ -1211,11 +1412,11 @@ class TouchGestureManager {
         if (this.handlers[direction]) {
             this.handlers[direction].push(callback);
             window.Logger?.debug(`Registered ${direction} handler`);
-        }
-        else {
+        } else {
             window.Logger?.warn(`Unknown gesture direction: ${direction}`);
         }
     }
+
     /**
      * Unregister a swipe handler
      */
@@ -1227,6 +1428,7 @@ class TouchGestureManager {
             }
         }
     }
+
     /**
      * Trigger handlers for a direction
      */
@@ -1236,17 +1438,18 @@ class TouchGestureManager {
             window.Logger?.debug('Swipe ignored - reduced motion enabled');
             return;
         }
+
         if (this.handlers[direction]) {
             this.handlers[direction].forEach(callback => {
                 try {
                     callback(data);
-                }
-                catch (error) {
+                } catch (error) {
                     window.Logger?.error('Error in gesture handler:', error);
                 }
             });
         }
     }
+
     /**
      * Check if element meets touch target size requirements (WCAG AAA)
      * @param {HTMLElement} element
@@ -1257,12 +1460,14 @@ class TouchGestureManager {
         const size = Math.min(rect.width, rect.height);
         return size >= this.options.touchTargetSize;
     }
+
     /**
      * Make element meet touch target size requirements
      * @param {HTMLElement} element
      */
     ensureAccessibleTouchTarget(element) {
         const isAccessible = this.isAccessibleTouchTarget(element);
+
         if (!isAccessible) {
             // Add padding to meet minimum size
             element.style.minWidth = `${this.options.touchTargetSize}px`;
@@ -1270,16 +1475,20 @@ class TouchGestureManager {
             element.style.display = 'inline-flex';
             element.style.alignItems = 'center';
             element.style.justifyContent = 'center';
+
             window.Logger?.debug('Enhanced touch target for accessibility:', element);
         }
+
         return isAccessible;
     }
+
     /**
      * Validate all interactive elements meet touch target requirements
      */
     validateTouchTargets() {
         const interactiveElements = document.querySelectorAll('button, a, input, [role="button"]');
         const issues = [];
+
         interactiveElements.forEach(element => {
             if (!this.isAccessibleTouchTarget(element)) {
                 issues.push({
@@ -1289,11 +1498,14 @@ class TouchGestureManager {
                 });
             }
         });
+
         if (issues.length > 0) {
             window.Logger?.warn(`Found ${issues.length} elements below minimum touch target size`);
         }
+
         return issues;
     }
+
     /**
      * Enable swipe navigation for exercises
      * @param {Object} callbacks
@@ -1306,6 +1518,7 @@ class TouchGestureManager {
                 callbacks.onPrevious();
             }
         });
+
         // Swipe left to go to next exercise
         this.on('swipeLeft', () => {
             if (callbacks.onNext) {
@@ -1313,20 +1526,27 @@ class TouchGestureManager {
                 callbacks.onNext();
             }
         });
+
         window.Logger?.info('Exercise swipe navigation enabled');
     }
 }
+
 // Create global touch gesture manager
 window.TouchGestures = new TouchGestureManager();
+
+
+
 // ====================================================================
 // ACCESSIBILITY
 // ====================================================================
+
 class AccessibilityManager {
     constructor() {
         this.focusableElements = 'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])';
         this.preferences = this.loadPreferences();
         this.init();
     }
+
     /**
      * Initialize accessibility features
      */
@@ -1337,8 +1557,10 @@ class AccessibilityManager {
         this.applyUserPreferences();
         this.detectUserPreferences();
         this.setupLiveRegions();
+
         window.Logger?.success('Accessibility manager initialized');
     }
+
     /**
      * Setup keyboard navigation
      */
@@ -1346,23 +1568,28 @@ class AccessibilityManager {
         document.addEventListener('keydown', (e) => {
             this.handleKeyboardNavigation(e);
         });
+
         // Trap focus in modals
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 this.handleModalFocusTrap(e);
             }
         });
+
         window.Logger?.debug('Keyboard navigation enabled');
     }
+
     /**
      * Handle keyboard navigation
      */
     handleKeyboardNavigation(e) {
         const activeElement = document.activeElement;
+
         // Arrow key navigation for exercise options
         if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
             this.handleArrowNavigation(e);
         }
+
         // Enter/Space on buttons
         if ((e.key === 'Enter' || e.key === ' ') && activeElement.hasAttribute('role')) {
             if (activeElement.getAttribute('role') === 'button') {
@@ -1370,11 +1597,13 @@ class AccessibilityManager {
                 activeElement.click();
             }
         }
+
         // Escape to close modals
         if (e.key === 'Escape') {
             this.closeModals();
         }
     }
+
     /**
      * Handle arrow key navigation
      */
@@ -1382,35 +1611,41 @@ class AccessibilityManager {
         const options = Array.from(document.querySelectorAll('.btn-option:not([disabled])'));
         const activeElement = document.activeElement;
         const currentIndex = options.indexOf(activeElement);
-        if (currentIndex === -1)
-            return;
+
+        if (currentIndex === -1) return;
+
         e.preventDefault();
+
         let nextIndex;
         if (e.key === 'ArrowDown') {
             nextIndex = (currentIndex + 1) % options.length;
-        }
-        else {
+        } else {
             nextIndex = (currentIndex - 1 + options.length) % options.length;
         }
+
         options[nextIndex].focus();
         this.announceToScreenReader(`Option ${nextIndex + 1} of ${options.length}`);
     }
+
     /**
      * Setup focus management
      */
     setupFocusManagement() {
         // Show focus indicator when using keyboard
         let usingKeyboard = false;
+
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 usingKeyboard = true;
                 document.body.classList.add('using-keyboard');
             }
         });
+
         document.addEventListener('mousedown', () => {
             usingKeyboard = false;
             document.body.classList.remove('using-keyboard');
         });
+
         // Add focus styles
         const focusStyles = document.createElement('style');
         focusStyles.textContent = `
@@ -1442,27 +1677,33 @@ class AccessibilityManager {
             }
         `;
         document.head.appendChild(focusStyles);
+
         window.Logger?.debug('Focus management enabled');
     }
+
     /**
      * Trap focus within modal
      */
     handleModalFocusTrap(e) {
         const modal = document.querySelector('[role="dialog"]:not(.hidden)');
-        if (!modal)
-            return;
-        const focusableElements = Array.from(modal.querySelectorAll(this.focusableElements));
+        if (!modal) return;
+
+        const focusableElements = Array.from(
+            modal.querySelectorAll(this.focusableElements)
+        );
+
         const firstFocusable = focusableElements[0];
         const lastFocusable = focusableElements[focusableElements.length - 1];
+
         if (e.shiftKey && document.activeElement === firstFocusable) {
             e.preventDefault();
             lastFocusable.focus();
-        }
-        else if (!e.shiftKey && document.activeElement === lastFocusable) {
+        } else if (!e.shiftKey && document.activeElement === lastFocusable) {
             e.preventDefault();
             firstFocusable.focus();
         }
     }
+
     /**
      * Setup skip links for keyboard navigation
      */
@@ -1472,7 +1713,9 @@ class AccessibilityManager {
         skipLink.className = 'skip-link';
         skipLink.textContent = 'Direkt zum Inhalt springen';
         skipLink.setAttribute('aria-label', 'Springe direkt zum Uebungsbereich');
+
         document.body.insertBefore(skipLink, document.body.firstChild);
+
         skipLink.addEventListener('click', (e) => {
             e.preventDefault();
             const target = document.getElementById('exercise-area');
@@ -1482,8 +1725,10 @@ class AccessibilityManager {
                 this.announceToScreenReader('Sprung zum Uebungsbereich');
             }
         });
+
         window.Logger?.debug('Skip links added');
     }
+
     /**
      * Setup ARIA live regions for screen reader announcements
      */
@@ -1495,6 +1740,7 @@ class AccessibilityManager {
         politeRegion.setAttribute('aria-atomic', 'true');
         politeRegion.className = 'sr-only';
         document.body.appendChild(politeRegion);
+
         // Create assertive live region
         const assertiveRegion = document.createElement('div');
         assertiveRegion.id = 'aria-live-assertive';
@@ -1502,6 +1748,7 @@ class AccessibilityManager {
         assertiveRegion.setAttribute('aria-atomic', 'true');
         assertiveRegion.className = 'sr-only';
         document.body.appendChild(assertiveRegion);
+
         // Add screen reader only class
         const srStyles = document.createElement('style');
         srStyles.textContent = `
@@ -1518,8 +1765,10 @@ class AccessibilityManager {
             }
         `;
         document.head.appendChild(srStyles);
+
         window.Logger?.debug('ARIA live regions created');
     }
+
     /**
      * Announce message to screen readers
      * @param {string} message
@@ -1528,15 +1777,18 @@ class AccessibilityManager {
     announceToScreenReader(message, priority = 'polite') {
         const regionId = priority === 'assertive' ? 'aria-live-assertive' : 'aria-live-polite';
         const region = document.getElementById(regionId);
+
         if (region) {
             // Clear and set message
             region.textContent = '';
             setTimeout(() => {
                 region.textContent = message;
             }, 100);
+
             window.Logger?.debug('Screen reader announcement:', message);
         }
     }
+
     /**
      * Detect user accessibility preferences
      */
@@ -1546,30 +1798,33 @@ class AccessibilityManager {
         if (highContrast) {
             this.enableHighContrastMode();
         }
+
         // Detect reduced motion
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reducedMotion) {
             this.enableReducedMotion();
         }
+
         // Listen for preference changes
         window.matchMedia('(prefers-contrast: high)').addEventListener('change', (e) => {
             if (e.matches) {
                 this.enableHighContrastMode();
-            }
-            else {
+            } else {
                 this.disableHighContrastMode();
             }
         });
+
         window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', (e) => {
             if (e.matches) {
                 this.enableReducedMotion();
-            }
-            else {
+            } else {
                 this.disableReducedMotion();
             }
         });
+
         window.Logger?.info('User preferences detected');
     }
+
     /**
      * Enable high contrast mode
      */
@@ -1577,6 +1832,7 @@ class AccessibilityManager {
         document.body.classList.add('high-contrast');
         this.preferences.highContrast = true;
         this.savePreferences();
+
         const styles = document.createElement('style');
         styles.id = 'high-contrast-styles';
         styles.textContent = `
@@ -1608,9 +1864,11 @@ class AccessibilityManager {
             }
         `;
         document.head.appendChild(styles);
+
         this.announceToScreenReader('Hoher Kontrast aktiviert');
         window.Logger?.info('High contrast mode enabled');
     }
+
     /**
      * Disable high contrast mode
      */
@@ -1618,12 +1876,15 @@ class AccessibilityManager {
         document.body.classList.remove('high-contrast');
         this.preferences.highContrast = false;
         this.savePreferences();
+
         const styles = document.getElementById('high-contrast-styles');
         if (styles) {
             styles.remove();
         }
+
         window.Logger?.info('High contrast mode disabled');
     }
+
     /**
      * Enable reduced motion
      */
@@ -1631,6 +1892,7 @@ class AccessibilityManager {
         document.body.classList.add('reduce-motion');
         this.preferences.reducedMotion = true;
         this.savePreferences();
+
         const styles = document.createElement('style');
         styles.id = 'reduced-motion-styles';
         styles.textContent = `
@@ -1644,9 +1906,11 @@ class AccessibilityManager {
             }
         `;
         document.head.appendChild(styles);
+
         this.announceToScreenReader('Reduzierte Bewegung aktiviert');
         window.Logger?.info('Reduced motion enabled');
     }
+
     /**
      * Disable reduced motion
      */
@@ -1654,12 +1918,15 @@ class AccessibilityManager {
         document.body.classList.remove('reduce-motion');
         this.preferences.reducedMotion = false;
         this.savePreferences();
+
         const styles = document.getElementById('reduced-motion-styles');
         if (styles) {
             styles.remove();
         }
+
         window.Logger?.info('Reduced motion disabled');
     }
+
     /**
      * Set font size scale
      * @param {number} scale - 1.0 = 100%, 1.5 = 150%, etc.
@@ -1668,9 +1935,11 @@ class AccessibilityManager {
         document.documentElement.style.fontSize = `${scale * 16}px`;
         this.preferences.fontScale = scale;
         this.savePreferences();
+
         this.announceToScreenReader(`Schriftgroesse auf ${Math.round(scale * 100)}% gesetzt`);
         window.Logger?.info('Font scale set to:', scale);
     }
+
     /**
      * Close all modals (for Escape key)
      */
@@ -1678,6 +1947,7 @@ class AccessibilityManager {
         const modals = document.querySelectorAll('[role="dialog"]:not(.hidden)');
         modals.forEach(modal => {
             modal.classList.add('hidden');
+
             // Return focus to trigger element
             const triggerId = modal.getAttribute('data-trigger-id');
             if (triggerId) {
@@ -1687,10 +1957,12 @@ class AccessibilityManager {
                 }
             }
         });
+
         if (modals.length > 0) {
             this.announceToScreenReader('Dialog geschlossen');
         }
     }
+
     /**
      * Set focus to element with announcement
      * @param {HTMLElement|string} element - Element or selector
@@ -1700,18 +1972,23 @@ class AccessibilityManager {
         const target = typeof element === 'string'
             ? document.querySelector(element)
             : element;
+
         if (target) {
             // Make element focusable if not already
             if (!target.hasAttribute('tabindex')) {
                 target.setAttribute('tabindex', '-1');
             }
+
             target.focus();
+
             if (announcement) {
                 this.announceToScreenReader(announcement);
             }
+
             window.Logger?.debug('Focus set to:', target);
         }
     }
+
     /**
      * Load user preferences
      */
@@ -1721,16 +1998,17 @@ class AccessibilityManager {
             if (stored) {
                 return JSON.parse(stored);
             }
-        }
-        catch (error) {
+        } catch (error) {
             window.Logger?.error('Error loading accessibility preferences:', error);
         }
+
         return {
             highContrast: false,
             reducedMotion: false,
             fontScale: 1.0
         };
     }
+
     /**
      * Save user preferences
      */
@@ -1738,11 +2016,11 @@ class AccessibilityManager {
         try {
             localStorage.setItem('accessibility-preferences', JSON.stringify(this.preferences));
             window.Logger?.debug('Accessibility preferences saved');
-        }
-        catch (error) {
+        } catch (error) {
             window.Logger?.error('Error saving accessibility preferences:', error);
         }
     }
+
     /**
      * Apply saved user preferences
      */
@@ -1750,20 +2028,25 @@ class AccessibilityManager {
         if (this.preferences.highContrast) {
             this.enableHighContrastMode();
         }
+
         if (this.preferences.reducedMotion) {
             this.enableReducedMotion();
         }
+
         if (this.preferences.fontScale !== 1.0) {
             this.setFontScale(this.preferences.fontScale);
         }
+
         window.Logger?.info('User preferences applied');
     }
+
     /**
      * Run accessibility audit
      * @returns {Object} Audit results
      */
     runAccessibilityAudit() {
         const issues = [];
+
         // Check for missing alt text
         const images = document.querySelectorAll('img:not([alt])');
         if (images.length > 0) {
@@ -1774,6 +2057,7 @@ class AccessibilityManager {
                 message: `${images.length} images missing alt text`
             });
         }
+
         // Check for missing labels
         const inputs = document.querySelectorAll('input:not([aria-label]):not([aria-labelledby])');
         inputs.forEach(input => {
@@ -1787,6 +2071,7 @@ class AccessibilityManager {
                 });
             }
         });
+
         // Check touch target sizes
         const touchIssues = window.TouchGestures?.validateTouchTargets() || [];
         if (touchIssues.length > 0) {
@@ -1797,9 +2082,11 @@ class AccessibilityManager {
                 message: `${touchIssues.length} elements below 48x48px touch target minimum`
             });
         }
+
         // Check color contrast (basic check)
         const buttons = document.querySelectorAll('button');
         // Note: Full contrast checking requires actual color analysis
+
         window.Logger?.info('Accessibility audit complete:', issues);
         return {
             issues,
@@ -1807,11 +2094,16 @@ class AccessibilityManager {
         };
     }
 }
+
 // Create global accessibility manager
 window.A11y = new AccessibilityManager();
+
+
+
 // ====================================================================
 // SPANISH KEYBOARD
 // ====================================================================
+
 class SpanishKeyboardHelper {
     constructor() {
         this.specialChars = [
@@ -1824,9 +2116,11 @@ class SpanishKeyboardHelper {
             { char: '¿', label: 'Umgekehrtes Fragezeichen', alt: '?+' },
             { char: '¡', label: 'Umgekehrtes Ausrufezeichen', alt: '!+' }
         ];
+
         this.currentInput = null;
         this.keyboardVisible = false;
     }
+
     /**
      * Attach Spanish keyboard to an input field
      * @param {HTMLInputElement} input
@@ -1836,24 +2130,30 @@ class SpanishKeyboardHelper {
             window.Logger?.warn('Cannot attach keyboard to non-input element');
             return;
         }
+
         // Don't attach if native Spanish keyboard is available
         if (this.hasNativeSpanishKeyboard()) {
             window.Logger?.debug('Native Spanish keyboard detected, helper not needed');
             return;
         }
+
         this.createKeyboard(input);
     }
+
     /**
      * Check if device has native Spanish keyboard
      */
     hasNativeSpanishKeyboard() {
         // Check for iOS/Android with international keyboard support
         const userAgent = navigator.userAgent.toLowerCase();
-        const hasInternationalKeyboard = /iphone|ipad|ipod/.test(userAgent) ||
+        const hasInternationalKeyboard =
+            /iphone|ipad|ipod/.test(userAgent) ||
             /android/.test(userAgent);
+
         // Always show helper on desktop for consistency
         return false; // Always provide helper for better UX
     }
+
     /**
      * Create the Spanish character keyboard
      * @param {HTMLInputElement} input
@@ -1864,11 +2164,13 @@ class SpanishKeyboardHelper {
         if (keyboard) {
             return keyboard;
         }
+
         // Create keyboard container
         keyboard = document.createElement('div');
         keyboard.className = 'spanish-keyboard';
         keyboard.setAttribute('role', 'toolbar');
         keyboard.setAttribute('aria-label', 'Spanische Sonderzeichen');
+
         // Create buttons for each special character
         this.specialChars.forEach((charInfo, index) => {
             const button = document.createElement('button');
@@ -1879,16 +2181,20 @@ class SpanishKeyboardHelper {
             button.setAttribute('title', charInfo.label);
             button.setAttribute('data-char', charInfo.char);
             button.setAttribute('tabindex', index === 0 ? '0' : '-1');
+
             // Insert character on click
             button.addEventListener('click', () => {
                 this.insertCharacter(input, charInfo.char);
             });
+
             // Keyboard navigation within keyboard
             button.addEventListener('keydown', (e) => {
                 this.handleKeyboardNav(e, button, keyboard);
             });
+
             keyboard.appendChild(button);
         });
+
         // Add help text
         const helpText = document.createElement('div');
         helpText.className = 'spanish-keyboard-help';
@@ -1896,14 +2202,17 @@ class SpanishKeyboardHelper {
         helpText.setAttribute('role', 'status');
         helpText.setAttribute('aria-live', 'polite');
         keyboard.appendChild(helpText);
+
         // Insert keyboard after input
         input.parentElement.insertBefore(keyboard, input.nextSibling);
+
         // Show/hide keyboard based on focus
         input.addEventListener('focus', () => {
             keyboard.classList.add('visible');
             this.keyboardVisible = true;
             this.currentInput = input;
         });
+
         input.addEventListener('blur', (e) => {
             // Don't hide if focus moved to keyboard button
             if (!keyboard.contains(e.relatedTarget)) {
@@ -1913,11 +2222,14 @@ class SpanishKeyboardHelper {
                 }, 200);
             }
         });
+
         // Add styles
         this.addStyles();
+
         window.Logger?.debug('Spanish keyboard attached to input');
         return keyboard;
     }
+
     /**
      * Insert character at cursor position
      * @param {HTMLInputElement} input
@@ -1927,27 +2239,36 @@ class SpanishKeyboardHelper {
         const start = input.selectionStart;
         const end = input.selectionEnd;
         const value = input.value;
+
         // Insert character at cursor position
         input.value = value.substring(0, start) + char + value.substring(end);
+
         // Move cursor after inserted character
         const newPos = start + char.length;
         input.setSelectionRange(newPos, newPos);
+
         // Return focus to input
         input.focus();
+
         // Announce to screen reader
         window.A11y?.announceToScreenReader(`${char} eingefuegt`);
+
         // Trigger input event for any listeners
         input.dispatchEvent(new Event('input', { bubbles: true }));
+
         window.Logger?.debug('Character inserted:', char);
     }
+
     /**
      * Handle keyboard navigation within Spanish keyboard
      */
     handleKeyboardNav(e, currentButton, keyboard) {
         const buttons = Array.from(keyboard.querySelectorAll('.spanish-char-btn'));
         const currentIndex = buttons.indexOf(currentButton);
+
         let nextButton;
-        switch (e.key) {
+
+        switch(e.key) {
             case 'ArrowLeft':
                 e.preventDefault();
                 nextButton = buttons[currentIndex - 1] || buttons[buttons.length - 1];
@@ -1969,6 +2290,7 @@ class SpanishKeyboardHelper {
                 this.currentInput?.focus();
                 return;
         }
+
         if (nextButton) {
             // Update tabindex
             buttons.forEach(btn => btn.setAttribute('tabindex', '-1'));
@@ -1976,6 +2298,7 @@ class SpanishKeyboardHelper {
             nextButton.focus();
         }
     }
+
     /**
      * Add CSS styles for Spanish keyboard
      */
@@ -1983,6 +2306,7 @@ class SpanishKeyboardHelper {
         if (document.getElementById('spanish-keyboard-styles')) {
             return;
         }
+
         const styles = document.createElement('style');
         styles.id = 'spanish-keyboard-styles';
         styles.textContent = `
@@ -2083,6 +2407,7 @@ class SpanishKeyboardHelper {
         `;
         document.head.appendChild(styles);
     }
+
     /**
      * Enable quick access shortcuts (e.g., a+ for á)
      * @param {HTMLInputElement} input
@@ -2090,27 +2415,35 @@ class SpanishKeyboardHelper {
     enableShortcuts(input) {
         let lastKey = '';
         let lastTime = 0;
+
         input.addEventListener('keyup', (e) => {
             const currentTime = Date.now();
             const timeDiff = currentTime - lastTime;
+
             // If + is pressed within 500ms after a letter
             if (e.key === '+' && timeDiff < 500) {
                 const shortcut = lastKey + '+';
                 const charInfo = this.specialChars.find(c => c.alt === shortcut);
+
                 if (charInfo) {
                     // Remove the letter and +
                     const value = input.value;
                     input.value = value.slice(0, -2);
+
                     // Insert special character
                     this.insertCharacter(input, charInfo.char);
+
                     window.Logger?.debug('Shortcut used:', shortcut, '→', charInfo.char);
                 }
             }
+
             lastKey = e.key;
             lastTime = currentTime;
         });
+
         window.Logger?.debug('Keyboard shortcuts enabled (e.g., a+ for á)');
     }
+
     /**
      * Attach keyboard to all text inputs in the app
      */
@@ -2120,6 +2453,7 @@ class SpanishKeyboardHelper {
             this.attachToInput(input);
             this.enableShortcuts(input);
         });
+
         // Observe for dynamically added inputs
         const observer = new MutationObserver((mutations) => {
             mutations.forEach(mutation => {
@@ -2129,6 +2463,7 @@ class SpanishKeyboardHelper {
                             this.attachToInput(node);
                             this.enableShortcuts(node);
                         }
+
                         // Check children
                         const inputs = node.querySelectorAll?.('input[type="text"], textarea');
                         inputs?.forEach(input => {
@@ -2139,40 +2474,49 @@ class SpanishKeyboardHelper {
                 });
             });
         });
+
         observer.observe(document.body, {
             childList: true,
             subtree: true
         });
+
         window.Logger?.success('Spanish keyboard attached to all inputs');
     }
 }
+
 // Create global Spanish keyboard helper
 window.SpanishKeyboard = new SpanishKeyboardHelper();
+
 // Auto-attach to inputs when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.SpanishKeyboard.attachToAllInputs();
     });
-}
-else {
+} else {
     window.SpanishKeyboard.attachToAllInputs();
 }
+
+
+
 // ====================================================================
 // HAPTIC FEEDBACK
 // ====================================================================
+
 class HapticFeedbackManager {
     constructor() {
         this.supported = this.checkSupport();
         this.enabled = this.loadPreference();
         this.patterns = {
-            success: [50, 30, 50], // Short-pause-short for correct answers
-            error: [100, 50, 100, 50, 100], // Triple pulse for errors
-            warning: [80], // Single medium pulse
-            notification: [30], // Quick tap
-            selection: [10] // Very quick tap for selections
+            success: [50, 30, 50],           // Short-pause-short for correct answers
+            error: [100, 50, 100, 50, 100],  // Triple pulse for errors
+            warning: [80],                    // Single medium pulse
+            notification: [30],               // Quick tap
+            selection: [10]                   // Very quick tap for selections
         };
+
         window.Logger?.info('Haptic feedback:', this.supported ? 'Supported' : 'Not supported');
     }
+
     /**
      * Check if haptic feedback is supported
      */
@@ -2180,6 +2524,7 @@ class HapticFeedbackManager {
         // Check for Vibration API
         return 'vibrate' in navigator;
     }
+
     /**
      * Vibrate with pattern
      * @param {string} patternName - 'success', 'error', 'warning', 'notification', 'selection'
@@ -2188,54 +2533,62 @@ class HapticFeedbackManager {
         if (!this.supported || !this.enabled) {
             return;
         }
+
         // Check if reduced motion is enabled
         if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             window.Logger?.debug('Haptic feedback skipped - reduced motion enabled');
             return;
         }
+
         const pattern = this.patterns[patternName];
         if (!pattern) {
             window.Logger?.warn('Unknown haptic pattern:', patternName);
             return;
         }
+
         try {
             navigator.vibrate(pattern);
             window.Logger?.debug('Haptic feedback:', patternName);
-        }
-        catch (error) {
+        } catch (error) {
             window.Logger?.error('Haptic feedback error:', error);
         }
     }
+
     /**
      * Provide feedback for correct answer
      */
     correctAnswer() {
         this.vibrate('success');
     }
+
     /**
      * Provide feedback for incorrect answer
      */
     incorrectAnswer() {
         this.vibrate('error');
     }
+
     /**
      * Provide feedback for button tap
      */
     buttonTap() {
         this.vibrate('selection');
     }
+
     /**
      * Provide feedback for notification
      */
     notify() {
         this.vibrate('notification');
     }
+
     /**
      * Provide feedback for warning
      */
     warn() {
         this.vibrate('warning');
     }
+
     /**
      * Enable haptic feedback
      */
@@ -2245,6 +2598,7 @@ class HapticFeedbackManager {
         window.A11y?.announceToScreenReader('Haptisches Feedback aktiviert');
         window.Logger?.info('Haptic feedback enabled');
     }
+
     /**
      * Disable haptic feedback
      */
@@ -2254,18 +2608,19 @@ class HapticFeedbackManager {
         window.A11y?.announceToScreenReader('Haptisches Feedback deaktiviert');
         window.Logger?.info('Haptic feedback disabled');
     }
+
     /**
      * Toggle haptic feedback
      */
     toggle() {
         if (this.enabled) {
             this.disable();
-        }
-        else {
+        } else {
             this.enable();
         }
         return this.enabled;
     }
+
     /**
      * Load user preference
      */
@@ -2274,12 +2629,12 @@ class HapticFeedbackManager {
             const stored = localStorage.getItem('haptic-feedback-enabled');
             // Default to enabled if supported
             return stored === null ? this.supported : stored === 'true';
-        }
-        catch (error) {
+        } catch (error) {
             window.Logger?.error('Error loading haptic preference:', error);
             return this.supported;
         }
     }
+
     /**
      * Save user preference
      */
@@ -2287,11 +2642,11 @@ class HapticFeedbackManager {
         try {
             localStorage.setItem('haptic-feedback-enabled', String(this.enabled));
             window.Logger?.debug('Haptic preference saved:', this.enabled);
-        }
-        catch (error) {
+        } catch (error) {
             window.Logger?.error('Error saving haptic preference:', error);
         }
     }
+
     /**
      * Test haptic feedback
      */
@@ -2300,13 +2655,16 @@ class HapticFeedbackManager {
             alert('Haptisches Feedback wird auf diesem Geraet nicht unterstuetzt.');
             return;
         }
+
         if (!this.enabled) {
             alert('Haptisches Feedback ist deaktiviert. Bitte aktivieren in den Einstellungen.');
             return;
         }
+
         // Test each pattern
         const patterns = Object.keys(this.patterns);
         let index = 0;
+
         const testNext = () => {
             if (index < patterns.length) {
                 const pattern = patterns[index];
@@ -2314,32 +2672,34 @@ class HapticFeedbackManager {
                 window.A11y?.announceToScreenReader(`Test: ${pattern}`);
                 index++;
                 setTimeout(testNext, 1000);
-            }
-            else {
+            } else {
                 window.A11y?.announceToScreenReader('Test abgeschlossen');
             }
         };
+
         testNext();
     }
+
     /**
      * Add haptic feedback toggle to settings
      */
     addToSettings() {
         const settingsModal = document.getElementById('settings-modal');
-        if (!settingsModal)
-            return;
+        if (!settingsModal) return;
+
         const modalContent = settingsModal.querySelector('.modal-content');
-        if (!modalContent)
-            return;
+        if (!modalContent) return;
+
         // Check if already added
-        if (document.getElementById('haptic-settings'))
-            return;
+        if (document.getElementById('haptic-settings')) return;
+
         // Create haptic settings section
         const section = document.createElement('div');
         section.id = 'haptic-settings';
         section.style.marginBottom = '30px';
         section.style.paddingTop = '20px';
         section.style.borderTop = '2px solid var(--border)';
+
         section.innerHTML = `
             <h3 style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">
                 Haptisches Feedback
@@ -2363,14 +2723,15 @@ class HapticFeedbackManager {
                 </button>
             ` : ''}
         `;
+
         // Insert before app info section
         const appInfoSection = modalContent.querySelector('div[style*="margin-bottom: 20px; padding-top: 20px"]');
         if (appInfoSection) {
             modalContent.insertBefore(section, appInfoSection);
-        }
-        else {
+        } else {
             modalContent.appendChild(section);
         }
+
         // Add event listener
         const toggle = document.getElementById('haptic-toggle');
         if (toggle) {
@@ -2378,24 +2739,26 @@ class HapticFeedbackManager {
                 if (e.target.checked) {
                     this.enable();
                     this.notify(); // Give immediate feedback
-                }
-                else {
+                } else {
                     this.disable();
                 }
             });
         }
+
         window.Logger?.debug('Haptic settings added to settings modal');
     }
 }
+
 // Create global haptic feedback manager
 window.Haptics = new HapticFeedbackManager();
+
 // Add to settings when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         window.Haptics.addToSettings();
     });
-}
-else {
+} else {
     window.Haptics.addToSettings();
 }
-//# sourceMappingURL=utils.js.map
+
+

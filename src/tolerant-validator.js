@@ -8,53 +8,59 @@
  * This allows learners to progress without being blocked by accent perfection,
  * while still learning proper Spanish orthography.
  */
+
 class TolerantAnswerValidator {
     /**
      * Validate user answer with tolerance for accents and punctuation
      */
     validateAnswer(userAnswer, correctAnswer, exercise) {
         const result = {
-            isCorrect: false, // Core validation (words + grammar)
-            isAcceptable: false, // Tolerant validation
-            coreErrors: [], // Serious errors (blocking)
-            styleImprovements: [], // Improvement suggestions (non-blocking)
+            isCorrect: false,          // Core validation (words + grammar)
+            isAcceptable: false,        // Tolerant validation
+            coreErrors: [],             // Serious errors (blocking)
+            styleImprovements: [],      // Improvement suggestions (non-blocking)
             feedback: {
-                primary: '', // Main feedback (correct/incorrect)
-                secondary: '', // Style feedback (accents/punctuation)
-                severity: 'info' // 'error', 'warning', 'info'
+                primary: '',            // Main feedback (correct/incorrect)
+                secondary: '',          // Style feedback (accents/punctuation)
+                severity: 'info'        // 'error', 'warning', 'info'
             },
             correctAnswer: correctAnswer
         };
+
         // Handle empty answers
         if (!userAnswer || userAnswer.trim() === '') {
             result.feedback.primary = 'Bitte gib eine Antwort ein.';
             result.feedback.severity = 'error';
             return result;
         }
+
         // 1. Normalize both answers for core comparison
         const normalizedUser = this.normalizeForCore(userAnswer);
         const normalizedCorrect = this.normalizeForCore(correctAnswer);
+
         // 2. Core validation (decisive for progression)
         result.isCorrect = this.validateCore(normalizedUser, normalizedCorrect);
+
         // 3. If core is correct → check style aspects
         if (result.isCorrect) {
             result.isAcceptable = true;
             result.styleImprovements = this.findStyleImprovements(userAnswer, correctAnswer);
             result.feedback = this.generatePositiveFeedback(result.styleImprovements);
-        }
-        else {
+        } else {
             // 4. If core is wrong → detailed error analysis
             result.coreErrors = this.analyzeCoreErrors(normalizedUser, normalizedCorrect, userAnswer, correctAnswer);
             result.feedback = this.generateErrorFeedback(result.coreErrors);
         }
+
         return result;
     }
+
     /**
      * Normalize text for core comparison (remove accents, punctuation)
      */
     normalizeForCore(text) {
-        if (!text)
-            return '';
+        if (!text) return '';
+
         return text
             .toLowerCase()
             .trim()
@@ -72,6 +78,7 @@ class TolerantAnswerValidator {
             .replace(/\s+/g, ' ')
             .trim();
     }
+
     /**
      * Core validation - checks words, grammar, structure
      */
@@ -80,32 +87,41 @@ class TolerantAnswerValidator {
         if (userNormalized === correctNormalized) {
             return true;
         }
+
         // Word-by-word comparison (for word order tolerance)
         const userWords = userNormalized.split(' ').filter(w => w.length > 0);
         const correctWords = correctNormalized.split(' ').filter(w => w.length > 0);
+
         // Must have same word count
         if (userWords.length !== correctWords.length) {
             return false;
         }
+
         // 90% of words must be correct (allows for minor typos)
-        const correctWordCount = userWords.filter((word, index) => this.isWordSimilar(word, correctWords[index])).length;
+        const correctWordCount = userWords.filter((word, index) =>
+            this.isWordSimilar(word, correctWords[index])
+        ).length;
+
         return (correctWordCount / correctWords.length) >= 0.9;
     }
+
     /**
      * Check if two words are similar (handles typos)
      */
     isWordSimilar(word1, word2) {
         // Exact match
-        if (word1 === word2)
-            return true;
+        if (word1 === word2) return true;
+
         // Very short words must match exactly
         if (word1.length <= 2 || word2.length <= 2) {
             return word1 === word2;
         }
+
         // For longer words, allow small Levenshtein distance
         const maxDistance = Math.floor(Math.max(word1.length, word2.length) * 0.2);
         return this.levenshteinDistance(word1, word2) <= maxDistance;
     }
+
     /**
      * Calculate Levenshtein distance between two strings
      */
@@ -113,6 +129,7 @@ class TolerantAnswerValidator {
         const len1 = str1.length;
         const len2 = str2.length;
         const matrix = [];
+
         // Initialize matrix
         for (let i = 0; i <= len1; i++) {
             matrix[i] = [i];
@@ -120,52 +137,64 @@ class TolerantAnswerValidator {
         for (let j = 0; j <= len2; j++) {
             matrix[0][j] = j;
         }
+
         // Fill matrix
         for (let i = 1; i <= len1; i++) {
             for (let j = 1; j <= len2; j++) {
                 if (str1.charAt(i - 1) === str2.charAt(j - 1)) {
                     matrix[i][j] = matrix[i - 1][j - 1];
-                }
-                else {
-                    matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1, // substitution
-                    matrix[i][j - 1] + 1, // insertion
-                    matrix[i - 1][j] + 1 // deletion
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1, // substitution
+                        matrix[i][j - 1] + 1,     // insertion
+                        matrix[i - 1][j] + 1      // deletion
                     );
                 }
             }
         }
+
         return matrix[len1][len2];
     }
+
     /**
      * Find style improvements (accents, punctuation, capitalization)
      */
     findStyleImprovements(userAnswer, correctAnswer) {
         const improvements = [];
+
         // 1. Accent improvements
         const accentImprovements = this.findAccentDifferences(userAnswer, correctAnswer);
         improvements.push(...accentImprovements);
+
         // 2. Punctuation improvements
         const punctuationImprovements = this.findPunctuationDifferences(userAnswer, correctAnswer);
         improvements.push(...punctuationImprovements);
+
         // 3. Capitalization improvements
         const capitalizationImprovements = this.findCapitalizationDifferences(userAnswer, correctAnswer);
         improvements.push(...capitalizationImprovements);
+
         return improvements;
     }
+
     /**
      * Find words with accent differences
      */
     findAccentDifferences(userAnswer, correctAnswer) {
         const improvements = [];
+
         // Split into words
         const userWords = userAnswer.toLowerCase().split(/\s+/);
         const correctWords = correctAnswer.toLowerCase().split(/\s+/);
+
         userWords.forEach((userWord, index) => {
             if (index < correctWords.length) {
                 const correctWord = correctWords[index];
+
                 // Normalize both to check if they're the same word
                 const userNormalized = this.normalizeForCore(userWord);
                 const correctNormalized = this.normalizeForCore(correctWord);
+
                 // Same word but different accents
                 if (userNormalized === correctNormalized && userWord !== correctWord) {
                     improvements.push({
@@ -178,16 +207,20 @@ class TolerantAnswerValidator {
                 }
             }
         });
+
         return improvements;
     }
+
     /**
      * Find punctuation differences
      */
     findPunctuationDifferences(userAnswer, correctAnswer) {
         const improvements = [];
+
         // Extract punctuation
         const userPunctuation = this.extractPunctuation(userAnswer);
         const correctPunctuation = this.extractPunctuation(correctAnswer);
+
         // Check for missing opening question/exclamation marks
         if (correctAnswer.includes('¿') && !userAnswer.includes('¿')) {
             improvements.push({
@@ -198,6 +231,7 @@ class TolerantAnswerValidator {
                 severity: 'info'
             });
         }
+
         if (correctAnswer.includes('¡') && !userAnswer.includes('¡')) {
             improvements.push({
                 type: 'punctuation',
@@ -207,23 +241,28 @@ class TolerantAnswerValidator {
                 severity: 'info'
             });
         }
+
         return improvements;
     }
+
     /**
      * Extract punctuation from text
      */
     extractPunctuation(text) {
         return (text.match(/[¿¡.,;:!?'"()\-–—]/g) || []).join('');
     }
+
     /**
      * Find capitalization differences
      */
     findCapitalizationDifferences(userAnswer, correctAnswer) {
         const improvements = [];
+
         // Check if first letter should be capitalized
         if (userAnswer.length > 0 && correctAnswer.length > 0) {
             const userFirst = userAnswer.charAt(0);
             const correctFirst = correctAnswer.charAt(0);
+
             if (userFirst.toLowerCase() === correctFirst.toLowerCase() &&
                 userFirst !== correctFirst &&
                 correctFirst === correctFirst.toUpperCase()) {
@@ -236,15 +275,19 @@ class TolerantAnswerValidator {
                 });
             }
         }
+
         return improvements;
     }
+
     /**
      * Analyze core errors (word errors, grammar errors)
      */
     analyzeCoreErrors(userNormalized, correctNormalized, userOriginal, correctOriginal) {
         const errors = [];
+
         const userWords = userNormalized.split(' ').filter(w => w.length > 0);
         const correctWords = correctNormalized.split(' ').filter(w => w.length > 0);
+
         // Word count mismatch
         if (userWords.length !== correctWords.length) {
             errors.push({
@@ -253,11 +296,13 @@ class TolerantAnswerValidator {
                 severity: 'error'
             });
         }
+
         // Find incorrect words
         const maxLength = Math.max(userWords.length, correctWords.length);
         for (let i = 0; i < maxLength; i++) {
             const userWord = userWords[i] || '';
             const correctWord = correctWords[i] || '';
+
             if (!this.isWordSimilar(userWord, correctWord)) {
                 errors.push({
                     type: 'word_error',
@@ -269,8 +314,10 @@ class TolerantAnswerValidator {
                 });
             }
         }
+
         return errors;
     }
+
     /**
      * Generate positive feedback for correct answers
      */
@@ -280,17 +327,18 @@ class TolerantAnswerValidator {
             secondary: '',
             severity: 'success'
         };
+
         if (styleImprovements.length === 0) {
             feedback.primary = '✅ Perfekt! Alles richtig!';
-        }
-        else if (styleImprovements.length === 1) {
+        } else if (styleImprovements.length === 1) {
             feedback.primary = '✅ Richtig! Kleine Verbesserung möglich:';
-        }
-        else {
+        } else {
             feedback.primary = '✅ Richtig! Ein paar kleine Verbesserungen:';
         }
+
         return feedback;
     }
+
     /**
      * Generate error feedback for incorrect answers
      */
@@ -300,18 +348,19 @@ class TolerantAnswerValidator {
             secondary: '',
             severity: 'error'
         };
+
         if (coreErrors.length > 0) {
             const firstError = coreErrors[0];
             if (firstError.type === 'word_count') {
                 feedback.secondary = firstError.message;
-            }
-            else if (firstError.type === 'word_error') {
+            } else if (firstError.type === 'word_error') {
                 feedback.secondary = 'Prüfe die Wörter und die Reihenfolge.';
             }
         }
+
         return feedback;
     }
 }
+
 // Make available globally
 window.TolerantAnswerValidator = TolerantAnswerValidator;
-//# sourceMappingURL=tolerant-validator.js.map

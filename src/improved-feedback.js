@@ -7,10 +7,12 @@
  * - Smooth animations and transitions
  * - Clear visual distinction between types of feedback
  */
+
 class ImprovedFeedbackSystem {
     constructor() {
         this.feedbackArea = null;
     }
+
     /**
      * Get feedback area (always fresh lookup)
      */
@@ -18,6 +20,7 @@ class ImprovedFeedbackSystem {
         // Always get fresh reference since exercises are re-rendered
         return document.getElementById('feedback-area');
     }
+
     /**
      * Show validation result with appropriate feedback
      */
@@ -27,19 +30,24 @@ class ImprovedFeedbackSystem {
             console.error('[ImprovedFeedbackSystem] feedback-area element not found!');
             return;
         }
+
         console.log('[ImprovedFeedbackSystem] Showing validation result:', validationResult);
+
         // Clear previous feedback
         feedbackArea.innerHTML = '';
         feedbackArea.className = 'feedback-area';
+
         if (validationResult.isCorrect) {
             // Exercise is correct → positive reinforcement
             this.showSuccessFeedback(validationResult);
+
             // Show style improvements if present
             if (validationResult.styleImprovements.length > 0) {
                 setTimeout(() => {
                     this.showStyleImprovements(validationResult.styleImprovements);
                 }, 800);
             }
+
             // Auto-advance after short pause
             const delay = validationResult.styleImprovements.length > 0 ? 4000 : 1500;
             console.log('[ImprovedFeedbackSystem] Setting auto-advance timeout with delay:', delay);
@@ -48,30 +56,31 @@ class ImprovedFeedbackSystem {
                 if (window.app) {
                     console.log('[ImprovedFeedbackSystem] Calling window.app.next()');
                     window.app.next();
-                }
-                else {
+                } else {
                     console.error('[ImprovedFeedbackSystem] window.app is not defined!');
                 }
             }, delay);
+
             // Store timeout ID in app for potential cancellation
             if (window.app) {
                 window.app.autoAdvanceTimeout = timeoutId;
                 console.log('[ImprovedFeedbackSystem] Stored timeout ID:', timeoutId);
-            }
-            else {
+            } else {
                 console.error('[ImprovedFeedbackSystem] window.app not available to store timeout!');
             }
-        }
-        else {
+
+        } else {
             // Exercise is incorrect → learning aid
             this.showErrorFeedback(validationResult);
         }
     }
+
     /**
      * Show success feedback
      */
     showSuccessFeedback(result) {
         const feedbackArea = this.getFeedbackArea();
+
         const successHTML = `
             <div class="feedback-success">
                 <div class="feedback-icon">✅</div>
@@ -87,8 +96,10 @@ class ImprovedFeedbackSystem {
                 </div>
             </div>
         `;
+
         feedbackArea.innerHTML = successHTML;
         feedbackArea.classList.add('correct');
+
         // Animate in
         feedbackArea.style.opacity = '0';
         feedbackArea.style.transform = 'translateY(-10px)';
@@ -98,26 +109,30 @@ class ImprovedFeedbackSystem {
             feedbackArea.style.transform = 'translateY(0)';
         }, 10);
     }
+
     /**
      * Show style improvements (accents, punctuation)
      */
     showStyleImprovements(improvements) {
-        if (improvements.length === 0)
-            return;
+        if (improvements.length === 0) return;
+
         const feedbackArea = this.getFeedbackArea();
-        if (!feedbackArea)
-            return;
+        if (!feedbackArea) return;
+
         // Create improvements container
         const improvementContainer = document.createElement('div');
         improvementContainer.className = 'style-improvements';
+
         let improvementHTML = `
             <div class="improvement-header">
                 <span class="improvement-icon">💡</span>
                 <span class="improvement-title">Kleine ${improvements.length === 1 ? 'Verbesserung' : 'Verbesserungen'}:</span>
             </div>
         `;
+
         improvements.forEach(improvement => {
             const icon = this.getImprovementIcon(improvement.type);
+
             improvementHTML += `
                 <div class="improvement-item ${improvement.type}">
                     <div class="improvement-comparison">
@@ -132,18 +147,23 @@ class ImprovedFeedbackSystem {
                 </div>
             `;
         });
+
         improvementContainer.innerHTML = improvementHTML;
+
         // Append to feedback area
         feedbackArea.appendChild(improvementContainer);
+
         // Smooth animation
         improvementContainer.style.opacity = '0';
         improvementContainer.style.transform = 'translateY(10px)';
+
         setTimeout(() => {
             improvementContainer.style.transition = 'all 0.4s ease';
             improvementContainer.style.opacity = '1';
             improvementContainer.style.transform = 'translateY(0)';
         }, 100);
     }
+
     /**
      * Get icon for improvement type
      */
@@ -155,11 +175,13 @@ class ImprovedFeedbackSystem {
         };
         return icons[type] || '•';
     }
+
     /**
      * Show error feedback
      */
     showErrorFeedback(result) {
         const feedbackArea = this.getFeedbackArea();
+
         const errorHTML = `
             <div class="feedback-error">
                 <div class="feedback-icon">❌</div>
@@ -179,8 +201,10 @@ class ImprovedFeedbackSystem {
                 </div>
             </div>
         `;
+
         feedbackArea.innerHTML = errorHTML;
         feedbackArea.classList.add('incorrect');
+
         // Animate in
         feedbackArea.style.opacity = '0';
         feedbackArea.style.transform = 'translateY(-10px)';
@@ -189,32 +213,38 @@ class ImprovedFeedbackSystem {
             feedbackArea.style.opacity = '1';
             feedbackArea.style.transform = 'translateY(0)';
         }, 10);
+
         // Show "Continue" button for incorrect answers
         this.showContinueButton();
     }
+
     /**
      * Show continue button (for incorrect answers)
      */
     showContinueButton() {
         const feedbackArea = this.getFeedbackArea();
-        if (!feedbackArea)
-            return;
+        if (!feedbackArea) return;
+
         // Check if button already exists
-        if (feedbackArea.querySelector('.btn-continue'))
-            return;
+        if (feedbackArea.querySelector('.btn-continue')) return;
+
         const continueBtn = document.createElement('button');
         continueBtn.className = 'btn-primary btn-continue';
         continueBtn.textContent = 'Verstanden, weiter →';
         continueBtn.style.marginTop = '15px';
+
         continueBtn.onclick = () => {
             if (window.app) {
                 window.app.next();
             }
         };
+
         feedbackArea.appendChild(continueBtn);
+
         // Focus button for keyboard accessibility
         setTimeout(() => continueBtn.focus(), 300);
     }
+
     /**
      * Escape HTML to prevent XSS
      */
@@ -223,6 +253,7 @@ class ImprovedFeedbackSystem {
         div.textContent = text;
         return div.innerHTML;
     }
+
     /**
      * Clear all feedback
      */
@@ -234,6 +265,6 @@ class ImprovedFeedbackSystem {
         }
     }
 }
+
 // Make available globally
 window.ImprovedFeedbackSystem = ImprovedFeedbackSystem;
-//# sourceMappingURL=improved-feedback.js.map
