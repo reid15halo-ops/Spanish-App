@@ -25,10 +25,22 @@ Spanish-App/
 ✅ **Vollständig in TypeScript migriert:**
 - `src/config/environment.ts` - Umgebungskonfiguration mit vollständigen Types
 - `src/monitoring.ts` - Error & Performance Monitoring mit vollständigen Types
+- `src/tolerant-validator.ts` - Answer Validation mit Type-Safety
+- `src/improved-feedback.ts` - Feedback System mit Types
+- `src/types.ts` - Gemeinsame Type-Definitionen
 - `src/globals.d.ts` - Globale Type-Definitionen
 
+📊 **Migration Status:** 5 von ~14 Core-Dateien vollständig migriert (36%)
+
 🔄 **Bereit für Migration:**
-- Alle anderen `.js` Dateien in `src/` können schrittweise nach TypeScript migriert werden
+- `data-manager.js` - Data Management System
+- `adaptive-learning.js` - Adaptive Learning Logic
+- `adaptive-practice-system.js` - Practice System
+- `level-test-system.js` - Level Testing
+- `utils.js` - Utility Functions
+- `app-core.js` - Core App Logic (very large)
+- `exercise-data.js` - Exercise Data (very large)
+- Weitere Support-Dateien
 
 ## Build-Prozess
 
@@ -75,11 +87,38 @@ Um weitere Dateien zu migrieren:
 ## Vorteile
 
 - ✅ Type-Safety für neue Features
-- ✅ Bessere IDE-Unterstützung
-- ✅ Frühere Fehlererkennung
-- ✅ Dokumentation durch Types
-- ✅ Schrittweise Migration möglich
+- ✅ Bessere IDE-Unterstützung (Autocomplete, IntelliSense)
+- ✅ Frühere Fehlererkennung (Compile-Time statt Runtime)
+- ✅ Dokumentation durch Types (Self-documenting Code)
+- ✅ Schrittweise Migration möglich (allowJs enabled)
 - ✅ Keine Änderungen an index.html nötig
+- ✅ Shared Types vermeiden Duplikation
+- ✅ Bessere Code-Wartbarkeit
+
+## Wichtige Type-Definitionen
+
+### Validation Types (types.ts)
+```typescript
+interface ValidationResult {
+    isCorrect: boolean;
+    isAcceptable: boolean;
+    coreErrors: CoreError[];
+    styleImprovements: StyleImprovement[];
+    feedback: ValidationFeedback;
+    correctAnswer: string;
+}
+
+type Severity = 'error' | 'warning' | 'info' | 'success';
+type ImprovementType = 'accent' | 'punctuation' | 'capitalization';
+```
+
+### Window Globals (globals.d.ts)
+Alle window-Erweiterungen sind typisiert:
+- `window.ENV` - Environment Config
+- `window.ErrorMonitor` - Error Monitoring
+- `window.PerformanceMonitor` - Performance Tracking
+- `window.TolerantAnswerValidator` - Answer Validation
+- `window.ImprovedFeedbackSystem` - Feedback System
 
 ## Nächste Schritte
 
