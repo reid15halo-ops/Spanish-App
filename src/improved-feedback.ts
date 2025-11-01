@@ -8,15 +8,17 @@
  * - Clear visual distinction between types of feedback
  */
 
-class ImprovedFeedbackSystem {
-    constructor() {
-        this.feedbackArea = null;
-    }
+import type { ValidationResult, StyleImprovement } from './types';
 
+// ====================================================================
+// IMPROVED FEEDBACK SYSTEM
+// ====================================================================
+
+class ImprovedFeedbackSystem {
     /**
      * Get feedback area (always fresh lookup)
      */
-    getFeedbackArea() {
+    private getFeedbackArea(): HTMLElement | null {
         // Always get fresh reference since exercises are re-rendered
         return document.getElementById('feedback-area');
     }
@@ -24,7 +26,7 @@ class ImprovedFeedbackSystem {
     /**
      * Show validation result with appropriate feedback
      */
-    showValidationResult(validationResult, exercise) {
+    public showValidationResult(validationResult: ValidationResult, exercise?: any): void {
         const feedbackArea = this.getFeedbackArea();
         if (!feedbackArea) {
             console.error('[ImprovedFeedbackSystem] feedback-area element not found!');
@@ -78,8 +80,9 @@ class ImprovedFeedbackSystem {
     /**
      * Show success feedback
      */
-    showSuccessFeedback(result) {
+    private showSuccessFeedback(result: ValidationResult): void {
         const feedbackArea = this.getFeedbackArea();
+        if (!feedbackArea) return;
 
         const successHTML = `
             <div class="feedback-success">
@@ -113,7 +116,7 @@ class ImprovedFeedbackSystem {
     /**
      * Show style improvements (accents, punctuation)
      */
-    showStyleImprovements(improvements) {
+    private showStyleImprovements(improvements: StyleImprovement[]): void {
         if (improvements.length === 0) return;
 
         const feedbackArea = this.getFeedbackArea();
@@ -167,8 +170,8 @@ class ImprovedFeedbackSystem {
     /**
      * Get icon for improvement type
      */
-    getImprovementIcon(type) {
-        const icons = {
+    private getImprovementIcon(type: StyleImprovement['type']): string {
+        const icons: Record<StyleImprovement['type'], string> = {
             'accent': '◌́',
             'punctuation': '¿',
             'capitalization': 'Aa'
@@ -179,8 +182,9 @@ class ImprovedFeedbackSystem {
     /**
      * Show error feedback
      */
-    showErrorFeedback(result) {
+    private showErrorFeedback(result: ValidationResult): void {
         const feedbackArea = this.getFeedbackArea();
+        if (!feedbackArea) return;
 
         const errorHTML = `
             <div class="feedback-error">
@@ -221,7 +225,7 @@ class ImprovedFeedbackSystem {
     /**
      * Show continue button (for incorrect answers)
      */
-    showContinueButton() {
+    private showContinueButton(): void {
         const feedbackArea = this.getFeedbackArea();
         if (!feedbackArea) return;
 
@@ -248,7 +252,7 @@ class ImprovedFeedbackSystem {
     /**
      * Escape HTML to prevent XSS
      */
-    escapeHtml(text) {
+    private escapeHtml(text: string): string {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
@@ -257,7 +261,7 @@ class ImprovedFeedbackSystem {
     /**
      * Clear all feedback
      */
-    clearFeedback() {
+    public clearFeedback(): void {
         const feedbackArea = this.getFeedbackArea();
         if (feedbackArea) {
             feedbackArea.innerHTML = '';

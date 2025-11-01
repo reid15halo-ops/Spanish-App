@@ -9,12 +9,56 @@
  * while still learning proper Spanish orthography.
  */
 
+// ====================================================================
+// TYPES & INTERFACES
+// ====================================================================
+
+type ImprovementType = 'accent' | 'punctuation' | 'capitalization';
+type ErrorType = 'word_count' | 'word_error';
+type Severity = 'error' | 'warning' | 'info' | 'success';
+
+interface StyleImprovement {
+    type: ImprovementType;
+    userVersion: string;
+    correctVersion: string;
+    explanation: string;
+    severity: Severity;
+}
+
+interface CoreError {
+    type: ErrorType;
+    message: string;
+    severity: Severity;
+    position?: number;
+    userWord?: string;
+    correctWord?: string;
+}
+
+interface ValidationFeedback {
+    primary: string;
+    secondary: string;
+    severity: Severity;
+}
+
+interface ValidationResult {
+    isCorrect: boolean;
+    isAcceptable: boolean;
+    coreErrors: CoreError[];
+    styleImprovements: StyleImprovement[];
+    feedback: ValidationFeedback;
+    correctAnswer: string;
+}
+
+// ====================================================================
+// TOLERANT ANSWER VALIDATOR
+// ====================================================================
+
 class TolerantAnswerValidator {
     /**
      * Validate user answer with tolerance for accents and punctuation
      */
-    validateAnswer(userAnswer, correctAnswer, exercise) {
-        const result = {
+    validateAnswer(userAnswer: string, correctAnswer: string, exercise?: any): ValidationResult {
+        const result: ValidationResult = {
             isCorrect: false,          // Core validation (words + grammar)
             isAcceptable: false,        // Tolerant validation
             coreErrors: [],             // Serious errors (blocking)
@@ -58,7 +102,7 @@ class TolerantAnswerValidator {
     /**
      * Normalize text for core comparison (remove accents, punctuation)
      */
-    normalizeForCore(text) {
+    private normalizeForCore(text: string): string {
         if (!text) return '';
 
         return text
@@ -82,7 +126,7 @@ class TolerantAnswerValidator {
     /**
      * Core validation - checks words, grammar, structure
      */
-    validateCore(userNormalized, correctNormalized) {
+    private validateCore(userNormalized: string, correctNormalized: string): boolean {
         // Exact match
         if (userNormalized === correctNormalized) {
             return true;
@@ -99,7 +143,7 @@ class TolerantAnswerValidator {
 
         // 90% of words must be correct (allows for minor typos)
         const correctWordCount = userWords.filter((word, index) =>
-            this.isWordSimilar(word, correctWords[index])
+            this.isWordSimilar(word, correctWords[index] || '')
         ).length;
 
         return (correctWordCount / correctWords.length) >= 0.9;
@@ -108,7 +152,7 @@ class TolerantAnswerValidator {
     /**
      * Check if two words are similar (handles typos)
      */
-    isWordSimilar(word1, word2) {
+    private isWordSimilar(word1: string, word2: string): boolean {
         // Exact match
         if (word1 === word2) return true;
 
@@ -125,42 +169,42 @@ class TolerantAnswerValidator {
     /**
      * Calculate Levenshtein distance between two strings
      */
-    levenshteinDistance(str1, str2) {
+    private levenshteinDistance(str1: string, str2: string): number {
         const len1 = str1.length;
         const len2 = str2.length;
-        const matrix = [];
+        const matrix: number[][] = [];
 
         // Initialize matrix
         for (let i = 0; i <= len1; i++) {
             matrix[i] = [i];
         }
         for (let j = 0; j <= len2; j++) {
-            matrix[0][j] = j;
+            matrix[0]![j] = j;
         }
 
         // Fill matrix
         for (let i = 1; i <= len1; i++) {
             for (let j = 1; j <= len2; j++) {
                 if (str1.charAt(i - 1) === str2.charAt(j - 1)) {
-                    matrix[i][j] = matrix[i - 1][j - 1];
+                    matrix[i]![j] = matrix[i - 1]![j - 1]!;
                 } else {
-                    matrix[i][j] = Math.min(
-                        matrix[i - 1][j - 1] + 1, // substitution
-                        matrix[i][j - 1] + 1,     // insertion
-                        matrix[i - 1][j] + 1      // deletion
+                    matrix[i]![j] = Math.min(
+                        matrix[i - 1]![j - 1]! + 1, // substitution
+                        matrix[i]![j - 1]! + 1,     // insertion
+                        matrix[i - 1]![j]! + 1      // deletion
                     );
                 }
             }
         }
 
-        return matrix[len1][len2];
+        return matrix[len1]![len2]!;
     }
 
     /**
      * Find style improvements (accents, punctuation, capitalization)
      */
-    findStyleImprovements(userAnswer, correctAnswer) {
-        const improvements = [];
+    private findStyleImprovements(userAnswer: string, correctAnswer: string): StyleImprovement[] {
+        const improvements: StyleImprovement[] = [];
 
         // 1. Accent improvements
         const accentImprovements = this.findAccentDifferences(userAnswer, correctAnswer);
@@ -180,8 +224,8 @@ class TolerantAnswerValidator {
     /**
      * Find words with accent differences
      */
-    findAccentDifferences(userAnswer, correctAnswer) {
-        const improvements = [];
+    private findAccentDifferences(userAnswer: string, correctAnswer: string): StyleImprovement[] {
+        const improvements: StyleImprovement[] = [];
 
         // Split into words
         const userWords = userAnswer.toLowerCase().split(/\s+/);
@@ -189,7 +233,7 @@ class TolerantAnswerValidator {
 
         userWords.forEach((userWord, index) => {
             if (index < correctWords.length) {
-                const correctWord = correctWords[index];
+                const correctWord = correctWords[index]!;
 
                 // Normalize both to check if they're the same word
                 const userNormalized = this.normalizeForCore(userWord);
@@ -214,12 +258,8 @@ class TolerantAnswerValidator {
     /**
      * Find punctuation differences
      */
-    findPunctuationDifferences(userAnswer, correctAnswer) {
-        const improvements = [];
-
-        // Extract punctuation
-        const userPunctuation = this.extractPunctuation(userAnswer);
-        const correctPunctuation = this.extractPunctuation(correctAnswer);
+    private findPunctuationDifferences(userAnswer: string, correctAnswer: string): StyleImprovement[] {
+        const improvements: StyleImprovement[] = [];
 
         // Check for missing opening question/exclamation marks
         if (correctAnswer.includes('¿') && !userAnswer.includes('¿')) {
@@ -248,15 +288,15 @@ class TolerantAnswerValidator {
     /**
      * Extract punctuation from text
      */
-    extractPunctuation(text) {
+    private extractPunctuation(text: string): string {
         return (text.match(/[¿¡.,;:!?'"()\-–—]/g) || []).join('');
     }
 
     /**
      * Find capitalization differences
      */
-    findCapitalizationDifferences(userAnswer, correctAnswer) {
-        const improvements = [];
+    private findCapitalizationDifferences(userAnswer: string, correctAnswer: string): StyleImprovement[] {
+        const improvements: StyleImprovement[] = [];
 
         // Check if first letter should be capitalized
         if (userAnswer.length > 0 && correctAnswer.length > 0) {
@@ -282,8 +322,13 @@ class TolerantAnswerValidator {
     /**
      * Analyze core errors (word errors, grammar errors)
      */
-    analyzeCoreErrors(userNormalized, correctNormalized, userOriginal, correctOriginal) {
-        const errors = [];
+    private analyzeCoreErrors(
+        userNormalized: string,
+        correctNormalized: string,
+        userOriginal: string,
+        correctOriginal: string
+    ): CoreError[] {
+        const errors: CoreError[] = [];
 
         const userWords = userNormalized.split(' ').filter(w => w.length > 0);
         const correctWords = correctNormalized.split(' ').filter(w => w.length > 0);
@@ -321,8 +366,8 @@ class TolerantAnswerValidator {
     /**
      * Generate positive feedback for correct answers
      */
-    generatePositiveFeedback(styleImprovements) {
-        const feedback = {
+    private generatePositiveFeedback(styleImprovements: StyleImprovement[]): ValidationFeedback {
+        const feedback: ValidationFeedback = {
             primary: 'Sehr gut!',
             secondary: '',
             severity: 'success'
@@ -342,8 +387,8 @@ class TolerantAnswerValidator {
     /**
      * Generate error feedback for incorrect answers
      */
-    generateErrorFeedback(coreErrors) {
-        const feedback = {
+    private generateErrorFeedback(coreErrors: CoreError[]): ValidationFeedback {
+        const feedback: ValidationFeedback = {
             primary: 'Noch nicht ganz richtig.',
             secondary: '',
             severity: 'error'
@@ -351,9 +396,9 @@ class TolerantAnswerValidator {
 
         if (coreErrors.length > 0) {
             const firstError = coreErrors[0];
-            if (firstError.type === 'word_count') {
+            if (firstError && firstError.type === 'word_count') {
                 feedback.secondary = firstError.message;
-            } else if (firstError.type === 'word_error') {
+            } else if (firstError && firstError.type === 'word_error') {
                 feedback.secondary = 'Prüfe die Wörter und die Reihenfolge.';
             }
         }

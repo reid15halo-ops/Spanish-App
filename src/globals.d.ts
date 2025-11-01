@@ -12,6 +12,11 @@ declare global {
         DataBackup: any;
         GDPR: any;
         app: any;
+        TolerantAnswerValidator: any;
+        ImprovedFeedbackSystem: any;
+        AdaptiveLearning: any;
+        AdaptivePracticeSystem: any;
+        LevelTestSystem: any;
     }
 }
 

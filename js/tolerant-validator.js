@@ -8,6 +8,9 @@
  * This allows learners to progress without being blocked by accent perfection,
  * while still learning proper Spanish orthography.
  */
+// ====================================================================
+// TOLERANT ANSWER VALIDATOR
+// ====================================================================
 class TolerantAnswerValidator {
     /**
      * Validate user answer with tolerance for accents and punctuation
@@ -88,7 +91,7 @@ class TolerantAnswerValidator {
             return false;
         }
         // 90% of words must be correct (allows for minor typos)
-        const correctWordCount = userWords.filter((word, index) => this.isWordSimilar(word, correctWords[index])).length;
+        const correctWordCount = userWords.filter((word, index) => this.isWordSimilar(word, correctWords[index] || '')).length;
         return (correctWordCount / correctWords.length) >= 0.9;
     }
     /**
@@ -185,9 +188,6 @@ class TolerantAnswerValidator {
      */
     findPunctuationDifferences(userAnswer, correctAnswer) {
         const improvements = [];
-        // Extract punctuation
-        const userPunctuation = this.extractPunctuation(userAnswer);
-        const correctPunctuation = this.extractPunctuation(correctAnswer);
         // Check for missing opening question/exclamation marks
         if (correctAnswer.includes('¿') && !userAnswer.includes('¿')) {
             improvements.push({
@@ -302,10 +302,10 @@ class TolerantAnswerValidator {
         };
         if (coreErrors.length > 0) {
             const firstError = coreErrors[0];
-            if (firstError.type === 'word_count') {
+            if (firstError && firstError.type === 'word_count') {
                 feedback.secondary = firstError.message;
             }
-            else if (firstError.type === 'word_error') {
+            else if (firstError && firstError.type === 'word_error') {
                 feedback.secondary = 'Prüfe die Wörter und die Reihenfolge.';
             }
         }

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Improved Feedback System
  *
@@ -7,10 +8,11 @@
  * - Smooth animations and transitions
  * - Clear visual distinction between types of feedback
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+// ====================================================================
+// IMPROVED FEEDBACK SYSTEM
+// ====================================================================
 class ImprovedFeedbackSystem {
-    constructor() {
-        this.feedbackArea = null;
-    }
     /**
      * Get feedback area (always fresh lookup)
      */
@@ -72,6 +74,8 @@ class ImprovedFeedbackSystem {
      */
     showSuccessFeedback(result) {
         const feedbackArea = this.getFeedbackArea();
+        if (!feedbackArea)
+            return;
         const successHTML = `
             <div class="feedback-success">
                 <div class="feedback-icon">✅</div>
@@ -160,6 +164,8 @@ class ImprovedFeedbackSystem {
      */
     showErrorFeedback(result) {
         const feedbackArea = this.getFeedbackArea();
+        if (!feedbackArea)
+            return;
         const errorHTML = `
             <div class="feedback-error">
                 <div class="feedback-icon">❌</div>
