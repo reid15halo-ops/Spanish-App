@@ -1,8 +1,10 @@
+"use strict";
 /**
  * Environment Configuration System
  *
  * Manages different configurations for development, staging, and production
  */
+Object.defineProperty(exports, "__esModule", { value: true });
 class EnvironmentConfig {
     constructor() {
         this.currentEnv = this.detectEnvironment();

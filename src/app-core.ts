@@ -1,37 +1,117 @@
 /**
- * App Core - Consolidated Module
+ * App Core - Consolidated Module - TypeScript Version
  *
  * Combines: app.js + exercise-loader.js + exercise-renderer.js
  * Uses inlined exercise data (no fetch() calls, no CORS issues)
- *
- * Generated: ${new Date().toISOString()}
  */
+
+import type { Exercise } from './types';
+
+// ====================================================================
+// TYPES & INTERFACES
+// ====================================================================
+
+interface UnitMetadata {
+    title: string;
+    totalExercises: number;
+    estimatedTime: string;
+}
+
+interface LearningPhase {
+    name: string;
+    description: string;
+}
+
+interface UnitData {
+    metadata: UnitMetadata;
+    learningPhases: LearningPhase[];
+    exercises: Exercise[];
+}
+
+interface LoadedUnitData {
+    metadata: UnitMetadata;
+    phases: LearningPhase[];
+    exercises: Exercise[];
+}
+
+interface UnitInfo {
+    number: number;
+    title: string;
+    totalExercises: number;
+    estimatedTime: string;
+    phases: LearningPhase[];
+}
+
+interface DialogLine {
+    speaker: string;
+    text: string;
+}
+
+interface TranslationLine {
+    speaker: string;
+    text: string;
+}
+
+interface ComprehensionCheck {
+    question: string;
+    options: string[];
+    correctAnswer: string;
+}
+
+interface ExampleSentence {
+    es: string;
+    de: string;
+}
+
+interface AppStats {
+    correct: number;
+    total: number;
+}
+
+interface GermanHelpUsage {
+    totalExercises: number;
+    helpUsed: number;
+    exercisesWithHelp: string[];
+}
+
+interface AppSettings {
+    helpLevel: 'keine' | 'normal' | 'viel';
+}
+
+interface SavedProgress {
+    unit: number;
+    index: number;
+    stats: AppStats;
+}
+
+interface GroupedExercises {
+    [concept: string]: Array<{ exercise: Exercise; index: number }>;
+}
 
 // ====================================================================
 // EXERCISE LOADER (No fetch() - uses inlined data)
 // ====================================================================
 
 class ExerciseLoader {
+    private units: Record<number, UnitData>;
+
     constructor() {
         this.units = {
-            1: window.UNIT_1_PRONOUNS,
-            2: window.UNIT_2_SER,
-            3: window.UNIT_3_ESTAR,
-            4: window.UNIT_4_SER_ESTAR_CONTRAST,
-            5: window.UNIT_5_TENER,
-            6: window.UNIT_6_VOCABULARY,
-            7: window.UNIT_7_INTEGRATION
+            1: (window as any).UNIT_1_PRONOUNS,
+            2: (window as any).UNIT_2_SER,
+            3: (window as any).UNIT_3_ESTAR,
+            4: (window as any).UNIT_4_SER_ESTAR_CONTRAST,
+            5: (window as any).UNIT_5_TENER,
+            6: (window as any).UNIT_6_VOCABULARY,
+            7: (window as any).UNIT_7_INTEGRATION
         };
     }
 
     /**
      * Load exercises for a specific unit
-     * @param {number} unitNumber - Unit number (1-7)
-     * @returns {Promise<Object>} Unit data with exercises
      */
-    async loadUnit(unitNumber) {
+    async loadUnit(unitNumber: number): Promise<LoadedUnitData> {
         const data = this.units[unitNumber];
-
         if (!data) {
             throw new Error(`Unit ${unitNumber} not found. Available units: 1-7`);
         }
@@ -54,10 +134,8 @@ class ExerciseLoader {
 
     /**
      * Get unit metadata without loading full exercises
-     * @param {number} unitNumber
-     * @returns {Promise<Object>}
      */
-    async getUnitInfo(unitNumber) {
+    async getUnitInfo(unitNumber: number): Promise<UnitInfo> {
         const data = await this.loadUnit(unitNumber);
         return {
             number: unitNumber,
@@ -74,14 +152,16 @@ class ExerciseLoader {
 // ====================================================================
 
 class ExerciseRenderer {
-    constructor(container) {
+    private container: HTMLElement;
+
+    constructor(container: HTMLElement) {
         this.container = container;
     }
 
     /**
      * Extract German translation from text (text in parentheses)
      */
-    extractGermanTranslation(text) {
+    private extractGermanTranslation(text: string): { spanish: string; german: string | null } {
         const match = text.match(/\(([^)]+)\)/);
         if (match) {
             return {
@@ -95,7 +175,7 @@ class ExerciseRenderer {
     /**
      * Render German help section (hidden by default, with toggle)
      */
-    renderGermanHelp(germanTranslation, germanBridge, example) {
+    private renderGermanHelp(germanTranslation: string | null, germanBridge?: string, example?: string): string {
         const hasAnyHelp = germanTranslation || germanBridge || example;
         if (!hasAnyHelp) return '';
 
@@ -122,10 +202,8 @@ class ExerciseRenderer {
 
     /**
      * Render an exercise based on its type
-     * @param {Object} exercise - Exercise data
-     * @param {Function} onAnswer - Callback when user submits answer
      */
-    render(exercise, onAnswer) {
+    render(exercise: Exercise, onAnswer: (answer: string) => void): void {
         this.container.innerHTML = '';
 
         // Add phase badge
@@ -136,7 +214,6 @@ class ExerciseRenderer {
 
         // Render based on type
         let html = '';
-
         switch (exercise.type) {
             case 'vocabulary-card':
                 html = this.renderVocabularyCard(exercise, onAnswer);
@@ -162,7 +239,6 @@ class ExerciseRenderer {
             case 'sentence-building':
                 html = this.renderSentenceBuilding(exercise, onAnswer);
                 break;
-
             // All other text-input based exercises
             case 'meaning-change':
             case 'error-correction':
@@ -182,7 +258,6 @@ class ExerciseRenderer {
             case 'advanced-application':
                 html = this.renderGenericTextInput(exercise, onAnswer);
                 break;
-
             default:
                 html = `<p>Unknown exercise type: ${exercise.type}</p>`;
         }
@@ -193,21 +268,20 @@ class ExerciseRenderer {
     /**
      * Render phase badge
      */
-    renderPhaseBadge(phase) {
-        const phaseNames = {
+    private renderPhaseBadge(phase: string): string {
+        const phaseNames: Record<string, string> = {
             'prep': '🎯 Vorbereitung',
             'input': '📖 Input',
             'guided': '✏️ Geführt',
             'free': '🗣️ Frei'
         };
-
         return `<div class="phase-badge">${phaseNames[phase] || phase}</div>`;
     }
 
     /**
      * Render vocabulary card (passive learning)
      */
-    renderVocabularyCard(exercise, onNext) {
+    private renderVocabularyCard(exercise: Exercise, onNext: (answer: string) => void): string {
         return `
             <div class="vocab-card">
                 <div class="vocab-word-display">
@@ -245,7 +319,8 @@ class ExerciseRenderer {
     /**
      * Render vocabulary in context
      */
-    renderVocabularyInContext(exercise, onNext) {
+    private renderVocabularyInContext(exercise: Exercise, onNext: (answer: string) => void): string {
+        const examples = exercise.exampleSentences || [];
         return `
             <div class="vocab-context">
                 <div class="vocab-word-display">
@@ -256,7 +331,7 @@ class ExerciseRenderer {
 
                 <div class="examples-title">📚 Verwendung in Sätzen:</div>
                 <div class="examples-list">
-                    ${exercise.exampleSentences.map((ex, i) => `
+                    ${examples.map((ex: ExampleSentence, i: number) => `
                         <div class="example-item">
                             <div class="example-number">${i + 1}.</div>
                             <div class="example-content">
@@ -279,8 +354,11 @@ class ExerciseRenderer {
     /**
      * Render reading comprehension
      */
-    renderReadingComprehension(exercise, onAnswer) {
-        const parsed = this.extractGermanTranslation(exercise.question);
+    private renderReadingComprehension(exercise: Exercise, onAnswer: (answer: string) => void): string {
+        const parsed = this.extractGermanTranslation(exercise.question || '');
+        const dialog = exercise.dialog || [];
+        const translation = exercise.translation || [];
+        const comprehensionCheck = exercise.comprehensionCheck as ComprehensionCheck;
 
         return `
             <div class="reading-comprehension">
@@ -288,7 +366,7 @@ class ExerciseRenderer {
 
                 <div class="dialog-box">
                     <div class="dialog-title">📖 Dialog:</div>
-                    ${exercise.dialog.map(line => `
+                    ${dialog.map((line: DialogLine) => `
                         <p class="dialog-line">
                             <strong>${line.speaker}:</strong> <em>${line.text}</em>
                         </p>
@@ -308,7 +386,7 @@ class ExerciseRenderer {
                     ` : ''}
 
                     <div class="translation-title">🇩🇪 Dialog-Übersetzung:</div>
-                    ${exercise.translation.map(line => `
+                    ${translation.map((line: TranslationLine) => `
                         <p class="translation-line">
                             <strong>${line.speaker}:</strong> ${line.text}
                         </p>
@@ -317,14 +395,14 @@ class ExerciseRenderer {
 
                 ${exercise.newVocabulary ? `
                     <div class="vocab-highlight">
-                        <strong>📝 Neue Wörter:</strong> ${exercise.newVocabulary.join(', ')}
+                        <strong>📝 Neue Wörter:</strong> ${(exercise.newVocabulary as string[]).join(', ')}
                     </div>
                 ` : ''}
 
                 <div class="comprehension-check">
-                    <p class="check-question">${exercise.comprehensionCheck.question}</p>
+                    <p class="check-question">${comprehensionCheck?.question || ''}</p>
                     <div class="options">
-                        ${exercise.comprehensionCheck.options.map((opt, i) => `
+                        ${(comprehensionCheck?.options || []).map((opt: string, i: number) => `
                             <button class="btn-option" data-answer="${opt}">
                                 ${opt}
                             </button>
@@ -344,9 +422,8 @@ class ExerciseRenderer {
     /**
      * Render fill-blank exercise
      */
-    renderFillBlank(exercise, onAnswer) {
-        const parsed = this.extractGermanTranslation(exercise.question);
-
+    private renderFillBlank(exercise: Exercise, onAnswer: (answer: string) => void): string {
+        const parsed = this.extractGermanTranslation(exercise.question || '');
         return `
             <div class="fill-blank">
                 <p class="question">${parsed.spanish}</p>
@@ -371,7 +448,8 @@ class ExerciseRenderer {
     /**
      * Render conjugation exercise
      */
-    renderConjugation(exercise, onAnswer) {
+    private renderConjugation(exercise: Exercise, onAnswer: (answer: string) => void): string {
+        const examples = exercise.examples || [];
         return `
             <div class="conjugation">
                 <p class="question">${exercise.question}</p>
@@ -398,10 +476,10 @@ class ExerciseRenderer {
 
                 <div id="feedback-area" class="feedback-area hidden"></div>
 
-                ${exercise.examples && exercise.examples.length > 0 ? `
+                ${examples.length > 0 ? `
                     <div class="examples-box hidden" id="examples-box">
                         <strong>📚 Beispiele:</strong>
-                        ${exercise.examples.map(ex => `<p class="example">${ex}</p>`).join('')}
+                        ${examples.map((ex: string) => `<p class="example">${ex}</p>`).join('')}
                     </div>
                 ` : ''}
             </div>
@@ -411,9 +489,8 @@ class ExerciseRenderer {
     /**
      * Render generic text-input exercise (used for many exercise types)
      */
-    renderGenericTextInput(exercise, onAnswer) {
-        // Get exercise type label for display
-        const typeLabels = {
+    private renderGenericTextInput(exercise: Exercise, onAnswer: (answer: string) => void): string {
+        const typeLabels: Record<string, string> = {
             'meaning-change': 'Bedeutungsänderung',
             'error-correction': 'Fehlerkorrektur',
             'conversation': 'Konversation',
@@ -431,8 +508,8 @@ class ExerciseRenderer {
             'contrast-intro': 'Kontrasteinführung',
             'advanced-application': 'Erweiterte Anwendung'
         };
-
-        const typeLabel = typeLabels[exercise.type] || exercise.type;
+        const typeLabel = typeLabels[exercise.type || ''] || exercise.type;
+        const examples = exercise.examples || [];
 
         return `
             <div class="generic-text-input ${exercise.type}">
@@ -480,17 +557,17 @@ class ExerciseRenderer {
 
                 <div id="feedback-area" class="feedback-area hidden"></div>
 
-                ${exercise.examples && exercise.examples.length > 0 ? `
+                ${examples.length > 0 ? `
                     <div class="examples-box hidden" id="examples-box">
                         <strong>📚 Beispiele:</strong>
-                        ${exercise.examples.map(ex => `<p class="example">${ex}</p>`).join('')}
+                        ${examples.map((ex: string) => `<p class="example">${ex}</p>`).join('')}
                     </div>
                 ` : ''}
 
                 ${exercise.breakdown ? `
                     <div class="breakdown-box hidden" id="breakdown-box">
                         <strong>🔍 Analyse:</strong>
-                        ${Object.entries(exercise.breakdown).map(([key, value]) =>
+                        ${Object.entries(exercise.breakdown as Record<string, string>).map(([key, value]) =>
                             `<p class="breakdown-item"><strong>${key}:</strong> ${value}</p>`
                         ).join('')}
                     </div>
@@ -502,17 +579,17 @@ class ExerciseRenderer {
     /**
      * Render multiple-choice exercise
      */
-    renderMultipleChoice(exercise, onAnswer) {
-        const parsed = this.extractGermanTranslation(exercise.question);
-
+    private renderMultipleChoice(exercise: Exercise, onAnswer: (answer: string) => void): string {
+        const parsed = this.extractGermanTranslation(exercise.question || '');
+        const options = exercise.options || [];
         return `
             <div class="multiple-choice">
                 <p class="question">${parsed.spanish}</p>
 
-                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, undefined)}
 
                 <div class="options">
-                    ${exercise.options.map((opt, i) => `
+                    ${options.map((opt: string, i: number) => `
                         <button class="btn-option" data-answer="${opt}">
                             ${opt}
                         </button>
@@ -531,14 +608,13 @@ class ExerciseRenderer {
     /**
      * Render translation exercise
      */
-    renderTranslation(exercise, onAnswer) {
-        const parsed = this.extractGermanTranslation(exercise.question);
-
+    private renderTranslation(exercise: Exercise, onAnswer: (answer: string) => void): string {
+        const parsed = this.extractGermanTranslation(exercise.question || '');
         return `
             <div class="translation">
                 <p class="question">${parsed.spanish}</p>
 
-                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, undefined)}
 
                 <div class="input-group">
                     <input type="text" id="answer-input" class="text-input"
@@ -558,16 +634,16 @@ class ExerciseRenderer {
     /**
      * Render sentence-building exercise
      */
-    renderSentenceBuilding(exercise, onAnswer) {
-        const parsed = this.extractGermanTranslation(exercise.question);
-
+    private renderSentenceBuilding(exercise: Exercise, onAnswer: (answer: string) => void): string {
+        const parsed = this.extractGermanTranslation(exercise.question || '');
+        const words = exercise.words || [];
         return `
             <div class="sentence-building">
                 <p class="question">${parsed.spanish}</p>
 
-                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, null)}
+                ${this.renderGermanHelp(parsed.german, exercise.germanBridge, undefined)}
 
-                <p class="instruction">Verwende die Wörter: ${exercise.words.join(', ')}</p>
+                <p class="instruction">Verwende die Wörter: ${words.join(', ')}</p>
 
                 <div class="input-group">
                     <input type="text" id="answer-input" class="text-input"
@@ -587,18 +663,15 @@ class ExerciseRenderer {
     /**
      * Show feedback (correct or incorrect)
      */
-    showFeedback(isCorrect, message, correctAnswer = null) {
+    showFeedback(isCorrect: boolean, message: string, correctAnswer: string | null = null): void {
         const feedbackArea = document.getElementById('feedback-area');
         if (!feedbackArea) return;
 
         feedbackArea.className = `feedback-area ${isCorrect ? 'correct' : 'incorrect'}`;
-
         let html = `<p class="feedback-message">${message}</p>`;
-
         if (!isCorrect && correctAnswer) {
             html += `<p class="correct-answer">Richtige Antwort: <strong>${correctAnswer}</strong></p>`;
         }
-
         feedbackArea.innerHTML = html;
         feedbackArea.classList.remove('hidden');
     }
@@ -606,7 +679,7 @@ class ExerciseRenderer {
     /**
      * Show hint
      */
-    showHint() {
+    showHint(): void {
         const hintArea = document.getElementById('hint-area');
         if (hintArea) {
             hintArea.classList.remove('hidden');
@@ -616,15 +689,13 @@ class ExerciseRenderer {
     /**
      * Clear feedback and hints
      */
-    clearFeedback() {
+    clearFeedback(): void {
         const feedbackArea = document.getElementById('feedback-area');
         const hintArea = document.getElementById('hint-area');
-
         if (feedbackArea) {
             feedbackArea.classList.add('hidden');
             feedbackArea.innerHTML = '';
         }
-
         if (hintArea) {
             hintArea.classList.add('hidden');
         }
@@ -636,78 +707,71 @@ class ExerciseRenderer {
 // ====================================================================
 
 class App {
+    private loader: ExerciseLoader;
+    private renderer: ExerciseRenderer | null;
+    private adaptiveSystem: any;
+    private currentUnit: number;
+    private exercises: Exercise[];
+    private currentIndex: number;
+    private attempts: number;
+    private settings: AppSettings;
+    private stats: AppStats;
+    private germanHelpUsage: GermanHelpUsage;
+    private autoAdvanceTimeout: ReturnType<typeof setTimeout> | null;
+    private isNavigating: boolean;
+    private validator: any;
+    private feedbackSystem: any;
+    private levelTestSystem: any;
+    private adaptivePracticeSystem: any;
+
     constructor() {
         this.loader = new ExerciseLoader();
-        this.renderer = null; // Will be set when container is ready
-
-        // Initialize Adaptive Learning System
-        this.adaptiveSystem = new window.AdaptiveLearningSystem();
-
+        this.renderer = null;
+        this.adaptiveSystem = new (window as any).AdaptiveLearningSystem();
         this.currentUnit = 1;
         this.exercises = [];
         this.currentIndex = 0;
-        this.attempts = 0; // Attempts for current exercise
-
+        this.attempts = 0;
         this.settings = this.loadSettings();
-
         this.stats = {
             correct: 0,
             total: 0
         };
-
-        // Track German help usage for adaptive learning
         this.germanHelpUsage = {
             totalExercises: 0,
             helpUsed: 0,
             exercisesWithHelp: []
         };
-
-        // Prevent double-navigation race conditions
         this.autoAdvanceTimeout = null;
         this.isNavigating = false;
-
-        // Initialize tolerant validator and improved feedback system
-        this.validator = new TolerantAnswerValidator();
-        this.feedbackSystem = new ImprovedFeedbackSystem();
-
-        // Initialize level test and adaptive practice systems
-        this.levelTestSystem = new LevelTestSystem();
-        this.adaptivePracticeSystem = new AdaptivePracticeSystem();
+        this.validator = new (window as any).TolerantAnswerValidator();
+        this.feedbackSystem = new (window as any).ImprovedFeedbackSystem();
+        this.levelTestSystem = new (window as any).LevelTestSystem();
+        this.adaptivePracticeSystem = new (window as any).AdaptivePracticeSystem();
     }
 
     /**
      * Initialize and start the app
      */
-    async init() {
+    async init(): Promise<void> {
         window.Logger?.debug('Starting Spanish Learning App...');
 
-        // Show loading state
         const loaderId = window.LoadingManager?.show('exercise-area', 'Uebungen werden geladen...');
 
         try {
-            // Get container
             const container = document.getElementById('exercise-area');
             if (!container) {
                 throw new Error('Exercise container not found');
             }
-
             this.renderer = new ExerciseRenderer(container);
 
-            // Load Unit 1
             await this.loadUnit(1);
-
-            // Build sidebar navigation
             this.buildSidebar();
-
-            // Load German help usage tracking
             this.loadGermanHelpUsage();
 
-            // Check for saved progress
             const savedProgress = this.loadProgress();
             let startIndex = 0;
-
             if (savedProgress && savedProgress.unit === this.currentUnit) {
-                // Restore progress
                 startIndex = savedProgress.index;
                 this.stats = savedProgress.stats;
                 window.Logger?.info(`Continuing from exercise ${startIndex + 1}/${this.exercises.length}`);
@@ -715,32 +779,22 @@ class App {
                 window.Logger?.debug('Starting fresh');
             }
 
-            // Hide loading state
             window.LoadingManager?.hide(loaderId);
-
-            // Show exercise (either saved position or first)
             this.showExercise(startIndex);
-
-            // Setup navigation buttons
             this.setupNavigationButtons();
-
-            // Setup settings button
             this.setupSettingsButton();
-
-            // Setup mobile sidebar toggle
             this.setupSidebarToggle();
-
             window.Logger?.success('App ready!');
         } catch (error) {
             window.LoadingManager?.hide(loaderId);
-            window.ErrorBoundary?.handleError(error, { context: 'App initialization' });
+            (window as any).ErrorBoundary?.handleError(error, { context: 'App initialization' });
         }
     }
 
     /**
      * Setup navigation buttons
      */
-    setupNavigationButtons() {
+    private setupNavigationButtons(): void {
         const prevBtn = document.getElementById('prev-btn');
         if (prevBtn) {
             prevBtn.addEventListener('click', () => this.previous());
@@ -750,37 +804,28 @@ class App {
     /**
      * Setup sidebar toggle (desktop and mobile)
      */
-    setupSidebarToggle() {
+    private setupSidebarToggle(): void {
         const toggle = document.getElementById('sidebar-toggle');
         const sidebar = document.getElementById('sidebar');
-
         if (toggle && sidebar) {
-            // Load saved sidebar state
             const savedState = localStorage.getItem('sidebar-collapsed');
             if (savedState === 'true') {
                 sidebar.classList.add('collapsed');
                 document.body.classList.add('sidebar-collapsed');
             }
 
-            // Toggle sidebar
             toggle.addEventListener('click', () => {
                 const isCollapsed = sidebar.classList.toggle('collapsed');
                 document.body.classList.toggle('sidebar-collapsed', isCollapsed);
-
-                // Save state
-                localStorage.setItem('sidebar-collapsed', isCollapsed);
-
-                // Update toggle icon
+                localStorage.setItem('sidebar-collapsed', String(isCollapsed));
                 toggle.textContent = isCollapsed ? '☰' : '✕';
             });
 
-            // Set initial toggle icon
             toggle.textContent = sidebar.classList.contains('collapsed') ? '☰' : '✕';
 
-            // Close sidebar when clicking on exercise on mobile
             document.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
-                    const exerciseItem = e.target.closest('.exercise-item');
+                    const exerciseItem = (e.target as HTMLElement).closest('.exercise-item');
                     if (exerciseItem) {
                         sidebar.classList.add('collapsed');
                         document.body.classList.add('sidebar-collapsed');
@@ -794,23 +839,19 @@ class App {
     /**
      * Toggle German help visibility and track usage
      */
-    toggleGermanHelp(button) {
+    toggleGermanHelp(button: HTMLElement): void {
         const helpArea = button.nextElementSibling;
         if (!helpArea) return;
 
         const isOpening = helpArea.classList.contains('hidden');
-
-        // Toggle visibility
         helpArea.classList.toggle('hidden');
         button.classList.toggle('active');
 
-        // Update button text
         const textSpan = button.querySelector('.toggle-text');
         if (textSpan) {
             textSpan.textContent = isOpening ? 'Deutsche Hilfe ausblenden' : 'Deutsche Hilfe anzeigen';
         }
 
-        // Track usage for adaptive learning (only when opening)
         if (isOpening) {
             this.trackGermanHelpUsage();
         }
@@ -819,41 +860,31 @@ class App {
     /**
      * Track German help usage for adaptive learning
      */
-    trackGermanHelpUsage() {
+    private trackGermanHelpUsage(): void {
         const exercise = this.exercises[this.currentIndex];
         if (!exercise) return;
 
         this.germanHelpUsage.helpUsed++;
-
-        // Track which exercises required help
-        if (!this.germanHelpUsage.exercisesWithHelp.includes(exercise.id)) {
-            this.germanHelpUsage.exercisesWithHelp.push(exercise.id);
+        if (!this.germanHelpUsage.exercisesWithHelp.includes(exercise.id || '')) {
+            this.germanHelpUsage.exercisesWithHelp.push(exercise.id || '');
         }
 
-        // Save usage data
         this.saveGermanHelpUsage();
 
-        // Log for analytics (only in debug mode)
-        if (window.Logger && window.__DEV__) {
-            const usagePercent = Math.round(
-                (this.germanHelpUsage.helpUsed / Math.max(this.germanHelpUsage.totalExercises, 1)) * 100
-            );
-            window.Logger.debug(
-                `German help used: ${this.germanHelpUsage.helpUsed}/${this.germanHelpUsage.totalExercises} (${usagePercent}%)`
-            );
+        if (window.Logger && (window as any).__DEV__) {
+            const usagePercent = Math.round((this.germanHelpUsage.helpUsed / Math.max(this.germanHelpUsage.totalExercises, 1)) * 100);
+            window.Logger.debug(`German help used: ${this.germanHelpUsage.helpUsed}/${this.germanHelpUsage.totalExercises} (${usagePercent}%)`);
         }
     }
 
     /**
      * Load a unit
      */
-    async loadUnit(unitNumber) {
+    async loadUnit(unitNumber: number): Promise<void> {
         try {
             window.Logger?.info(`Loading Unit ${unitNumber} (Adaptive Mode)...`);
 
-            // Load all exercises from all units for adaptive selection
-            const allExercises = [];
-
+            const allExercises: Exercise[] = [];
             for (let unit = 1; unit <= 7; unit++) {
                 const data = await this.loader.loadUnit(unit);
                 data.exercises.forEach(ex => {
@@ -867,24 +898,18 @@ class App {
 
             window.Logger?.info(`Loaded ${allExercises.length} total exercises from all units`);
 
-            // Create adaptive sequence based on performance
             this.exercises = this.adaptiveSystem.createAdaptiveSequence(allExercises, 50);
-
             window.Logger?.success(`Created adaptive sequence: ${this.exercises.length} exercises`);
 
             this.currentUnit = unitNumber;
             this.currentIndex = 0;
             this.attempts = 0;
 
-            // Update progress
             this.updateProgress();
-
-            // Show adaptive recommendations
             this.showAdaptiveRecommendations();
-
         } catch (error) {
             window.Logger?.error('Error loading adaptive exercises:', error);
-            window.ErrorBoundary?.handleError(error, { context: `Loading Unit ${unitNumber}` });
+            (window as any).ErrorBoundary?.handleError(error, { context: `Loading Unit ${unitNumber}` });
             throw error;
         }
     }
@@ -892,7 +917,7 @@ class App {
     /**
      * Show exercise at index
      */
-    showExercise(index) {
+    showExercise(index: number): void {
         if (index < 0 || index >= this.exercises.length) {
             window.Logger?.debug('Unit complete!');
             this.showCompletion();
@@ -901,25 +926,19 @@ class App {
 
         this.currentIndex = index;
         this.attempts = 0;
-
         const exercise = this.exercises[index];
 
-        // Track total exercises for German help usage stats
         this.germanHelpUsage.totalExercises++;
-
         window.Logger?.debug(`Exercise ${index + 1}/${this.exercises.length}: ${exercise.type} (${exercise.id})`);
 
-        // Clear previous feedback
-        this.renderer.clearFeedback();
+        if (this.renderer) {
+            this.renderer.clearFeedback();
+            this.renderer.render(exercise, (answer) => this.handleAnswer(answer));
+        }
 
-        // Render exercise
-        this.renderer.render(exercise, (answer) => this.handleAnswer(answer));
-
-        // Setup answer buttons if they exist
         this.setupAnswerButtons();
 
-        // Setup Enter key for text input
-        const input = document.getElementById('answer-input');
+        const input = document.getElementById('answer-input') as HTMLInputElement;
         if (input) {
             input.focus();
             input.addEventListener('keypress', (e) => {
@@ -929,19 +948,20 @@ class App {
             });
         }
 
-        // Update progress
         this.updateProgress();
     }
 
     /**
      * Setup answer buttons
      */
-    setupAnswerButtons() {
+    private setupAnswerButtons(): void {
         const buttons = document.querySelectorAll('.btn-option');
         buttons.forEach(btn => {
             btn.addEventListener('click', () => {
-                const answer = btn.dataset.answer;
-                this.handleAnswer(answer);
+                const answer = (btn as HTMLElement).dataset.answer;
+                if (answer) {
+                    this.handleAnswer(answer);
+                }
             });
         });
     }
@@ -949,8 +969,8 @@ class App {
     /**
      * Check answer (for text input exercises)
      */
-    checkAnswer() {
-        const input = document.getElementById('answer-input');
+    checkAnswer(): void {
+        const input = document.getElementById('answer-input') as HTMLInputElement | HTMLTextAreaElement;
         if (!input) return;
 
         const answer = input.value.trim();
@@ -965,114 +985,73 @@ class App {
     /**
      * Handle user answer
      */
-    handleAnswer(userAnswer) {
+    handleAnswer(userAnswer: string): void {
         console.log('[App] handleAnswer called with:', userAnswer);
-
         const exercise = this.exercises[this.currentIndex];
         console.log('[App] Current exercise:', exercise.type, exercise.id);
 
-        // Get correct answer (different location for reading-comprehension)
-        let correctAnswer;
+        let correctAnswer: string;
         if (exercise.type === 'reading-comprehension' && exercise.comprehensionCheck) {
-            correctAnswer = exercise.comprehensionCheck.correctAnswer;
+            correctAnswer = (exercise.comprehensionCheck as ComprehensionCheck).correctAnswer;
         } else {
-            correctAnswer = exercise.correctAnswer;
+            correctAnswer = exercise.answer || '';
         }
 
         console.log('[App] Correct answer:', correctAnswer);
 
-        // Use tolerant validator for improved feedback
-        const validationResult = this.validator.validateAnswer(
-            userAnswer,
-            correctAnswer,
-            exercise
-        );
-
+        const validationResult = this.validator.validateAnswer(userAnswer, correctAnswer, exercise);
         console.log('[App] Validation result:', validationResult);
 
-        // Update stats (only based on core correctness)
         this.stats.total++;
         if (validationResult.isCorrect) {
             this.stats.correct++;
         } else {
             this.attempts++;
-
-            // Show hint based on settings (only for incorrect answers)
             const maxAttempts = this.getMaxAttemptsBeforeHint();
-            if (this.attempts >= maxAttempts && exercise.hint) {
+            if (this.attempts >= maxAttempts && exercise.hint && this.renderer) {
                 this.renderer.showHint();
             }
         }
 
-        // Record attempt in adaptive learning system
         this.adaptiveSystem.recordAttempt(exercise, validationResult.isCorrect);
-
-        // Save progress after updating stats
         this.saveProgress();
 
         console.log('[App] About to call feedbackSystem.showValidationResult');
-
-        // Show improved feedback
         this.feedbackSystem.showValidationResult(validationResult, exercise);
-
         console.log('[App] After feedbackSystem.showValidationResult');
 
-        // Disable input/buttons to prevent multiple submissions
         this.disableInput();
     }
 
     /**
      * Disable input and buttons after answer submission
      */
-    disableInput() {
-        const input = document.getElementById('answer-input');
+    private disableInput(): void {
+        const input = document.getElementById('answer-input') as HTMLInputElement | HTMLTextAreaElement;
         if (input) {
             input.disabled = true;
         }
-
         const buttons = document.querySelectorAll('.btn-option, .btn-primary');
-        buttons.forEach(btn => btn.disabled = true);
-    }
-
-    /**
-     * Normalize answer for comparison
-     */
-    normalizeAnswer(answer) {
-        return String(answer)
-            .trim()
-            .toLowerCase()
-            .replace(/[¿?¡!.,;:]/g, '')  // Remove punctuation
-            .replace(/[áàâä]/g, 'a')     // Remove accents
-            .replace(/[éèêë]/g, 'e')
-            .replace(/[íìîï]/g, 'i')
-            .replace(/[óòôö]/g, 'o')
-            .replace(/[úùûü]/g, 'u')
-            .replace(/ñ/g, 'n')
-            .replace(/\s+/g, ' ');        // Normalize whitespace
+        buttons.forEach(btn => (btn as HTMLButtonElement).disabled = true);
     }
 
     /**
      * Show next button with context-aware label
      */
-    showNextButton() {
+    showNextButton(): void {
         const feedbackArea = document.getElementById('feedback-area');
         if (!feedbackArea) return;
 
-        // Check if button already exists
         if (document.getElementById('next-btn')) return;
 
-        // Determine context-aware button label
         const isLastExercise = this.currentIndex >= this.exercises.length - 1;
-        const buttonText = isLastExercise
-            ? 'Lektion abschliessen →'
-            : 'Naechste Uebung →';
+        const buttonText = isLastExercise ? 'Lektion abschliessen →' : 'Naechste Uebung →';
 
         const nextBtn = document.createElement('button');
         nextBtn.id = 'next-btn';
         nextBtn.className = 'btn-primary';
         nextBtn.textContent = buttonText;
         nextBtn.onclick = () => this.next();
-
         feedbackArea.appendChild(nextBtn);
         nextBtn.focus();
     }
@@ -1080,13 +1059,9 @@ class App {
     /**
      * Go to next exercise
      */
-    next() {
-        // Prevent race condition: ignore if already navigating
-        if (this.isNavigating) {
-            return;
-        }
+    next(): void {
+        if (this.isNavigating) return;
 
-        // Clear any pending auto-advance
         if (this.autoAdvanceTimeout) {
             clearTimeout(this.autoAdvanceTimeout);
             this.autoAdvanceTimeout = null;
@@ -1096,7 +1071,6 @@ class App {
         this.showExercise(this.currentIndex + 1);
         this.saveProgress();
 
-        // Reset navigation flag after a short delay
         setTimeout(() => {
             this.isNavigating = false;
         }, 100);
@@ -1105,10 +1079,8 @@ class App {
     /**
      * Go to previous exercise
      */
-    previous() {
-        if (this.isNavigating) {
-            return;
-        }
+    private previous(): void {
+        if (this.isNavigating) return;
 
         if (this.currentIndex > 0) {
             if (this.autoAdvanceTimeout) {
@@ -1129,10 +1101,8 @@ class App {
     /**
      * Jump to specific exercise
      */
-    jumpToExercise(index) {
-        if (this.isNavigating) {
-            return;
-        }
+    private jumpToExercise(index: number): void {
+        if (this.isNavigating) return;
 
         if (index >= 0 && index < this.exercises.length) {
             if (this.autoAdvanceTimeout) {
@@ -1153,7 +1123,7 @@ class App {
     /**
      * Update progress display with enhanced visual indicators
      */
-    updateProgress() {
+    private updateProgress(): void {
         const progressEl = document.getElementById('progress');
         if (!progressEl) return;
 
@@ -1161,14 +1131,10 @@ class App {
         const totalEx = this.exercises.length;
         const percentage = Math.round((currentEx / totalEx) * 100);
 
-        // Get current exercise info for context
         const currentExercise = this.exercises[this.currentIndex];
         const conceptLabel = currentExercise ? this.getConceptLabel(currentExercise.concept || '') : '';
 
-        // Show concept if available
-        const conceptDisplay = conceptLabel && conceptLabel !== 'Allgemein'
-            ? ` • ${conceptLabel}`
-            : '';
+        const conceptDisplay = conceptLabel && conceptLabel !== 'Allgemein' ? ` • ${conceptLabel}` : '';
 
         progressEl.innerHTML = `
             <span class="progress-text">
@@ -1179,23 +1145,19 @@ class App {
             </div>
         `;
 
-        // Update sidebar
         this.updateSidebar();
-
-        // Update prev button state
         this.updateNavigationButtons();
     }
 
     /**
      * Build sidebar navigation
      */
-    buildSidebar() {
+    private buildSidebar(): void {
         const nav = document.getElementById('exercise-nav');
         if (!nav) return;
 
         nav.innerHTML = '';
 
-        // Add unit selector at the top
         const unitSelector = document.createElement('div');
         unitSelector.className = 'unit-selector';
         unitSelector.style.cssText = `
@@ -1230,7 +1192,7 @@ class App {
 
         for (let i = 1; i <= 7; i++) {
             const option = document.createElement('option');
-            option.value = i;
+            option.value = String(i);
             option.textContent = `Lektion ${i}`;
             if (i === this.currentUnit) {
                 option.selected = true;
@@ -1239,13 +1201,12 @@ class App {
         }
 
         select.addEventListener('change', async (e) => {
-            const newUnit = parseInt(e.target.value);
+            const newUnit = parseInt((e.target as HTMLSelectElement).value);
             if (newUnit !== this.currentUnit) {
                 if (confirm(`Möchtest du zu Lektion ${newUnit} wechseln? Dein Fortschritt wird gespeichert.`)) {
                     await this.switchToUnit(newUnit);
                 } else {
-                    // Reset selection
-                    e.target.value = this.currentUnit;
+                    (e.target as HTMLSelectElement).value = String(this.currentUnit);
                 }
             }
         });
@@ -1253,14 +1214,11 @@ class App {
         unitSelector.appendChild(select);
         nav.appendChild(unitSelector);
 
-        // Group exercises by concept if available
         const groupedExercises = this.groupExercisesByConcept();
-
         for (const [concept, exercises] of Object.entries(groupedExercises)) {
             const section = document.createElement('div');
             section.className = 'unit-section';
 
-            // Get mastery level for this concept
             const firstEx = exercises[0]?.exercise;
             const conceptKey = firstEx?.concept || 'general';
             const mastery = this.adaptiveSystem.getConceptMastery(conceptKey);
@@ -1293,7 +1251,7 @@ class App {
             exercises.forEach(({ exercise, index }) => {
                 const item = document.createElement('li');
                 item.className = 'exercise-item';
-                item.dataset.index = index;
+                item.dataset.index = String(index);
 
                 const number = document.createElement('span');
                 number.className = 'exercise-number';
@@ -1320,29 +1278,14 @@ class App {
     /**
      * Switch to a different unit
      */
-    async switchToUnit(unitNumber) {
+    private async switchToUnit(unitNumber: number): Promise<void> {
         try {
-            // Save current progress
             this.saveProgress();
-
-            // Reset stats for new unit
-            this.stats = {
-                correct: 0,
-                total: 0
-            };
-
-            // Load new unit
+            this.stats = { correct: 0, total: 0 };
             await this.loadUnit(unitNumber);
-
-            // Rebuild sidebar
             this.buildSidebar();
-
-            // Show first exercise
             this.showExercise(0);
-
-            // Save new progress
             this.saveProgress();
-
             window.Logger?.success(`Zu Lektion ${unitNumber} gewechselt!`);
         } catch (error) {
             window.Logger?.error('Error switching unit:', error);
@@ -1353,27 +1296,23 @@ class App {
     /**
      * Group exercises by concept for sidebar
      */
-    groupExercisesByConcept() {
-        const groups = {};
-
+    private groupExercisesByConcept(): GroupedExercises {
+        const groups: GroupedExercises = {};
         this.exercises.forEach((exercise, index) => {
             const concept = exercise.concept || 'Allgemein';
             const groupName = this.getConceptLabel(concept);
-
             if (!groups[groupName]) {
                 groups[groupName] = [];
             }
-
             groups[groupName].push({ exercise, index });
         });
-
         return groups;
     }
 
     /**
      * Get label for exercise in sidebar
      */
-    getExerciseLabel(exercise) {
+    private getExerciseLabel(exercise: Exercise): string {
         if (exercise.question) {
             return exercise.question.substring(0, 30) + (exercise.question.length > 30 ? '...' : '');
         }
@@ -1383,8 +1322,8 @@ class App {
     /**
      * Get readable label for concept
      */
-    getConceptLabel(concept) {
-        const labels = {
+    private getConceptLabel(concept: string): string {
+        const labels: Record<string, string> = {
             'ser-conjugation': 'SER Konjugation',
             'estar-conjugation': 'ESTAR Konjugation',
             'tener': 'TENER',
@@ -1393,25 +1332,22 @@ class App {
             'integration': 'Integration'
         };
 
-        // Try to find match
         for (const [key, label] of Object.entries(labels)) {
             if (concept.includes(key)) {
                 return label;
             }
         }
-
         return concept;
     }
 
     /**
      * Update sidebar to highlight current exercise
      */
-    updateSidebar() {
+    private updateSidebar(): void {
         const items = document.querySelectorAll('.exercise-item');
         items.forEach(item => {
-            const index = parseInt(item.dataset.index);
+            const index = parseInt((item as HTMLElement).dataset.index || '0');
             item.classList.remove('active', 'completed');
-
             if (index === this.currentIndex) {
                 item.classList.add('active');
             } else if (index < this.currentIndex) {
@@ -1419,7 +1355,6 @@ class App {
             }
         });
 
-        // Scroll active item into view
         const activeItem = document.querySelector('.exercise-item.active');
         if (activeItem) {
             activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -1429,8 +1364,8 @@ class App {
     /**
      * Update navigation button states
      */
-    updateNavigationButtons() {
-        const prevBtn = document.getElementById('prev-btn');
+    private updateNavigationButtons(): void {
+        const prevBtn = document.getElementById('prev-btn') as HTMLButtonElement;
         if (prevBtn) {
             if (this.currentIndex > 0) {
                 prevBtn.style.display = 'block';
@@ -1444,17 +1379,16 @@ class App {
     /**
      * Show completion screen
      */
-    showCompletion() {
+    private showCompletion(): void {
         const accuracy = Math.round((this.stats.correct / this.stats.total) * 100);
         const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
 
-        // Check if there's a next unit
-        const hasNextUnit = this.currentUnit < 7; // We have 7 units total
-
-        // Check if user completed Unit 7 (A1 complete)
+        const hasNextUnit = this.currentUnit < 7;
         const completedA1 = this.currentUnit === 7;
 
         const container = document.getElementById('exercise-area');
+        if (!container) return;
+
         container.innerHTML = `
             <div class="completion">
                 <div class="completion-emoji">${emoji}</div>
@@ -1498,7 +1432,6 @@ class App {
             </div>
         `;
 
-        // Mark Unit 7 as completed for level test system
         if (completedA1) {
             this.markUnitComplete(7);
         }
@@ -1507,7 +1440,7 @@ class App {
     /**
      * Mark unit as completed
      */
-    markUnitComplete(unitNumber) {
+    private markUnitComplete(unitNumber: number): void {
         try {
             const progress = JSON.parse(localStorage.getItem('spanish-app-progress') || '{}');
             if (!progress.completedUnits) {
@@ -1525,32 +1458,26 @@ class App {
     /**
      * Start level test
      */
-    async startLevelTest(level) {
+    async startLevelTest(level: string): Promise<void> {
         try {
             window.Logger?.info(`Starting ${level} level test...`);
 
-            // Get the test
             const test = this.levelTestSystem.getTestById(level);
             if (!test) {
                 alert('Test not found!');
                 return;
             }
 
-            // Show test instructions
-            const proceed = confirm(
-                `Examen de Nivel ${level}\n\n` +
+            const proceed = confirm(`Examen de Nivel ${level}\n\n` +
                 `${test.description}\n\n` +
                 `Tiempo: ${test.timeLimit} minutos\n` +
                 `Puntuación mínima: ${test.passingScore}%\n\n` +
                 `IMPORTANTE: El examen está completamente en español sin ayuda en alemán.\n\n` +
-                `¿Estás listo para comenzar?`
-            );
+                `¿Estás listo para comenzar?`);
 
             if (!proceed) return;
 
-            // TODO: Implement test UI and flow
             alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.');
-
         } catch (error) {
             window.Logger?.error('Error starting level test:', error);
             alert('Fehler beim Starten des Tests');
@@ -1560,33 +1487,19 @@ class App {
     /**
      * Load next unit
      */
-    async loadNextUnit() {
+    async loadNextUnit(): Promise<void> {
         const nextUnit = this.currentUnit + 1;
-
         if (nextUnit > 7) {
             alert('Du hast bereits alle Lektionen abgeschlossen!');
             return;
         }
 
         try {
-            // Reset stats for new unit
-            this.stats = {
-                correct: 0,
-                total: 0
-            };
-
-            // Load next unit
+            this.stats = { correct: 0, total: 0 };
             await this.loadUnit(nextUnit);
-
-            // Rebuild sidebar
             this.buildSidebar();
-
-            // Show first exercise
             this.showExercise(0);
-
-            // Save progress
             this.saveProgress();
-
             window.Logger?.success(`Lektion ${nextUnit} gestartet!`);
         } catch (error) {
             window.Logger?.error('Error loading next unit:', error);
@@ -1597,26 +1510,13 @@ class App {
     /**
      * Restart current unit
      */
-    async restartCurrentUnit() {
+    async restartCurrentUnit(): Promise<void> {
         try {
-            // Reset stats
-            this.stats = {
-                correct: 0,
-                total: 0
-            };
-
-            // Reload current unit
+            this.stats = { correct: 0, total: 0 };
             await this.loadUnit(this.currentUnit);
-
-            // Rebuild sidebar
             this.buildSidebar();
-
-            // Show first exercise
             this.showExercise(0);
-
-            // Save progress
             this.saveProgress();
-
             window.Logger?.success(`Lektion ${this.currentUnit} neu gestartet!`);
         } catch (error) {
             window.Logger?.error('Error restarting unit:', error);
@@ -1627,7 +1527,7 @@ class App {
     /**
      * Load settings from localStorage
      */
-    loadSettings() {
+    private loadSettings(): AppSettings {
         try {
             const stored = localStorage.getItem('spanish-app-settings');
             if (stored) {
@@ -1637,16 +1537,13 @@ class App {
             window.Logger?.error('Error loading settings:', error);
         }
 
-        // Default settings
-        return {
-            helpLevel: 'normal' // 'keine', 'normal', 'viel'
-        };
+        return { helpLevel: 'normal' };
     }
 
     /**
      * Save settings to localStorage
      */
-    saveSettings() {
+    private saveSettings(): void {
         try {
             localStorage.setItem('spanish-app-settings', JSON.stringify(this.settings));
             window.Logger?.debug('Settings saved:', this.settings);
@@ -1658,9 +1555,9 @@ class App {
     /**
      * Save progress to localStorage
      */
-    saveProgress() {
+    private saveProgress(): void {
         try {
-            const progress = {
+            const progress: SavedProgress = {
                 unit: this.currentUnit,
                 index: this.currentIndex,
                 stats: {
@@ -1678,7 +1575,7 @@ class App {
     /**
      * Load progress from localStorage
      */
-    loadProgress() {
+    private loadProgress(): SavedProgress | null {
         try {
             const stored = localStorage.getItem('spanish-app-progress');
             if (stored) {
@@ -1695,7 +1592,7 @@ class App {
     /**
      * Save German help usage to localStorage
      */
-    saveGermanHelpUsage() {
+    private saveGermanHelpUsage(): void {
         try {
             localStorage.setItem('spanish-app-german-help', JSON.stringify(this.germanHelpUsage));
             window.Logger?.debug('German help usage saved:', this.germanHelpUsage);
@@ -1707,7 +1604,7 @@ class App {
     /**
      * Load German help usage from localStorage
      */
-    loadGermanHelpUsage() {
+    private loadGermanHelpUsage(): void {
         try {
             const stored = localStorage.getItem('spanish-app-german-help');
             if (stored) {
@@ -1722,20 +1619,19 @@ class App {
     /**
      * Get max attempts before showing hint
      */
-    getMaxAttemptsBeforeHint() {
-        const mapping = {
-            'keine': 999,    // Never show hints
-            'normal': 3,     // Show after 3 attempts
-            'viel': 1        // Show after 1 attempt
+    private getMaxAttemptsBeforeHint(): number {
+        const mapping: Record<string, number> = {
+            'keine': 999,
+            'normal': 3,
+            'viel': 1
         };
-
         return mapping[this.settings.helpLevel] || 3;
     }
 
     /**
      * Setup settings button
      */
-    setupSettingsButton() {
+    private setupSettingsButton(): void {
         const settingsBtn = document.getElementById('settings-btn');
         if (!settingsBtn) return;
 
@@ -1747,25 +1643,23 @@ class App {
     /**
      * Show settings modal
      */
-    showSettingsModal() {
+    private showSettingsModal(): void {
         const modal = document.getElementById('settings-modal');
         if (!modal) return;
 
         modal.classList.remove('hidden');
 
-        // Set current value
-        const radio = document.querySelector(`input[name="help"][value="${this.settings.helpLevel}"]`);
+        const radio = document.querySelector(`input[name="help"][value="${this.settings.helpLevel}"]`) as HTMLInputElement;
         if (radio) {
             radio.checked = true;
         }
 
-        // Setup save button
         const saveBtn = document.getElementById('save-settings');
         if (saveBtn) {
             saveBtn.onclick = () => {
-                const selected = document.querySelector('input[name="help"]:checked');
+                const selected = document.querySelector('input[name="help"]:checked') as HTMLInputElement;
                 if (selected) {
-                    this.settings.helpLevel = selected.value;
+                    this.settings.helpLevel = selected.value as 'keine' | 'normal' | 'viel';
                     this.saveSettings();
                     alert('✅ Einstellungen gespeichert!');
                     modal.classList.add('hidden');
@@ -1773,7 +1667,6 @@ class App {
             };
         }
 
-        // Setup close button
         const closeBtn = document.getElementById('close-settings');
         if (closeBtn) {
             closeBtn.onclick = () => {
@@ -1785,19 +1678,16 @@ class App {
     /**
      * Show adaptive learning recommendations
      */
-    showAdaptiveRecommendations() {
+    private showAdaptiveRecommendations(): void {
         const recommendations = this.adaptiveSystem.getRecommendations();
         const stats = this.adaptiveSystem.getStatistics();
 
-        // Log recommendations to console
         console.log('🎯 Adaptive Learning Recommendations:', recommendations);
         console.log('📊 Learning Statistics:', stats);
 
-        // Update sidebar with adaptive info
         const sidebar = document.getElementById('sidebar');
         if (!sidebar) return;
 
-        // Create adaptive info panel
         let adaptivePanel = document.getElementById('adaptive-panel');
         if (!adaptivePanel) {
             adaptivePanel = document.createElement('div');
@@ -1809,18 +1699,13 @@ class App {
                 padding: 15px;
                 margin: 15px 0;
             `;
-
-            // Insert after sidebar header
             const sidebarHeader = sidebar.querySelector('.sidebar-header');
             if (sidebarHeader && sidebarHeader.nextSibling) {
                 sidebar.insertBefore(adaptivePanel, sidebarHeader.nextSibling);
             }
         }
 
-        // Build adaptive info HTML
         let html = '<div style="font-size: 14px;">';
-
-        // Overall mastery
         const masteryPercent = Math.round(recommendations.overallMastery * 100);
         html += `<div style="margin-bottom: 10px;">
             <strong>🎯 Gesamtfortschritt:</strong> ${masteryPercent}%
@@ -1829,30 +1714,25 @@ class App {
             </div>
         </div>`;
 
-        // Weak concepts
         if (recommendations.weakConcepts.length > 0) {
             html += '<div style="margin-bottom: 10px;"><strong>⚠️ Schwache Bereiche:</strong><ul style="margin: 5px 0; padding-left: 20px;">';
-            recommendations.weakConcepts.slice(0, 3).forEach(weak => {
+            recommendations.weakConcepts.slice(0, 3).forEach((weak: any) => {
                 const percent = Math.round(weak.mastery * 100);
                 html += `<li style="font-size: 12px;">${weak.concept}: ${percent}%</li>`;
             });
             html += '</ul></div>';
         }
 
-        // Next difficulty
         html += `<div style="margin-bottom: 10px;">
             <strong>📈 Empfohlene Schwierigkeit:</strong> Level ${recommendations.nextDifficulty}/5
         </div>`;
 
-        // Exercises for review
         if (recommendations.reviewExercises.length > 0) {
             html += `<div>
                 <strong>🔄 Zu wiederholen:</strong> ${recommendations.reviewExercises.length} Übungen
             </div>`;
         }
-
         html += '</div>';
-
         adaptivePanel.innerHTML = html;
     }
 }
@@ -1861,17 +1741,13 @@ class App {
 // INITIALIZATION
 // ====================================================================
 
-// Initialize app when page loads
 window.addEventListener('DOMContentLoaded', () => {
     const app = new App();
-
-    // Make app available globally BEFORE init
-    window.app = app;
-
+    (window as any).app = app;
     app.init();
 });
 
-// Also make classes available globally for backwards compatibility
-window.ExerciseLoader = ExerciseLoader;
-window.ExerciseRenderer = ExerciseRenderer;
-window.App = App;
+// Make classes available globally for backwards compatibility
+(window as any).ExerciseLoader = ExerciseLoader;
+(window as any).ExerciseRenderer = ExerciseRenderer;
+(window as any).App = App;

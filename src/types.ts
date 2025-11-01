@@ -9,6 +9,7 @@
 export type Severity = 'error' | 'warning' | 'info' | 'success';
 export type ImprovementType = 'accent' | 'punctuation' | 'capitalization';
 export type ErrorType = 'word_count' | 'word_error';
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
 export interface ValidationFeedback {
     primary: string;

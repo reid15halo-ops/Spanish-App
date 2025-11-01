@@ -8,6 +8,7 @@ declare global {
         ErrorMonitor: any;
         PerformanceMonitor: any;
         Logger: any;
+        LoadingManager: any;
         DataManager: any;
         DataBackup: any;
         GDPR: any;

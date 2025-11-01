@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Consolidated Utilities Module - TypeScript Version
  *
@@ -12,93 +11,129 @@
  * - SpanishKeyboardHelper
  * - HapticFeedbackManager
  */
-Object.defineProperty(exports, "__esModule", { value: true });
+
+import type { LogLevel } from './types';
+
+// ====================================================================
+// TYPES & INTERFACES
+// ====================================================================
+
+interface LogLevels {
+    debug: number;
+    info: number;
+    warn: number;
+    error: number;
+}
+
+interface EnvInterface {
+    isDevelopment?: () => boolean;
+    get: (key: string) => any;
+}
+
 // ====================================================================
 // LOGGER
 // ====================================================================
+
 class Logger {
+    private env: EnvInterface;
+    private logLevel: string;
+    private levels: LogLevels = {
+        debug: 0,
+        info: 1,
+        warn: 2,
+        error: 3
+    };
+
     constructor() {
-        this.levels = {
-            debug: 0,
-            info: 1,
-            warn: 2,
-            error: 3
-        };
         this.env = window.ENV || { isDevelopment: () => false, get: () => 'error' };
         this.logLevel = this.env.get('logLevel') || 'error';
     }
-    shouldLog(level) {
-        const currentLevel = this.levels[this.logLevel] || this.levels.error;
+
+    private shouldLog(level: LogLevel): boolean {
+        const currentLevel = this.levels[this.logLevel as LogLevel] || this.levels.error;
         const messageLevel = this.levels[level] || this.levels.error;
         return messageLevel >= currentLevel;
     }
-    debug(...args) {
+
+    public debug(...args: any[]): void {
         if (this.shouldLog('debug')) {
             console.log('[DEBUG]', ...args);
         }
     }
-    info(...args) {
+
+    public info(...args: any[]): void {
         if (this.shouldLog('info')) {
             console.log('[INFO]', ...args);
         }
     }
-    warn(...args) {
+
+    public warn(...args: any[]): void {
         if (this.shouldLog('warn')) {
             console.warn('[WARN]', ...args);
         }
     }
-    error(...args) {
+
+    public error(...args: any[]): void {
         if (this.shouldLog('error')) {
             console.error('[ERROR]', ...args);
         }
     }
-    success(...args) {
+
+    public success(...args: any[]): void {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.log('[SUCCESS]', '✅', ...args);
         }
     }
-    group(label) {
+
+    public group(label: string): void {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.group(label);
         }
     }
-    groupEnd() {
+
+    public groupEnd(): void {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.groupEnd();
         }
     }
-    table(data) {
+
+    public table(data: any): void {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.table(data);
         }
     }
-    time(label) {
+
+    public time(label: string): void {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.time(label);
         }
     }
-    timeEnd(label) {
+
+    public timeEnd(label: string): void {
         if (this.env.isDevelopment && this.env.isDevelopment()) {
             console.timeEnd(label);
         }
     }
 }
+
 // ====================================================================
 // LOADING MANAGER
 // ====================================================================
+
 class LoadingManager {
-    constructor() {
-        this.activeLoaders = new Set();
-    }
-    show(container, message = 'Lädt...') {
+    private activeLoaders: Set<string> = new Set();
+
+    public show(container: string | HTMLElement, message = 'Lädt...'): string {
         const loaderId = 'loader-' + Date.now();
         const containerEl = typeof container === 'string'
             ? document.getElementById(container)
             : container;
+
         if (!containerEl) {
             window.Logger?.warn('Loading container not found:', container);
             return loaderId;
         }
+
         const loader = document.createElement('div');
         loader.id = loaderId;
         loader.className = 'loading-overlay';
@@ -108,13 +143,16 @@ class LoadingManager {
                 <p class="loading-message">${message}</p>
             </div>
         `;
+
         containerEl.appendChild(loader);
         this.activeLoaders.add(loaderId);
+
         return loaderId;
     }
-    hide(loaderId) {
-        if (!loaderId)
-            return;
+
+    public hide(loaderId: string): void {
+        if (!loaderId) return;
+
         const loader = document.getElementById(loaderId);
         if (loader) {
             loader.classList.add('fade-out');
@@ -124,39 +162,48 @@ class LoadingManager {
             }, 300);
         }
     }
-    showInline(container, message = 'Lädt...') {
+
+    public showInline(container: string | HTMLElement, message = 'Lädt...'): string {
         const loaderId = 'inline-loader-' + Date.now();
         const containerEl = typeof container === 'string'
             ? document.getElementById(container)
             : container;
-        if (!containerEl)
-            return loaderId;
+
+        if (!containerEl) return loaderId;
+
         const loader = document.createElement('span');
         loader.id = loaderId;
         loader.className = 'inline-loader';
         loader.innerHTML = `<span class="spinner-small"></span> ${message}`;
+
         containerEl.appendChild(loader);
         this.activeLoaders.add(loaderId);
+
         return loaderId;
     }
-    hideAll() {
+
+    public hideAll(): void {
         this.activeLoaders.forEach(loaderId => {
             this.hide(loaderId);
         });
     }
 }
+
 // ====================================================================
 // DATA BACKUP SYSTEM
 // ====================================================================
+
 class DataBackupSystem {
-    exportToJSON() {
+    public exportToJSON(): void {
         const data = window.DataManager?.loadProgress();
+
         if (data && data.success) {
             const exportData = {
                 version: '1.0.0',
                 exportDate: new Date().toISOString(),
                 data: data.data
             };
+
             const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -166,63 +213,66 @@ class DataBackupSystem {
             URL.revokeObjectURL(url);
         }
     }
-    importFromJSON(file) {
+
+    public importFromJSON(file: File): Promise<boolean> {
         return new Promise((resolve) => {
             const reader = new FileReader();
+
             reader.onload = (e) => {
                 try {
-                    const data = JSON.parse(e.target?.result);
+                    const data = JSON.parse(e.target?.result as string);
+
                     if (data && data.data) {
                         const result = window.DataManager?.saveProgress(data.data);
                         resolve(result?.success || false);
-                    }
-                    else {
+                    } else {
                         resolve(false);
                     }
-                }
-                catch (error) {
+                } catch (error) {
                     resolve(false);
                 }
             };
+
             reader.readAsText(file);
         });
     }
 }
+
 // ====================================================================
 // GDPR COMPLIANCE
 // ====================================================================
+
 class GDPRCompliance {
-    constructor() {
-        this.storageKey = 'gdpr-consent';
-    }
-    hasConsent() {
+    private readonly storageKey = 'gdpr-consent';
+
+    public hasConsent(): boolean {
         try {
             const consent = localStorage.getItem(this.storageKey);
             return consent === 'true';
-        }
-        catch {
+        } catch {
             return false;
         }
     }
-    grantConsent() {
+
+    public grantConsent(): void {
         try {
             localStorage.setItem(this.storageKey, 'true');
-        }
-        catch (error) {
+        } catch (error) {
             window.Logger?.error('Failed to save consent:', error);
         }
     }
-    revokeConsent() {
+
+    public revokeConsent(): void {
         try {
             localStorage.removeItem(this.storageKey);
-        }
-        catch (error) {
+        } catch (error) {
             window.Logger?.error('Failed to revoke consent:', error);
         }
     }
-    showConsentBanner() {
-        if (this.hasConsent())
-            return;
+
+    public showConsentBanner(): void {
+        if (this.hasConsent()) return;
+
         const banner = document.createElement('div');
         banner.id = 'gdpr-banner';
         banner.className = 'gdpr-banner';
@@ -235,102 +285,124 @@ class GDPRCompliance {
                 </div>
             </div>
         `;
+
         document.body.appendChild(banner);
+
         document.getElementById('gdpr-accept')?.addEventListener('click', () => {
             this.grantConsent();
             banner.remove();
         });
+
         document.getElementById('gdpr-decline')?.addEventListener('click', () => {
             banner.remove();
         });
     }
 }
+
 // ====================================================================
 // TOUCH GESTURE MANAGER
 // ====================================================================
+
 class TouchGestureManager {
-    constructor() {
-        this.touchStartX = 0;
-        this.touchStartY = 0;
-        this.swipeThreshold = 50;
-    }
-    enableSwipeNavigation(onSwipeLeft, onSwipeRight) {
+    private touchStartX = 0;
+    private touchStartY = 0;
+    private swipeThreshold = 50;
+
+    public enableSwipeNavigation(
+        onSwipeLeft?: () => void,
+        onSwipeRight?: () => void
+    ): void {
         document.addEventListener('touchstart', (e) => {
             this.touchStartX = e.touches[0]?.clientX || 0;
             this.touchStartY = e.touches[0]?.clientY || 0;
         });
+
         document.addEventListener('touchend', (e) => {
             const touchEndX = e.changedTouches[0]?.clientX || 0;
             const touchEndY = e.changedTouches[0]?.clientY || 0;
+
             const deltaX = touchEndX - this.touchStartX;
             const deltaY = touchEndY - this.touchStartY;
+
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 if (deltaX > this.swipeThreshold && onSwipeRight) {
                     onSwipeRight();
-                }
-                else if (deltaX < -this.swipeThreshold && onSwipeLeft) {
+                } else if (deltaX < -this.swipeThreshold && onSwipeLeft) {
                     onSwipeLeft();
                 }
             }
         });
     }
 }
+
 // ====================================================================
 // ACCESSIBILITY MANAGER
 // ====================================================================
+
 class AccessibilityManager {
-    initialize() {
+    public initialize(): void {
         this.setupKeyboardNavigation();
         this.setupScreenReaderSupport();
         this.setupFocusManagement();
     }
-    setupKeyboardNavigation() {
+
+    private setupKeyboardNavigation(): void {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Tab') {
                 document.body.classList.add('keyboard-nav');
             }
         });
+
         document.addEventListener('mousedown', () => {
             document.body.classList.remove('keyboard-nav');
         });
     }
-    setupScreenReaderSupport() {
+
+    private setupScreenReaderSupport(): void {
         // Add ARIA labels where needed
     }
-    setupFocusManagement() {
+
+    private setupFocusManagement(): void {
         // Manage focus for modals and overlays
     }
-    announceToScreenReader(message) {
+
+    public announceToScreenReader(message: string): void {
         const announcement = document.createElement('div');
         announcement.setAttribute('role', 'status');
         announcement.setAttribute('aria-live', 'polite');
         announcement.className = 'sr-only';
         announcement.textContent = message;
+
         document.body.appendChild(announcement);
+
         setTimeout(() => announcement.remove(), 1000);
     }
 }
+
 // ====================================================================
 // SPANISH KEYBOARD HELPER
 // ====================================================================
+
 class SpanishKeyboardHelper {
-    constructor() {
-        this.specialChars = {
-            'á': 'á', 'é': 'é', 'í': 'í', 'ó': 'ó', 'ú': 'ú',
-            'ñ': 'ñ', '¿': '¿', '¡': '¡'
-        };
-    }
-    insertCharacter(input, char) {
+    private readonly specialChars: Record<string, string> = {
+        'á': 'á', 'é': 'é', 'í': 'í', 'ó': 'ó', 'ú': 'ú',
+        'ñ': 'ñ', '¿': '¿', '¡': '¡'
+    };
+
+    public insertCharacter(input: HTMLInputElement, char: string): void {
         const start = input.selectionStart || 0;
         const end = input.selectionEnd || 0;
         const text = input.value;
+
         input.value = text.substring(0, start) + char + text.substring(end);
         input.selectionStart = input.selectionEnd = start + char.length;
         input.focus();
     }
-    createKeyboard(targetInput) {
+
+    public createKeyboard(targetInput: HTMLInputElement): HTMLElement {
         const keyboard = document.createElement('div');
         keyboard.className = 'spanish-keyboard';
+
         Object.entries(this.specialChars).forEach(([key, char]) => {
             const btn = document.createElement('button');
             btn.textContent = char;
@@ -338,46 +410,57 @@ class SpanishKeyboardHelper {
             btn.onclick = () => this.insertCharacter(targetInput, char);
             keyboard.appendChild(btn);
         });
+
         return keyboard;
     }
 }
+
 // ====================================================================
 // HAPTIC FEEDBACK MANAGER
 // ====================================================================
+
 class HapticFeedbackManager {
+    private supported: boolean;
+
     constructor() {
         this.supported = 'vibrate' in navigator;
     }
-    light() {
+
+    public light(): void {
         if (this.supported) {
             navigator.vibrate(10);
         }
     }
-    medium() {
+
+    public medium(): void {
         if (this.supported) {
             navigator.vibrate(20);
         }
     }
-    heavy() {
+
+    public heavy(): void {
         if (this.supported) {
             navigator.vibrate(50);
         }
     }
-    success() {
+
+    public success(): void {
         if (this.supported) {
             navigator.vibrate([10, 50, 10]);
         }
     }
-    error() {
+
+    public error(): void {
         if (this.supported) {
             navigator.vibrate([50, 100, 50]);
         }
     }
 }
+
 // ====================================================================
 // CREATE GLOBAL INSTANCES
 // ====================================================================
+
 window.Logger = new Logger();
 window.DataBackup = new DataBackupSystem();
 window.GDPR = new GDPRCompliance();
-//# sourceMappingURL=utils.js.map

@@ -4,9 +4,10 @@
  * Manages different configurations for development, staging, and production
  */
 
+import type { LogLevel } from '../types';
+
 type Environment = 'development' | 'staging' | 'production';
 type CacheStrategy = 'network-first' | 'cache-first';
-type LogLevel = 'debug' | 'info' | 'warn' | 'error';
 
 interface FeatureFlags {
     experimentalFeatures: boolean;
