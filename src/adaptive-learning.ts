@@ -9,21 +9,107 @@
  * - Personalized exercise selection
  */
 
+import type { Exercise } from './types';
+
+// ====================================================================
+// TYPES & INTERFACES
+// ====================================================================
+
+interface ConceptData {
+    attempts: number;
+    correct: number;
+    lastSeen: number;
+    mastery: number;
+    difficulty: number;
+}
+
+interface ExerciseData {
+    attempts: number;
+    correct: number;
+    lastSeen: number;
+    nextReview: number | null;
+}
+
+interface CategoryData {
+    attempts: number;
+    correct: number;
+}
+
+interface UnitData {
+    attempts: number;
+    correct: number;
+    mastered: boolean;
+}
+
+interface PerformanceData {
+    concepts: Record<string, ConceptData>;
+    exercises: Record<string, ExerciseData>;
+    categories: Record<string, CategoryData>;
+    difficulties: Record<number, CategoryData>;
+    units: Record<number, UnitData>;
+}
+
+interface WeakConcept {
+    concept: string;
+    mastery: number;
+    attempts: number;
+    correct: number;
+}
+
+interface ReviewExercise {
+    id: string;
+    attempts: number;
+    correct: number;
+    lastSeen: number;
+    nextReview: number | null;
+}
+
+interface UnitProgress {
+    mastery: number;
+    attempts: number;
+    correct: number;
+    mastered: boolean;
+}
+
+interface Recommendations {
+    weakConcepts: WeakConcept[];
+    reviewExercises: ReviewExercise[];
+    nextDifficulty: number;
+    unitProgress: Record<string, UnitProgress>;
+    overallMastery: number;
+}
+
+interface Statistics {
+    totalAttempts: number;
+    totalCorrect: number;
+    conceptsMastered: number;
+    conceptsInProgress: number;
+    averageMastery: number;
+    strengthsByCategory: Record<string, number>;
+    weaknessesByCategory: Record<string, number>;
+}
+
+// ====================================================================
+// ADAPTIVE LEARNING SYSTEM
+// ====================================================================
+
 class AdaptiveLearningSystem {
+    private performanceData: PerformanceData;
+    private readonly masteryThreshold = 0.80; // 80% correct = mastered
+    private readonly repetitionIntervals = [1, 3, 7, 14, 30]; // days
+
     constructor() {
         this.performanceData = this.loadPerformanceData();
-        this.masteryThreshold = 0.80; // 80% correct = mastered
-        this.repetitionIntervals = [1, 3, 7, 14, 30]; // days
     }
 
     /**
      * Load performance data from localStorage
      */
-    loadPerformanceData() {
+    private loadPerformanceData(): PerformanceData {
         try {
             const saved = localStorage.getItem('adaptive-performance');
             if (saved) {
-                return JSON.parse(saved);
+                return JSON.parse(saved) as PerformanceData;
             }
         } catch (e) {
             console.error('Failed to load performance data:', e);
@@ -31,18 +117,18 @@ class AdaptiveLearningSystem {
 
         // Initialize default structure
         return {
-            concepts: {},      // concept -> { attempts, correct, lastSeen, mastery }
-            exercises: {},     // exerciseId -> { attempts, correct, lastSeen, nextReview }
-            categories: {},    // category -> { attempts, correct }
-            difficulties: {},  // difficulty -> { attempts, correct }
-            units: {}          // unit -> { attempts, correct, mastered }
+            concepts: {},
+            exercises: {},
+            categories: {},
+            difficulties: {},
+            units: {}
         };
     }
 
     /**
      * Save performance data to localStorage
      */
-    savePerformanceData() {
+    private savePerformanceData(): void {
         try {
             localStorage.setItem('adaptive-performance', JSON.stringify(this.performanceData));
         } catch (e) {
@@ -53,7 +139,7 @@ class AdaptiveLearningSystem {
     /**
      * Record exercise attempt
      */
-    recordAttempt(exercise, isCorrect) {
+    public recordAttempt(exercise: Exercise, isCorrect: boolean): void {
         const now = Date.now();
 
         // Track by concept
@@ -68,7 +154,7 @@ class AdaptiveLearningSystem {
             };
         }
 
-        const conceptData = this.performanceData.concepts[concept];
+        const conceptData = this.performanceData.concepts[concept]!;
         conceptData.attempts++;
         if (isCorrect) conceptData.correct++;
         conceptData.lastSeen = now;
@@ -85,17 +171,17 @@ class AdaptiveLearningSystem {
             };
         }
 
-        const exerciseData = this.performanceData.exercises[exerciseId];
+        const exerciseData = this.performanceData.exercises[exerciseId]!;
         exerciseData.attempts++;
         if (isCorrect) {
             exerciseData.correct++;
             // Schedule next review using spaced repetition
             const reviewIndex = Math.min(exerciseData.correct - 1, this.repetitionIntervals.length - 1);
-            const daysUntilReview = this.repetitionIntervals[Math.max(0, reviewIndex)];
+            const daysUntilReview = this.repetitionIntervals[Math.max(0, reviewIndex)]!;
             exerciseData.nextReview = now + (daysUntilReview * 24 * 60 * 60 * 1000);
         } else {
             // Reset review schedule on incorrect
-            exerciseData.nextReview = now + (this.repetitionIntervals[0] * 24 * 60 * 60 * 1000);
+            exerciseData.nextReview = now + (this.repetitionIntervals[0]! * 24 * 60 * 60 * 1000);
         }
         exerciseData.lastSeen = now;
 
@@ -104,24 +190,24 @@ class AdaptiveLearningSystem {
         if (!this.performanceData.categories[category]) {
             this.performanceData.categories[category] = { attempts: 0, correct: 0 };
         }
-        this.performanceData.categories[category].attempts++;
-        if (isCorrect) this.performanceData.categories[category].correct++;
+        this.performanceData.categories[category]!.attempts++;
+        if (isCorrect) this.performanceData.categories[category]!.correct++;
 
         // Track by difficulty
         const difficulty = exercise.difficulty || 1;
         if (!this.performanceData.difficulties[difficulty]) {
             this.performanceData.difficulties[difficulty] = { attempts: 0, correct: 0 };
         }
-        this.performanceData.difficulties[difficulty].attempts++;
-        if (isCorrect) this.performanceData.difficulties[difficulty].correct++;
+        this.performanceData.difficulties[difficulty]!.attempts++;
+        if (isCorrect) this.performanceData.difficulties[difficulty]!.correct++;
 
         // Track by unit
         const unit = exercise.unitNumber || 1;
         if (!this.performanceData.units[unit]) {
             this.performanceData.units[unit] = { attempts: 0, correct: 0, mastered: false };
         }
-        this.performanceData.units[unit].attempts++;
-        if (isCorrect) this.performanceData.units[unit].correct++;
+        this.performanceData.units[unit]!.attempts++;
+        if (isCorrect) this.performanceData.units[unit]!.correct++;
 
         this.savePerformanceData();
     }
@@ -129,7 +215,7 @@ class AdaptiveLearningSystem {
     /**
      * Get mastery level for a concept (0-1)
      */
-    getConceptMastery(concept) {
+    public getConceptMastery(concept: string): number {
         const data = this.performanceData.concepts[concept];
         if (!data || data.attempts === 0) return 0;
         return data.mastery;
@@ -138,14 +224,14 @@ class AdaptiveLearningSystem {
     /**
      * Check if concept is mastered
      */
-    isConceptMastered(concept) {
+    public isConceptMastered(concept: string): boolean {
         return this.getConceptMastery(concept) >= this.masteryThreshold;
     }
 
     /**
      * Get weak concepts (below mastery threshold)
      */
-    getWeakConcepts() {
+    public getWeakConcepts(): WeakConcept[] {
         return Object.entries(this.performanceData.concepts)
             .filter(([_, data]) => data.attempts > 0 && data.mastery < this.masteryThreshold)
             .sort((a, b) => a[1].mastery - b[1].mastery)
@@ -160,7 +246,7 @@ class AdaptiveLearningSystem {
     /**
      * Get exercises that need review (spaced repetition)
      */
-    getExercisesForReview() {
+    public getExercisesForReview(): ReviewExercise[] {
         const now = Date.now();
         return Object.entries(this.performanceData.exercises)
             .filter(([_, data]) => data.nextReview && data.nextReview <= now)
@@ -170,7 +256,7 @@ class AdaptiveLearningSystem {
     /**
      * Select next exercise adaptively
      */
-    selectNextExercise(availableExercises, currentDifficulty = 1) {
+    public selectNextExercise(availableExercises: Exercise[], currentDifficulty = 1): Exercise | null {
         if (!availableExercises || availableExercises.length === 0) {
             return null;
         }
@@ -191,7 +277,7 @@ class AdaptiveLearningSystem {
         if (Math.random() < 0.4) {
             const weakConcepts = this.getWeakConcepts();
             if (weakConcepts.length > 0) {
-                const weakConcept = weakConcepts[0].concept;
+                const weakConcept = weakConcepts[0]!.concept;
                 const weakExercises = availableExercises.filter(ex => ex.concept === weakConcept);
                 if (weakExercises.length > 0) {
                     return this.selectRandom(weakExercises);
@@ -216,7 +302,7 @@ class AdaptiveLearningSystem {
     /**
      * Get recommended difficulty based on performance
      */
-    getRecommendedDifficulty(currentDifficulty) {
+    public getRecommendedDifficulty(currentDifficulty: number): number {
         // Get performance at current difficulty
         const diffData = this.performanceData.difficulties[currentDifficulty];
 
@@ -244,8 +330,8 @@ class AdaptiveLearningSystem {
     /**
      * Create adaptive exercise sequence
      */
-    createAdaptiveSequence(allExercises, length = 50) {
-        const sequence = [];
+    public createAdaptiveSequence(allExercises: Exercise[], length = 50): Exercise[] {
+        const sequence: Exercise[] = [];
         const available = [...allExercises];
         let currentDifficulty = 1;
 
@@ -269,8 +355,8 @@ class AdaptiveLearningSystem {
     /**
      * Get personalized recommendations
      */
-    getRecommendations() {
-        const recommendations = {
+    public getRecommendations(): Recommendations {
+        const recommendations: Recommendations = {
             weakConcepts: [],
             reviewExercises: [],
             nextDifficulty: 1,
@@ -291,7 +377,7 @@ class AdaptiveLearningSystem {
 
         for (const diff of difficultyLevels) {
             const data = this.performanceData.difficulties[diff];
-            if (data.attempts >= 3) {
+            if (data && data.attempts >= 3) {
                 const successRate = data.correct / data.attempts;
                 if (successRate > 0.85 && diff < 5) {
                     recommendations.nextDifficulty = diff + 1;
@@ -326,7 +412,7 @@ class AdaptiveLearningSystem {
     /**
      * Reset performance data (for testing or restart)
      */
-    reset() {
+    public reset(): void {
         this.performanceData = {
             concepts: {},
             exercises: {},
@@ -340,22 +426,22 @@ class AdaptiveLearningSystem {
     /**
      * Export performance data
      */
-    exportData() {
+    public exportData(): string {
         return JSON.stringify(this.performanceData, null, 2);
     }
 
     /**
      * Helper: Select random item from array
      */
-    selectRandom(array) {
-        return array[Math.floor(Math.random() * array.length)];
+    private selectRandom<T>(array: T[]): T {
+        return array[Math.floor(Math.random() * array.length)]!;
     }
 
     /**
      * Get statistics summary
      */
-    getStatistics() {
-        const stats = {
+    public getStatistics(): Statistics {
+        const stats: Statistics = {
             totalAttempts: 0,
             totalCorrect: 0,
             conceptsMastered: 0,

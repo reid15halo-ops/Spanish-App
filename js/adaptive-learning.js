@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Adaptive Learning System
  *
@@ -8,11 +9,15 @@
  * - Mastery-based progression
  * - Personalized exercise selection
  */
+Object.defineProperty(exports, "__esModule", { value: true });
+// ====================================================================
+// ADAPTIVE LEARNING SYSTEM
+// ====================================================================
 class AdaptiveLearningSystem {
     constructor() {
-        this.performanceData = this.loadPerformanceData();
         this.masteryThreshold = 0.80; // 80% correct = mastered
         this.repetitionIntervals = [1, 3, 7, 14, 30]; // days
+        this.performanceData = this.loadPerformanceData();
     }
     /**
      * Load performance data from localStorage
@@ -29,11 +34,11 @@ class AdaptiveLearningSystem {
         }
         // Initialize default structure
         return {
-            concepts: {}, // concept -> { attempts, correct, lastSeen, mastery }
-            exercises: {}, // exerciseId -> { attempts, correct, lastSeen, nextReview }
-            categories: {}, // category -> { attempts, correct }
-            difficulties: {}, // difficulty -> { attempts, correct }
-            units: {} // unit -> { attempts, correct, mastered }
+            concepts: {},
+            exercises: {},
+            categories: {},
+            difficulties: {},
+            units: {}
         };
     }
     /**
@@ -257,7 +262,7 @@ class AdaptiveLearningSystem {
             .sort((a, b) => b - a);
         for (const diff of difficultyLevels) {
             const data = this.performanceData.difficulties[diff];
-            if (data.attempts >= 3) {
+            if (data && data.attempts >= 3) {
                 const successRate = data.correct / data.attempts;
                 if (successRate > 0.85 && diff < 5) {
                     recommendations.nextDifficulty = diff + 1;

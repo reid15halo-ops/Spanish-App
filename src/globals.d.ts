@@ -15,8 +15,10 @@ declare global {
         TolerantAnswerValidator: any;
         ImprovedFeedbackSystem: any;
         AdaptiveLearning: any;
+        AdaptiveLearningSystem: any;
         AdaptivePracticeSystem: any;
         LevelTestSystem: any;
+        getUnit?: (unitNumber: number) => any;
     }
 }
 
