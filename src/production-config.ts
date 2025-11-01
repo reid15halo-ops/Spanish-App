@@ -3,25 +3,43 @@
  *
  * Simplified migration with core production/development detection and configuration
  */
+
+// ====================================================================
+// TYPES & INTERFACES
+// ====================================================================
+
+interface FallbackEnv {
+    isProduction: () => boolean;
+    isDevelopment: () => boolean;
+    get: (key: string) => any;
+    currentEnv?: string;
+    getVersion?: () => string;
+}
+
 // ====================================================================
 // PRODUCTION CONFIG
 // ====================================================================
+
 class ProductionConfig {
+    private env: FallbackEnv;
+    private initialized = false;
+    private debugElements: Element[] = [];
+
     constructor() {
-        this.initialized = false;
-        this.debugElements = [];
         this.env = window.ENV || this.createFallbackEnv();
     }
-    createFallbackEnv() {
+
+    private createFallbackEnv(): FallbackEnv {
         return {
             isProduction: () => !window.location.hostname.includes('localhost') &&
-                !window.location.hostname.includes('127.0.0.1'),
+                               !window.location.hostname.includes('127.0.0.1'),
             isDevelopment: () => window.location.hostname.includes('localhost') ||
-                window.location.hostname.includes('127.0.0.1'),
-            get: (key) => ({ enableDebugMode: false }[key])
+                                window.location.hostname.includes('127.0.0.1'),
+            get: (key: string) => ({ enableDebugMode: false }[key])
         };
     }
-    static isProduction() {
+
+    public static isProduction(): boolean {
         const indicators = [
             !window.location.hostname.includes('localhost'),
             !window.location.hostname.includes('127.0.0.1'),
@@ -32,72 +50,88 @@ class ProductionConfig {
             !window.location.search.includes('dev=true'),
             !window.location.hash.includes('debug')
         ];
+
         return indicators.filter(i => i).length >= 6;
     }
-    initialize() {
-        if (this.initialized)
-            return;
+
+    public initialize(): void {
+        if (this.initialized) return;
+
         const isProduction = ProductionConfig.isProduction();
+
         if (isProduction) {
             this.configureProduction();
-        }
-        else {
+        } else {
             this.configureDevelopment();
         }
+
         this.initialized = true;
+
         if (!isProduction) {
             console.log('%c[Production Config] Initialized', 'color: #20B2AA; font-weight: bold');
             console.log('Environment:', isProduction ? 'PRODUCTION' : 'DEVELOPMENT');
         }
     }
-    configureProduction() {
+
+    private configureProduction(): void {
         this.disableConsoleLogging();
         this.hideDebugElements();
         this.enableErrorReporting();
         this.optimizePerformance();
         this.setProductionSettings();
     }
-    configureDevelopment() {
+
+    private configureDevelopment(): void {
         this.enableVerboseLogging();
         this.showDebugInfo();
         this.enableDevelopmentTools();
     }
-    disableConsoleLogging() {
+
+    private disableConsoleLogging(): void {
         const originalError = console.error;
         const originalWarn = console.warn;
-        console.log = () => { };
-        console.info = () => { };
-        console.debug = () => { };
-        console.trace = () => { };
+
+        console.log = () => {};
+        console.info = () => {};
+        console.debug = () => {};
+        console.trace = () => {};
+
         console.error = originalError;
         console.warn = originalWarn;
     }
-    enableVerboseLogging() {
+
+    private enableVerboseLogging(): void {
         const originalLog = console.log;
         const originalInfo = console.info;
         const originalDebug = console.debug;
-        console.log = (...args) => {
+
+        console.log = (...args: any[]) => {
             originalLog(`[${new Date().toISOString()}]`, ...args);
         };
-        console.info = (...args) => {
+
+        console.info = (...args: any[]) => {
             originalInfo(`[${new Date().toISOString()}]`, ...args);
         };
-        console.debug = (...args) => {
+
+        console.debug = (...args: any[]) => {
             originalDebug(`[${new Date().toISOString()}]`, ...args);
         };
     }
-    hideDebugElements() {
+
+    private hideDebugElements(): void {
         const debugElements = document.querySelectorAll('[data-debug="true"]');
         debugElements.forEach(element => {
-            element.style.display = 'none';
+            (element as HTMLElement).style.display = 'none';
             this.debugElements.push(element);
         });
+
         const debugToolbar = document.getElementById('debug-toolbar');
         if (debugToolbar) {
             debugToolbar.style.display = 'none';
         }
     }
-    showDebugInfo() {
+
+    private showDebugInfo(): void {
         const debugPanel = document.createElement('div');
         debugPanel.id = 'debug-panel';
         debugPanel.style.cssText = `
@@ -106,39 +140,45 @@ class ProductionConfig {
             padding: 10px 15px; border-radius: 5px;
             font-size: 12px; font-family: monospace; z-index: 10000;
         `;
+
         debugPanel.innerHTML = `
             <div><strong>DEBUG MODE</strong></div>
             <div>Environment: ${this.env.currentEnv || 'development'}</div>
             <div>Version: ${this.env.getVersion ? this.env.getVersion() : '1.0.0'}</div>
             <div>Hostname: ${window.location.hostname}</div>
         `;
+
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', () => document.body.appendChild(debugPanel));
-        }
-        else {
+        } else {
             document.body.appendChild(debugPanel);
         }
     }
-    enableErrorReporting() {
+
+    private enableErrorReporting(): void {
         // Error reporting integration placeholder
     }
-    optimizePerformance() {
+
+    private optimizePerformance(): void {
         // Performance optimizations placeholder
     }
-    setProductionSettings() {
+
+    private setProductionSettings(): void {
         window.__DEV__ = false;
     }
-    enableDevelopmentTools() {
+
+    private enableDevelopmentTools(): void {
         window.__DEV__ = true;
     }
 }
+
 // Initialize automatically
 const prodConfig = new ProductionConfig();
+
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => prodConfig.initialize());
-}
-else {
+} else {
     prodConfig.initialize();
 }
+
 window.ProductionConfig = prodConfig;
-//# sourceMappingURL=production-config.js.map

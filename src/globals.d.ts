@@ -20,6 +20,8 @@ declare global {
         LevelTestSystem: any;
         ErrorHandler: any;
         ExerciseData: any;
+        ProductionConfig: any;
+        PerformanceOptimizer: any;
         getUnit?: (unitNumber: number) => any;
         __DEV__?: boolean;
     }
