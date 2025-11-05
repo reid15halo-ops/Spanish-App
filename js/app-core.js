@@ -1033,10 +1033,10 @@ class App {
      * Handle user answer
      */
     handleAnswer(userAnswer) {
-        console.log('[App] handleAnswer called with:', userAnswer);
+        window.Logger?.debug('[App] handleAnswer called with:', userAnswer);
 
         const exercise = this.exercises[this.currentIndex];
-        console.log('[App] Current exercise:', exercise.type, exercise.id);
+        window.Logger?.debug('[App] Current exercise:', exercise.type, exercise.id);
 
         // Get correct answer (different location for reading-comprehension)
         let correctAnswer;
@@ -1046,7 +1046,7 @@ class App {
             correctAnswer = exercise.correctAnswer;
         }
 
-        console.log('[App] Correct answer:', correctAnswer);
+        window.Logger?.debug('[App] Correct answer:', correctAnswer);
 
         // Use tolerant validator for improved feedback
         const validationResult = this.validator.validateAnswer(
@@ -1055,7 +1055,7 @@ class App {
             exercise
         );
 
-        console.log('[App] Validation result:', validationResult);
+        window.Logger?.debug('[App] Validation result:', validationResult);
 
         // Update stats (only based on core correctness)
         this.stats.total++;
@@ -1077,12 +1077,12 @@ class App {
         // Save progress after updating stats
         this.saveProgress();
 
-        console.log('[App] About to call feedbackSystem.showValidationResult');
+        window.Logger?.debug('[App] About to call feedbackSystem.showValidationResult');
 
         // Show improved feedback
         this.feedbackSystem.showValidationResult(validationResult, exercise);
 
-        console.log('[App] After feedbackSystem.showValidationResult');
+        window.Logger?.debug('[App] After feedbackSystem.showValidationResult');
 
         // Disable input/buttons to prevent multiple submissions
         this.disableInput();
@@ -1869,8 +1869,8 @@ class App {
         const stats = this.adaptiveSystem.getStatistics();
 
         // Log recommendations to console
-        console.log('🎯 Adaptive Learning Recommendations:', recommendations);
-        console.log('📊 Learning Statistics:', stats);
+        window.Logger?.debug('🎯 Adaptive Learning Recommendations:', recommendations);
+        window.Logger?.debug('📊 Learning Statistics:', stats);
 
         // Update sidebar with adaptive info
         const sidebar = document.getElementById('sidebar');
