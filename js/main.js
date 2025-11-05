@@ -16,8 +16,9 @@ import './utils.js';
 
 // 4. Exercise Data (can be lazy loaded in future)
 import './exercise-data.js';
-import './module-structure.js';
-import './lesson1-expanded.js';
+
+// Note: module-structure.js and lesson1-expanded.js are loaded via script tags
+// because they use window.X pattern for compatibility with both ES6 and non-ES6 contexts
 
 // 5. Adaptive Learning System
 import './adaptive-learning.js';

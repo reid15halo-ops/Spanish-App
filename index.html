@@ -157,6 +157,11 @@
     </div>
 
     <!-- Scripts -->
+    <!-- Load data modules first (they use window.X pattern) -->
+    <script src="/js/module-structure.js"></script>
+    <script src="/js/lesson1-expanded.js"></script>
+
+    <!-- Main ES6 module -->
     <script type="module" src="/js/main.js"></script>
 </body>
 </html>
