@@ -603,15 +603,48 @@ class ExerciseRenderer {
     renderFillBlank(exercise, onAnswer) {
         const parsed = this.extractGermanTranslation(exercise.question);
 
+        // Build complete sentence from the blank question and correct answer
+        let completeSentence = parsed.spanish;
+        if (completeSentence.includes('____')) {
+            // Replace blanks with the correct answer to show the complete sentence
+            const answers = exercise.correctAnswer.split(';');
+            answers.forEach(answer => {
+                completeSentence = completeSentence.replace('____', answer.trim());
+            });
+        }
+
+        // Store the complete sentence as the expected answer for this exercise
+        if (!exercise._fullSentenceAnswer) {
+            exercise._fullSentenceAnswer = completeSentence
+                .replace(/\s*\([^)]*\)/g, '') // Remove (German translation) if present
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            // Generate alternative answers (with/without punctuation, different cases)
+            if (!exercise._fullSentenceAlternatives) {
+                const baseAnswer = exercise._fullSentenceAnswer;
+                exercise._fullSentenceAlternatives = [
+                    baseAnswer,
+                    baseAnswer + '.',
+                    baseAnswer.toLowerCase(),
+                    baseAnswer.toLowerCase() + '.',
+                    // Capitalize first letter
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1),
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1) + '.'
+                ];
+            }
+        }
+
         return `
             <div class="fill-blank">
+                <p class="instruction">✍️ <strong>Schreibe den ganzen Satz:</strong></p>
                 <p class="question">${parsed.spanish}</p>
 
                 ${this.renderGermanHelp(parsed.german, exercise.germanBridge, exercise.example)}
 
                 <div class="input-group">
-                    <input type="text" id="answer-input" class="text-input"
-                           placeholder="Deine Antwort..." autocomplete="off">
+                    <textarea id="answer-input" class="text-input" rows="2"
+                           placeholder="Schreibe den kompletten spanischen Satz..." autocomplete="off"></textarea>
                     <button class="btn-primary" onclick="app.checkAnswer()">Prüfen</button>
                 </div>
 
@@ -1233,19 +1266,62 @@ class App {
 
         // Get correct answer (different location for reading-comprehension)
         let correctAnswer;
+        let alternativeAnswers = exercise.alternativeAnswers || [];
+
         if (exercise.type === 'reading-comprehension' && exercise.comprehensionCheck) {
             correctAnswer = exercise.comprehensionCheck.correctAnswer;
+        } else if (exercise.type === 'fill-blank') {
+            // For fill-blank exercises, build the complete sentence if not already done
+            if (!exercise._fullSentenceAnswer) {
+                // Extract Spanish from question
+                const questionMatch = exercise.question.match(/^(.*?)(\s*\(|$)/);
+                let spanishQuestion = questionMatch ? questionMatch[1].trim() : exercise.question;
+
+                // Replace blanks with correct answers
+                if (spanishQuestion.includes('____')) {
+                    const answers = exercise.correctAnswer.split(';');
+                    answers.forEach(answer => {
+                        spanishQuestion = spanishQuestion.replace('____', answer.trim());
+                    });
+                }
+
+                exercise._fullSentenceAnswer = spanishQuestion.trim();
+
+                // Generate alternatives
+                const baseAnswer = exercise._fullSentenceAnswer;
+                exercise._fullSentenceAlternatives = [
+                    baseAnswer,
+                    baseAnswer + '.',
+                    baseAnswer.toLowerCase(),
+                    baseAnswer.toLowerCase() + '.',
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1),
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1) + '.'
+                ];
+            }
+
+            // Use the complete sentence
+            correctAnswer = exercise._fullSentenceAnswer;
+            // Include generated alternatives
+            if (exercise._fullSentenceAlternatives) {
+                alternativeAnswers = [...alternativeAnswers, ...exercise._fullSentenceAlternatives];
+            }
         } else {
             correctAnswer = exercise.correctAnswer;
         }
 
         window.Logger?.debug('[App] Correct answer:', correctAnswer);
 
+        // Create modified exercise with alternatives for validator
+        const exerciseForValidation = {
+            ...exercise,
+            alternativeAnswers: alternativeAnswers
+        };
+
         // Use tolerant validator for improved feedback
         const validationResult = this.validator.validateAnswer(
             userAnswer,
             correctAnswer,
-            exercise
+            exerciseForValidation
         );
 
         window.Logger?.debug('[App] Validation result:', validationResult);

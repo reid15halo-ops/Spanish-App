@@ -1458,3 +1458,19 @@
         font-size: 20px;
     }
 }
+
+/* Fill-blank full sentence instruction */
+.fill-blank .instruction {
+    background: #E3F2FD;
+    border-left: 4px solid #2196F3;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #1565C0;
+}
+
+.fill-blank textarea.text-input {
+    min-height: 60px;
+    resize: vertical;
+}
