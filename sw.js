@@ -4,7 +4,7 @@
  * Provides offline functionality, caching, and background sync
  */
 
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v1.1.0';
 const CACHE_NAME = `spanish-app-${CACHE_VERSION}`;
 const DATA_CACHE = `spanish-app-data-${CACHE_VERSION}`;
 
@@ -14,35 +14,30 @@ const STATIC_CACHE_URLS = [
     '/index.html',
     '/manifest.json',
 
-    // Core JavaScript
-    '/js/app.js',
-    '/js/exercise-loader.js',
-    '/js/exercise-renderer.js',
-    '/js/conjugator.js',
-
-    // Adaptive Learning System
-    '/js/adaptive-knowledge-tracker.js',
-    '/js/adaptive-knowledge-tracker-v2.js',
-    '/js/adaptive-learning-orchestrator.js',
-    '/js/adaptive-learning-orchestrator-enhanced.js',
-    '/js/interleaved-practice-system.js',
-    '/js/learning-analytics.js',
-
-    // Enhanced Systems
-    '/js/cognitive-load-detector.js',
-    '/js/frustration-detector.js',
-    '/js/context-aware-difficulty.js',
-    '/js/micro-break-system.js',
-    '/js/confidence-decay-system.js',
-    '/js/learning-style-detector.js',
-
-    // Phase 1 System
-    '/js/phase1-controller.js',
-    '/js/phase1-exercise-generator.js',
-
-    // Utilities
+    // Core JavaScript (aktuelle Dateien)
+    '/js/app-core.js',
+    '/js/exercise-data.js',
+    '/js/utils.js',
     '/js/config/environment.js',
-    '/js/utils/data-backup.js',
+
+    // Adaptive Learning System (aktuelle Dateien)
+    '/js/adaptive-learning.js',
+    '/js/adaptive-practice-system.js',
+
+    // Core Systems
+    '/js/data-manager.js',
+    '/js/error-handling.js',
+    '/js/monitoring.js',
+    '/js/production-config.js',
+    '/js/performance-optimizations.js',
+
+    // Enhanced Features
+    '/js/level-test-system.js',
+    '/js/improved-feedback.js',
+    '/js/tolerant-validator.js',
+
+    // Styles
+    '/css/ux-enhancements.css',
 
     // Data files
     '/data/phase1-vocabulary.json',

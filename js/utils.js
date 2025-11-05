@@ -766,8 +766,10 @@ class DataBackupSystem {
         } = options;
 
         if (confirm) {
-            const confirmRestore = window.confirm(
-                'This will restore your data from the backup. Continue?'
+            const confirmRestore = await window.ModalDialog.confirm(
+                'This will restore your data from the backup. Continue?',
+                'Restore',
+                'Cancel'
             );
             if (!confirmRestore) {
                 return { success: false, cancelled: true };
@@ -1041,13 +1043,16 @@ class DataBackupSystem {
      */
     async clearAllData(confirm = true) {
         if (confirm) {
-            const confirmDelete = window.confirm(
-                'This will permanently delete all your learning data. This cannot be undone. Continue?'
+            const confirmDelete = await window.ModalDialog.confirm(
+                'This will permanently delete all your learning data. This cannot be undone. Continue?',
+                'Delete',
+                'Cancel'
             );
             if (!confirmDelete) {
                 return { success: false, cancelled: true };
             }
 
+            // TODO: Add prompt dialog to ModalDialog for verification
             const doubleConfirm = window.prompt(
                 'Type "DELETE" to confirm permanent data deletion:'
             );
@@ -1237,7 +1242,11 @@ class GDPRCompliance {
         }
 
         // Fallback
-        const confirm = window.confirm('Delete all your data permanently?');
+        const confirm = await window.ModalDialog.confirm(
+            'Delete all your data permanently?',
+            'Delete',
+            'Cancel'
+        );
         if (!confirm) return { cancelled: true };
 
         const keys = Object.keys(localStorage);
@@ -2652,12 +2661,12 @@ class HapticFeedbackManager {
      */
     test() {
         if (!this.supported) {
-            alert('Haptisches Feedback wird auf diesem Geraet nicht unterstuetzt.');
+            window.ModalDialog.alert('Haptisches Feedback wird auf diesem Geraet nicht unterstuetzt.', 'warning');
             return;
         }
 
         if (!this.enabled) {
-            alert('Haptisches Feedback ist deaktiviert. Bitte aktivieren in den Einstellungen.');
+            window.ModalDialog.alert('Haptisches Feedback ist deaktiviert. Bitte aktivieren in den Einstellungen.', 'warning');
             return;
         }
 
@@ -2760,5 +2769,417 @@ if (document.readyState === 'loading') {
 } else {
     window.Haptics.addToSettings();
 }
+
+
+// ====================================================================
+// MODAL DIALOG SYSTEM
+// ====================================================================
+
+/**
+ * Modern Modal Dialog System
+ * Replaces alert() and confirm() with better UX
+ */
+class ModalDialog {
+    constructor() {
+        this.activeModal = null;
+        this.injectStyles();
+    }
+
+    /**
+     * Inject CSS styles for modals
+     */
+    injectStyles() {
+        if (document.getElementById('modal-dialog-styles')) return;
+
+        const style = document.createElement('style');
+        style.id = 'modal-dialog-styles';
+        style.textContent = `
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                opacity: 0;
+                animation: fadeIn 0.2s forwards;
+                backdrop-filter: blur(2px);
+            }
+
+            @keyframes fadeIn {
+                to { opacity: 1; }
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateY(-20px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .modal-dialog-box {
+                background: var(--bg, #fff);
+                border-radius: 12px;
+                padding: 24px;
+                max-width: 90%;
+                width: 400px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                animation: slideIn 0.3s ease-out;
+            }
+
+            .modal-dialog-content {
+                margin-bottom: 24px;
+                color: var(--text, #333);
+                font-size: 16px;
+                line-height: 1.5;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+
+            .modal-dialog-buttons {
+                display: flex;
+                gap: 12px;
+                justify-content: flex-end;
+            }
+
+            .modal-dialog-button {
+                padding: 10px 24px;
+                border: none;
+                border-radius: 8px;
+                font-size: 15px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s;
+                min-width: 80px;
+            }
+
+            .modal-dialog-button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .modal-dialog-button:active {
+                transform: translateY(0);
+            }
+
+            .modal-dialog-button-primary {
+                background: var(--primary, #007bff);
+                color: white;
+            }
+
+            .modal-dialog-button-primary:hover {
+                background: var(--primary-dark, #0056b3);
+            }
+
+            .modal-dialog-button-secondary {
+                background: var(--bg-light, #f5f5f5);
+                color: var(--text, #333);
+                border: 2px solid var(--border, #ddd);
+            }
+
+            .modal-dialog-button-secondary:hover {
+                background: var(--bg, #fff);
+                border-color: var(--primary, #007bff);
+            }
+
+            .modal-dialog-icon {
+                font-size: 32px;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+
+            .modal-dialog-icon-info { color: #007bff; }
+            .modal-dialog-icon-success { color: #28a745; }
+            .modal-dialog-icon-warning { color: #ffc107; }
+            .modal-dialog-icon-error { color: #dc3545; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    /**
+     * Show an alert dialog
+     * @param {string} message - Message to display
+     * @param {string} type - Type: 'info', 'success', 'warning', 'error'
+     * @returns {Promise<void>}
+     */
+    alert(message, type = 'info') {
+        return new Promise((resolve) => {
+            this.closeActiveModal();
+
+            const icons = {
+                info: 'ℹ️',
+                success: '✅',
+                warning: '⚠️',
+                error: '❌'
+            };
+
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.innerHTML = `
+                <div class="modal-dialog-box" role="dialog" aria-modal="true" aria-labelledby="modal-message">
+                    <div class="modal-dialog-icon modal-dialog-icon-${type}">
+                        ${icons[type] || icons.info}
+                    </div>
+                    <div class="modal-dialog-content" id="modal-message">
+                        ${this.escapeHtml(message)}
+                    </div>
+                    <div class="modal-dialog-buttons">
+                        <button class="modal-dialog-button modal-dialog-button-primary" data-action="ok">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            this.activeModal = overlay;
+
+            // Handle button click
+            const okButton = overlay.querySelector('[data-action="ok"]');
+            okButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve();
+            });
+
+            // Handle ESC key
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    this.closeActiveModal();
+                    resolve();
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+
+            // Handle overlay click
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeActiveModal();
+                    resolve();
+                }
+            });
+
+            // Focus the OK button
+            setTimeout(() => okButton.focus(), 100);
+        });
+    }
+
+    /**
+     * Show a confirm dialog
+     * @param {string} message - Message to display
+     * @param {string} okText - Text for confirm button (default: "OK")
+     * @param {string} cancelText - Text for cancel button (default: "Abbrechen")
+     * @returns {Promise<boolean>} - true if confirmed, false if cancelled
+     */
+    confirm(message, okText = 'OK', cancelText = 'Abbrechen') {
+        return new Promise((resolve) => {
+            this.closeActiveModal();
+
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.innerHTML = `
+                <div class="modal-dialog-box" role="dialog" aria-modal="true" aria-labelledby="modal-message">
+                    <div class="modal-dialog-icon modal-dialog-icon-warning">
+                        ❓
+                    </div>
+                    <div class="modal-dialog-content" id="modal-message">
+                        ${this.escapeHtml(message)}
+                    </div>
+                    <div class="modal-dialog-buttons">
+                        <button class="modal-dialog-button modal-dialog-button-secondary" data-action="cancel">
+                            ${this.escapeHtml(cancelText)}
+                        </button>
+                        <button class="modal-dialog-button modal-dialog-button-primary" data-action="ok">
+                            ${this.escapeHtml(okText)}
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            this.activeModal = overlay;
+
+            // Handle button clicks
+            const okButton = overlay.querySelector('[data-action="ok"]');
+            const cancelButton = overlay.querySelector('[data-action="cancel"]');
+
+            okButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve(true);
+            });
+
+            cancelButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve(false);
+            });
+
+            // Handle ESC key (cancel)
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    this.closeActiveModal();
+                    resolve(false);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+
+            // Handle overlay click (cancel)
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeActiveModal();
+                    resolve(false);
+                }
+            });
+
+            // Focus the primary button
+            setTimeout(() => okButton.focus(), 100);
+        });
+    }
+
+    /**
+     * Show a toast notification (non-blocking)
+     * @param {string} message - Message to display
+     * @param {string} type - Type: 'info', 'success', 'warning', 'error'
+     * @param {number} duration - Duration in ms (default: 3000)
+     */
+    toast(message, type = 'success', duration = 3000) {
+        // Inject toast styles if not already present
+        if (!document.getElementById('toast-styles')) {
+            const style = document.createElement('style');
+            style.id = 'toast-styles';
+            style.textContent = `
+                .toast-container {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 10001;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    pointer-events: none;
+                }
+
+                .toast {
+                    background: white;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    min-width: 250px;
+                    max-width: 400px;
+                    animation: slideInRight 0.3s ease-out;
+                    pointer-events: auto;
+                    border-left: 4px solid;
+                }
+
+                .toast-info { border-left-color: #007bff; }
+                .toast-success { border-left-color: #28a745; }
+                .toast-warning { border-left-color: #ffc107; }
+                .toast-error { border-left-color: #dc3545; }
+
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                .toast.toast-exit {
+                    animation: slideOutRight 0.3s ease-in forwards;
+                }
+
+                @keyframes slideOutRight {
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+
+                .toast-icon {
+                    font-size: 20px;
+                }
+
+                .toast-message {
+                    flex: 1;
+                    color: #333;
+                    font-size: 14px;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Get or create toast container
+        let container = document.querySelector('.toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+        }
+
+        const icons = {
+            info: 'ℹ️',
+            success: '✅',
+            warning: '⚠️',
+            error: '❌'
+        };
+
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = `
+            <span class="toast-icon">${icons[type] || icons.info}</span>
+            <span class="toast-message">${this.escapeHtml(message)}</span>
+        `;
+
+        container.appendChild(toast);
+
+        // Auto-remove after duration
+        setTimeout(() => {
+            toast.classList.add('toast-exit');
+            setTimeout(() => {
+                toast.remove();
+                // Remove container if empty
+                if (container.children.length === 0) {
+                    container.remove();
+                }
+            }, 300);
+        }, duration);
+    }
+
+    /**
+     * Close the currently active modal
+     */
+    closeActiveModal() {
+        if (this.activeModal) {
+            this.activeModal.remove();
+            this.activeModal = null;
+        }
+    }
+
+    /**
+     * Escape HTML to prevent XSS
+     */
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+
+// Create global modal dialog instance
+window.ModalDialog = new ModalDialog();
 
 

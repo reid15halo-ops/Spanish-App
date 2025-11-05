@@ -955,7 +955,7 @@ class App {
 
         const answer = input.value.trim();
         if (!answer) {
-            alert('Bitte gib eine Antwort ein!');
+            window.ModalDialog.alert('Bitte gib eine Antwort ein!', 'warning');
             return;
         }
 
@@ -1241,7 +1241,12 @@ class App {
         select.addEventListener('change', async (e) => {
             const newUnit = parseInt(e.target.value);
             if (newUnit !== this.currentUnit) {
-                if (confirm(`Möchtest du zu Lektion ${newUnit} wechseln? Dein Fortschritt wird gespeichert.`)) {
+                const confirmed = await window.ModalDialog.confirm(
+                    `Möchtest du zu Lektion ${newUnit} wechseln? Dein Fortschritt wird gespeichert.`,
+                    'Wechseln',
+                    'Abbrechen'
+                );
+                if (confirmed) {
                     await this.switchToUnit(newUnit);
                 } else {
                     // Reset selection
@@ -1346,7 +1351,7 @@ class App {
             window.Logger?.success(`Zu Lektion ${unitNumber} gewechselt!`);
         } catch (error) {
             window.Logger?.error('Error switching unit:', error);
-            alert(`Fehler beim Wechseln zu Lektion ${unitNumber}. Bitte versuche es erneut.`);
+            window.ModalDialog.alert(`Fehler beim Wechseln zu Lektion ${unitNumber}. Bitte versuche es erneut.`, 'error');
         }
     }
 
@@ -1532,28 +1537,30 @@ class App {
             // Get the test
             const test = this.levelTestSystem.getTestById(level);
             if (!test) {
-                alert('Test not found!');
+                await window.ModalDialog.alert('Test not found!', 'error');
                 return;
             }
 
             // Show test instructions
-            const proceed = confirm(
+            const proceed = await window.ModalDialog.confirm(
                 `Examen de Nivel ${level}\n\n` +
                 `${test.description}\n\n` +
                 `Tiempo: ${test.timeLimit} minutos\n` +
                 `Puntuación mínima: ${test.passingScore}%\n\n` +
                 `IMPORTANTE: El examen está completamente en español sin ayuda en alemán.\n\n` +
-                `¿Estás listo para comenzar?`
+                `¿Estás listo para comenzar?`,
+                'Comenzar',
+                'Cancelar'
             );
 
             if (!proceed) return;
 
             // TODO: Implement test UI and flow
-            alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.');
+            await window.ModalDialog.alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.', 'info');
 
         } catch (error) {
             window.Logger?.error('Error starting level test:', error);
-            alert('Fehler beim Starten des Tests');
+            await window.ModalDialog.alert('Fehler beim Starten des Tests', 'error');
         }
     }
 
@@ -1564,7 +1571,7 @@ class App {
         const nextUnit = this.currentUnit + 1;
 
         if (nextUnit > 7) {
-            alert('Du hast bereits alle Lektionen abgeschlossen!');
+            await window.ModalDialog.alert('Du hast bereits alle Lektionen abgeschlossen!', 'success');
             return;
         }
 
@@ -1590,7 +1597,7 @@ class App {
             window.Logger?.success(`Lektion ${nextUnit} gestartet!`);
         } catch (error) {
             window.Logger?.error('Error loading next unit:', error);
-            alert(`Fehler beim Laden von Lektion ${nextUnit}. Bitte versuche es erneut.`);
+            await window.ModalDialog.alert(`Fehler beim Laden von Lektion ${nextUnit}. Bitte versuche es erneut.`, 'error');
         }
     }
 
@@ -1620,7 +1627,7 @@ class App {
             window.Logger?.success(`Lektion ${this.currentUnit} neu gestartet!`);
         } catch (error) {
             window.Logger?.error('Error restarting unit:', error);
-            alert('Fehler beim Neustarten. Bitte versuche es erneut.');
+            await window.ModalDialog.alert('Fehler beim Neustarten. Bitte versuche es erneut.', 'error');
         }
     }
 
@@ -1767,7 +1774,7 @@ class App {
                 if (selected) {
                     this.settings.helpLevel = selected.value;
                     this.saveSettings();
-                    alert('✅ Einstellungen gespeichert!');
+                    window.ModalDialog.toast('Einstellungen gespeichert!', 'success');
                     modal.classList.add('hidden');
                 }
             };
