@@ -1648,7 +1648,36 @@ class App {
         for (let i = 1; i <= 7; i++) {
             const option = document.createElement('option');
             option.value = i;
-            option.textContent = `Lektion ${i}`;
+
+            // Get progress for this unit from localStorage
+            let progressText = `Lektion ${i}`;
+            try {
+                const savedProgress = localStorage.getItem('exerciseProgress');
+                if (savedProgress) {
+                    const progressData = JSON.parse(savedProgress);
+                    if (progressData.unit === i && progressData.index !== undefined) {
+                        // Calculate percentage based on current unit's exercises
+                        // If this is the current unit, use current data
+                        if (i === this.currentUnit && this.exercises && this.exercises.length > 0) {
+                            const currentEx = this.currentIndex + 1;
+                            const totalEx = this.exercises.length;
+                            const percentage = Math.round((currentEx / totalEx) * 100);
+                            progressText = `Lektion ${i} (${percentage}%)`;
+                        } else if (i === progressData.unit) {
+                            // For saved progress, we need to estimate
+                            progressText = `Lektion ${i} (in Progress)`;
+                        }
+                    } else if (i < (progressData.unit || 1)) {
+                        // Units before current are considered complete
+                        progressText = `Lektion ${i} (✓)`;
+                    }
+                }
+            } catch (e) {
+                // If localStorage fails, just show unit number
+                window.Logger?.warn('Could not load progress for unit', i, e);
+            }
+
+            option.textContent = progressText;
             if (i === this.currentUnit) {
                 option.selected = true;
             }
@@ -1845,6 +1874,18 @@ class App {
         const activeItem = document.querySelector('.exercise-item.active');
         if (activeItem) {
             activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Update unit selector progress for current unit
+        const unitSelector = document.querySelector('.unit-selector select');
+        if (unitSelector && this.exercises && this.exercises.length > 0) {
+            const currentOption = unitSelector.querySelector(`option[value="${this.currentUnit}"]`);
+            if (currentOption) {
+                const currentEx = this.currentIndex + 1;
+                const totalEx = this.exercises.length;
+                const percentage = Math.round((currentEx / totalEx) * 100);
+                currentOption.textContent = `Lektion ${this.currentUnit} (${percentage}%)`;
+            }
         }
     }
 

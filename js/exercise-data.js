@@ -830,14 +830,19 @@ window.UNIT_1_PRONOUNS = {
     },
     {
       "id": "u1_guided008",
-      "type": "fill-blank",
+      "type": "translation",
       "difficulty": 2,
       "phase": "guided",
       "concept": "complete-sentence",
-      "question": "____ llamo Ana y soy ____ España. (Ich heiße Ana und bin aus Spanien.)",
-      "correctAnswer": "Me;de",
+      "question": "Ich heiße Ana und bin aus Spanien.",
+      "correctAnswer": "Me llamo Ana y soy de España",
+      "alternativeAnswers": [
+        "Me llamo Ana y soy de España.",
+        "Yo me llamo Ana y soy de España",
+        "Yo me llamo Ana y soy de España."
+      ],
       "example": "Beispiel: Me llamo Pedro y soy de México.",
-      "hint": "Zwei Wörter: 'Me' und 'de'",
+      "hint": "Kombiniere: Me llamo... y soy de...",
       "explanation": "Kombiniere beide Phrasen: Me llamo + Soy de",
       "germanBridge": "🇩🇪 Ich heiße... und bin aus... → 🇪🇸 Me llamo... y soy de..."
     },

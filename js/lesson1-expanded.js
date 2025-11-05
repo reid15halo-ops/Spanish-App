@@ -19,8 +19,8 @@ window.LESSON_1_EXPANDED = {
         "title_es": "Lección 1: Presentarse",
         "level": "A1",
         "grammar": "Das Verb SER (sein) - yo soy, tú eres",
-        "totalExercises": 100,
-        "estimatedTime": "5-6 Stunden (mehrere Sessions)",
+        "totalExercises": 21,
+        "estimatedTime": "2-3 Stunden (mehrere Sessions)",
         "goals": [
             "Deinen Namen sagen und fragen",
             "Deine Herkunft angeben",
