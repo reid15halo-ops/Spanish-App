@@ -13,6 +13,7 @@
 
 class ExerciseLoader {
     constructor() {
+        // Fallback to inlined data if available
         this.units = {
             1: window.UNIT_1_PRONOUNS,
             2: window.UNIT_2_SER,
@@ -22,34 +23,96 @@ class ExerciseLoader {
             6: window.UNIT_6_VOCABULARY,
             7: window.UNIT_7_INTEGRATION
         };
+
+        // Cache for loaded units
+        this.cache = {};
+
+        // Mapping of unit numbers to JSON file names
+        this.unitFiles = {
+            1: 'unit1-pronouns.json',
+            2: 'unit2-ser.json',
+            3: 'unit3-estar.json',
+            4: 'unit4-ser-estar-contrast.json',
+            5: 'unit5-tener.json',
+            6: 'unit6-vocabulary.json',
+            7: 'unit7-integration.json'
+        };
     }
 
     /**
      * Load exercises for a specific unit
+     * Progressive enhancement: Try JSON first, fallback to inlined data
      * @param {number} unitNumber - Unit number (1-7)
      * @returns {Promise<Object>} Unit data with exercises
      */
     async loadUnit(unitNumber) {
-        const data = this.units[unitNumber];
-
-        if (!data) {
-            throw new Error(`Unit ${unitNumber} not found. Available units: 1-7`);
+        // Check cache first
+        if (this.cache[unitNumber]) {
+            window.Logger?.debug(`📦 Using cached data for Unit ${unitNumber}`);
+            return this.cache[unitNumber];
         }
 
         window.Logger?.info(`📚 Loading Unit ${unitNumber}...`);
 
-        if (!data.exercises || !Array.isArray(data.exercises)) {
+        let data = null;
+
+        // Strategy 1: Try loading from JSON file (optimal - lazy loading)
+        try {
+            data = await this.loadUnitFromJSON(unitNumber);
+            window.Logger?.success(`✅ Loaded Unit ${unitNumber} from JSON (lazy loading)`);
+        } catch (jsonError) {
+            window.Logger?.debug(`JSON load failed for Unit ${unitNumber}:`, jsonError.message);
+
+            // Strategy 2: Fallback to inlined data (for offline/file:// URLs)
+            data = this.units[unitNumber];
+
+            if (data) {
+                window.Logger?.info(`✅ Using inlined data for Unit ${unitNumber} (fallback)`);
+            } else {
+                throw new Error(`Unit ${unitNumber} not found. Available units: 1-7`);
+            }
+        }
+
+        // Validate data structure
+        if (!data || !data.exercises || !Array.isArray(data.exercises)) {
             throw new Error(`Invalid data format for Unit ${unitNumber}`);
         }
 
-        window.Logger?.success(`✅ Loaded ${data.exercises.length} exercises for Unit ${unitNumber}`);
-        window.Logger?.debug(`   Title: ${data.metadata?.title || 'N/A'}`);
-
-        return {
+        // Cache the result
+        this.cache[unitNumber] = {
             metadata: data.metadata,
             phases: data.learningPhases,
             exercises: data.exercises
         };
+
+        window.Logger?.success(`✅ Unit ${unitNumber} ready (${data.exercises.length} exercises)`);
+        window.Logger?.debug(`   Title: ${data.metadata?.title || 'N/A'}`);
+
+        return this.cache[unitNumber];
+    }
+
+    /**
+     * Load unit data from JSON file
+     * @param {number} unitNumber
+     * @returns {Promise<Object>}
+     */
+    async loadUnitFromJSON(unitNumber) {
+        const fileName = this.unitFiles[unitNumber];
+
+        if (!fileName) {
+            throw new Error(`No JSON file mapped for unit ${unitNumber}`);
+        }
+
+        const url = `/data/phase1-exercises/${fileName}`;
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data;
     }
 
     /**
