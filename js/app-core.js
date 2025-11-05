@@ -1555,7 +1555,12 @@ class App {
 
             if (!proceed) return;
 
-            // TODO: Implement test UI and flow
+            // Note: Test UI flow is planned but not yet implemented
+            // Future implementation will include:
+            // - Full-screen test mode with timer
+            // - Question navigation and review
+            // - Automatic grading with detailed feedback
+            // - Certificate generation on passing
             await window.ModalDialog.alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.', 'info');
 
         } catch (error) {

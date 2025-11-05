@@ -805,7 +805,7 @@ class DataBackupSystem {
             // Attempt to restore safety backup
             const safetyBackup = sessionStorage.getItem('safety-backup');
             if (safetyBackup) {
-                console.error('Restore failed, reverting to safety backup');
+                window.Logger?.error('Restore failed, reverting to safety backup');
                 // Could implement automatic revert here
             }
 
@@ -824,7 +824,7 @@ class DataBackupSystem {
             const data = localStorage.getItem(this.getStorageKey(key));
             return data ? JSON.parse(data) : null;
         } catch (error) {
-            console.error(`Error reading ${key}:`, error);
+            window.Logger?.error(`Error reading ${key}:`, error);
             return null;
         }
     }
@@ -884,7 +884,7 @@ class DataBackupSystem {
         if (backup.checksum) {
             const calculatedChecksum = await this.calculateChecksum(backup.data);
             if (calculatedChecksum !== backup.checksum) {
-                console.error('Checksum mismatch - data may be corrupted');
+                window.Logger?.error('Checksum mismatch - data may be corrupted');
                 return false;
             }
         }
@@ -906,7 +906,7 @@ class DataBackupSystem {
      */
     async encryptBackup(backup, password) {
         if (!window.crypto || !window.crypto.subtle) {
-            console.warn('Encryption not available, saving unencrypted');
+            window.Logger?.warn('Encryption not available, saving unencrypted');
             return backup;
         }
 
@@ -952,7 +952,7 @@ class DataBackupSystem {
                 data: Array.from(new Uint8Array(encrypted))
             };
         } catch (error) {
-            console.error('Encryption failed:', error);
+            window.Logger?.error('Encryption failed:', error);
             return backup;
         }
     }
@@ -1034,7 +1034,7 @@ class DataBackupSystem {
             const backup = await this.createBackup();
             localStorage.setItem('auto-backup', JSON.stringify(backup));
             localStorage.setItem('last-auto-backup', now.toString());
-            console.log('Auto-backup created');
+            window.Logger?.info('Auto-backup created');
         }
     }
 
@@ -1052,9 +1052,10 @@ class DataBackupSystem {
                 return { success: false, cancelled: true };
             }
 
-            // TODO: Add prompt dialog to ModalDialog for verification
-            const doubleConfirm = window.prompt(
-                'Type "DELETE" to confirm permanent data deletion:'
+            // Double confirmation by typing "DELETE"
+            const doubleConfirm = await window.ModalDialog.prompt(
+                'Type "DELETE" to confirm permanent data deletion:',
+                'Type DELETE here'
             );
             if (doubleConfirm !== 'DELETE') {
                 return { success: false, cancelled: true };
@@ -1196,7 +1197,7 @@ class GDPRCompliance {
                 return consent.given;
             }
         } catch (error) {
-            console.error('Failed to load consent:', error);
+            window.Logger?.error('Failed to load consent:', error);
         }
         return false;
     }
@@ -3041,6 +3042,95 @@ class ModalDialog {
 
             // Focus the primary button
             setTimeout(() => okButton.focus(), 100);
+        });
+    }
+
+    /**
+     * Show a prompt dialog with text input
+     * @param {string} message - Message to display
+     * @param {string} placeholder - Placeholder text for input (default: "")
+     * @param {string} defaultValue - Default value for input (default: "")
+     * @returns {Promise<string|null>} - input value if confirmed, null if cancelled
+     */
+    prompt(message, placeholder = '', defaultValue = '') {
+        return new Promise((resolve) => {
+            this.closeActiveModal();
+
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.innerHTML = `
+                <div class="modal-dialog-box" role="dialog" aria-modal="true" aria-labelledby="modal-message">
+                    <div class="modal-dialog-icon modal-dialog-icon-info">
+                        💬
+                    </div>
+                    <div class="modal-dialog-content" id="modal-message">
+                        ${this.escapeHtml(message)}
+                    </div>
+                    <input type="text"
+                           id="modal-prompt-input"
+                           placeholder="${this.escapeHtml(placeholder)}"
+                           value="${this.escapeHtml(defaultValue)}"
+                           style="width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid var(--border, #ddd); border-radius: 8px; font-size: 15px;">
+                    <div class="modal-dialog-buttons">
+                        <button class="modal-dialog-button modal-dialog-button-secondary" data-action="cancel">
+                            Abbrechen
+                        </button>
+                        <button class="modal-dialog-button modal-dialog-button-primary" data-action="ok">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            this.activeModal = overlay;
+
+            const input = overlay.querySelector('#modal-prompt-input');
+            const okButton = overlay.querySelector('[data-action="ok"]');
+            const cancelButton = overlay.querySelector('[data-action="cancel"]');
+
+            // Handle OK button click
+            okButton.addEventListener('click', () => {
+                const value = input.value.trim();
+                this.closeActiveModal();
+                resolve(value || null);
+            });
+
+            // Handle Cancel button click
+            cancelButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve(null);
+            });
+
+            // Handle Enter key in input
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const value = input.value.trim();
+                    this.closeActiveModal();
+                    resolve(value || null);
+                }
+            });
+
+            // Handle ESC key (cancel)
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    this.closeActiveModal();
+                    resolve(null);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+
+            // Handle overlay click (cancel)
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeActiveModal();
+                    resolve(null);
+                }
+            });
+
+            // Focus the input field
+            setTimeout(() => input.focus(), 100);
         });
     }
 
