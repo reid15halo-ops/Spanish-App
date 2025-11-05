@@ -14,8 +14,9 @@
 class ExerciseLoader {
     constructor() {
         // Fallback to inlined data if available
+        // Use expanded lesson 1 if available, otherwise fall back to old unit
         this.units = {
-            1: window.UNIT_1_PRONOUNS,
+            1: window.LESSON_1_EXPANDED || window.UNIT_1_PRONOUNS,
             2: window.UNIT_2_SER,
             3: window.UNIT_3_ESTAR,
             4: window.UNIT_4_SER_ESTAR_CONTRAST,
@@ -271,39 +272,112 @@ class ExerciseRenderer {
     }
 
     /**
-     * Render vocabulary card (passive learning)
+     * Render vocabulary card with active practice
      */
     renderVocabularyCard(exercise, onNext) {
-        return `
-            <div class="vocab-card">
-                <div class="vocab-word-display">
-                    ${exercise.emoji ? `<div class="emoji">${exercise.emoji}</div>` : ''}
-                    <div class="word">${exercise.word}</div>
-                    <div class="translation">${exercise.translation}</div>
+        // Initialize practice mode if not exists
+        if (!exercise.practiceMode) {
+            exercise.practiceMode = {
+                currentPracticeIndex: -1, // -1 = intro screen, 0+ = practice exercises
+                practices: exercise.practices || [],
+                attempts: 0
+            };
+        }
+
+        const mode = exercise.practiceMode;
+        const currentIndex = mode.currentPracticeIndex;
+
+        // INTRO SCREEN: Show word, explanation, mnemonic
+        if (currentIndex === -1) {
+            return `
+                <div class="vocab-card vocab-intro">
+                    <div class="vocab-word-display">
+                        ${exercise.emoji ? `<div class="emoji">${exercise.emoji}</div>` : ''}
+                        <div class="word">${exercise.word}</div>
+                        <div class="translation">${exercise.translation}</div>
+                    </div>
+
+                    ${exercise.germanBridge ? `
+                        <div class="german-bridge">${exercise.germanBridge}</div>
+                    ` : ''}
+
+                    ${exercise.explanation ? `
+                        <p class="explanation">${exercise.explanation}</p>
+                    ` : ''}
+
+                    ${exercise.mnemonic ? `
+                        <p class="mnemonic"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
+                    ` : ''}
+
+                    ${exercise.exampleSentence ? `
+                        <div class="example">
+                            <div class="example-es">"${exercise.exampleSentence}"</div>
+                            ${exercise.exampleTranslation ? `
+                                <div class="example-de">${exercise.exampleTranslation}</div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+
+                    <div class="practice-info">
+                        <p>📝 Jetzt üben wir mit <strong>${mode.practices.length}</strong> Übersetzungsübungen!</p>
+                    </div>
+
+                    <button class="btn-primary" onclick="app.startVocabPractice()">Los geht's! →</button>
                 </div>
+            `;
+        }
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+        // PRACTICE SCREENS: Active translation input
+        if (currentIndex >= 0 && currentIndex < mode.practices.length) {
+            const practice = mode.practices[currentIndex];
+            const directionIcon = practice.direction === 'es-de' ? '🇪🇸 → 🇩🇪' : '🇩🇪 → 🇪🇸';
+            const progress = `${currentIndex + 1}/${mode.practices.length}`;
 
-                ${exercise.explanation ? `
-                    <p class="explanation">${exercise.explanation}</p>
-                ` : ''}
+            return `
+                <div class="vocab-card vocab-practice">
+                    <div class="practice-header">
+                        <span class="practice-direction">${directionIcon}</span>
+                        <span class="practice-progress">${progress}</span>
+                    </div>
 
-                ${exercise.mnemonic ? `
-                    <p class="mnemonic"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
-                ` : ''}
+                    <div class="practice-question">
+                        <p class="question-text">${practice.question}</p>
+                    </div>
 
-                ${exercise.exampleSentence ? `
-                    <div class="example">
-                        <div class="example-es">"${exercise.exampleSentence}"</div>
-                        ${exercise.exampleTranslation ? `
-                            <div class="example-de">${exercise.exampleTranslation}</div>
+                    <div class="practice-input-area">
+                        <label for="practice-input">Deine Übersetzung:</label>
+                        <textarea
+                            id="practice-input"
+                            class="practice-input"
+                            placeholder="Tippe hier deine Übersetzung..."
+                            rows="2"
+                        ></textarea>
+                        ${practice.hint ? `
+                            <p class="practice-hint">💡 Tipp: ${practice.hint}</p>
                         ` : ''}
                     </div>
-                ` : ''}
 
-                <button class="btn-primary" onclick="app.next()">Weiter →</button>
+                    <div id="practice-feedback" class="practice-feedback"></div>
+
+                    <button class="btn-primary" onclick="app.checkVocabPractice()">Prüfen</button>
+                </div>
+            `;
+        }
+
+        // COMPLETE SCREEN: All practices done
+        return `
+            <div class="vocab-card vocab-complete">
+                <div class="complete-icon">✅</div>
+                <h3>Super! Wort gemeistert!</h3>
+                <p>Du hast alle ${mode.practices.length} Übungen abgeschlossen.</p>
+                <div class="complete-summary">
+                    <div class="word-recap">
+                        ${exercise.emoji ? `<div class="emoji">${exercise.emoji}</div>` : ''}
+                        <div class="word">${exercise.word}</div>
+                        <div class="translation">${exercise.translation}</div>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="app.next()">Nächstes Wort →</button>
             </div>
         `;
     }
@@ -1310,6 +1384,163 @@ class App {
                 this.isNavigating = false;
             }, 100);
         }
+    }
+
+    /**
+     * Start vocabulary practice mode (move from intro to first practice)
+     */
+    startVocabPractice() {
+        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+
+        if (exercise.type === 'vocabulary-card' && exercise.practiceMode) {
+            exercise.practiceMode.currentPracticeIndex = 0;
+            this.render();
+
+            // Focus on input field after render
+            setTimeout(() => {
+                const input = document.getElementById('practice-input');
+                if (input) input.focus();
+            }, 100);
+        }
+    }
+
+    /**
+     * Check vocabulary practice answer
+     */
+    checkVocabPractice() {
+        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+
+        if (exercise.type !== 'vocabulary-card' || !exercise.practiceMode) {
+            return;
+        }
+
+        const mode = exercise.practiceMode;
+        const currentIndex = mode.currentPracticeIndex;
+
+        if (currentIndex < 0 || currentIndex >= mode.practices.length) {
+            return;
+        }
+
+        const practice = mode.practices[currentIndex];
+        const input = document.getElementById('practice-input');
+        const feedback = document.getElementById('practice-feedback');
+
+        if (!input || !feedback) return;
+
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = practice.answer.toLowerCase();
+
+        // Normalize for comparison (remove punctuation, extra spaces)
+        const normalize = (str) => str.replace(/[¿?¡!.,;:]/g, '').replace(/\s+/g, ' ').trim();
+        const normalizedUser = normalize(userAnswer);
+        const normalizedCorrect = normalize(correctAnswer);
+
+        // Check if answer is correct (allow some flexibility)
+        const isCorrect = normalizedUser === normalizedCorrect ||
+                         normalizedCorrect.includes(normalizedUser) ||
+                         this.calculateSimilarity(normalizedUser, normalizedCorrect) > 0.85;
+
+        if (isCorrect) {
+            // Correct answer
+            feedback.innerHTML = `
+                <div class="feedback-correct">
+                    ✅ <strong>Richtig!</strong> ${practice.answer}
+                </div>
+            `;
+            feedback.className = 'practice-feedback correct';
+
+            // Move to next practice after short delay
+            setTimeout(() => {
+                mode.currentPracticeIndex++;
+                this.render();
+
+                // Focus on next input if exists
+                setTimeout(() => {
+                    const nextInput = document.getElementById('practice-input');
+                    if (nextInput) nextInput.focus();
+                }, 100);
+            }, 1500);
+        } else {
+            // Incorrect answer
+            mode.attempts++;
+
+            if (mode.attempts >= 2) {
+                // Show correct answer after 2 attempts
+                feedback.innerHTML = `
+                    <div class="feedback-show-answer">
+                        ℹ️ <strong>Die richtige Antwort ist:</strong><br>
+                        ${practice.answer}
+                    </div>
+                `;
+                feedback.className = 'practice-feedback show-answer';
+
+                // Move to next after showing answer
+                setTimeout(() => {
+                    mode.currentPracticeIndex++;
+                    mode.attempts = 0;
+                    this.render();
+
+                    setTimeout(() => {
+                        const nextInput = document.getElementById('practice-input');
+                        if (nextInput) nextInput.focus();
+                    }, 100);
+                }, 3000);
+            } else {
+                // Give hint, allow retry
+                feedback.innerHTML = `
+                    <div class="feedback-incorrect">
+                        ❌ <strong>Nicht ganz.</strong> Versuch es nochmal!
+                        ${practice.hint ? `<br><small>💡 ${practice.hint}</small>` : ''}
+                    </div>
+                `;
+                feedback.className = 'practice-feedback incorrect';
+                input.select();
+            }
+        }
+    }
+
+    /**
+     * Calculate string similarity (for flexible answer checking)
+     */
+    calculateSimilarity(str1, str2) {
+        const longer = str1.length > str2.length ? str1 : str2;
+        const shorter = str1.length > str2.length ? str2 : str1;
+
+        if (longer.length === 0) return 1.0;
+
+        const editDistance = this.levenshteinDistance(longer, shorter);
+        return (longer.length - editDistance) / longer.length;
+    }
+
+    /**
+     * Calculate Levenshtein distance (for similarity checking)
+     */
+    levenshteinDistance(str1, str2) {
+        const matrix = [];
+
+        for (let i = 0; i <= str2.length; i++) {
+            matrix[i] = [i];
+        }
+
+        for (let j = 0; j <= str1.length; j++) {
+            matrix[0][j] = j;
+        }
+
+        for (let i = 1; i <= str2.length; i++) {
+            for (let j = 1; j <= str1.length; j++) {
+                if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+        }
+
+        return matrix[str2.length][str1.length];
     }
 
     /**

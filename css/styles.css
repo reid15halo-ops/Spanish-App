@@ -1233,3 +1233,228 @@
                 padding: 12px 30px;
             }
         }
+
+/* ===== VOCABULARY PRACTICE ===== */
+
+/* Practice Info on intro screen */
+.practice-info {
+    background: var(--primary);
+    color: white;
+    padding: 15px;
+    border-radius: var(--radius);
+    margin-top: 20px;
+    text-align: center;
+}
+
+.practice-info p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Practice header with direction and progress */
+.practice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+}
+
+.practice-direction {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.practice-progress {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-secondary);
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+
+/* Practice question */
+.practice-question {
+    background: var(--bg-secondary);
+    padding: 20px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary);
+}
+
+.question-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Practice input area */
+.practice-input-area {
+    margin-bottom: 20px;
+}
+
+.practice-input-area label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.practice-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    background: white;
+    color: var(--text-primary);
+    resize: vertical;
+    transition: border-color 0.2s ease;
+}
+
+.practice-input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.practice-hint {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+    font-style: italic;
+}
+
+/* Practice feedback */
+.practice-feedback {
+    padding: 15px;
+    border-radius: var(--radius);
+    margin-bottom: 15px;
+    font-size: 16px;
+    display: none;
+}
+
+.practice-feedback.correct,
+.practice-feedback.incorrect,
+.practice-feedback.show-answer {
+    display: block;
+}
+
+.practice-feedback.correct {
+    background: #E8F5E9;
+    border-left: 4px solid var(--success);
+    color: #2E7D32;
+}
+
+.practice-feedback.incorrect {
+    background: #FFEBEE;
+    border-left: 4px solid #F44336;
+    color: #C62828;
+}
+
+.practice-feedback.show-answer {
+    background: #FFF3CD;
+    border-left: 4px solid #FFC107;
+    color: #856404;
+}
+
+.feedback-correct,
+.feedback-incorrect,
+.feedback-show-answer {
+    margin: 0;
+}
+
+/* Complete screen */
+.vocab-complete {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.complete-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: scaleIn 0.5s ease;
+}
+
+@keyframes scaleIn {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.vocab-complete h3 {
+    color: var(--success);
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.vocab-complete p {
+    color: var(--text-secondary);
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.complete-summary {
+    background: var(--bg-secondary);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 400px;
+}
+
+.word-recap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.word-recap .emoji {
+    font-size: 40px;
+}
+
+.word-recap .word {
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.word-recap .translation {
+    font-size: 18px;
+    color: var(--text-secondary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .question-text {
+        font-size: 18px;
+    }
+
+    .practice-input {
+        font-size: 15px;
+    }
+
+    .complete-icon {
+        font-size: 60px;
+    }
+
+    .vocab-complete h3 {
+        font-size: 24px;
+    }
+
+    .word-recap .word {
+        font-size: 20px;
+    }
+}
