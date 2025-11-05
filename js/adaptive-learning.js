@@ -26,7 +26,16 @@ class AdaptiveLearningSystem {
                 return JSON.parse(saved);
             }
         } catch (e) {
-            console.error('Failed to load performance data:', e);
+            window.Logger?.error('Failed to load performance data:', e);
+
+            // Notify user about data load failure
+            if (e instanceof SyntaxError && window.ModalDialog) {
+                window.ModalDialog.toast(
+                    'Performance-Daten beschädigt. Starte mit leeren Statistiken.',
+                    'warning',
+                    4000
+                );
+            }
         }
 
         // Initialize default structure
@@ -46,7 +55,16 @@ class AdaptiveLearningSystem {
         try {
             localStorage.setItem('adaptive-performance', JSON.stringify(this.performanceData));
         } catch (e) {
-            console.error('Failed to save performance data:', e);
+            window.Logger?.error('Failed to save performance data:', e);
+
+            // Notify user about save failure
+            if (e.name === 'QuotaExceededError' && window.ModalDialog) {
+                window.ModalDialog.toast(
+                    'Speicher voll! Performance-Daten können nicht gespeichert werden.',
+                    'error',
+                    5000
+                );
+            }
         }
     }
 

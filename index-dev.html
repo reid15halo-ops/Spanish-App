@@ -157,11 +157,89 @@
     </div>
 
     <!-- Scripts -->
-    <!-- Load data modules first (they use window.X pattern) -->
-    <script src="/js/module-structure.js"></script>
-    <script src="/js/lesson1-expanded.js"></script>
 
-    <!-- Main ES6 module -->
-    <script type="module" src="/js/main.js"></script>
+    <!-- Environment & Configuration -->
+    <script src="js/config/environment.js"></script>
+
+    <!-- Consolidated Monitoring (Error + Performance) -->
+    <script src="js/monitoring.js"></script>
+
+    <!-- Consolidated Utilities (Logger, Loading, ErrorBoundary, DataBackup, GDPR, Accessibility, etc.) -->
+    <script src="js/utils.js"></script>
+
+    <!-- Inlined Exercise Data (All units + vocabulary - no fetch() calls) -->
+    <script src="js/exercise-data.js"></script>
+    <script src="js/module-structure.js"></script>
+    <script src="js/lesson1-expanded.js"></script>
+
+    <!-- Adaptive Learning System -->
+    <script src="js/adaptive-learning.js"></script>
+
+    <!-- Tolerant Validation & Improved Feedback -->
+    <script src="js/tolerant-validator.js"></script>
+    <script src="js/improved-feedback.js"></script>
+
+    <!-- Level Test & Adaptive Practice System -->
+    <script src="js/level-test-system.js"></script>
+    <script src="js/adaptive-practice-system.js"></script>
+
+    <!-- Consolidated Core App (App + Loader + Renderer) -->
+    <script src="js/app-core.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        window.Logger?.info('Service Worker registered:', registration.scope);
+
+                        // Check for updates every hour
+                        setInterval(() => {
+                            registration.update();
+                        }, 60 * 60 * 1000);
+
+                        // Listen for updates
+                        registration.addEventListener('updatefound', () => {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New version available
+                                    if (window.ModalDialog) {
+                                        window.ModalDialog.confirm(
+                                            'Eine neue Version ist verfügbar. Jetzt aktualisieren?',
+                                            'Aktualisieren',
+                                            'Später'
+                                        ).then(confirmed => {
+                                            if (confirmed) {
+                                                newWorker.postMessage({ type: 'SKIP_WAITING' });
+                                                window.location.reload();
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        });
+                    })
+                    .catch(error => {
+                        window.Logger?.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // Log app initialization (production-aware)
+        window.Logger?.info('Spanish Learning App v' + (window.ENV?.getVersion() || '1.2.0'));
+        window.Logger?.debug('Environment:', window.ENV?.currentEnv || 'unknown');
+        window.Logger?.debug('Debug mode:', window.ENV?.get('enableDebugMode') || false);
+
+        // Update app info in settings modal
+        if (window.ENV) {
+            const versionEl = document.getElementById('app-version');
+            const envEl = document.getElementById('app-env');
+            if (versionEl) versionEl.textContent = window.ENV.getVersion();
+            if (envEl) envEl.textContent = window.ENV.currentEnv;
+        }
+    </script>
 </body>
 </html>

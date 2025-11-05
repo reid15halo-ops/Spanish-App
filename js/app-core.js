@@ -13,8 +13,10 @@
 
 class ExerciseLoader {
     constructor() {
+        // Fallback to inlined data if available
+        // Use expanded lesson 1 if available, otherwise fall back to old unit
         this.units = {
-            1: window.UNIT_1_PRONOUNS,
+            1: window.LESSON_1_EXPANDED || window.UNIT_1_PRONOUNS,
             2: window.UNIT_2_SER,
             3: window.UNIT_3_ESTAR,
             4: window.UNIT_4_SER_ESTAR_CONTRAST,
@@ -22,34 +24,96 @@ class ExerciseLoader {
             6: window.UNIT_6_VOCABULARY,
             7: window.UNIT_7_INTEGRATION
         };
+
+        // Cache for loaded units
+        this.cache = {};
+
+        // Mapping of unit numbers to JSON file names
+        this.unitFiles = {
+            1: 'unit1-pronouns.json',
+            2: 'unit2-ser.json',
+            3: 'unit3-estar.json',
+            4: 'unit4-ser-estar-contrast.json',
+            5: 'unit5-tener.json',
+            6: 'unit6-vocabulary.json',
+            7: 'unit7-integration.json'
+        };
     }
 
     /**
      * Load exercises for a specific unit
+     * Progressive enhancement: Try JSON first, fallback to inlined data
      * @param {number} unitNumber - Unit number (1-7)
      * @returns {Promise<Object>} Unit data with exercises
      */
     async loadUnit(unitNumber) {
-        const data = this.units[unitNumber];
-
-        if (!data) {
-            throw new Error(`Unit ${unitNumber} not found. Available units: 1-7`);
+        // Check cache first
+        if (this.cache[unitNumber]) {
+            window.Logger?.debug(`📦 Using cached data for Unit ${unitNumber}`);
+            return this.cache[unitNumber];
         }
 
         window.Logger?.info(`📚 Loading Unit ${unitNumber}...`);
 
-        if (!data.exercises || !Array.isArray(data.exercises)) {
+        let data = null;
+
+        // Strategy 1: Try loading from JSON file (optimal - lazy loading)
+        try {
+            data = await this.loadUnitFromJSON(unitNumber);
+            window.Logger?.success(`✅ Loaded Unit ${unitNumber} from JSON (lazy loading)`);
+        } catch (jsonError) {
+            window.Logger?.debug(`JSON load failed for Unit ${unitNumber}:`, jsonError.message);
+
+            // Strategy 2: Fallback to inlined data (for offline/file:// URLs)
+            data = this.units[unitNumber];
+
+            if (data) {
+                window.Logger?.info(`✅ Using inlined data for Unit ${unitNumber} (fallback)`);
+            } else {
+                throw new Error(`Unit ${unitNumber} not found. Available units: 1-7`);
+            }
+        }
+
+        // Validate data structure
+        if (!data || !data.exercises || !Array.isArray(data.exercises)) {
             throw new Error(`Invalid data format for Unit ${unitNumber}`);
         }
 
-        window.Logger?.success(`✅ Loaded ${data.exercises.length} exercises for Unit ${unitNumber}`);
-        window.Logger?.debug(`   Title: ${data.metadata?.title || 'N/A'}`);
-
-        return {
+        // Cache the result
+        this.cache[unitNumber] = {
             metadata: data.metadata,
             phases: data.learningPhases,
             exercises: data.exercises
         };
+
+        window.Logger?.success(`✅ Unit ${unitNumber} ready (${data.exercises.length} exercises)`);
+        window.Logger?.debug(`   Title: ${data.metadata?.title || 'N/A'}`);
+
+        return this.cache[unitNumber];
+    }
+
+    /**
+     * Load unit data from JSON file
+     * @param {number} unitNumber
+     * @returns {Promise<Object>}
+     */
+    async loadUnitFromJSON(unitNumber) {
+        const fileName = this.unitFiles[unitNumber];
+
+        if (!fileName) {
+            throw new Error(`No JSON file mapped for unit ${unitNumber}`);
+        }
+
+        const url = `/data/phase1-exercises/${fileName}`;
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        return data;
     }
 
     /**
@@ -138,6 +202,9 @@ class ExerciseRenderer {
         let html = '';
 
         switch (exercise.type) {
+            case 'grammar-explanation':
+                html = this.renderGrammarExplanation(exercise);
+                break;
             case 'vocabulary-card':
                 html = this.renderVocabularyCard(exercise, onAnswer);
                 break;
@@ -205,41 +272,230 @@ class ExerciseRenderer {
     }
 
     /**
-     * Render vocabulary card (passive learning)
+     * Render vocabulary card with active practice
      */
     renderVocabularyCard(exercise, onNext) {
-        return `
-            <div class="vocab-card">
-                <div class="vocab-word-display">
-                    ${exercise.emoji ? `<div class="emoji">${exercise.emoji}</div>` : ''}
-                    <div class="word">${exercise.word}</div>
-                    <div class="translation">${exercise.translation}</div>
+        // Initialize practice mode if not exists
+        if (!exercise.practiceMode) {
+            exercise.practiceMode = {
+                currentPracticeIndex: -1, // -1 = intro screen, 0+ = practice exercises
+                practices: exercise.practices || [],
+                attempts: 0
+            };
+        }
+
+        const mode = exercise.practiceMode;
+        const currentIndex = mode.currentPracticeIndex;
+
+        // INTRO SCREEN: Show word, explanation, mnemonic
+        if (currentIndex === -1) {
+            return `
+                <div class="vocab-card vocab-intro">
+                    <div class="vocab-word-display">
+                        ${exercise.emoji ? `<div class="emoji">${exercise.emoji}</div>` : ''}
+                        <div class="word">${exercise.word}</div>
+                        <div class="translation">${exercise.translation}</div>
+                    </div>
+
+                    ${exercise.germanBridge ? `
+                        <div class="german-bridge">${exercise.germanBridge}</div>
+                    ` : ''}
+
+                    ${exercise.explanation ? `
+                        <p class="explanation">${exercise.explanation}</p>
+                    ` : ''}
+
+                    ${exercise.mnemonic ? `
+                        <p class="mnemonic"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
+                    ` : ''}
+
+                    ${exercise.exampleSentence ? `
+                        <div class="example">
+                            <div class="example-es">"${exercise.exampleSentence}"</div>
+                            ${exercise.exampleTranslation ? `
+                                <div class="example-de">${exercise.exampleTranslation}</div>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+
+                    <div class="practice-info">
+                        <p>📝 Jetzt üben wir mit <strong>${mode.practices.length}</strong> Übersetzungsübungen!</p>
+                    </div>
+
+                    <button class="btn-primary" onclick="app.startVocabPractice()">Los geht's! →</button>
                 </div>
+            `;
+        }
 
-                ${exercise.germanBridge ? `
-                    <div class="german-bridge">${exercise.germanBridge}</div>
-                ` : ''}
+        // PRACTICE SCREENS: Active translation input
+        if (currentIndex >= 0 && currentIndex < mode.practices.length) {
+            const practice = mode.practices[currentIndex];
+            const directionIcon = practice.direction === 'es-de' ? '🇪🇸 → 🇩🇪' : '🇩🇪 → 🇪🇸';
+            const progress = `${currentIndex + 1}/${mode.practices.length}`;
 
-                ${exercise.explanation ? `
-                    <p class="explanation">${exercise.explanation}</p>
-                ` : ''}
+            return `
+                <div class="vocab-card vocab-practice">
+                    <div class="practice-header">
+                        <span class="practice-direction">${directionIcon}</span>
+                        <span class="practice-progress">${progress}</span>
+                    </div>
 
-                ${exercise.mnemonic ? `
-                    <p class="mnemonic"><strong>💡 Merkhilfe:</strong> ${exercise.mnemonic}</p>
-                ` : ''}
+                    <div class="practice-question">
+                        <p class="question-text">${practice.question}</p>
+                    </div>
 
-                ${exercise.exampleSentence ? `
-                    <div class="example">
-                        <div class="example-es">"${exercise.exampleSentence}"</div>
-                        ${exercise.exampleTranslation ? `
-                            <div class="example-de">${exercise.exampleTranslation}</div>
+                    <div class="practice-input-area">
+                        <label for="practice-input">Deine Übersetzung:</label>
+                        <textarea
+                            id="practice-input"
+                            class="practice-input"
+                            placeholder="Tippe hier deine Übersetzung..."
+                            rows="2"
+                        ></textarea>
+                        ${practice.hint ? `
+                            <p class="practice-hint">💡 Tipp: ${practice.hint}</p>
                         ` : ''}
                     </div>
-                ` : ''}
 
-                <button class="btn-primary" onclick="app.next()">Weiter →</button>
+                    <div id="practice-feedback" class="practice-feedback"></div>
+
+                    <button class="btn-primary" onclick="app.checkVocabPractice()">Prüfen</button>
+                </div>
+            `;
+        }
+
+        // COMPLETE SCREEN: All practices done
+        return `
+            <div class="vocab-card vocab-complete">
+                <div class="complete-icon">✅</div>
+                <h3>Super! Wort gemeistert!</h3>
+                <p>Du hast alle ${mode.practices.length} Übungen abgeschlossen.</p>
+                <div class="complete-summary">
+                    <div class="word-recap">
+                        ${exercise.emoji ? `<div class="emoji">${exercise.emoji}</div>` : ''}
+                        <div class="word">${exercise.word}</div>
+                        <div class="translation">${exercise.translation}</div>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="app.next()">Nächstes Wort →</button>
             </div>
         `;
+    }
+
+    /**
+     * Render grammar explanation screen
+     */
+    renderGrammarExplanation(exercise) {
+        let html = `
+            <div class="grammar-explanation">
+                <div class="grammar-header">
+                    <span class="grammar-icon">${exercise.icon || '📚'}</span>
+                    <h2 class="grammar-title">${exercise.title}</h2>
+                </div>
+        `;
+
+        // Render all sections
+        if (exercise.sections) {
+            exercise.sections.forEach(section => {
+                html += `
+                    <div class="grammar-section">
+                        <h3 class="section-heading">${section.heading}</h3>
+                        <p class="section-content">${section.content}</p>
+                `;
+
+                // Bullet points
+                if (section.bulletPoints) {
+                    html += '<ul class="bullet-list">';
+                    section.bulletPoints.forEach(point => {
+                        html += `<li>${point}</li>`;
+                    });
+                    html += '</ul>';
+                }
+
+                // Examples
+                if (section.examples) {
+                    html += '<div class="examples-box">';
+                    section.examples.forEach(ex => {
+                        html += `<div class="example-item">${ex}</div>`;
+                    });
+                    html += '</div>';
+                }
+
+                // Table
+                if (section.table) {
+                    html += '<div class="grammar-table-wrapper"><table class="grammar-table">';
+                    html += '<thead><tr>';
+                    section.table.headers.forEach(header => {
+                        html += `<th>${header}</th>`;
+                    });
+                    html += '</tr></thead><tbody>';
+                    section.table.rows.forEach(row => {
+                        html += '<tr>';
+                        row.forEach(cell => {
+                            html += `<td>${cell}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                    html += '</tbody></table></div>';
+                }
+
+                // Comparison
+                if (section.comparison) {
+                    html += '<div class="comparison-box">';
+                    section.comparison.forEach(item => {
+                        html += `
+                            <div class="comparison-item">
+                                <div class="comparison-verb"><strong>${item.verb.toUpperCase()}</strong></div>
+                                <div class="comparison-usage">${item.usage}</div>
+                                <div class="comparison-examples">
+                                    ${item.examples.map(ex => `<div class="comp-example">• ${ex}</div>`).join('')}
+                                </div>
+                                ${item.note ? `<div class="comparison-note">${item.note}</div>` : ''}
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                }
+
+                // Summary
+                if (section.summary) {
+                    html += '<div class="summary-box">';
+                    section.summary.forEach(point => {
+                        html += `<div class="summary-point">${point}</div>`;
+                    });
+                    html += '</div>';
+                }
+
+                // Note
+                if (section.note) {
+                    html += `<div class="grammar-note">📌 ${section.note}</div>`;
+                }
+
+                // Mnemonic
+                if (section.mnemonic) {
+                    html += `<div class="mnemonic-box">💡 ${section.mnemonic}</div>`;
+                }
+
+                // Encouragement
+                if (section.encouragement) {
+                    html += `<div class="encouragement">${section.encouragement}</div>`;
+                }
+
+                html += `</div>`; // close grammar-section
+            });
+        }
+
+        // Continue button
+        html += `
+                <div class="grammar-actions">
+                    <button class="btn-primary btn-large" onclick="app.next()">
+                        ${exercise.checkButton ? exercise.checkButton.text : 'Verstanden, weiter! →'}
+                    </button>
+                </div>
+            </div>
+        `;
+
+        return html;
     }
 
     /**
@@ -347,15 +603,48 @@ class ExerciseRenderer {
     renderFillBlank(exercise, onAnswer) {
         const parsed = this.extractGermanTranslation(exercise.question);
 
+        // Build complete sentence from the blank question and correct answer
+        let completeSentence = parsed.spanish;
+        if (completeSentence.includes('____')) {
+            // Replace blanks with the correct answer to show the complete sentence
+            const answers = exercise.correctAnswer.split(';');
+            answers.forEach(answer => {
+                completeSentence = completeSentence.replace('____', answer.trim());
+            });
+        }
+
+        // Store the complete sentence as the expected answer for this exercise
+        if (!exercise._fullSentenceAnswer) {
+            exercise._fullSentenceAnswer = completeSentence
+                .replace(/\s*\([^)]*\)/g, '') // Remove (German translation) if present
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            // Generate alternative answers (with/without punctuation, different cases)
+            if (!exercise._fullSentenceAlternatives) {
+                const baseAnswer = exercise._fullSentenceAnswer;
+                exercise._fullSentenceAlternatives = [
+                    baseAnswer,
+                    baseAnswer + '.',
+                    baseAnswer.toLowerCase(),
+                    baseAnswer.toLowerCase() + '.',
+                    // Capitalize first letter
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1),
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1) + '.'
+                ];
+            }
+        }
+
         return `
             <div class="fill-blank">
+                <p class="instruction">✍️ <strong>Schreibe den ganzen Satz:</strong></p>
                 <p class="question">${parsed.spanish}</p>
 
                 ${this.renderGermanHelp(parsed.german, exercise.germanBridge, exercise.example)}
 
                 <div class="input-group">
-                    <input type="text" id="answer-input" class="text-input"
-                           placeholder="Deine Antwort..." autocomplete="off">
+                    <textarea id="answer-input" class="text-input" rows="2"
+                           placeholder="Schreibe den kompletten spanischen Satz..." autocomplete="off"></textarea>
                     <button class="btn-primary" onclick="app.checkAnswer()">Prüfen</button>
                 </div>
 
@@ -593,10 +882,14 @@ class ExerciseRenderer {
 
         feedbackArea.className = `feedback-area ${isCorrect ? 'correct' : 'incorrect'}`;
 
-        let html = `<p class="feedback-message">${message}</p>`;
+        // Escape user-facing content to prevent XSS
+        const safeMessage = window.escapeHtml ? window.escapeHtml(message) : message;
+        const safeAnswer = window.escapeHtml ? window.escapeHtml(correctAnswer) : correctAnswer;
+
+        let html = `<p class="feedback-message">${safeMessage}</p>`;
 
         if (!isCorrect && correctAnswer) {
-            html += `<p class="correct-answer">Richtige Antwort: <strong>${correctAnswer}</strong></p>`;
+            html += `<p class="correct-answer">Richtige Antwort: <strong>${safeAnswer}</strong></p>`;
         }
 
         feedbackArea.innerHTML = html;
@@ -955,7 +1248,7 @@ class App {
 
         const answer = input.value.trim();
         if (!answer) {
-            alert('Bitte gib eine Antwort ein!');
+            window.ModalDialog.alert('Bitte gib eine Antwort ein!', 'warning');
             return;
         }
 
@@ -966,29 +1259,72 @@ class App {
      * Handle user answer
      */
     handleAnswer(userAnswer) {
-        console.log('[App] handleAnswer called with:', userAnswer);
+        window.Logger?.debug('[App] handleAnswer called with:', userAnswer);
 
         const exercise = this.exercises[this.currentIndex];
-        console.log('[App] Current exercise:', exercise.type, exercise.id);
+        window.Logger?.debug('[App] Current exercise:', exercise.type, exercise.id);
 
         // Get correct answer (different location for reading-comprehension)
         let correctAnswer;
+        let alternativeAnswers = exercise.alternativeAnswers || [];
+
         if (exercise.type === 'reading-comprehension' && exercise.comprehensionCheck) {
             correctAnswer = exercise.comprehensionCheck.correctAnswer;
+        } else if (exercise.type === 'fill-blank') {
+            // For fill-blank exercises, build the complete sentence if not already done
+            if (!exercise._fullSentenceAnswer) {
+                // Extract Spanish from question
+                const questionMatch = exercise.question.match(/^(.*?)(\s*\(|$)/);
+                let spanishQuestion = questionMatch ? questionMatch[1].trim() : exercise.question;
+
+                // Replace blanks with correct answers
+                if (spanishQuestion.includes('____')) {
+                    const answers = exercise.correctAnswer.split(';');
+                    answers.forEach(answer => {
+                        spanishQuestion = spanishQuestion.replace('____', answer.trim());
+                    });
+                }
+
+                exercise._fullSentenceAnswer = spanishQuestion.trim();
+
+                // Generate alternatives
+                const baseAnswer = exercise._fullSentenceAnswer;
+                exercise._fullSentenceAlternatives = [
+                    baseAnswer,
+                    baseAnswer + '.',
+                    baseAnswer.toLowerCase(),
+                    baseAnswer.toLowerCase() + '.',
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1),
+                    baseAnswer.charAt(0).toUpperCase() + baseAnswer.slice(1) + '.'
+                ];
+            }
+
+            // Use the complete sentence
+            correctAnswer = exercise._fullSentenceAnswer;
+            // Include generated alternatives
+            if (exercise._fullSentenceAlternatives) {
+                alternativeAnswers = [...alternativeAnswers, ...exercise._fullSentenceAlternatives];
+            }
         } else {
             correctAnswer = exercise.correctAnswer;
         }
 
-        console.log('[App] Correct answer:', correctAnswer);
+        window.Logger?.debug('[App] Correct answer:', correctAnswer);
+
+        // Create modified exercise with alternatives for validator
+        const exerciseForValidation = {
+            ...exercise,
+            alternativeAnswers: alternativeAnswers
+        };
 
         // Use tolerant validator for improved feedback
         const validationResult = this.validator.validateAnswer(
             userAnswer,
             correctAnswer,
-            exercise
+            exerciseForValidation
         );
 
-        console.log('[App] Validation result:', validationResult);
+        window.Logger?.debug('[App] Validation result:', validationResult);
 
         // Update stats (only based on core correctness)
         this.stats.total++;
@@ -1010,12 +1346,12 @@ class App {
         // Save progress after updating stats
         this.saveProgress();
 
-        console.log('[App] About to call feedbackSystem.showValidationResult');
+        window.Logger?.debug('[App] About to call feedbackSystem.showValidationResult');
 
         // Show improved feedback
         this.feedbackSystem.showValidationResult(validationResult, exercise);
 
-        console.log('[App] After feedbackSystem.showValidationResult');
+        window.Logger?.debug('[App] After feedbackSystem.showValidationResult');
 
         // Disable input/buttons to prevent multiple submissions
         this.disableInput();
@@ -1127,6 +1463,163 @@ class App {
     }
 
     /**
+     * Start vocabulary practice mode (move from intro to first practice)
+     */
+    startVocabPractice() {
+        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+
+        if (exercise.type === 'vocabulary-card' && exercise.practiceMode) {
+            exercise.practiceMode.currentPracticeIndex = 0;
+            this.render();
+
+            // Focus on input field after render
+            setTimeout(() => {
+                const input = document.getElementById('practice-input');
+                if (input) input.focus();
+            }, 100);
+        }
+    }
+
+    /**
+     * Check vocabulary practice answer
+     */
+    checkVocabPractice() {
+        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+
+        if (exercise.type !== 'vocabulary-card' || !exercise.practiceMode) {
+            return;
+        }
+
+        const mode = exercise.practiceMode;
+        const currentIndex = mode.currentPracticeIndex;
+
+        if (currentIndex < 0 || currentIndex >= mode.practices.length) {
+            return;
+        }
+
+        const practice = mode.practices[currentIndex];
+        const input = document.getElementById('practice-input');
+        const feedback = document.getElementById('practice-feedback');
+
+        if (!input || !feedback) return;
+
+        const userAnswer = input.value.trim().toLowerCase();
+        const correctAnswer = practice.answer.toLowerCase();
+
+        // Normalize for comparison (remove punctuation, extra spaces)
+        const normalize = (str) => str.replace(/[¿?¡!.,;:]/g, '').replace(/\s+/g, ' ').trim();
+        const normalizedUser = normalize(userAnswer);
+        const normalizedCorrect = normalize(correctAnswer);
+
+        // Check if answer is correct (allow some flexibility)
+        const isCorrect = normalizedUser === normalizedCorrect ||
+                         normalizedCorrect.includes(normalizedUser) ||
+                         this.calculateSimilarity(normalizedUser, normalizedCorrect) > 0.85;
+
+        if (isCorrect) {
+            // Correct answer
+            feedback.innerHTML = `
+                <div class="feedback-correct">
+                    ✅ <strong>Richtig!</strong> ${practice.answer}
+                </div>
+            `;
+            feedback.className = 'practice-feedback correct';
+
+            // Move to next practice after short delay
+            setTimeout(() => {
+                mode.currentPracticeIndex++;
+                this.render();
+
+                // Focus on next input if exists
+                setTimeout(() => {
+                    const nextInput = document.getElementById('practice-input');
+                    if (nextInput) nextInput.focus();
+                }, 100);
+            }, 1500);
+        } else {
+            // Incorrect answer
+            mode.attempts++;
+
+            if (mode.attempts >= 2) {
+                // Show correct answer after 2 attempts
+                feedback.innerHTML = `
+                    <div class="feedback-show-answer">
+                        ℹ️ <strong>Die richtige Antwort ist:</strong><br>
+                        ${practice.answer}
+                    </div>
+                `;
+                feedback.className = 'practice-feedback show-answer';
+
+                // Move to next after showing answer
+                setTimeout(() => {
+                    mode.currentPracticeIndex++;
+                    mode.attempts = 0;
+                    this.render();
+
+                    setTimeout(() => {
+                        const nextInput = document.getElementById('practice-input');
+                        if (nextInput) nextInput.focus();
+                    }, 100);
+                }, 3000);
+            } else {
+                // Give hint, allow retry
+                feedback.innerHTML = `
+                    <div class="feedback-incorrect">
+                        ❌ <strong>Nicht ganz.</strong> Versuch es nochmal!
+                        ${practice.hint ? `<br><small>💡 ${practice.hint}</small>` : ''}
+                    </div>
+                `;
+                feedback.className = 'practice-feedback incorrect';
+                input.select();
+            }
+        }
+    }
+
+    /**
+     * Calculate string similarity (for flexible answer checking)
+     */
+    calculateSimilarity(str1, str2) {
+        const longer = str1.length > str2.length ? str1 : str2;
+        const shorter = str1.length > str2.length ? str2 : str1;
+
+        if (longer.length === 0) return 1.0;
+
+        const editDistance = this.levenshteinDistance(longer, shorter);
+        return (longer.length - editDistance) / longer.length;
+    }
+
+    /**
+     * Calculate Levenshtein distance (for similarity checking)
+     */
+    levenshteinDistance(str1, str2) {
+        const matrix = [];
+
+        for (let i = 0; i <= str2.length; i++) {
+            matrix[i] = [i];
+        }
+
+        for (let j = 0; j <= str1.length; j++) {
+            matrix[0][j] = j;
+        }
+
+        for (let i = 1; i <= str2.length; i++) {
+            for (let j = 1; j <= str1.length; j++) {
+                if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+        }
+
+        return matrix[str2.length][str1.length];
+    }
+
+    /**
      * Jump to specific exercise
      */
     jumpToExercise(index) {
@@ -1231,7 +1724,36 @@ class App {
         for (let i = 1; i <= 7; i++) {
             const option = document.createElement('option');
             option.value = i;
-            option.textContent = `Lektion ${i}`;
+
+            // Get progress for this unit from localStorage
+            let progressText = `Lektion ${i}`;
+            try {
+                const savedProgress = localStorage.getItem('exerciseProgress');
+                if (savedProgress) {
+                    const progressData = JSON.parse(savedProgress);
+                    if (progressData.unit === i && progressData.index !== undefined) {
+                        // Calculate percentage based on current unit's exercises
+                        // If this is the current unit, use current data
+                        if (i === this.currentUnit && this.exercises && this.exercises.length > 0) {
+                            const currentEx = this.currentIndex + 1;
+                            const totalEx = this.exercises.length;
+                            const percentage = Math.round((currentEx / totalEx) * 100);
+                            progressText = `Lektion ${i} (${percentage}%)`;
+                        } else if (i === progressData.unit) {
+                            // For saved progress, we need to estimate
+                            progressText = `Lektion ${i} (in Progress)`;
+                        }
+                    } else if (i < (progressData.unit || 1)) {
+                        // Units before current are considered complete
+                        progressText = `Lektion ${i} (✓)`;
+                    }
+                }
+            } catch (e) {
+                // If localStorage fails, just show unit number
+                window.Logger?.warn('Could not load progress for unit', i, e);
+            }
+
+            option.textContent = progressText;
             if (i === this.currentUnit) {
                 option.selected = true;
             }
@@ -1241,7 +1763,12 @@ class App {
         select.addEventListener('change', async (e) => {
             const newUnit = parseInt(e.target.value);
             if (newUnit !== this.currentUnit) {
-                if (confirm(`Möchtest du zu Lektion ${newUnit} wechseln? Dein Fortschritt wird gespeichert.`)) {
+                const confirmed = await window.ModalDialog.confirm(
+                    `Möchtest du zu Lektion ${newUnit} wechseln? Dein Fortschritt wird gespeichert.`,
+                    'Wechseln',
+                    'Abbrechen'
+                );
+                if (confirmed) {
                     await this.switchToUnit(newUnit);
                 } else {
                     // Reset selection
@@ -1346,7 +1873,7 @@ class App {
             window.Logger?.success(`Zu Lektion ${unitNumber} gewechselt!`);
         } catch (error) {
             window.Logger?.error('Error switching unit:', error);
-            alert(`Fehler beim Wechseln zu Lektion ${unitNumber}. Bitte versuche es erneut.`);
+            window.ModalDialog.alert(`Fehler beim Wechseln zu Lektion ${unitNumber}. Bitte versuche es erneut.`, 'error');
         }
     }
 
@@ -1423,6 +1950,18 @@ class App {
         const activeItem = document.querySelector('.exercise-item.active');
         if (activeItem) {
             activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Update unit selector progress for current unit
+        const unitSelector = document.querySelector('.unit-selector select');
+        if (unitSelector && this.exercises && this.exercises.length > 0) {
+            const currentOption = unitSelector.querySelector(`option[value="${this.currentUnit}"]`);
+            if (currentOption) {
+                const currentEx = this.currentIndex + 1;
+                const totalEx = this.exercises.length;
+                const percentage = Math.round((currentEx / totalEx) * 100);
+                currentOption.textContent = `Lektion ${this.currentUnit} (${percentage}%)`;
+            }
         }
     }
 
@@ -1532,28 +2071,35 @@ class App {
             // Get the test
             const test = this.levelTestSystem.getTestById(level);
             if (!test) {
-                alert('Test not found!');
+                await window.ModalDialog.alert('Test not found!', 'error');
                 return;
             }
 
             // Show test instructions
-            const proceed = confirm(
+            const proceed = await window.ModalDialog.confirm(
                 `Examen de Nivel ${level}\n\n` +
                 `${test.description}\n\n` +
                 `Tiempo: ${test.timeLimit} minutos\n` +
                 `Puntuación mínima: ${test.passingScore}%\n\n` +
                 `IMPORTANTE: El examen está completamente en español sin ayuda en alemán.\n\n` +
-                `¿Estás listo para comenzar?`
+                `¿Estás listo para comenzar?`,
+                'Comenzar',
+                'Cancelar'
             );
 
             if (!proceed) return;
 
-            // TODO: Implement test UI and flow
-            alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.');
+            // Note: Test UI flow is planned but not yet implemented
+            // Future implementation will include:
+            // - Full-screen test mode with timer
+            // - Question navigation and review
+            // - Automatic grading with detailed feedback
+            // - Certificate generation on passing
+            await window.ModalDialog.alert('Test-System wird implementiert! Dies ist eine Vorschau der Funktion.', 'info');
 
         } catch (error) {
             window.Logger?.error('Error starting level test:', error);
-            alert('Fehler beim Starten des Tests');
+            await window.ModalDialog.alert('Fehler beim Starten des Tests', 'error');
         }
     }
 
@@ -1564,7 +2110,7 @@ class App {
         const nextUnit = this.currentUnit + 1;
 
         if (nextUnit > 7) {
-            alert('Du hast bereits alle Lektionen abgeschlossen!');
+            await window.ModalDialog.alert('Du hast bereits alle Lektionen abgeschlossen!', 'success');
             return;
         }
 
@@ -1590,7 +2136,7 @@ class App {
             window.Logger?.success(`Lektion ${nextUnit} gestartet!`);
         } catch (error) {
             window.Logger?.error('Error loading next unit:', error);
-            alert(`Fehler beim Laden von Lektion ${nextUnit}. Bitte versuche es erneut.`);
+            await window.ModalDialog.alert(`Fehler beim Laden von Lektion ${nextUnit}. Bitte versuche es erneut.`, 'error');
         }
     }
 
@@ -1620,7 +2166,7 @@ class App {
             window.Logger?.success(`Lektion ${this.currentUnit} neu gestartet!`);
         } catch (error) {
             window.Logger?.error('Error restarting unit:', error);
-            alert('Fehler beim Neustarten. Bitte versuche es erneut.');
+            await window.ModalDialog.alert('Fehler beim Neustarten. Bitte versuche es erneut.', 'error');
         }
     }
 
@@ -1767,7 +2313,7 @@ class App {
                 if (selected) {
                     this.settings.helpLevel = selected.value;
                     this.saveSettings();
-                    alert('✅ Einstellungen gespeichert!');
+                    window.ModalDialog.toast('Einstellungen gespeichert!', 'success');
                     modal.classList.add('hidden');
                 }
             };
@@ -1790,8 +2336,8 @@ class App {
         const stats = this.adaptiveSystem.getStatistics();
 
         // Log recommendations to console
-        console.log('🎯 Adaptive Learning Recommendations:', recommendations);
-        console.log('📊 Learning Statistics:', stats);
+        window.Logger?.debug('🎯 Adaptive Learning Recommendations:', recommendations);
+        window.Logger?.debug('📊 Learning Statistics:', stats);
 
         // Update sidebar with adaptive info
         const sidebar = document.getElementById('sidebar');

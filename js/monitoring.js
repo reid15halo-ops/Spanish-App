@@ -60,7 +60,7 @@ class ErrorMonitor {
         // Load existing errors
         this.loadErrors();
 
-        console.log('[ErrorMonitor] Initialized');
+        window.Logger?.info('[ErrorMonitor] Initialized');
     }
 
     /**
@@ -90,7 +90,7 @@ class ErrorMonitor {
 
         // Log to console in development
         if (!this.isProduction) {
-            console.error('[ErrorMonitor]', enhancedError);
+            window.Logger?.error('[ErrorMonitor]', enhancedError);
         }
 
         // Notify user of critical errors
@@ -235,7 +235,7 @@ class ErrorMonitor {
         try {
             localStorage.setItem('error-log', JSON.stringify(this.errors));
         } catch (error) {
-            console.error('[ErrorMonitor] Failed to save errors:', error);
+            window.Logger?.error('[ErrorMonitor] Failed to save errors:', error);
         }
     }
 
@@ -249,7 +249,7 @@ class ErrorMonitor {
                 this.errors = JSON.parse(stored);
             }
         } catch (error) {
-            console.error('[ErrorMonitor] Failed to load errors:', error);
+            window.Logger?.error('[ErrorMonitor] Failed to load errors:', error);
             this.errors = [];
         }
     }
@@ -292,7 +292,7 @@ class PerformanceMonitor {
         // Observe first input delay (FID)
         this.observeFID();
 
-        console.log('[PerformanceMonitor] Initialized');
+        window.Logger?.info('[PerformanceMonitor] Initialized');
     }
 
     /**
@@ -319,7 +319,7 @@ class PerformanceMonitor {
         });
 
         this.saveMetrics();
-        console.log('[PerformanceMonitor] Metrics captured:', this.metrics);
+        window.Logger?.debug('[PerformanceMonitor] Metrics captured:', this.metrics);
     }
 
     /**
@@ -340,7 +340,7 @@ class PerformanceMonitor {
 
             observer.observe({ type: 'layout-shift', buffered: true });
         } catch (error) {
-            console.warn('[PerformanceMonitor] CLS observation failed:', error);
+            window.Logger?.warn('[PerformanceMonitor] CLS observation failed:', error);
         }
     }
 
@@ -360,7 +360,7 @@ class PerformanceMonitor {
 
             observer.observe({ type: 'largest-contentful-paint', buffered: true });
         } catch (error) {
-            console.warn('[PerformanceMonitor] LCP observation failed:', error);
+            window.Logger?.warn('[PerformanceMonitor] LCP observation failed:', error);
         }
     }
 

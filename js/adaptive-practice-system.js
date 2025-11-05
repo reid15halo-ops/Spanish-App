@@ -458,7 +458,7 @@ class AdaptivePracticeSystem {
         try {
             return JSON.parse(localStorage.getItem('adaptive-practice-history') || '[]');
         } catch (error) {
-            console.error('Error loading practice history:', error);
+            window.Logger?.error('Error loading practice history:', error);
             return [];
         }
     }
@@ -470,7 +470,7 @@ class AdaptivePracticeSystem {
         try {
             localStorage.setItem('adaptive-practice-history', JSON.stringify(history));
         } catch (error) {
-            console.error('Error saving practice history:', error);
+            window.Logger?.error('Error saving practice history:', error);
         }
     }
 }

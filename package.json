@@ -1,0 +1,26 @@
+{
+  "name": "spanish-learning-app",
+  "version": "1.2.0",
+  "description": "Spanish Learning App with adaptive exercises and offline support",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/post-build.js",
+    "preview": "vite preview",
+    "serve": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "terser": "^5.26.0",
+    "rollup-plugin-visualizer": "^5.12.0"
+  },
+  "keywords": [
+    "spanish",
+    "learning",
+    "education",
+    "pwa",
+    "adaptive-learning"
+  ],
+  "author": "",
+  "license": "MIT"
+}

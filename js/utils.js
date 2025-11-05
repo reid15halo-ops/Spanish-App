@@ -17,6 +17,72 @@
 
 
 // ====================================================================
+// GLOBAL NAMESPACE
+// ====================================================================
+
+/**
+ * Central namespace for Spanish Learning App
+ * Reduces global pollution by organizing all globals under one object
+ *
+ * Usage:
+ *   - window.SpanishApp.app - Main app instance
+ *   - window.SpanishApp.utils - Utilities (Logger, ModalDialog, etc.)
+ *   - window.SpanishApp.services - Services (DataBackup, ErrorMonitor, etc.)
+ *   - window.SpanishApp.data - Exercise data and constants
+ *   - window.SpanishApp.config - Configuration and environment
+ *   - window.SpanishApp.features - Feature modules (Haptics, A11y, etc.)
+ *
+ * Note: For backward compatibility, utilities are also available at window.Logger, etc.
+ */
+window.SpanishApp = window.SpanishApp || {
+    // Core app instance (set by app-core.js)
+    app: null,
+
+    // Utilities
+    utils: {},
+
+    // Services
+    services: {},
+
+    // Data/Constants (exercise data)
+    data: {},
+
+    // Configuration
+    config: {},
+
+    // Features
+    features: {},
+
+    // Version info
+    version: '1.1.0',
+
+    /**
+     * Register a module in the namespace
+     * @param {string} category - Category (utils, services, data, config, features)
+     * @param {string} name - Module name
+     * @param {any} module - Module instance
+     */
+    register(category, name, module) {
+        if (!this[category]) {
+            this[category] = {};
+        }
+        this[category][name] = module;
+        window.Logger?.debug(`[SpanishApp] Registered ${category}.${name}`);
+    },
+
+    /**
+     * Get a registered module
+     * @param {string} category - Category
+     * @param {string} name - Module name
+     * @returns {any} - Module instance
+     */
+    get(category, name) {
+        return this[category]?.[name];
+    }
+};
+
+
+// ====================================================================
 // LOGGER
 // ====================================================================
 
@@ -131,6 +197,79 @@ class Logger {
 // Create global logger instance
 window.Logger = new Logger();
 
+// Register in namespace
+window.SpanishApp.utils.Logger = window.Logger;
+
+
+// ====================================================================
+// HTML SECURITY UTILITIES
+// ====================================================================
+
+/**
+ * Escape HTML to prevent XSS attacks
+ * @param {string} text - Text to escape
+ * @returns {string} - Escaped HTML
+ */
+function escapeHtml(text) {
+    if (text == null) return '';
+
+    const div = document.createElement('div');
+    div.textContent = String(text);
+    return div.innerHTML;
+}
+
+/**
+ * Sanitize HTML by allowing only safe tags
+ * @param {string} html - HTML to sanitize
+ * @param {Array} allowedTags - Array of allowed tag names
+ * @returns {string} - Sanitized HTML
+ */
+function sanitizeHtml(html, allowedTags = ['b', 'strong', 'i', 'em', 'u', 'br', 'p', 'span']) {
+    if (html == null) return '';
+
+    const div = document.createElement('div');
+    div.innerHTML = html;
+
+    // Remove all disallowed tags
+    const allElements = div.getElementsByTagName('*');
+    for (let i = allElements.length - 1; i >= 0; i--) {
+        const element = allElements[i];
+        if (!allowedTags.includes(element.tagName.toLowerCase())) {
+            element.replaceWith(element.textContent);
+        } else {
+            // Remove all attributes except class
+            const attrs = Array.from(element.attributes);
+            attrs.forEach(attr => {
+                if (attr.name !== 'class') {
+                    element.removeAttribute(attr.name);
+                }
+            });
+        }
+    }
+
+    return div.innerHTML;
+}
+
+/**
+ * Create DOM element from HTML string safely
+ * @param {string} html - HTML string
+ * @returns {Node} - DOM node
+ */
+function createElementFromHTML(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html.trim();
+    return template.content.firstChild;
+}
+
+// Make available globally
+window.escapeHtml = escapeHtml;
+window.sanitizeHtml = sanitizeHtml;
+window.createElementFromHTML = createElementFromHTML;
+
+// Register in namespace
+window.SpanishApp.utils.escapeHtml = escapeHtml;
+window.SpanishApp.utils.sanitizeHtml = sanitizeHtml;
+window.SpanishApp.utils.createElementFromHTML = createElementFromHTML;
 
 
 // ====================================================================
@@ -328,6 +467,9 @@ document.head.appendChild(loadingStyles);
 
 // Create global loading manager instance
 window.LoadingManager = new LoadingManager();
+
+// Register in namespace
+window.SpanishApp.services.LoadingManager = window.LoadingManager;
 
 
 
@@ -640,6 +782,9 @@ document.head.appendChild(errorBoundaryStyles);
 // Create global error boundary instance
 window.ErrorBoundary = new ErrorBoundary();
 
+// Register in namespace
+window.SpanishApp.services.ErrorBoundary = window.ErrorBoundary;
+
 
 
 // ====================================================================
@@ -766,8 +911,10 @@ class DataBackupSystem {
         } = options;
 
         if (confirm) {
-            const confirmRestore = window.confirm(
-                'This will restore your data from the backup. Continue?'
+            const confirmRestore = await window.ModalDialog.confirm(
+                'This will restore your data from the backup. Continue?',
+                'Restore',
+                'Cancel'
             );
             if (!confirmRestore) {
                 return { success: false, cancelled: true };
@@ -803,7 +950,7 @@ class DataBackupSystem {
             // Attempt to restore safety backup
             const safetyBackup = sessionStorage.getItem('safety-backup');
             if (safetyBackup) {
-                console.error('Restore failed, reverting to safety backup');
+                window.Logger?.error('Restore failed, reverting to safety backup');
                 // Could implement automatic revert here
             }
 
@@ -822,7 +969,7 @@ class DataBackupSystem {
             const data = localStorage.getItem(this.getStorageKey(key));
             return data ? JSON.parse(data) : null;
         } catch (error) {
-            console.error(`Error reading ${key}:`, error);
+            window.Logger?.error(`Error reading ${key}:`, error);
             return null;
         }
     }
@@ -882,7 +1029,7 @@ class DataBackupSystem {
         if (backup.checksum) {
             const calculatedChecksum = await this.calculateChecksum(backup.data);
             if (calculatedChecksum !== backup.checksum) {
-                console.error('Checksum mismatch - data may be corrupted');
+                window.Logger?.error('Checksum mismatch - data may be corrupted');
                 return false;
             }
         }
@@ -904,7 +1051,7 @@ class DataBackupSystem {
      */
     async encryptBackup(backup, password) {
         if (!window.crypto || !window.crypto.subtle) {
-            console.warn('Encryption not available, saving unencrypted');
+            window.Logger?.warn('Encryption not available, saving unencrypted');
             return backup;
         }
 
@@ -950,7 +1097,7 @@ class DataBackupSystem {
                 data: Array.from(new Uint8Array(encrypted))
             };
         } catch (error) {
-            console.error('Encryption failed:', error);
+            window.Logger?.error('Encryption failed:', error);
             return backup;
         }
     }
@@ -1032,7 +1179,7 @@ class DataBackupSystem {
             const backup = await this.createBackup();
             localStorage.setItem('auto-backup', JSON.stringify(backup));
             localStorage.setItem('last-auto-backup', now.toString());
-            console.log('Auto-backup created');
+            window.Logger?.info('Auto-backup created');
         }
     }
 
@@ -1041,15 +1188,19 @@ class DataBackupSystem {
      */
     async clearAllData(confirm = true) {
         if (confirm) {
-            const confirmDelete = window.confirm(
-                'This will permanently delete all your learning data. This cannot be undone. Continue?'
+            const confirmDelete = await window.ModalDialog.confirm(
+                'This will permanently delete all your learning data. This cannot be undone. Continue?',
+                'Delete',
+                'Cancel'
             );
             if (!confirmDelete) {
                 return { success: false, cancelled: true };
             }
 
-            const doubleConfirm = window.prompt(
-                'Type "DELETE" to confirm permanent data deletion:'
+            // Double confirmation by typing "DELETE"
+            const doubleConfirm = await window.ModalDialog.prompt(
+                'Type "DELETE" to confirm permanent data deletion:',
+                'Type DELETE here'
             );
             if (doubleConfirm !== 'DELETE') {
                 return { success: false, cancelled: true };
@@ -1086,6 +1237,9 @@ class DataBackupSystem {
 
 // Create global instance
 window.DataBackup = new DataBackupSystem();
+
+// Register in namespace
+window.SpanishApp.services.DataBackup = window.DataBackup;
 
 // Auto-backup on page load
 if (window.ENV && !window.ENV.isDevelopment()) {
@@ -1191,7 +1345,7 @@ class GDPRCompliance {
                 return consent.given;
             }
         } catch (error) {
-            console.error('Failed to load consent:', error);
+            window.Logger?.error('Failed to load consent:', error);
         }
         return false;
     }
@@ -1237,7 +1391,11 @@ class GDPRCompliance {
         }
 
         // Fallback
-        const confirm = window.confirm('Delete all your data permanently?');
+        const confirm = await window.ModalDialog.confirm(
+            'Delete all your data permanently?',
+            'Delete',
+            'Cancel'
+        );
         if (!confirm) return { cancelled: true };
 
         const keys = Object.keys(localStorage);
@@ -1278,6 +1436,9 @@ class GDPRCompliance {
 }
 
 window.GDPR = new GDPRCompliance();
+
+// Register in namespace
+window.SpanishApp.services.GDPR = window.GDPR;
 
 
 
@@ -2098,6 +2259,9 @@ class AccessibilityManager {
 // Create global accessibility manager
 window.A11y = new AccessibilityManager();
 
+// Register in namespace
+window.SpanishApp.features.A11y = window.A11y;
+
 
 
 // ====================================================================
@@ -2652,12 +2816,12 @@ class HapticFeedbackManager {
      */
     test() {
         if (!this.supported) {
-            alert('Haptisches Feedback wird auf diesem Geraet nicht unterstuetzt.');
+            window.ModalDialog.alert('Haptisches Feedback wird auf diesem Geraet nicht unterstuetzt.', 'warning');
             return;
         }
 
         if (!this.enabled) {
-            alert('Haptisches Feedback ist deaktiviert. Bitte aktivieren in den Einstellungen.');
+            window.ModalDialog.alert('Haptisches Feedback ist deaktiviert. Bitte aktivieren in den Einstellungen.', 'warning');
             return;
         }
 
@@ -2752,6 +2916,9 @@ class HapticFeedbackManager {
 // Create global haptic feedback manager
 window.Haptics = new HapticFeedbackManager();
 
+// Register in namespace
+window.SpanishApp.features.Haptics = window.Haptics;
+
 // Add to settings when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -2760,5 +2927,509 @@ if (document.readyState === 'loading') {
 } else {
     window.Haptics.addToSettings();
 }
+
+
+// ====================================================================
+// MODAL DIALOG SYSTEM
+// ====================================================================
+
+/**
+ * Modern Modal Dialog System
+ * Replaces alert() and confirm() with better UX
+ */
+class ModalDialog {
+    constructor() {
+        this.activeModal = null;
+        this.injectStyles();
+    }
+
+    /**
+     * Inject CSS styles for modals
+     */
+    injectStyles() {
+        if (document.getElementById('modal-dialog-styles')) return;
+
+        const style = document.createElement('style');
+        style.id = 'modal-dialog-styles';
+        style.textContent = `
+            .modal-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.6);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                opacity: 0;
+                animation: fadeIn 0.2s forwards;
+                backdrop-filter: blur(2px);
+            }
+
+            @keyframes fadeIn {
+                to { opacity: 1; }
+            }
+
+            @keyframes slideIn {
+                from {
+                    transform: translateY(-20px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+
+            .modal-dialog-box {
+                background: var(--bg, #fff);
+                border-radius: 12px;
+                padding: 24px;
+                max-width: 90%;
+                width: 400px;
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+                animation: slideIn 0.3s ease-out;
+            }
+
+            .modal-dialog-content {
+                margin-bottom: 24px;
+                color: var(--text, #333);
+                font-size: 16px;
+                line-height: 1.5;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+
+            .modal-dialog-buttons {
+                display: flex;
+                gap: 12px;
+                justify-content: flex-end;
+            }
+
+            .modal-dialog-button {
+                padding: 10px 24px;
+                border: none;
+                border-radius: 8px;
+                font-size: 15px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s;
+                min-width: 80px;
+            }
+
+            .modal-dialog-button:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            }
+
+            .modal-dialog-button:active {
+                transform: translateY(0);
+            }
+
+            .modal-dialog-button-primary {
+                background: var(--primary, #007bff);
+                color: white;
+            }
+
+            .modal-dialog-button-primary:hover {
+                background: var(--primary-dark, #0056b3);
+            }
+
+            .modal-dialog-button-secondary {
+                background: var(--bg-light, #f5f5f5);
+                color: var(--text, #333);
+                border: 2px solid var(--border, #ddd);
+            }
+
+            .modal-dialog-button-secondary:hover {
+                background: var(--bg, #fff);
+                border-color: var(--primary, #007bff);
+            }
+
+            .modal-dialog-icon {
+                font-size: 32px;
+                margin-bottom: 12px;
+                text-align: center;
+            }
+
+            .modal-dialog-icon-info { color: #007bff; }
+            .modal-dialog-icon-success { color: #28a745; }
+            .modal-dialog-icon-warning { color: #ffc107; }
+            .modal-dialog-icon-error { color: #dc3545; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    /**
+     * Show an alert dialog
+     * @param {string} message - Message to display
+     * @param {string} type - Type: 'info', 'success', 'warning', 'error'
+     * @returns {Promise<void>}
+     */
+    alert(message, type = 'info') {
+        return new Promise((resolve) => {
+            this.closeActiveModal();
+
+            const icons = {
+                info: 'ℹ️',
+                success: '✅',
+                warning: '⚠️',
+                error: '❌'
+            };
+
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.innerHTML = `
+                <div class="modal-dialog-box" role="dialog" aria-modal="true" aria-labelledby="modal-message">
+                    <div class="modal-dialog-icon modal-dialog-icon-${type}">
+                        ${icons[type] || icons.info}
+                    </div>
+                    <div class="modal-dialog-content" id="modal-message">
+                        ${this.escapeHtml(message)}
+                    </div>
+                    <div class="modal-dialog-buttons">
+                        <button class="modal-dialog-button modal-dialog-button-primary" data-action="ok">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            this.activeModal = overlay;
+
+            // Handle button click
+            const okButton = overlay.querySelector('[data-action="ok"]');
+            okButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve();
+            });
+
+            // Handle ESC key
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    this.closeActiveModal();
+                    resolve();
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+
+            // Handle overlay click
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeActiveModal();
+                    resolve();
+                }
+            });
+
+            // Focus the OK button
+            setTimeout(() => okButton.focus(), 100);
+        });
+    }
+
+    /**
+     * Show a confirm dialog
+     * @param {string} message - Message to display
+     * @param {string} okText - Text for confirm button (default: "OK")
+     * @param {string} cancelText - Text for cancel button (default: "Abbrechen")
+     * @returns {Promise<boolean>} - true if confirmed, false if cancelled
+     */
+    confirm(message, okText = 'OK', cancelText = 'Abbrechen') {
+        return new Promise((resolve) => {
+            this.closeActiveModal();
+
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.innerHTML = `
+                <div class="modal-dialog-box" role="dialog" aria-modal="true" aria-labelledby="modal-message">
+                    <div class="modal-dialog-icon modal-dialog-icon-warning">
+                        ❓
+                    </div>
+                    <div class="modal-dialog-content" id="modal-message">
+                        ${this.escapeHtml(message)}
+                    </div>
+                    <div class="modal-dialog-buttons">
+                        <button class="modal-dialog-button modal-dialog-button-secondary" data-action="cancel">
+                            ${this.escapeHtml(cancelText)}
+                        </button>
+                        <button class="modal-dialog-button modal-dialog-button-primary" data-action="ok">
+                            ${this.escapeHtml(okText)}
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            this.activeModal = overlay;
+
+            // Handle button clicks
+            const okButton = overlay.querySelector('[data-action="ok"]');
+            const cancelButton = overlay.querySelector('[data-action="cancel"]');
+
+            okButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve(true);
+            });
+
+            cancelButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve(false);
+            });
+
+            // Handle ESC key (cancel)
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    this.closeActiveModal();
+                    resolve(false);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+
+            // Handle overlay click (cancel)
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeActiveModal();
+                    resolve(false);
+                }
+            });
+
+            // Focus the primary button
+            setTimeout(() => okButton.focus(), 100);
+        });
+    }
+
+    /**
+     * Show a prompt dialog with text input
+     * @param {string} message - Message to display
+     * @param {string} placeholder - Placeholder text for input (default: "")
+     * @param {string} defaultValue - Default value for input (default: "")
+     * @returns {Promise<string|null>} - input value if confirmed, null if cancelled
+     */
+    prompt(message, placeholder = '', defaultValue = '') {
+        return new Promise((resolve) => {
+            this.closeActiveModal();
+
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.innerHTML = `
+                <div class="modal-dialog-box" role="dialog" aria-modal="true" aria-labelledby="modal-message">
+                    <div class="modal-dialog-icon modal-dialog-icon-info">
+                        💬
+                    </div>
+                    <div class="modal-dialog-content" id="modal-message">
+                        ${this.escapeHtml(message)}
+                    </div>
+                    <input type="text"
+                           id="modal-prompt-input"
+                           placeholder="${this.escapeHtml(placeholder)}"
+                           value="${this.escapeHtml(defaultValue)}"
+                           style="width: 100%; padding: 10px; margin-bottom: 20px; border: 2px solid var(--border, #ddd); border-radius: 8px; font-size: 15px;">
+                    <div class="modal-dialog-buttons">
+                        <button class="modal-dialog-button modal-dialog-button-secondary" data-action="cancel">
+                            Abbrechen
+                        </button>
+                        <button class="modal-dialog-button modal-dialog-button-primary" data-action="ok">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+            this.activeModal = overlay;
+
+            const input = overlay.querySelector('#modal-prompt-input');
+            const okButton = overlay.querySelector('[data-action="ok"]');
+            const cancelButton = overlay.querySelector('[data-action="cancel"]');
+
+            // Handle OK button click
+            okButton.addEventListener('click', () => {
+                const value = input.value.trim();
+                this.closeActiveModal();
+                resolve(value || null);
+            });
+
+            // Handle Cancel button click
+            cancelButton.addEventListener('click', () => {
+                this.closeActiveModal();
+                resolve(null);
+            });
+
+            // Handle Enter key in input
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const value = input.value.trim();
+                    this.closeActiveModal();
+                    resolve(value || null);
+                }
+            });
+
+            // Handle ESC key (cancel)
+            const escHandler = (e) => {
+                if (e.key === 'Escape') {
+                    this.closeActiveModal();
+                    resolve(null);
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+
+            // Handle overlay click (cancel)
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    this.closeActiveModal();
+                    resolve(null);
+                }
+            });
+
+            // Focus the input field
+            setTimeout(() => input.focus(), 100);
+        });
+    }
+
+    /**
+     * Show a toast notification (non-blocking)
+     * @param {string} message - Message to display
+     * @param {string} type - Type: 'info', 'success', 'warning', 'error'
+     * @param {number} duration - Duration in ms (default: 3000)
+     */
+    toast(message, type = 'success', duration = 3000) {
+        // Inject toast styles if not already present
+        if (!document.getElementById('toast-styles')) {
+            const style = document.createElement('style');
+            style.id = 'toast-styles';
+            style.textContent = `
+                .toast-container {
+                    position: fixed;
+                    bottom: 20px;
+                    right: 20px;
+                    z-index: 10001;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    pointer-events: none;
+                }
+
+                .toast {
+                    background: white;
+                    padding: 12px 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    min-width: 250px;
+                    max-width: 400px;
+                    animation: slideInRight 0.3s ease-out;
+                    pointer-events: auto;
+                    border-left: 4px solid;
+                }
+
+                .toast-info { border-left-color: #007bff; }
+                .toast-success { border-left-color: #28a745; }
+                .toast-warning { border-left-color: #ffc107; }
+                .toast-error { border-left-color: #dc3545; }
+
+                @keyframes slideInRight {
+                    from {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                    to {
+                        transform: translateX(0);
+                        opacity: 1;
+                    }
+                }
+
+                .toast.toast-exit {
+                    animation: slideOutRight 0.3s ease-in forwards;
+                }
+
+                @keyframes slideOutRight {
+                    to {
+                        transform: translateX(100%);
+                        opacity: 0;
+                    }
+                }
+
+                .toast-icon {
+                    font-size: 20px;
+                }
+
+                .toast-message {
+                    flex: 1;
+                    color: #333;
+                    font-size: 14px;
+                }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Get or create toast container
+        let container = document.querySelector('.toast-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'toast-container';
+            document.body.appendChild(container);
+        }
+
+        const icons = {
+            info: 'ℹ️',
+            success: '✅',
+            warning: '⚠️',
+            error: '❌'
+        };
+
+        const toast = document.createElement('div');
+        toast.className = `toast toast-${type}`;
+        toast.innerHTML = `
+            <span class="toast-icon">${icons[type] || icons.info}</span>
+            <span class="toast-message">${this.escapeHtml(message)}</span>
+        `;
+
+        container.appendChild(toast);
+
+        // Auto-remove after duration
+        setTimeout(() => {
+            toast.classList.add('toast-exit');
+            setTimeout(() => {
+                toast.remove();
+                // Remove container if empty
+                if (container.children.length === 0) {
+                    container.remove();
+                }
+            }, 300);
+        }, duration);
+    }
+
+    /**
+     * Close the currently active modal
+     */
+    closeActiveModal() {
+        if (this.activeModal) {
+            this.activeModal.remove();
+            this.activeModal = null;
+        }
+    }
+
+    /**
+     * Escape HTML to prevent XSS
+     */
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+}
+
+// Create global modal dialog instance
+window.ModalDialog = new ModalDialog();
+
+// Register in namespace
+window.SpanishApp.utils.ModalDialog = window.ModalDialog;
 
 

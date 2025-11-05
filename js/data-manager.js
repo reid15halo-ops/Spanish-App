@@ -232,6 +232,8 @@ class DataManager {
         } catch (error) {
             // Check if quota exceeded
             if (error.name === 'QuotaExceededError') {
+                window.Logger?.warn('Storage quota exceeded, attempting cleanup...');
+
                 // Try to free up space
                 this.cleanupOldData();
 
@@ -239,10 +241,30 @@ class DataManager {
                 try {
                     const serialized = JSON.stringify(data);
                     localStorage.setItem(key, serialized);
+                    window.Logger?.success('Data saved after cleanup');
                     return { success: true };
                 } catch (retryError) {
-                    return { success: false, error: retryError.message };
+                    // Notify user about storage failure
+                    window.Logger?.error('Storage quota exceeded after cleanup:', retryError);
+                    if (window.ModalDialog) {
+                        window.ModalDialog.toast(
+                            'Speicherplatz voll! Bitte exportiere deine Daten und lösche alte Backups.',
+                            'error',
+                            5000
+                        );
+                    }
+                    return { success: false, error: retryError.message, quotaExceeded: true };
                 }
+            }
+
+            // Other storage errors (e.g., private browsing mode)
+            window.Logger?.error('Failed to save to localStorage:', error);
+            if (window.ModalDialog && error.name !== 'SecurityError') {
+                window.ModalDialog.toast(
+                    'Fehler beim Speichern der Daten. Dein Fortschritt könnte verloren gehen.',
+                    'warning',
+                    5000
+                );
             }
 
             return { success: false, error: error.message };
@@ -260,9 +282,29 @@ class DataManager {
             }
             return JSON.parse(serialized);
         } catch (error) {
-            if (window.Logger) {
-                window.Logger.error('Failed to load from localStorage:', error);
+            window.Logger?.error('Failed to load from localStorage:', error);
+
+            // Notify user about corrupted data
+            if (error instanceof SyntaxError) {
+                window.Logger?.error('Corrupted data detected for key:', key);
+                if (window.ModalDialog) {
+                    window.ModalDialog.toast(
+                        'Einige gespeicherte Daten sind beschädigt. Möglicherweise musst du neu starten.',
+                        'warning',
+                        5000
+                    );
+                }
+            } else if (error.name === 'SecurityError') {
+                // Private browsing or disabled storage
+                if (window.ModalDialog) {
+                    window.ModalDialog.toast(
+                        'Speicherzugriff blockiert. Bitte aktiviere Cookies/LocalStorage.',
+                        'error',
+                        5000
+                    );
+                }
             }
+
             return null;
         }
     }
