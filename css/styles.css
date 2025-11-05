@@ -994,3 +994,242 @@
                 font-size: 48px;
             }
         }
+
+        /* ===== GRAMMAR EXPLANATION ===== */
+        .grammar-explanation {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--bg);
+            border-radius: var(--radius);
+        }
+
+        .grammar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .grammar-icon {
+            font-size: 48px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .grammar-title {
+            color: var(--primary);
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .grammar-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary);
+        }
+
+        .section-heading {
+            color: var(--primary);
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-content {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+
+        .bullet-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .bullet-list li {
+            padding: 10px;
+            margin-bottom: 8px;
+            background: var(--bg);
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .examples-box {
+            background: var(--bg);
+            padding: 15px;
+            border-radius: var(--radius);
+            margin: 15px 0;
+        }
+
+        .example-item {
+            padding: 10px;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--success);
+            padding-left: 15px;
+            font-size: 16px;
+        }
+
+        .grammar-table-wrapper {
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .grammar-table thead {
+            background: var(--primary);
+            color: white;
+        }
+
+        .grammar-table th,
+        .grammar-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .grammar-table tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .comparison-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 15px 0;
+        }
+
+        .comparison-item {
+            background: var(--bg);
+            padding: 15px;
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+        }
+
+        .comparison-verb {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .comparison-usage {
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+        }
+
+        .comparison-examples {
+            margin: 10px 0;
+        }
+
+        .comp-example {
+            padding: 8px;
+            margin-bottom: 5px;
+            background: var(--bg-secondary);
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .comparison-note {
+            margin-top: 10px;
+            padding: 8px;
+            background: #FFF3CD;
+            border-left: 3px solid #FFC107;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .summary-box {
+            background: #E8F5E9;
+            padding: 15px;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--success);
+            margin: 15px 0;
+        }
+
+        .summary-point {
+            padding: 8px;
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .grammar-note {
+            background: #FFF3CD;
+            padding: 12px;
+            border-radius: var(--radius);
+            border-left: 4px solid #FFC107;
+            margin: 15px 0;
+            font-size: 15px;
+        }
+
+        .mnemonic-box {
+            background: #E3F2FD;
+            padding: 12px;
+            border-radius: var(--radius);
+            border-left: 4px solid #2196F3;
+            margin: 15px 0;
+            font-size: 15px;
+            font-style: italic;
+        }
+
+        .encouragement {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--success);
+            margin: 20px 0;
+            padding: 15px;
+            background: #E8F5E9;
+            border-radius: var(--radius);
+        }
+
+        .grammar-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-large {
+            font-size: 18px;
+            padding: 15px 40px;
+            min-width: 300px;
+        }
+
+        /* Responsive adjustments for grammar */
+        @media (max-width: 768px) {
+            .grammar-explanation {
+                padding: 15px;
+            }
+
+            .grammar-title {
+                font-size: 22px;
+            }
+
+            .section-heading {
+                font-size: 18px;
+            }
+
+            .comparison-box {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-large {
+                min-width: 100%;
+                font-size: 16px;
+                padding: 12px 30px;
+            }
+        }

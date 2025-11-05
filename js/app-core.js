@@ -201,6 +201,9 @@ class ExerciseRenderer {
         let html = '';
 
         switch (exercise.type) {
+            case 'grammar-explanation':
+                html = this.renderGrammarExplanation(exercise);
+                break;
             case 'vocabulary-card':
                 html = this.renderVocabularyCard(exercise, onAnswer);
                 break;
@@ -303,6 +306,122 @@ class ExerciseRenderer {
                 <button class="btn-primary" onclick="app.next()">Weiter →</button>
             </div>
         `;
+    }
+
+    /**
+     * Render grammar explanation screen
+     */
+    renderGrammarExplanation(exercise) {
+        let html = `
+            <div class="grammar-explanation">
+                <div class="grammar-header">
+                    <span class="grammar-icon">${exercise.icon || '📚'}</span>
+                    <h2 class="grammar-title">${exercise.title}</h2>
+                </div>
+        `;
+
+        // Render all sections
+        if (exercise.sections) {
+            exercise.sections.forEach(section => {
+                html += `
+                    <div class="grammar-section">
+                        <h3 class="section-heading">${section.heading}</h3>
+                        <p class="section-content">${section.content}</p>
+                `;
+
+                // Bullet points
+                if (section.bulletPoints) {
+                    html += '<ul class="bullet-list">';
+                    section.bulletPoints.forEach(point => {
+                        html += `<li>${point}</li>`;
+                    });
+                    html += '</ul>';
+                }
+
+                // Examples
+                if (section.examples) {
+                    html += '<div class="examples-box">';
+                    section.examples.forEach(ex => {
+                        html += `<div class="example-item">${ex}</div>`;
+                    });
+                    html += '</div>';
+                }
+
+                // Table
+                if (section.table) {
+                    html += '<div class="grammar-table-wrapper"><table class="grammar-table">';
+                    html += '<thead><tr>';
+                    section.table.headers.forEach(header => {
+                        html += `<th>${header}</th>`;
+                    });
+                    html += '</tr></thead><tbody>';
+                    section.table.rows.forEach(row => {
+                        html += '<tr>';
+                        row.forEach(cell => {
+                            html += `<td>${cell}</td>`;
+                        });
+                        html += '</tr>';
+                    });
+                    html += '</tbody></table></div>';
+                }
+
+                // Comparison
+                if (section.comparison) {
+                    html += '<div class="comparison-box">';
+                    section.comparison.forEach(item => {
+                        html += `
+                            <div class="comparison-item">
+                                <div class="comparison-verb"><strong>${item.verb.toUpperCase()}</strong></div>
+                                <div class="comparison-usage">${item.usage}</div>
+                                <div class="comparison-examples">
+                                    ${item.examples.map(ex => `<div class="comp-example">• ${ex}</div>`).join('')}
+                                </div>
+                                ${item.note ? `<div class="comparison-note">${item.note}</div>` : ''}
+                            </div>
+                        `;
+                    });
+                    html += '</div>';
+                }
+
+                // Summary
+                if (section.summary) {
+                    html += '<div class="summary-box">';
+                    section.summary.forEach(point => {
+                        html += `<div class="summary-point">${point}</div>`;
+                    });
+                    html += '</div>';
+                }
+
+                // Note
+                if (section.note) {
+                    html += `<div class="grammar-note">📌 ${section.note}</div>`;
+                }
+
+                // Mnemonic
+                if (section.mnemonic) {
+                    html += `<div class="mnemonic-box">💡 ${section.mnemonic}</div>`;
+                }
+
+                // Encouragement
+                if (section.encouragement) {
+                    html += `<div class="encouragement">${section.encouragement}</div>`;
+                }
+
+                html += `</div>`; // close grammar-section
+            });
+        }
+
+        // Continue button
+        html += `
+                <div class="grammar-actions">
+                    <button class="btn-primary btn-large" onclick="app.next()">
+                        ${exercise.checkButton ? exercise.checkButton.text : 'Verstanden, weiter! →'}
+                    </button>
+                </div>
+            </div>
+        `;
+
+        return html;
     }
 
     /**
