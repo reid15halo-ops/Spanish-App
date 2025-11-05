@@ -4,7 +4,7 @@
  * Provides offline functionality, caching, and background sync
  */
 
-const CACHE_VERSION = 'v1.1.0';
+const CACHE_VERSION = 'v1.2.0';
 const CACHE_NAME = `spanish-app-${CACHE_VERSION}`;
 const DATA_CACHE = `spanish-app-data-${CACHE_VERSION}`;
 
@@ -37,6 +37,7 @@ const STATIC_CACHE_URLS = [
     '/js/tolerant-validator.js',
 
     // Styles
+    '/css/styles.css',
     '/css/ux-enhancements.css',
 
     // Data files
