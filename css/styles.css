@@ -16,6 +16,7 @@
             --text-muted: #666666;
             --border: #E0E0E0;
             --radius: 8px;
+            --focus-ring: 3px solid #4A90E2;
         }
 
         body {
@@ -23,6 +24,57 @@
             color: var(--text);
             background: var(--bg-secondary);
             line-height: 1.6;
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+
+        /* Skip to main content link */
+        .skip-to-main {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: var(--radius);
+            font-weight: bold;
+            z-index: 10000;
+        }
+
+        .skip-to-main:focus {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            width: auto;
+            height: auto;
+            overflow: visible;
+            outline: var(--focus-ring);
+            outline-offset: 2px;
+        }
+
+        /* Enhanced focus indicators for keyboard navigation */
+        *:focus-visible {
+            outline: var(--focus-ring);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        select:focus-visible,
+        textarea:focus-visible {
+            outline: var(--focus-ring);
+            outline-offset: 2px;
+        }
+
+        /* Remove focus outline for mouse users */
+        *:focus:not(:focus-visible) {
+            outline: none;
         }
 
         /* ===== LAYOUT ===== */

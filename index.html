@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn Spanish from German with adaptive exercises and offline support">
     <meta name="theme-color" content="#20B2AA">
+    <meta name="color-scheme" content="light">
     <title>Spanish Learning App</title>
 
     <!-- PWA Manifest -->
@@ -18,125 +19,137 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <!-- Skip to main content for keyboard navigation -->
+    <a href="#main-content" class="skip-to-main" style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;">Zum Hauptinhalt springen</a>
+
     <!-- Sidebar Toggle -->
-    <button class="sidebar-toggle" id="sidebar-toggle">✕</button>
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Seitenleiste ein-/ausblenden" aria-expanded="true" aria-controls="sidebar">✕</button>
 
     <div id="app">
         <!-- Sidebar -->
-        <aside id="sidebar">
+        <aside id="sidebar" role="complementary" aria-label="Übungsnavigation">
             <div class="sidebar-header">Übungen</div>
-            <div id="exercise-nav"></div>
+            <nav id="exercise-nav" role="navigation" aria-label="Übungsliste"></nav>
         </aside>
 
         <!-- Main Content -->
-        <main id="main-content">
+        <main id="main-content" role="main">
             <!-- Progress Bar -->
-            <div id="progress">
-                <span class="progress-text">Laden...</span>
-                <div class="progress-bar">
+            <div id="progress" role="region" aria-label="Lernfortschritt">
+                <span class="progress-text" id="progress-label">Laden...</span>
+                <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-labelledby="progress-label">
                     <div class="progress-fill" style="width: 0%"></div>
                 </div>
             </div>
 
             <!-- Exercise Area -->
-            <div id="exercise-area">
+            <div id="exercise-area" role="region" aria-live="polite" aria-atomic="true" aria-label="Übungsbereich">
                 <p>Lädt Übungen...</p>
             </div>
 
             <!-- Actions -->
-            <div id="actions">
-                <button id="prev-btn" title="Vorherige Übung" style="display:none;">← Zurück</button>
-                <button id="settings-btn" title="Einstellungen">⚙️</button>
+            <div id="actions" role="toolbar" aria-label="Übungsaktionen">
+                <button id="prev-btn" aria-label="Zur vorherigen Übung" style="display:none;">← Zurück</button>
+                <button id="settings-btn" aria-label="Einstellungen öffnen">⚙️</button>
             </div>
         </main>
     </div>
 
     <!-- Settings Modal -->
-    <div id="settings-modal" class="hidden">
+    <div id="settings-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="settings-title">
         <div class="modal-content" style="max-width: 600px; max-height: 90vh; overflow-y: auto;">
-            <h2>⚙️ Einstellungen</h2>
+            <h2 id="settings-title">⚙️ Einstellungen</h2>
 
             <!-- Learning Settings -->
-            <div style="margin-bottom: 30px;">
-                <h3 style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Lernhilfe</h3>
-                <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 14px;">
+            <fieldset style="margin-bottom: 30px; border: none; padding: 0;">
+                <legend style="margin-bottom: 15px; font-size: 16px; color: var(--primary); font-weight: bold;">Lernhilfe</legend>
+                <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 14px;" id="help-description">
                     Wähle, wie viele Hinweise du erhalten möchtest:
                 </p>
 
-                <label>
-                    <input type="radio" name="help" value="keine">
-                    <strong>Keine Hilfe</strong><br>
-                    <small>Du erhältst keine Hinweise. Ideal für Fortgeschrittene.</small>
-                </label>
+                <div role="radiogroup" aria-labelledby="help-description">
+                    <label>
+                        <input type="radio" name="help" value="keine" aria-describedby="help-keine-desc">
+                        <strong>Keine Hilfe</strong><br>
+                        <small id="help-keine-desc">Du erhältst keine Hinweise. Ideal für Fortgeschrittene.</small>
+                    </label>
 
-                <label>
-                    <input type="radio" name="help" value="normal" checked>
-                    <strong>Normal</strong><br>
-                    <small>Hinweise erscheinen nach 3 Fehlversuchen. Empfohlen.</small>
-                </label>
+                    <label>
+                        <input type="radio" name="help" value="normal" checked aria-describedby="help-normal-desc">
+                        <strong>Normal</strong><br>
+                        <small id="help-normal-desc">Hinweise erscheinen nach 3 Fehlversuchen. Empfohlen.</small>
+                    </label>
 
-                <label>
-                    <input type="radio" name="help" value="viel">
-                    <strong>Viel Hilfe</strong><br>
-                    <small>Hinweise erscheinen nach dem 1. Fehlversuch. Ideal für Anfänger.</small>
-                </label>
-            </div>
+                    <label>
+                        <input type="radio" name="help" value="viel" aria-describedby="help-viel-desc">
+                        <strong>Viel Hilfe</strong><br>
+                        <small id="help-viel-desc">Hinweise erscheinen nach dem 1. Fehlversuch. Ideal für Anfänger.</small>
+                    </label>
+                </div>
+            </fieldset>
 
             <!-- Data Management -->
-            <div style="margin-bottom: 30px; padding-top: 20px; border-top: 2px solid var(--border);">
-                <h3 style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Datenmanagement</h3>
+            <section style="margin-bottom: 30px; padding-top: 20px; border-top: 2px solid var(--border);" aria-labelledby="data-management-title">
+                <h3 id="data-management-title" style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Datenmanagement</h3>
 
                 <button onclick="window.DataBackup?.exportBackup()"
+                        aria-label="Lernfortschritt als JSON-Datei exportieren"
                         style="width: 100%; margin-bottom: 10px; background: var(--primary); color: white;">
                     📥 Daten exportieren
                 </button>
 
                 <button onclick="document.getElementById('import-file-input').click()"
+                        aria-label="Lernfortschritt aus JSON-Datei importieren"
                         style="width: 100%; margin-bottom: 10px; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
                     📤 Daten importieren
                 </button>
                 <input type="file" id="import-file-input" accept=".json" style="display: none;"
+                       aria-label="JSON-Datei für Import auswählen"
                        onchange="window.DataBackup?.importBackup(event)">
 
                 <button onclick="if(confirm('Alle Daten löschen?')) window.DataBackup?.clearAllData()"
+                        aria-label="Alle Lerndaten unwiderruflich löschen"
                         style="width: 100%; background: var(--error); color: white;">
                     🗑️ Alle Daten löschen
                 </button>
-            </div>
+            </section>
 
             <!-- GDPR & Privacy -->
-            <div style="margin-bottom: 20px; padding-top: 20px; border-top: 2px solid var(--border);">
-                <h3 style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Datenschutz (DSGVO)</h3>
+            <section style="margin-bottom: 20px; padding-top: 20px; border-top: 2px solid var(--border);" aria-labelledby="gdpr-title">
+                <h3 id="gdpr-title" style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Datenschutz (DSGVO)</h3>
 
                 <button onclick="window.GDPR?.exerciseRightToAccess()"
+                        aria-label="Gespeicherte persönliche Daten anzeigen"
                         style="width: 100%; margin-bottom: 10px; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
                     📋 Meine Daten anzeigen (Auskunftsrecht)
                 </button>
 
                 <button onclick="window.open('privacy-policy.html', '_blank')"
+                        aria-label="Datenschutzerklärung in neuem Fenster öffnen"
                         style="width: 100%; margin-bottom: 10px; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
                     🔒 Datenschutzerklärung
                 </button>
 
                 <button onclick="window.GDPR?.exerciseRightToDeletion()"
+                        aria-label="Alle persönlichen Daten gemäß DSGVO-Löschungsrecht entfernen"
                         style="width: 100%; background: var(--bg); border: 2px solid var(--border); color: var(--text);">
                     ❌ Alle Daten löschen (Löschungsrecht)
                 </button>
-            </div>
+            </section>
 
             <!-- App Info -->
-            <div style="margin-bottom: 20px; padding-top: 20px; border-top: 2px solid var(--border);">
+            <section style="margin-bottom: 20px; padding-top: 20px; border-top: 2px solid var(--border);" aria-label="Applikationsinformationen">
                 <p style="font-size: 12px; color: var(--text-muted); text-align: center;">
-                    Version: <span id="app-version">1.0.0</span><br>
-                    Umgebung: <span id="app-env">production</span>
+                    Version: <span id="app-version" aria-label="Aktuelle Version">1.0.0</span><br>
+                    Umgebung: <span id="app-env" aria-label="Laufzeitumgebung">production</span>
                 </p>
-            </div>
+            </section>
 
-            <div class="modal-actions">
-                <button id="close-settings" style="background: var(--bg-secondary); color: var(--text);">
+            <div class="modal-actions" role="group" aria-label="Modal-Aktionen">
+                <button id="close-settings" aria-label="Einstellungen schließen ohne Speichern" style="background: var(--bg-secondary); color: var(--text);">
                     Schließen
                 </button>
-                <button id="save-settings" class="btn-primary" style="margin: 0;">
+                <button id="save-settings" class="btn-primary" aria-label="Einstellungen speichern und schließen" style="margin: 0;">
                     Speichern
                 </button>
             </div>
