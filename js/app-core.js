@@ -593,10 +593,14 @@ class ExerciseRenderer {
 
         feedbackArea.className = `feedback-area ${isCorrect ? 'correct' : 'incorrect'}`;
 
-        let html = `<p class="feedback-message">${message}</p>`;
+        // Escape user-facing content to prevent XSS
+        const safeMessage = window.escapeHtml ? window.escapeHtml(message) : message;
+        const safeAnswer = window.escapeHtml ? window.escapeHtml(correctAnswer) : correctAnswer;
+
+        let html = `<p class="feedback-message">${safeMessage}</p>`;
 
         if (!isCorrect && correctAnswer) {
-            html += `<p class="correct-answer">Richtige Antwort: <strong>${correctAnswer}</strong></p>`;
+            html += `<p class="correct-answer">Richtige Antwort: <strong>${safeAnswer}</strong></p>`;
         }
 
         feedbackArea.innerHTML = html;

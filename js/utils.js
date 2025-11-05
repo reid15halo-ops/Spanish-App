@@ -17,6 +17,72 @@
 
 
 // ====================================================================
+// GLOBAL NAMESPACE
+// ====================================================================
+
+/**
+ * Central namespace for Spanish Learning App
+ * Reduces global pollution by organizing all globals under one object
+ *
+ * Usage:
+ *   - window.SpanishApp.app - Main app instance
+ *   - window.SpanishApp.utils - Utilities (Logger, ModalDialog, etc.)
+ *   - window.SpanishApp.services - Services (DataBackup, ErrorMonitor, etc.)
+ *   - window.SpanishApp.data - Exercise data and constants
+ *   - window.SpanishApp.config - Configuration and environment
+ *   - window.SpanishApp.features - Feature modules (Haptics, A11y, etc.)
+ *
+ * Note: For backward compatibility, utilities are also available at window.Logger, etc.
+ */
+window.SpanishApp = window.SpanishApp || {
+    // Core app instance (set by app-core.js)
+    app: null,
+
+    // Utilities
+    utils: {},
+
+    // Services
+    services: {},
+
+    // Data/Constants (exercise data)
+    data: {},
+
+    // Configuration
+    config: {},
+
+    // Features
+    features: {},
+
+    // Version info
+    version: '1.1.0',
+
+    /**
+     * Register a module in the namespace
+     * @param {string} category - Category (utils, services, data, config, features)
+     * @param {string} name - Module name
+     * @param {any} module - Module instance
+     */
+    register(category, name, module) {
+        if (!this[category]) {
+            this[category] = {};
+        }
+        this[category][name] = module;
+        window.Logger?.debug(`[SpanishApp] Registered ${category}.${name}`);
+    },
+
+    /**
+     * Get a registered module
+     * @param {string} category - Category
+     * @param {string} name - Module name
+     * @returns {any} - Module instance
+     */
+    get(category, name) {
+        return this[category]?.[name];
+    }
+};
+
+
+// ====================================================================
 // LOGGER
 // ====================================================================
 
@@ -131,6 +197,79 @@ class Logger {
 // Create global logger instance
 window.Logger = new Logger();
 
+// Register in namespace
+window.SpanishApp.utils.Logger = window.Logger;
+
+
+// ====================================================================
+// HTML SECURITY UTILITIES
+// ====================================================================
+
+/**
+ * Escape HTML to prevent XSS attacks
+ * @param {string} text - Text to escape
+ * @returns {string} - Escaped HTML
+ */
+function escapeHtml(text) {
+    if (text == null) return '';
+
+    const div = document.createElement('div');
+    div.textContent = String(text);
+    return div.innerHTML;
+}
+
+/**
+ * Sanitize HTML by allowing only safe tags
+ * @param {string} html - HTML to sanitize
+ * @param {Array} allowedTags - Array of allowed tag names
+ * @returns {string} - Sanitized HTML
+ */
+function sanitizeHtml(html, allowedTags = ['b', 'strong', 'i', 'em', 'u', 'br', 'p', 'span']) {
+    if (html == null) return '';
+
+    const div = document.createElement('div');
+    div.innerHTML = html;
+
+    // Remove all disallowed tags
+    const allElements = div.getElementsByTagName('*');
+    for (let i = allElements.length - 1; i >= 0; i--) {
+        const element = allElements[i];
+        if (!allowedTags.includes(element.tagName.toLowerCase())) {
+            element.replaceWith(element.textContent);
+        } else {
+            // Remove all attributes except class
+            const attrs = Array.from(element.attributes);
+            attrs.forEach(attr => {
+                if (attr.name !== 'class') {
+                    element.removeAttribute(attr.name);
+                }
+            });
+        }
+    }
+
+    return div.innerHTML;
+}
+
+/**
+ * Create DOM element from HTML string safely
+ * @param {string} html - HTML string
+ * @returns {Node} - DOM node
+ */
+function createElementFromHTML(html) {
+    const template = document.createElement('template');
+    template.innerHTML = html.trim();
+    return template.content.firstChild;
+}
+
+// Make available globally
+window.escapeHtml = escapeHtml;
+window.sanitizeHtml = sanitizeHtml;
+window.createElementFromHTML = createElementFromHTML;
+
+// Register in namespace
+window.SpanishApp.utils.escapeHtml = escapeHtml;
+window.SpanishApp.utils.sanitizeHtml = sanitizeHtml;
+window.SpanishApp.utils.createElementFromHTML = createElementFromHTML;
 
 
 // ====================================================================
@@ -328,6 +467,9 @@ document.head.appendChild(loadingStyles);
 
 // Create global loading manager instance
 window.LoadingManager = new LoadingManager();
+
+// Register in namespace
+window.SpanishApp.services.LoadingManager = window.LoadingManager;
 
 
 
@@ -639,6 +781,9 @@ document.head.appendChild(errorBoundaryStyles);
 
 // Create global error boundary instance
 window.ErrorBoundary = new ErrorBoundary();
+
+// Register in namespace
+window.SpanishApp.services.ErrorBoundary = window.ErrorBoundary;
 
 
 
@@ -1093,6 +1238,9 @@ class DataBackupSystem {
 // Create global instance
 window.DataBackup = new DataBackupSystem();
 
+// Register in namespace
+window.SpanishApp.services.DataBackup = window.DataBackup;
+
 // Auto-backup on page load
 if (window.ENV && !window.ENV.isDevelopment()) {
     window.addEventListener('load', () => {
@@ -1288,6 +1436,9 @@ class GDPRCompliance {
 }
 
 window.GDPR = new GDPRCompliance();
+
+// Register in namespace
+window.SpanishApp.services.GDPR = window.GDPR;
 
 
 
@@ -2108,6 +2259,9 @@ class AccessibilityManager {
 // Create global accessibility manager
 window.A11y = new AccessibilityManager();
 
+// Register in namespace
+window.SpanishApp.features.A11y = window.A11y;
+
 
 
 // ====================================================================
@@ -2762,6 +2916,9 @@ class HapticFeedbackManager {
 // Create global haptic feedback manager
 window.Haptics = new HapticFeedbackManager();
 
+// Register in namespace
+window.SpanishApp.features.Haptics = window.Haptics;
+
 // Add to settings when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
@@ -3271,5 +3428,8 @@ class ModalDialog {
 
 // Create global modal dialog instance
 window.ModalDialog = new ModalDialog();
+
+// Register in namespace
+window.SpanishApp.utils.ModalDialog = window.ModalDialog;
 
 

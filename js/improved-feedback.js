@@ -11,6 +11,18 @@
 class ImprovedFeedbackSystem {
     constructor() {
         this.feedbackArea = null;
+        this.currentTimeout = null; // Track current timeout
+    }
+
+    /**
+     * Clear any active auto-advance timeout
+     */
+    clearAutoAdvance() {
+        if (this.currentTimeout) {
+            clearTimeout(this.currentTimeout);
+            this.currentTimeout = null;
+            window.Logger?.debug('[ImprovedFeedbackSystem] Cleared auto-advance timeout');
+        }
     }
 
     /**
@@ -33,6 +45,9 @@ class ImprovedFeedbackSystem {
 
         window.Logger?.debug('[ImprovedFeedbackSystem] Showing validation result:', validationResult);
 
+        // Clear any existing auto-advance timeout
+        this.clearAutoAdvance();
+
         // Clear previous feedback
         feedbackArea.innerHTML = '';
         feedbackArea.className = 'feedback-area';
@@ -49,25 +64,7 @@ class ImprovedFeedbackSystem {
             }
 
             // Auto-advance after short pause
-            const delay = validationResult.styleImprovements.length > 0 ? 4000 : 1500;
-            window.Logger?.debug('[ImprovedFeedbackSystem] Setting auto-advance timeout with delay:', delay);
-            const timeoutId = setTimeout(() => {
-                window.Logger?.debug('[ImprovedFeedbackSystem] Auto-advance timeout triggered!');
-                if (window.app) {
-                    window.Logger?.debug('[ImprovedFeedbackSystem] Calling window.app.next()');
-                    window.app.next();
-                } else {
-                    window.Logger?.error('[ImprovedFeedbackSystem] window.app is not defined!');
-                }
-            }, delay);
-
-            // Store timeout ID in app for potential cancellation
-            if (window.app) {
-                window.app.autoAdvanceTimeout = timeoutId;
-                window.Logger?.debug('[ImprovedFeedbackSystem] Stored timeout ID:', timeoutId);
-            } else {
-                window.Logger?.error('[ImprovedFeedbackSystem] window.app not available to store timeout!');
-            }
+            this.setupAutoAdvance(validationResult.styleImprovements.length > 0 ? 4000 : 1500);
 
         } else {
             // Exercise is incorrect → learning aid
@@ -76,21 +73,76 @@ class ImprovedFeedbackSystem {
     }
 
     /**
+     * Setup auto-advance with proper error handling
+     */
+    setupAutoAdvance(delay) {
+        // Clear any existing timeout first
+        this.clearAutoAdvance();
+
+        // Verify window.app exists
+        if (!window.app) {
+            window.Logger?.error('[ImprovedFeedbackSystem] window.app is not defined, cannot setup auto-advance');
+            return;
+        }
+
+        // Verify window.app.next is a function
+        if (typeof window.app.next !== 'function') {
+            window.Logger?.error('[ImprovedFeedbackSystem] window.app.next is not a function');
+            return;
+        }
+
+        window.Logger?.debug('[ImprovedFeedbackSystem] Setting auto-advance timeout with delay:', delay);
+
+        this.currentTimeout = setTimeout(() => {
+            window.Logger?.debug('[ImprovedFeedbackSystem] Auto-advance timeout triggered!');
+
+            // Double-check window.app still exists
+            if (window.app && typeof window.app.next === 'function') {
+                try {
+                    window.app.next();
+                } catch (error) {
+                    window.Logger?.error('[ImprovedFeedbackSystem] Error calling window.app.next():', error);
+                }
+            } else {
+                window.Logger?.error('[ImprovedFeedbackSystem] window.app.next() no longer available');
+            }
+
+            // Clear the timeout reference
+            this.currentTimeout = null;
+        }, delay);
+
+        // Also store in window.app for backward compatibility
+        if (window.app) {
+            window.app.autoAdvanceTimeout = this.currentTimeout;
+        }
+
+        window.Logger?.debug('[ImprovedFeedbackSystem] Auto-advance timeout set:', this.currentTimeout);
+    }
+
+    /**
      * Show success feedback
      */
     showSuccessFeedback(result) {
         const feedbackArea = this.getFeedbackArea();
+
+        // Sanitize feedback to prevent XSS (allow safe formatting tags)
+        const safePrimary = window.sanitizeHtml
+            ? window.sanitizeHtml(result.feedback.primary)
+            : result.feedback.primary;
+        const safeSecondary = window.sanitizeHtml
+            ? window.sanitizeHtml(result.feedback.secondary)
+            : result.feedback.secondary;
 
         const successHTML = `
             <div class="feedback-success">
                 <div class="feedback-icon">✅</div>
                 <div class="feedback-content">
                     <div class="feedback-message">
-                        <strong>${result.feedback.primary}</strong>
+                        <strong>${safePrimary}</strong>
                     </div>
                     ${result.feedback.secondary ? `
                         <div class="feedback-secondary">
-                            ${result.feedback.secondary}
+                            ${safeSecondary}
                         </div>
                     ` : ''}
                 </div>
@@ -133,16 +185,21 @@ class ImprovedFeedbackSystem {
         improvements.forEach(improvement => {
             const icon = this.getImprovementIcon(improvement.type);
 
+            // Escape improvement text to prevent XSS
+            const safeUserVer = window.escapeHtml ? window.escapeHtml(improvement.userVersion) : improvement.userVersion;
+            const safeCorrectVer = window.escapeHtml ? window.escapeHtml(improvement.correctVersion) : improvement.correctVersion;
+            const safeExplanation = window.escapeHtml ? window.escapeHtml(improvement.explanation) : improvement.explanation;
+
             improvementHTML += `
                 <div class="improvement-item ${improvement.type}">
                     <div class="improvement-comparison">
                         <span class="comparison-label">${icon}</span>
-                        <span class="user-version">${this.escapeHtml(improvement.userVersion)}</span>
+                        <span class="user-version">${safeUserVer}</span>
                         <span class="arrow">→</span>
-                        <span class="correct-version">${this.escapeHtml(improvement.correctVersion)}</span>
+                        <span class="correct-version">${safeCorrectVer}</span>
                     </div>
                     <div class="improvement-explanation">
-                        ${this.escapeHtml(improvement.explanation)}
+                        ${safeExplanation}
                     </div>
                 </div>
             `;
@@ -182,21 +239,32 @@ class ImprovedFeedbackSystem {
     showErrorFeedback(result) {
         const feedbackArea = this.getFeedbackArea();
 
+        // Sanitize all user-facing content
+        const safePrimary = window.sanitizeHtml
+            ? window.sanitizeHtml(result.feedback.primary)
+            : result.feedback.primary;
+        const safeSecondary = window.sanitizeHtml
+            ? window.sanitizeHtml(result.feedback.secondary)
+            : result.feedback.secondary;
+        const safeAnswer = window.escapeHtml
+            ? window.escapeHtml(result.correctAnswer)
+            : result.correctAnswer;
+
         const errorHTML = `
             <div class="feedback-error">
                 <div class="feedback-icon">❌</div>
                 <div class="feedback-content">
                     <div class="feedback-message">
-                        <strong>${result.feedback.primary}</strong>
+                        <strong>${safePrimary}</strong>
                     </div>
                     ${result.feedback.secondary ? `
                         <div class="feedback-hint">
-                            💡 ${result.feedback.secondary}
+                            💡 ${safeSecondary}
                         </div>
                     ` : ''}
                     <div class="correct-answer-box">
                         <div class="correct-answer-label">Richtige Antwort:</div>
-                        <div class="correct-answer-text">${this.escapeHtml(result.correctAnswer)}</div>
+                        <div class="correct-answer-text">${safeAnswer}</div>
                     </div>
                 </div>
             </div>
@@ -243,15 +311,6 @@ class ImprovedFeedbackSystem {
 
         // Focus button for keyboard accessibility
         setTimeout(() => continueBtn.focus(), 300);
-    }
-
-    /**
-     * Escape HTML to prevent XSS
-     */
-    escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
     }
 
     /**
