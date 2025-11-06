@@ -1699,9 +1699,9 @@ class App {
      * Start vocabulary practice mode (move from intro to first practice)
      */
     startVocabPractice() {
-        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+        const exercise = this.exercises[this.currentIndex];
 
-        if (exercise.type === 'vocabulary-card' && exercise.practiceMode) {
+        if (exercise && exercise.type === 'vocabulary-card' && exercise.practiceMode) {
             exercise.practiceMode.currentPracticeIndex = 0;
             this.render();
 
@@ -1717,9 +1717,9 @@ class App {
      * Check vocabulary practice answer
      */
     checkVocabPractice() {
-        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+        const exercise = this.exercises[this.currentIndex];
 
-        if (exercise.type !== 'vocabulary-card' || !exercise.practiceMode) {
+        if (!exercise || exercise.type !== 'vocabulary-card' || !exercise.practiceMode) {
             return;
         }
 
