@@ -79,6 +79,9 @@ class ExerciseLoader {
             throw new Error(`Invalid data format for Unit ${unitNumber}`);
         }
 
+        // Merge expanded vocabulary cards if available
+        data = this.mergeExpandedVocabulary(unitNumber, data);
+
         // Cache the result
         this.cache[unitNumber] = {
             metadata: data.metadata,
@@ -90,6 +93,49 @@ class ExerciseLoader {
         window.Logger?.debug(`   Title: ${data.metadata?.title || 'N/A'}`);
 
         return this.cache[unitNumber];
+    }
+
+    /**
+     * Merge expanded vocabulary cards into unit data
+     * Replaces basic vocabulary-card exercises with enhanced versions that include practices
+     * @param {number} unitNumber
+     * @param {Object} data - Unit data
+     * @returns {Object} Merged data
+     */
+    mergeExpandedVocabulary(unitNumber, data) {
+        const expandedData = {
+            2: window.UNIT2_VOCABULARY_EXPANDED,
+            3: window.UNIT3_VOCABULARY_EXPANDED,
+            4: window.UNIT4_VOCABULARY_EXPANDED,
+            5: window.UNIT5_VOCABULARY_EXPANDED,
+            6: window.UNIT6_VOCABULARY_EXPANDED
+        };
+
+        const expanded = expandedData[unitNumber];
+        if (!expanded || !expanded.vocabularyCards) {
+            // No expanded vocabulary for this unit
+            return data;
+        }
+
+        window.Logger?.info(`🔄 Merging ${expanded.vocabularyCards.length} expanded vocabulary cards for Unit ${unitNumber}`);
+
+        // Create a map of vocabulary card IDs to expanded cards
+        const expandedMap = new Map();
+        expanded.vocabularyCards.forEach(card => {
+            expandedMap.set(card.id, card);
+        });
+
+        // Replace vocabulary-card exercises with expanded versions
+        data.exercises = data.exercises.map(exercise => {
+            if (exercise.type === 'vocabulary-card' && expandedMap.has(exercise.id)) {
+                const expandedCard = expandedMap.get(exercise.id);
+                window.Logger?.debug(`   ↳ Replacing ${exercise.id} with expanded version (${expandedCard.practices?.length || 0} practices)`);
+                return expandedCard;
+            }
+            return exercise;
+        });
+
+        return data;
     }
 
     /**
@@ -228,6 +274,12 @@ class ExerciseRenderer {
                 break;
             case 'sentence-building':
                 html = this.renderSentenceBuilding(exercise, onAnswer);
+                break;
+            case 'sentence-scramble':
+                html = this.renderSentenceScramble(exercise, onAnswer);
+                break;
+            case 'cultural-insight':
+                html = this.renderCulturalInsight(exercise);
                 break;
 
             // All other text-input based exercises
@@ -874,6 +926,101 @@ class ExerciseRenderer {
     }
 
     /**
+     * Render sentence scramble exercise (click-to-add interface)
+     */
+    renderSentenceScramble(exercise, onAnswer) {
+        // Initialize scramble state if not exists
+        if (!exercise.scrambleState) {
+            exercise.scrambleState = {
+                userAnswer: [],
+                availableWords: [...exercise.words] // Clone array
+            };
+        }
+
+        const state = exercise.scrambleState;
+        const translation = exercise.translation || '';
+        const hint = exercise.hint || '';
+
+        return `
+            <div class="sentence-scramble">
+                <div class="scramble-instruction">
+                    <p class="instruction-title">🔀 Ordne die Wörter zum richtigen Satz:</p>
+                    <p class="translation">"${translation}"</p>
+                </div>
+
+                <div class="scramble-answer-area">
+                    <div class="answer-label">Deine Antwort:</div>
+                    <div id="scramble-answer" class="scramble-answer">
+                        ${state.userAnswer.length === 0
+                            ? '<span class="empty-placeholder">Klicke auf die Wörter unten...</span>'
+                            : state.userAnswer.map((word, index) =>
+                                `<button class="word-chip selected" onclick="app.removeWordFromScramble(${index})">${word}</button>`
+                              ).join('')
+                        }
+                    </div>
+                </div>
+
+                <div class="scramble-words-area">
+                    <div class="words-label">Verfügbare Wörter:</div>
+                    <div id="scramble-words" class="scramble-words">
+                        ${state.availableWords.length === 0
+                            ? '<span class="all-used">✓ Alle Wörter verwendet</span>'
+                            : state.availableWords.map((word, index) =>
+                                `<button class="word-chip" onclick="app.addWordToScramble(${index})">${word}</button>`
+                              ).join('')
+                        }
+                    </div>
+                </div>
+
+                ${hint ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Hinweis:</strong> ${hint}</p>
+                    </div>
+                ` : ''}
+
+                <div class="scramble-actions">
+                    <button class="btn-secondary" onclick="app.resetScramble()"
+                            ${state.userAnswer.length === 0 ? 'disabled' : ''}>
+                        🔄 Zurücksetzen
+                    </button>
+                    <button class="btn-primary" onclick="app.checkScrambleAnswer()"
+                            ${state.userAnswer.length === 0 ? 'disabled' : ''}>
+                        Prüfen
+                    </button>
+                </div>
+
+                <div id="feedback-area" class="feedback-area hidden"></div>
+            </div>
+        `;
+    }
+
+    /**
+     * Render cultural insight (info card)
+     */
+    renderCulturalInsight(exercise) {
+        const emoji = exercise.emoji || '💡';
+        const title = exercise.title || 'Wusstest du?';
+        const content = exercise.content || '';
+
+        return `
+            <div class="cultural-insight">
+                <div class="insight-header">
+                    <span class="insight-emoji">${emoji}</span>
+                    <h3 class="insight-title">${title}</h3>
+                </div>
+
+                <div class="insight-content">
+                    <p>${content}</p>
+                </div>
+
+                <div class="insight-footer">
+                    <button class="btn-primary" onclick="app.next()">Weiter lernen →</button>
+                </div>
+            </div>
+        `;
+    }
+
+    /**
      * Show feedback (correct or incorrect)
      */
     showFeedback(isCorrect, message, correctAnswer = null) {
@@ -1142,44 +1289,130 @@ class App {
      */
     async loadUnit(unitNumber) {
         try {
-            window.Logger?.info(`Loading Unit ${unitNumber} (Adaptive Mode)...`);
+            const learningMode = this.settings.learningMode || 'linear';
 
-            // Load all exercises from all units for adaptive selection
-            const allExercises = [];
-
-            for (let unit = 1; unit <= 7; unit++) {
-                const data = await this.loader.loadUnit(unit);
-                data.exercises.forEach(ex => {
-                    allExercises.push({
-                        ...ex,
-                        unitNumber: unit,
-                        unitName: data.metadata?.title || `Unit ${unit}`
-                    });
-                });
+            if (learningMode === 'adaptive') {
+                await this.loadUnitAdaptive(unitNumber);
+            } else {
+                await this.loadUnitLinear(unitNumber);
             }
-
-            window.Logger?.info(`Loaded ${allExercises.length} total exercises from all units`);
-
-            // Create adaptive sequence based on performance
-            this.exercises = this.adaptiveSystem.createAdaptiveSequence(allExercises, 50);
-
-            window.Logger?.success(`Created adaptive sequence: ${this.exercises.length} exercises`);
-
-            this.currentUnit = unitNumber;
-            this.currentIndex = 0;
-            this.attempts = 0;
-
-            // Update progress
-            this.updateProgress();
-
-            // Show adaptive recommendations
-            this.showAdaptiveRecommendations();
-
         } catch (error) {
-            window.Logger?.error('Error loading adaptive exercises:', error);
+            window.Logger?.error('Error loading unit:', error);
             window.ErrorBoundary?.handleError(error, { context: `Loading Unit ${unitNumber}` });
             throw error;
         }
+    }
+
+    /**
+     * Load unit in linear mode (original behavior)
+     */
+    async loadUnitLinear(unitNumber) {
+        window.Logger?.info(`Loading Unit ${unitNumber} (Linear Mode)...`);
+
+        const data = await this.loader.loadUnit(unitNumber);
+
+        this.exercises = data.exercises;
+
+        // Insert cultural insights after every 10th exercise
+        this.insertCulturalInsights(unitNumber);
+
+        this.currentUnit = unitNumber;
+        this.currentIndex = 0;
+        this.attempts = 0;
+
+        window.Logger?.success(`Unit ${unitNumber} loaded: ${this.exercises.length} exercises (with insights)`);
+
+        // Update progress
+        this.updateProgress();
+    }
+
+    /**
+     * Load unit in adaptive mode (all units, personalized sequence)
+     */
+    async loadUnitAdaptive(unitNumber) {
+        window.Logger?.info(`Loading Unit ${unitNumber} (Adaptive Mode)...`);
+
+        // Load all exercises from all units for adaptive selection
+        const allExercises = [];
+
+        for (let unit = 1; unit <= 7; unit++) {
+            const data = await this.loader.loadUnit(unit);
+            data.exercises.forEach(ex => {
+                allExercises.push({
+                    ...ex,
+                    unitNumber: unit,
+                    unitName: data.metadata?.title || `Unit ${unit}`
+                });
+            });
+        }
+
+        window.Logger?.info(`Loaded ${allExercises.length} total exercises from all units`);
+
+        // Create adaptive sequence based on performance
+        this.exercises = this.adaptiveSystem.createAdaptiveSequence(allExercises, 50);
+
+        window.Logger?.success(`Created adaptive sequence: ${this.exercises.length} exercises`);
+
+        this.currentUnit = unitNumber;
+        this.currentIndex = 0;
+        this.attempts = 0;
+
+        // Update progress
+        this.updateProgress();
+
+        // Show adaptive recommendations
+        this.showAdaptiveRecommendations();
+    }
+
+    /**
+     * Insert cultural insights after every N exercises
+     */
+    insertCulturalInsights(unitNumber, interval = 10) {
+        if (!window.CULTURAL_INSIGHTS) {
+            window.Logger?.warn('Cultural Insights not loaded');
+            return;
+        }
+
+        const newExercises = [];
+        const usedInsightIds = new Set();
+
+        for (let i = 0; i < this.exercises.length; i++) {
+            // Add the regular exercise
+            newExercises.push(this.exercises[i]);
+
+            // Insert insight after every Nth exercise (but not after the last one)
+            if ((i + 1) % interval === 0 && i < this.exercises.length - 1) {
+                let insight = null;
+                let attempts = 0;
+
+                // Try to get a unique insight (max 10 attempts to avoid infinite loop)
+                do {
+                    insight = window.CULTURAL_INSIGHTS.getRandomInsight(unitNumber);
+                    attempts++;
+                } while (usedInsightIds.has(insight.id) && attempts < 10);
+
+                if (insight) {
+                    usedInsightIds.add(insight.id);
+
+                    // Create exercise object from insight
+                    const insightExercise = {
+                        id: `insight_${insight.id}_u${unitNumber}_pos${i}`,
+                        type: 'cultural-insight',
+                        emoji: insight.emoji,
+                        title: insight.title,
+                        content: insight.content,
+                        category: insight.category,
+                        difficulty: 0, // Insights have no difficulty
+                        concept: 'cultural-knowledge'
+                    };
+
+                    newExercises.push(insightExercise);
+                    window.Logger?.debug(`Inserted cultural insight "${insight.title}" after exercise ${i + 1}`);
+                }
+            }
+        }
+
+        this.exercises = newExercises;
     }
 
     /**
@@ -1466,9 +1699,9 @@ class App {
      * Start vocabulary practice mode (move from intro to first practice)
      */
     startVocabPractice() {
-        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+        const exercise = this.exercises[this.currentIndex];
 
-        if (exercise.type === 'vocabulary-card' && exercise.practiceMode) {
+        if (exercise && exercise.type === 'vocabulary-card' && exercise.practiceMode) {
             exercise.practiceMode.currentPracticeIndex = 0;
             this.render();
 
@@ -1484,9 +1717,9 @@ class App {
      * Check vocabulary practice answer
      */
     checkVocabPractice() {
-        const exercise = this.units[this.currentUnit].exercises[this.currentIndex];
+        const exercise = this.exercises[this.currentIndex];
 
-        if (exercise.type !== 'vocabulary-card' || !exercise.practiceMode) {
+        if (!exercise || exercise.type !== 'vocabulary-card' || !exercise.practiceMode) {
             return;
         }
 
@@ -1525,7 +1758,7 @@ class App {
             `;
             feedback.className = 'practice-feedback correct';
 
-            // Move to next practice after short delay
+            // Move to next practice after delay
             setTimeout(() => {
                 mode.currentPracticeIndex++;
                 this.render();
@@ -1535,32 +1768,39 @@ class App {
                     const nextInput = document.getElementById('practice-input');
                     if (nextInput) nextInput.focus();
                 }, 100);
-            }, 1500);
+            }, 6000);
         } else {
             // Incorrect answer
             mode.attempts++;
 
             if (mode.attempts >= 2) {
-                // Show correct answer after 2 attempts
+                // Show correct answer after 2 attempts with "Weiter" button
                 feedback.innerHTML = `
                     <div class="feedback-show-answer">
                         ℹ️ <strong>Die richtige Antwort ist:</strong><br>
                         ${practice.answer}
+                        <button id="vocab-next-btn" class="vocab-next-button">Weiter →</button>
                     </div>
                 `;
                 feedback.className = 'practice-feedback show-answer';
 
-                // Move to next after showing answer
+                // Add click handler for "Weiter" button
                 setTimeout(() => {
-                    mode.currentPracticeIndex++;
-                    mode.attempts = 0;
-                    this.render();
+                    const nextBtn = document.getElementById('vocab-next-btn');
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', () => {
+                            mode.currentPracticeIndex++;
+                            mode.attempts = 0;
+                            this.render();
 
-                    setTimeout(() => {
-                        const nextInput = document.getElementById('practice-input');
-                        if (nextInput) nextInput.focus();
-                    }, 100);
-                }, 3000);
+                            setTimeout(() => {
+                                const nextInput = document.getElementById('practice-input');
+                                if (nextInput) nextInput.focus();
+                            }, 100);
+                        });
+                        nextBtn.focus(); // Focus on button so user can press Enter
+                    }
+                }, 100);
             } else {
                 // Give hint, allow retry
                 feedback.innerHTML = `
@@ -1617,6 +1857,137 @@ class App {
         }
 
         return matrix[str2.length][str1.length];
+    }
+
+    /**
+     * Add word to scramble answer
+     */
+    addWordToScramble(index) {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        const state = exercise.scrambleState;
+        const word = state.availableWords[index];
+
+        // Add to user answer
+        state.userAnswer.push(word);
+
+        // Remove from available words
+        state.availableWords.splice(index, 1);
+
+        // Re-render
+        this.render();
+    }
+
+    /**
+     * Remove word from scramble answer (click on selected word)
+     */
+    removeWordFromScramble(index) {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        const state = exercise.scrambleState;
+        const word = state.userAnswer[index];
+
+        // Remove from user answer
+        state.userAnswer.splice(index, 1);
+
+        // Add back to available words
+        state.availableWords.push(word);
+
+        // Re-render
+        this.render();
+    }
+
+    /**
+     * Reset scramble exercise (clear all selections)
+     */
+    resetScramble() {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        // Reset state
+        exercise.scrambleState = {
+            userAnswer: [],
+            availableWords: [...exercise.words] // Reset to original words
+        };
+
+        // Re-render
+        this.render();
+    }
+
+    /**
+     * Check scramble answer
+     */
+    checkScrambleAnswer() {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        const state = exercise.scrambleState;
+        const userSentence = state.userAnswer.join(' ');
+        const correctAnswer = exercise.correctAnswer;
+
+        // Normalize both for comparison
+        const normalizedUser = this.normalizeAnswer(userSentence);
+        const normalizedCorrect = this.normalizeAnswer(correctAnswer);
+
+        const isCorrect = normalizedUser === normalizedCorrect;
+
+        // Update stats
+        this.stats.total++;
+        if (isCorrect) {
+            this.stats.correct++;
+        } else {
+            this.attempts++;
+
+            // Show hint after max attempts
+            const maxAttempts = this.getMaxAttemptsBeforeHint();
+            if (this.attempts >= maxAttempts && exercise.hint) {
+                this.showHint();
+            }
+        }
+
+        // Record attempt in adaptive learning
+        this.adaptiveSystem.recordAttempt(exercise, isCorrect);
+
+        // Save progress
+        this.saveProgress();
+
+        // Show feedback
+        const feedbackArea = document.getElementById('feedback-area');
+        if (feedbackArea) {
+            feedbackArea.className = `feedback-area ${isCorrect ? 'correct' : 'incorrect'}`;
+
+            let html = '';
+            if (isCorrect) {
+                html = `<p class="feedback-message">✅ <strong>Richtig!</strong> Perfekte Wortstellung!</p>`;
+            } else {
+                html = `
+                    <p class="feedback-message">❌ <strong>Nicht ganz richtig.</strong></p>
+                    <p class="correct-answer">Richtige Antwort: <strong>${correctAnswer}</strong></p>
+                `;
+            }
+
+            feedbackArea.innerHTML = html;
+            feedbackArea.classList.remove('hidden');
+
+            // Show next button after a delay
+            if (isCorrect) {
+                setTimeout(() => this.showNextButton(), 800);
+            } else {
+                this.showNextButton();
+            }
+        }
+
+        // Disable buttons after checking
+        const checkBtn = document.querySelector('.scramble-actions .btn-primary');
+        const resetBtn = document.querySelector('.scramble-actions .btn-secondary');
+        if (checkBtn) checkBtn.disabled = true;
+        if (resetBtn) resetBtn.disabled = true;
+
+        // Disable word chips
+        const wordChips = document.querySelectorAll('.word-chip');
+        wordChips.forEach(chip => chip.disabled = true);
     }
 
     /**
@@ -2185,7 +2556,8 @@ class App {
 
         // Default settings
         return {
-            helpLevel: 'normal' // 'keine', 'normal', 'viel'
+            helpLevel: 'normal', // 'keine', 'normal', 'viel'
+            learningMode: 'linear' // 'linear', 'adaptive'
         };
     }
 
@@ -2299,20 +2671,54 @@ class App {
 
         modal.classList.remove('hidden');
 
-        // Set current value
-        const radio = document.querySelector(`input[name="help"][value="${this.settings.helpLevel}"]`);
-        if (radio) {
-            radio.checked = true;
+        // Set current help level value
+        const helpRadio = document.querySelector(`input[name="help"][value="${this.settings.helpLevel}"]`);
+        if (helpRadio) {
+            helpRadio.checked = true;
+        }
+
+        // Set current learning mode value
+        const modeRadio = document.querySelector(`input[name="learningMode"][value="${this.settings.learningMode || 'linear'}"]`);
+        if (modeRadio) {
+            modeRadio.checked = true;
         }
 
         // Setup save button
         const saveBtn = document.getElementById('save-settings');
         if (saveBtn) {
-            saveBtn.onclick = () => {
-                const selected = document.querySelector('input[name="help"]:checked');
-                if (selected) {
-                    this.settings.helpLevel = selected.value;
-                    this.saveSettings();
+            saveBtn.onclick = async () => {
+                const selectedHelp = document.querySelector('input[name="help"]:checked');
+                const selectedMode = document.querySelector('input[name="learningMode"]:checked');
+
+                const oldMode = this.settings.learningMode;
+
+                if (selectedHelp) {
+                    this.settings.helpLevel = selectedHelp.value;
+                }
+
+                if (selectedMode) {
+                    this.settings.learningMode = selectedMode.value;
+                }
+
+                this.saveSettings();
+
+                // If learning mode changed, reload current unit
+                if (selectedMode && oldMode !== selectedMode.value) {
+                    window.ModalDialog.toast('Lernmodus geändert! Unit wird neu geladen...', 'info');
+                    modal.classList.add('hidden');
+
+                    // Reload current unit with new mode
+                    await this.loadUnit(this.currentUnit);
+                    this.buildSidebar();
+                    this.showExercise(0);
+
+                    window.ModalDialog.toast(
+                        selectedMode.value === 'adaptive'
+                            ? '🎯 Adaptiver Modus aktiviert!'
+                            : '📚 Linearer Modus aktiviert!',
+                        'success'
+                    );
+                } else {
                     window.ModalDialog.toast('Einstellungen gespeichert!', 'success');
                     modal.classList.add('hidden');
                 }
