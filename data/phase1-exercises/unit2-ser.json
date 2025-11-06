@@ -2334,6 +2334,66 @@
       "expectedAccuracy": 0.6,
       "milestone": true,
       "certificationRequired": true
+    },
+    {
+      "id": "u2_scramble001",
+      "type": "sentence-scramble",
+      "difficulty": 1,
+      "concept": "ser-present",
+      "words": ["Yo", "soy", "médico"],
+      "correctAnswer": "Yo soy médico",
+      "translation": "Ich bin Arzt",
+      "hint": "Subjekt - Verb - Nomen",
+      "phase": "guided",
+      "question": "Ordne die Wörter: Ich bin Arzt"
+    },
+    {
+      "id": "u2_scramble002",
+      "type": "sentence-scramble",
+      "difficulty": 2,
+      "concept": "ser-present",
+      "words": ["Ella", "es", "de", "España"],
+      "correctAnswer": "Ella es de España",
+      "translation": "Sie ist aus Spanien",
+      "hint": "Subjekt - Verb - de - Land",
+      "phase": "guided",
+      "question": "Ordne die Wörter: Sie ist aus Spanien"
+    },
+    {
+      "id": "u2_scramble003",
+      "type": "sentence-scramble",
+      "difficulty": 2,
+      "concept": "ser-present",
+      "words": ["muy", "Tú", "inteligente", "eres"],
+      "correctAnswer": "Tú eres muy inteligente",
+      "translation": "Du bist sehr intelligent",
+      "hint": "Subjekt - Verb - muy - Adjektiv",
+      "phase": "guided",
+      "question": "Ordne die Wörter: Du bist sehr intelligent"
+    },
+    {
+      "id": "u2_scramble004",
+      "type": "sentence-scramble",
+      "difficulty": 3,
+      "concept": "ser-present",
+      "words": ["Nosotros", "somos", "estudiantes", "de", "alemán"],
+      "correctAnswer": "Nosotros somos estudiantes de alemán",
+      "translation": "Wir sind Deutschstudenten",
+      "hint": "Nosotros - somos - estudiantes - de - alemán",
+      "phase": "guided",
+      "question": "Ordne die Wörter: Wir sind Deutschstudenten"
+    },
+    {
+      "id": "u2_scramble005",
+      "type": "sentence-scramble",
+      "difficulty": 2,
+      "concept": "ser-present",
+      "words": ["alto", "Él", "es", "y", "simpático"],
+      "correctAnswer": "Él es alto y simpático",
+      "translation": "Er ist groß und sympathisch",
+      "hint": "Subjekt - Verb - Adjektiv - y - Adjektiv",
+      "phase": "guided",
+      "question": "Ordne die Wörter: Er ist groß und sympathisch"
     }
   ],
   "progressionNotes": {

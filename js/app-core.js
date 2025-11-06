@@ -275,6 +275,12 @@ class ExerciseRenderer {
             case 'sentence-building':
                 html = this.renderSentenceBuilding(exercise, onAnswer);
                 break;
+            case 'sentence-scramble':
+                html = this.renderSentenceScramble(exercise, onAnswer);
+                break;
+            case 'cultural-insight':
+                html = this.renderCulturalInsight(exercise);
+                break;
 
             // All other text-input based exercises
             case 'meaning-change':
@@ -920,6 +926,101 @@ class ExerciseRenderer {
     }
 
     /**
+     * Render sentence scramble exercise (click-to-add interface)
+     */
+    renderSentenceScramble(exercise, onAnswer) {
+        // Initialize scramble state if not exists
+        if (!exercise.scrambleState) {
+            exercise.scrambleState = {
+                userAnswer: [],
+                availableWords: [...exercise.words] // Clone array
+            };
+        }
+
+        const state = exercise.scrambleState;
+        const translation = exercise.translation || '';
+        const hint = exercise.hint || '';
+
+        return `
+            <div class="sentence-scramble">
+                <div class="scramble-instruction">
+                    <p class="instruction-title">🔀 Ordne die Wörter zum richtigen Satz:</p>
+                    <p class="translation">"${translation}"</p>
+                </div>
+
+                <div class="scramble-answer-area">
+                    <div class="answer-label">Deine Antwort:</div>
+                    <div id="scramble-answer" class="scramble-answer">
+                        ${state.userAnswer.length === 0
+                            ? '<span class="empty-placeholder">Klicke auf die Wörter unten...</span>'
+                            : state.userAnswer.map((word, index) =>
+                                `<button class="word-chip selected" onclick="app.removeWordFromScramble(${index})">${word}</button>`
+                              ).join('')
+                        }
+                    </div>
+                </div>
+
+                <div class="scramble-words-area">
+                    <div class="words-label">Verfügbare Wörter:</div>
+                    <div id="scramble-words" class="scramble-words">
+                        ${state.availableWords.length === 0
+                            ? '<span class="all-used">✓ Alle Wörter verwendet</span>'
+                            : state.availableWords.map((word, index) =>
+                                `<button class="word-chip" onclick="app.addWordToScramble(${index})">${word}</button>`
+                              ).join('')
+                        }
+                    </div>
+                </div>
+
+                ${hint ? `
+                    <div id="hint-area" class="hint-area hidden">
+                        <p class="hint"><strong>💡 Hinweis:</strong> ${hint}</p>
+                    </div>
+                ` : ''}
+
+                <div class="scramble-actions">
+                    <button class="btn-secondary" onclick="app.resetScramble()"
+                            ${state.userAnswer.length === 0 ? 'disabled' : ''}>
+                        🔄 Zurücksetzen
+                    </button>
+                    <button class="btn-primary" onclick="app.checkScrambleAnswer()"
+                            ${state.userAnswer.length === 0 ? 'disabled' : ''}>
+                        Prüfen
+                    </button>
+                </div>
+
+                <div id="feedback-area" class="feedback-area hidden"></div>
+            </div>
+        `;
+    }
+
+    /**
+     * Render cultural insight (info card)
+     */
+    renderCulturalInsight(exercise) {
+        const emoji = exercise.emoji || '💡';
+        const title = exercise.title || 'Wusstest du?';
+        const content = exercise.content || '';
+
+        return `
+            <div class="cultural-insight">
+                <div class="insight-header">
+                    <span class="insight-emoji">${emoji}</span>
+                    <h3 class="insight-title">${title}</h3>
+                </div>
+
+                <div class="insight-content">
+                    <p>${content}</p>
+                </div>
+
+                <div class="insight-footer">
+                    <button class="btn-primary" onclick="app.next()">Weiter lernen →</button>
+                </div>
+            </div>
+        `;
+    }
+
+    /**
      * Show feedback (correct or incorrect)
      */
     showFeedback(isCorrect, message, correctAnswer = null) {
@@ -1211,11 +1312,15 @@ class App {
         const data = await this.loader.loadUnit(unitNumber);
 
         this.exercises = data.exercises;
+
+        // Insert cultural insights after every 10th exercise
+        this.insertCulturalInsights(unitNumber);
+
         this.currentUnit = unitNumber;
         this.currentIndex = 0;
         this.attempts = 0;
 
-        window.Logger?.success(`Unit ${unitNumber} loaded: ${this.exercises.length} exercises`);
+        window.Logger?.success(`Unit ${unitNumber} loaded: ${this.exercises.length} exercises (with insights)`);
 
         // Update progress
         this.updateProgress();
@@ -1257,6 +1362,57 @@ class App {
 
         // Show adaptive recommendations
         this.showAdaptiveRecommendations();
+    }
+
+    /**
+     * Insert cultural insights after every N exercises
+     */
+    insertCulturalInsights(unitNumber, interval = 10) {
+        if (!window.CULTURAL_INSIGHTS) {
+            window.Logger?.warn('Cultural Insights not loaded');
+            return;
+        }
+
+        const newExercises = [];
+        const usedInsightIds = new Set();
+
+        for (let i = 0; i < this.exercises.length; i++) {
+            // Add the regular exercise
+            newExercises.push(this.exercises[i]);
+
+            // Insert insight after every Nth exercise (but not after the last one)
+            if ((i + 1) % interval === 0 && i < this.exercises.length - 1) {
+                let insight = null;
+                let attempts = 0;
+
+                // Try to get a unique insight (max 10 attempts to avoid infinite loop)
+                do {
+                    insight = window.CULTURAL_INSIGHTS.getRandomInsight(unitNumber);
+                    attempts++;
+                } while (usedInsightIds.has(insight.id) && attempts < 10);
+
+                if (insight) {
+                    usedInsightIds.add(insight.id);
+
+                    // Create exercise object from insight
+                    const insightExercise = {
+                        id: `insight_${insight.id}_u${unitNumber}_pos${i}`,
+                        type: 'cultural-insight',
+                        emoji: insight.emoji,
+                        title: insight.title,
+                        content: insight.content,
+                        category: insight.category,
+                        difficulty: 0, // Insights have no difficulty
+                        concept: 'cultural-knowledge'
+                    };
+
+                    newExercises.push(insightExercise);
+                    window.Logger?.debug(`Inserted cultural insight "${insight.title}" after exercise ${i + 1}`);
+                }
+            }
+        }
+
+        this.exercises = newExercises;
     }
 
     /**
@@ -1701,6 +1857,137 @@ class App {
         }
 
         return matrix[str2.length][str1.length];
+    }
+
+    /**
+     * Add word to scramble answer
+     */
+    addWordToScramble(index) {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        const state = exercise.scrambleState;
+        const word = state.availableWords[index];
+
+        // Add to user answer
+        state.userAnswer.push(word);
+
+        // Remove from available words
+        state.availableWords.splice(index, 1);
+
+        // Re-render
+        this.render();
+    }
+
+    /**
+     * Remove word from scramble answer (click on selected word)
+     */
+    removeWordFromScramble(index) {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        const state = exercise.scrambleState;
+        const word = state.userAnswer[index];
+
+        // Remove from user answer
+        state.userAnswer.splice(index, 1);
+
+        // Add back to available words
+        state.availableWords.push(word);
+
+        // Re-render
+        this.render();
+    }
+
+    /**
+     * Reset scramble exercise (clear all selections)
+     */
+    resetScramble() {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        // Reset state
+        exercise.scrambleState = {
+            userAnswer: [],
+            availableWords: [...exercise.words] // Reset to original words
+        };
+
+        // Re-render
+        this.render();
+    }
+
+    /**
+     * Check scramble answer
+     */
+    checkScrambleAnswer() {
+        const exercise = this.exercises[this.currentIndex];
+        if (!exercise || exercise.type !== 'sentence-scramble') return;
+
+        const state = exercise.scrambleState;
+        const userSentence = state.userAnswer.join(' ');
+        const correctAnswer = exercise.correctAnswer;
+
+        // Normalize both for comparison
+        const normalizedUser = this.normalizeAnswer(userSentence);
+        const normalizedCorrect = this.normalizeAnswer(correctAnswer);
+
+        const isCorrect = normalizedUser === normalizedCorrect;
+
+        // Update stats
+        this.stats.total++;
+        if (isCorrect) {
+            this.stats.correct++;
+        } else {
+            this.attempts++;
+
+            // Show hint after max attempts
+            const maxAttempts = this.getMaxAttemptsBeforeHint();
+            if (this.attempts >= maxAttempts && exercise.hint) {
+                this.showHint();
+            }
+        }
+
+        // Record attempt in adaptive learning
+        this.adaptiveSystem.recordAttempt(exercise, isCorrect);
+
+        // Save progress
+        this.saveProgress();
+
+        // Show feedback
+        const feedbackArea = document.getElementById('feedback-area');
+        if (feedbackArea) {
+            feedbackArea.className = `feedback-area ${isCorrect ? 'correct' : 'incorrect'}`;
+
+            let html = '';
+            if (isCorrect) {
+                html = `<p class="feedback-message">✅ <strong>Richtig!</strong> Perfekte Wortstellung!</p>`;
+            } else {
+                html = `
+                    <p class="feedback-message">❌ <strong>Nicht ganz richtig.</strong></p>
+                    <p class="correct-answer">Richtige Antwort: <strong>${correctAnswer}</strong></p>
+                `;
+            }
+
+            feedbackArea.innerHTML = html;
+            feedbackArea.classList.remove('hidden');
+
+            // Show next button after a delay
+            if (isCorrect) {
+                setTimeout(() => this.showNextButton(), 800);
+            } else {
+                this.showNextButton();
+            }
+        }
+
+        // Disable buttons after checking
+        const checkBtn = document.querySelector('.scramble-actions .btn-primary');
+        const resetBtn = document.querySelector('.scramble-actions .btn-secondary');
+        if (checkBtn) checkBtn.disabled = true;
+        if (resetBtn) resetBtn.disabled = true;
+
+        // Disable word chips
+        const wordChips = document.querySelectorAll('.word-chip');
+        wordChips.forEach(chip => chip.disabled = true);
     }
 
     /**
