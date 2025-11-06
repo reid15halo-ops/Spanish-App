@@ -1188,44 +1188,75 @@ class App {
      */
     async loadUnit(unitNumber) {
         try {
-            window.Logger?.info(`Loading Unit ${unitNumber} (Adaptive Mode)...`);
+            const learningMode = this.settings.learningMode || 'linear';
 
-            // Load all exercises from all units for adaptive selection
-            const allExercises = [];
-
-            for (let unit = 1; unit <= 7; unit++) {
-                const data = await this.loader.loadUnit(unit);
-                data.exercises.forEach(ex => {
-                    allExercises.push({
-                        ...ex,
-                        unitNumber: unit,
-                        unitName: data.metadata?.title || `Unit ${unit}`
-                    });
-                });
+            if (learningMode === 'adaptive') {
+                await this.loadUnitAdaptive(unitNumber);
+            } else {
+                await this.loadUnitLinear(unitNumber);
             }
-
-            window.Logger?.info(`Loaded ${allExercises.length} total exercises from all units`);
-
-            // Create adaptive sequence based on performance
-            this.exercises = this.adaptiveSystem.createAdaptiveSequence(allExercises, 50);
-
-            window.Logger?.success(`Created adaptive sequence: ${this.exercises.length} exercises`);
-
-            this.currentUnit = unitNumber;
-            this.currentIndex = 0;
-            this.attempts = 0;
-
-            // Update progress
-            this.updateProgress();
-
-            // Show adaptive recommendations
-            this.showAdaptiveRecommendations();
-
         } catch (error) {
-            window.Logger?.error('Error loading adaptive exercises:', error);
+            window.Logger?.error('Error loading unit:', error);
             window.ErrorBoundary?.handleError(error, { context: `Loading Unit ${unitNumber}` });
             throw error;
         }
+    }
+
+    /**
+     * Load unit in linear mode (original behavior)
+     */
+    async loadUnitLinear(unitNumber) {
+        window.Logger?.info(`Loading Unit ${unitNumber} (Linear Mode)...`);
+
+        const data = await this.loader.loadUnit(unitNumber);
+
+        this.exercises = data.exercises;
+        this.currentUnit = unitNumber;
+        this.currentIndex = 0;
+        this.attempts = 0;
+
+        window.Logger?.success(`Unit ${unitNumber} loaded: ${this.exercises.length} exercises`);
+
+        // Update progress
+        this.updateProgress();
+    }
+
+    /**
+     * Load unit in adaptive mode (all units, personalized sequence)
+     */
+    async loadUnitAdaptive(unitNumber) {
+        window.Logger?.info(`Loading Unit ${unitNumber} (Adaptive Mode)...`);
+
+        // Load all exercises from all units for adaptive selection
+        const allExercises = [];
+
+        for (let unit = 1; unit <= 7; unit++) {
+            const data = await this.loader.loadUnit(unit);
+            data.exercises.forEach(ex => {
+                allExercises.push({
+                    ...ex,
+                    unitNumber: unit,
+                    unitName: data.metadata?.title || `Unit ${unit}`
+                });
+            });
+        }
+
+        window.Logger?.info(`Loaded ${allExercises.length} total exercises from all units`);
+
+        // Create adaptive sequence based on performance
+        this.exercises = this.adaptiveSystem.createAdaptiveSequence(allExercises, 50);
+
+        window.Logger?.success(`Created adaptive sequence: ${this.exercises.length} exercises`);
+
+        this.currentUnit = unitNumber;
+        this.currentIndex = 0;
+        this.attempts = 0;
+
+        // Update progress
+        this.updateProgress();
+
+        // Show adaptive recommendations
+        this.showAdaptiveRecommendations();
     }
 
     /**
@@ -2238,7 +2269,8 @@ class App {
 
         // Default settings
         return {
-            helpLevel: 'normal' // 'keine', 'normal', 'viel'
+            helpLevel: 'normal', // 'keine', 'normal', 'viel'
+            learningMode: 'linear' // 'linear', 'adaptive'
         };
     }
 
@@ -2352,20 +2384,54 @@ class App {
 
         modal.classList.remove('hidden');
 
-        // Set current value
-        const radio = document.querySelector(`input[name="help"][value="${this.settings.helpLevel}"]`);
-        if (radio) {
-            radio.checked = true;
+        // Set current help level value
+        const helpRadio = document.querySelector(`input[name="help"][value="${this.settings.helpLevel}"]`);
+        if (helpRadio) {
+            helpRadio.checked = true;
+        }
+
+        // Set current learning mode value
+        const modeRadio = document.querySelector(`input[name="learningMode"][value="${this.settings.learningMode || 'linear'}"]`);
+        if (modeRadio) {
+            modeRadio.checked = true;
         }
 
         // Setup save button
         const saveBtn = document.getElementById('save-settings');
         if (saveBtn) {
-            saveBtn.onclick = () => {
-                const selected = document.querySelector('input[name="help"]:checked');
-                if (selected) {
-                    this.settings.helpLevel = selected.value;
-                    this.saveSettings();
+            saveBtn.onclick = async () => {
+                const selectedHelp = document.querySelector('input[name="help"]:checked');
+                const selectedMode = document.querySelector('input[name="learningMode"]:checked');
+
+                const oldMode = this.settings.learningMode;
+
+                if (selectedHelp) {
+                    this.settings.helpLevel = selectedHelp.value;
+                }
+
+                if (selectedMode) {
+                    this.settings.learningMode = selectedMode.value;
+                }
+
+                this.saveSettings();
+
+                // If learning mode changed, reload current unit
+                if (selectedMode && oldMode !== selectedMode.value) {
+                    window.ModalDialog.toast('Lernmodus geändert! Unit wird neu geladen...', 'info');
+                    modal.classList.add('hidden');
+
+                    // Reload current unit with new mode
+                    await this.loadUnit(this.currentUnit);
+                    this.buildSidebar();
+                    this.showExercise(0);
+
+                    window.ModalDialog.toast(
+                        selectedMode.value === 'adaptive'
+                            ? '🎯 Adaptiver Modus aktiviert!'
+                            : '📚 Linearer Modus aktiviert!',
+                        'success'
+                    );
+                } else {
                     window.ModalDialog.toast('Einstellungen gespeichert!', 'success');
                     modal.classList.add('hidden');
                 }

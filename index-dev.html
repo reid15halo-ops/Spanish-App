@@ -88,6 +88,28 @@
                 </div>
             </fieldset>
 
+            <!-- Learning Mode -->
+            <fieldset style="margin-bottom: 30px; border: none; padding: 0;">
+                <legend style="margin-bottom: 15px; font-size: 16px; color: var(--primary); font-weight: bold;">Lernmodus</legend>
+                <p style="margin-bottom: 15px; color: var(--text-muted); font-size: 14px;" id="mode-description">
+                    Wähle, wie Übungen ausgewählt werden:
+                </p>
+
+                <div role="radiogroup" aria-labelledby="mode-description">
+                    <label>
+                        <input type="radio" name="learningMode" value="linear" checked aria-describedby="mode-linear-desc">
+                        <strong>Linear</strong><br>
+                        <small id="mode-linear-desc">Übungen werden in fester Reihenfolge präsentiert. Empfohlen für Anfänger.</small>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="learningMode" value="adaptive" aria-describedby="mode-adaptive-desc">
+                        <strong>Adaptiv (Experimentell)</strong><br>
+                        <small id="mode-adaptive-desc">KI wählt Übungen basierend auf deiner Performance aus. Fokus auf schwache Bereiche, Spaced Repetition, intelligente Schwierigkeitsanpassung.</small>
+                    </label>
+                </div>
+            </fieldset>
+
             <!-- Data Management -->
             <section style="margin-bottom: 30px; padding-top: 20px; border-top: 2px solid var(--border);" aria-labelledby="data-management-title">
                 <h3 id="data-management-title" style="margin-bottom: 15px; font-size: 16px; color: var(--primary);">Datenmanagement</h3>
