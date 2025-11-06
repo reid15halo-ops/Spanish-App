@@ -79,6 +79,9 @@ class ExerciseLoader {
             throw new Error(`Invalid data format for Unit ${unitNumber}`);
         }
 
+        // Merge expanded vocabulary cards if available
+        data = this.mergeExpandedVocabulary(unitNumber, data);
+
         // Cache the result
         this.cache[unitNumber] = {
             metadata: data.metadata,
@@ -90,6 +93,49 @@ class ExerciseLoader {
         window.Logger?.debug(`   Title: ${data.metadata?.title || 'N/A'}`);
 
         return this.cache[unitNumber];
+    }
+
+    /**
+     * Merge expanded vocabulary cards into unit data
+     * Replaces basic vocabulary-card exercises with enhanced versions that include practices
+     * @param {number} unitNumber
+     * @param {Object} data - Unit data
+     * @returns {Object} Merged data
+     */
+    mergeExpandedVocabulary(unitNumber, data) {
+        const expandedData = {
+            2: window.UNIT2_VOCABULARY_EXPANDED,
+            3: window.UNIT3_VOCABULARY_EXPANDED,
+            4: window.UNIT4_VOCABULARY_EXPANDED,
+            5: window.UNIT5_VOCABULARY_EXPANDED,
+            6: window.UNIT6_VOCABULARY_EXPANDED
+        };
+
+        const expanded = expandedData[unitNumber];
+        if (!expanded || !expanded.vocabularyCards) {
+            // No expanded vocabulary for this unit
+            return data;
+        }
+
+        window.Logger?.info(`🔄 Merging ${expanded.vocabularyCards.length} expanded vocabulary cards for Unit ${unitNumber}`);
+
+        // Create a map of vocabulary card IDs to expanded cards
+        const expandedMap = new Map();
+        expanded.vocabularyCards.forEach(card => {
+            expandedMap.set(card.id, card);
+        });
+
+        // Replace vocabulary-card exercises with expanded versions
+        data.exercises = data.exercises.map(exercise => {
+            if (exercise.type === 'vocabulary-card' && expandedMap.has(exercise.id)) {
+                const expandedCard = expandedMap.get(exercise.id);
+                window.Logger?.debug(`   ↳ Replacing ${exercise.id} with expanded version (${expandedCard.practices?.length || 0} practices)`);
+                return expandedCard;
+            }
+            return exercise;
+        });
+
+        return data;
     }
 
     /**
