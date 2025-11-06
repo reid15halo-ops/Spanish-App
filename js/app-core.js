@@ -1602,7 +1602,7 @@ class App {
             `;
             feedback.className = 'practice-feedback correct';
 
-            // Move to next practice after short delay
+            // Move to next practice after delay
             setTimeout(() => {
                 mode.currentPracticeIndex++;
                 this.render();
@@ -1612,7 +1612,7 @@ class App {
                     const nextInput = document.getElementById('practice-input');
                     if (nextInput) nextInput.focus();
                 }, 100);
-            }, 1500);
+            }, 6000);
         } else {
             // Incorrect answer
             mode.attempts++;
