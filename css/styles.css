@@ -1370,6 +1370,31 @@
     margin: 0;
 }
 
+/* Vocabulary "Weiter" button */
+.vocab-next-button {
+    display: block;
+    margin: 15px auto 0;
+    padding: 10px 24px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.vocab-next-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.vocab-next-button:active {
+    transform: translateY(0);
+}
+
 /* Complete screen */
 .vocab-complete {
     text-align: center;

@@ -1587,26 +1587,33 @@ class App {
             mode.attempts++;
 
             if (mode.attempts >= 2) {
-                // Show correct answer after 2 attempts
+                // Show correct answer after 2 attempts with "Weiter" button
                 feedback.innerHTML = `
                     <div class="feedback-show-answer">
                         ℹ️ <strong>Die richtige Antwort ist:</strong><br>
                         ${practice.answer}
+                        <button id="vocab-next-btn" class="vocab-next-button">Weiter →</button>
                     </div>
                 `;
                 feedback.className = 'practice-feedback show-answer';
 
-                // Move to next after showing answer
+                // Add click handler for "Weiter" button
                 setTimeout(() => {
-                    mode.currentPracticeIndex++;
-                    mode.attempts = 0;
-                    this.render();
+                    const nextBtn = document.getElementById('vocab-next-btn');
+                    if (nextBtn) {
+                        nextBtn.addEventListener('click', () => {
+                            mode.currentPracticeIndex++;
+                            mode.attempts = 0;
+                            this.render();
 
-                    setTimeout(() => {
-                        const nextInput = document.getElementById('practice-input');
-                        if (nextInput) nextInput.focus();
-                    }, 100);
-                }, 3000);
+                            setTimeout(() => {
+                                const nextInput = document.getElementById('practice-input');
+                                if (nextInput) nextInput.focus();
+                            }, 100);
+                        });
+                        nextBtn.focus(); // Focus on button so user can press Enter
+                    }
+                }, 100);
             } else {
                 // Give hint, allow retry
                 feedback.innerHTML = `
