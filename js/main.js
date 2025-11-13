@@ -99,6 +99,27 @@ if (window.UIEnhancements) {
     window.Logger?.debug('UIEnhancements initialized');
 }
 
+// Initialize Onboarding & Help Systems
+if (window.TooltipSystem) {
+    window.TooltipSystem.initialize();
+    window.Logger?.debug('TooltipSystem initialized');
+}
+
+if (window.HelpSystem) {
+    window.HelpSystem.initialize();
+    window.Logger?.debug('HelpSystem initialized');
+}
+
+if (window.TutorialSystem) {
+    window.TutorialSystem.initialize();
+    window.Logger?.debug('TutorialSystem initialized');
+}
+
+if (window.OnboardingSystem) {
+    window.OnboardingSystem.initialize();
+    window.Logger?.debug('OnboardingSystem initialized');
+}
+
 // Update app info in settings modal
 if (window.ENV) {
     const versionEl = document.getElementById('app-version');
