@@ -120,6 +120,22 @@ if (window.OnboardingSystem) {
     window.Logger?.debug('OnboardingSystem initialized');
 }
 
+// Initialize Session Summary & Windows 11 Optimizations
+if (window.SessionSummarySystem) {
+    window.SessionSummarySystem.initialize();
+    window.Logger?.debug('SessionSummarySystem initialized');
+}
+
+if (window.FluentDesignSystem) {
+    window.FluentDesignSystem.initialize();
+    window.Logger?.debug('FluentDesignSystem initialized');
+}
+
+if (window.DPIAwarenessSystem) {
+    window.DPIAwarenessSystem.initialize();
+    window.Logger?.debug('DPIAwarenessSystem initialized');
+}
+
 // Update app info in settings modal
 if (window.ENV) {
     const versionEl = document.getElementById('app-version');
