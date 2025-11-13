@@ -518,6 +518,1540 @@
           "oppositeOf": "guapo, bonito"
         }
       ]
+    },
+    "numbers_0_20": {
+      "id": "numbers_0_20",
+      "name_de": "Zahlen 0-20",
+      "name_es": "Números 0-20",
+      "priority": 3,
+      "words": [
+        {
+          "id": "v1_031",
+          "es": "cero",
+          "de": "null",
+          "type": "number",
+          "value": 0,
+          "difficulty": 1,
+          "mnemonic": "'cero' → wie 'zero' im Englischen",
+          "audioHint": "Aussprache: 'cero'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo cero años",
+            "Cero personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_032",
+          "es": "uno",
+          "de": "eins",
+          "type": "number",
+          "value": 1,
+          "difficulty": 1,
+          "mnemonic": "'uno' → ein/one - universell erkennbar",
+          "audioHint": "Aussprache: 'uno'",
+          "germanCognate": true,
+          "examples": [
+            "Tengo uno años",
+            "Uno personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen",
+          "cognateNote": "Ähnlich zu anderen europäischen Sprachen"
+        },
+        {
+          "id": "v1_033",
+          "es": "dos",
+          "de": "zwei",
+          "type": "number",
+          "value": 2,
+          "difficulty": 1,
+          "mnemonic": "'dos' → denk an 'duo' (zwei)",
+          "audioHint": "Aussprache: 'dos'",
+          "germanCognate": true,
+          "examples": [
+            "Tengo dos años",
+            "Dos personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen",
+          "cognateNote": "Ähnlich zu anderen europäischen Sprachen"
+        },
+        {
+          "id": "v1_034",
+          "es": "tres",
+          "de": "drei",
+          "type": "number",
+          "value": 3,
+          "difficulty": 1,
+          "mnemonic": "'tres' → denk an 'tres' (drei auf Französisch)",
+          "audioHint": "Aussprache: 'tres'",
+          "germanCognate": true,
+          "examples": [
+            "Tengo tres años",
+            "Tres personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen",
+          "cognateNote": "Ähnlich zu anderen europäischen Sprachen"
+        },
+        {
+          "id": "v1_035",
+          "es": "cuatro",
+          "de": "vier",
+          "type": "number",
+          "value": 4,
+          "difficulty": 1,
+          "mnemonic": "'cuatro' → 'quattro' (italienisch/vier)",
+          "audioHint": "Aussprache: 'cuatro'",
+          "germanCognate": true,
+          "examples": [
+            "Tengo cuatro años",
+            "Cuatro personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen",
+          "cognateNote": "Ähnlich zu anderen europäischen Sprachen"
+        },
+        {
+          "id": "v1_036",
+          "es": "cinco",
+          "de": "fünf",
+          "type": "number",
+          "value": 5,
+          "difficulty": 1,
+          "mnemonic": "'cinco' → klingt wie 'sink-o' (5 Finger sinken)",
+          "audioHint": "Aussprache: 'cinco'",
+          "germanCognate": true,
+          "examples": [
+            "Tengo cinco años",
+            "Cinco personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen",
+          "cognateNote": "Ähnlich zu anderen europäischen Sprachen"
+        },
+        {
+          "id": "v1_037",
+          "es": "seis",
+          "de": "sechs",
+          "type": "number",
+          "value": 6,
+          "difficulty": 1,
+          "mnemonic": "'seis' → klingt wie 'says' (sagt)",
+          "audioHint": "Aussprache: 'seis'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo seis años",
+            "Seis personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_038",
+          "es": "siete",
+          "de": "sieben",
+          "type": "number",
+          "value": 7,
+          "difficulty": 1,
+          "mnemonic": "'siete' → 'seven' ähnelt dem Klang",
+          "audioHint": "Aussprache: 'siete'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo siete años",
+            "Siete personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_039",
+          "es": "ocho",
+          "de": "acht",
+          "type": "number",
+          "value": 8,
+          "difficulty": 1,
+          "mnemonic": "'ocho' → '8' sieht aus wie zwei O's",
+          "audioHint": "Aussprache: 'ocho'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo ocho años",
+            "Ocho personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_040",
+          "es": "nueve",
+          "de": "neun",
+          "type": "number",
+          "value": 9,
+          "difficulty": 1,
+          "mnemonic": "'nueve' → 'nine/neun' ähnlich",
+          "audioHint": "Aussprache: 'nueve'",
+          "germanCognate": true,
+          "examples": [
+            "Tengo nueve años",
+            "Nueve personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen",
+          "cognateNote": "Ähnlich zu anderen europäischen Sprachen"
+        },
+        {
+          "id": "v1_041",
+          "es": "diez",
+          "de": "zehn",
+          "type": "number",
+          "value": 10,
+          "difficulty": 1,
+          "mnemonic": "'diez' → 'ten/zehn' (d=t Ähnlichkeit)",
+          "audioHint": "Aussprache: 'diez'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo diez años",
+            "Diez personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_042",
+          "es": "once",
+          "de": "elf",
+          "type": "number",
+          "value": 11,
+          "difficulty": 2,
+          "mnemonic": "'once' → 'onze' (französisch 11)",
+          "audioHint": "Aussprache: 'once'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo once años",
+            "Once personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_043",
+          "es": "doce",
+          "de": "zwölf",
+          "type": "number",
+          "value": 12,
+          "difficulty": 2,
+          "mnemonic": "'doce' → 'douze' (französisch 12)",
+          "audioHint": "Aussprache: 'doce'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo doce años",
+            "Doce personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_044",
+          "es": "trece",
+          "de": "dreizehn",
+          "type": "number",
+          "value": 13,
+          "difficulty": 2,
+          "mnemonic": "'trece' → 'tres + ce' (drei + zehn)",
+          "audioHint": "Aussprache: 'trece'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo trece años",
+            "Trece personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_045",
+          "es": "catorce",
+          "de": "vierzehn",
+          "type": "number",
+          "value": 14,
+          "difficulty": 2,
+          "mnemonic": "'catorce' → 'cuatro + orce' (vier + zehn)",
+          "audioHint": "Aussprache: 'catorce'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo catorce años",
+            "Catorce personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_046",
+          "es": "quince",
+          "de": "fünfzehn",
+          "type": "number",
+          "value": 15,
+          "difficulty": 2,
+          "mnemonic": "'quince' → 'cinco + ce' (fünf + zehn)",
+          "audioHint": "Aussprache: 'quince'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo quince años",
+            "Quince personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_047",
+          "es": "dieciséis",
+          "de": "sechzehn",
+          "type": "number",
+          "value": 16,
+          "difficulty": 2,
+          "mnemonic": "'dieciséis' → 'diez y seis' (zehn und sechs)",
+          "audioHint": "Aussprache: 'dieciséis'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo dieciséis años",
+            "Dieciséis personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_048",
+          "es": "diecisiete",
+          "de": "siebzehn",
+          "type": "number",
+          "value": 17,
+          "difficulty": 2,
+          "mnemonic": "'diecisiete' → 'diez y siete' (zehn und sieben)",
+          "audioHint": "Aussprache: 'diecisiete'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo diecisiete años",
+            "Diecisiete personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_049",
+          "es": "dieciocho",
+          "de": "achtzehn",
+          "type": "number",
+          "value": 18,
+          "difficulty": 2,
+          "mnemonic": "'dieciocho' → 'diez y ocho' (zehn und acht)",
+          "audioHint": "Aussprache: 'dieciocho'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo dieciocho años",
+            "Dieciocho personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_050",
+          "es": "diecinueve",
+          "de": "neunzehn",
+          "type": "number",
+          "value": 19,
+          "difficulty": 2,
+          "mnemonic": "'diecinueve' → 'diez y nueve' (zehn und neun)",
+          "audioHint": "Aussprache: 'diecinueve'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo diecinueve años",
+            "Diecinueve personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        },
+        {
+          "id": "v1_051",
+          "es": "veinte",
+          "de": "zwanzig",
+          "type": "number",
+          "value": 20,
+          "difficulty": 2,
+          "mnemonic": "'veinte' → 'twenty' ähnlicher Klang",
+          "audioHint": "Aussprache: 'veinte'",
+          "germanCognate": false,
+          "examples": [
+            "Tengo veinte años",
+            "Veinte personas"
+          ],
+          "usage": "Für Zählen, Alter, Mengen"
+        }
+      ]
+    },
+    "colors": {
+      "id": "colors",
+      "name_de": "Farben",
+      "name_es": "Colores",
+      "priority": 4,
+      "words": [
+        {
+          "id": "v1_052",
+          "es": "rojo",
+          "de": "rot",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'rojo' → 'rouge' (französisch rot)",
+          "audioHint": "Aussprache: 'RO-cho' (j wie 'ch')",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'rouge' (französisch)",
+          "genderNote": "rojo (m), roja (f)",
+          "examples": [
+            "El coche rojo",
+            "La casa roja"
+          ]
+        },
+        {
+          "id": "v1_053",
+          "es": "azul",
+          "de": "blau",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'azul' → 'azur' (azurblau)",
+          "audioHint": "Aussprache: 'a-SUL'",
+          "germanCognate": true,
+          "cognateNote": "'Azur' - Himmelblau",
+          "genderNote": "azul (beide Geschlechter gleich!)",
+          "examples": [
+            "El cielo azul",
+            "La casa azul"
+          ]
+        },
+        {
+          "id": "v1_054",
+          "es": "verde",
+          "de": "grün",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'verde' → 'vert' (französisch grün)",
+          "audioHint": "Aussprache: 'VER-de'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'verdant' (grünend)",
+          "genderNote": "verde (beide Geschlechter gleich!)",
+          "examples": [
+            "El árbol verde",
+            "La hierba verde"
+          ]
+        },
+        {
+          "id": "v1_055",
+          "es": "amarillo",
+          "de": "gelb",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'amarillo' → Denk an Amaretto (gelblich)",
+          "audioHint": "Aussprache: 'a-ma-RI-jo' (ll wie 'j')",
+          "germanCognate": false,
+          "genderNote": "amarillo (m), amarilla (f)",
+          "examples": [
+            "El sol amarillo",
+            "La flor amarilla"
+          ]
+        },
+        {
+          "id": "v1_056",
+          "es": "negro",
+          "de": "schwarz",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'negro' → 'negativ' (schwarz/dunkel)",
+          "audioHint": "Aussprache: 'NE-gro'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'negativ'",
+          "genderNote": "negro (m), negra (f)",
+          "examples": [
+            "El gato negro",
+            "La noche negra"
+          ]
+        },
+        {
+          "id": "v1_057",
+          "es": "blanco",
+          "de": "weiß",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'blanco' → 'blank' (leer/weiß)",
+          "audioHint": "Aussprache: 'BLAN-co'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'blank'",
+          "genderNote": "blanco (m), blanca (f)",
+          "examples": [
+            "El papel blanco",
+            "La nieve blanca"
+          ]
+        },
+        {
+          "id": "v1_058",
+          "es": "gris",
+          "de": "grau",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'gris' → 'grey/grau' (ähnlich)",
+          "audioHint": "Aussprache: 'gris'",
+          "germanCognate": true,
+          "cognateNote": "Ähnlich zu 'grey' (englisch)",
+          "genderNote": "gris (beide Geschlechter gleich!)",
+          "examples": [
+            "El cielo gris",
+            "La casa gris"
+          ]
+        },
+        {
+          "id": "v1_059",
+          "es": "marrón",
+          "de": "braun",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'marrón' → 'maroon' (kastanienbraun)",
+          "audioHint": "Aussprache: 'ma-RRON'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'maroon'",
+          "genderNote": "marrón (beide Geschlechter gleich!)",
+          "examples": [
+            "El perro marrón",
+            "La mesa marrón"
+          ]
+        },
+        {
+          "id": "v1_060",
+          "es": "naranja",
+          "de": "orange",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'naranja' → ist AUCH das Wort für Orange (Frucht)!",
+          "audioHint": "Aussprache: 'na-RAN-cha'",
+          "germanCognate": false,
+          "note": "naranja = orange (Farbe UND Frucht!)",
+          "genderNote": "naranja (ändert sich NICHT!)",
+          "examples": [
+            "La naranja naranja",
+            "El coche naranja"
+          ]
+        },
+        {
+          "id": "v1_061",
+          "es": "rosa",
+          "de": "rosa / pink",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'rosa' → Rose (pinke Blume)",
+          "audioHint": "Aussprache: 'RO-sa'",
+          "germanCognate": true,
+          "cognateNote": "Von 'Rose'",
+          "genderNote": "rosa (ändert sich NICHT!)",
+          "examples": [
+            "La flor rosa",
+            "El vestido rosa"
+          ]
+        },
+        {
+          "id": "v1_062",
+          "es": "morado",
+          "de": "lila / violett",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'morado' → 'mora' (Brombeere = lila)",
+          "audioHint": "Aussprache: 'mo-RA-do'",
+          "germanCognate": false,
+          "genderNote": "morado (m), morada (f)",
+          "examples": [
+            "El cielo morado",
+            "La flor morada"
+          ]
+        }
+      ]
+    },
+    "family": {
+      "id": "family",
+      "name_de": "Familie",
+      "name_es": "Familia",
+      "priority": 5,
+      "words": [
+        {
+          "id": "v1_063",
+          "es": "padre",
+          "de": "Vater",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'padre' → 'Pater' (lateinisch Vater)",
+          "audioHint": "Aussprache: 'PA-dre'",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'pater'",
+          "examples": [
+            "Mi padre es alto",
+            "El padre trabaja"
+          ],
+          "pluralNote": "padres = Eltern (gemischte Gruppe)"
+        },
+        {
+          "id": "v1_064",
+          "es": "madre",
+          "de": "Mutter",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "'madre' → 'Mater' (lateinisch Mutter)",
+          "audioHint": "Aussprache: 'MA-dre'",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'mater'",
+          "examples": [
+            "Mi madre es profesora",
+            "La madre cocina"
+          ]
+        },
+        {
+          "id": "v1_065",
+          "es": "hijo",
+          "de": "Sohn",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'hijo' → klingt wie 'i-cho'",
+          "audioHint": "Aussprache: 'I-cho' (h stumm, j wie 'ch')",
+          "germanCognate": false,
+          "examples": [
+            "Mi hijo tiene 10 años",
+            "El hijo estudia"
+          ],
+          "genderNote": "hijo (m), hija (f), hijos (Kinder gemischt)"
+        },
+        {
+          "id": "v1_066",
+          "es": "hija",
+          "de": "Tochter",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "Weibliche Form von 'hijo'",
+          "audioHint": "Aussprache: 'I-cha' (h stumm, j wie 'ch')",
+          "germanCognate": false,
+          "examples": [
+            "Mi hija es inteligente",
+            "La hija lee"
+          ]
+        },
+        {
+          "id": "v1_067",
+          "es": "hermano",
+          "de": "Bruder",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'hermano' → denk an 'brother/Bruder' (germanisch)",
+          "audioHint": "Aussprache: 'er-MA-no' (h stumm)",
+          "germanCognate": false,
+          "examples": [
+            "Mi hermano mayor",
+            "El hermano juega"
+          ],
+          "genderNote": "hermano (m), hermana (f), hermanos (Geschwister)"
+        },
+        {
+          "id": "v1_068",
+          "es": "hermana",
+          "de": "Schwester",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "Weibliche Form von 'hermano'",
+          "audioHint": "Aussprache: 'er-MA-na' (h stumm)",
+          "germanCognate": false,
+          "examples": [
+            "Mi hermana menor",
+            "La hermana canta"
+          ]
+        },
+        {
+          "id": "v1_069",
+          "es": "abuelo",
+          "de": "Großvater",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 2,
+          "mnemonic": "'abuelo' → 'abu' klingt wie 'Opa'",
+          "audioHint": "Aussprache: 'a-BWE-lo'",
+          "germanCognate": false,
+          "examples": [
+            "Mi abuelo es viejo",
+            "El abuelo cuenta historias"
+          ],
+          "diminutive": "abuelito (Opi)"
+        },
+        {
+          "id": "v1_070",
+          "es": "abuela",
+          "de": "Großmutter",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "'abuela' → 'abu' klingt wie 'Oma'",
+          "audioHint": "Aussprache: 'a-BWE-la'",
+          "germanCognate": false,
+          "examples": [
+            "Mi abuela cocina bien",
+            "La abuela es simpática"
+          ],
+          "diminutive": "abuelita (Omi)"
+        },
+        {
+          "id": "v1_071",
+          "es": "tío",
+          "de": "Onkel",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 2,
+          "mnemonic": "'tío' → kurz und einfach",
+          "audioHint": "Aussprache: 'TI-o'",
+          "germanCognate": false,
+          "examples": [
+            "Mi tío vive en Madrid",
+            "El tío es divertido"
+          ],
+          "slangNote": "Umgangssprachlich auch: 'Typ/Kerl'"
+        },
+        {
+          "id": "v1_072",
+          "es": "tía",
+          "de": "Tante",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "Weibliche Form von 'tío'",
+          "audioHint": "Aussprache: 'TI-a'",
+          "germanCognate": false,
+          "examples": [
+            "Mi tía es profesora",
+            "La tía visita"
+          ]
+        },
+        {
+          "id": "v1_073",
+          "es": "primo",
+          "de": "Cousin",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 2,
+          "mnemonic": "'primo' → 'primus' (erster/naher Verwandter)",
+          "audioHint": "Aussprache: 'PRI-mo'",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'primus'",
+          "examples": [
+            "Mi primo juega fútbol",
+            "El primo vive lejos"
+          ]
+        },
+        {
+          "id": "v1_074",
+          "es": "prima",
+          "de": "Cousine",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "Weibliche Form von 'primo'",
+          "audioHint": "Aussprache: 'PRI-ma'",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'prima'",
+          "examples": [
+            "Mi prima es estudiante",
+            "La prima canta"
+          ]
+        },
+        {
+          "id": "v1_075",
+          "es": "esposo",
+          "de": "Ehemann",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 2,
+          "mnemonic": "'esposo' → 'spouse' (englisch Ehepartner)",
+          "audioHint": "Aussprache: 'es-PO-so'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'spouse'",
+          "examples": [
+            "Mi esposo trabaja",
+            "El esposo cocina"
+          ],
+          "alternative": "marido (Mann/Ehemann)"
+        },
+        {
+          "id": "v1_076",
+          "es": "esposa",
+          "de": "Ehefrau",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "Weibliche Form von 'esposo'",
+          "audioHint": "Aussprache: 'es-PO-sa'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'spouse'",
+          "examples": [
+            "Mi esposa es médica",
+            "La esposa lee"
+          ],
+          "alternative": "mujer (Frau/Ehefrau)"
+        }
+      ]
+    },
+    "basic_nouns": {
+      "id": "basic_nouns",
+      "name_de": "Grundlegende Nomen",
+      "name_es": "Sustantivos básicos",
+      "priority": 6,
+      "words": [
+        {
+          "id": "v1_077",
+          "es": "casa",
+          "de": "Haus",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "'casa' → 'Casa' (auch im Deutschen bekannt)",
+          "audioHint": "Aussprache: 'KA-sa'",
+          "germanCognate": true,
+          "cognateNote": "Auch im Deutschen: Casa",
+          "examples": [
+            "Mi casa es grande",
+            "La casa blanca"
+          ],
+          "genderNote": "feminin (la casa)"
+        },
+        {
+          "id": "v1_078",
+          "es": "perro",
+          "de": "Hund",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'perro' → denk an 'bellen' (perro bellt)",
+          "audioHint": "Aussprache: 'PE-rro' (rr gerollt)",
+          "germanCognate": false,
+          "examples": [
+            "El perro es grande",
+            "Mi perro se llama Max"
+          ],
+          "genderNote": "maskulin (el perro)"
+        },
+        {
+          "id": "v1_079",
+          "es": "gato",
+          "de": "Katze",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'gato' → klingt ähnlich wie 'cat'",
+          "audioHint": "Aussprache: 'GA-to'",
+          "germanCognate": false,
+          "examples": [
+            "El gato es negro",
+            "Mi gato duerme"
+          ],
+          "genderNote": "maskulin (el gato)"
+        },
+        {
+          "id": "v1_080",
+          "es": "mesa",
+          "de": "Tisch",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "'mesa' → denk an 'Mensa' (Esstisch)",
+          "audioHint": "Aussprache: 'ME-sa'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'Mensa'",
+          "examples": [
+            "La mesa es grande",
+            "Comemos en la mesa"
+          ],
+          "genderNote": "feminin (la mesa), aber: der Tisch (Geschlecht anders!)"
+        },
+        {
+          "id": "v1_081",
+          "es": "silla",
+          "de": "Stuhl",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "'silla' → klingt wie 'Sitz-la'",
+          "audioHint": "Aussprache: 'SI-ja' (ll wie 'j')",
+          "germanCognate": false,
+          "examples": [
+            "La silla es cómoda",
+            "Me siento en la silla"
+          ],
+          "genderNote": "feminin (la silla)"
+        },
+        {
+          "id": "v1_082",
+          "es": "libro",
+          "de": "Buch",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'libro' → 'library/Bibliothek'",
+          "audioHint": "Aussprache: 'LI-bro'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'library', 'Bibliothek'",
+          "examples": [
+            "El libro es interesante",
+            "Leo un libro"
+          ],
+          "genderNote": "maskulin (el libro)"
+        },
+        {
+          "id": "v1_083",
+          "es": "teléfono",
+          "de": "Telefon",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'teléfono' → fast identisch mit 'Telefon'!",
+          "audioHint": "Aussprache: 'te-LE-fo-no'",
+          "germanCognate": true,
+          "cognateNote": "Perfektes Kognat!",
+          "examples": [
+            "El teléfono suena",
+            "Mi teléfono es nuevo"
+          ],
+          "genderNote": "maskulin (el teléfono)"
+        },
+        {
+          "id": "v1_084",
+          "es": "agua",
+          "de": "Wasser",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "'agua' → 'aqua' (lateinisch Wasser)",
+          "audioHint": "Aussprache: 'A-gwa'",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'aqua'",
+          "examples": [
+            "Bebo agua",
+            "El agua es fría"
+          ],
+          "genderNote": "feminin, aber: EL agua (Ausnahme!)",
+          "exception": "Grammatik-Ausnahme: 'el agua' (nicht 'la agua')"
+        },
+        {
+          "id": "v1_085",
+          "es": "comida",
+          "de": "Essen",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "'comida' → von 'comer' (essen)",
+          "audioHint": "Aussprache: 'co-MI-da'",
+          "germanCognate": false,
+          "examples": [
+            "La comida es deliciosa",
+            "Me gusta la comida española"
+          ],
+          "genderNote": "feminin (la comida)",
+          "relatedWords": "comer (essen), cena (Abendessen)"
+        },
+        {
+          "id": "v1_086",
+          "es": "pan",
+          "de": "Brot",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'pan' → denk an 'Pan' (Brotgott)",
+          "audioHint": "Aussprache: 'pan'",
+          "germanCognate": false,
+          "examples": [
+            "Como pan",
+            "El pan es fresco"
+          ],
+          "genderNote": "maskulin (el pan)"
+        },
+        {
+          "id": "v1_087",
+          "es": "leche",
+          "de": "Milch",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "mnemonic": "'leche' → denk an 'lait' (französisch Milch)",
+          "audioHint": "Aussprache: 'LE-tche'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'lactose' (Milchzucker)",
+          "examples": [
+            "Bebo leche",
+            "La leche es blanca"
+          ],
+          "genderNote": "feminin (la leche)"
+        },
+        {
+          "id": "v1_088",
+          "es": "café",
+          "de": "Kaffee",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "mnemonic": "'café' → identisch mit 'Café'!",
+          "audioHint": "Aussprache: 'ka-FE'",
+          "germanCognate": true,
+          "cognateNote": "Perfektes Kognat!",
+          "examples": [
+            "Bebo café",
+            "El café es caliente"
+          ],
+          "genderNote": "maskulin (el café)",
+          "multiMeaning": "Kaffee UND Café (Ort)"
+        },
+        {
+          "id": "v1_089",
+          "es": "coche",
+          "de": "Auto",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 2,
+          "mnemonic": "'coche' → klingt wie 'Coach' (Kutsche→Auto)",
+          "audioHint": "Aussprache: 'KO-tsche'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'Coach' (Kutsche)",
+          "examples": [
+            "El coche es rojo",
+            "Voy en coche"
+          ],
+          "genderNote": "maskulin (el coche)",
+          "alternative": "carro (Lateinamerika)"
+        },
+        {
+          "id": "v1_090",
+          "es": "puerta",
+          "de": "Tür",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "'puerta' → 'port' (Hafen/Pforte)",
+          "audioHint": "Aussprache: 'PWER-ta'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'port' (Pforte)",
+          "examples": [
+            "La puerta es grande",
+            "Abro la puerta"
+          ],
+          "genderNote": "feminin (la puerta)"
+        },
+        {
+          "id": "v1_091",
+          "es": "ventana",
+          "de": "Fenster",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "'ventana' → 'vent' (Luft/Wind) - Fenster lässt Luft rein",
+          "audioHint": "Aussprache: 'ven-TA-na'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'ventilation'",
+          "examples": [
+            "La ventana es grande",
+            "Abro la ventana"
+          ],
+          "genderNote": "feminin (la ventana)"
+        },
+        {
+          "id": "v1_092",
+          "es": "ciudad",
+          "de": "Stadt",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "'ciudad' → 'city' (Stadt)",
+          "audioHint": "Aussprache: 'thee-u-DAD' (Spanien) oder 'see-u-DAD' (Latam)",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'city'",
+          "examples": [
+            "La ciudad es grande",
+            "Vivo en la ciudad"
+          ],
+          "genderNote": "feminin (la ciudad)"
+        },
+        {
+          "id": "v1_093",
+          "es": "calle",
+          "de": "Straße",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "'calle' → denk an 'Calles' (Straßen in Spanien)",
+          "audioHint": "Aussprache: 'KA-je' (ll wie 'j')",
+          "germanCognate": false,
+          "examples": [
+            "La calle es larga",
+            "Camino por la calle"
+          ],
+          "genderNote": "feminin (la calle)"
+        },
+        {
+          "id": "v1_094",
+          "es": "escuela",
+          "de": "Schule",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 2,
+          "mnemonic": "'escuela' → 'school' (Schule)",
+          "audioHint": "Aussprache: 'es-KWE-la'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'school'",
+          "examples": [
+            "La escuela es grande",
+            "Voy a la escuela"
+          ],
+          "genderNote": "feminin (la escuela)"
+        },
+        {
+          "id": "v1_095",
+          "es": "trabajo",
+          "de": "Arbeit",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 2,
+          "mnemonic": "'trabajo' → von 'trabajar' (arbeiten)",
+          "audioHint": "Aussprache: 'tra-BA-cho' (j wie 'ch')",
+          "germanCognate": false,
+          "examples": [
+            "El trabajo es difícil",
+            "Voy al trabajo"
+          ],
+          "genderNote": "maskulin (el trabajo)",
+          "relatedWords": "trabajar (arbeiten), trabajador (Arbeiter)"
+        },
+        {
+          "id": "v1_096",
+          "es": "dinero",
+          "de": "Geld",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 2,
+          "mnemonic": "'dinero' → 'denarius' (römische Münze)",
+          "audioHint": "Aussprache: 'di-NE-ro'",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'denarius'",
+          "examples": [
+            "Tengo dinero",
+            "El dinero es importante"
+          ],
+          "genderNote": "maskulin (el dinero)"
+        }
+      ]
+    },
+    "states_emotions": {
+      "id": "states_emotions",
+      "name_de": "Zustände & Gefühle",
+      "name_es": "Estados y emociones",
+      "priority": 7,
+      "words": [
+        {
+          "id": "v1_097",
+          "es": "feliz",
+          "de": "glücklich",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'feliz' → 'felix' (lateinisch glücklich)",
+          "audioHint": "Aussprache: 'fe-LITH' (Spanien) oder 'fe-LIS' (Latam)",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'felix'",
+          "examples": [
+            "Soy feliz",
+            "Estoy feliz hoy"
+          ],
+          "genderNote": "feliz (beide Geschlechter gleich!)",
+          "usage": "Meist mit ESTAR (temporärer Zustand)"
+        },
+        {
+          "id": "v1_098",
+          "es": "triste",
+          "de": "traurig",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'triste' → klingt traurig (kurz und dunkel)",
+          "audioHint": "Aussprache: 'TRIS-te'",
+          "germanCognate": false,
+          "examples": [
+            "Estoy triste",
+            "Me siento triste"
+          ],
+          "genderNote": "triste (beide Geschlechter gleich!)",
+          "usage": "Mit ESTAR (Gefühl)",
+          "oppositeOf": "feliz"
+        },
+        {
+          "id": "v1_099",
+          "es": "cansado",
+          "de": "müde",
+          "type": "adjective",
+          "difficulty": 1,
+          "mnemonic": "'cansado' → 'can-' wie 'kaputt', 'sans' (ohne Energie)",
+          "audioHint": "Aussprache: 'can-SA-do'",
+          "germanCognate": false,
+          "examples": [
+            "Estoy cansado",
+            "Me siento cansado"
+          ],
+          "genderNote": "cansado (m), cansada (f)",
+          "usage": "Mit ESTAR (temporärer Zustand)",
+          "relatedWords": "cansar (ermüden)"
+        },
+        {
+          "id": "v1_100",
+          "es": "enfermo",
+          "de": "krank",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'enfermo' → 'infirm' (englisch krank/schwach)",
+          "audioHint": "Aussprache: 'en-FER-mo'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'infirm'",
+          "examples": [
+            "Estoy enfermo",
+            "Me siento enfermo"
+          ],
+          "genderNote": "enfermo (m), enferma (f)",
+          "usage": "Mit ESTAR (temporärer Zustand)",
+          "relatedWords": "enfermedad (Krankheit)"
+        },
+        {
+          "id": "v1_101",
+          "es": "ocupado",
+          "de": "beschäftigt",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'ocupado' → 'occupied' (besetzt/beschäftigt)",
+          "audioHint": "Aussprache: 'o-cu-PA-do'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'occupied'",
+          "examples": [
+            "Estoy ocupado",
+            "Está muy ocupado"
+          ],
+          "genderNote": "ocupado (m), ocupada (f)",
+          "usage": "Mit ESTAR (temporärer Zustand)"
+        },
+        {
+          "id": "v1_102",
+          "es": "contento",
+          "de": "zufrieden",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'contento' → 'content' (zufrieden/glücklich)",
+          "audioHint": "Aussprache: 'con-TEN-to'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'content'",
+          "examples": [
+            "Estoy contento",
+            "Me siento contento"
+          ],
+          "genderNote": "contento (m), contenta (f)",
+          "usage": "Mit ESTAR (temporärer Zustand)",
+          "note": "Etwas weniger intensiv als 'feliz'"
+        },
+        {
+          "id": "v1_103",
+          "es": "nervioso",
+          "de": "nervös",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'nervioso' → 'nervous' (nervös)",
+          "audioHint": "Aussprache: 'ner-vee-O-so'",
+          "germanCognate": true,
+          "cognateNote": "Perfektes Kognat! 'nervous'",
+          "examples": [
+            "Estoy nervioso",
+            "Me siento nervioso"
+          ],
+          "genderNote": "nervioso (m), nerviosa (f)",
+          "usage": "Mit ESTAR (temporärer Zustand)"
+        },
+        {
+          "id": "v1_104",
+          "es": "tranquilo",
+          "de": "ruhig",
+          "type": "adjective",
+          "difficulty": 2,
+          "mnemonic": "'tranquilo' → 'tranquil' (ruhig/gelassen)",
+          "audioHint": "Aussprache: 'tran-KI-lo'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'tranquil'",
+          "examples": [
+            "Estoy tranquilo",
+            "Todo está tranquilo"
+          ],
+          "genderNote": "tranquilo (m), tranquila (f)",
+          "usage": "Mit ESTAR (temporärer Zustand)",
+          "oppositeOf": "nervioso"
+        }
+      ]
+    },
+    "basic_places_adverbs": {
+      "id": "basic_places_adverbs",
+      "name_de": "Orte & Adverbien",
+      "name_es": "Lugares y adverbios",
+      "priority": 8,
+      "words": [
+        {
+          "id": "v1_105",
+          "es": "aquí",
+          "de": "hier",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'aquí' → 'hier' (mit Akzent!)",
+          "audioHint": "Aussprache: 'a-KI'",
+          "germanCognate": false,
+          "examples": [
+            "Estoy aquí",
+            "Ven aquí"
+          ],
+          "usage": "Bedeutet 'hier' (nah beim Sprecher)",
+          "accentNote": "Mit Akzent! aquí ≠ aqui"
+        },
+        {
+          "id": "v1_106",
+          "es": "allí",
+          "de": "dort",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'allí' → 'dort' (mit Akzent!)",
+          "audioHint": "Aussprache: 'a-JI' (ll wie 'j')",
+          "germanCognate": false,
+          "examples": [
+            "Está allí",
+            "Voy allí"
+          ],
+          "usage": "Bedeutet 'dort' (weiter weg)",
+          "alternatives": "allá (dort drüben)",
+          "oppositeOf": "aquí"
+        },
+        {
+          "id": "v1_107",
+          "es": "en",
+          "de": "in / auf / an",
+          "type": "preposition",
+          "difficulty": 1,
+          "mnemonic": "'en' → kurz wie 'in' im Englischen",
+          "audioHint": "Aussprache: 'en'",
+          "germanCognate": true,
+          "cognateNote": "Ähnlich zu 'in'",
+          "examples": [
+            "Estoy en casa",
+            "Vivo en Madrid"
+          ],
+          "usage": "In, auf, an (sehr vielseitig!)"
+        },
+        {
+          "id": "v1_108",
+          "es": "con",
+          "de": "mit",
+          "type": "preposition",
+          "difficulty": 1,
+          "mnemonic": "'con' → 'cum' (lateinisch mit)",
+          "audioHint": "Aussprache: 'kon'",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'cum'",
+          "examples": [
+            "Voy con mi amigo",
+            "Café con leche"
+          ],
+          "usage": "Mit",
+          "oppositeOf": "sin"
+        },
+        {
+          "id": "v1_109",
+          "es": "sin",
+          "de": "ohne",
+          "type": "preposition",
+          "difficulty": 2,
+          "mnemonic": "'sin' → 'sans' (französisch ohne)",
+          "audioHint": "Aussprache: 'sin'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit französisch 'sans'",
+          "examples": [
+            "Café sin azúcar",
+            "Sin ti"
+          ],
+          "usage": "Ohne",
+          "oppositeOf": "con"
+        },
+        {
+          "id": "v1_110",
+          "es": "ahora",
+          "de": "jetzt",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'ahora' → 'hora' = Stunde → jetzt (diese Stunde)",
+          "audioHint": "Aussprache: 'a-O-ra' (h stumm)",
+          "germanCognate": false,
+          "examples": [
+            "Ahora estoy ocupado",
+            "Voy ahora"
+          ],
+          "usage": "Jetzt, gerade jetzt"
+        },
+        {
+          "id": "v1_111",
+          "es": "hoy",
+          "de": "heute",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'hoy' → kurz und präsent",
+          "audioHint": "Aussprache: 'oi' (h stumm)",
+          "germanCognate": false,
+          "examples": [
+            "Hoy es lunes",
+            "¿Qué haces hoy?"
+          ],
+          "usage": "Heute",
+          "relatedWords": "ayer (gestern), mañana (morgen)"
+        },
+        {
+          "id": "v1_112",
+          "es": "mañana",
+          "de": "morgen",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'mañana' → 'man-ja-na'",
+          "audioHint": "Aussprache: 'ma-NYA-na' (ñ wie 'nj')",
+          "germanCognate": false,
+          "examples": [
+            "Hasta mañana",
+            "Mañana voy"
+          ],
+          "usage": "Morgen (Tag) UND am Morgen",
+          "multiMeaning": "mañana = morgen | por la mañana = am Morgen",
+          "falseFriend": "NICHT 'Banane'! Das ist 'plátano'"
+        },
+        {
+          "id": "v1_113",
+          "es": "sí",
+          "de": "ja",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'sí' → mit Akzent bedeutet JA",
+          "audioHint": "Aussprache: 'si'",
+          "germanCognate": false,
+          "examples": [
+            "Sí, entiendo",
+            "¿Vienes? Sí"
+          ],
+          "usage": "Ja",
+          "accentNote": "Mit Akzent! sí = ja | si = wenn/falls",
+          "oppositeOf": "no"
+        },
+        {
+          "id": "v1_114",
+          "es": "no",
+          "de": "nein / nicht",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'no' → einfach wie im Englischen",
+          "audioHint": "Aussprache: 'no'",
+          "germanCognate": true,
+          "cognateNote": "Universal!",
+          "examples": [
+            "No, gracias",
+            "No entiendo"
+          ],
+          "usage": "Nein, nicht",
+          "doubleNegative": "Spanisch nutzt doppelte Verneinung: 'No tengo nada'",
+          "oppositeOf": "sí"
+        },
+        {
+          "id": "v1_115",
+          "es": "muy",
+          "de": "sehr",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'muy' → 'much' (sehr)",
+          "audioHint": "Aussprache: 'mui'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'much'",
+          "examples": [
+            "Muy bien",
+            "Es muy grande"
+          ],
+          "usage": "Sehr (vor Adjektiven/Adverben)",
+          "vsNote": "muy ≠ mucho! muy = sehr | mucho = viel"
+        },
+        {
+          "id": "v1_116",
+          "es": "bien",
+          "de": "gut",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'bien' → 'bon' (französisch gut)",
+          "audioHint": "Aussprache: 'bien'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit französisch 'bon'",
+          "examples": [
+            "Estoy bien",
+            "Muy bien"
+          ],
+          "usage": "Gut, wohl",
+          "oppositeOf": "mal"
+        },
+        {
+          "id": "v1_117",
+          "es": "mal",
+          "de": "schlecht",
+          "type": "adverb",
+          "difficulty": 1,
+          "mnemonic": "'mal' → 'mal' (französisch schlecht)",
+          "audioHint": "Aussprache: 'mal'",
+          "germanCognate": true,
+          "cognateNote": "Auch im Deutschen/Französischen",
+          "examples": [
+            "Me siento mal",
+            "Hablas mal"
+          ],
+          "usage": "Schlecht, übel",
+          "oppositeOf": "bien"
+        },
+        {
+          "id": "v1_118",
+          "es": "mucho",
+          "de": "viel",
+          "type": "adverb",
+          "difficulty": 2,
+          "mnemonic": "'mucho' → 'much' (viel)",
+          "audioHint": "Aussprache: 'MU-tcho'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'much'",
+          "examples": [
+            "Mucho dinero",
+            "Como mucho"
+          ],
+          "usage": "Viel (als Adverb oder Adjektiv)",
+          "genderNote": "mucho (m), mucha (f), muchos/as (pl)",
+          "oppositeOf": "poco"
+        },
+        {
+          "id": "v1_119",
+          "es": "poco",
+          "de": "wenig",
+          "type": "adverb",
+          "difficulty": 2,
+          "mnemonic": "'poco' → 'peu' (französisch wenig)",
+          "audioHint": "Aussprache: 'PO-ko'",
+          "germanCognate": false,
+          "examples": [
+            "Poco dinero",
+            "Como poco"
+          ],
+          "usage": "Wenig, bisschen",
+          "genderNote": "poco (m), poca (f), pocos/as (pl)",
+          "oppositeOf": "mucho"
+        },
+        {
+          "id": "v1_120",
+          "es": "también",
+          "de": "auch",
+          "type": "adverb",
+          "difficulty": 2,
+          "mnemonic": "'también' → 'tam-bien' (auch-gut)",
+          "audioHint": "Aussprache: 'tam-bee-EN'",
+          "germanCognate": false,
+          "examples": [
+            "Yo también",
+            "También estoy cansado"
+          ],
+          "usage": "Auch, ebenfalls",
+          "accentNote": "Mit Akzent auf letzter Silbe!",
+          "oppositeOf": "tampoco (auch nicht)"
+        }
+      ]
     }
   }
 }
