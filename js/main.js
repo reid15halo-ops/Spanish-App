@@ -8,30 +8,36 @@
 // 1. Environment & Configuration (must be first)
 import './config/environment.js';
 
-// 2. Monitoring (Error + Performance tracking)
+// 2. Production Configuration (hides debug elements in production)
+import './production-config.js';
+
+// 3. Monitoring (Error + Performance tracking)
 import './monitoring.js';
 
-// 3. Consolidated Utilities (Logger, Loading, ErrorBoundary, DataBackup, GDPR, Accessibility, etc.)
+// 4. Consolidated Utilities (Logger, Loading, ErrorBoundary, DataBackup, GDPR, Accessibility, etc.)
 import './utils.js';
 
-// 4. Exercise Data (can be lazy loaded in future)
+// Note: Loading System and UI Enhancements are loaded via script tags
+// because they use window.X pattern for global access
+
+// 5. Exercise Data (can be lazy loaded in future)
 import './exercise-data.js';
 
 // Note: module-structure.js and lesson1-expanded.js are loaded via script tags
 // because they use window.X pattern for compatibility with both ES6 and non-ES6 contexts
 
-// 5. Adaptive Learning System
+// 6. Adaptive Learning System
 import './adaptive-learning.js';
 
-// 6. Tolerant Validation & Improved Feedback
+// 7. Tolerant Validation & Improved Feedback
 import './tolerant-validator.js';
 import './improved-feedback.js';
 
-// 7. Level Test & Adaptive Practice System
+// 8. Level Test & Adaptive Practice System
 import './level-test-system.js';
 import './adaptive-practice-system.js';
 
-// 8. Core App (App + Loader + Renderer) - must be last
+// 9. Core App (App + Loader + Renderer) - must be last
 import './app-core.js';
 
 // Service Worker Registration
@@ -81,6 +87,17 @@ if ('serviceWorker' in navigator) {
 window.Logger?.info('Spanish Learning App v' + (window.ENV?.getVersion() || '1.2.0'));
 window.Logger?.debug('Environment:', window.ENV?.currentEnv || 'unknown');
 window.Logger?.debug('Debug mode:', window.ENV?.get('enableDebugMode') || false);
+
+// Initialize UX Enhancement Systems
+if (window.LoadingSystem) {
+    window.LoadingSystem.initialize();
+    window.Logger?.debug('LoadingSystem initialized');
+}
+
+if (window.UIEnhancements) {
+    window.UIEnhancements.initialize();
+    window.Logger?.debug('UIEnhancements initialized');
+}
 
 // Update app info in settings modal
 if (window.ENV) {
