@@ -1,0 +1,523 @@
+{
+  "metadata": {
+    "phase": 1,
+    "level": "A1",
+    "totalWords": 120,
+    "categories": 8,
+    "version": "2.0",
+    "enhancements": {
+      "mnemonics": true,
+      "germanCognates": true,
+      "audioHints": true,
+      "culturalNotes": true
+    },
+    "lastUpdated": "2025-11-13"
+  },
+  "categories": {
+    "greetings_politeness": {
+      "id": "greetings_politeness",
+      "name_de": "Begrüßung & Höflichkeit",
+      "name_es": "Saludos y cortesía",
+      "priority": 1,
+      "words": [
+        {
+          "id": "v1_001",
+          "es": "hola",
+          "de": "hallo",
+          "type": "interjection",
+          "difficulty": 1,
+          "examples": [
+            "Hola, ¿cómo estás?",
+            "¡Hola! Buenos días"
+          ],
+          "mnemonic": "Wie 'Hallo' ohne 'H' aussprechen → 'ola'",
+          "audioHint": "Aussprache: 'O-la' (das H ist stumm!)",
+          "germanCognate": true,
+          "cognateNote": "Sehr ähnlich zu 'Hallo', nur ohne H-Laut",
+          "culturalNote": "Universelle Begrüßung zu jeder Tageszeit - immer passend!"
+        },
+        {
+          "id": "v1_002",
+          "es": "adiós",
+          "de": "auf Wiedersehen",
+          "type": "interjection",
+          "difficulty": 1,
+          "examples": [
+            "Adiós, hasta luego",
+            "¡Adiós! Nos vemos"
+          ],
+          "mnemonic": "'a Dios' = zu Gott → Verabschiedung mit Gottes Segen",
+          "audioHint": "Aussprache: 'ah-dee-ÓS' (Betonung auf letzter Silbe)",
+          "etymology": "Von 'a Dios' (zu Gott)",
+          "germanCognate": false,
+          "culturalNote": "Formelle Verabschiedung. Informell: 'chao' oder 'hasta luego'"
+        },
+        {
+          "id": "v1_003",
+          "es": "buenos días",
+          "de": "guten Morgen",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Buenos días, señor",
+            "¡Buenos días a todos!"
+          ],
+          "mnemonic": "'buenos' = bueno (gut) im Plural + 'días' = Tage → 'gute Tage'",
+          "audioHint": "Aussprache: 'BWE-nos DEE-as'",
+          "germanCognate": false,
+          "grammarNote": "Immer Plural! días (nicht día)",
+          "culturalNote": "Verwendet bis ca. 12 Uhr mittags"
+        },
+        {
+          "id": "v1_004",
+          "es": "buenas tardes",
+          "de": "guten Tag / guten Nachmittag",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Buenas tardes, ¿cómo está?",
+            "Buenas tardes, doctor"
+          ],
+          "mnemonic": "'tardes' wie 'tardío' (spät) → später Nachmittag",
+          "audioHint": "Aussprache: 'BWE-nas TAR-des'",
+          "germanCognate": false,
+          "culturalNote": "Von ca. 12 Uhr bis Sonnenuntergang (ca. 19-20 Uhr)"
+        },
+        {
+          "id": "v1_005",
+          "es": "buenas noches",
+          "de": "guten Abend / gute Nacht",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Buenas noches, hasta mañana",
+            "¡Buenas noches!"
+          ],
+          "mnemonic": "'noches' = Nächte (erkennbar!)",
+          "audioHint": "Aussprache: 'BWE-nas NO-tches'",
+          "germanCognate": true,
+          "cognateNote": "'noches' ähnlich zu 'Nacht', aber Plural",
+          "culturalNote": "Ab Sonnenuntergang - sowohl Begrüßung als auch Verabschiedung"
+        },
+        {
+          "id": "v1_006",
+          "es": "por favor",
+          "de": "bitte",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Por favor, ayúdame",
+            "Un café, por favor"
+          ],
+          "mnemonic": "'por favor' = für einen Gefallen → bitte",
+          "audioHint": "Aussprache: 'por fa-VOR' (Betonung auf 'vor')",
+          "germanCognate": true,
+          "cognateNote": "'favor' ähnlich zu englisch 'favor' und deutsch 'Favor'",
+          "etymology": "Wörtlich: 'für Gefälligkeit/Gunst'"
+        },
+        {
+          "id": "v1_007",
+          "es": "gracias",
+          "de": "danke",
+          "type": "interjection",
+          "difficulty": 1,
+          "examples": [
+            "Gracias por tu ayuda",
+            "¡Muchas gracias!"
+          ],
+          "mnemonic": "Denk an 'grace' (Gnade/Dank) im Englischen",
+          "audioHint": "Aussprache: 'GRA-thee-as' (in Spanien) oder 'GRA-see-as' (Lateinamerika)",
+          "germanCognate": true,
+          "cognateNote": "Von lateinisch 'gratia' → auch in 'gratulieren'",
+          "intensifiers": "muchas gracias (vielen Dank), muchísimas gracias (tausend Dank)"
+        },
+        {
+          "id": "v1_008",
+          "es": "de nada",
+          "de": "gern geschehen / bitte",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "- Gracias. - De nada",
+            "De nada, es un placer"
+          ],
+          "mnemonic": "Wörtlich: 'von nichts' → es ist nichts (zu danken)",
+          "audioHint": "Aussprache: 'de NA-da'",
+          "germanCognate": false,
+          "alternatives": "no hay de qué, con gusto"
+        },
+        {
+          "id": "v1_009",
+          "es": "perdón",
+          "de": "Entschuldigung / Verzeihung",
+          "type": "noun",
+          "difficulty": 1,
+          "examples": [
+            "Perdón, no te escuché",
+            "¡Perdón!"
+          ],
+          "mnemonic": "Ähnlich zu 'pardon' im Englischen/Französischen",
+          "audioHint": "Aussprache: 'per-DÓN' (Betonung auf letzter Silbe)",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit deutsch 'Pardon'",
+          "usage": "Informell, für kleine Fehler oder um Aufmerksamkeit zu erlangen"
+        },
+        {
+          "id": "v1_010",
+          "es": "disculpe",
+          "de": "entschuldigen Sie",
+          "type": "verb_form",
+          "difficulty": 2,
+          "examples": [
+            "Disculpe, ¿dónde está el baño?",
+            "Disculpe la molestia"
+          ],
+          "mnemonic": "'disculpe' → 'dis-culpa' (ohne Schuld) → entschuldigen",
+          "audioHint": "Aussprache: 'dis-KUL-pe'",
+          "germanCognate": true,
+          "cognateNote": "'culpa' = Schuld (wie in 'Kul pa')",
+          "usage": "Formell, höflicher als 'perdón'",
+          "formality": "formal (usted-Form)"
+        },
+        {
+          "id": "v1_011",
+          "es": "lo siento",
+          "de": "es tut mir leid",
+          "type": "phrase",
+          "difficulty": 2,
+          "examples": [
+            "Lo siento, no puedo",
+            "Lo siento mucho"
+          ],
+          "mnemonic": "Wörtlich: 'ich fühle es' → ich bedaure es",
+          "audioHint": "Aussprache: 'lo see-EN-to'",
+          "germanCognate": false,
+          "usage": "Für ernsthafte Entschuldigungen oder Mitgefühl",
+          "intensifiers": "lo siento mucho (es tut mir sehr leid)"
+        },
+        {
+          "id": "v1_012",
+          "es": "hasta luego",
+          "de": "bis später",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Hasta luego, nos vemos",
+            "¡Hasta luego!"
+          ],
+          "mnemonic": "'hasta' = bis, 'luego' = später (wie 'luego' in 'logo' → später kommt das Logo)",
+          "audioHint": "Aussprache: 'AS-ta LWE-go'",
+          "germanCognate": false,
+          "alternatives": "hasta pronto (bis bald), hasta mañana (bis morgen)",
+          "culturalNote": "Informelle Verabschiedung, sehr gebräuchlich"
+        },
+        {
+          "id": "v1_013",
+          "es": "hasta mañana",
+          "de": "bis morgen",
+          "type": "phrase",
+          "difficulty": 1,
+          "examples": [
+            "Hasta mañana, que descanses",
+            "¡Hasta mañana!"
+          ],
+          "mnemonic": "'mañana' = morgen UND tomorrow (Englisch hilft!)",
+          "audioHint": "Aussprache: 'AS-ta ma-NYA-na' (ñ wie 'nj')",
+          "germanCognate": false,
+          "falseF friend": "¡ACHTUNG! 'mañana' = morgen, aber AUCH 'por la mañana' = am Morgen"
+        },
+        {
+          "id": "v1_014",
+          "es": "mucho gusto",
+          "de": "sehr erfreut",
+          "type": "phrase",
+          "difficulty": 2,
+          "examples": [
+            "Mucho gusto en conocerte",
+            "- Soy María. - Mucho gusto"
+          ],
+          "mnemonic": "'mucho' = viel, 'gusto' = Geschmack/Freude → viel Freude",
+          "audioHint": "Aussprache: 'MU-tcho GUS-to'",
+          "germanCognate": true,
+          "cognateNote": "'gusto' verwandt mit 'Gustieren' (schmecken/gefallen)",
+          "usage": "Bei Vorstellungen, zeigt Höflichkeit",
+          "response": "Igualmente (Gleichfalls), El gusto es mío (Die Freude ist meinerseits)"
+        },
+        {
+          "id": "v1_015",
+          "es": "encantado/a",
+          "de": "erfreut",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Encantado de conocerte",
+            "- Soy Pedro. - Encantada"
+          ],
+          "mnemonic": "'encantado' → 'enchanted' (verzaubert/entzückt)",
+          "audioHint": "Aussprache: 'en-can-TA-do/da'",
+          "germanCognate": true,
+          "cognateNote": "Von 'encantar' = bezaubern, verwandt mit 'enchantieren'",
+          "genderNote": "encantado (männlich), encantada (weiblich)",
+          "usage": "Wie 'mucho gusto', aber poetischer"
+        }
+      ]
+    },
+    "personal_description": {
+      "id": "personal_description",
+      "name_de": "Personenbeschreibung",
+      "name_es": "Descripción personal",
+      "priority": 2,
+      "words": [
+        {
+          "id": "v1_016",
+          "es": "hombre",
+          "de": "Mann",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "examples": [
+            "El hombre es alto",
+            "Es un hombre simpático"
+          ],
+          "mnemonic": "Denk an 'homme' (französisch) oder spanisches 'hombre' klingt wie 'om-bre'",
+          "audioHint": "Aussprache: 'OM-bre' (H stumm!)",
+          "germanCognate": false,
+          "etymology": "Von lateinisch 'homo' (Mensch)",
+          "relatedWords": "humanidad (Menschheit), humano (menschlich)"
+        },
+        {
+          "id": "v1_017",
+          "es": "mujer",
+          "de": "Frau",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "La mujer es inteligente",
+            "Es una mujer joven"
+          ],
+          "mnemonic": "'mujer' → Denk an 'Muse' (weibliche Inspiration)",
+          "audioHint": "Aussprache: 'mu-CHÉR' (j wie 'ch' in 'Bach')",
+          "germanCognate": false,
+          "etymology": "Von lateinisch 'mulier'",
+          "culturalNote": "Respektvoll: 'señora' (Frau mit Titel)"
+        },
+        {
+          "id": "v1_018",
+          "es": "niño",
+          "de": "Junge / Kind",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "examples": [
+            "El niño está jugando",
+            "Es un niño feliz"
+          ],
+          "mnemonic": "'niño' klingt wie 'Nino' (italienischer Jungenname)",
+          "audioHint": "Aussprache: 'NI-njo' (ñ wie 'nj')",
+          "germanCognate": false,
+          "genderNote": "niño (Junge), niña (Mädchen), niños (Kinder gemischt)"
+        },
+        {
+          "id": "v1_019",
+          "es": "niña",
+          "de": "Mädchen",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "La niña es simpática",
+            "Es una niña inteligente"
+          ],
+          "mnemonic": "'niña' → weibliche Form von 'niño'",
+          "audioHint": "Aussprache: 'NI-nja' (ñ wie 'nj')",
+          "germanCognate": false,
+          "diminutive": "niñita (kleines Mädchen)"
+        },
+        {
+          "id": "v1_020",
+          "es": "amigo",
+          "de": "Freund",
+          "type": "noun",
+          "gender": "m",
+          "difficulty": 1,
+          "examples": [
+            "Mi amigo es de España",
+            "Tengo un amigo alemán"
+          ],
+          "mnemonic": "'amigo' → Denk an 'Amigo' (auch im Deutschen bekannt!)",
+          "audioHint": "Aussprache: 'a-MI-go'",
+          "germanCognate": true,
+          "cognateNote": "'Amigo' ist auch im Deutschen geläufig",
+          "etymology": "Von lateinisch 'amicus' (Freund)",
+          "culturalNote": "Sehr wichtiges Konzept in spanischer Kultur"
+        },
+        {
+          "id": "v1_021",
+          "es": "amiga",
+          "de": "Freundin",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "Mi amiga está en casa",
+            "Tengo una amiga española"
+          ],
+          "mnemonic": "Weibliche Form von 'amigo'",
+          "audioHint": "Aussprache: 'a-MI-ga'",
+          "germanCognate": true,
+          "cognateNote": "Auch im Deutschen bekannt"
+        },
+        {
+          "id": "v1_022",
+          "es": "familia",
+          "de": "Familie",
+          "type": "noun",
+          "gender": "f",
+          "difficulty": 1,
+          "examples": [
+            "Mi familia es grande",
+            "La familia está en casa"
+          ],
+          "mnemonic": "'familia' → Fast identisch mit 'Familie'!",
+          "audioHint": "Aussprache: 'fa-MI-lia'",
+          "germanCognate": true,
+          "cognateNote": "Perfektes Kognat! Fast identisch",
+          "culturalNote": "Familie hat sehr hohen Stellenwert in spanischer Kultur"
+        },
+        {
+          "id": "v1_023",
+          "es": "alto",
+          "de": "groß (Person)",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Él es alto",
+            "Una mujer alta"
+          ],
+          "mnemonic": "'alto' → Auch 'hoch' (Altitüde = Höhe)",
+          "audioHint": "Aussprache: 'AL-to'",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'Altitude' (Höhe)",
+          "genderNote": "alto (m), alta (f), altos/altas (pl)"
+        },
+        {
+          "id": "v1_024",
+          "es": "bajo",
+          "de": "klein (Person)",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Yo soy bajo",
+            "Un hombre bajo"
+          ],
+          "mnemonic": "'bajo' → 'bass' (tief), also niedrig/klein",
+          "audioHint": "Aussprache: 'BA-cho' (j wie 'ch')",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'Bass' (tief)",
+          "oppositeOf": "alto",
+          "multiMeaning": "Auch: unter, unten, leise"
+        },
+        {
+          "id": "v1_025",
+          "es": "joven",
+          "de": "jung",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Soy joven",
+            "Una mujer joven"
+          ],
+          "mnemonic": "'joven' → Denk an 'juvenil' (jugendlich)",
+          "audioHint": "Aussprache: 'CHO-ven' (j wie 'ch')",
+          "germanCognate": true,
+          "cognateNote": "Verwandt mit 'juvenil', 'Jugend'",
+          "genderNote": "joven (beide Geschlechter!), jóvenes (pl)",
+          "oppositeOf": "viejo"
+        },
+        {
+          "id": "v1_026",
+          "es": "viejo",
+          "de": "alt",
+          "type": "adjective",
+          "difficulty": 1,
+          "examples": [
+            "Mi abuelo es viejo",
+            "Un hombre viejo"
+          ],
+          "mnemonic": "'viejo' → klingt wie 'vie' (französisch für Leben) + jo → alt gelebt",
+          "audioHint": "Aussprache: 'vee-E-cho' (j wie 'ch')",
+          "germanCognate": false,
+          "genderNote": "viejo (m), vieja (f)",
+          "usage": "Kann respektlos wirken bei Personen - besser: 'mayor' (älter)",
+          "oppositeOf": "joven"
+        },
+        {
+          "id": "v1_027",
+          "es": "simpático",
+          "de": "nett / sympathisch",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Ella es muy simpática",
+            "Un profesor simpático"
+          ],
+          "mnemonic": "'simpático' → Fast wie 'sympathisch'!",
+          "audioHint": "Aussprache: 'sim-PA-ti-co'",
+          "germanCognate": true,
+          "cognateNote": "Perfektes Kognat! 'sympathisch'",
+          "genderNote": "simpático (m), simpática (f)"
+        },
+        {
+          "id": "v1_028",
+          "es": "inteligente",
+          "de": "intelligent",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Tú eres inteligente",
+            "Una niña inteligente"
+          ],
+          "mnemonic": "'inteligente' → Identisch mit 'intelligent'!",
+          "audioHint": "Aussprache: 'in-te-li-CHEN-te'",
+          "germanCognate": true,
+          "cognateNote": "Perfektes Kognat! Identisch",
+          "genderNote": "inteligente (beide Geschlechter gleich!)"
+        },
+        {
+          "id": "v1_029",
+          "es": "guapo",
+          "de": "hübsch / gutaussehend",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "Él es guapo",
+            "Un hombre guapo"
+          ],
+          "mnemonic": "'guapo' → Denk an 'guapura' (Schönheit)",
+          "audioHint": "Aussprache: 'GWA-po'",
+          "germanCognate": false,
+          "genderNote": "guapo (m), guapa (f)",
+          "culturalNote": "Häufiges Kompliment in Spanien"
+        },
+        {
+          "id": "v1_030",
+          "es": "feo",
+          "de": "hässlich",
+          "type": "adjective",
+          "difficulty": 2,
+          "examples": [
+            "El edificio es feo",
+            "Una casa fea"
+          ],
+          "mnemonic": "'feo' → kurz und negativ klingend",
+          "audioHint": "Aussprache: 'FE-o'",
+          "germanCognate": false,
+          "genderNote": "feo (m), fea (f)",
+          "usage": "Direktes Wort - vorsichtig bei Personen!",
+          "oppositeOf": "guapo, bonito"
+        }
+      ]
+    }
+  }
+}
