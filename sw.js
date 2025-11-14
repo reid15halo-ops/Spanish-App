@@ -4,7 +4,7 @@
  * Provides offline functionality, caching, and background sync
  */
 
-const CACHE_VERSION = 'v1.2.0';
+const CACHE_VERSION = 'v1.2.1';
 const CACHE_NAME = `spanish-app-${CACHE_VERSION}`;
 const DATA_CACHE = `spanish-app-data-${CACHE_VERSION}`;
 
@@ -36,6 +36,20 @@ const STATIC_CACHE_URLS = [
     '/js/improved-feedback.js',
     '/js/tolerant-validator.js',
 
+    // UX Enhancement Systems
+    '/js/main.js',
+    '/js/module-structure.js',
+    '/js/lesson1-expanded.js',
+    '/js/loading-system.js',
+    '/js/ui-enhancements.js',
+    '/js/tooltip-system.js',
+    '/js/help-system.js',
+    '/js/tutorial-system.js',
+    '/js/onboarding-system.js',
+    '/js/session-summary-system.js',
+    '/js/windows11-fluent-design.js',
+    '/js/dpi-awareness-system.js',
+
     // Styles
     '/css/styles.css',
     '/css/ux-enhancements.css',
@@ -54,9 +68,16 @@ const STATIC_CACHE_URLS = [
     '/data/phase1-exercises/unit6-vocabulary.json',
     '/data/phase1-exercises/unit7-integration.json',
 
-    // Icons (will be created)
+    // Icons
+    '/icons/icon-72x72.png',
+    '/icons/icon-96x96.png',
+    '/icons/icon-128x128.png',
+    '/icons/icon-144x144.png',
+    '/icons/icon-152x152.png',
     '/icons/icon-192x192.png',
-    '/icons/icon-512x512.png'
+    '/icons/icon-384x384.png',
+    '/icons/icon-512x512.png',
+    '/icons/badge-72x72.png'
 ];
 
 // Install event - cache static assets

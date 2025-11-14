@@ -33,7 +33,7 @@ class EnvironmentConfig {
                 enableErrorReporting: false,
                 cacheStrategy: 'network-first',
                 logLevel: 'debug',
-                version: '1.0.0-dev',
+                version: '1.2.1-dev',
                 features: {
                     experimentalFeatures: true,
                     betaFeatures: true,
@@ -48,7 +48,7 @@ class EnvironmentConfig {
                 enableErrorReporting: true,
                 cacheStrategy: 'cache-first',
                 logLevel: 'info',
-                version: '1.0.0-beta',
+                version: '1.2.1-beta',
                 features: {
                     experimentalFeatures: true,
                     betaFeatures: true,
@@ -63,7 +63,7 @@ class EnvironmentConfig {
                 enableErrorReporting: true,
                 cacheStrategy: 'cache-first',
                 logLevel: 'error',
-                version: '1.0.0',
+                version: '1.2.1',
                 features: {
                     experimentalFeatures: false,
                     betaFeatures: false,
