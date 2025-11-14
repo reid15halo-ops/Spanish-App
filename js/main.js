@@ -84,7 +84,7 @@ if ('serviceWorker' in navigator) {
 }
 
 // Log app initialization (production-aware)
-window.Logger?.info('Spanish Learning App v' + (window.ENV?.getVersion() || '1.2.0'));
+window.Logger?.info('Spanish Learning App v' + (window.ENV?.getVersion() || '1.2.1'));
 window.Logger?.debug('Environment:', window.ENV?.currentEnv || 'unknown');
 window.Logger?.debug('Debug mode:', window.ENV?.get('enableDebugMode') || false);
 

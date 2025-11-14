@@ -1024,6 +1024,9 @@ class App {
             this.setupSidebarToggle();
 
             window.Logger?.success('App ready!');
+
+            // Start session tracking
+            window.SessionSummarySystem?.startSession();
         } catch (error) {
             window.LoadingManager?.hide(loaderId);
             window.ErrorBoundary?.handleError(error, { context: 'App initialization' });
@@ -1342,6 +1345,9 @@ class App {
 
         // Record attempt in adaptive learning system
         this.adaptiveSystem.recordAttempt(exercise, validationResult.isCorrect);
+
+        // Record answer in session summary system
+        window.SessionSummarySystem?.recordAnswer(validationResult.isCorrect, exercise);
 
         // Save progress after updating stats
         this.saveProgress();
@@ -1984,6 +1990,9 @@ class App {
      * Show completion screen
      */
     showCompletion() {
+        // End session and show summary
+        window.SessionSummarySystem?.endSession();
+
         const accuracy = Math.round((this.stats.correct / this.stats.total) * 100);
         const emoji = accuracy >= 90 ? '🎉' : accuracy >= 70 ? '👍' : '💪';
 
