@@ -1372,7 +1372,8 @@ class App {
             input.disabled = true;
         }
 
-        const buttons = document.querySelectorAll('.btn-option, .btn-primary');
+        // Disable answer buttons, but NOT the continue button
+        const buttons = document.querySelectorAll('.btn-option, .btn-primary:not(.btn-continue)');
         buttons.forEach(btn => btn.disabled = true);
     }
 
